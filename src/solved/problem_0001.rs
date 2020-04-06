@@ -10,7 +10,6 @@ Given nums = [2, 7, 11, 15], target = 9,
 Because nums[0] + nums[1] = 2 + 7 = 9,
 return [0, 1].
 */
-#[allow(dead_code)]
 fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
   let mut result: Vec<i32> = Vec::new();
   let mut map: std::collections::HashMap<i32, usize> = std::collections::HashMap::new();
@@ -26,7 +25,6 @@ fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
   return result;
 }
 
-#[allow(dead_code)]
 fn two_sum_fastest_btreemap(nums: Vec<i32>, target: i32) -> Vec<i32> {
   /*
   阅读第一名的代码的收获：
@@ -35,6 +33,7 @@ fn two_sum_fastest_btreemap(nums: Vec<i32>, target: i32) -> Vec<i32> {
      理论上红黑树的时间复杂度为O(logN)，散列的时间复杂度为O(1)
      在JDK1.8中，HashMap的长度大于8时才会转为红黑树进行存储
      在Java中TreeMap是自动排序的，因此插入/删除操作会牺牲性能
+  3. 函数的最后，如果测试用例没有匹配项的话，可以写unreachable!()或返回vec![-1, -1]
   */
   let mut map: std::collections::BTreeMap<i32, usize> = std::collections::BTreeMap::new();
   for (index, num) in nums.iter().enumerate() {
@@ -46,7 +45,6 @@ fn two_sum_fastest_btreemap(nums: Vec<i32>, target: i32) -> Vec<i32> {
   vec![-1, -1]
 }
 
-#[allow(dead_code)]
 pub fn run() {
   // 我曾在这个测试用例上挂了：[-3, 4, 3, 90] - 0
   // [OK]: let result = two_sum(vec![2, 7, 11, 15], 9);
