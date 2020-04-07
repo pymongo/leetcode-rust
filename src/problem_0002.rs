@@ -5,9 +5,16 @@ use std::boxed::Box;
 1. Box<T>感觉像是空指针占位符，*node to unbox Box<ListNode>
 2. Option<Box<ListNode>>不知道怎么遍历，一直报错，一会报错borrowed、一会又moved的，不想在浪费时间花在与算法无关的思考上
 3. 还能同时match两个Option(然后2x2四个分支)，学到了！
+4. if let 是 match optional的缩写版
+if let (x) = optional { f(x) }
+等价于：
+match optional {
+  Some(x) => f(x),
+  _ => {}
+}
 */
 #[derive(PartialEq, Eq, Clone, Debug)]
-struct ListNode {
+pub struct ListNode {
   pub val: i32,
   pub next: Option<Box<ListNode>>,
 }
@@ -52,21 +59,26 @@ pub fn run() {
   add_two_numbers(Some(Box::new(sample_1_1)), Some(Box::new(sample_2_1)));
 }
 
+// #[cfg(feature = "unused")]
 pub fn add_two_numbers(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
-  // result链表的头节点，仅仅用于返回值
-  let mut head_node = None;
+  // result链表的头节点，仅仅用于返回值(head_node.next)
+  let mut head_node : Option<Box<ListNode>> = None;
   // 用于存储生成result链表的节点
-  let new_node : &Option<Box<ListNode>> = &mut head_node;
+  let mut current_node : &mut Option<Box<ListNode>> = &mut head_node;
   let (mut ln1, mut ln2) = (l1, l2);
-  let mut sum: i32 = 0;
+  let mut sum: i32;
   // 是否进位
   let mut is_carry : bool = false;
 
-  // 像数字电路datasheet真值表一样...
   loop {
+    // 像数字电路datasheet真值表一样...
     match (ln1, ln2) { // 必须要在每个分支都给ln1和ln2复制才能避免moved value的报错
       (Some(node1), Some(node2)) => {
         sum = node1.val + node2.val;
+        if sum > 10 {
+          is_carry = true;
+          sum = sum % 10;
+        }
         ln1 = node1.next;
         ln2 = node2.next;
       },
@@ -84,13 +96,25 @@ pub fn add_two_numbers(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> 
         break;
       }
     }
-
-
-  }
+    /* 遍历思路 */
+    // 1. current_node一开始为None
+    // 2. 初始化current_node的值
+    // 3. 将current_node指向current_node.next(因为next为None，所以刚好回到第一步)
+    if is_carry {
+      *current_node = Some(Box::new(ListNode::new(sum+1)));
+      is_carry = false;
+    } else {
+      *current_node = Some(Box::new(ListNode::new(sum)));
+    }
+    if let Some(current_node_unboxed) = current_node {
+      current_node = &mut current_node_unboxed.next;
+    }
+  } // end of loop
+  head_node
 }
 
 // match两个的用法1, 定义了一个匿名函数node_val用于取出当前节点的值，很新颖
-#[allow(dead_code)]
+#[cfg(feature = "unused")]
 fn add_two_numbers_1(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
   let mut cf = 0;
   let node_val = |x: &Option<Box<ListNode>>| {
@@ -142,8 +166,8 @@ fn add_two_numbers_1(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> Op
   res
 }
 
-// 与解答1类似
-#[allow(dead_code)]
+// 「最佳答案」与解答1类似
+#[cfg(feature = "unused")]
 pub fn add_two_numbers_2(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
   let mut sum = 0;
   let (mut l1, mut l2) = (l1, l2);
@@ -174,8 +198,15 @@ pub fn add_two_numbers_2(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -
     *p = Some(Box::new(ListNode::new(sum % 10))); //不管sum是否大于10，都可以使用sum%10的值来构建新“节点“
     sum /= 10; // 获取进位值，否则初始为0
     if let Some(p_box_node) = p {
+      // 遍历思想：赋值好当前节点后，把p指向下一个节点(None)
       p = &mut p_box_node.next
     }
+    /* 批注 if let(p_box_node) = p { f(p_box_node) } 等价于
+    match p {
+      Some(i) => f(p_box_node),
+      _ => {},
+    };
+    */
   }
   if sum != 0 {
     *p = Some(Box::new(ListNode::new(sum)));
@@ -188,3 +219,30 @@ pub fn add_two_numbers_2(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -
 crate leetcode的作者提供了一种效率较低，但是也是一种解决思路的方案
 先把「难以遍历」的Option
 */
+#[cfg(feature = "unused")]
+fn list_to_linkedlist(l: Option<Box<ListNode>>) -> std::collections::LinkedList<i32> {
+  let mut result = std::collections::LinkedList::new();
+  let mut curr = l;
+
+  while curr != None {
+    let inner = curr.unwrap();
+    result.push_back(inner.val);
+    curr = inner.next;
+  }
+
+  result
+}
+
+#[cfg(feature = "unused")]
+fn linkedlist_to_list(mut ll: std::collections::LinkedList<i32>) -> Option<Box<ListNode>> {
+  let mut tail = None;
+
+  while ll.front().is_some() {
+    let v = *ll.front().unwrap();
+    let node = ListNode { val: v, next: tail };
+    tail = Some(Box::new(node));
+    ll.pop_front();
+  }
+
+  tail
+}
