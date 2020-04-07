@@ -1,6 +1,6 @@
 /* 已偷看答案，原因：遍历、生成ListNode时一直语法错，实在是不会遍历/生成Option<Box<ListNode>>数据结构啊 */
 // 隐含约束1：如果一个链表较短则在前面补 00，比如 987 + 23 = 987 + 023 = 1010
-// 隐含约束1：如果一个链表较短则在前面补 00，比如 987 + 23 = 987 + 023 = 1010
+// 隐含约束2：需要考虑进位
 use std::boxed::Box;
 /* 收获
 1. Box<T>感觉像是空指针占位符，*node to unbox Box<ListNode>
@@ -13,6 +13,8 @@ match optional {
   Some(x) => f(x),
   _ => {}
 }
+5. 美服第一的代码：current = current.next.as_mut().unwrap() 轻松解压变量<Option<Box>>
+6. 学到了用.is_some()方法去遍历Option类型
 */
 #[derive(PartialEq, Eq, Clone, Debug)]
 pub struct ListNode {
@@ -67,33 +69,31 @@ pub fn add_two_numbers(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> 
   // 用于存储生成result链表的节点
   let mut current_node : &mut Option<Box<ListNode>> = &mut head_node;
   let (mut ln1, mut ln2) = (l1, l2);
-  let mut sum: i32;
-  // 是否进位
-  let mut carry : i32 = 0;
+  // 进入match时sum_or_carry表示进位，在match内经过计算后sum表示sum
+  let mut sum_or_carry: i32 = 0;
 
   loop {
     // 像数字电路datasheet真值表一样...
     match (ln1, ln2) { // 必须要在每个分支都给ln1和ln2复制才能避免moved value的报错
       (Some(node1), Some(node2)) => {
-        sum = node1.val + node2.val + carry;
-        if sum >= 10 {
-          sum = sum - 10;
-          carry = 1;
-        }
+        sum_or_carry = sum_or_carry + node1.val + node2.val;
         ln1 = node1.next;
         ln2 = node2.next;
       },
       (Some(node1), None) => {
-        sum = node1.val + carry;
+        sum_or_carry += node1.val;
         ln1 = node1.next;
         ln2 = None;
       },
       (None, Some(node2)) => {
-        sum = node2.val + carry;
+        sum_or_carry += node2.val;
         ln1 = None;
         ln2 = node2.next;
       },
       (None, None) => {
+        if sum_or_carry != 0 {
+          *current_node = Some(Box::new(ListNode::new(sum_or_carry)));
+        }
         break;
       }
     }
@@ -101,8 +101,8 @@ pub fn add_two_numbers(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> 
     // 1. current_node一开始为None
     // 2. 初始化current_node的值
     // 3. 将current_node指向current_node.next(因为next为None，所以刚好回到第一步)
-    *current_node = Some(Box::new(ListNode::new(sum)));
-    println!("{}", sum);
+    *current_node = Some(Box::new(ListNode::new(sum_or_carry % 10)));
+    sum_or_carry /= 10; // 此时的sum_or_carry看作进位值，传入下次迭代
     if let Some(current_node_unboxed) = current_node {
       current_node = &mut current_node_unboxed.next;
     }
@@ -210,6 +210,118 @@ pub fn add_two_numbers_2(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -
   }
 
   l
+}
+
+// 「美服第一」优化很多
+#[cfg(feature = "unused")]
+pub fn add_two_numbers_3(mut l1: Option<Box<ListNode>>, mut l2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+  let mut head = ListNode::new(0);
+  let mut curr = &mut head;
+  let mut carry = 0;
+
+  loop {
+    match (l1, l2) {
+      (Some(mut v1), Some(mut v2)) => {
+        let mut val = v1.val + v2.val + carry;
+
+        if val >= 10 {
+          val -= 10;
+          carry = 1;
+        } else {
+          carry = 0;
+        }
+
+        let node = ListNode::new(val);
+        curr.next = Some(Box::new(node));
+        l1 = v1.next.take();
+        l2 = v2.next.take();
+      },
+      (Some(mut v1), None) => {
+        let mut val = v1.val + carry;
+
+        if val >= 10 {
+          val -= 10;
+          carry = 1;
+        } else {
+          carry = 0;
+        }
+
+        let node = ListNode::new(val);
+        curr.next = Some(Box::new(node));
+        l1 = v1.next.take();
+        l2 = None;
+      },
+      (None, Some(mut v2)) => {
+        let mut val = v2.val + carry;
+
+        if val >= 10 {
+          val -= 10;
+          carry = 1;
+        } else {
+          carry = 0;
+        }
+
+        let node = ListNode::new(val);
+        curr.next = Some(Box::new(node));
+        l2 = v2.next.take();
+        l1 = None;
+      },
+      (None, None) => {
+        if carry == 0 {
+          break;
+        }
+
+        let node = ListNode::new(1);
+        curr.next = Some(Box::new(node));
+        break;
+      },
+    }
+
+    curr = curr.next.as_mut().unwrap();
+  }
+
+  head.next
+}
+
+// 「国服第一」
+#[cfg(feature = "unused")]
+pub fn add_two_numbers_4(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+  let mut dump_head = ListNode::new(0);
+  let mut current = &mut dump_head;
+  let mut carry = 0;
+  let mut p = l1.as_ref();
+  let mut q = l2.as_ref();
+
+  while p.is_some() || q.is_some() {
+    let sum = match(&p, &q) {
+      (Some(l1), Some(l2)) => l1.val + l2.val + carry,
+      (Some(l1), None) => l1.val + carry,
+      (None, Some(l2)) => l2.val + carry,
+      (None, None) => 0 + carry,
+    };
+
+    carry = sum / 10;
+    current.next = Some(Box::new(ListNode::new(sum % 10)));
+    current = current.next.as_mut().unwrap();
+
+    if p.is_some() && p.unwrap().next.is_some() {
+      p = p.unwrap().next.as_ref();
+    } else {
+      p = None;
+    }
+
+    if q.is_some() && q.unwrap().next.is_some() {
+      q = q.unwrap().next.as_ref();
+    } else {
+      q = None;
+    }
+  }
+
+  if carry > 0 {
+    current.next = Some(Box::new(ListNode::new(carry)));
+  }
+
+  dump_head.next
 }
 
 /*
