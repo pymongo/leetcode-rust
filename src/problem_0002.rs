@@ -1,5 +1,6 @@
 /* 已偷看答案，原因：遍历、生成ListNode时一直语法错，实在是不会遍历/生成Option<Box<ListNode>>数据结构啊 */
-// 隐含约束：如果一个链表较短则在前面补 00，比如 987 + 23 = 987 + 023 = 1010
+// 隐含约束1：如果一个链表较短则在前面补 00，比如 987 + 23 = 987 + 023 = 1010
+// 隐含约束1：如果一个链表较短则在前面补 00，比如 987 + 23 = 987 + 023 = 1010
 use std::boxed::Box;
 /* 收获
 1. Box<T>感觉像是空指针占位符，*node to unbox Box<ListNode>
@@ -68,27 +69,27 @@ pub fn add_two_numbers(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> 
   let (mut ln1, mut ln2) = (l1, l2);
   let mut sum: i32;
   // 是否进位
-  let mut is_carry : bool = false;
+  let mut carry : i32 = 0;
 
   loop {
     // 像数字电路datasheet真值表一样...
     match (ln1, ln2) { // 必须要在每个分支都给ln1和ln2复制才能避免moved value的报错
       (Some(node1), Some(node2)) => {
-        sum = node1.val + node2.val;
-        if sum > 10 {
-          is_carry = true;
-          sum = sum % 10;
+        sum = node1.val + node2.val + carry;
+        if sum >= 10 {
+          sum = sum - 10;
+          carry = 1;
         }
         ln1 = node1.next;
         ln2 = node2.next;
       },
       (Some(node1), None) => {
-        sum = node1.val;
+        sum = node1.val + carry;
         ln1 = node1.next;
         ln2 = None;
       },
       (None, Some(node2)) => {
-        sum = node2.val;
+        sum = node2.val + carry;
         ln1 = None;
         ln2 = node2.next;
       },
@@ -100,12 +101,8 @@ pub fn add_two_numbers(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> 
     // 1. current_node一开始为None
     // 2. 初始化current_node的值
     // 3. 将current_node指向current_node.next(因为next为None，所以刚好回到第一步)
-    if is_carry {
-      *current_node = Some(Box::new(ListNode::new(sum+1)));
-      is_carry = false;
-    } else {
-      *current_node = Some(Box::new(ListNode::new(sum)));
-    }
+    *current_node = Some(Box::new(ListNode::new(sum)));
+    println!("{}", sum);
     if let Some(current_node_unboxed) = current_node {
       current_node = &mut current_node_unboxed.next;
     }
