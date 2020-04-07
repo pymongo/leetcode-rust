@@ -1,9 +1,29 @@
 pub fn run() {
-  println!("{}", length_of_longest_substring(String::from("pwwkew")));
+  // println!("{}", current(String::from("pwwkew")));
+  println!("{}", current(String::from(" ")));
 }
 
+// 过了一半测试用例，遇到一个空格" "挂了，原因是只匹配在中间出现时的情况
 pub fn current(s: String) -> i32 {
-  1
+  let size : usize = s.len();
+  let mut index : usize = 0;
+  let mut char : char;
+  let mut max : usize = 0;
+  let mut unique : std::collections::BTreeSet<char> = std::collections::BTreeSet::new();
+
+  while index < size {
+    char = s.chars().nth(index).unwrap();
+    if unique.contains(&char) {
+      println!(" same! {}", char);
+      max = std::cmp::max(max, unique.len());
+      unique.clear();
+    } else {
+      print!("unique {}", char);
+      unique.insert(char);
+      index += 1;
+    }
+  }
+  max as i32
 }
 
 // 164 ms, faster than 12.34%
