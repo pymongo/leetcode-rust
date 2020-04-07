@@ -23,6 +23,8 @@ pub fn current(s: String) -> i32 {
       index += 1;
     }
   }
+  // 防止连续不重复的字符串出现在最后
+  max = std::cmp::max(max, unique.len());
   max as i32
 }
 
