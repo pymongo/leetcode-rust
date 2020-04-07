@@ -62,7 +62,7 @@ pub fn run() {
   add_two_numbers(Some(Box::new(sample_1_1)), Some(Box::new(sample_2_1)));
 }
 
-// #[cfg(feature = "unused")]
+#[cfg(feature = "unused")]
 pub fn add_two_numbers(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
   // result链表的头节点，仅仅用于返回值(head_node.next)
   let mut head_node : Option<Box<ListNode>> = None;

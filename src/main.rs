@@ -1,7 +1,4 @@
-mod solved;
-
-mod problem_0002;
+mod problem_0003;
 
 fn main() {
-  problem_0002::run();
 }
