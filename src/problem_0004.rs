@@ -1,54 +1,55 @@
+// use std::collections::BTreeSet;
+
 pub fn run() {
   print!("{}", find_median(vec![1,2], vec![3,4]))
+  // let mut a : BTreeSet<i32> = BTreeSet::new();
+  // a.insert(3);
+  // a.insert(1);
+  // a.insert(2);
+  // a.insert(3);
+  // for i in &a {
+  //   println!("{}", i)
+  // }
 }
 
 // 隐含条件nums1和nums2是有序的
+// 弊端：hashSet会去重，需要手写排序算法
+// 2064 / 2085 test cases passed
 fn find_median(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
-  let ans : f64;
-  let sum_len = num1.len()+nums2.len();
-  if sum_len % 2 == 0 {
-    let traverse_end = (sum_len / 2) - 1;
-    let mut middle_left;
-    let mut middle_right;
-    let mut nums1_iter = nums1.iter();
-    let mut nums2_iter = nums2.iter();
-    let mut index;
-    loop {
-      // [1 2 3 4] 2
-      match (nums1_iter.next(), nums2_iter.next()) {
-        (Some(n1), Some(n2)) => {
-          index += 2;
-          if index < traverse_end-1 {
-            continue;
-          }
-          if index == traverse_end {
-            ans = (n1+n2)/2
-          }
-        },
-        (Some(n1), None) => {
-          index += 1;
-          if index < traverse_end-1 {
-            continue;
-          }
-        },
-        (None, Some(n2)) => {
-          index += 1;
-          if index < traverse_end-1 {
-            continue;
-          }
-        },
-        (None, None) => {
-          break;
-        }
-      }
-      index += 1;
-      if index > traverse_end+2 {
+  use std::collections::BTreeSet;
+  let mut ans : f64 = 0 as f64;
+  let mut sorted_set : BTreeSet<i32> = BTreeSet::new();
+  let (mut nums1, mut nums2) = (nums1, nums2);
+  nums1.append(&mut nums2);
+  for num in nums1 {
+    sorted_set.insert(num);
+  }
+  let len : usize = sorted_set.len();
+
+  let mut index : usize = 0;
+
+  if len % 2 == 0 {
+    let mut middle_left = 0;
+    let mut middle_right = 0;
+    for each in sorted_set {
+      if index == (len/2 -1) {
+        middle_left = each;
+      } else if index == len/2 {
+        middle_right = each;
         break;
       }
+      index += 1;
     }
+    ans = (middle_left + middle_right) as f64 / 2 as f64
   } else {
-
+    for each in sorted_set {
+      if index == len/2 {
+        ans = each as f64;
+        break;
+      }
+      index += 1;
+    }
   }
-  1 as f64
+  ans
 }
 
