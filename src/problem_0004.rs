@@ -1,7 +1,7 @@
 // use std::collections::BTreeSet;
 
 pub fn run() {
-  print!("{}", find_median2(vec![], vec![1]))
+  print!("ans = {}", find_median2(vec![3], vec![-2, -1]))
   // let mut a : BTreeSet<i32> = BTreeSet::new();
   // a.insert(3);
   // a.insert(1);
@@ -14,7 +14,7 @@ pub fn run() {
 
 // 隐含条件nums1和nums2是有序的
 fn find_median2(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
-  let mut ans : f64;
+  let ans : f64;
   let mut len = nums1.len();
   let len1 = nums1.len();
   let mut len2 = nums2.len();
@@ -31,6 +31,7 @@ fn find_median2(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
   } else {
     arr = nums2;
     pending_to_insert_arr = nums1;
+    len = len2;
     len2 = len1;
   }
   // 二分插入相关变量
@@ -38,20 +39,20 @@ fn find_median2(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
   // 奇偶数判断
   while j < len2 {
     // 既然第二个数组是有序的，我就不用二分插入了
-    while arr[i] < pending_to_insert_arr[j] {
-      if i < len -1 {
+    while arr[std::cmp::min(i, len-1)] < pending_to_insert_arr[j] {
+      if i < len {
         i += 1;
       } else {
-        i += 1;
         break;
       }
     }
-    arr.insert(i, pending_to_insert_arr[j]);
+    if i < len {
+      arr.insert(i, pending_to_insert_arr[j]);
+    } else {
+      arr.push(pending_to_insert_arr[j]);
+    }
     j += 1;
     len += 1;
-  }
-  for i in &arr {
-    println!("{}", *i)
   }
   if is_odd {
     ans = (arr[stop_index] + arr[stop_index-1]) as f64 / 2 as f64;
