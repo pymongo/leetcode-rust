@@ -22,6 +22,7 @@ pub struct ListNode {
   pub next: Option<Box<ListNode>>,
 }
 
+#[cfg(feature = "unused")]
 impl ListNode {
   #[inline]
   fn new(val: i32) -> Self {
@@ -36,6 +37,7 @@ impl ListNode {
 输入：(2 -> 4 -> 3) + (5 -> 6 -> 4)
 输出：7 -> 0 -> 8
 */
+#[cfg(feature = "unused")]
 pub fn run() {
   // 初始化输入用例
   let mut sample_1_1 = ListNode::new(2);

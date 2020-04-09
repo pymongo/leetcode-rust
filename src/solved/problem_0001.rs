@@ -7,6 +7,7 @@
    在Java中TreeMap是自动排序的，因此插入/删除操作会牺牲性能
 3. 函数的最后，如果测试用例没有匹配项的话，可以写unreachable!()或返回vec![-1, -1]
 */
+#[cfg(feature = "unused")]
 fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
   let mut result: Vec<i32> = Vec::new();
   let mut map: std::collections::HashMap<i32, usize> = std::collections::HashMap::new();
@@ -34,6 +35,7 @@ fn two_sum_fastest_btreemap(nums: Vec<i32>, target: i32) -> Vec<i32> {
   vec![-1, -1]
 }
 
+#[cfg(feature = "unused")]
 pub fn run() {
   // 我曾在这个测试用例上挂了：[-3, 4, 3, 90] - 0
   // [OK]: let result = two_sum(vec![2, 7, 11, 15], 9);

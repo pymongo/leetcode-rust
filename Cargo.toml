@@ -7,5 +7,4 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-# leetcode这个库不是官方提供的某些题需要用到的数据类型
-serde = { version = "*", features = ["derive"] }
+#serde = { version = "*", features = ["derive"] }
