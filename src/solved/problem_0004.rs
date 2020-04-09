@@ -2,6 +2,7 @@
 看到时间复杂度要求O(log(n)，基本只能用「二分查找」
  */
 
+#[cfg(feature = "unused")]
 pub fn run() {
   // print!("ans = {}", find_median2(vec![1, 3], vec![2]));
   // print!("ans = {}", find_median2(vec![-2, -1], vec![3]));
@@ -24,6 +25,7 @@ https://www.youtube.com/watch?v=ScCg9v921ns
 移动分割线后输入用例1：[1 2 3|4]
 移动分割线后输入用例2：[3|6 8 9]，刚好两个数组分割线的左半边组成了合并后中位数的左半边
 */
+#[cfg(feature = "unused")]
 fn logn(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
   // println!("ans = {}", logn(vec![1, 2, 3, 4], vec![3, 6, 8, 9]))
   let ans: f64;
