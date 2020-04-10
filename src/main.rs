@@ -1,8 +1,6 @@
-// #![feature(test)]
-// extern crate test;
-
 mod solved;
+mod problem_0005;
 
 fn main() {
-  // problem_0004::run();
+  problem_0005::run();
 }
