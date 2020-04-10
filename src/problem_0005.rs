@@ -48,7 +48,7 @@ fn dp(s: String) -> String {
   // }
   let max_len = 0;
   let mut best_start = 0;
-  let mut best_end = len-1;
+  let mut best_end = 0;
   let mut start = len - 2;
   let mut end;
   loop {
@@ -76,7 +76,7 @@ fn dp(s: String) -> String {
       start -= 1;
     }
   }
-  s[best_start..best_end+1].parse().unwrap()
+  s[best_start..=best_end].parse().unwrap()
 }
 
 /*
