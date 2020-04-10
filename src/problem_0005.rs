@@ -1,8 +1,8 @@
 pub fn run() {
   // println!("{}", is_palindromic(String::from("aba")));
   // println!("{}", solve(String::from("ac")));
-  // println!("{}", solve(String::from("babad")));
-  println!("{}", dp(String::from("a")));
+  println!("{}", dp(String::from("abadd")));
+  // println!("{}", dp(String::from("ccc")));
 }
 
 /*
@@ -32,12 +32,21 @@ start=1, end=3->2;
 改良：
 写完后我才发现start作为纵坐标更合适，刚好能让二位数组的index变为s[start][end]
 */
+// 性能：耗时28ms，比暴力破解的650多毫秒强多了👍
 fn dp(s: String) -> String {
   let len = s.len();
   if len <= 1 {
     // 应对极端情况会导致我数组subtract with overflow
     return s;
   }
+  // 判断逆序后是否相等：应对ccc的测试用例
+  if s.chars().rev().collect::<String>() == s {
+    // 这个dp该怎么处理ccc的情况呢？无解啊，遍历就是从len-1开始
+    // 第二种办法是判断table结束后是否仍为全true
+    return s;
+  }
+
+
   let bytes = s.as_bytes();
   // Rust的数组只能使用Const来定义长度，不能用s.len
   // let mut table: [[bool; s.len()]; s.len()] = [[false; s.len()]; s.len()];
@@ -46,9 +55,9 @@ fn dp(s: String) -> String {
   // for i in 0..len {
   //   table[i][i] = true;
   // }
-  let max_len = 0;
+  let mut max_len = 0;
   let mut best_start = 0;
-  let mut best_end = 0;
+  let mut best_end = len-1;
   let mut start = len - 2;
   let mut end;
   loop {
@@ -61,6 +70,7 @@ fn dp(s: String) -> String {
         if end - start > max_len {
           best_start = start;
           best_end = end;
+          max_len = end-start;
         }
       } else {
         table[end][start] = false;
@@ -75,6 +85,9 @@ fn dp(s: String) -> String {
     } else {
       start -= 1;
     }
+  }
+  if max_len == 0 {
+    best_end = 0;
   }
   s[best_start..=best_end].parse().unwrap()
 }
