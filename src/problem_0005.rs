@@ -206,3 +206,60 @@ pub fn longest_palindrome(s: String) -> String {
   longest_palindrome_substring
 }
 
+// 美服第一的答案，似乎并不是Manacher算法
+#[cfg(features = "unused")]
+pub fn longest_palindrome(s: String) -> String {
+  let seq: Vec<char> = s.chars().collect();
+  let len = seq.len();
+  if len < 1 {return s}
+  let (mut idx, mut curr_len, mut curr_start, mut curr_end) = (0, 0, 0, 0);
+  while idx < len {
+    let (mut i, mut j) = (idx, idx);
+    let ch = seq[idx];
+    // handle same char
+    while i > 0 && seq[i - 1] == ch { i -= 1 };
+    while j < len - 1 && seq[j + 1] == ch { j += 1 };
+    idx = j + 1;
+    while i > 0 && j < len - 1 && seq[i - 1] == seq[j + 1] {
+      i -= 1; j +=1;
+    }
+    let max_len = j - i + 1;
+    if max_len > curr_len {
+      curr_len = max_len; curr_start = i; curr_end = j;
+    }
+    if max_len >= len - 1 {
+      break;
+    }
+  }
+
+  s[curr_start..curr_end+1].to_owned()
+}
+
+// 这老哥用paris存储start、end的组合也是挺有意思的
+#[cfg(features = "unused")]
+pub fn longest_palindrome(s: String) -> String {
+  if s == "".to_string() {return s;}
+  let s:Vec<char> = s.chars().collect();
+  let mut i = 0;
+  let mut pair = (0, 0);
+  while i < (s.len()-1) {
+    let mut j;
+    let mut k;
+    if s[i]==s[i+1] {
+      j = i;
+      k = i+1;
+      while j>0 && k<s.len()-1 && s[j]==s[k] {j-=1; k+=1;}
+      if s[j]!=s[k] {j+=1; k-=1;}
+      if k-j > pair.1-pair.0 {pair.0 = j; pair.1 = k;}
+    }
+    if i>0 && s[i-1]==s[i+1] {
+      j = i-1;
+      k = i+1;
+      while j>0 && k<s.len()-1 && s[j]==s[k] {j-=1; k+=1;}
+      if s[j]!=s[k] {j+=1; k-=1;}
+      if k-j > pair.1-pair.0 {pair.0 = j; pair.1 = k;}
+    }
+    i += 1;
+  }
+  s[pair.0..pair.1+1].iter().collect()
+}
