@@ -1,3 +1,4 @@
+#[cfg(feature = "unused")]
 pub fn run() {
   // println!("{}", is_palindromic(String::from("aba")));
   // println!("{}", solve(String::from("ac")));
@@ -33,6 +34,7 @@ start=1, end=3->2;
 写完后我才发现start作为纵坐标更合适，刚好能让二位数组的index变为s[start][end]
 */
 // 性能：耗时28ms，比暴力破解的650多毫秒强多了👍
+#[cfg(feature = "unused")]
 fn dp(s: String) -> String {
   let len = s.len();
   if len <= 1 {
