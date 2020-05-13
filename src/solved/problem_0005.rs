@@ -1,9 +1,9 @@
 #[cfg(feature = "unused")]
 pub fn run() {
-  // println!("{}", is_palindromic(String::from("aba")));
-  // println!("{}", solve(String::from("ac")));
-  println!("{}", dp(String::from("abadd")));
-  // println!("{}", dp(String::from("ccc")));
+    // println!("{}", is_palindromic(String::from("aba")));
+    // println!("{}", solve(String::from("ac")));
+    println!("{}", dp(String::from("abadd")));
+    // println!("{}", dp(String::from("ccc")));
 }
 
 /*
@@ -36,62 +36,62 @@ start=1, end=3->2;
 // 性能：耗时28ms，比暴力破解的650多毫秒强多了👍
 #[cfg(feature = "unused")]
 fn dp(s: String) -> String {
-  let len = s.len();
-  if len <= 1 {
-    // 应对极端情况会导致我数组subtract with overflow
-    return s;
-  }
-  // 判断逆序后是否相等：应对ccc的测试用例
-  if s.chars().rev().collect::<String>() == s {
-    // 这个dp该怎么处理ccc的情况呢？无解啊，遍历就是从len-1开始
-    // 第二种办法是判断table结束后是否仍为全true
-    return s;
-  }
+    let len = s.len();
+    if len <= 1 {
+        // 应对极端情况会导致我数组subtract with overflow
+        return s;
+    }
+    // 判断逆序后是否相等：应对ccc的测试用例
+    if s.chars().rev().collect::<String>() == s {
+        // 这个dp该怎么处理ccc的情况呢？无解啊，遍历就是从len-1开始
+        // 第二种办法是判断table结束后是否仍为全true
+        return s;
+    }
 
 
-  let bytes = s.as_bytes();
-  // Rust的数组只能使用Const来定义长度，不能用s.len
-  // let mut table: [[bool; s.len()]; s.len()] = [[false; s.len()]; s.len()];
-  let mut table = vec![vec![true; s.len()]; s.len()];
-  // 初始化_先把table对角线右上部分元素设为true(表示该项是回文数)
-  // for i in 0..len {
-  //   table[i][i] = true;
-  // }
-  let mut max_len = 0;
-  let mut best_start = 0;
-  let mut best_end = len-1;
-  let mut start = len - 2;
-  let mut end;
-  loop {
-    end = len - 1;
+    let bytes = s.as_bytes();
+    // Rust的数组只能使用Const来定义长度，不能用s.len
+    // let mut table: [[bool; s.len()]; s.len()] = [[false; s.len()]; s.len()];
+    let mut table = vec![vec![true; s.len()]; s.len()];
+    // 初始化_先把table对角线右上部分元素设为true(表示该项是回文数)
+    // for i in 0..len {
+    //   table[i][i] = true;
+    // }
+    let mut max_len = 0;
+    let mut best_start = 0;
+    let mut best_end = len - 1;
+    let mut start = len - 2;
+    let mut end;
     loop {
-      println!("end = {}, start = {}", end, start);
-      if bytes[start] == bytes[end]
-        && table[end-1][start+1] {
-        table[end][start] = true;
-        if end - start > max_len {
-          best_start = start;
-          best_end = end;
-          max_len = end-start;
+        end = len - 1;
+        loop {
+            println!("end = {}, start = {}", end, start);
+            if bytes[start] == bytes[end]
+                && table[end - 1][start + 1] {
+                table[end][start] = true;
+                if end - start > max_len {
+                    best_start = start;
+                    best_end = end;
+                    max_len = end - start;
+                }
+            } else {
+                table[end][start] = false;
+            }
+            end -= 1;
+            if end <= start {
+                break;
+            }
         }
-      } else {
-        table[end][start] = false;
-      }
-      end -= 1;
-      if end <= start {
-        break;
-      }
+        if start == 0 {
+            break;
+        } else {
+            start -= 1;
+        }
     }
-    if start == 0 {
-      break;
-    } else {
-      start -= 1;
+    if max_len == 0 {
+        best_end = 0;
     }
-  }
-  if max_len == 0 {
-    best_end = 0;
-  }
-  s[best_start..=best_end].parse().unwrap()
+    s[best_start..=best_end].parse().unwrap()
 }
 
 /*
@@ -101,167 +101,188 @@ fn dp(s: String) -> String {
 */
 #[cfg(feature = "unused")]
 fn solve(s: String) -> String {
-  let len = s.len();
-  if len <= 1 {
-    return s;
-  }
-  let sub_string = &mut String::new();
-  let mut result = String::new();
-  let mut max_len = 0;
-
-  for i in 0..len {
-    for j in i..len {
-      // println!("i={},j={}",i,j);
-      if (j - i) < max_len {
-        continue;
-      }
-      *sub_string = (&s[i..=j]).parse().unwrap();
-      if is_palindromic(sub_string) {
-        if sub_string.len() > max_len {
-          result = sub_string.clone();
-          max_len = sub_string.len();
-        }
-      }
+    let len = s.len();
+    if len <= 1 {
+        return s;
     }
-  }
-  result
+    let sub_string = &mut String::new();
+    let mut result = String::new();
+    let mut max_len = 0;
+
+    for i in 0..len {
+        for j in i..len {
+            // println!("i={},j={}",i,j);
+            if (j - i) < max_len {
+                continue;
+            }
+            *sub_string = (&s[i..=j]).parse().unwrap();
+            if is_palindromic(sub_string) {
+                if sub_string.len() > max_len {
+                    result = sub_string.clone();
+                    max_len = sub_string.len();
+                }
+            }
+        }
+    }
+    result
 }
 
 #[cfg(feature = "unused")]
 fn is_palindromic(s: &String) -> bool {
-  let bytes = (*s).as_bytes();
-  let mut start: usize = 0;
-  let mut end: usize = bytes.len() - 1;
-  while start < end {
-    if bytes[start] != bytes[end] {
-      return false;
-    } else {
-      start += 1;
-      end -= 1;
+    let bytes = (*s).as_bytes();
+    let mut start: usize = 0;
+    let mut end: usize = bytes.len() - 1;
+    while start < end {
+        if bytes[start] != bytes[end] {
+            return false;
+        } else {
+            start += 1;
+            end -= 1;
+        }
     }
-  }
-  true
+    true
 }
 
 // 国服第一0ms的解答，Manacher是唯一能实现O(n)时间复杂度的算法
 #[cfg(feature = "unused")]
 pub fn longest_palindrome(s: String) -> String {
-  /* Manacher Algorithm
-   * step1: add '$''#' into string
-   * The character `$` here is just to prevent overbounds
-   * there is an even palindrome `abba` and an odd palindrome `opxpo` in `s="abbahopxpo"`,
-   * which are converted into `#a#b#b#a#` and `#o#p#x#p#o#`, and the length is converted into odd
-   */
-  let mut new_str = vec!['$', '#'];
-  for ch in s.chars() {
-    new_str.push(ch);
-    new_str.push('#');
-  }
-  new_str.push('\0');
+    /* Manacher Algorithm
+     * step1: add '$''#' into string
+     * The character `$` here is just to prevent overbounds
+     * there is an even palindrome `abba` and an odd palindrome `opxpo` in `s="abbahopxpo"`,
+     * which are converted into `#a#b#b#a#` and `#o#p#x#p#o#`, and the length is converted into odd
+     */
+    let mut new_str = vec!['$', '#'];
+    for ch in s.chars() {
+        new_str.push(ch);
+        new_str.push('#');
+    }
+    new_str.push('\0');
 
-  // length of the new string
-  let len = new_str.len();
+    // length of the new string
+    let len = new_str.len();
 
-  // Define a secondary array p[], where p[i] represents the radius of the longest palindrome centered on i.
-  let mut p = vec![0usize; len];
+    // Define a secondary array p[], where p[i] represents the radius of the longest palindrome centered on i.
+    let mut p = vec![0usize; len];
 
-  // `max_len`: The length of the longest palindrome string in the original string
-  let mut max_len = 0usize;
+    // `max_len`: The length of the longest palindrome string in the original string
+    let mut max_len = 0usize;
 
-  // Define two variables, `mx` and` id`
-  // `mx` represents the right boundary of the longest palindrome centered on` id`, which is `mx = id + p[id]`
-  let mut id = 0usize;
-  let mut mx = 0usize;
-  for i in 1..(len - 1) {
-    if i < mx {
-      p[i] = p[2 * id - i].min(mx - i);
-    } else {
-      p[i] = 1;
+    // Define two variables, `mx` and` id`
+    // `mx` represents the right boundary of the longest palindrome centered on` id`, which is `mx = id + p[id]`
+    let mut id = 0usize;
+    let mut mx = 0usize;
+    for i in 1..(len - 1) {
+        if i < mx {
+            p[i] = p[2 * id - i].min(mx - i);
+        } else {
+            p[i] = 1;
+        }
+
+        while new_str[i - p[i]] == new_str[i + p[i]] {
+            p[i] += 1;
+        }
+
+        if mx < i + p[i] {
+            id = i;
+            mx = i + p[i];
+        }
+        // `p[i] - 1` is exactly the length of the longest palindrome string in the original string
+        max_len = max_len.max(p[i] - 1);
     }
 
-    while new_str[i - p[i]] == new_str[i + p[i]] {
-      p[i] += 1;
+    /* Get longest palindromic substring
+     * left: left boundery of the longest palindromic substring
+     * right: right boundery of the longest palindromic substring
+     */
+    let left = p.iter().position(|&x| x == (max_len + 1)).unwrap() - max_len + 1;
+    let right = left + max_len * 2;
+    let mut longest_palindrome_substring = String::from("");
+    for i in left..right {
+        if new_str[i] != '#' {
+            longest_palindrome_substring.push(new_str[i]);
+        }
     }
 
-    if mx < i + p[i] {
-      id = i;
-      mx = i + p[i];
-    }
-    // `p[i] - 1` is exactly the length of the longest palindrome string in the original string
-    max_len = max_len.max(p[i] - 1);
-  }
-
-  /* Get longest palindromic substring
-   * left: left boundery of the longest palindromic substring
-   * right: right boundery of the longest palindromic substring
-   */
-  let left = p.iter().position(|&x| x == (max_len + 1)).unwrap() - max_len + 1;
-  let right = left + max_len * 2;
-  let mut longest_palindrome_substring = String::from("");
-  for i in left..right {
-    if new_str[i] != '#' {
-      longest_palindrome_substring.push(new_str[i]);
-    }
-  }
-
-  /* Return longest palindromic substring */
-  longest_palindrome_substring
+    /* Return longest palindromic substring */
+    longest_palindrome_substring
 }
 
 // 美服第一的答案，似乎并不是Manacher算法
 #[cfg(features = "unused")]
 pub fn longest_palindrome(s: String) -> String {
-  let seq: Vec<char> = s.chars().collect();
-  let len = seq.len();
-  if len < 1 {return s}
-  let (mut idx, mut curr_len, mut curr_start, mut curr_end) = (0, 0, 0, 0);
-  while idx < len {
-    let (mut i, mut j) = (idx, idx);
-    let ch = seq[idx];
-    // handle same char
-    while i > 0 && seq[i - 1] == ch { i -= 1 };
-    while j < len - 1 && seq[j + 1] == ch { j += 1 };
-    idx = j + 1;
-    while i > 0 && j < len - 1 && seq[i - 1] == seq[j + 1] {
-      i -= 1; j +=1;
+    let seq: Vec<char> = s.chars().collect();
+    let len = seq.len();
+    if len < 1 { return s; }
+    let (mut idx, mut curr_len, mut curr_start, mut curr_end) = (0, 0, 0, 0);
+    while idx < len {
+        let (mut i, mut j) = (idx, idx);
+        let ch = seq[idx];
+        // handle same char
+        while i > 0 && seq[i - 1] == ch { i -= 1 };
+        while j < len - 1 && seq[j + 1] == ch { j += 1 };
+        idx = j + 1;
+        while i > 0 && j < len - 1 && seq[i - 1] == seq[j + 1] {
+            i -= 1;
+            j += 1;
+        }
+        let max_len = j - i + 1;
+        if max_len > curr_len {
+            curr_len = max_len;
+            curr_start = i;
+            curr_end = j;
+        }
+        if max_len >= len - 1 {
+            break;
+        }
     }
-    let max_len = j - i + 1;
-    if max_len > curr_len {
-      curr_len = max_len; curr_start = i; curr_end = j;
-    }
-    if max_len >= len - 1 {
-      break;
-    }
-  }
 
-  s[curr_start..curr_end+1].to_owned()
+    s[curr_start..curr_end + 1].to_owned()
 }
 
 // 这老哥用paris存储start、end的组合也是挺有意思的
 #[cfg(features = "unused")]
 pub fn longest_palindrome(s: String) -> String {
-  if s == "".to_string() {return s;}
-  let s:Vec<char> = s.chars().collect();
-  let mut i = 0;
-  let mut pair = (0, 0);
-  while i < (s.len()-1) {
-    let mut j;
-    let mut k;
-    if s[i]==s[i+1] {
-      j = i;
-      k = i+1;
-      while j>0 && k<s.len()-1 && s[j]==s[k] {j-=1; k+=1;}
-      if s[j]!=s[k] {j+=1; k-=1;}
-      if k-j > pair.1-pair.0 {pair.0 = j; pair.1 = k;}
+    if s == "".to_string() { return s; }
+    let s: Vec<char> = s.chars().collect();
+    let mut i = 0;
+    let mut pair = (0, 0);
+    while i < (s.len() - 1) {
+        let mut j;
+        let mut k;
+        if s[i] == s[i + 1] {
+            j = i;
+            k = i + 1;
+            while j > 0 && k < s.len() - 1 && s[j] == s[k] {
+                j -= 1;
+                k += 1;
+            }
+            if s[j] != s[k] {
+                j += 1;
+                k -= 1;
+            }
+            if k - j > pair.1 - pair.0 {
+                pair.0 = j;
+                pair.1 = k;
+            }
+        }
+        if i > 0 && s[i - 1] == s[i + 1] {
+            j = i - 1;
+            k = i + 1;
+            while j > 0 && k < s.len() - 1 && s[j] == s[k] {
+                j -= 1;
+                k += 1;
+            }
+            if s[j] != s[k] {
+                j += 1;
+                k -= 1;
+            }
+            if k - j > pair.1 - pair.0 {
+                pair.0 = j;
+                pair.1 = k;
+            }
+        }
+        i += 1;
     }
-    if i>0 && s[i-1]==s[i+1] {
-      j = i-1;
-      k = i+1;
-      while j>0 && k<s.len()-1 && s[j]==s[k] {j-=1; k+=1;}
-      if s[j]!=s[k] {j+=1; k-=1;}
-      if k-j > pair.1-pair.0 {pair.0 = j; pair.1 = k;}
-    }
-    i += 1;
-  }
-  s[pair.0..pair.1+1].iter().collect()
+    s[pair.0..pair.1 + 1].iter().collect()
 }

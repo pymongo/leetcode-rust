@@ -9,39 +9,39 @@
 */
 #[cfg(feature = "unused")]
 fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
-  let mut result: Vec<i32> = Vec::new();
-  let mut map: std::collections::HashMap<i32, usize> = std::collections::HashMap::new();
-  for (index, num) in nums.iter().enumerate() {
-    if map.contains_key(num) {
-      result.push(*map.get(num).unwrap() as i32);
-      result.push(index as i32);
-    } else {
-      map.insert(target - *num, index);
+    let mut result: Vec<i32> = Vec::new();
+    let mut map: std::collections::HashMap<i32, usize> = std::collections::HashMap::new();
+    for (index, num) in nums.iter().enumerate() {
+        if map.contains_key(num) {
+            result.push(*map.get(num).unwrap() as i32);
+            result.push(index as i32);
+        } else {
+            map.insert(target - *num, index);
+        }
     }
-  }
-  // Review: 别人的解答都是在代码中间return就行了，好像确实是只需要返回第一个结果
-  return result;
+    // Review: 别人的解答都是在代码中间return就行了，好像确实是只需要返回第一个结果
+    return result;
 }
 
 #[cfg(feature = "unused")]
 fn two_sum_fastest_btreemap(nums: Vec<i32>, target: i32) -> Vec<i32> {
-  let mut map: std::collections::BTreeMap<i32, usize> = std::collections::BTreeMap::new();
-  for (index, num) in nums.iter().enumerate() {
-    if map.contains_key(&num) {
-      return vec![*map.get(num).unwrap() as i32, index as i32];
+    let mut map: std::collections::BTreeMap<i32, usize> = std::collections::BTreeMap::new();
+    for (index, num) in nums.iter().enumerate() {
+        if map.contains_key(&num) {
+            return vec![*map.get(num).unwrap() as i32, index as i32];
+        }
+        map.insert(target - *num, index);
     }
-    map.insert(target - *num, index);
-  }
-  vec![-1, -1]
+    vec![-1, -1]
 }
 
 #[cfg(feature = "unused")]
 pub fn run() {
-  // 我曾在这个测试用例上挂了：[-3, 4, 3, 90] - 0
-  // [OK]: let result = two_sum(vec![2, 7, 11, 15], 9);
-  let result = two_sum(vec![-3, 4, 3, 90], 0);
-  for each in &result {
-    println!("{}", each);
-  }
+    // 我曾在这个测试用例上挂了：[-3, 4, 3, 90] - 0
+    // [OK]: let result = two_sum(vec![2, 7, 11, 15], 9);
+    let result = two_sum(vec![-3, 4, 3, 90], 0);
+    for each in &result {
+        println!("{}", each);
+    }
 }
 

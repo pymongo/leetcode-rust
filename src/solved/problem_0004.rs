@@ -4,9 +4,9 @@
 
 #[cfg(feature = "unused")]
 pub fn run() {
-  // print!("ans = {}", find_median2(vec![1, 3], vec![2]));
-  // print!("ans = {}", find_median2(vec![-2, -1], vec![3]));
-  println!("ans = {}", logn(vec![1, 2, 3, 4], vec![3, 6, 8, 9]));
+    // print!("ans = {}", find_median2(vec![1, 3], vec![2]));
+    // print!("ans = {}", find_median2(vec![-2, -1], vec![3]));
+    println!("ans = {}", logn(vec![1, 2, 3, 4], vec![3, 6, 8, 9]));
 }
 
 // use std::collections::BTreeSet;
@@ -27,86 +27,86 @@ https://www.youtube.com/watch?v=ScCg9v921ns
 */
 #[cfg(feature = "unused")]
 fn logn(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
-  // println!("ans = {}", logn(vec![1, 2, 3, 4], vec![3, 6, 8, 9]))
-  let ans: f64;
-  let (a_len, b_len) = (nums1.len(), nums2.len());
-  let (mut a_mid_left, mut a_mid_right) = ((a_len / 2) - 1, a_len / 2);
-  let (mut b_mid_left, mut b_mid_right) = ((b_len / 2) - 1, b_len / 2);
-  // if !(nums1[a_mid_left] <= nums2[b_mid_right]
-  //   && nums1[b_mid_left] <= nums2[a_mid_right]) {
-  //
-  // }
-  loop {
-    if nums1[a_mid_left] > nums2[b_mid_right] {
-      // a的右半边太大了！b的分割线左移一位、a的分割线右移一位
-      a_mid_left -= 1;
-      a_mid_right -= 1;
-      b_mid_left += 1;
-      b_mid_right += 1;
-    } else if nums2[b_mid_left] > nums1[a_mid_right] {
-      // b的右半边太大了！b的分割线左移一位、a的分割线右移一位
-      b_mid_left -= 1;
-      b_mid_right -= 1;
-      a_mid_left += 1;
-      a_mid_right += 1;
-    } else {
-      // calc answer
-      ans = (std::cmp::max(nums1[a_mid_left], nums2[b_mid_left])
-        + std::cmp::min(nums1[a_mid_right], nums2[b_mid_right])) as f64 / 2 as f64;
-      break;
+    // println!("ans = {}", logn(vec![1, 2, 3, 4], vec![3, 6, 8, 9]))
+    let ans: f64;
+    let (a_len, b_len) = (nums1.len(), nums2.len());
+    let (mut a_mid_left, mut a_mid_right) = ((a_len / 2) - 1, a_len / 2);
+    let (mut b_mid_left, mut b_mid_right) = ((b_len / 2) - 1, b_len / 2);
+    // if !(nums1[a_mid_left] <= nums2[b_mid_right]
+    //   && nums1[b_mid_left] <= nums2[a_mid_right]) {
+    //
+    // }
+    loop {
+        if nums1[a_mid_left] > nums2[b_mid_right] {
+            // a的右半边太大了！b的分割线左移一位、a的分割线右移一位
+            a_mid_left -= 1;
+            a_mid_right -= 1;
+            b_mid_left += 1;
+            b_mid_right += 1;
+        } else if nums2[b_mid_left] > nums1[a_mid_right] {
+            // b的右半边太大了！b的分割线左移一位、a的分割线右移一位
+            b_mid_left -= 1;
+            b_mid_right -= 1;
+            a_mid_left += 1;
+            a_mid_right += 1;
+        } else {
+            // calc answer
+            ans = (std::cmp::max(nums1[a_mid_left], nums2[b_mid_left])
+                + std::cmp::min(nums1[a_mid_right], nums2[b_mid_right])) as f64 / 2 as f64;
+            break;
+        }
     }
-  }
-  ans
+    ans
 }
 
 // 隐含条件nums1和nums2是有序的
 #[cfg(feature = "unused")]
 fn find_median2(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
-  let ans: f64;
-  let mut len = nums1.len();
-  let len1 = nums1.len();
-  let mut len2 = nums2.len();
-  let total_sum = nums1.len() + nums2.len();
-  let stop_index = total_sum / 2;
-  let mut i = 0;
-  let mut j = 0;
-  let mut arr: Vec<i32>;
-  let pending_to_insert_arr: Vec<i32>;
-  if len1 > len2 {
-    arr = nums1;
-    pending_to_insert_arr = nums2;
-  } else {
-    arr = nums2;
-    pending_to_insert_arr = nums1;
-    len = len2;
-    len2 = len1;
-  }
-  // 奇偶数判断
-  while j < len2 {
-    // 既然第二个数组是有序的，我就不用二分插入了
-    // while arr[std::cmp::min(i, len - 1)] < pending_to_insert_arr[j] {
-    while arr[std::cmp::min(i, len - 1)] < pending_to_insert_arr[j] {
-      if i < len {
-        i += 1;
-      } else {
-        break;
-      }
-    }
-    if i < len {
-      arr.insert(i, pending_to_insert_arr[j]);
+    let ans: f64;
+    let mut len = nums1.len();
+    let len1 = nums1.len();
+    let mut len2 = nums2.len();
+    let total_sum = nums1.len() + nums2.len();
+    let stop_index = total_sum / 2;
+    let mut i = 0;
+    let mut j = 0;
+    let mut arr: Vec<i32>;
+    let pending_to_insert_arr: Vec<i32>;
+    if len1 > len2 {
+        arr = nums1;
+        pending_to_insert_arr = nums2;
     } else {
-      arr.push(pending_to_insert_arr[j]);
-      i += 1;
+        arr = nums2;
+        pending_to_insert_arr = nums1;
+        len = len2;
+        len2 = len1;
     }
-    j += 1;
-    len += 1;
-  }
-  if total_sum % 2 == 0 {
-    ans = (arr[stop_index] + arr[stop_index - 1]) as f64 / 2 as f64;
-  } else {
-    ans = arr[stop_index] as f64;
-  }
-  ans
+    // 奇偶数判断
+    while j < len2 {
+        // 既然第二个数组是有序的，我就不用二分插入了
+        // while arr[std::cmp::min(i, len - 1)] < pending_to_insert_arr[j] {
+        while arr[std::cmp::min(i, len - 1)] < pending_to_insert_arr[j] {
+            if i < len {
+                i += 1;
+            } else {
+                break;
+            }
+        }
+        if i < len {
+            arr.insert(i, pending_to_insert_arr[j]);
+        } else {
+            arr.push(pending_to_insert_arr[j]);
+            i += 1;
+        }
+        j += 1;
+        len += 1;
+    }
+    if total_sum % 2 == 0 {
+        ans = (arr[stop_index] + arr[stop_index - 1]) as f64 / 2 as f64;
+    } else {
+        ans = arr[stop_index] as f64;
+    }
+    ans
 }
 
 
@@ -115,41 +115,41 @@ fn find_median2(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
 // 2064 / 2085 test cases passed
 #[cfg(feature = "unused")]
 fn find_median(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
-  use std::collections::BTreeSet;
-  let mut ans: f64 = 0 as f64;
-  let mut sorted_set: BTreeSet<i32> = BTreeSet::new();
-  let (mut nums1, mut nums2) = (nums1, nums2);
-  nums1.append(&mut nums2);
-  for num in nums1 {
-    sorted_set.insert(num);
-  }
-  let len: usize = sorted_set.len();
-
-  let mut index: usize = 0;
-
-  if len % 2 == 0 {
-    let mut middle_left = 0;
-    let mut middle_right = 0;
-    for each in sorted_set {
-      if index == (len / 2 - 1) {
-        middle_left = each;
-      } else if index == len / 2 {
-        middle_right = each;
-        break;
-      }
-      index += 1;
+    use std::collections::BTreeSet;
+    let mut ans: f64 = 0 as f64;
+    let mut sorted_set: BTreeSet<i32> = BTreeSet::new();
+    let (mut nums1, mut nums2) = (nums1, nums2);
+    nums1.append(&mut nums2);
+    for num in nums1 {
+        sorted_set.insert(num);
     }
-    ans = (middle_left + middle_right) as f64 / 2 as f64
-  } else {
-    for each in sorted_set {
-      if index == len / 2 {
-        ans = each as f64;
-        break;
-      }
-      index += 1;
+    let len: usize = sorted_set.len();
+
+    let mut index: usize = 0;
+
+    if len % 2 == 0 {
+        let mut middle_left = 0;
+        let mut middle_right = 0;
+        for each in sorted_set {
+            if index == (len / 2 - 1) {
+                middle_left = each;
+            } else if index == len / 2 {
+                middle_right = each;
+                break;
+            }
+            index += 1;
+        }
+        ans = (middle_left + middle_right) as f64 / 2 as f64
+    } else {
+        for each in sorted_set {
+            if index == len / 2 {
+                ans = each as f64;
+                break;
+            }
+            index += 1;
+        }
     }
-  }
-  ans
+    ans
 }
 
 /* 美服第一 二分查找的算法
