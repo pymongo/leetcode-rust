@@ -26,6 +26,7 @@ pub struct ListNode {
 }
 
 impl ListNode {
+    #[allow(dead_code)]
     #[inline]
     fn new(val: i32) -> Self {
         ListNode { next: None, val }
@@ -73,6 +74,7 @@ fn test_helper_methods() {
     assert_eq!(list_node_to_vector(list_node), vec![2, 4, 3]);
 }
 
+#[allow(dead_code)]
 fn traverse_two_list_node(
     l1: Option<Box<ListNode>>,
     l2: Option<Box<ListNode>>,
@@ -138,7 +140,7 @@ fn test_traverse_two_list_node() {
 }
 
 // 「国服第一」
-#[allow(dead_code)]
+#[cfg(not)]
 pub fn cn_best_answer(
     l1: Option<Box<ListNode>>,
     l2: Option<Box<ListNode>>,
@@ -182,7 +184,7 @@ pub fn cn_best_answer(
 }
 
 // 「美服第一」，等下！题目的入参l1、l2没有mut修饰，这个答案直接改入参居然也通过了...
-#[allow(dead_code)]
+#[cfg(not)]
 pub fn en_best_answer(
     mut l1: Option<Box<ListNode>>,
     mut l2: Option<Box<ListNode>>,

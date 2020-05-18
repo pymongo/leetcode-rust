@@ -1,2 +1,2 @@
-pub mod longest_substr_without_repeat_char;
-pub mod longest_substr_common;
+pub mod longest_substr_without_repeat;
+// pub mod longest_substr_common;

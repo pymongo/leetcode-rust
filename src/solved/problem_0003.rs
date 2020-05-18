@@ -10,7 +10,7 @@ pub fn run() {
     // println!("{}", dict_index(String::from("abba")));
 }
 
-// [Link] 最佳解法(耗时0ms)的在`src/string/longest_substr_without_repeat_char.rs`
+// [Link] 最佳解法(耗时0ms)的在`src/string/longest_substr_without_repeat`
 
 // 失败在dvdf的用例上，没想到最佳实践，反正我暴力求解已经pass了，看看大佬的答案吧
 #[cfg(feature = "unused")]
