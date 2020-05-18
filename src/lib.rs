@@ -1,6 +1,1 @@
-// mod solved;
-// mod string;
-//
-// fn main() {
-//   println!("main");
-// }
+pub mod collections;
