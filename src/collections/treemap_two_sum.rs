@@ -18,10 +18,7 @@ pub fn two_sum_btreemap(nums: Vec<i32>, target: i32) -> Vec<i32> {
     let mut sum_tracker: std::collections::BTreeMap<i32, usize> = std::collections::BTreeMap::new();
     for i in 0..nums.len() {
         if sum_tracker.contains_key(&nums[i]) {
-            return vec![
-                *sum_tracker.get(&nums[i]).unwrap() as i32,
-                i as i32
-            ];
+            return vec![*sum_tracker.get(&nums[i]).unwrap() as i32, i as i32];
         }
         sum_tracker.insert(target - nums[i], i);
     }
@@ -37,10 +34,7 @@ pub fn two_sum_hashmap(nums: Vec<i32>, target: i32) -> Vec<i32> {
     let mut sum_tracker: std::collections::HashMap<i32, usize> = std::collections::HashMap::new();
     for i in 0..nums.len() {
         if sum_tracker.contains_key(&nums[i]) {
-            return vec![
-                *sum_tracker.get(&nums[i]).unwrap() as i32,
-                i as i32
-            ];
+            return vec![*sum_tracker.get(&nums[i]).unwrap() as i32, i as i32];
         }
         sum_tracker.insert(target - nums[i], i);
     }

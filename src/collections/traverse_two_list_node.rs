@@ -6,7 +6,7 @@
 /* 收获
 1. Box<T>感觉像是空指针占位符(Allocates memory on the heap)，*node to unbox Box<ListNode>
 2. Option<Box<ListNode>>不知道怎么遍历，一直报错，一会报错borrowed、一会又moved的，不想在浪费时间花在与算法无关的思考上
-3. 还能同时match两个Option(然后2x2四个分支)，学到了！
+3. 还能同时match两个Option(通过排列组合，2个option都用Some和None分支总共4个分支)，学到了！
 4. if let 是 match optional的缩写版
 if let (x) = optional { f(x) }
 等价于：
@@ -28,14 +28,14 @@ pub struct ListNode {
 impl ListNode {
     #[inline]
     fn new(val: i32) -> Self {
-        ListNode {
-            next: None,
-            val,
-        }
+        ListNode { next: None, val }
     }
 }
 
-fn traverse_two_list_node(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+fn traverse_two_list_node(
+    l1: Option<Box<ListNode>>,
+    l2: Option<Box<ListNode>>,
+) -> Option<Box<ListNode>> {
     // result链表(返回值链表)的头节点，用于记住result链表的「第一个节点」
     let mut head_node: Option<Box<ListNode>> = None;
     // 遍历时的当前节点，初始值是result链表的head(第一个节点)
@@ -46,7 +46,8 @@ fn traverse_two_list_node(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) 
 
     loop {
         // 像数字电路datasheet真值表一样...
-        match (ln1, ln2) { // 必须要在每个分支都给ln1和ln2复制才能避免moved value的报错
+        match (ln1, ln2) {
+            // 必须要在每个分支都给ln1和ln2复制才能避免moved value的报错
             (Some(node1), Some(node2)) => {
                 sum_or_carry = sum_or_carry + node1.val + node2.val;
                 ln1 = node1.next;
@@ -84,15 +85,21 @@ fn traverse_two_list_node(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) 
 
 /*
 输入：(2 -> 4 -> 3) + (5 -> 6 -> 4)
-输出：7 -> 0 -> 8
+输出： 7 -> 0 -> 8
 */
 #[test]
 fn test_traverse_two_list_node() {
-    let mut list_node = vector_to_list_node(vec![2, 4, 3]);
-    let _ = list_node_to_vector(&mut list_node);
+    // let list_node = vector_to_list_node(vec![2, 4, 3]);
+    // let _ = list_node_to_vector(list_node);
+    let list_node = traverse_two_list_node(
+        vector_to_list_node(vec![2, 4, 3]),
+        vector_to_list_node(vec![5, 6, 4]),
+    );
+    assert_eq!(vec![7, 0, 8], list_node_to_vector(list_node));
 }
 
 // 仅用于生成测试用例
+#[cfg(test)]
 fn vector_to_list_node(numbers: Vec<i32>) -> Option<Box<ListNode>> {
     // result链表(返回值链表)的头节点，用于记住result链表的「第一个节点」
     let mut head_node: Option<Box<ListNode>> = None;
@@ -109,16 +116,17 @@ fn vector_to_list_node(numbers: Vec<i32>) -> Option<Box<ListNode>> {
     head_node
 }
 
-fn list_node_to_vector(mut list_node: &mut Option<Box<ListNode>>) -> Vec<i32> {
+#[cfg(test)]
+fn list_node_to_vector(list_node: Option<Box<ListNode>>) -> Vec<i32> {
+    let mut current_node = list_node;
     let mut numbers: Vec<i32> = Vec::new();
     loop {
-        match list_node {
+        match current_node {
             Some(node) => {
                 numbers.push(node.val);
-                println!("{}", node.val);
-                list_node = &mut node.next;
-            },
-            None => break
+                current_node = node.next;
+            }
+            None => break,
         }
     }
     numbers
@@ -126,7 +134,10 @@ fn list_node_to_vector(mut list_node: &mut Option<Box<ListNode>>) -> Vec<i32> {
 
 // 「国服第一」
 #[allow(dead_code)]
-pub fn cn_best_answer(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+pub fn cn_best_answer(
+    l1: Option<Box<ListNode>>,
+    l2: Option<Box<ListNode>>,
+) -> Option<Box<ListNode>> {
     let mut dump_head = ListNode::new(0);
     let mut current = &mut dump_head;
     let mut carry = 0;
@@ -163,4 +174,78 @@ pub fn cn_best_answer(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> O
     }
 
     dump_head.next
+}
+
+// 「美服第一」，等下！题目的入参l1、l2没有mut修饰，这个答案直接改入参居然也通过了...
+#[allow(dead_code)]
+pub fn en_best_answer(
+    mut l1: Option<Box<ListNode>>,
+    mut l2: Option<Box<ListNode>>,
+) -> Option<Box<ListNode>> {
+    let mut head = ListNode::new(0);
+    let mut curr = &mut head;
+    let mut carry = 0;
+
+    loop {
+        match (l1, l2) {
+            (Some(mut v1), Some(mut v2)) => {
+                let mut val = v1.val + v2.val + carry;
+
+                if val >= 10 {
+                    val -= 10;
+                    carry = 1;
+                } else {
+                    carry = 0;
+                }
+
+                let node = ListNode::new(val);
+                curr.next = Some(Box::new(node));
+                l1 = v1.next.take();
+                l2 = v2.next.take();
+            }
+            (Some(mut v1), None) => {
+                let mut val = v1.val + carry;
+
+                if val >= 10 {
+                    val -= 10;
+                    carry = 1;
+                } else {
+                    carry = 0;
+                }
+
+                let node = ListNode::new(val);
+                curr.next = Some(Box::new(node));
+                l1 = v1.next.take();
+                l2 = None;
+            }
+            (None, Some(mut v2)) => {
+                let mut val = v2.val + carry;
+
+                if val >= 10 {
+                    val -= 10;
+                    carry = 1;
+                } else {
+                    carry = 0;
+                }
+
+                let node = ListNode::new(val);
+                curr.next = Some(Box::new(node));
+                l2 = v2.next.take();
+                l1 = None;
+            }
+            (None, None) => {
+                if carry == 0 {
+                    break;
+                }
+
+                let node = ListNode::new(1);
+                curr.next = Some(Box::new(node));
+                break;
+            }
+        }
+
+        curr = curr.next.as_mut().unwrap();
+    }
+
+    head.next
 }
