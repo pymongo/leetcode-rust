@@ -1,5 +1,6 @@
 //! https://leetcode.com/problems/two-sum/
 //! 本题主要是掌握使用(B)Tree Map的数据结构达到O(n)的时间复杂度
+//! bitwise_补码的解法收录在java_leetcode中
 //! 不记录暴力遍历求解的方法
 
 /*
@@ -13,7 +14,7 @@
 */
 
 // benches/two_sum_hashmap_vs_treemap记录了hashmap和treemap的性能比较
-fn two_sum_btreemap(nums: Vec<i32>, target: i32) -> Vec<i32> {
+pub fn two_sum_btreemap(nums: Vec<i32>, target: i32) -> Vec<i32> {
     let mut sum_tracker: std::collections::BTreeMap<i32, usize> = std::collections::BTreeMap::new();
     for i in 0..nums.len() {
         if sum_tracker.contains_key(&nums[i]) {
@@ -32,7 +33,7 @@ fn test_two_sum_btreemap() {
     assert_eq!(two_sum_btreemap(vec![-3, 4, 3, 90], 0), vec![0, 2]);
 }
 
-fn two_sum_hashmap(nums: Vec<i32>, target: i32) -> Vec<i32> {
+pub fn two_sum_hashmap(nums: Vec<i32>, target: i32) -> Vec<i32> {
     let mut sum_tracker: std::collections::HashMap<i32, usize> = std::collections::HashMap::new();
     for i in 0..nums.len() {
         if sum_tracker.contains_key(&nums[i]) {
