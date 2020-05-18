@@ -32,6 +32,47 @@ impl ListNode {
     }
 }
 
+// 仅用于生成测试用例的Helper方法
+#[cfg(test)]
+fn vector_to_list_node(numbers: Vec<i32>) -> Option<Box<ListNode>> {
+    // result链表(返回值链表)的头节点，用于记住result链表的「第一个节点」
+    let mut head_node: Option<Box<ListNode>> = None;
+    // 遍历时的当前节点，初始值是result链表的head(第一个节点)
+    let mut current_node: &mut Option<Box<ListNode>> = &mut head_node;
+    for number in numbers {
+        // 通过ListNode给构造方法传入val创建一个新的ListNode，next指针为None
+        *current_node = Some(Box::new(ListNode::new(number)));
+        if let Some(current_node_unwrap) = current_node {
+            // 将current_node指针改为current_node的下一个节点(None)
+            current_node = &mut current_node_unwrap.next;
+        }
+    }
+    head_node
+}
+
+// 仅用于单元测试中验证返回值的Helper方法
+#[cfg(test)]
+fn list_node_to_vector(list_node: Option<Box<ListNode>>) -> Vec<i32> {
+    let mut current_node = list_node;
+    let mut numbers: Vec<i32> = Vec::new();
+    loop {
+        match current_node {
+            Some(node) => {
+                numbers.push(node.val);
+                current_node = node.next;
+            }
+            None => break,
+        }
+    }
+    numbers
+}
+
+#[test]
+fn test_helper_methods() {
+    let list_node = vector_to_list_node(vec![2, 4, 3]);
+    assert_eq!(list_node_to_vector(list_node), vec![2, 4, 3]);
+}
+
 fn traverse_two_list_node(
     l1: Option<Box<ListNode>>,
     l2: Option<Box<ListNode>>,
@@ -89,47 +130,11 @@ fn traverse_two_list_node(
 */
 #[test]
 fn test_traverse_two_list_node() {
-    // let list_node = vector_to_list_node(vec![2, 4, 3]);
-    // let _ = list_node_to_vector(list_node);
     let list_node = traverse_two_list_node(
         vector_to_list_node(vec![2, 4, 3]),
         vector_to_list_node(vec![5, 6, 4]),
     );
     assert_eq!(vec![7, 0, 8], list_node_to_vector(list_node));
-}
-
-// 仅用于生成测试用例
-#[cfg(test)]
-fn vector_to_list_node(numbers: Vec<i32>) -> Option<Box<ListNode>> {
-    // result链表(返回值链表)的头节点，用于记住result链表的「第一个节点」
-    let mut head_node: Option<Box<ListNode>> = None;
-    // 遍历时的当前节点，初始值是result链表的head(第一个节点)
-    let mut current_node: &mut Option<Box<ListNode>> = &mut head_node;
-    for number in numbers {
-        // 通过ListNode给构造方法传入val创建一个新的ListNode，next指针为None
-        *current_node = Some(Box::new(ListNode::new(number)));
-        if let Some(current_node_unwrap) = current_node {
-            // 将current_node指针改为current_node的下一个节点(None)
-            current_node = &mut current_node_unwrap.next;
-        }
-    }
-    head_node
-}
-
-#[cfg(test)]
-fn list_node_to_vector(list_node: Option<Box<ListNode>>) -> Vec<i32> {
-    let mut current_node = list_node;
-    let mut numbers: Vec<i32> = Vec::new();
-    loop {
-        match current_node {
-            Some(node) => {
-                numbers.push(node.val);
-                current_node = node.next;
-            }
-            None => break,
-        }
-    }
-    numbers
 }
 
 // 「国服第一」
