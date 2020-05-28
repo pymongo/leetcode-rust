@@ -4,10 +4,7 @@ LeetCode上的解答基本就一种双游标sliding window算法
 */
 #[cfg(feature = "unused")]
 pub fn run() {
-    // println!("{}", current(String::from("pwwkew")));
-    // println!("{}", sliding_window_ascii2(String::from("dvdk")));
-    // println!("{}", sliding_window_ascii2(String::from("abcabcbb")));
-    // println!("{}", dict_index(String::from("abba")));
+
 }
 
 // [Link] 最佳解法(耗时0ms)的在`src/string/longest_substr_without_repeat`
@@ -40,61 +37,7 @@ fn current(s: String) -> i32 {
 
 // 164 ms, faster than 12.34%
 // 这个方法太慢了，其实一层遍历就够了
-#[cfg(feature = "unused")]
-fn length_of_longest_substring_slow(s: String) -> i32 {
-    let mut max: usize = 0;
-    let mut uniques: std::collections::BTreeSet<char> = std::collections::BTreeSet::new();
-    for (i, char1) in s.chars().enumerate() {
-        uniques.clear();
-        uniques.insert(char1);
-        for char2 in s[i + 1..].chars() {
-            if uniques.contains(&char2) {
-                // 保证连续不重复
-                break;
-            } else {
-                uniques.insert(char2);
-            }
-        }
-        max = std::cmp::max(max, uniques.len());
-    }
-    max as i32
-}
-/*
-  int n = s.length(), ans = 0;
-  Map<Character, Integer> map = new HashMap<>();//key出现的字符，value对应的最新的位置
-  // try to extend the range [i, j]
-  for (int end = 0, start = 0; end < n; end++) {
-      if (map.containsKey(s.charAt(end))) {
-          start = Math.max(map.get(s.charAt(end)) + 1, start);//由于重复的坐标不知道在start的前方还是后方，所以要取个最大值
-      }
-      ans = Math.max(ans, end - start + 1);
-      map.put(s.charAt(end), end);
-  }
-  return ans;
-*/
 
-#[cfg(feature = "unused")]
-fn sliding_window_ascii(s: String) -> i32 {
-    // sliding window rear
-    let mut rear: usize = 0;
-    // sliding window front
-    let mut front_need_to_move: usize = 0;
-    let mut ascii_dict: [usize; 256] = [0; 256];
-    let mut max: usize = 0;
-    let length: usize = s.len();
-    for (front, uint8) in s.bytes().enumerate() {
-        println!("{}", uint8 as usize);
-        if ascii_dict[uint8 as usize] > 0 {
-            // 由于重复的index不知道在rear的前方还是后方，所以要取个最大值
-            println!("{}", ascii_dict[uint8 as usize]);
-            rear = std::cmp::max(ascii_dict[uint8 as usize] + 1, rear);
-        }
-        max = std::cmp::max(max, front - rear + 1);
-        ascii_dict[uint8 as usize] = front + 1;
-    }
-    println!("{}", rear);
-    max as i32
-}
 
 // 又是错在"abcabcbb"这个用例
 /*

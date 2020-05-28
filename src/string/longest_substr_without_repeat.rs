@@ -1,6 +1,30 @@
-// 最长无重复子串 - 字典存索引的解法
-#[allow(dead_code)]
-fn sliding_window_ascii_table(s: String) -> i32 {
+//! https://leetcode.com/problems/longest-substring-without-repeating-characters/
+//! ## 暴力遍历
+//! 两层for循环，穷举出所有可能的字符串逐个进行检查，通过HashSet等数据结构存储已出现过(seen)的字符串来提升性能
+//!
+//! ## sliding_window
+//! 通过左右两个浮标，按右浮标遍历String时发现重复的字符串时，让左浮标往右移到重复字符串的位置，从而缩小搜索范围
+//! 时间复杂度是O(N)，最坏的情况O(2N)左右浮标分别完整的遍历一次字符串
+//!
+//! ## (数据结构)ascii记录字符出现位置
+//! 比HashMap<char, Integer>更高效，用一个长度为128的数组，索引是ascii字母值，value是在字符串中的索引的存储结构效率最高
+
+pub const TEST_CASES: [(&str, i32); 5] = [
+    ("abcabcbb", 3),
+    ("bbbbb", 1),
+    ("pwwkew", 3),
+    ("abcabcbb", 3),
+    ("abba", 2),
+];
+
+#[test]
+fn test_i32_ascii_table() {
+    for case in &TEST_CASES {
+        assert_eq!(usize_ascii_table(case.0.to_string()), case.1)
+    }
+}
+
+pub fn i32_ascii_table(s: String) -> i32 {
     let len: i32 = s.len() as i32;
     if len <= 1 {
         return len;
@@ -10,72 +34,90 @@ fn sliding_window_ascii_table(s: String) -> i32 {
     // index: value of char in ascii
     // value: index of char
     let mut ascii_table: [i32; 128] = [-1; 128];
-    let (mut start, mut end, mut max) = (0_i32, 0_i32, 0_i32);
+    let (mut left, mut right, mut max) = (0_i32, 0_i32, 0_i32);
     let mut temp_max: i32;
-    let bytes = s.as_bytes();
+    let string_bytes = s.as_bytes();
     let mut current_char: u8;
-    while end < len {
-        current_char = bytes[end as usize];
+    while right < len {
+        current_char = string_bytes[right as usize];
         if ascii_table[current_char as usize] != -1 {
             // 例如abba的用例，end=2时(第二个b)，start会跳到2
             // slider.1指到3时(最后一个a)，第二次出现重复时，重复的是a，ascii_table中字母a的索引是0
             // 如果不进行判断start会后退到0+1
             // max() prevent sliders.0's index go back (test case: abba)
-            start = std::cmp::max(start, ascii_table[current_char as usize] + 1);
+            // 避免重复的字符「不在当前的移动窗口中」
+            left = std::cmp::max(left, ascii_table[current_char as usize] + 1);
         }
-        ascii_table[current_char as usize] = end;
-        temp_max = end - start;
+        ascii_table[current_char as usize] = right;
+        temp_max = right - left;
         if temp_max > max {
             max = temp_max;
         }
-        end += 1;
+        right += 1;
     }
     max + 1
 }
 
-#[cfg(test)]
-const TEST_CASES: [(&str, i32); 5] = [
-    ("abcabcbb", 3),
-    ("bbbbb", 1),
-    ("pwwkew", 3),
-    ("abcabcbb", 3),
-    ("abba", 2),
-];
-
 #[test]
-fn test_cases() {
+fn test_usize_ascii_table() {
     for case in &TEST_CASES {
-        assert_eq!(sliding_window_ascii_table(case.0.to_string()), case.1)
+        assert_eq!(usize_ascii_table(case.0.to_string()), case.1)
     }
 }
 
-/*
-pub fn sliding_window_ascii_table(s: String) -> i32 {
+pub fn usize_ascii_table(s: String) -> i32 {
     let len = s.len();
     if len <= 1 {
         return len as i32;
     }
-    let mut dict = [1000; 256];
-    let mut sliders = (0, 0);
-    let bytes = s.as_bytes();
-    let mut max = 0;
-    let mut temp_max = 0;
-    let mut current_char;
-    while sliders.1 < len {
-        current_char = bytes[sliders.1] as usize;
-        if dict[current_char] != usize::max_value() {
-            // 例如abba的用例，slider.1指到2时，slider.0会跳到2
-            // slider.1指到3时(最后一个a)，第二次出现重复时，如果不进行判断slider.0会后退到1，导致输出结果变大
-            // max() prevent sliders.0's index go back (test case: abba)
-            sliders.0 = std::cmp::max(sliders.0, dict[current_char] + 1);
+    // 假设数组最大长度是31001(leetcode最长测试用例)，用1024表示ascii_table中没有出现过这个字符串
+    const UNINITIALIZED: usize = 31001;
+    let mut ascii_table: [usize; 128] = [UNINITIALIZED; 128];
+    let (mut left, mut right, mut max) = (0_usize, 0_usize, 0_usize);
+    let mut temp_max: usize;
+    let string_bytes = s.as_bytes();
+    let mut current_char: u8;
+    while right < len {
+        current_char = string_bytes[right as usize];
+        if ascii_table[current_char as usize] != UNINITIALIZED {
+            left = std::cmp::max(left, ascii_table[current_char as usize] + 1);
         }
-        dict[current_char] = sliders.1;
-        temp_max = sliders.1 - sliders.0;
+        ascii_table[current_char as usize] = right;
+        temp_max = right - left;
         if temp_max > max {
-            max = sliders.1 - sliders.0;
+            max = temp_max;
         }
-        sliders.1 += 1;
+        right += 1;
     }
-    (max + 1) as i32
+    max as i32 + 1
 }
-*/
+
+// #[cfg(not)]
+#[test]
+fn test_brute_force() {
+    for case in &TEST_CASES {
+        assert_eq!(usize_ascii_table(case.0.to_string()), case.1)
+    }
+}
+
+// 164 ms, faster than 12.34%
+// 这个方法太慢了，其实一层遍历就够了
+// #[cfg(not)]
+fn brute_force(s: String) -> i32 {
+    let mut max: usize = 0;
+    let mut uniques: std::collections::BTreeSet<char> = std::collections::BTreeSet::new();
+    for (i, char1) in s.chars().enumerate() {
+        uniques.clear();
+        uniques.insert(char1);
+        for char2 in s[i + 1..].chars() {
+            if uniques.contains(&char2) {
+                // 保证连续不重复
+                break;
+            } else {
+                uniques.insert(char2);
+            }
+        }
+        max = std::cmp::max(max, uniques.len());
+    }
+    max as i32
+}

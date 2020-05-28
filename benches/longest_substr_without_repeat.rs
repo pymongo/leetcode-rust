@@ -3,18 +3,31 @@ extern crate test;
 // cargo +nightly bench --bench longest_substr_without_repeat
 
 extern crate leetcode;
-use leetcode::string::longest_substr_without_repeat::{two_sum_btreemap, two_sum_hashmap};
+use leetcode::string::longest_substr_without_repeat::{TEST_CASES, i32_ascii_table, usize_ascii_table, sliding_window_ascii_table2};
 
 #[bench]
-fn bench_two_sum_btreemap(bencher: &mut test::Bencher) {
-    bencher.iter(|| two_sum_btreemap(vec![-3, 4, 3, 90], 0));
+fn bench_i32_ascii_table(bencher: &mut test::Bencher) {
+    bencher.iter(||{
+        for case in &TEST_CASES {
+            assert_eq!(i32_ascii_table(case.0.to_string()), case.1)
+        }
+    });
 }
 
-/*
-test bench_two_sum_btreemap ... bench:         345 ns/iter (+/- 33)
-test bench_two_sum_hashmap  ... bench:         540 ns/iter (+/- 53)
-*/
 #[bench]
-fn bench_two_sum_hashmap(bencher: &mut test::Bencher) {
-    bencher.iter(|| two_sum_hashmap(vec![-3, 4, 3, 90], 0));
+fn bench_usize_ascii_table(bencher: &mut test::Bencher) {
+    bencher.iter(||{
+        for case in &TEST_CASES {
+            assert_eq!(usize_ascii_table(case.0.to_string()), case.1)
+        }
+    });
+}
+
+#[bench]
+fn bench_sliding_window_ascii_table2(bencher: &mut test::Bencher) {
+    bencher.iter(||{
+        for case in &TEST_CASES {
+            assert_eq!(usize_ascii_table(case.0.to_string()), case.1)
+        }
+    });
 }
