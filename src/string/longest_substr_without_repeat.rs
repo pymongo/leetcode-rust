@@ -92,7 +92,7 @@ pub fn usize_ascii_table(s: String) -> i32 {
     max as i32 + 1
 }
 
-// #[cfg(not)]
+#[cfg(not)]
 #[test]
 fn test_brute_force() {
     for case in &TEST_CASES {
@@ -102,7 +102,7 @@ fn test_brute_force() {
 
 // 164 ms, faster than 12.34%
 // 这个方法太慢了，其实一层遍历就够了
-// #[cfg(not)]
+#[cfg(not)]
 fn brute_force(s: String) -> i32 {
     let mut max: usize = 0;
     let mut uniques: std::collections::BTreeSet<char> = std::collections::BTreeSet::new();
@@ -119,5 +119,30 @@ fn brute_force(s: String) -> i32 {
         }
         max = std::cmp::max(max, uniques.len());
     }
+    max as i32
+}
+
+#[cfg(not)]
+fn btree_brute_force(s: String) -> i32 {
+    let size: usize = s.len();
+    let mut index: usize = 0;
+    let mut char: char;
+    let mut max: usize = 0;
+    let mut unique: std::collections::BTreeSet<char> = std::collections::BTreeSet::new();
+
+    while index < size {
+        char = s.chars().nth(index).unwrap();
+        if unique.contains(&char) {
+            println!(" same! {}", char);
+            max = std::cmp::max(max, unique.len());
+            unique.clear();
+        } else {
+            print!("unique {}", char);
+            unique.insert(char);
+            index += 1;
+        }
+    }
+    // 防止连续不重复的字符串出现在最后
+    max = std::cmp::max(max, unique.len());
     max as i32
 }
