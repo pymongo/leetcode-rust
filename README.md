@@ -1,13 +1,16 @@
 LeetCode
 ========
 
-- rust_leetcode(current)
-- [go leetcode](https://github.com/pymongo/go_leetcode)
+- [rust leetcode](https://github.com/pymongo/rust_leetcode)
+- [go_leetcode](https://github.com/pymongo/go_leetcode)
 - [java_leetcode](https://github.com/pymongo/java_leetcode)
 
 | # | Title | Solution | Category |
 |---| ----- | -------- | ---------- |
-|1|[Two Sum](https://leetcode.com/problems/two-sum)|[Rust](https://github.com/pymongo/rust_leetcode/blob/master/src/collections/treemap_two_sum.rs), [Go](https://github.com/pymongo/go_leetcode/blob/master/collections/two_sum_test.go), [Java](https://github.com/pymongo/java_leetcode/blob/master/src/test/java/com/leetcode/collections/TwoSumTest.java)|Treemap, two's complement|
+|1|[Two Sum](https://leetcode.com/problems/two-sum/)|[Rust](https://github.com/pymongo/rust_leetcode/blob/master/src/collections/treemap_two_sum.rs), [Go](https://github.com/pymongo/go_leetcode/blob/master/collections/two_sum_test.go), [Java](https://github.com/pymongo/java_leetcode/blob/master/src/test/java/com/leetcode/collections/HashMapTwoSum.java)|TreeMap, two's complement|
+|2|[Add Two Numbers](https://leetcode.com/problems/add-two-numbers/)|[Rust](https://github.com/pymongo/rust_leetcode/blob/master/src/collections/traverse_two_list_node.rs), [Go](https://github.com/pymongo/go_leetcode/blob/master/collections/traverse_two_list_node_test.go), [Java](https://github.com/pymongo/java_leetcode/blob/master/src/test/java/com/leetcode/collections/TraverseTwoListNode.java)|create/traverse ListNode|
+|3|[Longest Substring Without Repeating Characters](https://leetcode.com/problems/add-two-numbers/)|[Rust](https://github.com/pymongo/rust_leetcode/blob/master/src/string/longest_substr_without_repeat.rs)|SlidingWindow|
+|709|[To Lower Case](https://leetcode.com/problems/merge-sorted-array/)|[Rust](https://github.com/pymongo/rust_leetcode/blob/master/src/impl_api/to_lowercase.rs)||
 
 ---
 
