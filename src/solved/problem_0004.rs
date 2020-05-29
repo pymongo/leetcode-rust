@@ -11,8 +11,6 @@ pub fn run() {
 
 // use std::collections::BTreeSet;
 
-
-
 // 隐含条件nums1和nums2是有序的
 #[cfg(feature = "unused")]
 fn find_median2(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {

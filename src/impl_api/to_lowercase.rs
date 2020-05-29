@@ -38,7 +38,7 @@ fn my_solution(str: String) -> String {
             'X' => new_string.push('x'),
             'Y' => new_string.push('y'),
             'Z' => new_string.push('z'),
-            _ => new_string.push(char)
+            _ => new_string.push(char),
         }
     }
     new_string
