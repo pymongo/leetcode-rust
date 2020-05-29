@@ -3,7 +3,7 @@ extern crate test;
 // cargo +nightly bench --bench longest_substr_without_repeat
 
 extern crate leetcode;
-use leetcode::string::longest_substr_without_repeat::{
+use leetcode::string::longest_non_repeated_substr::{
     i32_ascii_table, usize_ascii_table, TEST_CASES,
 };
 

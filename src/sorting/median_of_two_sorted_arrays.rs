@@ -70,34 +70,43 @@ fn test_my_binary_search_kth() {
     }
 }
 
+/// ## 二分搜索的思路
+///
+/// 1. 从nums1和nums2中逐步剔除元素/将元素放入中位数左半部分的候选区
+/// 2. 更新k的值为k=k-k/2
+/// 3. 直到被剔除了一半数量(也就是k变成1)，否则继续循环
+///
+/// ### 初始条件
+/// 以[1, 2, 3, 4], [3, 6, 8, 9]的测试用例为例
+/// 前提条件：确保nums1的长度更小，这样遍历时更节约时间
+/// len1=4, len2=4, k=4(左中位数)
+///
+/// ### 遍历过程
+/// round 1:
+/// k=4, nums1_idx=1, nums2_idx=1
+/// nums1[1](2) < nums2[1](6) => nums1的1和2被剔除
+/// (反之，如果是nums1的元素更大，就剔除nums2的元素)
+/// 将k的值更新为k=k-k/2
+///
+/// round 2:
+/// k=2, nums1_idx=2, nums2_idx=1
+/// nums1[2](3) < nums2[1](6) => nums1的3倍剔除
+/// k=2-1，达成break的条件，跳出循环
+///
+/// 如果是偶数个元素：
+/// 左中位数是nums1[nums1_idx]和nums2[nums2_idx]的最大值
+/// 右中位数是nums1[nums1_idx+1]和nums2[nums2_idx+1]的最大值
+/// 需要对nums1或nums2为空的情况做处理
+///
 #[cfg(test)]
 fn my_binary_search_kth(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     let ans: f64;
-    let (a_len, b_len) = (nums1.len(), nums2.len());
-    let (mut a_mid_left, mut a_mid_right) = ((a_len / 2) - 1, a_len / 2);
-    let (mut b_mid_left, mut b_mid_right) = ((b_len / 2) - 1, b_len / 2);
-    loop {
-        if nums1[a_mid_left] > nums2[b_mid_right] {
-            // a的右半边太大了！b的分割线左移一位、a的分割线右移一位
-            a_mid_left -= 1;
-            a_mid_right -= 1;
-            b_mid_left += 1;
-            b_mid_right += 1;
-        } else if nums2[b_mid_left] > nums1[a_mid_right] {
-            // b的右半边太大了！b的分割线左移一位、a的分割线右移一位
-            b_mid_left -= 1;
-            b_mid_right -= 1;
-            a_mid_left += 1;
-            a_mid_right += 1;
-        } else {
-            // calc answer
-            ans = (std::cmp::max(nums1[a_mid_left], nums2[b_mid_left])
-                + std::cmp::min(nums1[a_mid_right], nums2[b_mid_right])) as f64
-                / 2 as f64;
-            break;
-        }
-    }
-    ans
+    let len1 = nums1.len();
+    let len2 = nums2.len();
+    // 如果是奇数，恰好是中间的元素，如果是偶数，则是第一个中位数
+    let k = (m + n + 1) / 2;
+    let is_odd = (m + n) % 2 == 0;
+    0_f64
 }
 
 #[cfg(not)]
@@ -152,6 +161,7 @@ fn my_brute_force(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
 // 全球服第一、二分查找第k小的元素的算法
 #[cfg(not)]
 use std::cmp::Ordering;
+
 #[cfg(not)]
 fn search_sep_idx(n1: &Vec<i32>, n2: &Vec<i32>) -> usize {
     let (mut left, mut right) = (0, n1.len() + 1);
