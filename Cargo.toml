@@ -4,5 +4,6 @@ version = "0.0.2"
 authors = ["吴翱翔 <pylint@yandex.com>"]
 edition = "2018"
 
-[dependencies]
-lazy_static = "*"
+# leetcode上的题，即便复杂如graph，入参也不过是二维数组，用不到lazy_static去初始化non-primitibe type
+# [dependencies]
+# lazy_static = "*"

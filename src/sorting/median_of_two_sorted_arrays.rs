@@ -1,3 +1,6 @@
+//! 2 Solutions
+
+#[cfg(test)]
 const TEST_CASES: [(&[i32], &[i32], f64); 1] = [(&[1, 2, 3, 4], &[3, 6, 8, 9], 3.5)];
 
 #[test]

@@ -1,6 +1,7 @@
 //! https://leetcode.com/problems/merge-sorted-array/
 //! |88|[Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/)|[Rust](https://github.com/pymongo/rust_leetcode/blob/master/src/sorting/merge_two_sorted_array.rs)||
 
+/*
 #[cfg(test)]
 struct TestCase {
     nums1: Vec<i32>,
@@ -10,7 +11,6 @@ struct TestCase {
     result: Vec<i32>,
 }
 
-#[cfg(test)]
 lazy_static::lazy_static! {
     static ref TEST_CASES: Vec<TestCase> = vec![
         TestCase {
@@ -44,6 +44,25 @@ fn test_my_first_solution() {
         let mut nums2 = test_case.nums2.clone();
         my_first_solution(&mut nums1, test_case.m, &mut nums2, test_case.n);
         assert_eq!(nums1, test_case.result);
+    }
+}
+*/
+
+#[cfg(test)]
+const TEST_CASES: [(&[i32], i32, &[i32], i32, &[i32]); 3] = [
+    (&[1, 2, 3, 0, 0, 0], 3, &[2, 5, 6], 3, &[1, 2, 2, 3, 5, 6]),
+    (&[2, 0], 1, &[1], 1, &[1, 2]),
+    (&[0], 0, &[1], 1, &[1]),
+];
+
+#[test]
+fn test_my_first_solution() {
+    for case in &TEST_CASES {
+        let mut nums1: Vec<i32> = case.0.iter().cloned().collect();
+        let mut nums2: Vec<i32> = case.2.iter().cloned().collect();
+        let result: Vec<i32> = case.4.iter().cloned().collect();
+        my_first_solution(&mut nums1, case.1, &mut nums2, case.3);
+        assert_eq!(nums1, result);
     }
 }
 
