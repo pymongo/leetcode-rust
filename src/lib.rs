@@ -1,5 +1,6 @@
 pub mod collections;
-pub mod graph_traversal;
-pub mod impl_api;
-pub mod sorting;
+mod graph_traversal;
+mod impl_api;
+mod permutation;
+mod sorting;
 pub mod string;

@@ -1,5 +1,4 @@
 //! https://leetcode.com/problems/to-lower-case/
-//! |709|[To Lower Case](https://leetcode.com/problems/merge-sorted-array/)|[Rust](https://github.com/pymongo/rust_leetcode/blob/master/src/impl_api/to_lowercase.rs)||
 //! 我认为这题属于超简单的无聊题，遍历过程中判断是不是大写字母，是的话转为小写，就这么简单
 
 #[test]

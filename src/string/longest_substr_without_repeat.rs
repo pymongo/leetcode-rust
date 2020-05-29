@@ -103,7 +103,7 @@ fn test_brute_force() {
 // 164 ms, faster than 12.34%
 // 这个方法太慢了，其实一层遍历就够了
 #[cfg(not)]
-fn brute_force(s: String) -> i32 {
+fn my_brute_force(s: String) -> i32 {
     let mut max: usize = 0;
     let mut uniques: std::collections::BTreeSet<char> = std::collections::BTreeSet::new();
     for (i, char1) in s.chars().enumerate() {
