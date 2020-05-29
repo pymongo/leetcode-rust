@@ -1,1 +1,1 @@
-pub mod to_lowercase;
+mod to_lowercase;
