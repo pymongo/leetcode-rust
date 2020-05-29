@@ -5,17 +5,17 @@
 //! 可以将该问题转化为：出发点K到其他各点的最短距离 中的最大值，就是最晚一个收到信号的节点
 
 #[cfg(test)]
-const TEST_CASES: [(&[&[i32]], i32, i32, i32); 1] = [
-    (&[&[2, 1, 1], &[2, 3, 1], &[3, 4, 1]], 4, 2, 2)
-];
-
+const TEST_CASES: [(&[&[i32]], i32, i32, i32); 1] =
+    [(&[&[2, 1, 1], &[2, 3, 1], &[3, 4, 1]], 4, 2, 2)];
 
 #[test]
 fn test_network_delay_time() {
     for case in &TEST_CASES {
-        let times: Vec<Vec<i32>> = case.0.iter().map(|each|{
-            each.iter().cloned().collect()
-        }).collect();
+        let times: Vec<Vec<i32>> = case
+            .0
+            .iter()
+            .map(|each| each.iter().cloned().collect())
+            .collect();
         assert_eq!(network_delay_time(times, case.1, case.2), case.3);
     }
 }

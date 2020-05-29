@@ -26,6 +26,7 @@ https://www.youtube.com/watch?v=ScCg9v921ns
 移动分割线后输入用例1：[1 2 3|4]
 移动分割线后输入用例2：[3|6 8 9]，刚好两个数组分割线的左半边组成了合并后中位数的左半边
 */
+#[cfg(test)]
 fn move_divider_of_two_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     let ans: f64;
     let (a_len, b_len) = (nums1.len(), nums2.len());

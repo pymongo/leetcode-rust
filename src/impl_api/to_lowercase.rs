@@ -7,6 +7,7 @@ fn test_my_solution() {
     assert_eq!("apple", my_solution("Apple".to_string()));
 }
 
+#[cfg(test)]
 fn my_solution(str: String) -> String {
     let mut new_string = String::new();
     for char in str.chars() {

@@ -72,6 +72,7 @@ fn test_my_first_solution() {
 /// 首先顺序复制的话，复制到第6个时会把第1个给覆盖掉
 /// 如果使用倒序复制的方法，新旧数组的指针都从后往前遍历，那就能避免重复
 /// 这道题数组nums1的后半部分预留了全是0的存储空间，所以从后往前遍历时既能更新nums1又不用担心nums1出现重叠导致覆盖的问题
+#[cfg(test)]
 fn my_first_solution(nums1: &mut Vec<i32>, m: i32, nums2: &mut Vec<i32>, n: i32) {
     if n == 0 {
         return;
