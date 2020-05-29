@@ -208,7 +208,7 @@ pub fn longest_palindrome(s: String) -> String {
     longest_palindrome_substring
 }
 
-// 美服第一的答案，似乎并不是Manacher算法
+// 全球服第一的答案，似乎并不是Manacher算法
 #[cfg(features = "unused")]
 pub fn longest_palindrome(s: String) -> String {
     let seq: Vec<char> = s.chars().collect();

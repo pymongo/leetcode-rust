@@ -2,10 +2,7 @@
 //! [走格子/棋盘问题 有多少条路径可走](https://blog.csdn.net/yusiguyuan/article/details/12875415)
 
 #[cfg(test)]
-const TEST_CASES: [(i32, i32, i32); 2] = [
-    (23, 12, 193536720),
-    (51, 9, 1916797311),
-];
+const TEST_CASES: [(i32, i32, i32); 2] = [(23, 12, 193536720), (51, 9, 1916797311)];
 
 #[test]
 fn test_unique_paths() {
@@ -42,11 +39,11 @@ fn test_unique_paths() {
 /// 关于能否整除的问题，我试了下，如果分子的阶乘是从大到小，分母的阶乘是从小到大，大概率不会溢出
 #[cfg(test)]
 fn unique_paths(m: i32, n: i32) -> i32 {
-    let mut m: u64 = (m-1) as u64;
-    let mut n: u64 = (n-1) as u64;
+    let mut m: u64 = (m - 1) as u64;
+    let mut n: u64 = (n - 1) as u64;
     let mut i: u64 = 1;
     let mut res: u64 = 1;
-    let sum: u64 = m+n;
+    let sum: u64 = m + n;
     if n > m {
         let temp = m;
         m = n;
@@ -55,7 +52,7 @@ fn unique_paths(m: i32, n: i32) -> i32 {
     // Example: 组合数C(5,2)=5*4/1*2
     for i in 0..n {
         res *= sum - i;
-        res /= i+1;
+        res /= i + 1;
     }
     res as i32
 }

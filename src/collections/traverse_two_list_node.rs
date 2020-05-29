@@ -14,7 +14,7 @@ match optional {
   Some(x) => f(x),
   _ => {}
 }
-5. 美服第一的代码：current = current.next.as_mut().unwrap() 轻松解压变量<Option<Box>>
+5. 全球服第一的代码：current = current.next.as_mut().unwrap() 轻松解压变量<Option<Box>>
 6. 学到了用.is_some()方法去遍历Option类型
 */
 use std::boxed::Box;
@@ -183,7 +183,7 @@ pub fn cn_best_answer(
     dump_head.next
 }
 
-// 「美服第一」，等下！题目的入参l1、l2没有mut修饰，这个答案直接改入参居然也通过了...
+// 「全球服第一」，等下！题目的入参l1、l2没有mut修饰，这个答案直接改入参居然也通过了...
 #[cfg(not)]
 pub fn en_best_answer(
     mut l1: Option<Box<ListNode>>,
