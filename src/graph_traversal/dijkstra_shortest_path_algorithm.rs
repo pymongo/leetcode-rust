@@ -13,11 +13,9 @@ const TEST_CASES: [(&[&[i32]], i32, i32, i32); 1] = [
 #[test]
 fn test_network_delay_time() {
     for case in &TEST_CASES {
-        let mut times: Vec<Vec<i32>> = Vec::new();
-        for array in case.0 {
-            let vector: Vec<i32> = array.iter().cloned().collect();
-            times.push(vector);
-        }
+        let times: Vec<Vec<i32>> = case.0.iter().map(|each|{
+            each.iter().cloned().collect()
+        }).collect();
         assert_eq!(network_delay_time(times, case.1, case.2), case.3);
     }
 }
