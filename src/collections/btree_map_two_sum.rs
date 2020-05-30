@@ -48,6 +48,8 @@ pub fn two_sum_bitwise(nums: Vec<i32>, target: i32) -> Vec<i32> {
     // 2. -a & bit_mode = bit_mode-a+1
     const VOLUME: usize = 2048;
     const BIT_MODE: i32 = 2047;
+    // on a 32 bit x86 computer,  usize = u32,
+    // while on x86_64 computers, usize = u64
     let mut sum_tracker: [usize; VOLUME] = [0; 2048];
     let mut c: usize;
     for i in 0..nums.len() {
@@ -56,7 +58,7 @@ pub fn two_sum_bitwise(nums: Vec<i32>, target: i32) -> Vec<i32> {
         c = ((target - nums[i]) & BIT_MODE) as usize;
         debug_assert!(c.ge(&0));
         if sum_tracker[c as usize] != 0 {
-            return vec![(sum_tracker[c]-1) as i32, i as i32];
+            return vec![(sum_tracker[c] - 1) as i32, i as i32];
         }
         // 加1防止index=0时保存的记录被`result[c] != 0`拦截
         // & bitMode防止相减后出现负数索引(case twoSumBitWise2)

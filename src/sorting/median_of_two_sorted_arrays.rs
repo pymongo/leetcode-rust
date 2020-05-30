@@ -1,10 +1,11 @@
 //! 2 Solutions: binary_serch_kth_min、array_devider
 
 #[cfg(test)]
-const TEST_CASES: [(&[i32], &[i32], f64); 3] = [
+const TEST_CASES: [(&[i32], &[i32], f64); 4] = [
     (&[1, 2, 3, 4], &[3, 6, 8, 9], 3.5),
     (&[-2, -1], &[3], -1_f64),
     (&[1, 3], &[2], 2_f64),
+    (&[3], &[-2, -1], -1_f64),
 ];
 
 #[test]
@@ -31,7 +32,6 @@ https://www.youtube.com/watch?v=ScCg9v921ns
 移动分割线后输入用例2：[3|6 8 9]，刚好两个数组分割线的左半边组成了合并后中位数的左半边
 时间复杂度O(logn)，而尾递归二分查找第k小的项的时间复杂度是O(log(m+n))
 FIXME 出现u32 subtract with overflow溢出情况，需要差分对比当前的代码和leetcode上AC的代码
-TODO usize u32 difference
 */
 #[cfg(test)]
 fn move_divider_of_two_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
@@ -145,8 +145,67 @@ fn my_binary_search_kth(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     }
 }
 
-#[cfg(not)]
+#[test]
+fn test_my_brute_force() {
+    for case in &TEST_CASES {
+        let nums1: Vec<i32> = case.0.iter().cloned().collect();
+        let nums2: Vec<i32> = case.1.iter().cloned().collect();
+        assert_eq!(my_brute_force(nums1, nums2), case.2);
+    }
+}
+
+/*
+思路：遍历小的数组，二分插入到大的数组中
+能跑进0ms，但是不是每次都稳进0ms
+*/
+#[cfg(test)]
 fn my_brute_force(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
+    let len1 = nums1.len();
+    let mut len2 = nums2.len();
+    let total_len = len1+len2;
+    let median_left_part_final_count = total_len / 2;
+    let shorter_nums: Vec<i32>;
+    let mut longer_nums: Vec<i32>;
+    if len2 > len1 {
+        longer_nums = nums2;
+        shorter_nums = nums1;
+        len2 = len1;
+    } else {
+        longer_nums = nums1;
+        shorter_nums = nums2;
+    }
+    // 已经挑选出组成中位数的左半部分的个数
+    // 二分搜索nums2的第一个元素
+    // let mut median_left_part_current_count;
+    let mut binary_search_index;
+    for j in 0..len2 {
+        binary_search_index = match longer_nums.binary_search(&shorter_nums[j]) {
+            Ok(index) => index,
+            Err(index) => index
+        };
+        longer_nums.insert(binary_search_index, shorter_nums[j]);
+        // 以下写法会漏掉测试用例1的元素nums1的4
+        // median_left_part_current_count = binary_search_index +j;
+        // if median_left_part_current_count >= median_left_part_final_count {
+        //     break;
+        // }
+    }
+    return if total_len % 2 == 0 {
+        (longer_nums[median_left_part_final_count] + longer_nums[median_left_part_final_count - 1]) as f64 / 2_f64
+    } else {
+        longer_nums[median_left_part_final_count] as f64
+    }
+}
+
+/*
+思路：遍历小的数组，冒泡排序搬的插入到大的数组中
+我首次Accept该题的提交，现在看来思路很乱而且优化空间很大
+这么笨的算法rust都能跑进4ms，Rust的性能太强了
+执行用时 : 4 ms, 在所有 Rust 提交中击败了72.09%的用户
+内存消耗 : 2 MB, 在所有 Rust 提交中击败了100.00%的用户
+*/
+#[cfg(not)]
+pub fn my_brute_force_old(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     let ans: f64;
     let mut len = nums1.len();
     let len1 = nums1.len();
@@ -170,6 +229,7 @@ fn my_brute_force(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     while j < len2 {
         // 既然第二个数组是有序的，我就不用二分插入了
         // while arr[std::cmp::min(i, len - 1)] < pending_to_insert_arr[j] {
+        // TODO 这个while比二分查找蠢多了
         while arr[std::cmp::min(i, len - 1)] < pending_to_insert_arr[j] {
             if i < len {
                 i += 1;

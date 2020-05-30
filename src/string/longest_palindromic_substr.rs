@@ -1,6 +1,6 @@
 //! 本题多达五种解法：
 //! 1. O(n), Manacher:
-//! 2. O(n^2), dp:
+//! 2. O(n^2), dp: 如果a[0]==a[-1]，而且a[1..-2]是个回文数，则a也是个回文数
 
 #[cfg(test)]
 const TEST_CASES: [(&str, &str); 4] = [
@@ -59,7 +59,6 @@ fn dp(s: String) -> String {
         return s;
     }
 
-
     let bytes = s.as_bytes();
     // Rust的数组只能使用Const来定义长度，不能用s.len
     // let mut table: [[bool; s.len()]; s.len()] = [[false; s.len()]; s.len()];
@@ -77,8 +76,7 @@ fn dp(s: String) -> String {
         end = len - 1;
         loop {
             // println!("end = {}, start = {}", end, start);
-            if bytes[start] == bytes[end]
-                && table[end - 1][start + 1] {
+            if bytes[start] == bytes[end] && table[end - 1][start + 1] {
                 table[end][start] = true;
                 if end - start > max_len {
                     best_start = start;
@@ -170,20 +168,25 @@ pub fn longest_palindrome_manacher(s: String) -> String {
     longest_palindrome_substring
 }
 
-
 // 全球服第一的答案，似乎并不是Manacher算法
 #[cfg(not)]
 fn longest_palindrome_global_best(s: String) -> String {
     let seq: Vec<char> = s.chars().collect();
     let len = seq.len();
-    if len < 1 { return s; }
+    if len < 1 {
+        return s;
+    }
     let (mut idx, mut curr_len, mut curr_start, mut curr_end) = (0, 0, 0, 0);
     while idx < len {
         let (mut i, mut j) = (idx, idx);
         let ch = seq[idx];
         // handle same char
-        while i > 0 && seq[i - 1] == ch { i -= 1 };
-        while j < len - 1 && seq[j + 1] == ch { j += 1 };
+        while i > 0 && seq[i - 1] == ch {
+            i -= 1
+        }
+        while j < len - 1 && seq[j + 1] == ch {
+            j += 1
+        }
         idx = j + 1;
         while i > 0 && j < len - 1 && seq[i - 1] == seq[j + 1] {
             i -= 1;
@@ -255,7 +258,9 @@ fn my_brute_force_is_palindromic(s: &String) -> bool {
 // 这老哥用paris存储start/end的组合也是挺有意思的，不过我还是习惯使用left/right
 #[cfg(not)]
 fn longest_palindrome_best_brute_force(s: String) -> String {
-    if s.as_str() { return s; }
+    if s.as_str() {
+        return s;
+    }
     let s: Vec<char> = s.chars().collect();
     let mut i = 0;
     let mut pair = (0, 0);
