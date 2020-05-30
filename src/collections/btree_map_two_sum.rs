@@ -14,7 +14,7 @@
 */
 
 pub const TEST_CASES: [(&[i32], i32, &[i32]); 3] = [
-    (&[0, 2, 7, 11], 9, &[1, 2]),
+    (&[2, 7, 9, 11], 9, &[0, 1]),
     (&[-3, 4, 3, 90], 0, &[0, 2]),
     (&[0, 4, 3, 0], 0, &[0, 3]),
 ];
@@ -75,7 +75,6 @@ fn test_two_sum_btree_map() {
     }
 }
 
-// benches/two_sum_hashmap_vs_treemap记录了hashmap和treemap的性能比较
 pub fn two_sum_btree_map(nums: Vec<i32>, target: i32) -> Vec<i32> {
     let mut sum_tracker: std::collections::BTreeMap<i32, usize> = std::collections::BTreeMap::new();
     for i in 0..nums.len() {
