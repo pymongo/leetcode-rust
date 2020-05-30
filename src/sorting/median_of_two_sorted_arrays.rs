@@ -73,7 +73,7 @@ fn test_my_binary_search_kth() {
 /// ## 二分搜索的思路
 ///
 /// 1. 从nums1和nums2中逐步剔除元素/将元素放入中位数左半部分的候选区
-/// 2. 更新k的值为k=k-k/2
+/// 2. 更新k的值为k=k-k/2(这也是为什么叫二分/折半搜索的原因)
 /// 3. 直到被剔除了一半数量(也就是k变成1)，否则继续循环
 ///
 /// ### 初始条件
@@ -100,12 +100,12 @@ fn test_my_binary_search_kth() {
 ///
 #[cfg(test)]
 fn my_binary_search_kth(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
-    let ans: f64;
-    let len1 = nums1.len();
-    let len2 = nums2.len();
-    // 如果是奇数，恰好是中间的元素，如果是偶数，则是第一个中位数
-    let k = (m + n + 1) / 2;
-    let is_odd = (m + n) % 2 == 0;
+    // let ans: f64;
+    // let len1 = nums1.len();
+    // let len2 = nums2.len();
+    // // 如果是奇数，恰好是中间的元素，如果是偶数，则是第一个中位数
+    // let k = (m + n + 1) / 2;
+    // let is_odd = (m + n) % 2 == 0;
     0_f64
 }
 
