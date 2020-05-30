@@ -13,8 +13,25 @@
 3. 函数的最后，如果测试用例没有匹配项的话，可以写unreachable!()或返回vec![]
 */
 
+pub const TEST_CASES: [(&[i32], i32, &[i32]); 3] = [
+    (&[0, 2, 7, 11], 9, &[1, 2]),
+    (&[-3, 4, 3, 90], 0, &[0, 2]),
+    (&[0, 4, 3, 0], 0, &[0, 3]),
+];
+
+#[test]
+fn test_two_sum_btree_map() {
+    for case in &TEST_CASES {
+        let nums: Vec<i32> = case.0.iter().cloned().collect();
+        let result = two_sum_hashmap(nums, case.1);
+        let expected: Vec<i32> = case.2.iter().cloned().collect();
+        assert_eq!(result, expected)
+    }
+    assert_eq!(two_sum_btree_map(vec![-3, 4, 3, 90], 0), vec![0, 2]);
+}
+
 // benches/two_sum_hashmap_vs_treemap记录了hashmap和treemap的性能比较
-pub fn two_sum_btreemap(nums: Vec<i32>, target: i32) -> Vec<i32> {
+pub fn two_sum_btree_map(nums: Vec<i32>, target: i32) -> Vec<i32> {
     let mut sum_tracker: std::collections::BTreeMap<i32, usize> = std::collections::BTreeMap::new();
     for i in 0..nums.len() {
         if sum_tracker.contains_key(&nums[i]) {
@@ -22,12 +39,8 @@ pub fn two_sum_btreemap(nums: Vec<i32>, target: i32) -> Vec<i32> {
         }
         sum_tracker.insert(target - nums[i], i);
     }
-    vec![]
-}
-
-#[test]
-fn test_two_sum_btreemap() {
-    assert_eq!(two_sum_btreemap(vec![-3, 4, 3, 90], 0), vec![0, 2]);
+    unimplemented!()
+    // vec![]
 }
 
 pub fn two_sum_hashmap(nums: Vec<i32>, target: i32) -> Vec<i32> {
@@ -43,5 +56,5 @@ pub fn two_sum_hashmap(nums: Vec<i32>, target: i32) -> Vec<i32> {
 
 #[test]
 fn test_two_sum_hashmap() {
-    assert_eq!(two_sum_btreemap(vec![-3, 4, 3, 90], 0), vec![0, 2]);
+    assert_eq!(two_sum_btree_map(vec![-3, 4, 3, 90], 0), vec![0, 2]);
 }

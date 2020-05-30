@@ -3,11 +3,11 @@ extern crate test;
 // cargo +nightly bench --bench two_sum_hashmap_vs_treemap
 
 extern crate leetcode;
-use leetcode::collections::tree_map_two_sum::{two_sum_btreemap, two_sum_hashmap};
+use leetcode::collections::tree_map_two_sum::*;
 
 #[bench]
-fn bench_two_sum_btreemap(bencher: &mut test::Bencher) {
-    bencher.iter(|| two_sum_btreemap(vec![-3, 4, 3, 90], 0));
+fn bench_test_two_sum_btree_map(bencher: &mut test::Bencher) {
+    bencher.iter(|| two_sum_btree_map(vec![-3, 4, 3, 90], 0));
 }
 
 /*
