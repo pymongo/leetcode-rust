@@ -130,13 +130,18 @@ fn traverse_two_list_node(
 输入：(2 -> 4 -> 3) + (5 -> 6 -> 4)
 输出： 7 -> 0 -> 8
 */
+#[cfg(test)]
+const TEST_CASES: [(&[i32], &[i32], &[i32]); 1] = [(&[2, 4, 3], &[5, 6, 4], &[7, 0, 8])];
+
 #[test]
 fn test_traverse_two_list_node() {
-    let list_node = traverse_two_list_node(
-        vector_to_list_node(vec![2, 4, 3]),
-        vector_to_list_node(vec![5, 6, 4]),
-    );
-    assert_eq!(vec![7, 0, 8], list_node_to_vector(list_node));
+    for case in &TEST_CASES {
+        let input_list_node_1 = vector_to_list_node(case.0.iter().cloned().collect());
+        let input_list_node_2 = vector_to_list_node(case.1.iter().cloned().collect());
+        let output_list_node = traverse_two_list_node(input_list_node_1, input_list_node_2);
+        let expected_vector: Vec<i32> = case.2.iter().cloned().collect();
+        assert_eq!(list_node_to_vector(output_list_node), expected_vector);
+    }
 }
 
 // 「国服第一」

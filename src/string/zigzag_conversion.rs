@@ -1,5 +1,5 @@
 #[cfg(test)]
-const TEST_CASES: [(&str, i32, &str);2] = [
+const TEST_CASES: [(&str, i32, &str); 2] = [
     ("LEETCODEISHIRING", 3, "LCIRETOESIIGEDHN"),
     ("LEETCODEISHIRING", 4, "LDREOEIIECIHNTSG"),
 ];
@@ -15,7 +15,6 @@ fn test_zigzag() {
 fn zigzag(s: String, num_rows: i32) -> String {
     unimplemented!()
 }
-
 
 /*
 将一个给定字符串根据给定的行数，以从上往下、从左到右进行 Z 字形排列。
