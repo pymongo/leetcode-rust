@@ -90,7 +90,7 @@ fn test_my_binary_search_kth() {
 ///
 /// round 2:
 /// k=2, nums1_idx=2, nums2_idx=1
-/// nums1[2](3) < nums2[1](6) => nums1的3倍剔除
+/// nums1[2](3) < nums2[1](6) => nums1的3被剔除
 /// k=2-1，达成break的条件，跳出循环
 ///
 /// 如果是偶数个元素：
@@ -98,15 +98,49 @@ fn test_my_binary_search_kth() {
 /// 右中位数是nums1[nums1_idx+1]和nums2[nums2_idx+1]的最大值
 /// 需要对nums1或nums2为空的情况做处理
 ///
+/// ### TODO
+///
+/// 没有考虑各种边际情况，leetcode上部分测试用例不通过
+/// 没有考虑nums1或nums2为空的情况，没有考虑nums1一个元素都不取和nums2一个元素都不取的情况
+///
 #[cfg(test)]
 fn my_binary_search_kth(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
-    // let ans: f64;
-    // let len1 = nums1.len();
-    // let len2 = nums2.len();
-    // // 如果是奇数，恰好是中间的元素，如果是偶数，则是第一个中位数
-    // let k = (m + n + 1) / 2;
-    // let is_odd = (m + n) % 2 == 0;
-    0_f64
+    let (len1, len2) = (nums1.len(), nums2.len());
+    // 如果是奇数，恰好是中位数，如果是偶数，则是左中位数
+    let mut k = (len1 + len2 + 1) / 2;
+    let mut half_k = k / 2;
+    // 已经发现的/剔除的中位数左边的元素的个数
+    // let mut median_left_items_count = 0;
+    // nums1_index
+    let mut i = half_k - 1;
+    // nums2_index
+    let mut j = i;
+    loop {
+        if nums1[i] > nums2[j] {
+            // 将nums2的前half_k项收纳入median_left_items
+            j += 1;
+            // 由于我们 "删除" 了一些元素(这些元素都比第 k 小的元素要小)，
+            // 因此需要修改 k 的值，减去删除的数的个数
+            k = half_k;
+            half_k = k / 2;
+            i = half_k - 1;
+        } else {
+            // 将nums1的前half_k项收纳入median_left_items
+            i += 1;
+            k = half_k;
+            half_k = k / 2;
+            j = half_k - 1;
+        }
+        if k == 1 {
+            break;
+        }
+        // median_left_items_count += half_k;
+    }
+    if (len1 + len2) % 2 == 0 {
+        (nums1[i] + nums2[j]) as f64 / 2_f64
+    } else {
+        std::cmp::min(nums1[i], nums2[j]) as f64
+    }
 }
 
 #[cfg(not)]
