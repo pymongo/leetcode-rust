@@ -30,6 +30,8 @@ https://www.youtube.com/watch?v=ScCg9v921ns
 移动分割线后输入用例1：[1 2 3|4]
 移动分割线后输入用例2：[3|6 8 9]，刚好两个数组分割线的左半边组成了合并后中位数的左半边
 时间复杂度O(logn)，而尾递归二分查找第k小的项的时间复杂度是O(log(m+n))
+FIXME 出现u32 subtract with overflow溢出情况，需要差分对比当前的代码和leetcode上AC的代码
+TODO usize u32 difference
 */
 #[cfg(test)]
 fn move_divider_of_two_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
