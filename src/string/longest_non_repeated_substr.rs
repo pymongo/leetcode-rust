@@ -46,7 +46,7 @@ pub fn i32_ascii_table(s: String) -> i32 {
             // 如果不进行判断start会后退到0+1
             // max() prevent sliders.0's index go back (test case: abba)
             // 避免重复的字符「不在当前的移动窗口中」
-            left = std::cmp::max(left, ascii_table[current_char as usize] + 1);
+            left = left.max(ascii_table[current_char as usize] + 1);
         }
         ascii_table[current_char as usize] = right;
         temp_max = right - left;
@@ -80,7 +80,7 @@ pub fn usize_ascii_table(s: String) -> i32 {
     while right < len {
         current_char = string_bytes[right as usize];
         if ascii_table[current_char as usize] != UNINITIALIZED {
-            left = std::cmp::max(left, ascii_table[current_char as usize] + 1);
+            left = left.max(ascii_table[current_char as usize] + 1);
         }
         ascii_table[current_char as usize] = right;
         temp_max = right - left;
@@ -117,7 +117,7 @@ fn my_brute_force(s: String) -> i32 {
                 uniques.insert(char2);
             }
         }
-        max = std::cmp::max(max, uniques.len());
+        max = max.max(uniques.len());
     }
     max as i32
 }
@@ -134,7 +134,7 @@ fn btree_brute_force(s: String) -> i32 {
         char = s.chars().nth(index).unwrap();
         if unique.contains(&char) {
             println!(" same! {}", char);
-            max = std::cmp::max(max, unique.len());
+            max = max.max(unique.len());
             unique.clear();
         } else {
             print!("unique {}", char);
@@ -143,6 +143,6 @@ fn btree_brute_force(s: String) -> i32 {
         }
     }
     // 防止连续不重复的字符串出现在最后
-    max = std::cmp::max(max, unique.len());
+    max = max.max(unique.len());
     max as i32
 }

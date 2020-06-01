@@ -39,6 +39,7 @@ fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     let (len_a, len_b) = (nums1.len(), nums2.len());
     // 保证数组a的长度更短，我们遍历较短的数组a节约时间，加上二分查找后使得时间复杂度降低到O(log(min(m,n)))
     if len_a > len_b {
+        // 如果在leetcode的提交中，这里要写成Self::xxx或Solution::xxx才能够递归
         return find_median_sorted_arrays(nums2, nums1);
     }
 
@@ -70,10 +71,10 @@ fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
 
     // 折半查找的左右游标
     let (mut a_left, mut a_right) = (0, len_a);
-    let mut a_divider_left: i32 = 0;
-    let mut a_divider_right: i32 = 0;
-    let mut b_divider_left: i32 = 0;
-    let mut b_divider_right: i32 = 0;
+    let mut a_divider_left: i32;
+    let mut a_divider_right: i32;
+    let mut b_divider_left: i32;
+    let mut b_divider_right: i32;
     /* 初始条件
     总数是奇数个时：[3|4], [1 2|5]
     */
@@ -329,7 +330,7 @@ fn my_binary_search_kth(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     if (len1 + len2) % 2 == 0 {
         (nums1[i] + nums2[j]) as f64 / 2_f64
     } else {
-        std::cmp::min(nums1[i], nums2[j]) as f64
+        nums1[i].min(nums2[j]) as f64
     }
 }
 
@@ -418,9 +419,8 @@ pub fn my_brute_force_old(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     // 奇偶数判断
     while j < len2 {
         // 既然第二个数组是有序的，我就不用二分插入了
-        // while arr[std::cmp::min(i, len - 1)] < pending_to_insert_arr[j] {
         // TODO 这个while比二分查找蠢多了
-        while arr[std::cmp::min(i, len - 1)] < pending_to_insert_arr[j] {
+        while arr[i.min(len-1)] < pending_to_insert_arr[j] {
             if i < len {
                 i += 1;
             } else {
@@ -494,8 +494,8 @@ fn get_min_maxs(n1: &Vec<i32>, n2: &Vec<i32>, sep_idx1: usize) -> (i32, i32, i32
 #[cfg(not)]
 fn check_sep(n1: &Vec<i32>, n2: &Vec<i32>, sep_idx1: usize) -> Ordering {
     let (left_max1, left_max2, right_min1, right_min2) = get_min_maxs(n1, n2, sep_idx1);
-    let left_max = std::cmp::max(left_max1, left_max2);
-    let right_min = std::cmp::min(right_min1, right_min2);
+    let left_max = left_max1.max(left_max2);
+    let right_min = right_min1.min(right_min2);
     if left_max <= right_min {
         Ordering::Equal
     } else if left_max1 > right_min {
@@ -512,8 +512,8 @@ pub fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     }
     let sep1 = search_sep_idx(&nums1, &nums2);
     let (left_max1, left_max2, right_min1, right_min2) = get_min_maxs(&nums1, &nums2, sep1);
-    let left_max = std::cmp::max(left_max1, left_max2);
-    let right_min = std::cmp::min(right_min1, right_min2);
+    let left_max = left_max1.max(left_max2);
+    let right_min = right_min1.min(right_min2);
     if (nums1.len() + nums2.len()) % 2 == 0 {
         // even
         (left_max + right_min) as f64 / 2.0
