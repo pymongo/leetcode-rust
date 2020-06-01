@@ -68,19 +68,15 @@ fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     // 往后的情况，nums1和nums2的长度至少为2
     let total_len = len_a + len_b;
     // 如果是总数是奇数，中位数左边部分会多包含一个元素
-    let half_len = (total_len+1) / 2;
+    let half_len = (total_len + 1) / 2;
 
-    // let (mut a_divider_left_index, mut a_divider_right) = ((len_a / 2) - 1, len_a / 2);
-    // let mut b_divider_left = (total_len / 2)- a_divider_left_index -1-1;
-    // let mut b_divider_right = b_divider_left+1;
-    // dbg!((a_divider_left_index, a_divider_right));
-    // dbg!((b_divider_left,b_divider_right));
-
-    let mut a_divider_left_index;
-    let mut b_divider_left_index;
+    // 不能记分隔线左边元素的索引，如果分隔线在最左边，则索引会是-1导致usize溢出报错
+    // 边界条件：a_divider_right_index=0时分隔线在最左边；a_divider_right_index=len_a时分隔线在最右边
+    let mut a_divider_right_index;
+    let mut b_divider_right_index;
 
     // 折半查找的左右游标
-    let (mut a_left, mut a_right) = (0, len_a - 1);
+    let (mut a_left, mut a_right) = (0, len_a);
     let mut a_divider_left: i32 = 0;
     let mut a_divider_right: i32 = 0;
     let mut b_divider_left: i32 = 0;
@@ -89,30 +85,30 @@ fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     总数是奇数个时：[3|4], [1 2|5]
     */
     while a_left < a_right {
-        //
         // 如果a是[1,2,3,4]: (a_divider_left, a_divider_right) = (1,2)
-        a_divider_left_index = (a_left + a_right) / 2;
-        b_divider_left_index = half_len - a_divider_left_index - 2;
-        dbg!((a_divider_left_index, b_divider_left_index));
+        a_divider_right_index = (a_left + a_right) / 2;
+        // 如果a和b都用的是分隔线右边的索引的话，b_divider_right_index不需要减一
+        b_divider_right_index = half_len - a_divider_right_index;
+        dbg!((a_divider_right_index, b_divider_right_index));
 
-        a_divider_left = nums1[a_divider_left_index];
-        a_divider_right = nums1[a_divider_left_index + 1];
-        b_divider_left = nums2[b_divider_left_index];
-        b_divider_right = nums2[b_divider_left_index + 1];
+        a_divider_left = nums1[a_divider_right_index - 1];
+        a_divider_right = nums1[a_divider_right_index];
+        b_divider_left = nums2[b_divider_right_index - 1];
+        b_divider_right = nums2[b_divider_right_index];
         dbg!((a_divider_left, a_divider_right, b_divider_left, b_divider_right));
 
         if a_divider_left > b_divider_right {
             println!("a_divider_left({}) > b_divider_right({})", a_divider_left, b_divider_right);
-            a_right = a_divider_left_index;
+            // a的右半边太大了，需要往前搜索
+            a_right = a_divider_right_index - 1;
         } else if b_divider_left > a_divider_right {
             println!("b_divider_left({}) > a_divider_right({})", b_divider_left, a_divider_right);
             // a左边的元素全部都要，游标移到a的最右边
-            if a_divider_left_index == 0 {
-
+            if b_divider_right_index == 0 {
                 break;
             }
-            // a的左半边太小了，需要将折半查找的left游标前移
-            a_left = a_divider_left_index-1;
+            // a的左半边太小了，需要将折半查找的left游标前移往后继续搜索
+            a_left = a_divider_right_index + 1;
         } else {
             break;
         }
