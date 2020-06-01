@@ -11,6 +11,35 @@ const TEST_CASES: [(&str, &str); 4] = [
 ];
 
 #[test]
+fn test_dp_new() {
+    // for case in &TEST_CASES {
+    //     assert_eq!(dp(case.0.to_owned()), case.1.to_owned());
+    // }
+    dp_new("cbba".to_owned());
+}
+
+/*
+初始条件
+  c b b a (left_index)
+c T 1 2 4
+b   T 3 5
+b     T 6
+a       T
+*/
+fn dp_new(s: String) -> String {
+    let chars = s.as_bytes();
+    let len = chars.len();
+    let mut dp = vec![vec![true;len];len];
+
+    for i in 0..(len-1) {
+        for j in 1..=(1+i) {
+            dbg!((i, j));
+        }
+    }
+    unimplemented!()
+}
+
+#[test]
 fn test_dp() {
     for case in &TEST_CASES {
         assert_eq!(dp(case.0.to_owned()), case.1.to_owned());
@@ -43,6 +72,9 @@ start=2, end=3->3;
 start=1, end=3->2;
 改良：
 写完后我才发现start作为纵坐标更合适，刚好能让二位数组的index变为s[start][end]
+
+【空间复杂度优化O(n^2)=>O(2n)】
+由于求第N列的值时只需要N-1列的数据，所以定义一个2*N的数组也能满足需求，节约内存
 */
 // 性能：耗时28ms，比暴力破解的650多毫秒强多了👍
 #[cfg(test)]
