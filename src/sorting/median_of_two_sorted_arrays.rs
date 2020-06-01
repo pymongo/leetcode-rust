@@ -1,7 +1,8 @@
 //! 2 Solutions: binary_serch_kth_min、array_devider
 
 #[cfg(test)]
-const TEST_CASES: [(&[i32], &[i32], f64); 13] = [
+const TEST_CASES: [(&[i32], &[i32], f64); 14] = [
+    (&[4, 5], &[1, 2, 3, 6], 3.5),
     (&[1, 3], &[2, 4, 5, 6], 3.5),
     (&[1, 2], &[3, 4, 5, 6], 3.5),
     (&[1, 3], &[2, 4, 5], 3_f64),
@@ -98,7 +99,12 @@ fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
         a_divider_right = nums1[a_divider_right_index];
         b_divider_left = nums2[b_divider_right_index - 1];
         b_divider_right = nums2[b_divider_right_index];
-        dbg!((a_divider_left, a_divider_right, b_divider_left, b_divider_right));
+        // dbg!((
+        //     a_divider_left,
+        //     a_divider_right,
+        //     b_divider_left,
+        //     b_divider_right
+        // ));
 
         // a的右半边太大了，a的分隔线左移，b的分隔线右移
         if a_divider_left > b_divider_right {
@@ -106,25 +112,37 @@ fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
             if a_divider_right_index == 1 {
                 // 移动后a的分隔线已经在最左边了
                 return if total_len % 2 == 0 {
-                    (nums1[0] + nums2[len_b-1]) as f64 / 2_f64
+                    if b_divider_right_index == 1 {
+                        // ???
+                        (nums1[0] + nums2[len_b - 1]) as f64 / 2_f64
+                    } else {
+                        // [4,5]、[1,2,3,6]
+                        // 1 2 3 | 6
+                        //       | 4 5
+                        (nums2[b_divider_right_index] + nums2[b_divider_right_index+1].min(nums1[0])) as f64 / 2_f64
+                    }
                 } else {
-                    nums2[len_b-1] as f64
-                }
+                    nums2[len_b - 1] as f64
+                };
             }
             a_right = a_divider_right_index - 1;
         } else if b_divider_left > a_divider_right {
             println!("b_divider_left({}) > a_divider_right({})\na's divider move right, b's divider move left", b_divider_left, a_divider_right);
-            if a_divider_right_index == len_a-1 {
+            if a_divider_right_index == len_a - 1 {
                 // 移动后a的分隔线已经在最右边了
                 return if total_len % 2 == 0 {
                     if b_divider_right_index == 1 {
-                        (nums2[0].max(nums1[len_a-1]) + nums2[1]) as f64 / 2_f64
+                        // [1,2]、[3,4]
+                        (nums1[len_a - 1] + nums2[0]) as f64 / 2_f64
                     } else {
-                        (nums2[b_divider_right_index-2].max(nums1[len_a-1]) + nums2[b_divider_right_index-1]) as f64 / 2_f64
+                        // [1,3]、[2,4,5,6]
+                        (nums2[b_divider_right_index - 2].max(nums1[len_a - 1])
+                            + nums2[b_divider_right_index - 1]) as f64
+                            / 2_f64
                     }
                 } else {
-                    nums2[0].max(nums1[len_a-1]) as f64
-                }
+                    nums2[0].max(nums1[len_a - 1]) as f64
+                };
             }
             a_left = a_divider_right_index + 1;
         } else {
@@ -132,54 +150,10 @@ fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
         }
     }
     if total_len % 2 == 0 {
-        (std::cmp::max(a_divider_left, b_divider_left)
-            + std::cmp::min(a_divider_right, b_divider_right)) as f64
-            / 2_f64
+        (a_divider_left.max(b_divider_left) + a_divider_right.min(b_divider_right)) as f64 / 2_f64
     } else {
         std::cmp::max(a_divider_left, b_divider_left) as f64
     }
-
-    // loop {
-    //     if nums1[a_divider_left] > nums2[b_divider_right] {
-    //         // 边界条件：较短的nums1的元素一个都不取，例如[4,5]、[1,2,3]的测试用例
-    //         if a_divider_left == 0 {
-    //             return if total_len % 2 == 0 {
-    //                 (nums1[0] + nums2[len_b - 1]) as f64 / 2_f64
-    //             } else {
-    //                 nums2[len_b - 1] as f64
-    //             };
-    //         }
-    //         // a的右半边太大了！b的分割线左移一位、a的分割线右移一位
-    //         a_divider_left -= 1;
-    //         a_divider_right -= 1;
-    //         b_divider_left += 1;
-    //         b_divider_right += 1;
-    //     } else if nums2[b_divider_left] > nums1[a_divider_right] {
-    //         // 边界条件：较短的nums1的元素一个都不取，例如[1,2]、[3,4,5]的测试用例
-    //         if b_divider_left == 0 {
-    //             return if total_len % 2 == 0 {
-    //                 (nums1[len_a - 1] + nums2[0]) as f64 / 2_f64
-    //             } else {
-    //                 nums2[0] as f64
-    //             };
-    //         }
-    //         // b的右半边太大了！b的分割线左移一位、a的分割线右移一位
-    //         b_divider_left -= 1;
-    //         b_divider_right -= 1;
-    //         a_divider_left += 1;
-    //         a_divider_right += 1;
-    //     } else {
-    //         dbg!((a_divider_left,a_divider_right));
-    //         dbg!((b_divider_left,b_divider_right));
-    //         return if total_len % 2 == 0 {
-    //             (std::cmp::max(nums1[a_divider_left], nums2[b_divider_left])
-    //                 + std::cmp::min(nums1[a_divider_right], nums2[b_divider_right])) as f64
-    //                 / 2_f64
-    //         } else {
-    //             std::cmp::min(nums1[a_divider_right], nums2[b_divider_right]) as f64
-    //         };
-    //     }
-    // }
 }
 
 #[test]
@@ -300,7 +274,7 @@ fn my_brute_force(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     for j in 0..len2 {
         binary_search_index = match longer_nums.binary_search(&shorter_nums[j]) {
             Ok(index) => index,
-            Err(index) => index
+            Err(index) => index,
         };
         longer_nums.insert(binary_search_index, shorter_nums[j]);
         // 以下写法会漏掉测试用例1的元素nums1的4
@@ -310,7 +284,9 @@ fn my_brute_force(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
         // }
     }
     return if total_len % 2 == 0 {
-        (longer_nums[median_left_part_final_count] + longer_nums[median_left_part_final_count - 1]) as f64 / 2_f64
+        (longer_nums[median_left_part_final_count] + longer_nums[median_left_part_final_count - 1])
+            as f64
+            / 2_f64
     } else {
         longer_nums[median_left_part_final_count] as f64
     };
