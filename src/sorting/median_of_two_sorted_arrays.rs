@@ -1,7 +1,10 @@
 //! 2 Solutions: binary_serch_kth_min、array_devider
 
 #[cfg(test)]
-const TEST_CASES: [(&[i32], &[i32], f64); 14] = [
+const TEST_CASES: [(&[i32], &[i32], f64); 17] = [
+    (&[1, 5, 6, 7], &[2, 3, 4, 8], 4.5),
+    (&[1, 2], &[3, 4, 5, 6, 7], 4_f64),
+    (&[4, 5, 6], &[1, 2, 3], 3.5),
     (&[4, 5], &[1, 2, 3, 6], 3.5),
     (&[1, 3], &[2, 4, 5, 6], 3.5),
     (&[1, 2], &[3, 4, 5, 6], 3.5),
@@ -28,24 +31,6 @@ fn test_move_divider_of_two_arrays() {
     }
 }
 
-/*
-https://www.youtube.com/watch?v=ScCg9v921ns
-数组A、B初始化时都在A、B中间设一个分割线
-先不考虑奇数的情况，让代码简单点，自己尝试敲一下，不然干看答案也不理解
-初始化的分割线如图
-固定输入用例1：[1 2|3 4]
-固定输入用例2：[3 6|8 9]
-交叉比较：如果同时满足 a_mid_left(2) <= b_mid_right(8)
-                && b_mid_left(6) <= a_mid_left(3)
-则遍历结束，输出答案
-否则移动分割线到如下位置去满足条件，利用两个数组是有序，得出上述交叉比较的遍历终止条件
-移动分割线后输入用例1：[1 2 3|4]
-移动分割线后输入用例2：[3|6 8 9]，刚好两个数组分割线的左半边组成了合并后中位数的左半边
-时间复杂度O(logn)，而尾递归二分查找第k小的项的时间复杂度是O(log(m+n))
-
-流程：移动较短数组的分割线
-*/
-// move_divider_of_two_arrays
 #[cfg(test)]
 fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     let (len_a, len_b) = (nums1.len(), nums2.len());
@@ -88,17 +73,37 @@ fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     /* 初始条件
     总数是奇数个时：[3|4], [1 2|5]
     */
-    while a_left < a_right {
+    while a_left <= a_right {
         // 如果a是[1,2,3,4]: (a_divider_left, a_divider_right) = (1,2)
         a_divider_right_index = (a_left + a_right) / 2;
         // 如果a和b都用的是分隔线右边的索引的话，b_divider_right_index不需要减一
         b_divider_right_index = half_len - a_divider_right_index;
-        // dbg!((a_divider_right_index, b_divider_right_index));
+        dbg!((a_divider_right_index, b_divider_right_index));
 
-        a_divider_left = nums1[a_divider_right_index - 1];
-        a_divider_right = nums1[a_divider_right_index];
-        b_divider_left = nums2[b_divider_right_index - 1];
-        b_divider_right = nums2[b_divider_right_index];
+        a_divider_left = if a_divider_right_index == 0 {
+            // 如果nums1的分隔线已经到底了
+            // 将a_divider_left设为i32最小值，
+            // 让程序走else if b_divider_left > a_divider_right {
+            // 走该分支会增加a_left的值从而跳出while循环
+            i32::MIN
+        } else {
+            nums1[a_divider_right_index - 1]
+        };
+        a_divider_right = if a_divider_right_index == len_a-1 {
+            i32::MAX
+        } else {
+            nums1[a_divider_right_index]
+        };
+        b_divider_left = if b_divider_right_index == 0 {
+            i32::MIN
+        } else {
+            nums1[b_divider_right_index - 1]
+        };
+        b_divider_right = if b_divider_right_index == len_b-1 {
+            i32::MAX
+        } else {
+            nums2[a_divider_right_index]
+        };
         // dbg!((
         //     a_divider_left,
         //     a_divider_right,
@@ -108,42 +113,43 @@ fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
 
         // a的右半边太大了，a的分隔线左移，b的分隔线右移
         if a_divider_left > b_divider_right {
-            // println!("a_divider_left({}) > b_divider_right({})\na's divider move left, b's divider move right", a_divider_left, b_divider_right);
-            if a_divider_right_index == 1 {
-                // 移动后a的分隔线已经在最左边了
-                return if total_len % 2 == 0 {
-                    if b_divider_right_index == 1 {
-                        // ???
-                        (nums1[0] + nums2[len_b - 1]) as f64 / 2_f64
-                    } else {
-                        // [4,5]、[1,2,3,6]
-                        // 1 2 3 | 6
-                        //       | 4 5
-                        (nums2[b_divider_right_index] + nums2[b_divider_right_index+1].min(nums1[0])) as f64 / 2_f64
-                    }
-                } else {
-                    nums2[len_b - 1] as f64
-                };
-            }
+            println!("a_divider_left({}) > b_divider_right({})\na's divider move left, b's divider move right", a_divider_left, b_divider_right);
+            // if a_divider_right_index <= 1 {
+            //     // 移动后a的分隔线已经在最左边了
+            //     return if total_len % 2 == 0 {
+            //         if b_divider_right_index == len_b - 1 {
+            //             // [4,5,6]、[1,2,3]
+            //             (nums1[0] + nums2[len_b - 1]) as f64 / 2_f64
+            //         } else {
+            //             // [4,5]、[1,2,3,6]
+            //             // 1 2 3 | 6
+            //             //       | 4 5
+            //             (nums2[b_divider_right_index] + nums2[b_divider_right_index + 1].min(nums1[0])) as f64 / 2_f64
+            //         }
+            //     } else {
+            //         nums2[b_divider_right_index] as f64
+            //     };
+            // }
             a_right = a_divider_right_index - 1;
         } else if b_divider_left > a_divider_right {
             println!("b_divider_left({}) > a_divider_right({})\na's divider move right, b's divider move left", b_divider_left, a_divider_right);
-            if a_divider_right_index == len_a - 1 {
-                // 移动后a的分隔线已经在最右边了
-                return if total_len % 2 == 0 {
-                    if b_divider_right_index == 1 {
-                        // [1,2]、[3,4]
-                        (nums1[len_a - 1] + nums2[0]) as f64 / 2_f64
-                    } else {
-                        // [1,3]、[2,4,5,6]
-                        (nums2[b_divider_right_index - 2].max(nums1[len_a - 1])
-                            + nums2[b_divider_right_index - 1]) as f64
-                            / 2_f64
-                    }
-                } else {
-                    nums2[0].max(nums1[len_a - 1]) as f64
-                };
-            }
+            // if a_divider_right_index == len_a - 1 {
+            //     // 移动后a的分隔线已经在最右边了
+            //     return if total_len % 2 == 0 {
+            //         if b_divider_right_index == 1 {
+            //             // [1,2]、[3,4]
+            //             (nums1[len_a - 1] + nums2[0]) as f64 / 2_f64
+            //         } else {
+            //             // [1,3]、[2,4,5,6]
+            //             (nums2[b_divider_right_index - 2].max(nums1[len_a - 1])
+            //                 + nums2[b_divider_right_index - 1]) as f64
+            //                 / 2_f64
+            //         }
+            //     } else {
+            //         // [1,2]、[3,4,5,6,7]
+            //         nums2[b_divider_right_index - 2].max(nums1[len_a - 1]) as f64
+            //     };
+            // }
             a_left = a_divider_right_index + 1;
         } else {
             break;
@@ -152,16 +158,156 @@ fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     if total_len % 2 == 0 {
         (a_divider_left.max(b_divider_left) + a_divider_right.min(b_divider_right)) as f64 / 2_f64
     } else {
-        std::cmp::max(a_divider_left, b_divider_left) as f64
+        a_divider_left.max(b_divider_left) as f64
     }
 }
 
-#[test]
-fn test_my_binary_search_kth() {
-    for case in &TEST_CASES {
-        let nums1: Vec<i32> = case.0.iter().cloned().collect();
-        let nums2: Vec<i32> = case.1.iter().cloned().collect();
-        assert_eq!(my_binary_search_kth(nums1, nums2), case.2);
+/*
+https://www.youtube.com/watch?v=ScCg9v921ns
+数组A、B初始化时都在A、B中间设一个分割线
+先不考虑奇数的情况，让代码简单点，自己尝试敲一下，不然干看答案也不理解
+初始化的分割线如图
+固定输入用例1：[1 2|3 4]
+固定输入用例2：[3 6|8 9]
+交叉比较：如果同时满足 a_mid_left(2) <= b_mid_right(8)
+                && b_mid_left(6) <= a_mid_left(3)
+则遍历结束，输出答案
+否则移动分割线到如下位置去满足条件，利用两个数组是有序，得出上述交叉比较的遍历终止条件
+移动分割线后输入用例1：[1 2 3|4]
+移动分割线后输入用例2：[3|6 8 9]，刚好两个数组分割线的左半边组成了合并后中位数的左半边
+时间复杂度O(logn)，而尾递归二分查找第k小的项的时间复杂度是O(log(m+n))
+
+流程：移动较短数组的分割线
+*/
+// move_divider_of_two_arrays
+#[cfg(not)]
+fn move_divider_of_two_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
+    let (len_a, len_b) = (nums1.len(), nums2.len());
+    // 保证数组a的长度更短，我们遍历较短的数组a节约时间，加上二分查找后使得时间复杂度降低到O(log(min(m,n)))
+    if len_a > len_b {
+        return move_divider_of_two_arrays(nums2, nums1);
+    }
+
+    // 如果较短数组的长度是0，统一了较长数组长度是奇数偶数的情况
+    if len_a == 0 {
+        return (nums2[(len_b - 1) / 2] as f64 + nums2[len_b / 2] as f64) / 2_f64;
+    }
+    // 如果较短数组的长度是1，则较短数组的分割线左边或右边会没有值，这是一种特殊的边界条件
+    if len_a == 1 {
+        let mut nums_b = nums2;
+        let insert_index = match nums_b.binary_search(&nums1[0]) {
+            Ok(index) => index,
+            Err(index) => index,
+        };
+        nums_b.insert(insert_index, nums1[0]);
+        return (nums_b[len_b / 2] as f64 + nums_b[(len_b + 1) / 2] as f64) / 2_f64;
+    }
+
+    // 往后的情况，nums1和nums2的长度至少为2
+    let total_len = len_a + len_b;
+    // 如果是总数是奇数，中位数左边部分会多包含一个元素
+    let half_len = (total_len + 1) / 2;
+
+    // 不能记分隔线左边元素的索引，如果分隔线在最左边，则索引会是-1导致usize溢出报错
+    // 边界条件：a_divider_right_index=0时分隔线在最左边；a_divider_right_index=len_a时分隔线在最右边
+    let mut a_divider_right_index;
+    let mut b_divider_right_index;
+
+    // 折半查找的左右游标
+    let (mut a_left, mut a_right) = (0, len_a);
+    let mut a_divider_left: i32 = 0;
+    let mut a_divider_right: i32 = 0;
+    let mut b_divider_left: i32 = 0;
+    let mut b_divider_right: i32 = 0;
+    /* 初始条件
+    总数是奇数个时：[3|4], [1 2|5]
+    */
+    while a_left <= a_right {
+        // 如果a是[1,2,3,4]: (a_divider_left, a_divider_right) = (1,2)
+        a_divider_right_index = (a_left + a_right) / 2;
+        // 如果a和b都用的是分隔线右边的索引的话，b_divider_right_index不需要减一
+        b_divider_right_index = half_len - a_divider_right_index;
+        dbg!((a_divider_right_index, b_divider_right_index));
+
+        a_divider_left = if a_divider_right_index == 0 {
+            // 如果nums1的分隔线已经到底了
+            // 将a_divider_left设为i32最小值，
+            // 让程序走else if b_divider_left > a_divider_right {
+            // 走该分支会增加a_left的值从而跳出while循环
+            i32::MIN
+        } else {
+            nums1[a_divider_right_index - 1]
+        };
+        a_divider_right = if a_divider_right_index == len_a-1 {
+            i32::MAX
+        } else {
+            nums1[a_divider_right_index]
+        };
+        b_divider_left = if b_divider_right_index == 0 {
+            i32::MIN
+        } else {
+            nums1[b_divider_right_index - 1]
+        };
+        b_divider_right = if b_divider_right_index == len_b-1 {
+            i32::MAX
+        } else {
+            nums2[a_divider_right_index]
+        };
+        // dbg!((
+        //     a_divider_left,
+        //     a_divider_right,
+        //     b_divider_left,
+        //     b_divider_right
+        // ));
+
+        // a的右半边太大了，a的分隔线左移，b的分隔线右移
+        if a_divider_left > b_divider_right {
+            println!("a_divider_left({}) > b_divider_right({})\na's divider move left, b's divider move right", a_divider_left, b_divider_right);
+            // if a_divider_right_index <= 1 {
+            //     // 移动后a的分隔线已经在最左边了
+            //     return if total_len % 2 == 0 {
+            //         if b_divider_right_index == len_b - 1 {
+            //             // [4,5,6]、[1,2,3]
+            //             (nums1[0] + nums2[len_b - 1]) as f64 / 2_f64
+            //         } else {
+            //             // [4,5]、[1,2,3,6]
+            //             // 1 2 3 | 6
+            //             //       | 4 5
+            //             (nums2[b_divider_right_index] + nums2[b_divider_right_index + 1].min(nums1[0])) as f64 / 2_f64
+            //         }
+            //     } else {
+            //         nums2[b_divider_right_index] as f64
+            //     };
+            // }
+            a_right = a_divider_right_index - 1;
+        } else if b_divider_left > a_divider_right {
+            println!("b_divider_left({}) > a_divider_right({})\na's divider move right, b's divider move left", b_divider_left, a_divider_right);
+            // if a_divider_right_index == len_a - 1 {
+            //     // 移动后a的分隔线已经在最右边了
+            //     return if total_len % 2 == 0 {
+            //         if b_divider_right_index == 1 {
+            //             // [1,2]、[3,4]
+            //             (nums1[len_a - 1] + nums2[0]) as f64 / 2_f64
+            //         } else {
+            //             // [1,3]、[2,4,5,6]
+            //             (nums2[b_divider_right_index - 2].max(nums1[len_a - 1])
+            //                 + nums2[b_divider_right_index - 1]) as f64
+            //                 / 2_f64
+            //         }
+            //     } else {
+            //         // [1,2]、[3,4,5,6,7]
+            //         nums2[b_divider_right_index - 2].max(nums1[len_a - 1]) as f64
+            //     };
+            // }
+            a_left = a_divider_right_index + 1;
+        } else {
+            break;
+        }
+    }
+    if total_len % 2 == 0 {
+        (a_divider_left.max(b_divider_left) + a_divider_right.min(b_divider_right)) as f64 / 2_f64
+    } else {
+        a_divider_left.max(b_divider_left) as f64
     }
 }
 
@@ -198,7 +344,7 @@ fn test_my_binary_search_kth() {
 /// 没有考虑各种边际情况，leetcode上部分测试用例不通过
 /// 没有考虑nums1或nums2为空的情况，没有考虑nums1一个元素都不取和nums2一个元素都不取的情况
 ///
-#[cfg(test)]
+#[cfg(not)]
 fn my_binary_search_kth(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     let (len1, len2) = (nums1.len(), nums2.len());
     // 如果是奇数，恰好是中位数，如果是偶数，则是左中位数
