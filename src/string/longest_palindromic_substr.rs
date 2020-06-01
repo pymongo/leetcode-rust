@@ -3,40 +3,91 @@
 //! 2. O(n^2), dp: 如果a[0]==a[-1]，而且a[1..-2]是个回文数，则a也是个回文数
 
 #[cfg(test)]
-const TEST_CASES: [(&str, &str); 4] = [
+const TEST_CASES: [(&str, &str); 5] = [
+    ("cbbd", "cbbd"),
+    ("abadd", "aba"),
     ("aba", "aba"),
     ("ac", "a"),
-    ("abadd", "aba"),
     ("ccc", "ccc"),
 ];
 
 #[test]
 fn test_dp_new() {
-    // for case in &TEST_CASES {
-    //     assert_eq!(dp(case.0.to_owned()), case.1.to_owned());
-    // }
-    dp_new("cbba".to_owned());
+    for case in &TEST_CASES {
+        assert_eq!(dp_new(case.0.to_owned()), case.1.to_owned());
+    }
 }
 
 /*
+dp[i][j] 表示子串 s[i..j] 是否为回文子串
+if dp[i+1][j-1] && s[i]==s[j] {
+    dp[i][j] = true;
+}
+例如求证aba(0,2)是不是回文，判断b(1,1)是不是回文 且 s[0]==s[2]?
 初始条件
-  c b b a (left_index)
+  c b b a (纵坐标是i——最长子串的开始索引)
 c T 1 2 4
 b   T 3 5
 b     T 6
 a       T
+
+初始条件(输入是长度为3的回文串)
+  a b a
+a T 1 2
+b   T 3
+a     T
+
+初始条件(abadd)
+  a b a d d
+a T 1 2
+b   T 3
+a     T
+d       T
+d         T
+
+初始条件(cbbd)
+  a b a d d
+a T 1 2
+b   T 3
+a     T
+d       T
+d         T
 */
 fn dp_new(s: String) -> String {
     let chars = s.as_bytes();
     let len = chars.len();
+    if len < 2 {
+        return s;
+    }
+
+    let mut max_start_index = 0_usize;
+    let mut max_end_index = 0_usize;
+    let mut max_len = 1_usize;
+    let mut temp_len;
     let mut dp = vec![vec![true;len];len];
 
-    for i in 0..(len-1) {
-        for j in 1..=(1+i) {
-            dbg!((i, j));
+    // 如果是从上往下，从左往右地扫，以列为基准的遍历，
+    // 外层for循环一定是j而不是i
+    for j in 1..len {
+        for i in 0..j {
+            // dbg!((i,j));
+            if chars[i] == chars[j] && dp[i+1][j-1] {
+                temp_len = j-i;
+                if temp_len > max_len {
+                    max_start_index = i;
+                    max_end_index = j;
+                    max_len = temp_len;
+                }
+            } else {
+                dp[i][j] = false;
+            }
         }
     }
-    unimplemented!()
+    let mut result = String::with_capacity(max_len);
+    for i in max_start_index..=max_end_index {
+        result.push(chars[i] as char);
+    }
+    result
 }
 
 #[test]
@@ -72,6 +123,7 @@ start=2, end=3->3;
 start=1, end=3->2;
 改良：
 写完后我才发现start作为纵坐标更合适，刚好能让二位数组的index变为s[start][end]
+FIXME 按列从上往下扫，外层for循环是j，内层for循环是i
 
 【空间复杂度优化O(n^2)=>O(2n)】
 由于求第N列的值时只需要N-1列的数据，所以定义一个2*N的数组也能满足需求，节约内存
