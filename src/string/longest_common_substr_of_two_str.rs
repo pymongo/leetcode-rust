@@ -9,6 +9,7 @@
 //     ("caba", "abac", "aba"),
 // ];
 
+#[cfg(test)]
 fn dp(s1: String, s2: String) -> usize {
     let (str1, str2) = (s1.as_bytes(), s2.as_bytes());
     let (str1_len, str2_len) = (str1.len(), str2.len());

@@ -79,14 +79,13 @@ fn test_two_sum_btree_map() {
 
 pub fn two_sum_btree_map(nums: Vec<i32>, target: i32) -> Vec<i32> {
     let mut sum_tracker: std::collections::BTreeMap<i32, usize> = std::collections::BTreeMap::new();
-    for i in 0..nums.len() {
-        if sum_tracker.contains_key(&nums[i]) {
-            return vec![*sum_tracker.get(&nums[i]).unwrap() as i32, i as i32];
+    for (i, num) in nums.iter().enumerate() {
+        if sum_tracker.contains_key(num) {
+            return vec![*sum_tracker.get(num).unwrap() as i32, i as i32];
         }
-        sum_tracker.insert(target - nums[i], i);
+        sum_tracker.insert(target - *num, i);
     }
     unreachable!()
-    // vec![]
 }
 
 #[test]
@@ -101,11 +100,12 @@ fn test_sum_hashmap() {
 
 pub fn two_sum_hashmap(nums: Vec<i32>, target: i32) -> Vec<i32> {
     let mut sum_tracker: std::collections::HashMap<i32, usize> = std::collections::HashMap::new();
-    for i in 0..nums.len() {
-        if sum_tracker.contains_key(&nums[i]) {
-            return vec![*sum_tracker.get(&nums[i]).unwrap() as i32, i as i32];
+    for (i, num) in nums.iter().enumerate() {
+        if sum_tracker.contains_key(num) {
+            return vec![*sum_tracker.get(num).unwrap() as i32, i as i32];
         }
-        sum_tracker.insert(target - nums[i], i);
+        sum_tracker.insert(target - *num, i);
     }
     unreachable!()
+    // vec![]
 }

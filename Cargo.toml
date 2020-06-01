@@ -1,6 +1,6 @@
 [package]
 name = "leetcode"
-version = "0.0.2"
+version = "0.0.3"
 authors = ["吴翱翔 <pylint@yandex.com>"]
 edition = "2018"
 

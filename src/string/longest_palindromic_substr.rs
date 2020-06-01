@@ -4,7 +4,7 @@
 
 #[cfg(test)]
 const TEST_CASES: [(&str, &str); 5] = [
-    ("cbbd", "cbbd"),
+    ("cbbd", "bb"),
     ("abadd", "aba"),
     ("aba", "aba"),
     ("ac", "a"),
@@ -53,6 +53,7 @@ a     T
 d       T
 d         T
 */
+#[cfg(test)]
 fn dp_new(s: String) -> String {
     let chars = s.as_bytes();
     let len = chars.len();
@@ -64,15 +65,15 @@ fn dp_new(s: String) -> String {
     let mut max_end_index = 0_usize;
     let mut max_len = 1_usize;
     let mut temp_len;
-    let mut dp = vec![vec![true;len];len];
+    let mut dp = vec![vec![true; len]; len];
 
     // 如果是从上往下，从左往右地扫，以列为基准的遍历，
     // 外层for循环一定是j而不是i
     for j in 1..len {
         for i in 0..j {
             // dbg!((i,j));
-            if chars[i] == chars[j] && dp[i+1][j-1] {
-                temp_len = j-i;
+            if chars[i] == chars[j] && dp[i + 1][j - 1] {
+                temp_len = j - i + 1;
                 if temp_len > max_len {
                     max_start_index = i;
                     max_end_index = j;
