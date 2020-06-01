@@ -1,19 +1,21 @@
 //! 2 Solutions: binary_serch_kth_min、array_devider
 
 #[cfg(test)]
-const TEST_CASES: [(&[i32], &[i32], f64); 4] = [
+const TEST_CASES: [(&[i32], &[i32], f64); 5] = [
     (&[1, 2, 3, 4], &[3, 6, 8, 9], 3.5),
     (&[-2, -1], &[3], -1_f64),
     (&[1, 3], &[2], 2_f64),
     (&[3], &[-2, -1], -1_f64),
+    (&[1,2], &[3, 4], 2.5),
 ];
 
 #[test]
 fn test_move_divider_of_two_arrays() {
     for case in &TEST_CASES {
+        dbg!(&case);
         let nums1: Vec<i32> = case.0.iter().cloned().collect();
         let nums2: Vec<i32> = case.1.iter().cloned().collect();
-        assert_eq!(move_divider_of_two_arrays(nums1, nums2), case.2);
+        assert_eq!(find_median_sorted_arrays(nums1, nums2), case.2);
     }
 }
 
@@ -31,36 +33,57 @@ https://www.youtube.com/watch?v=ScCg9v921ns
 移动分割线后输入用例1：[1 2 3|4]
 移动分割线后输入用例2：[3|6 8 9]，刚好两个数组分割线的左半边组成了合并后中位数的左半边
 时间复杂度O(logn)，而尾递归二分查找第k小的项的时间复杂度是O(log(m+n))
-FIXME 出现u32 subtract with overflow溢出情况，需要差分对比当前的代码和leetcode上AC的代码
+
+流程：移动较短数组的分割线
 */
+// move_divider_of_two_arrays
 #[cfg(test)]
-fn move_divider_of_two_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
-    let ans: f64;
-    let (a_len, b_len) = (nums1.len(), nums2.len());
-    let (mut a_mid_left, mut a_mid_right) = ((a_len / 2) - 1, a_len / 2);
-    let (mut b_mid_left, mut b_mid_right) = ((b_len / 2) - 1, b_len / 2);
+fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
+    let (len_a, len_b) = (nums1.len(), nums2.len());
+    // 保证数组a的长度更短，我们遍历较短的数组a节约时间，加上二分查找后使得时间复杂度降低到O(log(min(m,n)))
+    if len_a > len_b {
+        return find_median_sorted_arrays(nums2, nums1);
+    }
+
+    // 如果较短数组的长度是0，统一了较长数组长度是奇数偶数的情况
+    if len_a == 0 {
+        return (nums2[(len_b-1)/2] as f64 + nums2[len_b/2] as f64) / 2_f64;
+    }
+    // 如果较短数组的长度是1，则较短数组的分割线左边或右边会没有值，这是一种特殊的边界条件
+    if len_a == 1 {
+        let mut nums_b = nums2;
+        let insert_index = match nums_b.binary_search(&nums1[0]) {
+            Ok(index) => index,
+            Err(index) => index,
+        };
+        nums_b.insert(insert_index, nums1[0]);
+        return (nums_b[len_b/2] as f64 + nums_b[(len_b+1)/2] as f64) / 2_f64;
+    }
+
+    // 往后的情况，nums1和nums2的长度至少为2
+    let total_len = len_a + len_b;
+
+    let (mut a_divider_left, mut a_divider_right) = ((len_a / 2) - 1, len_a / 2);
+    let (mut b_mid_left, mut b_mid_right) = ((len_b / 2) - 1, len_b / 2);
     loop {
-        if nums1[a_mid_left] > nums2[b_mid_right] {
+        if nums1[a_divider_left] > nums2[b_mid_right] {
             // a的右半边太大了！b的分割线左移一位、a的分割线右移一位
-            a_mid_left -= 1;
-            a_mid_right -= 1;
+            a_divider_left -= 1;
+            a_divider_right -= 1;
             b_mid_left += 1;
             b_mid_right += 1;
-        } else if nums2[b_mid_left] > nums1[a_mid_right] {
+        } else if nums2[b_mid_left] > nums1[a_divider_right] {
             // b的右半边太大了！b的分割线左移一位、a的分割线右移一位
             b_mid_left -= 1;
             b_mid_right -= 1;
-            a_mid_left += 1;
-            a_mid_right += 1;
+            a_divider_left += 1;
+            a_divider_right += 1;
         } else {
-            // calc answer
-            ans = (std::cmp::max(nums1[a_mid_left], nums2[b_mid_left])
-                + std::cmp::min(nums1[a_mid_right], nums2[b_mid_right])) as f64
-                / 2 as f64;
-            break;
+            return (std::cmp::max(nums1[a_divider_left], nums2[b_mid_left])
+                + std::cmp::min(nums1[a_divider_right], nums2[b_mid_right])) as f64
+                / 2_f64;
         }
     }
-    ans
 }
 
 #[test]
@@ -247,7 +270,7 @@ pub fn my_brute_force_old(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
         len += 1;
     }
     if total_sum % 2 == 0 {
-        ans = (arr[stop_index] + arr[stop_index - 1]) as f64 / 2 as f64;
+        ans = (arr[stop_index] + arr[stop_index - 1]) as f64 / 2_f64;
     } else {
         ans = arr[stop_index] as f64;
     }
