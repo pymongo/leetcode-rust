@@ -2,7 +2,7 @@
 
 #[cfg(test)]
 const TEST_CASES: [(&[i32], &[i32], f64); 10] = [
-    (&[3,4], &[1, 2, 5], 3_f64),
+    (&[3, 4], &[1, 2, 5], 3_f64),
     (&[1, 2, 3, 4], &[3, 6, 8, 9], 3.5),
     (&[-2, -1], &[3], -1_f64),
     (&[1, 3], &[2], 2_f64),
@@ -67,54 +67,105 @@ fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
 
     // 往后的情况，nums1和nums2的长度至少为2
     let total_len = len_a + len_b;
+    // 如果是总数是奇数，中位数左边部分会多包含一个元素
+    let half_len = (total_len+1) / 2;
 
-    let (mut a_divider_left, mut a_divider_right) = ((len_a / 2) - 1, len_a / 2);
-    let mut b_divider_left = (total_len / 2)-a_divider_left-1-1;
-    let mut b_divider_right = b_divider_left+1;
-    dbg!((a_divider_left,a_divider_right));
-    dbg!((b_divider_left,b_divider_right));
+    // let (mut a_divider_left_index, mut a_divider_right) = ((len_a / 2) - 1, len_a / 2);
+    // let mut b_divider_left = (total_len / 2)- a_divider_left_index -1-1;
+    // let mut b_divider_right = b_divider_left+1;
+    // dbg!((a_divider_left_index, a_divider_right));
+    // dbg!((b_divider_left,b_divider_right));
 
-    loop {
-        if nums1[a_divider_left] > nums2[b_divider_right] {
-            // 边界条件：较短的nums1的元素一个都不取，例如[4,5]、[1,2,3]的测试用例
-            if a_divider_left == 0 {
-                return if total_len % 2 == 0 {
-                    (nums1[0] + nums2[len_b - 1]) as f64 / 2_f64
-                } else {
-                    nums2[len_b - 1] as f64
-                };
+    let mut a_divider_left_index;
+    let mut b_divider_left_index;
+
+    // 折半查找的左右游标
+    let (mut a_left, mut a_right) = (0, len_a - 1);
+    let mut a_divider_left: i32 = 0;
+    let mut a_divider_right: i32 = 0;
+    let mut b_divider_left: i32 = 0;
+    let mut b_divider_right: i32 = 0;
+    /* 初始条件
+    总数是奇数个时：[3|4], [1 2|5]
+    */
+    while a_left < a_right {
+        //
+        // 如果a是[1,2,3,4]: (a_divider_left, a_divider_right) = (1,2)
+        a_divider_left_index = (a_left + a_right) / 2;
+        b_divider_left_index = half_len - a_divider_left_index - 2;
+        dbg!((a_divider_left_index, b_divider_left_index));
+
+        a_divider_left = nums1[a_divider_left_index];
+        a_divider_right = nums1[a_divider_left_index + 1];
+        b_divider_left = nums2[b_divider_left_index];
+        b_divider_right = nums2[b_divider_left_index + 1];
+        dbg!((a_divider_left, a_divider_right, b_divider_left, b_divider_right));
+
+        if a_divider_left > b_divider_right {
+            println!("a_divider_left({}) > b_divider_right({})", a_divider_left, b_divider_right);
+            a_right = a_divider_left_index;
+        } else if b_divider_left > a_divider_right {
+            println!("b_divider_left({}) > a_divider_right({})", b_divider_left, a_divider_right);
+            // a左边的元素全部都要，游标移到a的最右边
+            if a_divider_left_index == 0 {
+
+                break;
             }
-            // a的右半边太大了！b的分割线左移一位、a的分割线右移一位
-            a_divider_left -= 1;
-            a_divider_right -= 1;
-            b_divider_left += 1;
-            b_divider_right += 1;
-        } else if nums2[b_divider_left] >= nums1[a_divider_right] {
-            // 边界条件：较短的nums1的元素一个都不取，例如[1,2]、[3,4,5]的测试用例
-            if b_divider_left == 0 {
-                return if total_len % 2 == 0 {
-                    (nums1[len_a - 1] + nums2[0]) as f64 / 2_f64
-                } else {
-                    nums2[0] as f64
-                };
-            }
-            // b的右半边太大了！b的分割线左移一位、a的分割线右移一位
-            b_divider_left -= 1;
-            b_divider_right -= 1;
-            a_divider_left += 1;
-            a_divider_right += 1;
+            // a的左半边太小了，需要将折半查找的left游标前移
+            a_left = a_divider_left_index-1;
         } else {
-            dbg!((a_divider_left,a_divider_right));
-            dbg!((b_divider_left,b_divider_right));
-            return if total_len % 2 == 0 {
-                (std::cmp::max(nums1[a_divider_left], nums2[b_divider_left])
-                    + std::cmp::min(nums1[a_divider_right], nums2[b_divider_right])) as f64
-                    / 2_f64
-            } else {
-                std::cmp::min(nums1[a_divider_right], nums2[b_divider_right]) as f64
-            };
+            break;
         }
     }
+    if total_len % 2 == 0 {
+        (std::cmp::max(a_divider_left, b_divider_left)
+            + std::cmp::min(a_divider_right, b_divider_right)) as f64
+            / 2_f64
+    } else {
+        std::cmp::max(a_divider_left, b_divider_left) as f64
+    }
+
+    // loop {
+    //     if nums1[a_divider_left] > nums2[b_divider_right] {
+    //         // 边界条件：较短的nums1的元素一个都不取，例如[4,5]、[1,2,3]的测试用例
+    //         if a_divider_left == 0 {
+    //             return if total_len % 2 == 0 {
+    //                 (nums1[0] + nums2[len_b - 1]) as f64 / 2_f64
+    //             } else {
+    //                 nums2[len_b - 1] as f64
+    //             };
+    //         }
+    //         // a的右半边太大了！b的分割线左移一位、a的分割线右移一位
+    //         a_divider_left -= 1;
+    //         a_divider_right -= 1;
+    //         b_divider_left += 1;
+    //         b_divider_right += 1;
+    //     } else if nums2[b_divider_left] > nums1[a_divider_right] {
+    //         // 边界条件：较短的nums1的元素一个都不取，例如[1,2]、[3,4,5]的测试用例
+    //         if b_divider_left == 0 {
+    //             return if total_len % 2 == 0 {
+    //                 (nums1[len_a - 1] + nums2[0]) as f64 / 2_f64
+    //             } else {
+    //                 nums2[0] as f64
+    //             };
+    //         }
+    //         // b的右半边太大了！b的分割线左移一位、a的分割线右移一位
+    //         b_divider_left -= 1;
+    //         b_divider_right -= 1;
+    //         a_divider_left += 1;
+    //         a_divider_right += 1;
+    //     } else {
+    //         dbg!((a_divider_left,a_divider_right));
+    //         dbg!((b_divider_left,b_divider_right));
+    //         return if total_len % 2 == 0 {
+    //             (std::cmp::max(nums1[a_divider_left], nums2[b_divider_left])
+    //                 + std::cmp::min(nums1[a_divider_right], nums2[b_divider_right])) as f64
+    //                 / 2_f64
+    //         } else {
+    //             std::cmp::min(nums1[a_divider_right], nums2[b_divider_right]) as f64
+    //         };
+    //     }
+    // }
 }
 
 #[test]
