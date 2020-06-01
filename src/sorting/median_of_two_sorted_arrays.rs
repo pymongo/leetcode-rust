@@ -1,12 +1,17 @@
 //! 2 Solutions: binary_serch_kth_min、array_devider
 
 #[cfg(test)]
-const TEST_CASES: [(&[i32], &[i32], f64); 5] = [
+const TEST_CASES: [(&[i32], &[i32], f64); 10] = [
+    (&[3,4], &[1, 2, 5], 3_f64),
     (&[1, 2, 3, 4], &[3, 6, 8, 9], 3.5),
     (&[-2, -1], &[3], -1_f64),
     (&[1, 3], &[2], 2_f64),
     (&[3], &[-2, -1], -1_f64),
-    (&[1,2], &[3, 4], 2.5),
+    (&[1, 2], &[3, 4], 2.5),
+    (&[1, 2, 3], &[4, 5], 3_f64),
+    (&[4, 5], &[1, 2, 3], 3_f64),
+    (&[1, 2], &[1, 2, 3], 2_f64),
+    (&[1, 2, 3], &[1, 2, 3], 2_f64),
 ];
 
 #[test]
@@ -47,7 +52,7 @@ fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
 
     // 如果较短数组的长度是0，统一了较长数组长度是奇数偶数的情况
     if len_a == 0 {
-        return (nums2[(len_b-1)/2] as f64 + nums2[len_b/2] as f64) / 2_f64;
+        return (nums2[(len_b - 1) / 2] as f64 + nums2[len_b / 2] as f64) / 2_f64;
     }
     // 如果较短数组的长度是1，则较短数组的分割线左边或右边会没有值，这是一种特殊的边界条件
     if len_a == 1 {
@@ -57,31 +62,57 @@ fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
             Err(index) => index,
         };
         nums_b.insert(insert_index, nums1[0]);
-        return (nums_b[len_b/2] as f64 + nums_b[(len_b+1)/2] as f64) / 2_f64;
+        return (nums_b[len_b / 2] as f64 + nums_b[(len_b + 1) / 2] as f64) / 2_f64;
     }
 
     // 往后的情况，nums1和nums2的长度至少为2
     let total_len = len_a + len_b;
 
     let (mut a_divider_left, mut a_divider_right) = ((len_a / 2) - 1, len_a / 2);
-    let (mut b_mid_left, mut b_mid_right) = ((len_b / 2) - 1, len_b / 2);
+    let mut b_divider_left = (total_len / 2)-a_divider_left-1-1;
+    let mut b_divider_right = b_divider_left+1;
+    dbg!((a_divider_left,a_divider_right));
+    dbg!((b_divider_left,b_divider_right));
+
     loop {
-        if nums1[a_divider_left] > nums2[b_mid_right] {
+        if nums1[a_divider_left] > nums2[b_divider_right] {
+            // 边界条件：较短的nums1的元素一个都不取，例如[4,5]、[1,2,3]的测试用例
+            if a_divider_left == 0 {
+                return if total_len % 2 == 0 {
+                    (nums1[0] + nums2[len_b - 1]) as f64 / 2_f64
+                } else {
+                    nums2[len_b - 1] as f64
+                };
+            }
             // a的右半边太大了！b的分割线左移一位、a的分割线右移一位
             a_divider_left -= 1;
             a_divider_right -= 1;
-            b_mid_left += 1;
-            b_mid_right += 1;
-        } else if nums2[b_mid_left] > nums1[a_divider_right] {
+            b_divider_left += 1;
+            b_divider_right += 1;
+        } else if nums2[b_divider_left] >= nums1[a_divider_right] {
+            // 边界条件：较短的nums1的元素一个都不取，例如[1,2]、[3,4,5]的测试用例
+            if b_divider_left == 0 {
+                return if total_len % 2 == 0 {
+                    (nums1[len_a - 1] + nums2[0]) as f64 / 2_f64
+                } else {
+                    nums2[0] as f64
+                };
+            }
             // b的右半边太大了！b的分割线左移一位、a的分割线右移一位
-            b_mid_left -= 1;
-            b_mid_right -= 1;
+            b_divider_left -= 1;
+            b_divider_right -= 1;
             a_divider_left += 1;
             a_divider_right += 1;
         } else {
-            return (std::cmp::max(nums1[a_divider_left], nums2[b_mid_left])
-                + std::cmp::min(nums1[a_divider_right], nums2[b_mid_right])) as f64
-                / 2_f64;
+            dbg!((a_divider_left,a_divider_right));
+            dbg!((b_divider_left,b_divider_right));
+            return if total_len % 2 == 0 {
+                (std::cmp::max(nums1[a_divider_left], nums2[b_divider_left])
+                    + std::cmp::min(nums1[a_divider_right], nums2[b_divider_right])) as f64
+                    / 2_f64
+            } else {
+                std::cmp::min(nums1[a_divider_right], nums2[b_divider_right]) as f64
+            };
         }
     }
 }
@@ -185,7 +216,7 @@ fn test_my_brute_force() {
 fn my_brute_force(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     let len1 = nums1.len();
     let mut len2 = nums2.len();
-    let total_len = len1+len2;
+    let total_len = len1 + len2;
     let median_left_part_final_count = total_len / 2;
     let shorter_nums: Vec<i32>;
     let mut longer_nums: Vec<i32>;
@@ -217,7 +248,7 @@ fn my_brute_force(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
         (longer_nums[median_left_part_final_count] + longer_nums[median_left_part_final_count - 1]) as f64 / 2_f64
     } else {
         longer_nums[median_left_part_final_count] as f64
-    }
+    };
 }
 
 /*
