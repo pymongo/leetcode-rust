@@ -107,7 +107,10 @@ fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
                         // [4,5]、[1,2,3,6]
                         // 1 2 3 | 6
                         //       | 4 5
-                        (nums2[b_divider_right_index] + nums2[b_divider_right_index + 1].min(nums1[0])) as f64 / 2_f64
+                        (nums2[b_divider_right_index]
+                            + nums2[b_divider_right_index + 1].min(nums1[0]))
+                            as f64
+                            / 2_f64
                     }
                 } else {
                     nums2[b_divider_right_index] as f64
@@ -221,7 +224,7 @@ fn move_divider_of_two_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
         } else {
             nums1[a_divider_right_index - 1]
         };
-        a_divider_right = if a_divider_right_index == len_a-1 {
+        a_divider_right = if a_divider_right_index == len_a - 1 {
             i32::MAX
         } else {
             nums1[a_divider_right_index]
@@ -231,7 +234,7 @@ fn move_divider_of_two_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
         } else {
             nums1[b_divider_right_index - 1]
         };
-        b_divider_right = if b_divider_right_index == len_b-1 {
+        b_divider_right = if b_divider_right_index == len_b - 1 {
             i32::MAX
         } else {
             nums2[a_divider_right_index]
@@ -420,7 +423,7 @@ pub fn my_brute_force_old(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     while j < len2 {
         // 既然第二个数组是有序的，我就不用二分插入了
         // TODO 这个while比二分查找蠢多了
-        while arr[i.min(len-1)] < pending_to_insert_arr[j] {
+        while arr[i.min(len - 1)] < pending_to_insert_arr[j] {
             if i < len {
                 i += 1;
             } else {
