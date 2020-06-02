@@ -81,7 +81,7 @@ fn manacher(s: String) -> String {
     // position的API类似于Find
     let max_left = max_radius_center_index + 1 - max_radius;
     let max_right = max_radius_center_index + max_radius - 1;
-    let mut longest_palindrome_substring = String::with_capacity(max_radius-1);
+    let mut longest_palindrome_substring = String::with_capacity(max_radius - 1);
     for i in max_left..max_right {
         if new_str[i] != '#' {
             longest_palindrome_substring.push(new_str[i]);
@@ -161,7 +161,7 @@ fn manacher_old(s: String) -> String {
             // dbg!("情况1");
             radius_of_i[i] = 1;
             // 要用中心对称算法扩散i
-            while new_str[i-radius_of_i[i]] == new_str[i+radius_of_i[i]] {
+            while new_str[i - radius_of_i[i]] == new_str[i + radius_of_i[i]] {
                 radius_of_i[i] += 1;
             }
             // 如果发现了更长的回文子串，更新center和right的索引
@@ -197,7 +197,7 @@ fn manacher_old(s: String) -> String {
                 std::cmp::Ordering::Equal => {
                     // dbg!("情况2.2");
                     radius_of_i[i] = radius_of_i[i_mirror_of_center];
-                    while new_str[i-radius_of_i[i]] == new_str[i+radius_of_i[i]] {
+                    while new_str[i - radius_of_i[i]] == new_str[i + radius_of_i[i]] {
                         radius_of_i[i] += 1;
                     }
                     if i + radius_of_i[i] > right {
@@ -220,7 +220,7 @@ fn manacher_old(s: String) -> String {
 
     let max_left = max_radius_center_index + 1 - max_radius;
     let max_right = max_radius_center_index + max_radius - 1;
-    let mut longest_palindrome_substring = String::with_capacity(max_radius-1);
+    let mut longest_palindrome_substring = String::with_capacity(max_radius - 1);
     for i in max_left..max_right {
         if new_str[i] != '#' {
             longest_palindrome_substring.push(new_str[i]);
