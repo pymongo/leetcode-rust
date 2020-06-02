@@ -121,9 +121,9 @@ fn manacher_old(s: String) -> String {
     if input_str_len < 2 {
         return s;
     }
-    if input_str_len == 3 && s.chars().nth(0).unwrap() == s.chars().nth(2).unwrap() {
-        return s;
-    }
+    // if input_str_len == 3 && s.chars().nth(0).unwrap() == s.chars().nth(2).unwrap() {
+    //     return s;
+    // }
 
     // 对输入的字符串作预处理
     // 在字符串的间隙间插入'#'，然后在字符串的开头和结束位置插入'^'和'$'
@@ -138,24 +138,26 @@ fn manacher_old(s: String) -> String {
     let len = 2 * input_str_len + 3;
     // 新字符串的回文半径=老字符串的最大长度
     let mut max_radius = 0usize;
+    let mut max_radius_center_index = 0usize;
 
     // radius[i] represents the radius of the longest palindrome centered on i.
     let mut radius_of_i = vec![0usize; len];
 
     /* 以下两个变量，充分利用了回文数中心对称的特点，用到了动态规划，利用之前左边部分已经判别过回文的特点减少遍历 */
     // 当前已记录的最长回文子串 最远能向右扩散的索引
-    let mut max_len_right_index = 0usize;
+    // FIXME 注意当i即将超过right时，center和right会变，变了之后很可能不再是最长回文的索引
+    let mut right = 0usize;
     // 当前已记录的最长回文子串 最远能向右扩散的中心索引
-    // 公式2
     // max_len_center_index = max_len_right_index + radius_of_i[max_len_right_index]
-    let mut max_len_center_index = 0usize;
+    let mut center = 0usize;
+    // 因为center会不断往右移，center对应的半径【可能不是】最大半径的中心点
     let mut i_mirror_of_center;
 
     // 根据i和max_len_right_index之间的大小关系作分类讨论
     // 如果
     for i in 1..(len - 1) {
         // 情况1：一开始以及遍历到字符串末尾的情况
-        if i >= max_len_right_index {
+        if i >= right {
             // dbg!("情况1");
             radius_of_i[i] = 1;
             // 要用中心对称算法扩散i
@@ -163,31 +165,32 @@ fn manacher_old(s: String) -> String {
                 radius_of_i[i] += 1;
             }
             // 如果发现了更长的回文子串，更新center和right的索引
-            if i + radius_of_i[i] > max_len_right_index {
-                max_len_center_index = i;
-                max_len_right_index = i + radius_of_i[i];
-                max_radius = max_radius.max(radius_of_i[i]);
+            if i + radius_of_i[i] > right {
+                center = i;
+                right = i + radius_of_i[i];
             }
-            // if radius_of_i[i] > max_radius {
-            //     max_radius = radius_of_i[i];
-            // }
-            // dbg!((max_len_center_index, max_len_right_index))
+            if radius_of_i[i] > max_radius {
+                max_radius = radius_of_i[i];
+                max_radius_center_index = i;
+            }
         } else {
             // 情况2：i在right左边，但是不可能也在center的左边，因为center一定是访问过的
             //       所以这种情况下，i在center和right的中间
+            // 情况2的分析具体看leetcode的题解「动态规划、中心扩散、Manacher 算法」
+            // https://leetcode-cn.com/problems/longest-palindromic-substring/solution/zhong-xin-kuo-san-dong-tai-gui-hua-by-liweiwei1419/
 
             // 因为mirror+i = 2*center
-            i_mirror_of_center = 2 * max_len_center_index - i;
-            match radius_of_i[i_mirror_of_center].cmp(&(max_len_right_index - i)) {
+            i_mirror_of_center = 2 * center - i;
+            match radius_of_i[i_mirror_of_center].cmp(&(right - i)) {
                 // 情况2.1: 以i_mirror_of_center出发的回文串总体长度在最大半径之内，i_mirror_of_center中的半径【小于max_radius】
                 // 根据对称性，直接照抄镜像的值
                 std::cmp::Ordering::Less => {
                     // dbg!("情况2.1");
                     // 尽管这种情况下不用更新最大半径，但是【填值是必须的】方便遍历更右边时需要用到当前位置的值
                     radius_of_i[i] = radius_of_i[i_mirror_of_center];
-                    if i + radius_of_i[i] > max_len_right_index {
-                        max_len_center_index = i;
-                        max_len_right_index = i + radius_of_i[i];
+                    if i + radius_of_i[i] > right {
+                        center = i;
+                        right = i + radius_of_i[i];
                     }
                 }
                 // 情况2.2: 【可能会更新max_radius】先把p[mirror] 的值抄过来，然后继续“中心扩散法”
@@ -197,36 +200,34 @@ fn manacher_old(s: String) -> String {
                     while new_str[i-radius_of_i[i]] == new_str[i+radius_of_i[i]] {
                         radius_of_i[i] += 1;
                     }
-                    if i + radius_of_i[i] > max_len_right_index {
-                        max_len_center_index = i;
-                        max_len_right_index = i + radius_of_i[i];
-                        max_radius = max_radius.max(radius_of_i[i]);
+                    if i + radius_of_i[i] > right {
+                        center = i;
+                        right = i + radius_of_i[i];
                     }
-                    // if radius_of_i[i] > max_radius {
-                    //     max_radius = radius_of_i[i];
-                    // }
+                    if radius_of_i[i] > max_radius {
+                        max_radius = radius_of_i[i];
+                        max_radius_center_index = i;
+                    }
                 }
                 // 情况2.3:
                 std::cmp::Ordering::Greater => {
                     // dbg!("情况2.3");
-                    radius_of_i[i] = max_len_right_index - i;
-                    // if i + radius_of_i[i] > max_len_right_index {
-                    //     max_len_center_index = i;
-                    //     max_len_right_index = i + radius_of_i[i];
-                    // }
+                    radius_of_i[i] = right - i;
                 }
             }
         }
     }
 
-    let mut result = String::new();
-    for i in (max_len_center_index + 1 - max_radius)..max_len_right_index {
+    let max_left = max_radius_center_index + 1 - max_radius;
+    let max_right = max_radius_center_index + max_radius - 1;
+    let mut longest_palindrome_substring = String::with_capacity(max_radius-1);
+    for i in max_left..max_right {
         if new_str[i] != '#' {
-            result.push(new_str[i]);
+            longest_palindrome_substring.push(new_str[i]);
         }
     }
-    // dbg!(result.len());
-    result
+
+    longest_palindrome_substring
 }
 
 #[test]
@@ -389,7 +390,12 @@ fn dp_new(s: String) -> String {
 #[test]
 fn test_dp() {
     for case in &TEST_CASES {
-        assert_eq!(dp(case.0.to_owned()), case.1.to_owned());
+        if case.0 == "babad" {
+            let result = &dp(case.0.to_owned());
+            assert!(result == "bab" || result == "aba");
+        } else {
+            assert_eq!(dp(case.0.to_owned()), case.1.to_owned());
+        }
     }
 }
 
