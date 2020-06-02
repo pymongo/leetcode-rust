@@ -29,7 +29,7 @@ fn my_first_solution(nums1: &mut Vec<i32>, m: i32, nums2: &mut Vec<i32>, n: i32)
     if n == 0 {
         return;
     }
-    let mut nums1_read_index: usize = 0_i32.max(m - 1) as usize;
+    let mut nums1_read_index: usize = 0i32.max(m - 1) as usize;
     let mut nums2_read_index: usize = (n - 1) as usize;
     let mut nums1_write_index: usize = (m + n - 1) as usize;
     let mut is_nums2_remain = true;

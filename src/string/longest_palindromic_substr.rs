@@ -3,13 +3,225 @@
 //! 2. O(n^2), dp: 如果a[0]==a[-1]，而且a[1..-2]是个回文数，则a也是个回文数
 
 #[cfg(test)]
-const TEST_CASES: [(&str, &str); 5] = [
+const TEST_CASES: [(&str, &str); 6] = [
+    ("babad", "aba"),
     ("abadd", "aba"),
     ("cbbd", "bb"),
     ("aba", "aba"),
     ("ac", "a"),
     ("ccc", "ccc"),
 ];
+
+#[test]
+fn test_manacher() {
+    for case in &TEST_CASES {
+        assert_eq!(manacher(case.0.to_owned()), case.1.to_owned());
+    }
+}
+
+#[cfg(test)]
+fn manacher(s: String) -> String {
+    let len = s.len();
+    if len < 2 {
+        return s;
+    }
+
+    // 一、字符串预处理
+    // 给字符串的头尾加上^和$，同时给原字符串的间隙加上#
+    // 字符串预处理的功能：
+    // 1. 这样中心扩展的时候，判断两端字符是否相等的时候，如果到了边界就一定会不相等
+    // 2. 头尾的^和$不相等，避免了中心扩散时usize类型溢出成-1
+    // 3. 字符串的长度变成了2n+3，永远为奇数个
+    let mut new_str = vec!['$', '#'];
+    for ch in s.chars() {
+        new_str.push(ch);
+        new_str.push('#');
+    }
+    new_str.push('^');
+
+    // length of the new string
+    let new_len = 2*len+3;
+
+    // Define a secondary array p[], where p[i] represents the radius of the longest palindrome centered on i.
+    let mut radius_of_i = vec![0usize; new_len];
+
+    // `max_len`: The length of the longest palindrome string in the original string
+    // let mut max_len = 0usize;
+    // `max_len`: The length of the longest palindrome string in the original string
+    let mut max_radius = 0usize;
+
+    // Define two variables, `mx` and`id`
+    // `right` represents the right boundary of
+    // the longest palindrome centered on`center`
+    // `right = center + radius_of_i[id]`
+    let mut center = 0usize;
+    let mut right = 0usize;
+    for i in 1..(new_len - 1) {
+        if i < right {
+            radius_of_i[i] = radius_of_i[2 * center - i].min(right - i);
+        } else {
+            radius_of_i[i] = 1;
+        }
+
+        while new_str[i - radius_of_i[i]] == new_str[i + radius_of_i[i]] {
+            radius_of_i[i] += 1;
+        }
+
+        if right < i + radius_of_i[i] {
+            center = i;
+            right = i + radius_of_i[i];
+        }
+        // `radius_of_i[i] - 1` is exactly the length of the longest palindrome string in the original string
+        max_radius = max_radius.max(radius_of_i[i]);
+    }
+
+    /* Get longest palindromic substring
+     * left: left boundery of the longest palindromic substring
+     * right: right boundery of the longest palindromic substring
+     */
+    let left = radius_of_i.iter().position(|&x| x == max_radius).unwrap() - max_radius;
+    let right = left + max_radius * 2;
+    let mut longest_palindrome_substring = String::from("");
+    for i in left..right {
+        if new_str[i] != '#' {
+            longest_palindrome_substring.push(new_str[i]);
+        }
+    }
+
+    /* Return longest palindromic substring */
+    longest_palindrome_substring
+}
+
+/* Manacher算法
+可以认为是「动态规划」+「中心扩散」+「KMP算法(利用左边的已进行回文判断的子串)」
+KMP算法是用于字符串匹配时，判断一个字符串是否contains某个字符串
+
+
+预处理字符串(给字符串间隙加#)，避免了中心扩散解法的偶数情况要遍历字符串的间隙
+同时还会个字符串的头尾加上^和$，这样中心扩展的时候，判断两端字符是否相等的时候，如果到了边界就一定会不相等
+如果是Java，头和尾可以是#，但是Rust头尾一定要不一样的防止usize类型越界
+经过上述两个处理，字符串的长度永远是奇数了
+
+Manacher算法第二个核心概念是，利用了回文数的中心对称性
+例如最大回文串是'a#b#a'，长度+1除以2之后得到了aba的长度是3，中心位置是b索引为2，原字符串开始位置的索引为2-(3+1)/2
+例如最大回文串是'b#b'，长度+1除以2之后得到了bb的长度是2，中心位置是#索引为1，原字符串开始位置的索引为1-(2+1)/2
+
+Complexity
+O(n) time and O(n) extra space
+*/
+#[cfg(not)]
+fn manacher_error(s: String) -> String {
+    let input_str_len = s.len();
+    if input_str_len < 2 {
+        return s;
+    }
+    if input_str_len == 3 && s.chars().nth(0).unwrap() == s.chars().nth(2).unwrap() {
+        return s;
+    }
+
+    // 对输入的字符串作预处理
+    // 在字符串的间隙间插入'#'，然后在字符串的开头和结束位置插入'^'和'$'
+    let mut new_str = vec!['^', '#'];
+    for char in s.chars() {
+        new_str.push(char);
+        new_str.push('#');
+    }
+    new_str.push('$');
+
+    // 除了比原字符串多了n个#，还多了一个#、^、$，所以新字符串的长度是2n+3
+    let len = 2 * input_str_len + 3;
+    // 新字符串的回文半径=老字符串的最大长度
+    let mut max_radius = 0usize;
+
+    // radius[i] represents the radius of the longest palindrome centered on i.
+    let mut radius_of_i = vec![0usize; len];
+
+    /* 以下两个变量，充分利用了回文数中心对称的特点，用到了动态规划，利用之前左边部分已经判别过回文的特点减少遍历 */
+    // 当前已记录的最长回文子串 最远能向右扩散的索引
+    let mut max_len_right_index = 0usize;
+    // 当前已记录的最长回文子串 最远能向右扩散的中心索引
+    // 公式2
+    // max_len_center_index = max_len_right_index + radius_of_i[max_len_right_index]
+    let mut max_len_center_index = 0usize;
+    let mut i_mirror_of_center;
+
+    // 根据i和max_len_right_index之间的大小关系作分类讨论
+    // 如果
+    for i in 1..(len - 1) {
+        // 情况1：一开始以及遍历到字符串末尾的情况
+        if i >= max_len_right_index {
+            // dbg!("情况1");
+            radius_of_i[i] = 1;
+            // 要用中心对称算法扩散i
+            while new_str[i-radius_of_i[i]] == new_str[i+radius_of_i[i]] {
+                radius_of_i[i] += 1;
+            }
+            // 如果发现了更长的回文子串，更新center和right的索引
+            if i + radius_of_i[i] > max_len_right_index {
+                max_len_center_index = i;
+                max_len_right_index = i + radius_of_i[i];
+                max_radius = max_radius.max(radius_of_i[i]);
+            }
+            // if radius_of_i[i] > max_radius {
+            //     max_radius = radius_of_i[i];
+            // }
+            // dbg!((max_len_center_index, max_len_right_index))
+        } else {
+            // 情况2：i在right左边，但是不可能也在center的左边，因为center一定是访问过的
+            //       所以这种情况下，i在center和right的中间
+
+            // 因为mirror+i = 2*center
+            i_mirror_of_center = 2 * max_len_center_index - i;
+            match radius_of_i[i_mirror_of_center].cmp(&(max_len_right_index - i)) {
+                // 情况2.1: 以i_mirror_of_center出发的回文串总体长度在最大半径之内，i_mirror_of_center中的半径【小于max_radius】
+                // 根据对称性，直接照抄镜像的值
+                std::cmp::Ordering::Less => {
+                    // dbg!("情况2.1");
+                    // 尽管这种情况下不用更新最大半径，但是【填值是必须的】方便遍历更右边时需要用到当前位置的值
+                    radius_of_i[i] = radius_of_i[i_mirror_of_center];
+                    if i + radius_of_i[i] > max_len_right_index {
+                        max_len_center_index = i;
+                        max_len_right_index = i + radius_of_i[i];
+                    }
+                }
+                // 情况2.2: 【可能会更新max_radius】先把p[mirror] 的值抄过来，然后继续“中心扩散法”
+                std::cmp::Ordering::Equal => {
+                    // dbg!("情况2.2");
+                    radius_of_i[i] = radius_of_i[i_mirror_of_center];
+                    while new_str[i-radius_of_i[i]] == new_str[i+radius_of_i[i]] {
+                        radius_of_i[i] += 1;
+                    }
+                    if i + radius_of_i[i] > max_len_right_index {
+                        max_len_center_index = i;
+                        max_len_right_index = i + radius_of_i[i];
+                        max_radius = max_radius.max(radius_of_i[i]);
+                    }
+                    // if radius_of_i[i] > max_radius {
+                    //     max_radius = radius_of_i[i];
+                    // }
+                }
+                // 情况2.3:
+                std::cmp::Ordering::Greater => {
+                    // dbg!("情况2.3");
+                    radius_of_i[i] = max_len_right_index - i;
+                    // if i + radius_of_i[i] > max_len_right_index {
+                    //     max_len_center_index = i;
+                    //     max_len_right_index = i + radius_of_i[i];
+                    // }
+                }
+            }
+        }
+    }
+
+    let mut result = String::new();
+    for i in (max_len_center_index + 1 - max_radius)..max_len_right_index {
+        if new_str[i] != '#' {
+            result.push(new_str[i]);
+        }
+    }
+    // dbg!(result.len());
+    result
+}
 
 #[test]
 fn test_expand_around_center() {
@@ -137,8 +349,8 @@ fn dp_new(s: String) -> String {
         return s;
     }
 
-    let mut max_start_index = 0_usize;
-    let mut max_end_index = 0_usize;
+    let mut max_start_index = 0usize;
+    let mut max_end_index = 0usize;
     let mut max_len = 1_usize;
     let mut temp_len;
     let mut dp = vec![vec![true; len]; len];
@@ -148,6 +360,7 @@ fn dp_new(s: String) -> String {
     for j in 1..len {
         for i in 0..j {
             // dbg!((i,j));
+            // TODO 【优化】当子串的长度是2或3时，如果chars[i]==chars[j]那就肯定是回文了
             if chars[i] == chars[j] && dp[i + 1][j - 1] {
                 temp_len = j - i + 1;
                 if temp_len > max_len {
@@ -329,7 +542,7 @@ pub fn longest_palindrome_manacher(s: String) -> String {
     longest_palindrome_substring
 }
 
-// 全球服第一的答案，似乎并不是Manacher算法
+// 全球服第一的答案，改良了中心扩散算法，由于rust性能好，我写的中心扩散也能跑进4ms，改良下跑进0ms也是有可能的
 #[cfg(not)]
 fn longest_palindrome_global_best(s: String) -> String {
     let seq: Vec<char> = s.chars().collect();

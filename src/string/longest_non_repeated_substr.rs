@@ -34,7 +34,7 @@ pub fn i32_ascii_table(s: String) -> i32 {
     // index: value of char in ascii
     // value: index of char
     let mut ascii_table: [i32; 128] = [-1; 128];
-    let (mut left, mut right, mut max) = (0_i32, 0_i32, 0_i32);
+    let (mut left, mut right, mut max) = (0i32, 0i32, 0i32);
     let mut temp_max: i32;
     let string_bytes = s.as_bytes();
     let mut current_char: u8;
@@ -73,7 +73,7 @@ pub fn usize_ascii_table(s: String) -> i32 {
     // 假设数组最大长度是31001(leetcode最长测试用例)，用1024表示ascii_table中没有出现过这个字符串
     const UNINITIALIZED: usize = 31001;
     let mut ascii_table: [usize; 128] = [UNINITIALIZED; 128];
-    let (mut left, mut right, mut max) = (0_usize, 0_usize, 0_usize);
+    let (mut left, mut right, mut max) = (0usize, 0usize, 0usize);
     let mut temp_max: usize;
     let string_bytes = s.as_bytes();
     let mut current_char: u8;
