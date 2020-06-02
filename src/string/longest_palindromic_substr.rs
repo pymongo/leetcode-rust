@@ -4,7 +4,7 @@
 
 #[cfg(test)]
 const TEST_CASES: [(&str, &str); 6] = [
-    ("babad", "aba"),
+    ("babad", "bab"),
     ("abadd", "aba"),
     ("cbbd", "bb"),
     ("aba", "aba"),
@@ -32,32 +32,31 @@ fn manacher(s: String) -> String {
     // 1. 这样中心扩展的时候，判断两端字符是否相等的时候，如果到了边界就一定会不相等
     // 2. 头尾的^和$不相等，避免了中心扩散时usize类型溢出成-1
     // 3. 字符串的长度变成了2n+3，永远为奇数个
-    let mut new_str = vec!['$', '#'];
+    let mut new_str = vec!['^', '#'];
     for ch in s.chars() {
         new_str.push(ch);
         new_str.push('#');
     }
-    new_str.push('^');
+    new_str.push('$');
 
     // length of the new string
-    let new_len = 2*len+3;
+    let new_len = 2 * len + 3;
 
     // Define a secondary array p[], where p[i] represents the radius of the longest palindrome centered on i.
     let mut radius_of_i = vec![0usize; new_len];
 
     // `max_len`: The length of the longest palindrome string in the original string
-    // let mut max_len = 0usize;
-    // `max_len`: The length of the longest palindrome string in the original string
     let mut max_radius = 0usize;
+    let mut max_radius_center_index = 0usize;
 
-    // Define two variables, `mx` and`id`
     // `right` represents the right boundary of
     // the longest palindrome centered on`center`
-    // `right = center + radius_of_i[id]`
+    // right = center + radius_of_i[center]
     let mut center = 0usize;
     let mut right = 0usize;
     for i in 1..(new_len - 1) {
         if i < right {
+            // [2 * center - i] is mirror of center for i
             radius_of_i[i] = radius_of_i[2 * center - i].min(right - i);
         } else {
             radius_of_i[i] = 1;
@@ -71,25 +70,32 @@ fn manacher(s: String) -> String {
             center = i;
             right = i + radius_of_i[i];
         }
-        // `radius_of_i[i] - 1` is exactly the length of the longest palindrome string in the original string
-        max_radius = max_radius.max(radius_of_i[i]);
+        // FIXME 随着i逐渐右移，center对应的半径【可能不是】最大半径的中心点
+        if radius_of_i[i] > max_radius {
+            max_radius = radius_of_i[i];
+            max_radius_center_index = i;
+        }
     }
 
-    /* Get longest palindromic substring
-     * left: left boundery of the longest palindromic substring
-     * right: right boundery of the longest palindromic substring
-     */
-    let left = radius_of_i.iter().position(|&x| x == max_radius).unwrap() - max_radius;
-    let right = left + max_radius * 2;
-    let mut longest_palindrome_substring = String::from("");
-    for i in left..right {
+    // 因为center会不断往右移，center对应的半径【可能不是】最大半径的中心点
+    // position的API类似于Find
+    let max_left = max_radius_center_index + 1 - max_radius;
+    let max_right = max_radius_center_index + max_radius - 1;
+    let mut longest_palindrome_substring = String::with_capacity(max_radius-1);
+    for i in max_left..max_right {
         if new_str[i] != '#' {
             longest_palindrome_substring.push(new_str[i]);
         }
     }
 
-    /* Return longest palindromic substring */
     longest_palindrome_substring
+}
+
+#[test]
+fn test_manacher_old() {
+    for case in &TEST_CASES {
+        assert_eq!(manacher_old(case.0.to_owned()), case.1.to_owned());
+    }
 }
 
 /* Manacher算法
@@ -109,8 +115,8 @@ Manacher算法第二个核心概念是，利用了回文数的中心对称性
 Complexity
 O(n) time and O(n) extra space
 */
-#[cfg(not)]
-fn manacher_error(s: String) -> String {
+#[cfg(test)]
+fn manacher_old(s: String) -> String {
     let input_str_len = s.len();
     if input_str_len < 2 {
         return s;
