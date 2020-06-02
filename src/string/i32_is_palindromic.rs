@@ -18,6 +18,9 @@ fn test_first_try() {
 }
 
 /*
+算法：模10取余，除10
+TODO Get quotient and remainder with divmod() in Python
+python提供了divmod的API直接取除法结果的商和余数
 执行耗时：8ms
 */
 #[cfg(test)]
