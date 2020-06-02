@@ -257,6 +257,8 @@ fn move_divider_of_two_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
             break;
         }
     }
+    // 如果分隔线已经在最左边，则让b_divider_left或a_divider_left等于i32的最小值，好让它在比较左边两个元素的最大值时不会被选中
+    // 如果分隔线已经在最右边，则让b_divider_right或a_divider_right等于i32的最大值，好让它在比较右边两个元素的最小值时不会被选中
     if total_len % 2 == 0 {
         (a_divider_left.max(b_divider_left) + a_divider_right.min(b_divider_right)) as f64 / 2_f64
     } else {

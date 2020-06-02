@@ -4,12 +4,101 @@
 
 #[cfg(test)]
 const TEST_CASES: [(&str, &str); 5] = [
-    ("cbbd", "bb"),
     ("abadd", "aba"),
+    ("cbbd", "bb"),
     ("aba", "aba"),
     ("ac", "a"),
     ("ccc", "ccc"),
 ];
+
+#[test]
+fn test_expand_around_center() {
+    for case in &TEST_CASES {
+        assert_eq!(expand_around_center(case.0.to_owned()), case.1.to_owned());
+    }
+}
+
+/* 中心扩散算法
+以cbbd为例，从索引0开始遍历到len-2，因为最后一个字符扩散出去也不可能是回文
+从第一个字符出发是为了让默认的最长回文子串是第一个字符
+
+遍历字符串内的每个奇数中心和偶数中心，奇数中心是cbbd的c、b、b三个字符为中心进行扩散
+偶数中心是 c和b间隙、b和b间隙、b和d间隙的三个间隙
+
+Runtime: 4 ms, faster than 91.24% of Rust online submissions for Longest Palindromic Substring.
+Memory Usage: 2.1 MB, less than 100.00% of Rust online submissions for Longest Palindromic Substring.
+
+没想到中心对称的算法的性能比dp解法好多了，同样是O(n^2)的时间复杂度
+中心对称算法空间复杂度是O(1)，耗时4ms，而dp解法耗时在20~30ms之间
+所以还是要多接触一些没了解过的算法
+*/
+#[cfg(test)]
+fn expand_around_center(s: String) -> String {
+    let chars = s.as_bytes();
+    let len = chars.len();
+    if len < 2 {
+        return s;
+    }
+
+    let mut max_len = 0;
+    let mut max_len_start_index = 0;
+    // 奇数中心对称的长度(从字符串索引的字符出发)
+    let mut odd_expand_len;
+    // 偶数中心对称的长度(从字符串两个元素之间的间隙出发)
+    let mut even_expand_len;
+    let mut temp_len: usize;
+
+    // 遍历到倒数第二个字符
+    for i in 0..(len - 1) {
+        // 从字符串内一个字符出发(奇数)
+        odd_expand_len = expand_around_center_helper(chars, len, i, i);
+        // 从字符串内两个字符之间的间隙出发(偶数)
+        even_expand_len = expand_around_center_helper(chars, len, i, i + 1);
+        temp_len = odd_expand_len.max(even_expand_len);
+        if temp_len > max_len {
+            max_len = temp_len;
+            // 这步需要在纸上画图统一奇偶数的规律
+            max_len_start_index = i - (temp_len - 1) / 2;
+        }
+    }
+    let mut result = String::with_capacity(max_len);
+    for i in max_len_start_index..(max_len_start_index + max_len) {
+        result.push(chars[i] as char);
+    }
+    result
+}
+
+#[cfg(test)]
+fn expand_around_center_helper(chars: &[u8], len: usize, left: usize, right: usize) -> usize {
+    let (mut left, mut right) = (left, right);
+    let mut left_is_palindromic_and_overflow = false;
+    // dbg!((left, right));
+    while right < len {
+        if chars[left] == chars[right] {
+            if left == 0 {
+                left_is_palindromic_and_overflow = true;
+                break;
+            }
+            left -= 1;
+            right += 1;
+        } else {
+            break;
+        }
+    }
+    // dbg!("after loop");
+    // dbg!((left, right));
+    return if right == left {
+        1
+    } else {
+        if left_is_palindromic_and_overflow {
+            right - left + 1
+        } else {
+            // 跳出循环时刚好满足chars[left] != chars[right]
+            // 所以真正的长度是j-i-1
+            right - left - 1
+        }
+    };
+}
 
 #[test]
 fn test_dp_new() {
@@ -20,6 +109,7 @@ fn test_dp_new() {
 
 /*
 dp[i][j] 表示子串 s[i..j] 是否为回文子串
+一个回文字符串去掉两头后，依然是个回文
 if dp[i+1][j-1] && s[i]==s[j] {
     dp[i][j] = true;
 }
@@ -36,22 +126,8 @@ a       T
 a T 1 2
 b   T 3
 a     T
-
-初始条件(abadd)
-  a b a d d
-a T 1 2
-b   T 3
-a     T
-d       T
-d         T
-
-初始条件(cbbd)
-  a b a d d
-a T 1 2
-b   T 3
-a     T
-d       T
-d         T
+## 优化
+当子串的长度是2或3时，不需要检查子串是否回文，所以边界条件可以是j-i<3
 */
 #[cfg(test)]
 fn dp_new(s: String) -> String {
