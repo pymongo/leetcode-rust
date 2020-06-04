@@ -5,3 +5,4 @@ mod permutation;
 mod sorting;
 pub mod string;
 mod bitwise;
+mod classic;
