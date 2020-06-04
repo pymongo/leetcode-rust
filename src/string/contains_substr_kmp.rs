@@ -17,7 +17,7 @@ fn test_kmp() {
     }
 }
 
-#[cfg(not)]
+#[cfg(test)]
 fn cheat(haystack: String, needle: String) -> i32 {
     match haystack.find(&needle) {
         Some(index) => index as i32,
