@@ -12,6 +12,7 @@ LeetCode
 |3|[Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/)|[Rust](https://github.com/pymongo/rust_leetcode/blob/master/src/string/longest_non_repeated_substr.rs)|sliding_window|
 |4|[Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/)|[Rust](https://github.com/pymongo/rust_leetcode/blob/master/src/sorting/median_of_two_sorted_arrays.rs)|binary_search|
 |5|[Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/)|[Rust](https://github.com/pymongo/rust_leetcode/blob/master/src/string/longest_palindromic_substr.rs)|more_than_5_solutions, manacher|
+|6|[ZigZag Conversion](https://leetcode.com/problems/zigzag-conversion/)|[Rust](https://github.com/pymongo/rust_leetcode/blob/master/src/string/zigzag_conversion.rs)||
 |9|[Palindromic Number](https://leetcode-cn.com/problems/palindrome-number/)|[Rust](https://github.com/pymongo/rust_leetcode/blob/master/src/string/i32_is_palindromic.rs)|half_traverse_i32,dfa|
 |28|[Implement strStr()](https://leetcode.com/problems/implement-strstr/)|[Rust](https://github.com/pymongo/rust_leetcode/blob/master/src/string/contains_substr_kmp.rs)|kmp, dfa, multi-solutions|
 |62|[Unique Paths](https://leetcode.com/problems/unique-paths/)|[Rust](https://github.com/pymongo/rust_leetcode/blob/master/src/permutation/shortest_paths_on_checkerboard.rs), [Go](https://github.com/pymongo/go_leetcode/blob/master/permutation/shortest_paths_on_checkerboard_test.go)|permutation|
