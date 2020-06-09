@@ -4,6 +4,7 @@ LeetCode
 - [rust leetcode](https://github.com/pymongo/rust_leetcode)
 - [go_leetcode](https://github.com/pymongo/go_leetcode)
 - [java_leetcode](https://github.com/pymongo/java_leetcode)
+- [python_leetcode](https://github.com/pymongo/python_leetcode)
 
 | # | Title | Solution | Category |
 |---| ----- | -------- | ---------- |
@@ -21,10 +22,11 @@ LeetCode
 |292|[Nim Game](https://leetcode.com/problems/nim-game/)|[Rust](https://github.com/pymongo/rust_leetcode/blob/master/src/bitwise/nim_game.rs)||
 |709|[To Lower Case](https://leetcode.com/problems/to-lower-case/)|[Rust](https://github.com/pymongo/rust_leetcode/blob/master/src/impl_api/to_lowercase.rs)||
 |743_TODO|[Network Delay Time](https://leetcode.com/problems/network-delay-time/)|[Rust](https://github.com/pymongo/rust_leetcode/blob/master/src/graph_traversal/dijkstra_shortest_path_algorithm.rs)|dijkstra_shortest_path|
+|743_TODO|[Network Delay Time](https://leetcode.com/problems/network-delay-time/)|[Rust](https://github.com/pymongo/rust_leetcode/blob/master/src/graph_traversal/dijkstra_shortest_path_algorithm.rs)|dijkstra_shortest_path|
 
 ---
 
-为什么不用C++?为什么选用以上三种语言刷leetcode？
+为什么不用C++?为什么选用以上Rust、Go、Java语言刷leetcode？
 
 C++没有自带的项目构建工具、单元测试框架，如果想随意运行一个解法或修改自己旧的解法，就要改cmake文件，使项目变得难以维护。
 
@@ -39,3 +41,13 @@ Java的优点不用我多说，借助maven+junit让我轻松地通过TDD的方�
 使用Java的另一个原因是，在某些题(如two sum)上Java(1ms)的性能比Go(4ms)还好。
 
 而且很多算法资料都是Java语言的，leetcode上所有官方的题解都是以Java为主。
+
+后来我补上了某些题的Python题解，其实我有点讨厌python运行速度太慢，很多题用一般的解法都会超时
+
+由于牛客网、lintcode等平台支持python不支持Rust，而且python代码量少便于快速刷题
+
+为了在牛客网上用python远程面试编程题时能游刃有余，还是先用python将自己的题量刷到200+先
+
+而且Python的单元测试也简单，还支持typehint，更重要的是国内的面试官大部分都懂python代码
+
+我的刷题量太少了，先刷个100+再说
