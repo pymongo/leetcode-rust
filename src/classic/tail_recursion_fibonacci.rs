@@ -1,11 +1,5 @@
 #[cfg(test)]
-const TEST_CASE: [(i32, i32); 5] = [
-    (1, 1),
-    (2, 2),
-    (3, 3),
-    (4, 5),
-    (5, 8)
-];
+const TEST_CASE: [(i32, i32); 5] = [(1, 1), (2, 2), (3, 3), (4, 5), (5, 8)];
 
 #[test]
 fn test_tail_recursion() {
@@ -16,7 +10,7 @@ fn test_tail_recursion() {
 
 #[cfg(test)]
 fn tail_recursion_helper(n: i32) -> i32 {
-   tail_recursion(n as u32, 1, 1) as i32
+    tail_recursion(n as u32, 1, 1) as i32
 }
 
 /* 耗时0ms，内存2MB，时间复杂度O(n)
@@ -30,7 +24,7 @@ fn tail_recursion(n: u32, a: u32, b: u32) -> u32 {
         b
     } else {
         // 注意尾递归解法只能从1逼近n，普通递归解法一般是从f(n-1)一直加到f(1)
-        tail_recursion(n-1, b, a+b)
+        tail_recursion(n - 1, b, a + b)
     }
 }
 
