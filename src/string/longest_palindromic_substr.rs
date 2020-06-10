@@ -19,6 +19,7 @@ fn test_manacher() {
     }
 }
 
+// 除了manacher算法之外，用suffix array(后缀数组)算法也是O(n)的时间复杂度
 #[cfg(test)]
 fn manacher(s: String) -> String {
     let len = s.len();
