@@ -7,8 +7,8 @@ const TEST_CASE: [(i32, bool); 1] = [(4, false)];
 
 #[test]
 fn test_nim_bitwise() {
-    for case in &TEST_CASE {
-        assert_eq!(nim_bitwise(case.0), case.1);
+    for &(input, expected) in TEST_CASE.iter() {
+        assert_eq!(nim_bitwise(input), expected);
     }
 }
 

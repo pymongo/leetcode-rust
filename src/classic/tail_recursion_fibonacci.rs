@@ -3,8 +3,8 @@ const TEST_CASE: [(i32, i32); 5] = [(1, 1), (2, 2), (3, 3), (4, 5), (5, 8)];
 
 #[test]
 fn test_tail_recursion() {
-    for case in &TEST_CASE {
-        assert_eq!(tail_recursion_helper(case.0), case.1);
+    for &(input, expected) in TEST_CASE.iter() {
+        assert_eq!(tail_recursion_helper(input), expected);
     }
 }
 
@@ -30,9 +30,8 @@ fn tail_recursion(n: u32, a: u32, b: u32) -> u32 {
 
 #[test]
 fn test_iterate() {
-    for case in &TEST_CASE {
-        dbg!(case);
-        assert_eq!(iterate(case.0), case.1);
+    for &(input, expected) in TEST_CASE.iter() {
+        assert_eq!(iterate(input), expected);
     }
 }
 

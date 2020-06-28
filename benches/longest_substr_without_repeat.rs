@@ -10,8 +10,8 @@ use leetcode::string::longest_non_repeated_substr::{
 #[bench]
 fn bench_i32_ascii_table(bencher: &mut test::Bencher) {
     bencher.iter(|| {
-        for case in &TEST_CASES {
-            assert_eq!(i32_ascii_table(case.0.to_string()), case.1)
+        for &(input, expected) in TEST_CASES.iter() {
+            assert_eq!(i32_ascii_table(input.to_string()), expected)
         }
     });
 }
@@ -19,8 +19,8 @@ fn bench_i32_ascii_table(bencher: &mut test::Bencher) {
 #[bench]
 fn bench_usize_ascii_table(bencher: &mut test::Bencher) {
     bencher.iter(|| {
-        for case in &TEST_CASES {
-            assert_eq!(usize_ascii_table(case.0.to_string()), case.1)
+        for &(input, expected) in TEST_CASES.iter() {
+            assert_eq!(usize_ascii_table(output.to_string()), expected)
         }
     });
 }

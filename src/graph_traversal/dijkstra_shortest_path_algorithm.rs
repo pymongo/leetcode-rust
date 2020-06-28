@@ -10,9 +10,8 @@
 //
 // #[test]
 // fn test_network_delay_time() {
-//     for case in &TEST_CASES {
-//         let times: Vec<Vec<i32>> = case
-//             .0
+//     for &(times, n, k, expected) in TEST_CASES.iter() {
+//         let times: Vec<Vec<i32>> = times
 //             .iter()
 //             .map(|each| each.iter().cloned().collect())
 //             .collect();

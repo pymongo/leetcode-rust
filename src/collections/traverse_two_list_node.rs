@@ -34,6 +34,27 @@ impl ListNode {
     }
 }
 
+/* Java遍历/生成链表的代码
+public static ListNode arrayToListNode(int []numbers) {
+    ListNode dummyHead = new ListNode();
+    ListNode current_node = dummyHead;
+    for (int number: numbers) {
+        current_node.next = new ListNode(number);
+        current_node = current_node.next;
+    }
+    return dummyHead.next;
+}
+
+// 仅用于单元测试中验证返回值的Helper方法
+public static int[] listNodeToArray(ListNode listNode) {
+    List<Integer> numbers = new ArrayList<>();
+    while (listNode != null) {
+        numbers.add(listNode.val);
+        listNode = listNode.next;
+    }
+    return numbers.stream().mapToInt(i -> i).toArray();
+}
+*/
 // 仅用于生成测试用例的Helper方法
 #[cfg(test)]
 fn vector_to_list_node(numbers: Vec<i32>) -> Option<Box<ListNode>> {
@@ -136,11 +157,11 @@ const TEST_CASES: [(&[i32], &[i32], &[i32]); 1] = [(&[2, 4, 3], &[5, 6, 4], &[7,
 
 #[test]
 fn test_traverse_two_list_node() {
-    for case in &TEST_CASES {
-        let input_list_node_1 = vector_to_list_node(case.0.iter().cloned().collect());
-        let input_list_node_2 = vector_to_list_node(case.1.iter().cloned().collect());
+    for &(ln1, ln2, expected) in &TEST_CASES {
+        let input_list_node_1 = vector_to_list_node(ln1.iter().cloned().collect());
+        let input_list_node_2 = vector_to_list_node(ln2.iter().cloned().collect());
         let output_list_node = traverse_two_list_node(input_list_node_1, input_list_node_2);
-        let expected_vector: Vec<i32> = case.2.iter().cloned().collect();
+        let expected_vector: Vec<i32> = expected.iter().cloned().collect();
         assert_eq!(list_node_to_vector(output_list_node), expected_vector);
     }
 }

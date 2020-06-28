@@ -16,10 +16,10 @@ TODO 为什么在Java里面TreeMap(红黑树实现)比HashMap耗时长，但是�
 #[bench]
 fn bench_test_two_sum_btree_map(bencher: &mut test::Bencher) {
     bencher.iter(|| {
-        for case in &TEST_CASES {
-            let nums: Vec<i32> = case.0.iter().cloned().collect();
-            let result = two_sum_btree_map(nums, case.1);
-            let expected: Vec<i32> = case.2.iter().cloned().collect();
+        for &(input, target, expected) in TEST_CASES.iter() {
+            let nums: Vec<i32> = input.iter().cloned().collect();
+            let result = two_sum_btree_map(nums, target);
+            let expected: Vec<i32> = expected.iter().cloned().collect();
             assert_eq!(result, expected);
         }
     });
@@ -28,10 +28,10 @@ fn bench_test_two_sum_btree_map(bencher: &mut test::Bencher) {
 #[bench]
 fn bench_two_sum_hashmap(bencher: &mut test::Bencher) {
     bencher.iter(|| {
-        for case in &TEST_CASES {
-            let nums: Vec<i32> = case.0.iter().cloned().collect();
-            let result = two_sum_hashmap(nums, case.1);
-            let expected: Vec<i32> = case.2.iter().cloned().collect();
+        for &(input, target, expected) in TEST_CASES.iter() {
+            let nums: Vec<i32> = input.iter().cloned().collect();
+            let result = two_sum_hashmap(nums, target);
+            let expected: Vec<i32> = expected.iter().cloned().collect();
             assert_eq!(result, expected);
         }
     });
@@ -40,10 +40,10 @@ fn bench_two_sum_hashmap(bencher: &mut test::Bencher) {
 #[bench]
 fn bench_two_sum_bitwise(bencher: &mut test::Bencher) {
     bencher.iter(|| {
-        for case in &TEST_CASES {
-            let nums: Vec<i32> = case.0.iter().cloned().collect();
-            let result = two_sum_bitwise(nums, case.1);
-            let expected: Vec<i32> = case.2.iter().cloned().collect();
+        for &(input, target, expected) in TEST_CASES.iter() {
+            let nums: Vec<i32> = input.iter().cloned().collect();
+            let result = two_sum_bitwise(nums, target);
+            let expected: Vec<i32> = expected.iter().cloned().collect();
             assert_eq!(result, expected);
         }
     });
