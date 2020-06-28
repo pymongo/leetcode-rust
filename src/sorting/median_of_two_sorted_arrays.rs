@@ -23,11 +23,10 @@ const TEST_CASES: [(&[i32], &[i32], f64); 17] = [
 
 #[test]
 fn test_move_divider_of_two_arrays() {
-    for case in &TEST_CASES {
-        dbg!(&case);
-        let nums1: Vec<i32> = case.0.iter().cloned().collect();
-        let nums2: Vec<i32> = case.1.iter().cloned().collect();
-        assert_eq!(find_median_sorted_arrays(nums1, nums2), case.2);
+    for &(nums1, nums2, expected) in TEST_CASES.iter() {
+        let nums1: Vec<i32> = nums1.iter().cloned().collect();
+        let nums2: Vec<i32> = nums2.iter().cloned().collect();
+        assert_eq!(find_median_sorted_arrays(nums1, nums2), expected);
     }
 }
 

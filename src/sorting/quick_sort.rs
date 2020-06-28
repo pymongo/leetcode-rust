@@ -6,11 +6,11 @@ const TEST_CASE: [(&[i32], &[i32]); 1] = [(&[5, 2, 3, 1], &[1, 2, 3, 5])];
 
 #[test]
 fn test_quick_sort() {
-    for case in &TEST_CASE {
-        let input: Vec<i32> = case.0.iter().cloned().collect();
+    for &(input, expected) in TEST_CASE.iter() {
+        let input: Vec<i32> = input.iter().cloned().collect();
         let output = quick_sort(input);
-        let expected: Vec<i32> = case.1.iter().cloned().collect();
-        assert_eq!(expected, output);
+        let expected: Vec<i32> = expected.iter().cloned().collect();
+        assert_eq!(output, expected);
     }
 }
 

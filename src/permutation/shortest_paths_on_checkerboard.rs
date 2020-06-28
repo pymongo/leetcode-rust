@@ -6,8 +6,8 @@ const TEST_CASES: [(i32, i32, i32); 2] = [(23, 12, 193536720), (51, 9, 191679731
 
 #[test]
 fn test_unique_paths() {
-    for case in &TEST_CASES {
-        assert_eq!(unique_paths(case.0, case.1), case.2);
+    for &(m, n, expected) in TEST_CASES.iter() {
+        assert_eq!(unique_paths(m, n), expected);
     }
 }
 

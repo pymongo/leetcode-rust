@@ -235,7 +235,10 @@ fn manacher_old(s: String) -> String {
 #[test]
 fn test_expand_around_center() {
     for &(input, expected) in TEST_CASES.iter() {
-        assert_eq!(expand_around_center(input.to_string()), expected.to_string());
+        assert_eq!(
+            expand_around_center(input.to_string()),
+            expected.to_string()
+        );
     }
 }
 
