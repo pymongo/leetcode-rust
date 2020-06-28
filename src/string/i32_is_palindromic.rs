@@ -1,10 +1,19 @@
 //! https://leetcode-cn.com/problems/palindrome-number/
 //! 输入一个i32，判断它是不是回文数
 
+#[cfg(test)]
+const TEST_CASE: [(i32, bool); 5] = [
+    (121, true),
+    (-121, false),
+    (10, false),
+    (0, true),
+    (1000000001, true),
+];
+
 #[test]
 fn test_reverse() {
-    for case in &TEST_CASE {
-        assert_eq!(reverse(case.0), case.1);
+    for &(input, expected) in TEST_CASE.iter() {
+        assert_eq!(reverse(input), expected);
     }
 }
 
@@ -28,19 +37,10 @@ fn reverse(x: i32) -> bool {
     return rev == num || num == (rev / 10);
 }
 
-#[cfg(test)]
-const TEST_CASE: [(i32, bool); 5] = [
-    (121, true),
-    (-121, false),
-    (10, false),
-    (0, true),
-    (1000000001, true),
-];
-
 #[test]
 fn test_i32_to_string() {
-    for case in &TEST_CASE {
-        assert_eq!(i32_to_string(case.0), case.1);
+    for &(input, expected) in TEST_CASE.iter() {
+        assert_eq!(i32_to_string(input), expected);
     }
 }
 
@@ -73,8 +73,8 @@ fn i32_to_string(x: i32) -> bool {
 
 #[test]
 fn test_first_try() {
-    for case in &TEST_CASE {
-        assert_eq!(first_try(case.0), case.1);
+    for &(input, expected) in TEST_CASE.iter() {
+        assert_eq!(first_try(input), expected);
     }
 }
 

@@ -19,8 +19,8 @@ pub const TEST_CASES: [(&str, i32); 5] = [
 
 #[test]
 fn test_i32_ascii_table() {
-    for case in &TEST_CASES {
-        assert_eq!(usize_ascii_table(case.0.to_string()), case.1)
+    for &(input, expected) in TEST_CASES.iter() {
+        assert_eq!(usize_ascii_table(input.to_string()), expected)
     }
 }
 
@@ -60,8 +60,8 @@ pub fn i32_ascii_table(s: String) -> i32 {
 
 #[test]
 fn test_usize_ascii_table() {
-    for case in &TEST_CASES {
-        assert_eq!(usize_ascii_table(case.0.to_string()), case.1)
+    for &(input, expected) in TEST_CASES.iter() {
+        assert_eq!(i32_ascii_table(input.to_string()), expected)
     }
 }
 
@@ -95,8 +95,8 @@ pub fn usize_ascii_table(s: String) -> i32 {
 #[cfg(not)]
 #[test]
 fn test_brute_force() {
-    for case in &TEST_CASES {
-        assert_eq!(usize_ascii_table(case.0.to_string()), case.1)
+    for &(input, expected) in TEST_CASES.iter() {
+        assert_eq!(my_brute_force(input.to_string()), expected)
     }
 }
 

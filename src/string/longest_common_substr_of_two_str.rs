@@ -4,10 +4,10 @@
 /// 一个字符串与其倒序的公共字符串很可能是最长回文子串，如果最长公共子串的最后一位等于第一位，那么它就是回文串
 /// 很新颖的方法，不过我又不能用严谨的数学证明它是对的，不推荐用，了解下即可
 
-// #[cfg(test)]
-// const TEST_CASES: [(&str, &str, &str); 1] = [
-//     ("caba", "abac", "aba"),
-// ];
+#[cfg(test)]
+const TEST_CASES: [(&str, &str, usize); 1] = [
+    ("caba", "abac", 3),
+];
 
 #[cfg(test)]
 fn dp(s1: String, s2: String) -> usize {
@@ -42,5 +42,7 @@ fn dp(s1: String, s2: String) -> usize {
 
 #[test]
 fn test() {
-    dp("caba".to_owned(), "abac".to_owned());
+    for &(input1, input2, expected) in TEST_CASES.iter() {
+        assert_eq!(dp(input1.to_string(), input2.to_string()), expected);
+    }
 }
