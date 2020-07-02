@@ -4,6 +4,16 @@
 #[cfg(test)]
 const TEST_CASE: [(i32, i32); 5] = [(1, 1), (2, 2), (3, 3), (4, 5), (5, 8)];
 
+/*
+def climb_stairs(n):
+    if n == 0:
+        return 0
+    a, b= 1, 2
+    while (n > 1):
+        a, b = b, a+b
+        n -= 1
+    return a
+*/
 #[test]
 fn test_tail_recursion() {
     for &(input, expected) in TEST_CASE.iter() {
@@ -38,7 +48,9 @@ fn test_iterate() {
     }
 }
 
-/*
+/* 需要注意的是，lintcode和leetcode上斐波那契一题的初始值不一样
+leetcode上f(0)=0
+lintcode上f(1)=0，lintcode上的数列相比leetcode更像是整体右移一位
 def fib(n: int) -> int:
     a, b= 0, 1
     while (n > 0):
