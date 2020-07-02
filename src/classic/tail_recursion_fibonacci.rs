@@ -1,3 +1,6 @@
+//! https://leetcode.com/problems/fibonacci-number/
+//! https://leetcode.com/problems/climbing-stairs/
+
 #[cfg(test)]
 const TEST_CASE: [(i32, i32); 5] = [(1, 1), (2, 2), (3, 3), (4, 5), (5, 8)];
 
@@ -35,6 +38,14 @@ fn test_iterate() {
     }
 }
 
+/*
+def fib(n: int) -> int:
+    a, b= 0, 1
+    while (n > 0):
+        a, b = b, a+b
+        n -= 1
+    return a
+*/
 #[cfg(test)]
 fn iterate(n: i32) -> i32 {
     let (mut a, mut b) = (1u32, 1u32);
