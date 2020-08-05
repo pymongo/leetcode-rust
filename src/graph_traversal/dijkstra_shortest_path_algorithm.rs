@@ -13,7 +13,7 @@
 //     for &(times, n, k, expected) in TEST_CASES.iter() {
 //         let times: Vec<Vec<i32>> = times
 //             .iter()
-//             .map(|each| each.iter().cloned().collect())
+//             .map(|each| each.to_vec())
 //             .collect();
 //         assert_eq!(network_delay_time(times, case.1, case.2), case.3);
 //     }

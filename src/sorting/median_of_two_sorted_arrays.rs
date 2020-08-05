@@ -24,8 +24,8 @@ const TEST_CASES: [(&[i32], &[i32], f64); 17] = [
 #[test]
 fn test_move_divider_of_two_arrays() {
     for &(nums1, nums2, expected) in TEST_CASES.iter() {
-        let nums1: Vec<i32> = nums1.iter().cloned().collect();
-        let nums2: Vec<i32> = nums2.iter().cloned().collect();
+        let nums1: Vec<i32> = nums1.to_vec();
+        let nums2: Vec<i32> = nums2.to_vec();
         assert_eq!(find_median_sorted_arrays(nums1, nums2), expected);
     }
 }
@@ -341,8 +341,8 @@ fn my_binary_search_kth(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
 #[test]
 fn test_my_brute_force() {
     for case in &TEST_CASES {
-        let nums1: Vec<i32> = case.0.iter().cloned().collect();
-        let nums2: Vec<i32> = case.1.iter().cloned().collect();
+        let nums1: Vec<i32> = case.0.to_vec();
+        let nums2: Vec<i32> = case.1.to_vec();
         assert_eq!(my_brute_force(nums1, nums2), case.2);
     }
 }

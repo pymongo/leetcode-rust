@@ -10,9 +10,9 @@ const TEST_CASES: [(&[i32], i32, &[i32], i32, &[i32]); 3] = [
 #[test]
 fn test_my_first_solution() {
     for &(nums1, m, nums2, n, expected) in TEST_CASES.iter() {
-        let mut nums1: Vec<i32> = nums1.iter().cloned().collect();
-        let mut nums2: Vec<i32> = nums2.iter().cloned().collect();
-        let expected: Vec<i32> = expected.iter().cloned().collect();
+        let mut nums1: Vec<i32> = nums1.to_vec();
+        let mut nums2: Vec<i32> = nums2.to_vec();
+        let expected: Vec<i32> = expected.to_vec();
         my_first_solution(&mut nums1, m, &mut nums2, n);
         assert_eq!(nums1, expected);
     }

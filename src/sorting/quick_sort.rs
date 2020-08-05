@@ -7,9 +7,9 @@ const TEST_CASE: [(&[i32], &[i32]); 1] = [(&[5, 2, 3, 1], &[1, 2, 3, 5])];
 #[test]
 fn test_quick_sort() {
     for &(input, expected) in TEST_CASE.iter() {
-        let input: Vec<i32> = input.iter().cloned().collect();
+        let input: Vec<i32> = input.to_vec();
         let output = quick_sort(input);
-        let expected: Vec<i32> = expected.iter().cloned().collect();
+        let expected: Vec<i32> = expected.to_vec();
         assert_eq!(output, expected);
     }
 }

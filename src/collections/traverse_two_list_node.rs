@@ -158,10 +158,10 @@ const TEST_CASES: [(&[i32], &[i32], &[i32]); 1] = [(&[2, 4, 3], &[5, 6, 4], &[7,
 #[test]
 fn test_traverse_two_list_node() {
     for &(ln1, ln2, expected) in &TEST_CASES {
-        let input_list_node_1 = vector_to_list_node(ln1.iter().cloned().collect());
-        let input_list_node_2 = vector_to_list_node(ln2.iter().cloned().collect());
+        let input_list_node_1 = vector_to_list_node(ln1.to_vec());
+        let input_list_node_2 = vector_to_list_node(ln2.to_vec());
         let output_list_node = traverse_two_list_node(input_list_node_1, input_list_node_2);
-        let expected_vector: Vec<i32> = expected.iter().cloned().collect();
+        let expected_vector: Vec<i32> = expected.to_vec();
         assert_eq!(list_node_to_vector(output_list_node), expected_vector);
     }
 }

@@ -22,9 +22,9 @@ pub const TEST_CASES: [(&[i32], i32, &[i32]); 3] = [
 #[test]
 fn test_two_sum_bitwise() {
     for &(nums, target, expected) in TEST_CASES.iter() {
-        let nums: Vec<i32> = nums.iter().cloned().collect();
+        let nums: Vec<i32> = nums.to_vec();
         let result = two_sum_bitwise(nums, target);
-        let expected: Vec<i32> = expected.iter().cloned().collect();
+        let expected: Vec<i32> = expected.to_vec();
         assert_eq!(result, expected)
     }
 }
@@ -70,9 +70,9 @@ pub fn two_sum_bitwise(nums: Vec<i32>, target: i32) -> Vec<i32> {
 #[test]
 fn test_two_sum_btree_map() {
     for &(nums, target, expected) in TEST_CASES.iter() {
-        let nums: Vec<i32> = nums.iter().cloned().collect();
+        let nums: Vec<i32> = nums.to_vec();
         let result = two_sum_btree_map(nums, target);
-        let expected: Vec<i32> = expected.iter().cloned().collect();
+        let expected: Vec<i32> = expected.to_vec();
         assert_eq!(result, expected)
     }
 }
@@ -91,9 +91,9 @@ pub fn two_sum_btree_map(nums: Vec<i32>, target: i32) -> Vec<i32> {
 #[test]
 fn test_sum_hashmap() {
     for &(nums, target, expected) in TEST_CASES.iter() {
-        let nums: Vec<i32> = nums.iter().cloned().collect();
+        let nums: Vec<i32> = nums.to_vec();
         let result = two_sum_hashmap(nums, target);
-        let expected: Vec<i32> = expected.iter().cloned().collect();
+        let expected: Vec<i32> = expected.to_vec();
         assert_eq!(result, expected)
     }
 }

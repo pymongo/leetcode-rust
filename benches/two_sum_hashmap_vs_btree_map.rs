@@ -17,9 +17,9 @@ TODO 为什么在Java里面TreeMap(红黑树实现)比HashMap耗时长，但是�
 fn bench_test_two_sum_btree_map(bencher: &mut test::Bencher) {
     bencher.iter(|| {
         for &(input, target, expected) in TEST_CASES.iter() {
-            let nums: Vec<i32> = input.iter().cloned().collect();
+            let nums: Vec<i32> = input.to_vec();
             let result = two_sum_btree_map(nums, target);
-            let expected: Vec<i32> = expected.iter().cloned().collect();
+            let expected: Vec<i32> = expected.to_vec();
             assert_eq!(result, expected);
         }
     });
@@ -29,9 +29,9 @@ fn bench_test_two_sum_btree_map(bencher: &mut test::Bencher) {
 fn bench_two_sum_hashmap(bencher: &mut test::Bencher) {
     bencher.iter(|| {
         for &(input, target, expected) in TEST_CASES.iter() {
-            let nums: Vec<i32> = input.iter().cloned().collect();
+            let nums: Vec<i32> = input.to_vec();
             let result = two_sum_hashmap(nums, target);
-            let expected: Vec<i32> = expected.iter().cloned().collect();
+            let expected: Vec<i32> = expected.to_vec();
             assert_eq!(result, expected);
         }
     });
@@ -41,9 +41,9 @@ fn bench_two_sum_hashmap(bencher: &mut test::Bencher) {
 fn bench_two_sum_bitwise(bencher: &mut test::Bencher) {
     bencher.iter(|| {
         for &(input, target, expected) in TEST_CASES.iter() {
-            let nums: Vec<i32> = input.iter().cloned().collect();
+            let nums: Vec<i32> = input.to_vec();
             let result = two_sum_bitwise(nums, target);
-            let expected: Vec<i32> = expected.iter().cloned().collect();
+            let expected: Vec<i32> = expected.to_vec();
             assert_eq!(result, expected);
         }
     });

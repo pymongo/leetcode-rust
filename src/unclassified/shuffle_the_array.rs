@@ -20,7 +20,7 @@ const TEST_CASES: [(&[i32], i32, &[i32]); 1] = [
 #[test]
 fn test_shuffle() {
     for &(nums, n, expected) in TEST_CASES.iter() {
-        // let nums: Vec<i32> = nums.iter().cloned().collect();
+        // let nums: Vec<i32> = nums.to_vec();
         // let nums_vec: Vec<i32> = nums.to_vec();
         let nums_vec: Vec<i32> = Vec::from(nums);
         let output = Solution::shuffle(nums_vec, n);
