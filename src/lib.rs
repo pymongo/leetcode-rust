@@ -7,3 +7,4 @@ mod permutation;
 mod sorting;
 pub mod string;
 mod unclassified;
+mod linked_list;

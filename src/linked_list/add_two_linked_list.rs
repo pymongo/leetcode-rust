@@ -18,21 +18,6 @@ match optional {
 5. 全球服第一的代码：current = current.next.as_mut().unwrap() 轻松解压变量<Option<Box>>
 6. 学到了用.is_some()方法去遍历Option类型
 */
-use std::boxed::Box;
-
-#[derive(PartialEq, Eq, Clone, Debug)]
-pub struct ListNode {
-    pub val: i32,
-    pub next: Option<Box<ListNode>>,
-}
-
-impl ListNode {
-    #[allow(dead_code)]
-    #[inline]
-    fn new(val: i32) -> Self {
-        ListNode { next: None, val }
-    }
-}
 
 /* Java遍历/生成链表的代码
 public static ListNode arrayToListNode(int []numbers) {
@@ -55,6 +40,9 @@ public static int[] listNodeToArray(ListNode listNode) {
     return numbers.stream().mapToInt(i -> i).toArray();
 }
 */
+use super::ListNode;
+use std::boxed::Box;
+
 // 仅用于生成测试用例的Helper方法
 #[cfg(test)]
 fn vector_to_list_node(numbers: Vec<i32>) -> Option<Box<ListNode>> {
