@@ -46,7 +46,7 @@ impl Solution {
 fn test_quick_sort() {
     for &(input, expected) in TEST_CASE.iter() {
         let mut input: Vec<i32> = input.to_vec();
-        Solution::quick_sort(0, input.len()-1, &mut input);
+        Solution::quick_sort(0, input.len() - 1, &mut input);
         let expected: Vec<i32> = expected.to_vec();
         assert_eq!(input, expected);
     }

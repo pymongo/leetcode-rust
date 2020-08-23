@@ -5,5 +5,5 @@ mod graph_traversal;
 mod impl_api;
 mod permutation;
 mod sorting;
-mod unclassified;
 pub mod string;
+mod unclassified;
