@@ -1,9 +1,11 @@
 #![allow(dead_code, unused_imports)]
+
 mod add_two_linked_list;
 mod reverse_linked_list;
 mod reverse_linked_list_2;
 mod merge_two_sorted_linked_list;
 mod middle_of_linked_list;
+mod linked_list_is_palindrome;
 
 use std::boxed::Box;
 
@@ -65,13 +67,13 @@ public static int[] listNodeToArray(ListNode head) {
     return nums.stream().mapToInt(i -> i).toArray();
 }
 */
-pub fn linked_list_to_vec(head: Option<Box<ListNode>>) -> Vec<i32> {
+pub fn linked_list_to_vec(head: &Option<Box<ListNode>>) -> Vec<i32> {
     let mut nums: Vec<i32> = Vec::new();
     // 由于链表转数组只需要读链表不需要修改链表各节点，所以curr=head而不是curr=&mut head，而且代码也简洁多了
     let mut curr = head;
     while let Some(curr_node) = curr {
         nums.push(curr_node.val);
-        curr = curr_node.next;
+        curr = &curr_node.next;
     }
     // println!("{:?}", nums);
     nums
@@ -84,7 +86,8 @@ const TEST_CASES: [&[i32]; 1] = [&[1, 2, 3, 4, 5]];
 fn test_arr_to_linked_list() {
     for nums in &TEST_CASES {
         let head = arr_to_linked_list(nums);
-        let nums_vec = linked_list_to_vec(head);
-        println!("{:?}", nums_vec);
+        let nums_vec = linked_list_to_vec(&head);
+        assert_eq!(nums_vec, vec![1, 2, 3, 4, 5])
+        // println!("{:?}", nums_vec);
     }
 }

@@ -39,6 +39,7 @@ fn dp(s1: String, s2: String) -> usize {
 }
 
 #[test]
+#[ignore]
 fn test() {
     for &(input1, input2, expected) in TEST_CASES.iter() {
         assert_eq!(dp(input1.to_string(), input2.to_string()), expected);

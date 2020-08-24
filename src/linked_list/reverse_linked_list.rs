@@ -1,4 +1,3 @@
-#![allow(dead_code, unused_imports)]
 use super::{arr_to_linked_list, linked_list_to_vec, ListNode};
 use std::boxed::Box;
 
@@ -26,7 +25,7 @@ fn test_traverse_two_list_node() {
     for &(input, output) in &TEST_CASES {
         let head = arr_to_linked_list(input);
         assert_eq!(
-            linked_list_to_vec(Solution::reverse_list(head)),
+            linked_list_to_vec(&Solution::reverse_list(head)),
             output.to_vec()
         );
     }

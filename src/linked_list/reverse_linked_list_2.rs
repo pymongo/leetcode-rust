@@ -1,13 +1,10 @@
 use super::{arr_to_linked_list, linked_list_to_vec, ListNode};
 use std::boxed::Box;
 
-#[cfg(test)]
 struct Solution;
 
-#[cfg(test)]
 type Node = Option<Box<ListNode>>;
 
-#[cfg(test)]
 impl Solution {
     pub fn reverse_range_inplace(head: Option<Box<ListNode>>, m: i32, n: i32) -> Option<Box<ListNode>> {
         unsafe {
@@ -43,18 +40,18 @@ impl Solution {
         head
     }
 
-    fn linked_list_to_vec(head: Option<Box<ListNode>>) -> Vec<i32> {
+    fn linked_list_to_vec(head: &Option<Box<ListNode>>) -> Vec<i32> {
         let mut nums: Vec<i32> = Vec::new();
         let mut curr = head;
         while let Some(curr_node) = curr {
             nums.push(curr_node.val);
-            curr = curr_node.next;
+            curr = &curr_node.next;
         }
         nums
     }
 
     pub fn reverse_between(head: Option<Box<ListNode>>, m: i32, n: i32) -> Option<Box<ListNode>> {
-        let mut nums = Self::linked_list_to_vec(head);
+        let mut nums = Self::linked_list_to_vec(&head);
         // 因为入参m和n是从1开始编号的，所以这里要减1
         let mut left = (m-1) as usize;
         let mut right = (n-1) as usize;
@@ -78,7 +75,7 @@ fn test_traverse_two_list_node() {
     for &(input, m, n, output) in &TEST_CASES {
         let head = arr_to_linked_list(input);
         let output_head = Solution::reverse_between(head, m, n);
-        assert_eq!(linked_list_to_vec(output_head), output.to_vec());
+        assert_eq!(linked_list_to_vec(&output_head), output.to_vec());
     }
 }
 
@@ -88,6 +85,6 @@ fn test_reverse_range_inplace() {
     for &(input, m, n, output) in &TEST_CASES {
         let head = arr_to_linked_list(input);
         let output_head = Solution::reverse_range_inplace(head, m, n);
-        assert_eq!(linked_list_to_vec(output_head), output.to_vec());
+        assert_eq!(linked_list_to_vec(&output_head), output.to_vec());
     }
 }

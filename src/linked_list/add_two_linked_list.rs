@@ -82,7 +82,7 @@ fn test_traverse_two_list_node() {
         let ln1 = arr_to_linked_list(arr1);
         let ln2 = arr_to_linked_list(arr2);
         let output_head = add_two_linked_list(ln1, ln2);
-        assert_eq!(linked_list_to_vec(output_head), expected.to_vec());
+        assert_eq!(linked_list_to_vec(&output_head), expected.to_vec());
     }
 }
 
