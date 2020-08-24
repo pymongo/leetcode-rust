@@ -5,13 +5,15 @@ use std::cell::RefCell;
 struct Solution;
 
 impl Solution {
-    pub fn invert_tree(root: Option<Rc<RefCell<TreeNode>>>) -> Option<Rc<RefCell<TreeNode>>> {
-        if let Some(root_node) = root {
-            Self::invert(&mut root_node.borrow_mut());
-            Some(root_node)
-        } else {
-            root
-        }
+    pub fn invert_tree(mut root: Option<Rc<RefCell<TreeNode>>>) -> Option<Rc<RefCell<TreeNode>>> {
+        Self::invert(&mut root.as_mut()?.borrow_mut());
+        root
+        // if let Some(root_node) = root {
+        //     Self::invert(&mut root_node.borrow_mut());
+        //     Some(root_node)
+        // } else {
+        //     root
+        // }
     }
 
     // 正确的做法: 即便是Rc<RefCell>也不需要Clone

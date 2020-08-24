@@ -3,6 +3,7 @@ mod add_two_linked_list;
 mod reverse_linked_list;
 mod reverse_linked_list_2;
 mod merge_two_sorted_linked_list;
+mod middle_of_linked_list;
 
 use std::boxed::Box;
 
