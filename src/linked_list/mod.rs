@@ -20,8 +20,8 @@ impl ListNode {
 }
 
 // Option<T>的设计优点之一: 链表题可以不使用dummy_head也能生成链表后返回头部
-#[cfg(not)]
-fn arr_to_linked_list_without_dummy(nums: &[i32]) -> Option<Box<ListNode>> {
+#[cfg(test)]
+fn arr_to_linked_list(nums: &[i32]) -> Option<Box<ListNode>> {
     let mut head = None;
     let mut curr = &mut head;
     for num in nums {
@@ -42,8 +42,8 @@ public static ListNode arrayToListNode(int []nums) {
     return dummy.next;
 }
 */
-#[cfg(test)]
-pub fn arr_to_linked_list(nums: &[i32]) -> Option<Box<ListNode>> {
+#[cfg(not)]
+pub fn arr_to_linked_list_with_dummy(nums: &[i32]) -> Option<Box<ListNode>> {
     let mut dummy = Some(Box::new(ListNode::new(0)));
     let mut curr = &mut dummy;
     for num in nums {
@@ -74,7 +74,7 @@ pub fn linked_list_to_vec(head: Option<Box<ListNode>>) -> Vec<i32> {
         nums.push(curr_node.val);
         curr = curr_node.next;
     }
-    println!("{:?}", nums);
+    // println!("{:?}", nums);
     nums
 }
 
