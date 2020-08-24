@@ -8,8 +8,8 @@ struct Solution;
 
 impl Solution {
     pub fn reverse_list(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
-        let mut has_rev: Option<Box<ListNode>> = None;
-        let mut not_rev: Option<Box<ListNode>> = head;
+        let mut has_rev = None;
+        let mut not_rev = head;
         while let Some(mut not_rev_node) = not_rev {
             not_rev = not_rev_node.next;
 
@@ -27,6 +27,9 @@ const TEST_CASES: [(&[i32], &[i32]); 1] = [(&[1, 2, 3], &[3, 2, 1])];
 fn test_traverse_two_list_node() {
     for &(input, output) in &TEST_CASES {
         let head = arr_to_linked_list(input);
-        assert_eq!(linked_list_to_vec(Solution::reverse_list(head)), output.to_vec());
+        assert_eq!(
+            linked_list_to_vec(Solution::reverse_list(head)),
+            output.to_vec()
+        );
     }
 }

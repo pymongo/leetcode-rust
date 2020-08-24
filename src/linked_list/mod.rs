@@ -1,5 +1,6 @@
 mod add_two_linked_list;
 mod reverse_linked_list;
+mod reverse_linked_list_2;
 #[cfg(test)]
 use std::boxed::Box;
 
@@ -73,6 +74,7 @@ pub fn linked_list_to_vec(head: Option<Box<ListNode>>) -> Vec<i32> {
         nums.push(curr_node.val);
         curr = curr_node.next;
     }
+    println!("{:?}", nums);
     nums
 }
 
