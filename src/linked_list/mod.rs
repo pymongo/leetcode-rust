@@ -1,13 +1,16 @@
 mod add_two_linked_list;
-
+mod reverse_linked_list;
+#[cfg(test)]
 use std::boxed::Box;
 
+#[cfg(test)]
 #[derive(PartialEq, Eq, Clone, Debug)]
 pub struct ListNode {
     pub val: i32,
     pub next: Option<Box<ListNode>>,
 }
 
+#[cfg(test)]
 impl ListNode {
     #[inline]
     fn new(val: i32) -> Self {
@@ -38,6 +41,7 @@ public static ListNode arrayToListNode(int []nums) {
     return dummy.next;
 }
 */
+#[cfg(test)]
 pub fn arr_to_linked_list(nums: &[i32]) -> Option<Box<ListNode>> {
     let mut dummy = Some(Box::new(ListNode::new(0)));
     let mut curr = &mut dummy;
@@ -60,8 +64,10 @@ public static int[] listNodeToArray(ListNode head) {
     return nums.stream().mapToInt(i -> i).toArray();
 }
 */
+#[cfg(test)]
 pub fn linked_list_to_vec(head: Option<Box<ListNode>>) -> Vec<i32> {
     let mut nums: Vec<i32> = Vec::new();
+    // 由于链表转数组只需要读链表不需要修改链表各节点，所以curr=head而不是curr=&mut head，而且代码也简洁多了
     let mut curr = head;
     while let Some(curr_node) = curr {
         nums.push(curr_node.val);

@@ -15,12 +15,13 @@ match optional {
 }
 5. 全球服第一的代码：current = current.next.as_mut().unwrap() 轻松解压变量<Option<Box>>
 */
-
+#[cfg(test)]
 use super::{arr_to_linked_list, linked_list_to_vec, ListNode};
+#[cfg(test)]
 use std::boxed::Box;
 
 #[cfg(test)]
-fn traverse_two_list_node(
+fn add_two_linked_list(
     l1: Option<Box<ListNode>>,
     l2: Option<Box<ListNode>>,
 ) -> Option<Box<ListNode>> {
@@ -81,7 +82,7 @@ fn test_traverse_two_list_node() {
     for &(arr1, arr2, expected) in &TEST_CASES {
         let ln1 = arr_to_linked_list(arr1);
         let ln2 = arr_to_linked_list(arr2);
-        let output_head = traverse_two_list_node(ln1, ln2);
+        let output_head = add_two_linked_list(ln1, ln2);
         assert_eq!(linked_list_to_vec(output_head), expected.to_vec());
     }
 }
