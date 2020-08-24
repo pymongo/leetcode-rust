@@ -8,3 +8,4 @@ mod permutation;
 mod sorting;
 pub mod string;
 mod unclassified;
+mod binary_tree;

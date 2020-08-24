@@ -1,9 +1,7 @@
-#[cfg(test)]
+#![allow(dead_code, unused_imports)]
 use super::{arr_to_linked_list, linked_list_to_vec, ListNode};
-#[cfg(test)]
 use std::boxed::Box;
 
-#[cfg(test)]
 struct Solution;
 
 impl Solution {

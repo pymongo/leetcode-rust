@@ -1,17 +1,16 @@
+#![allow(dead_code, unused_imports)]
 mod add_two_linked_list;
 mod reverse_linked_list;
 mod reverse_linked_list_2;
-#[cfg(test)]
+
 use std::boxed::Box;
 
-#[cfg(test)]
 #[derive(PartialEq, Eq, Clone, Debug)]
 pub struct ListNode {
     pub val: i32,
     pub next: Option<Box<ListNode>>,
 }
 
-#[cfg(test)]
 impl ListNode {
     #[inline]
     fn new(val: i32) -> Self {
@@ -20,7 +19,6 @@ impl ListNode {
 }
 
 // Option<T>的设计优点之一: 链表题可以不使用dummy_head也能生成链表后返回头部
-#[cfg(test)]
 fn arr_to_linked_list(nums: &[i32]) -> Option<Box<ListNode>> {
     let mut head = None;
     let mut curr = &mut head;
@@ -65,7 +63,6 @@ public static int[] listNodeToArray(ListNode head) {
     return nums.stream().mapToInt(i -> i).toArray();
 }
 */
-#[cfg(test)]
 pub fn linked_list_to_vec(head: Option<Box<ListNode>>) -> Vec<i32> {
     let mut nums: Vec<i32> = Vec::new();
     // 由于链表转数组只需要读链表不需要修改链表各节点，所以curr=head而不是curr=&mut head，而且代码也简洁多了

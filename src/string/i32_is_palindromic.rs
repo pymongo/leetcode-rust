@@ -33,7 +33,7 @@ fn reverse(x: i32) -> bool {
         rev = rev * 10 + num % 10;
         num = num / 10;
     }
-    dbg!((x, num, rev));
+    // dbg!((x, num, rev));
     return rev == num || num == (rev / 10);
 }
 
