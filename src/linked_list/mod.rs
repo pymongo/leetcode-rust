@@ -1,11 +1,10 @@
-#![allow(dead_code, unused_imports)]
-
 mod add_two_linked_list;
 mod reverse_linked_list;
 mod reverse_linked_list_2;
 mod merge_two_sorted_linked_list;
 mod middle_of_linked_list;
 mod linked_list_is_palindrome;
+mod swap_nodes_in_pairs;
 
 use std::boxed::Box;
 

@@ -46,7 +46,7 @@ impl Solution {
     }
 }
 
-#[cfg(test)]ggit
+#[cfg(test)]
 const TEST_CASES: [(&[i32], bool); 1] = [
     (&[0, 0], true),
 ];
