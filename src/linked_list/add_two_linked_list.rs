@@ -22,35 +22,34 @@ use std::boxed::Box;
 
 #[cfg(test)]
 fn add_two_linked_list(
-    l1: Option<Box<ListNode>>,
-    l2: Option<Box<ListNode>>,
+    mut l1: Option<Box<ListNode>>,
+    mut l2: Option<Box<ListNode>>,
 ) -> Option<Box<ListNode>> {
     // result链表(返回值链表)的头节点，用于记住result链表的「第一个节点」
     let mut head_node: Option<Box<ListNode>> = None;
     // 遍历时的当前节点，初始值是result链表的head(第一个节点)
     let mut curr: &mut Option<Box<ListNode>> = &mut head_node;
-    let (mut ln1, mut ln2) = (l1, l2);
     // 进入match时sum_or_carry表示进位，在match内经过计算后sum表示sum
     let mut sum_or_carry: i32 = 0;
 
     loop {
         // 像数字电路datasheet真值表一样...
-        match (ln1, ln2) {
+        match (l1, l2) {
             // 必须要在每个分支都给ln1和ln2复制才能避免moved value的报错
             (Some(node1), Some(node2)) => {
                 sum_or_carry = sum_or_carry + node1.val + node2.val;
-                ln1 = node1.next;
-                ln2 = node2.next;
+                l1 = node1.next;
+                l2 = node2.next;
             }
             (Some(node1), None) => {
                 sum_or_carry += node1.val;
-                ln1 = node1.next;
-                ln2 = None;
+                l1 = node1.next;
+                l2 = None;
             }
             (None, Some(node2)) => {
                 sum_or_carry += node2.val;
-                ln1 = None;
-                ln2 = node2.next;
+                l1 = None;
+                l2 = node2.next;
             }
             (None, None) => {
                 if sum_or_carry != 0 {
@@ -60,13 +59,13 @@ fn add_two_linked_list(
             }
         }
         /* 遍历思路 */
-        // 1. current_node一开始为None
-        // 2. 初始化current_node的值
+        // 1. curr一开始为None
+        // 2. 初始化curr的值为ListNode
         // 3. 将current_node指向current_node.next(因为next为None，所以刚好回到第一步)
         *curr = Some(Box::new(ListNode::new(sum_or_carry % 10)));
         sum_or_carry /= 10; // 此时的sum_or_carry看作进位值，传入下次迭代
         curr = &mut curr.as_mut().unwrap().next;
-    } // end of loop
+    }
     head_node
 }
 
@@ -86,3 +85,4 @@ fn test_traverse_two_list_node() {
         assert_eq!(linked_list_to_vec(output_head), expected.to_vec());
     }
 }
+

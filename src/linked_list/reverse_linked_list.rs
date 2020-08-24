@@ -14,7 +14,7 @@ impl Solution {
             not_rev_node.next = has_rev;
             has_rev = Some(not_rev_node);
         }
-        return has_rev;
+        has_rev
     }
 }
 

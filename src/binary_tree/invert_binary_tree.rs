@@ -28,11 +28,8 @@ impl Solution {
         }
     }
 
-    pub fn invert_tree_unsafe(mut root: Option<Rc<RefCell<TreeNode>>>) -> Option<Rc<RefCell<TreeNode>>> {
-        if root.is_none() {
-            return None;
-        }
-        let root_ptr = root.as_mut().unwrap().as_ptr();
+    fn unsafe_solution(mut root: Option<Rc<RefCell<TreeNode>>>) -> Option<Rc<RefCell<TreeNode>>> {
+        let root_ptr = root.as_mut()?.as_ptr();
         unsafe {
             let left = &mut (*root_ptr).left;
             let right = &mut (*root_ptr).right;
@@ -40,6 +37,6 @@ impl Solution {
             Self::invert_tree(left.clone());
             Self::invert_tree(right.clone());
         }
-        return root;
+        root
     }
 }
