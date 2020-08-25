@@ -1,6 +1,6 @@
 use super::ListNode;
-use std::boxed::Box;
 use std::borrow::BorrowMut;
+use std::boxed::Box;
 
 struct Solution;
 
@@ -16,7 +16,8 @@ impl Solution {
             fast = fast?.next.as_ref();
             slow = slow?.next.as_ref();
         }
-        slow.map(|node| node.clone())
+        // slow.map(|node| node.clone())
+        slow.cloned()
     }
 
     fn clean_solution(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
@@ -30,8 +31,7 @@ impl Solution {
             fast = fast?.next.as_ref()?.next.as_ref();
         }
 
-        drop(fast);
-        slow.map(|node| node.clone())
+        // slow.map(|node| node.clone())
+        slow.cloned()
     }
-
 }

@@ -1,6 +1,6 @@
-use super::{ListNode};
-use std::boxed::Box;
+use super::ListNode;
 use crate::linked_list::arr_to_linked_list;
+use std::boxed::Box;
 
 struct Solution;
 
@@ -14,7 +14,7 @@ impl Solution {
         let mut curr = head.as_ref();
         while let Some(curr_node) = curr {
             asc = 10 * asc + curr_node.val;
-            desc = desc + curr_node.val * desc_base;
+            desc += curr_node.val * desc_base;
             desc_base *= 10;
             curr = curr_node.next.as_ref();
         }
@@ -47,9 +47,7 @@ impl Solution {
 }
 
 #[cfg(test)]
-const TEST_CASES: [(&[i32], bool); 1] = [
-    (&[0, 0], true),
-];
+const TEST_CASES: [(&[i32], bool); 1] = [(&[0, 0], true)];
 
 #[test]
 fn test_linked_list_is_palindrome() {

@@ -1,13 +1,13 @@
 use super::ListNode;
-use std::boxed::Box;
 use crate::binary_tree::TreeNode;
+use std::boxed::Box;
 
 struct Solution;
 
 impl Solution {
     fn merge_two_lists_without_match(
         mut l1: Option<Box<ListNode>>,
-        mut l2: Option<Box<ListNode>>
+        mut l2: Option<Box<ListNode>>,
     ) -> Option<Box<ListNode>> {
         let mut head = None;
         let mut curr = &mut head;
@@ -29,7 +29,7 @@ impl Solution {
 
     pub fn merge_two_lists(
         mut l1: Option<Box<ListNode>>,
-        mut l2: Option<Box<ListNode>>
+        mut l2: Option<Box<ListNode>>,
     ) -> Option<Box<ListNode>> {
         let mut head = None;
         let mut curr = &mut head;
@@ -48,15 +48,15 @@ impl Solution {
                     };
                     *curr = Some(Box::new(ListNode::new(val)));
                     curr = &mut curr.as_mut().unwrap().next;
-                },
+                }
                 (Some(n1), None) => {
                     *curr = Some(n1.clone());
                     break;
-                },
+                }
                 (None, Some(n2)) => {
                     *curr = Some(n2.clone());
                     break;
-                },
+                }
                 (None, None) => {
                     break;
                 }

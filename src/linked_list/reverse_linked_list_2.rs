@@ -6,29 +6,58 @@ struct Solution;
 type Node = Option<Box<ListNode>>;
 
 impl Solution {
-    pub fn reverse_range_inplace(head: Option<Box<ListNode>>, m: i32, n: i32) -> Option<Box<ListNode>> {
+    pub fn reverse_range_inplace(
+        head: Option<Box<ListNode>>,
+        m: i32,
+        _n: i32,
+    ) -> Option<Box<ListNode>> {
         unsafe {
             let mut dummy = Some(Box::new(ListNode::new(0)));
-            dummy.as_mut().unwrap().next = head;
+            dummy.as_mut()?.next = head;
             let mut node_m_prev = &mut dummy as *mut Node;
-            for _ in 0..m-1 {
-                node_m_prev = &mut (*node_m_prev).as_mut().unwrap().next as *mut Node;
+            for _ in 0..m - 1 {
+                node_m_prev = &mut (*node_m_prev).as_mut()?.next as *mut Node;
             }
             // rev_head会一直往前挪，但是节点的值和内存地址不变
-            let rev_head = &mut (*node_m_prev).as_mut().unwrap().next as *mut Node;
-            for _ in m..n {
+            let rev_head = &mut (*node_m_prev).as_mut()?.next as *mut Node;
+            // for _ in m..n {
+            for _ in 0..1 {
                 // 备份rev_head.next
-                let rev_head_next = &mut (*rev_head).as_mut().unwrap().next as *mut Node;
+                let rev_head_next = &mut (*rev_head).as_mut()?.next as *mut Node;
+
                 // rev_head的next指针越过rev_head_next
-                (*rev_head).as_mut().unwrap().next = (*rev_head_next).as_mut().unwrap().next.take();
+                (*rev_head).as_mut()?.next = (*rev_head_next).as_mut()?.next.take();
+
                 // 将rev_head_next插入到node_m_prev和rev_head之间
-                (*rev_head_next).as_mut().unwrap().next = (*node_m_prev).as_mut().unwrap().next.take();
-                (*node_m_prev).as_mut().unwrap().next = (*rev_head_next).take();
+                (*rev_head_next).as_mut()?.next = (*node_m_prev).as_mut()?.next.take();
+                (*node_m_prev).as_mut()?.next = (*rev_head_next).take();
                 // FIXME [1,4,3,2,5]经过一轮后会变成[1,4,2]，丢失节点的原因可能是take导致的，换成mem::swap也一样
             }
-            return dummy.unwrap().next;
+            return dummy?.next;
         }
     }
+
+    // fn my_try(head: Option<Box<ListNode>>, m: i32, n: i32) -> Option<Box<ListNode>> {
+    //     let mut dummy = Some(Box::new(ListNode::new(0)));
+    //     dummy.as_mut()?.next = head;
+    //     let mut node_m_prev = dummy.as_mut();
+    //     for _ in 0..m-1 {
+    //         node_m_prev = node_m_prev.as_mut()?.next.as_mut();
+    //     }
+    //     let mut rev_head = node_m_prev.as_mut()?.next.as_mut();
+    //     for _ in m..n {
+    //         // 备份rev_head.next
+    //         let mut rev_head_next = rev_head.as_ref()?.next.as_mut();
+    //         // rev_head的next指针越过rev_head_next
+    //         rev_head.as_mut()?.next = rev_head_next.as_mut()?.next;
+    //
+    //         // (*rev_head).as_mut().unwrap().next = (*rev_head_next).as_mut().unwrap().next.take();
+    //         // // 将rev_head_next插入到node_m_prev和rev_head之间
+    //         // (*rev_head_next).as_mut().unwrap().next = (*node_m_prev).as_mut().unwrap().next.take();
+    //         // (*node_m_prev).as_mut().unwrap().next = (*rev_head_next).take();
+    //     }
+    //     return dummy.unwrap().next;
+    // }
 
     fn vec_to_linked_list(nums: Vec<i32>) -> Option<Box<ListNode>> {
         let mut head = None;
@@ -53,18 +82,15 @@ impl Solution {
     pub fn reverse_between(head: Option<Box<ListNode>>, m: i32, n: i32) -> Option<Box<ListNode>> {
         let mut nums = Self::linked_list_to_vec(&head);
         // 因为入参m和n是从1开始编号的，所以这里要减1
-        let mut left = (m-1) as usize;
-        let mut right = (n-1) as usize;
+        let mut left = (m - 1) as usize;
+        let mut right = (n - 1) as usize;
         while left < right {
-            let temp = nums[left];
-            nums[left] = nums[right];
-            nums[right] = temp;
+            nums.swap(left, right);
             left += 1;
             right -= 1;
         }
         Self::vec_to_linked_list(nums)
     }
-
 }
 
 #[cfg(test)]
@@ -80,7 +106,7 @@ fn test_traverse_two_list_node() {
 }
 
 #[test]
-#[ignore]
+// #[ignore]
 fn test_reverse_range_inplace() {
     for &(input, m, n, output) in &TEST_CASES {
         let head = arr_to_linked_list(input);

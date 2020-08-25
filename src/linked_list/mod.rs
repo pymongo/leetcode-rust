@@ -1,9 +1,9 @@
 mod add_two_linked_list;
-mod reverse_linked_list;
-mod reverse_linked_list_2;
+mod linked_list_is_palindrome;
 mod merge_two_sorted_linked_list;
 mod middle_of_linked_list;
-mod linked_list_is_palindrome;
+mod reverse_linked_list;
+mod reverse_linked_list_2;
 mod swap_nodes_in_pairs;
 
 use std::boxed::Box;
@@ -52,7 +52,7 @@ pub fn arr_to_linked_list_with_dummy(nums: &[i32]) -> Option<Box<ListNode>> {
         curr_node.next = Some(Box::new(ListNode::new(*num)));
         curr = &mut curr_node.next;
     }
-    dummy.unwrap().next
+    dummy?.next
 }
 
 /* Java版链表转数组

@@ -85,4 +85,3 @@ fn test_traverse_two_list_node() {
         assert_eq!(linked_list_to_vec(&output_head), expected.to_vec());
     }
 }
-

@@ -2,8 +2,8 @@
 
 mod invert_binary_tree;
 
-use std::rc::Rc;
 use std::cell::RefCell;
+use std::rc::Rc;
 
 pub struct TreeNode {
     pub val: i32,
@@ -21,5 +21,3 @@ impl TreeNode {
         }
     }
 }
-
-

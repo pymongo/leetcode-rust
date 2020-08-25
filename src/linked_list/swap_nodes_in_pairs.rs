@@ -16,14 +16,12 @@ def swap_pairs(self, head):
 impl Solution {
     pub fn swap_pairs_best(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
         // TODO 用map unwrap Option<T>，学到了，如果是head是None则不会走map的函数
-        head.map(|mut left| {
-            match left.next.take() {
-                None => left,
-                Some(mut right) => {
-                    left.next = Self::swap_pairs(right.next.take());
-                    right.next = Some(left);
-                    right
-                }
+        head.map(|mut left| match left.next.take() {
+            None => left,
+            Some(mut right) => {
+                left.next = Self::swap_pairs(right.next.take());
+                right.next = Some(left);
+                right
             }
         })
     }
