@@ -1,0 +1,1 @@
+mod n_queen;

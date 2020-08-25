@@ -31,7 +31,6 @@ fn tail_recursion_helper(n: i32) -> i32 {
 1. 斐波那契公式(公式中的乘方需要log(n)时间复杂度)
 2. Binet's formula 利用矩阵解斐波那契
 */
-#[cfg(test)]
 fn tail_recursion(n: u32, a: u32, b: u32) -> u32 {
     if n == 1 {
         b

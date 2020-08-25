@@ -9,6 +9,50 @@ impl Solution {
     }
 }
 
+fn dp_binary_search(k: i32, n: i32) -> i32 {
+    let (k, n) = (k as usize, n as usize);
+    // dp[i][j]: i层楼有j个鸡蛋的最小尝试次数
+    let mut dp: Vec<Vec<usize>> = vec![vec![std::usize::MAX; k + 1]; n + 1];
+    // 楼层为0时，第0行: 不管鸡蛋的个数多少，都测不出鸡蛋的耐摔层度，所以次数全为0
+    for j in 0..=k {
+        dp[0][j] = 0;
+    }
+    // 楼层为1时，只要鸡蛋个数大于1就只用试1次
+    for j in 1..=k {
+        dp[1][j] = 1;
+    }
+    // 鸡蛋个数为0时尝试次数只能为0
+    // 鸡蛋个数为1时尝试次数就是楼层高度
+    for i in 0..=n {
+        dp[i][0] = 0;
+        dp[i][1] = i;
+    }
+
+    // 由于本题类似答案集二分的题型，鸡蛋个数固定时，尝试次数和楼层高度成正比，所以可以在DP决策层用「二分」
+    for i in 2..=n {
+        for j in 2..=k {
+            let (mut left, mut right) = (1, i);
+            while left + 1 < right {
+                // 注意要用find_first的二分法模板
+                let mid = left + (right - left) / 2;
+
+                let broken = dp[mid-1][j-1];
+                let not_broken = dp[i-mid][j];
+                if broken > not_broken {
+                    right = mid;
+                } else {
+                    left = mid;
+                }
+            }
+            dp[i][j] = 1 + std::cmp::max(
+                dp[left-1][j-1],
+                dp[i-left][j]
+            );
+        }
+    }
+    return dp[n][k] as i32;
+}
+
 /*
 def dp(k, n):
     if k == 1:
@@ -48,9 +92,9 @@ fn dfs(k: i32, n: i32, memo: &mut HashMap<(i32, i32), i32>) -> i32 {
         // dp(k  , n-i): 鸡蛋没碎，那么刚扔下的鸡蛋还可以继续用从i+1..=n层的范围搜索，但是还是有k次机会
         // dp(k-1, i-1): 鸡蛋碎了，只好拿k-1个鸡蛋去试1..=i-1层
         // 最后不管碎或不碎，尝试次数都+1
-        res = res.min(std::cmp::max(
+        res = res.min(1 + std::cmp::max(
             dfs(k, n - i, memo),
-            dfs(k - 1, i - 1, memo) + 1,
+            dfs(k - 1, i - 1, memo),
         ));
     }
 
@@ -58,7 +102,6 @@ fn dfs(k: i32, n: i32, memo: &mut HashMap<(i32, i32), i32>) -> i32 {
     // println!("k={}, n={}, res={}", k, n, k);
     // dbg!(k, n, res);
     memo.insert((k, n), res);
-
     return res;
 }
 
@@ -71,6 +114,6 @@ const TEST_CASES: [(i32, i32, i32); 2] = [
 #[test]
 fn test() {
     for &(eggs_k, n, times) in TEST_CASES.iter() {
-        assert_eq!(Solution::eggs_drop(eggs_k, n), times);
+        assert_eq!(dp_binary_search(eggs_k, n), times);
     }
 }
