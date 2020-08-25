@@ -1,1 +1,1 @@
-mod shortest_paths_on_checkerboard;
+mod unique_path;
