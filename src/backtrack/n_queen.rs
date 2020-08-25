@@ -79,4 +79,5 @@ fn render_solution(queens: &Vec<i32>, res: &mut Vec<Vec<String>>, n: usize) {
 #[test]
 fn test() {
     dbg!(entrance(4));
+
 }
