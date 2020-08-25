@@ -1,11 +1,8 @@
 #![feature(test)]
 extern crate test;
-/*
-cargo +nightly bench --bench two_sum_hashmap_vs_btree_map
-*/
 
 extern crate leetcode;
-use leetcode::collections::btree_map_two_sum::*;
+use leetcode::easy::btree_map_two_sum::*;
 
 /*
 test bench_test_two_sum_btree_map ... bench:       1,244 ns/iter (+/- 181)

@@ -1,1 +1,1 @@
-mod n_queen;
+mod n_queens;

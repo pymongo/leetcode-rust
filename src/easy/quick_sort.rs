@@ -1,6 +1,3 @@
-mod median_of_two_sorted_arrays;
-mod merge_two_sorted_arrays;
-
 #[cfg(test)]
 const TEST_CASE: [(&[i32], &[i32]); 1] = [(&[5, 2, 3, 1], &[1, 2, 3, 5])];
 

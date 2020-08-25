@@ -1,4 +1,3 @@
-//! https://leetcode.com/problems/fibonacci-number/
 //! https://leetcode.com/problems/climbing-stairs/
 
 #[cfg(test)]

@@ -30,7 +30,7 @@ fn dfs(
     sum: &mut HashSet<i32>,
     dif: &mut HashSet<i32>,
     n: usize,
-    res: &mut Vec<Vec<String>>
+    res: &mut Vec<Vec<String>>,
 ) {
     if queens.len() == n {
         render_solution(queens, res, n);
@@ -48,7 +48,7 @@ fn dfs(
         if sum.contains(&cur_sum) {
             continue;
         }
-        let cur_dif = x-y_i32;
+        let cur_dif = x - y_i32;
         if dif.contains(&cur_dif) {
             continue;
         }
@@ -66,7 +66,7 @@ fn dfs(
     }
 }
 
-fn render_solution(queens: &Vec<i32>, res: &mut Vec<Vec<String>>, n: usize) {
+fn render_solution(queens: &[i32], res: &mut Vec<Vec<String>>, n: usize) {
     let mut board: Vec<String> = Vec::with_capacity(n);
     for i in 0..n {
         let mut row = vec!['.'.to_string(); n];
@@ -79,5 +79,4 @@ fn render_solution(queens: &Vec<i32>, res: &mut Vec<Vec<String>>, n: usize) {
 #[test]
 fn test() {
     dbg!(entrance(4));
-
 }

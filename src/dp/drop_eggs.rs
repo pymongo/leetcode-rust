@@ -23,6 +23,7 @@ fn dp_binary_search(k: i32, n: i32) -> i32 {
     }
     // 鸡蛋个数为0时尝试次数只能为0
     // 鸡蛋个数为1时尝试次数就是楼层高度
+    #[allow(clippy::needless_range_loop)]
     for i in 0..=n {
         dp[i][0] = 0;
         dp[i][1] = i;
@@ -36,18 +37,15 @@ fn dp_binary_search(k: i32, n: i32) -> i32 {
                 // 注意要用find_first的二分法模板
                 let mid = left + (right - left) / 2;
 
-                let broken = dp[mid-1][j-1];
-                let not_broken = dp[i-mid][j];
+                let broken = dp[mid - 1][j - 1];
+                let not_broken = dp[i - mid][j];
                 if broken > not_broken {
                     right = mid;
                 } else {
                     left = mid;
                 }
             }
-            dp[i][j] = 1 + std::cmp::max(
-                dp[left-1][j-1],
-                dp[i-left][j]
-            );
+            dp[i][j] = 1 + std::cmp::max(dp[left - 1][j - 1], dp[i - left][j]);
         }
     }
     return dp[n][k] as i32;
@@ -92,10 +90,7 @@ fn dfs(k: i32, n: i32, memo: &mut HashMap<(i32, i32), i32>) -> i32 {
         // dp(k  , n-i): 鸡蛋没碎，那么刚扔下的鸡蛋还可以继续用从i+1..=n层的范围搜索，但是还是有k次机会
         // dp(k-1, i-1): 鸡蛋碎了，只好拿k-1个鸡蛋去试1..=i-1层
         // 最后不管碎或不碎，尝试次数都+1
-        res = res.min(1 + std::cmp::max(
-            dfs(k, n - i, memo),
-            dfs(k - 1, i - 1, memo),
-        ));
+        res = res.min(1 + std::cmp::max(dfs(k, n - i, memo), dfs(k - 1, i - 1, memo)));
     }
 
     // FIXME 为什么n=5000时，加上print语句就会爆栈

@@ -59,14 +59,3 @@ fn my_first_solution(nums1: &mut Vec<i32>, m: i32, nums2: &mut Vec<i32>, n: i32)
         }
     }
 }
-
-/* Java
-// while there are still elements to compare
-while ((p1 >= 0) && (p2 >= 0))
-  // compare two elements from nums1 and nums2
-  // and add the largest one in nums1
-  nums1[p--] = (nums1[p1] < nums2[p2]) ? nums2[p2--] : nums1[p1--];
-
-// add missing elements from nums2
-System.arraycopy(nums2, 0, nums1, 0, p2 + 1);
-*/

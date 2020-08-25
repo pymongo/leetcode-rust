@@ -47,9 +47,15 @@ fn bfs(mut grid: Vec<Vec<i32>>) -> i32 {
 }
 
 #[cfg(test)]
-const TEST_CASES: [(&[&[i32]], i32); 1] = [
-    (&[&[1, 1, 0, 0, 0], &[1, 1, 0, 0, 0], &[0, 0, 0, 1, 1], &[0, 0, 0, 1, 1]], 4)
-];
+const TEST_CASES: [(&[&[i32]], i32); 1] = [(
+    &[
+        &[1, 1, 0, 0, 0],
+        &[1, 1, 0, 0, 0],
+        &[0, 0, 0, 1, 1],
+        &[0, 0, 0, 1, 1],
+    ],
+    4,
+)];
 
 #[test]
 fn test() {
@@ -58,10 +64,7 @@ fn test() {
         // for &row in grid {
         //     grid_vec.push(row.to_vec());
         // }
-        let grid_vec: Vec<Vec<i32>> = grid
-            .iter()
-            .map(|each| each.to_vec())
-            .collect();
+        let grid_vec: Vec<Vec<i32>> = grid.iter().map(|each| each.to_vec()).collect();
         assert_eq!(max_area, bfs(grid_vec));
     }
 }
