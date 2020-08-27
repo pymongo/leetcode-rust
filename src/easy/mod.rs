@@ -8,3 +8,4 @@ mod shuffle_the_array;
 mod tail_recursion_fibonacci;
 mod to_lowercase;
 mod unique_path;
+mod construct_product_array;

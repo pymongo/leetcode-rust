@@ -596,7 +596,6 @@ LintCode
 |1876|[Alien Dictionary(easy)](https://lintcode.com/problem/alien-dictionaryeasy/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/unclassified/verifying_an_alien_dictionary.py)||
 |1901|[Squares of a Sorted Array](https://lintcode.com/problem/squares-of-a-sorted-array/)|||
 
-
 ---
 
 # Category
