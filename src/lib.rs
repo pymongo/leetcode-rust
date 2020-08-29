@@ -1,4 +1,4 @@
-#![allow(dead_code, unused_imports, clippy::needless_return)]
+#![allow(dead_code, unused_imports, clippy::needless_return, clippy::needless_range_loop)]
 mod backtracking;
 mod bfs;
 mod binary_search;

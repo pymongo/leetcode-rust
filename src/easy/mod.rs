@@ -10,3 +10,5 @@ mod to_lowercase;
 mod unique_path;
 mod construct_product_array;
 mod transpose_matrix;
+mod majority_element;
+mod contains_duplicate_2;

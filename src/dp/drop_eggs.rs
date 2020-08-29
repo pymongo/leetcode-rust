@@ -23,7 +23,6 @@ fn dp_binary_search(k: i32, n: i32) -> i32 {
     }
     // 鸡蛋个数为0时尝试次数只能为0
     // 鸡蛋个数为1时尝试次数就是楼层高度
-    #[allow(clippy::needless_range_loop)]
     for i in 0..=n {
         dp[i][0] = 0;
         dp[i][1] = i;
