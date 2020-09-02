@@ -15,15 +15,8 @@ impl Solution {
             }
         }
         for i in 0..m {
-            if zero_row[i] {
-                for j in 0..n {
-                    matrix[i][j] = 0;
-                }
-            }
-        }
-        for j in 0..n {
-            if zero_col[j] {
-                for i in 0..m {
+            for j in 0..n {
+                if zero_row[i] || zero_col[j] {
                     matrix[i][j] = 0;
                 }
             }

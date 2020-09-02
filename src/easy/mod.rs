@@ -12,4 +12,5 @@ mod construct_product_array;
 mod transpose_matrix;
 mod majority_element;
 mod contains_duplicate_2;
-mod set_matrix_zero;
+mod set_matrix_zeroes;
+mod gray_code;
