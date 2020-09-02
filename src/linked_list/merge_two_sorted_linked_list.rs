@@ -1,6 +1,5 @@
 use super::ListNode;
 use crate::binary_tree::TreeNode;
-use std::boxed::Box;
 
 struct Solution;
 

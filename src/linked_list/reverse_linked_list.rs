@@ -1,5 +1,4 @@
 use super::{arr_to_linked_list, linked_list_to_vec, ListNode};
-use std::boxed::Box;
 
 struct Solution;
 

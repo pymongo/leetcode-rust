@@ -1,5 +1,4 @@
 use super::ListNode;
-use std::boxed::Box;
 
 struct Solution;
 

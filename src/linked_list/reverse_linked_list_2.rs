@@ -1,5 +1,4 @@
 use super::{arr_to_linked_list, linked_list_to_vec, ListNode};
-use std::boxed::Box;
 
 struct Solution;
 
@@ -106,7 +105,7 @@ fn test_traverse_two_list_node() {
 }
 
 #[test]
-// #[ignore]
+#[ignore]
 fn test_reverse_range_inplace() {
     for &(input, m, n, output) in &TEST_CASES {
         let head = arr_to_linked_list(input);

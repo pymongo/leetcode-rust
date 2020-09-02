@@ -1,6 +1,4 @@
 use super::ListNode;
-use std::borrow::BorrowMut;
-use std::boxed::Box;
 
 struct Solution;
 

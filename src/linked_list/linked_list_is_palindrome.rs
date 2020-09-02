@@ -1,6 +1,5 @@
 use super::ListNode;
 use crate::linked_list::arr_to_linked_list;
-use std::boxed::Box;
 
 struct Solution;
 

@@ -6,8 +6,6 @@ mod reverse_linked_list;
 mod reverse_linked_list_2;
 mod swap_nodes_in_pairs;
 
-use std::boxed::Box;
-
 #[derive(PartialEq, Eq, Clone, Debug)]
 pub struct ListNode {
     pub val: i32,
