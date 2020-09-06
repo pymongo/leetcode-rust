@@ -14,3 +14,4 @@ mod majority_element;
 mod contains_duplicate_2;
 mod set_matrix_zeroes;
 mod gray_code;
+mod matrix_diagonal_sum;
