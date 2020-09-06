@@ -24,7 +24,7 @@ fn solution(nums: &[i32]) -> Vec<i32> {
     let mut res = vec![1; n];
     // 右上三角区域的乘积运算
     for i in 0..n {
-        for j in i+1..n {
+        for j in i + 1..n {
             // dbg!((i, j, nums[j]));
             res[i] *= nums[j];
         }

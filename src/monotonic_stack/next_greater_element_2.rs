@@ -9,10 +9,10 @@ impl Solution {
         if n == 0 {
             return Vec::with_capacity(0);
         }
-        let mut res = vec![-1;n];
+        let mut res = vec![-1; n];
         let mut stack: Vec<i32> = Vec::with_capacity(n);
-        for i in (0..(2*n-1)).rev() {
-            while !stack.is_empty() && stack.last().unwrap().le(&nums[i % n])  {
+        for i in (0..(2 * n - 1)).rev() {
+            while !stack.is_empty() && stack.last().unwrap().le(&nums[i % n]) {
                 stack.pop();
             }
             if let Some(peek) = stack.last() {
@@ -25,13 +25,14 @@ impl Solution {
 }
 
 #[cfg(test)]
-const TEST_CASES: [(&[i32], &[i32]); 1] = [
-    (&[1, 2, 1], &[2, -1, 2]),
-];
+const TEST_CASES: [(&[i32], &[i32]); 1] = [(&[1, 2, 1], &[2, -1, 2])];
 
 #[test]
 fn test() {
     for &(nums, output) in TEST_CASES.iter() {
-        assert_eq!(Solution::next_greater_elements(nums.to_vec()), output.to_vec());
+        assert_eq!(
+            Solution::next_greater_elements(nums.to_vec()),
+            output.to_vec()
+        );
     }
 }

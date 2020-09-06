@@ -7,7 +7,7 @@ impl Solution {
         if n == 1 {
             return nums[0];
         }
-        let half = (n/2) as u16;
+        let half = (n / 2) as u16;
         let mut cnt: HashMap<i32, u16> = HashMap::with_capacity(n);
         for num in nums {
             if let Some(count) = cnt.get_mut(&num) {

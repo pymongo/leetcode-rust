@@ -1,2 +1,2 @@
-mod n_queens;
 mod combinations;
+mod n_queens;
