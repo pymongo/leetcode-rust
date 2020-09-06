@@ -15,7 +15,7 @@ struct Solution;
 impl Solution {
     fn helper(nums1: &[i32], nums2: &[i32]) -> i32 {
         // 用HashMap加快在num2中找因子的过程, key: num2, value: count of num2 in nums2
-        let mut counter: HashMap<i32, i32> = HashMap::new();
+        let mut counter: HashMap<i32, i32> = HashMap::with_capacity(nums2.len());
         for &num in nums2 {
             if let Some(cnt) = counter.get_mut(&num) {
                 *cnt += 1
