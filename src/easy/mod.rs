@@ -1,3 +1,8 @@
+/*
+剑指Offer 17. 打印从1到最大n位的十进制数:
+(1..10i32.pow(n as u32)).collect()
+*/
+
 pub mod btree_map_two_sum;
 mod coin_lcci;
 mod construct_product_array;
@@ -17,3 +22,6 @@ mod to_lowercase;
 mod transpose_matrix;
 mod unique_path;
 mod max_increase_to_keep_city_skyline;
+mod count_number_of_teams;
+mod min_operations_to_make_array_equal;
+mod min_time_visiting_all_points;
