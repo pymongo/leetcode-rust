@@ -1,3 +1,5 @@
+struct Solution;
+
 impl Solution {
     pub fn num_teams(nums: Vec<i32>) -> i32 {
         let n = nums.len();
