@@ -25,3 +25,4 @@ mod max_increase_to_keep_city_skyline;
 mod count_number_of_teams;
 mod min_operations_to_make_array_equal;
 mod min_time_visiting_all_points;
+mod corporate_flight_bookings;
