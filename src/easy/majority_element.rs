@@ -38,5 +38,3 @@ impl Solution {
         candidate
     }
 }
-
-

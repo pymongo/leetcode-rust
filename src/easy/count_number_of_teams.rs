@@ -1,10 +1,11 @@
 struct Solution;
 
 impl Solution {
+    #[allow(clippy::comparison_chain)]
     pub fn num_teams(nums: Vec<i32>) -> i32 {
         let n = nums.len();
         let mut res = 0;
-        for mid in 1..n-1 {
+        for mid in 1..n - 1 {
             let mid_num = nums[mid];
             let (mut left_smaller, mut left_bigger) = (0, 0);
             for i in 0..mid {
@@ -15,7 +16,7 @@ impl Solution {
                 }
             }
             let (mut right_smaller, mut right_bigger) = (0, 0);
-            for i in mid+1..n {
+            for i in mid + 1..n {
                 if nums[i] < mid_num {
                     right_smaller += 1;
                 } else if nums[i] > mid_num {

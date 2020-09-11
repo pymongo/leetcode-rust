@@ -13,7 +13,7 @@ impl Solution {
         let mut stations = vec![0; n];
         for each in data {
             // 注意入参的车站从1开始编号
-            stations[(each[GET_ON_STATION]-1) as usize] += each[COUNT];
+            stations[(each[GET_ON_STATION] - 1) as usize] += each[COUNT];
             // 注意公交车下车数据的小标是j+1
             let get_off_station = each[GET_OFF_STATION] as usize;
             if get_off_station < n {
@@ -22,7 +22,7 @@ impl Solution {
         }
         for i in 1..n {
             // 从差分数组(每站净上车数)推出车运行到每站时各有几人
-            stations[i] += stations[i-1];
+            stations[i] += stations[i - 1];
         }
         stations
     }
@@ -44,20 +44,17 @@ impl Solution {
         stations.pop();
         stations
     }
-
 }
 
 #[cfg(test)]
-const TEST_CASES: [(&[&[i32]], i32, &[&[i32]]); 1] = [
-    (&[&[1, 2, 10], &[2, 3, 20], &[2, 5, 25]], 5, &[&[1, 2, 10], &[2, 3, 20], &[2, 5, 25]]),
-];
+const TEST_CASES: [(&[&[i32]], i32, &[&[i32]]); 1] = [(
+    &[&[1, 2, 10], &[2, 3, 20], &[2, 5, 25]],
+    5,
+    &[&[1, 2, 10], &[2, 3, 20], &[2, 5, 25]],
+)];
 
 #[test]
 fn test() {
-    let data = vec![
-        vec![1, 2, 10],
-        vec![2, 3, 20],
-        vec![2, 5, 25]
-    ];
+    let data = vec![vec![1, 2, 10], vec![2, 3, 20], vec![2, 5, 25]];
     Solution::corp_flight_bookings(data, 5);
 }

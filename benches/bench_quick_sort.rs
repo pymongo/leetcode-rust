@@ -105,6 +105,6 @@ fn quick_sort(start: usize, end: usize, nums: &mut Vec<i32>) {
 fn bench_my_quick_sort(bencher: &mut test::Bencher) {
     bencher.iter(|| {
         let mut nums = NUMS.to_vec();
-        quick_sort(0, LEN-1, &mut nums);
+        quick_sort(0, LEN - 1, &mut nums);
     });
 }

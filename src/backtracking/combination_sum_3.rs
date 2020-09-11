@@ -10,13 +10,7 @@ impl Solution {
         res
     }
 
-    fn helper(
-        start: i32,
-        target: i32,
-        cur: &mut Vec<i32>,
-        res: &mut Vec<Vec<i32>>,
-        k: usize,
-    ) {
+    fn helper(start: i32, target: i32, cur: &mut Vec<i32>, res: &mut Vec<Vec<i32>>, k: usize) {
         if cur.len() == k {
             if target == 0 {
                 res.push(cur.clone());
@@ -28,7 +22,7 @@ impl Solution {
                 return;
             }
             cur.push(num);
-            Self::helper(num+1, target-num, cur, res, k);
+            Self::helper(num + 1, target - num, cur, res, k);
             cur.pop();
         }
     }

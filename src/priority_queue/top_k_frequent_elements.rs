@@ -1,6 +1,6 @@
 struct Solution;
 
-use std::collections::{HashMap, BinaryHeap};
+use std::collections::{BinaryHeap, HashMap};
 
 // return [num for num, _ in collections.Counter(nums).most_common(k)]
 impl Solution {

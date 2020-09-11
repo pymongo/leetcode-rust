@@ -11,6 +11,6 @@ mod binary_tree;
 mod dp;
 pub mod easy;
 mod linked_list;
-mod priority_queue;
 mod monotonic_stack;
+mod priority_queue;
 pub mod string;

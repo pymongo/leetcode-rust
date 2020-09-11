@@ -16,7 +16,7 @@ impl Solution {
         target: i32,
         cur: &mut Vec<i32>,
         res: &mut Vec<Vec<i32>>,
-        nums: &Vec<i32>,
+        nums: &[i32],
         n: usize,
     ) {
         if target == 0 {
@@ -28,14 +28,14 @@ impl Solution {
                 return;
             }
             // 剪枝: 答案集去重，避免重复解
-            if i > start && nums[i] == nums[i-1] {
+            if i > start && nums[i] == nums[i - 1] {
                 continue;
             }
             cur.push(nums[i]);
             // combination_sum_1: 允许nums中元素重复使用，所以start_index会是i
             // Self::helper(i, target-nums[i], cur, res, &nums, n);
             // combination_sum_2: 不允许nums中元素重复使用，所以start_index会是i+1
-            Self::helper(i+1, target-nums[i], cur, res, &nums, n);
+            Self::helper(i + 1, target - nums[i], cur, res, &nums, n);
             cur.pop();
         }
     }
@@ -43,7 +43,7 @@ impl Solution {
 
 #[test]
 fn test() {
-    let res = Solution::combination_sum2(vec![2,5,2,1,2], 5);
+    let res = Solution::combination_sum2(vec![2, 5, 2, 1, 2], 5);
     for row in res {
         println!("{:?}", row);
     }
