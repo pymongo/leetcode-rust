@@ -14,7 +14,6 @@ mod matrix_diagonal_sum;
 mod merge_two_sorted_arrays;
 mod nim_game;
 mod number_of_ways_where_square_of_number_is_equal_to_product_of_two_numbers;
-mod quick_sort;
 mod set_matrix_zeroes;
 mod shuffle_the_array;
 mod tail_recursion_fibonacci;
