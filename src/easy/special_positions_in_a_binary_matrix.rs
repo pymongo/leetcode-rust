@@ -1,5 +1,6 @@
 struct Solution;
 
+// 周赛206#1
 impl Solution {
     pub fn num_special(mat: Vec<Vec<i32>>) -> i32 {
         let (m, n) = (mat.len(), mat[0].len());
@@ -40,13 +41,22 @@ impl Solution {
     }
 }
 
+#[cfg(test)]
+fn test_cases() -> Vec<(Vec<Vec<i32>>, i32)> {
+    vec![(
+        vec![
+            vec![0, 0, 0, 1],
+            vec![1, 0, 0, 0],
+            vec![0, 1, 1, 0],
+            vec![0, 0, 0, 0],
+        ],
+        2,
+    )]
+}
+
 #[test]
 fn test() {
-    let mat1 = vec![
-        vec![0, 0, 0, 1],
-        vec![1, 0, 0, 0],
-        vec![0, 1, 1, 0],
-        vec![0, 0, 0, 0],
-    ];
-    dbg!(Solution::num_special(mat1));
+    for (points, min_cost) in test_cases() {
+        assert_eq!(Solution::num_special(points), min_cost);
+    }
 }
