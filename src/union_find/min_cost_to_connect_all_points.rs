@@ -15,10 +15,12 @@ impl UnionFind {
 
     fn find_root(&self, node: usize) -> usize {
         let mut curr_node = node;
-        while self.parents[curr_node] != curr_node {
-            curr_node = self.parents[curr_node];
+        let mut curr_node_parent = self.parents[curr_node];
+        while curr_node_parent != curr_node {
+            curr_node = curr_node_parent;
+            curr_node_parent = self.parents[curr_node];
         }
-        return self.parents[curr_node];
+        return curr_node_parent;
     }
 
     // 添加一条node_a连向node_b边
@@ -33,29 +35,36 @@ impl UnionFind {
     }
 }
 
+// 平面上有若干点，找出能连接所有点的最短边的总和
+// 除了并查集排除重复连边，还能用「最小生成树的模板」的Prim或Kruskal算法
 impl Solution {
     fn min_cost_connect_points(points: Vec<Vec<i32>>) -> i32 {
         let n = points.len();
         let mut edges = Vec::with_capacity(n * (n - 1) / 2);
-        for i in 0..n {
-            for j in i + 1..n {
-                edges.push(((points[i][0] - points[j][0]).abs() + (points[i][1] - points[j][1]).abs(), i, j));
+        for start in 0..n {
+            for end in start + 1..n {
+                edges.push((
+                    (points[start][0] - points[end][0]).abs()
+                        + (points[start][1] - points[end][1]).abs(),
+                    start,
+                    end,
+                ));
             }
         }
         edges.sort_unstable();
         let mut total_cost = 0;
         let mut union_find = UnionFind::new(n);
         let mut used_edges = 0;
-        for (val, node_a, node_b) in edges {
+        for (cost, node_a, node_b) in edges {
             let root_a = union_find.find_root(node_a);
             let root_b = union_find.find_root(node_b);
             if root_a == root_b {
                 continue;
             }
-            total_cost += val;
+            total_cost += cost;
             union_find.parents[root_b] = root_a;
             used_edges += 1;
-            if used_edges == n-1 {
+            if used_edges == n - 1 {
                 break;
             }
         }
