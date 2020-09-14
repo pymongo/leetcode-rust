@@ -26,6 +26,7 @@ mod set_matrix_zeroes;
 mod shuffle_the_array;
 mod special_positions_in_a_binary_matrix;
 mod spiral_matrix;
+mod spiral_matrix_2;
 mod tail_recursion_fibonacci;
 mod to_lowercase;
 mod transpose_matrix;

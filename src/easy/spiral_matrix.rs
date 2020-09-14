@@ -51,7 +51,18 @@ impl Solution {
         }
         res
     }
+
+    // 根据spiral_matrix最佳答案写出的
+    fn spiral_order_2(a: Vec<Vec<i32>>) -> Vec<i32> {
+        let m = a.len();
+        if m == 0 {
+            return Vec::new();
+        }
+        let n = a[0].len();
+        // TODO 飞机上敲代码
+    }
 }
+
 
 #[test]
 fn test() {
