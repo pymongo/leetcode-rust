@@ -20,7 +20,7 @@ fn bench_i32_ascii_table(bencher: &mut test::Bencher) {
 fn bench_usize_ascii_table(bencher: &mut test::Bencher) {
     bencher.iter(|| {
         for &(input, expected) in TEST_CASES.iter() {
-            assert_eq!(usize_ascii_table(output.to_string()), expected)
+            assert_eq!(usize_ascii_table(input.to_string()), expected)
         }
     });
 }

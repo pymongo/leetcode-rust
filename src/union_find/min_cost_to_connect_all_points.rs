@@ -6,11 +6,7 @@ struct UnionFind {
 
 impl UnionFind {
     fn new(n: usize) -> Self {
-        let mut parents = Vec::with_capacity(n);
-        for i in 0..n {
-            parents.push(i);
-        }
-        UnionFind { parents }
+        UnionFind { parents: (0..n).collect() }
     }
 
     fn find_root(&self, node: usize) -> usize {
