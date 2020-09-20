@@ -5,7 +5,7 @@ struct UnionFind {
 }
 
 impl UnionFind {
-    fn new(n: usize) -> UnionFind {
+    fn new(n: usize) -> Self {
         let mut parents = Vec::with_capacity(n);
         for i in 0..n {
             parents.push(i);
@@ -23,7 +23,7 @@ impl UnionFind {
         return curr_node_parent;
     }
 
-    // 添加一条node_a连向node_b边
+    // 如果a和b不相连，则添加一条node_a连向node_b边
     fn union(&mut self, node_a: usize, node_b: usize) {
         // 路径压缩: 不要直接将b连到a上，而是将b的祖先连向a的祖先，以此压缩路径减少连边
         let root_a = Self::find_root(self, node_a);
