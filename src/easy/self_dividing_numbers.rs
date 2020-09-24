@@ -22,5 +22,8 @@ impl Solution {
 
 #[test]
 fn test() {
-    assert_eq!(Solution::self_dividing_numbers(1, 22), vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22]);
+    assert_eq!(
+        Solution::self_dividing_numbers(1, 22),
+        vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22]
+    );
 }

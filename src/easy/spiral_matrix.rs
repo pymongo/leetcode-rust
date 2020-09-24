@@ -63,7 +63,6 @@ impl Solution {
     }
 }
 
-
 #[test]
 fn test() {
     assert_eq!(
@@ -71,7 +70,11 @@ fn test() {
         vec![1, 2, 3, 6, 9, 8, 7, 4, 5]
     );
     assert_eq!(
-        Solution::spiral_order(vec![vec![1, 2, 3, 4], vec![5, 6, 7, 8], vec![9, 10, 11, 12]]),
+        Solution::spiral_order(vec![
+            vec![1, 2, 3, 4],
+            vec![5, 6, 7, 8],
+            vec![9, 10, 11, 12]
+        ]),
         vec![1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7]
     );
 }

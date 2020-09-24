@@ -18,7 +18,7 @@ impl Solution {
         dp[0] = 0;
         for i in 0..n {
             let right_most = i + nums[i];
-            if right_most >= n-1 {
+            if right_most >= n - 1 {
                 return dp[i] + 1;
             }
             for j in (i + 1)..=right_most {
@@ -36,7 +36,7 @@ impl Solution {
         // 当前这一步最远能跳到哪
         let mut curr_step_right_most = 0usize;
         // 注意遍历到终点的前一格
-        for i in 0..n-1 {
+        for i in 0..n - 1 {
             right_most = right_most.max(nums[i] + i);
             // 如果已经走到当前层能走的最远距离，则更新下一层能走的最远距离，并让步数+1
             if i == curr_step_right_most {
@@ -49,9 +49,7 @@ impl Solution {
 }
 
 #[cfg(test)]
-const TEST_CASES: [(&[i32], i32); 1] = [
-    (&[2, 3, 1, 1, 4], 2)
-];
+const TEST_CASES: [(&[i32], i32); 1] = [(&[2, 3, 1, 1, 4], 2)];
 
 #[test]
 fn test() {

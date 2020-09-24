@@ -6,7 +6,9 @@ struct UnionFind {
 
 impl UnionFind {
     fn new(n: usize) -> Self {
-        UnionFind { parents: (0..n).collect() }
+        UnionFind {
+            parents: (0..n).collect(),
+        }
     }
 
     fn find_root(&self, node: usize) -> usize {
