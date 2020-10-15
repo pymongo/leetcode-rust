@@ -32,7 +32,7 @@ fn test_nim_bitwise() {
 由此也可得 4 的倍数的二进制表示的后 2 为一定为 0。
 */
 #[cfg(test)]
-fn nim_bitwise(n: i32) -> bool {
+const fn nim_bitwise(n: i32) -> bool {
     // (n % 4) != 0
     (n & 3) != 0
 }

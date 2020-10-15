@@ -1,4 +1,4 @@
-//! 2 Solutions: binary_serch_kth_min、array_devider
+//! 2 Solutions: binary_search_kth_min、array_divider
 
 #[cfg(test)]
 const TEST_CASES: [(&[i32], &[i32], f64); 17] = [

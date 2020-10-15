@@ -2,7 +2,7 @@ struct Solution;
 
 // 周赛206#1
 impl Solution {
-    pub fn num_special(mat: Vec<Vec<i32>>) -> i32 {
+    fn num_special(mat: Vec<Vec<i32>>) -> i32 {
         let (m, n) = (mat.len(), mat[0].len());
         let mut res = 0;
         for i in 0..m {
