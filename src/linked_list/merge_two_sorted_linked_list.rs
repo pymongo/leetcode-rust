@@ -20,7 +20,7 @@ impl Solution {
                 *curr = l2.take();
                 l2 = next;
             }
-            curr = &mut curr.as_mut().unwrap().next;
+            curr = &mut curr.as_mut()?.next;
         }
         *curr = l1.or(l2);
         head
@@ -46,7 +46,7 @@ impl Solution {
                         l2 = n2.next.take();
                     };
                     *curr = Some(Box::new(ListNode::new(val)));
-                    curr = &mut curr.as_mut().unwrap().next;
+                    curr = &mut curr.as_mut()?.next;
                 }
                 (Some(n1), None) => {
                     *curr = Some(n1.clone());

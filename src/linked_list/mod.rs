@@ -25,7 +25,7 @@ fn arr_to_linked_list(nums: &[i32]) -> Option<Box<ListNode>> {
     let mut curr = &mut head;
     for num in nums {
         *curr = Some(Box::new(ListNode::new(*num)));
-        curr = &mut curr.as_mut().unwrap().next;
+        curr = &mut curr.as_mut()?.next;
     }
     head
 }
@@ -46,7 +46,7 @@ pub fn arr_to_linked_list_with_dummy(nums: &[i32]) -> Option<Box<ListNode>> {
     let mut dummy = Some(Box::new(ListNode::new(0)));
     let mut curr = &mut dummy;
     for num in nums {
-        let curr_node = curr.as_mut().unwrap();
+        let curr_node = curr.as_mut()?;
         curr_node.next = Some(Box::new(ListNode::new(*num)));
         curr = &mut curr_node.next;
     }

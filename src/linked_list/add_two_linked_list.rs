@@ -13,7 +13,6 @@ match optional {
     Some(x) => f(x),
     _ => {}
 }
-5. 全球服第一的代码：current = current.next.as_mut().unwrap() 轻松解压变量<Option<Box>>
 */
 use super::{arr_to_linked_list, linked_list_to_vec, ListNode};
 
@@ -61,7 +60,7 @@ fn add_two_linked_list(
         // 3. 将current_node指向current_node.next(因为next为None，所以刚好回到第一步)
         *curr = Some(Box::new(ListNode::new(sum_or_carry % 10)));
         sum_or_carry /= 10; // 此时的sum_or_carry看作进位值，传入下次迭代
-        curr = &mut curr.as_mut().unwrap().next;
+        curr = &mut curr.as_mut()?.next;
     }
     head_node
 }
