@@ -7,6 +7,13 @@
 #[cfg(test)]
 const TEST_CASES: [(&str, &str, usize); 1] = [("caba", "abac", 3)];
 
+#[test]
+fn test() {
+    for &(input1, input2, expected) in TEST_CASES.iter() {
+        assert_eq!(dp(input1.to_string(), input2.to_string()), expected);
+    }
+}
+
 #[cfg(test)]
 fn dp(s1: String, s2: String) -> usize {
     let (str1, str2) = (s1.as_bytes(), s2.as_bytes());
@@ -36,12 +43,4 @@ fn dp(s1: String, s2: String) -> usize {
         &str1[(max_end_index - max + 1)..=max_end_index]
     ));
     max
-}
-
-#[test]
-#[ignore]
-fn test() {
-    for &(input1, input2, expected) in TEST_CASES.iter() {
-        assert_eq!(dp(input1.to_string(), input2.to_string()), expected);
-    }
 }

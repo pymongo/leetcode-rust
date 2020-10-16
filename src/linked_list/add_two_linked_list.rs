@@ -14,9 +14,8 @@ match optional {
     _ => {}
 }
 */
-use super::{arr_to_linked_list, linked_list_to_vec, ListNode};
+use super::ListNode;
 
-#[cfg(test)]
 fn add_two_linked_list(
     mut l1: Option<Box<ListNode>>,
     mut l2: Option<Box<ListNode>>,
@@ -74,6 +73,7 @@ const TEST_CASES: [(&[i32], &[i32], &[i32]); 1] = [(&[2, 4, 3], &[5, 6, 4], &[7,
 
 #[test]
 fn test_traverse_two_list_node() {
+    use crate::linked_list::{arr_to_linked_list, linked_list_to_vec};
     for &(arr1, arr2, expected) in &TEST_CASES {
         let ln1 = arr_to_linked_list(arr1);
         let ln2 = arr_to_linked_list(arr2);

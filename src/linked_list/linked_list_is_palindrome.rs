@@ -1,5 +1,4 @@
 use super::ListNode;
-use crate::linked_list::arr_to_linked_list;
 
 struct Solution;
 
@@ -51,7 +50,7 @@ const TEST_CASES: [(&[i32], bool); 1] = [(&[0, 0], true)];
 #[test]
 fn test_linked_list_is_palindrome() {
     for &(ln, expected) in TEST_CASES.iter() {
-        let head = arr_to_linked_list(ln);
+        let head = super::arr_to_linked_list(ln);
         assert_eq!(Solution::is_palindrome(head), expected);
     }
 }

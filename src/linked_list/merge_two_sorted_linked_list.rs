@@ -1,5 +1,4 @@
 use super::ListNode;
-use crate::binary_tree::TreeNode;
 
 struct Solution;
 

@@ -1,6 +1,6 @@
+#![feature(is_sorted)]
 #![allow(
     dead_code,
-    unused_imports,
     clippy::needless_return,
     clippy::needless_range_loop
 )]

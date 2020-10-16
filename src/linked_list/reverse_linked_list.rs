@@ -1,4 +1,4 @@
-use super::{arr_to_linked_list, linked_list_to_vec, ListNode};
+use super::ListNode;
 
 struct Solution;
 
@@ -53,6 +53,7 @@ const TEST_CASES: [(&[i32], &[i32]); 1] = [(&[1, 2, 3], &[3, 2, 1])];
 
 #[test]
 fn test_traverse_two_list_node() {
+    use crate::linked_list::{arr_to_linked_list, linked_list_to_vec};
     for &(input, output) in &TEST_CASES {
         let head = arr_to_linked_list(input);
         assert_eq!(
