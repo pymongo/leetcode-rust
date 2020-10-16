@@ -10,7 +10,7 @@ impl Solution {
     fn two_pointers_sorted_squares(a: Vec<i32>) -> Vec<i32> {
         let n = a.len();
         let mut res = vec![0i32; n];
-        let (mut l, mut r, mut largest_idx) = (0, n-1, n-1);
+        let (mut l, mut r, mut largest_idx) = (0, n - 1, n - 1);
         loop {
             let l_square = (a[l] * a[l]) as i32;
             let r_square = (a[r] * a[r]) as i32;
@@ -32,10 +32,7 @@ impl Solution {
 }
 
 #[cfg(test)]
-const TEST_CASES: [&[i32]; 2] = [
-    &[-4, -1, 0, 3, 10],
-    &[-7, -3, 2, 3, 11]
-];
+const TEST_CASES: [&[i32]; 2] = [&[-4, -1, 0, 3, 10], &[-7, -3, 2, 3, 11]];
 
 #[test]
 fn test() {

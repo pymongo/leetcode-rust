@@ -1,13 +1,13 @@
 struct TestCase {
     input: Vec<String>,
-    output: Vec<String>
+    output: Vec<String>,
 }
 
 impl TestCase {
     fn new(input: &[&str], output: &[&str]) -> Self {
         Self {
             input: input.iter().map(|&s| s.to_string()).collect(),
-            output: output.iter().map(|&s| s.to_string()).collect()
+            output: output.iter().map(|&s| s.to_string()).collect(),
         }
     }
 }
@@ -40,7 +40,7 @@ impl Solution {
         let mut arr = vec![vec![0u8; n]; 26];
         for word in 0..n {
             for &c in a[word].as_bytes() {
-                arr[(c-CHAR_A) as usize][word] += 1;
+                arr[(c - CHAR_A) as usize][word] += 1;
             }
         }
 

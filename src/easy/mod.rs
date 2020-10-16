@@ -3,6 +3,7 @@
 (1..10i32.pow(n as u32)).collect()
 */
 
+mod array;
 pub mod btree_map_two_sum;
 mod coin_lcci;
 mod construct_product_array;
@@ -10,6 +11,7 @@ mod contains_duplicate_2;
 mod corporate_flight_bookings;
 mod count_negative_numbers_in_a_sorted_matrix;
 mod count_number_of_teams;
+mod find_common_characters;
 mod i32_is_palindromic;
 mod majority_element;
 mod matrix_diagonal_sum;
@@ -31,5 +33,3 @@ mod tail_recursion_fibonacci;
 mod to_lowercase;
 mod transpose_matrix;
 mod unique_path;
-mod find_common_characters;
-mod array;

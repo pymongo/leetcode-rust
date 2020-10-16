@@ -18,7 +18,7 @@
 struct Solution;
 
 impl Solution {
-    pub fn sum_odd_length_subarrays(nums: Vec<i32>) -> i32 {
+    fn sum_odd_length_subarrays(nums: Vec<i32>) -> i32 {
         let n = nums.len();
         let mut total_sum = 0;
         let mut window_len = 1;
@@ -36,6 +36,21 @@ impl Solution {
         }
         total_sum
     }
+
+    fn solution_use_slice_window_api(nums: Vec<i32>) -> i32 {
+        let mut total_sum = 0;
+        let mut window_len = 1;
+        let n = nums.len();
+        while window_len <= n {
+            total_sum += nums
+                .windows(window_len)
+                .into_iter()
+                .map(|window| window.iter().sum::<i32>())
+                .sum::<i32>();
+            window_len += 2;
+        }
+        total_sum
+    }
 }
 
 #[cfg(test)]
@@ -45,5 +60,6 @@ const TEST_CASES: [(&[i32], i32); 1] = [(&[1, 4, 2, 5, 3], 58)];
 fn test() {
     for &(nums, sum) in &TEST_CASES {
         assert_eq!(Solution::sum_odd_length_subarrays(nums.to_vec()), sum);
+        assert_eq!(Solution::solution_use_slice_window_api(nums.to_vec()), sum);
     }
 }

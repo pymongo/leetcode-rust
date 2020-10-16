@@ -15,16 +15,16 @@ impl Solution {
         let mut left_max = Vec::with_capacity(n);
         left_max.push(nums[0]);
         for i in 1..n {
-            left_max.push(nums[i].max(left_max[i-1]));
+            left_max.push(nums[i].max(left_max[i - 1]));
         }
         let mut right_max = vec![0; n];
-        right_max[n-1] = nums[n-1];
-        for i in (0..=n-2).rev() {
-            right_max[i] = nums[i].max(right_max[i+1]);
+        right_max[n - 1] = nums[n - 1];
+        for i in (0..=n - 2).rev() {
+            right_max[i] = nums[i].max(right_max[i + 1]);
         }
         // println!("{:?}", &left_max);
         // println!("{:?}", &right_max);
-        for i in 1..n-1 {
+        for i in 1..n - 1 {
             res += left_max[i].min(right_max[i]) - nums[i];
         }
         res
@@ -36,7 +36,7 @@ impl Solution {
         if n == 0 {
             return 0;
         }
-        for i in 1..n-1 {
+        for i in 1..n - 1 {
             // 寻找左侧和右侧最大值的代码可以用动态规划区优化
             let (mut left_max, mut right_max) = (0, 0);
             for j in (0..=i).rev() {
@@ -52,9 +52,7 @@ impl Solution {
 }
 
 #[cfg(test)]
-const TEST_CASES: [(&[i32], i32); 1] = [
-    (&[0,1,0,2,1,0,1,3,2,1,2,1], 6),
-];
+const TEST_CASES: [(&[i32], i32); 1] = [(&[0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1], 6)];
 
 #[test]
 fn test() {
@@ -63,4 +61,3 @@ fn test() {
         assert_eq!(Solution::trap(nums.to_vec()), res);
     }
 }
-

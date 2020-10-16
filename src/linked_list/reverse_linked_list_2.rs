@@ -50,7 +50,7 @@ impl Solution {
         其实指针前移的过程根本就没有任何修改，不应该用mut，但是为了后面的代码rev_head能是可变的，所以要从源头开始将mut传播下去
         */
         let mut node_m_prev = dummy.as_mut()?;
-        for _ in 0..m-1 {
+        for _ in 0..m - 1 {
             node_m_prev = node_m_prev.next.as_mut()?;
         }
 
@@ -70,7 +70,6 @@ impl Solution {
         }
         return dummy?.next;
     }
-
 
     /* 请无视这种链表转数组，数组操作完后再转为链表的解法
     fn vec_to_linked_list(nums: Vec<i32>) -> Option<Box<ListNode>> {
