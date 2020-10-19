@@ -92,7 +92,7 @@ pub fn usize_ascii_table(s: String) -> i32 {
     max as i32 + 1
 }
 
-#[cfg(not)]
+#[cfg(FALSE)]
 #[test]
 fn test_brute_force() {
     for &(input, expected) in TEST_CASES.iter() {
@@ -102,7 +102,7 @@ fn test_brute_force() {
 
 // 164 ms, faster than 12.34%
 // 这个方法太慢了，其实一层遍历就够了
-#[cfg(not)]
+#[cfg(FALSE)]
 fn my_brute_force(s: String) -> i32 {
     let mut max: usize = 0;
     let mut uniques: std::collections::BTreeSet<char> = std::collections::BTreeSet::new();
@@ -122,7 +122,7 @@ fn my_brute_force(s: String) -> i32 {
     max as i32
 }
 
-#[cfg(not)]
+#[cfg(FALSE)]
 fn btree_brute_force(s: String) -> i32 {
     let size: usize = s.len();
     let mut index: usize = 0;

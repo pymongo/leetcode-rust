@@ -37,7 +37,7 @@ impl Solution {
     // }
 
     // reverse mth..nth node in linked_list
-    #[cfg(not)]
+    #[cfg(FALSE)]
     fn reverse_between(head: Option<Box<ListNode>>, m: i32, n: i32) -> Option<Box<ListNode>> {
         let mut dummy = Some(Box::new(ListNode::new(0)));
         dummy.as_mut()?.next = head;

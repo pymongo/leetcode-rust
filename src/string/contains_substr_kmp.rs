@@ -31,7 +31,7 @@ KMP用到的数据结构很像动态规划的dp数组，实际上是dfa(确定�
 状态转移图可以看这篇题解：
 https://leetcode-cn.com/problems/implement-strstr/solution/kmp-suan-fa-xiang-jie-by-labuladong/
 */
-#[cfg(not)]
+#[cfg(FALSE)]
 pub fn global_best_api(haystack: String, needle: String) -> i32 {
     let haystack = haystack.into_bytes();
     let needle = needle.into_bytes();
@@ -86,7 +86,7 @@ A B C D A B D
 例如 haystack=ABCDABE, needle=ABCDABC
 匹配到E不满足时，会前移6-2(B)个位置，有点像双指针最长无重复子串的尾指针前移的情况
 */
-#[cfg(not)]
+#[cfg(FALSE)]
 pub fn prefix_arr(needle: &[u8]) -> Vec<usize> {
     let mut p = 0;
     let mut res = vec![0; needle.len()];

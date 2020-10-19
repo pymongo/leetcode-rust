@@ -44,7 +44,7 @@ fn my_solution(str: String) -> String {
     new_string
 }
 
-#[cfg(not)]
+#[cfg(FALSE)]
 // 或者遍历中途对每个char做to_ascii_lowercase的操作
 fn using_standard_api(str: String) -> String {
     // str.as_str().to_lowercase()

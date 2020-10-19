@@ -41,7 +41,7 @@ public static ListNode arrayToListNode(int []nums) {
     return dummy.next;
 }
 */
-#[cfg(not)]
+#[cfg(FALSE)]
 pub fn arr_to_linked_list_with_dummy(nums: &[i32]) -> Option<Box<ListNode>> {
     let mut dummy = Some(Box::new(ListNode::new(0)));
     let mut curr = &mut dummy;

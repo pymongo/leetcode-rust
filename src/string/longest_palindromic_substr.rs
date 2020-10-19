@@ -495,7 +495,7 @@ fn dp(s: String) -> String {
 }
 
 // 国服第一0ms的解答，Manacher是唯一能实现O(n)时间复杂度的算法
-#[cfg(not)]
+#[cfg(FALSE)]
 pub fn longest_palindrome_manacher(s: String) -> String {
     /* Manacher Algorithm
      * step1: add '$''#' into string
@@ -560,7 +560,7 @@ pub fn longest_palindrome_manacher(s: String) -> String {
 }
 
 // 全球服第一的答案，改良了中心扩散算法，由于rust性能好，我写的中心扩散也能跑进4ms，改良下跑进0ms也是有可能的
-#[cfg(not)]
+#[cfg(FALSE)]
 fn longest_palindrome_global_best(s: String) -> String {
     let seq: Vec<char> = s.chars().collect();
     let len = seq.len();
@@ -602,7 +602,7 @@ fn longest_palindrome_global_best(s: String) -> String {
 内存消耗: 2 MB, 在所有 Rust 提交中击败了66.67%的用户
 时间复杂度，O(n^3)++
 */
-#[cfg(not)]
+#[cfg(FALSE)]
 fn my_brute_force(s: String) -> String {
     let len = s.len();
     if len <= 1 {
@@ -630,7 +630,7 @@ fn my_brute_force(s: String) -> String {
     result
 }
 
-#[cfg(not)]
+#[cfg(FALSE)]
 fn my_brute_force_is_palindromic(s: &String) -> bool {
     let bytes = (*s).as_bytes();
     let mut start: usize = 0;

@@ -5,7 +5,7 @@ impl Solution {
     pub fn spiral_order(a: Vec<Vec<i32>>) -> Vec<i32> {
         let m = a.len();
         if m == 0 {
-            return Vec::new();
+            return Vec::with_capacity(0);
         }
         if m == 1 {
             return a[0].clone();
@@ -53,13 +53,42 @@ impl Solution {
     }
 
     // 根据spiral_matrix最佳答案写出的
+    // 不完全正确，没考虑边界情况
+    #[cfg(FALSE)]
     fn spiral_order_2(a: Vec<Vec<i32>>) -> Vec<i32> {
         let m = a.len();
         if m == 0 {
-            return Vec::new();
+            return Vec::with_capacity(0);
         }
-        // let n = a[0].len();
-        todo!("飞机上敲代码")
+        let n = a[0].len();
+        let target = m * n;
+        let mut res = Vec::with_capacity(target);
+        // 跟spiral_matrix_1一样，l/r/t/b分别表示left/right/top/bottom
+        let (mut l, mut r, mut t, mut b) = (0, n - 1, 0, m - 1);
+        let mut num = 1;
+        while num <= target {
+            for j in l..=r {
+                res.push(a[t][j]);
+                num += 1;
+            }
+            t += 1;
+            for i in t..=b {
+                res.push(a[i][r]);
+                num += 1;
+            }
+            r -= 1;
+            for j in (l..=r).rev() {
+                res.push(a[b][j]);
+                num += 1;
+            }
+            b -= 1;
+            for i in (t..=b).rev() {
+                res.push(a[i][l]);
+                num += 1;
+            }
+            l += 1;
+        }
+        res
     }
 }
 

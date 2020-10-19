@@ -165,7 +165,7 @@ https://www.youtube.com/watch?v=ScCg9v921ns
 流程：移动较短数组的分割线
 */
 // move_divider_of_two_arrays
-#[cfg(not)]
+#[cfg(FALSE)]
 fn move_divider_of_two_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     let (len_a, len_b) = (nums1.len(), nums2.len());
     // 保证数组a的长度更短，我们遍历较短的数组a节约时间，加上二分查找后使得时间复杂度降低到O(log(min(m,n)))
@@ -298,7 +298,7 @@ fn move_divider_of_two_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
 /// 没有考虑各种边际情况，leetcode上部分测试用例不通过
 /// 没有考虑nums1或nums2为空的情况，没有考虑nums1一个元素都不取和nums2一个元素都不取的情况
 ///
-#[cfg(not)]
+#[cfg(FALSE)]
 fn my_binary_search_kth(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     let (len1, len2) = (nums1.len(), nums2.len());
     // 如果是奇数，恰好是中位数，如果是偶数，则是左中位数
@@ -399,7 +399,7 @@ fn my_brute_force(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
 执行用时 : 4 ms, 在所有 Rust 提交中击败了72.09%的用户
 内存消耗 : 2 MB, 在所有 Rust 提交中击败了100.00%的用户
 */
-#[cfg(not)]
+#[cfg(FALSE)]
 pub fn my_brute_force_old(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     let ans: f64;
     let mut len = nums1.len();
@@ -449,10 +449,10 @@ pub fn my_brute_force_old(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
 }
 
 // 全球服第一、二分查找第k小的元素的算法
-#[cfg(not)]
+#[cfg(FALSE)]
 use std::cmp::Ordering;
 
-#[cfg(not)]
+#[cfg(FALSE)]
 fn search_sep_idx(n1: &Vec<i32>, n2: &Vec<i32>) -> usize {
     let (mut left, mut right) = (0, n1.len() + 1);
     while (right > left) {
@@ -466,7 +466,7 @@ fn search_sep_idx(n1: &Vec<i32>, n2: &Vec<i32>) -> usize {
     unreachable!()
 }
 
-#[cfg(not)]
+#[cfg(FALSE)]
 fn get_min_maxs(n1: &Vec<i32>, n2: &Vec<i32>, sep_idx1: usize) -> (i32, i32, i32, i32) {
     let final_len = n1.len() + n2.len();
     let sep_idx2 = final_len / 2 - sep_idx1;
@@ -495,7 +495,7 @@ fn get_min_maxs(n1: &Vec<i32>, n2: &Vec<i32>, sep_idx1: usize) -> (i32, i32, i32
     (left_max1, left_max2, right_min1, right_min2)
 }
 
-#[cfg(not)]
+#[cfg(FALSE)]
 fn check_sep(n1: &Vec<i32>, n2: &Vec<i32>, sep_idx1: usize) -> Ordering {
     let (left_max1, left_max2, right_min1, right_min2) = get_min_maxs(n1, n2, sep_idx1);
     let left_max = left_max1.max(left_max2);
@@ -509,7 +509,7 @@ fn check_sep(n1: &Vec<i32>, n2: &Vec<i32>, sep_idx1: usize) -> Ordering {
     }
 }
 
-#[cfg(not)]
+#[cfg(FALSE)]
 pub fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     if nums1.len() > nums2.len() {
         return Self::find_median_sorted_arrays(nums2, nums1);
@@ -528,7 +528,7 @@ pub fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
 }
 
 // 国服第一、二分查找第k小的元素的算法
-#[cfg(not)]
+#[cfg(FALSE)]
 fn get_min(x: usize, y: usize) -> usize {
     if x > y {
         return y;
@@ -537,7 +537,7 @@ fn get_min(x: usize, y: usize) -> usize {
     }
 }
 
-#[cfg(not)]
+#[cfg(FALSE)]
 fn get_kth(
     nums1: &Vec<i32>,
     start1: usize,
@@ -592,7 +592,7 @@ fn get_kth(
     }
 }
 
-#[cfg(not)]
+#[cfg(FALSE)]
 pub fn find_median_sorted_arrays_china_best(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     let n = nums1.len();
     let m = nums2.len();
