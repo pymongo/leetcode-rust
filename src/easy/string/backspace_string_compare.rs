@@ -29,6 +29,9 @@ const TEST_CASES: [(&str, &str, bool); 4] = [
 #[test]
 fn test_backspace_compare() {
     for &(s, t, expected) in &TEST_CASES {
-        assert_eq!(Solution::backspace_compare(s.to_string(), t.to_string()), expected);
+        assert_eq!(
+            Solution::backspace_compare(s.to_string(), t.to_string()),
+            expected
+        );
     }
 }
