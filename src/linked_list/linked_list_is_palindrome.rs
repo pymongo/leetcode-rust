@@ -4,6 +4,7 @@ struct Solution;
 
 impl Solution {
     // 仅仅适用于node.val在0~9之间
+    #[cfg(FALSE)]
     fn is_palindrome_only_one_digit(head: Option<Box<ListNode>>) -> bool {
         let mut asc = 0;
         let mut desc = 0;
@@ -39,7 +40,6 @@ impl Solution {
             left += 1;
             right -= 1;
         }
-        dbg!(111);
         return true;
     }
 }
