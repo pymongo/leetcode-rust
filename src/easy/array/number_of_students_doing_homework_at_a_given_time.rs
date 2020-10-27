@@ -12,5 +12,5 @@ impl Solution {
 
 #[test]
 fn test_busy_student() {
-    assert_eq!(Solution::busy_student(vec![1,2,3], vec![3,2,7], 4), 1);
+    assert_eq!(Solution::busy_student(vec![1, 2, 3], vec![3, 2, 7], 4), 1);
 }

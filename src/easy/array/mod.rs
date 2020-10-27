@@ -1,7 +1,8 @@
 mod gray_code;
 mod how_many_numbers_are_smaller_than_the_current_number;
+mod maximum_product_of_two_elements_in_an_array;
 mod number_of_students_doing_homework_at_a_given_time;
+mod queries_on_a_permutation_with_key;
 mod shuffle_the_array;
 mod squares_of_a_sorted_array;
 mod sum_of_all_odd_length_subarrays;
-mod maximum_product_of_two_elements_in_an_array;
