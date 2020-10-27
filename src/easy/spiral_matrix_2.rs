@@ -3,7 +3,7 @@ struct Solution;
 // 按螺旋遍历生成n*n的矩阵
 impl Solution {
     #[allow(clippy::many_single_char_names)]
-    pub fn generate_matrix(n: i32) -> Vec<Vec<i32>> {
+    fn generate_matrix(n: i32) -> Vec<Vec<i32>> {
         if n == 1 {
             // 避免r=0时r--发生usize溢出
             return vec![vec![1]];

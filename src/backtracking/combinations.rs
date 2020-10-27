@@ -1,7 +1,7 @@
 struct Solution;
 
 impl Solution {
-    pub fn combine(n: i32, k: i32) -> Vec<Vec<i32>> {
+    fn combine(n: i32, k: i32) -> Vec<Vec<i32>> {
         let k = k as usize;
         let mut cur: Vec<i32> = Vec::with_capacity(k);
         let mut res: Vec<Vec<i32>> = Vec::new();
