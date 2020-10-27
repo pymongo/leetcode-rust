@@ -24,12 +24,13 @@ impl Solution {
     */
     pub fn official_solution(name: String, typed: String) -> bool {
         let (mut i, mut j) = (0, 0);
-        let (name, typed, typed_len, name_len) = (name.as_bytes(), typed.as_bytes(), typed.len(), name.len());
+        let (name, typed, typed_len, name_len) =
+            (name.as_bytes(), typed.as_bytes(), typed.len(), name.len());
         while j < typed_len {
             if i < name_len && name[i] == typed[j] {
                 i += 1;
                 j += 1;
-            } else if j > 0 && typed[j]== typed[j-1] {
+            } else if j > 0 && typed[j] == typed[j - 1] {
                 j += 1;
             } else {
                 return false;
@@ -79,24 +80,24 @@ impl Solution {
                         last_a = *name.next().unwrap();
                         last_b = *typed.next().unwrap();
                     }
-                },
+                }
                 (false, true) => {
                     // dbg!("(false, true)");
                     // alex aaleex
                     //  ^    ^
                     last_b = *typed.next().unwrap();
-                },
+                }
                 (true, false) => {
                     // dbg!("(true, false)");
                     // saeed saed
                     //    ^     ^
                     return false;
-                },
+                }
                 (true, true) => {
                     // dbg!("(true, true)");
                     last_a = *name.next().unwrap();
                     last_b = *typed.next().unwrap();
-                },
+                }
             }
         }
         // TODO use unstable peekable iterator next_if API to simplify code

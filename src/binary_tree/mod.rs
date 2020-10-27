@@ -18,7 +18,10 @@ pub fn str_to_optional_tree_node(s: &str) -> OptionalTreeNode {
             continue;
         }
         if val_len > 0 {
-            let node_val = String::from_utf8(s[i - val_len..i].to_owned()).unwrap().parse::<i32>().unwrap();
+            let node_val = String::from_utf8(s[i - val_len..i].to_owned())
+                .unwrap()
+                .parse::<i32>()
+                .unwrap();
             let node = Rc::new(RefCell::new(TreeNode::new(node_val)));
             if let Some(peek) = stack.last_mut() {
                 let mut peek = peek.borrow_mut();
@@ -35,7 +38,7 @@ pub fn str_to_optional_tree_node(s: &str) -> OptionalTreeNode {
             val_len = 0;
         }
         if s[i] == b')' {
-            if s[i-1] == b'(' {
+            if s[i - 1] == b'(' {
                 is_left_subtree_empty = true;
             } else {
                 stack.pop().unwrap();

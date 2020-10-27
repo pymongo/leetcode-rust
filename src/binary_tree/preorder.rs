@@ -1,4 +1,4 @@
-use super::{TreeNode, Rc, RefCell};
+use super::{Rc, RefCell, TreeNode};
 
 struct Solution;
 

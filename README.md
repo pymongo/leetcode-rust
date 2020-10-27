@@ -301,7 +301,8 @@ Leetcode
 |1395|[Count Number of Teams](https://leetcode.com/problems/count-number-of-teams/)|[Rust](src/easy/count_number_of_teams.rs)||
 |1429_LOCK|[First Unique Number](https://leetcode.com/problems/first-unique-number/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/first_unique_number_in_stream.py)||
 |1431|[Kids With the Greatest Number of Candies](https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/kids_with_the_greatest_number_of_candies.py)||
-|1464|[Maximum Product of Two Elements in an Array](https://leetcode.com/problems/maximum-product-of-two-elements-in-an-array/)|||
+|1450|[Number of Students Doing Homework at a Given Time](https://leetcode.com/problems/number-of-students-doing-homework-at-a-given-time/)|[Rust](src/easy/array/number_of_students_doing_homework_at_a_given_time.rs)||
+|1464|[Maximum Product of Two Elements in an Array](https://leetcode.com/problems/maximum-product-of-two-elements-in-an-array/)|[Rust](src/easy/array/maximum_product_of_two_elements_in_an_array.rs)||
 |1470|[Shuffle the Array](https://leetcode.com/problems/shuffle-the-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/shuffle_the_array.py), [Rust](src/easy/array/shuffle_the_array.rs)||
 |1476|[Subrectangle Queries](https://leetcode.com/problems/subrectangle-queries/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/subrectangle_queries.py)||
 |1480|[Running Sum of 1d Array](https://leetcode.com/problems/running-sum-of-1d-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/running_sum_of_1d_array.py)||
