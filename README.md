@@ -281,17 +281,18 @@ Leetcode
 |1049|[Last Stone Weight II](https://leetcode.com/problems/last-stone-weight-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/backpack_1_2.py)|0-1背包问题|
 |1095|[Find in Mountain Array](https://leetcode.com/problems/find-in-mountain-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/mountain_array_find.py)|binary_search, mountain_array|
 |1099_LOCK|[Two Sum Less Than K](https://leetcode.com/problems/two-sum-less-than-k/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/two_sum_le_count.py)|two_pointers|
-|1108|[Defanging an IP Address](https://leetcode.com/problems/defanging-an-ip-address/)|||
+|1108|[Defanging an IP Address](https://leetcode.com/problems/defanging-an-ip-address/)|[Rust](src/easy/string/defanging_an_ip_address.rs)||
 |1109|[Corporate Flight Bookings](https://leetcode.com/problems/corporate-flight-bookings/)|[Rust](src/easy/corporate_flight_bookings.rs)||
 |1143|[Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/longest_common_subsequence.py)||
 |1147|[Work Plan](https://www.lintcode.com/problem/work-plan/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/house_robber.py)||
 |1167_LOCK|[Longest Common Subsequence](https://leetcode.com/problems/minimum-cost-to-connect-sticks/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/minimum_cost_to_connect_sticks.py)||
+|1207|[Unique Number of Occurrences](https://leetcode.com/problems/unique-number-of-occurrences/)|[Rust](src/easy/array/unique_number_of_occurrences.rs)||
 |1213_LOCK|[Intersection of Three Sorted Arrays](https://leetcode.com/problems/intersection-of-three-sorted-arrays/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/intersection_of_two_arrays.py)||
 |1226|[The Dining Philosophers](https://leetcode.com/problems/the-dining-philosophers/)|[C++](https://github.com/pymongo/cpp_learn/blob/master/leetcode/concurrency/dining_philosophers_problem.cpp)||
 |1227|[Airplane Seat Assignment Probability](https://leetcode.com/problems/airplane-seat-assignment-probability/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/brain_twists/airplane_seat_assignment_probability.py)||
 |1266|[Minimum Time Visiting All Points](https://leetcode.com/problems/minimum-time-visiting-all-points/)|[Rust](src/easy/min_time_visiting_all_points.rs)||
 |1281|[Subtract the Product and Sum of Digits of an Integer](https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/intersection_of_two_arrays.py)||
-|1295|[Minimum Operations to Make Array Equal](https://leetcode.com/problems/find-numbers-with-even-number-of-digits/)|||
+|1295|[Find Numbers with Even Number of Digits](https://leetcode.com/problems/find-numbers-with-even-number-of-digits/)|[Rust](src/easy/array/find_numbers_with_even_number_of_digits.rs)||
 |1313|[Decompress Run-Length Encoded List](https://leetcode.com/problems/decompress-run-length-encoded-list/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/decompress_run_length_encoded_list.py)||
 |1342|[Number of Steps to Reduce a Number to Zero](https://leetcode.com/problems/number-of-steps-to-reduce-a-number-to-zero/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/number_of_steps_to_reduce_a_number_to_zero.py)||
 |1351|[Count Negative Numbers in a Sorted Matrix](https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix/)|[Rust](src/easy/count_negative_numbers_in_a_sorted_matrix.rs)||
