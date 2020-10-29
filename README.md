@@ -1,8 +1,6 @@
 Leetcode
 ========
 
-未记录到python_leetcode表格上的仅有Rust解法的题: 925
-
 表格中没有代码文件链接的都是过于简单30秒就能搞定的题
 
 | # | Title | Solutions | Category |
@@ -103,6 +101,7 @@ Leetcode
 |126|[Word Ladder II](https://leetcode.com/problems/word-ladder-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/bfs/word_ladder_2.py)|BFS+DFS|
 |127|[Word Ladder](https://leetcode.com/problems/word-ladder/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/bfs/word_ladder.py)|双向BFS|
 |128|[Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/longest_consecutive_sequence.py)|并查集|
+|129|[Sum Root to Leaf Numbers](https://leetcode.com/problems/sum-root-to-leaf-numbers/)|[Rust](src/binary_tree/sum_root_to_leaf_numbers.rs)||
 |133|[Clone Graph](https://leetcode.com/problems/clone-graphs/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/graph/clone_graph.py)|DFS, BFS|
 |134|[Gas Station](https://leetcode.com/problems/gas-station/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/greedy/gas_station.py)|greedy|
 |136|[Single Number](https://leetcode.com/problems/single-number/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/bitwise/xor_find_single.py)||
@@ -111,7 +110,7 @@ Leetcode
 |140|[Word Break II](https://leetcode.com/problems/word-break-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/word_break_2.py)||
 |141|[Linked List Cycle](https://lintcode.com/problem/linked-list-cycle/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/linked_list_cycle.py)||
 |142|[Linked List Cycle II](https://lintcode.com/problem/linked-list-cycle-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/linked_list_cycle.py)||
-|144|[Binary Tree Preorder Traversal](https://leetcode.com/problems/binary-tree-preorder-traversal/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/traversal_pre_order.py), [Rust](src/binary_tree/preorder.rs)|DFS, stack|
+|144|[Binary Tree Preorder Traversal](https://leetcode.com/problems/binary-tree-preorder-traversal/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/traversal_pre_order.py), [Rust](src/binary_tree/preorder_traversal.rs)|DFS, stack|
 |145|[Binary Tree Postorder Traversal](https://leetcode.com/problems/binary-tree-postorder-traversal/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/traversal_pre_order.py)|DFS, stack|
 |145|[LRU Cache](https://leetcode.com/problems/lru-cache/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/lru_cache.py)|double_linked_list, OrderedDict|
 |151|[Reverse Words in a String](https://leetcode.com/problems/reverse-words-in-a-string/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/rotate_reverse_circle_shift/reverse_words_in_a_string.py)||
@@ -311,7 +310,7 @@ Leetcode
 |1486|[XOR Operation in an Array](https://leetcode.com/problems/xor-operation-in-an-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/xor_operation_in_an_array.py)||
 |1512|[Number of Good Pairs](https://leetcode.com/problems/number-of-good-pairs/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/numbers_of_good_pairs.py)||
 |1528|[Shuffle String](https://leetcode.com/problems/shuffle-string/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/shuffle_string.py)||
-|1534|[Count Good Triplets](https://leetcode.com/problems/count-good-triplets/)|||
+|1534|[Count Good Triplets](https://leetcode.com/problems/count-good-triplets/)|[Rust](src/easy/array/count_good_triplets.rs)||
 |1551|[Minimum Operations to Make Array Equal](https://leetcode.com/problems/minimum-operations-to-make-array-equal/)|[Rust](src/easy/min_operations_to_make_array_equal.rs)||
 |1572/5491|[Shuffle String](https://leetcode.com/problems/matrix-diagonal-sum/)|[Rust](src/easy/matrix_diagonal_sum.rs)||
 |1576/5507|[Replace All ?'s to Avoid Consecutive Repeating Characters](https://leetcode.com/problems/replace-all-s-to-avoid-consecutive-repeating-characters/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/replace_question_mark_to_avoid_consecutive_repeating_char.py)||
@@ -421,7 +420,7 @@ LintCode
 |63|[Search in Rotated Sorted Array II](https://lintcode.com/problem/search-in-rotated-sorted-array-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/rotated_sorted_array_search_2_with_duplicate.py)|binary_search|
 |64|[Merge Sorted Array](https://lintcode.com/problem/merge-sorted-array/)|[Rust](src/easy/merge_two_sorted_arrays.rs), [Go](https://github.com/pymongo/go_leetcode/blob/master/sorting/merge_two_sorted_arrays_test.go), [Python](https://github.com/pymongo/python_leetcode/blob/master/divide_conquer/merge_two_sorted_arrays.py)|merge_sort|
 |65|[Median of Two Sorted Arrays](https://lintcode.com/problem/median-of-two-sorted-arrays/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/median_of_two_sorted_arrays.py), [Rust](src/binary_search/median_of_two_sorted_arrays.rs)|binary_search|
-|66|[Binary Tree Preorder Traversal](https://lintcode.com/problem/binary-tree-preorder-traversal/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/traversal_pre_order.py), , [Rust](src/binary_tree/preorder.rs)|DFS, stack|
+|66|[Binary Tree Preorder Traversal](https://lintcode.com/problem/binary-tree-preorder-traversal/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/traversal_pre_order.py), , [Rust](src/binary_tree/preorder_traversal.rs)|DFS, stack|
 |67|[Binary Tree Inorder Traversal](https://lintcode.com/problem/binary-tree-inorder-traversal/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/traversal_pre_order.py)|DFS, stack|
 |68|[Binary Tree Postorder Traversal](https://lintcode.com/problem/binary-tree-postorder-traversal/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/traversal_pre_order.py)|DFS, stack|
 |69|[Binary Tree Level Order Traversal](https://lintcode.com/problem/binary-tree-level-order-traversal/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/traversal_level_order.py)|BFS|
@@ -477,7 +476,7 @@ LintCode
 |142|[O(1) Check Power of 2](https://lintcode.com/problem/o1-check-power-of-2/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/bitwise/is_power_of_2.py)|bitwise, dichotomy|
 |143|[Sort Colors II](https://lintcode.com/problem/sort-colors-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/sorting_and_query/sort_colors_2.py)|quick_sort, counting_sort|
 |144|[interleaving_positive_and_negative_numbers](https://lintcode.com/problem/sort-colors-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/partition_array/interleaving_positive_and_negative_numbers.py)||
-|145|[Lower case to Uppercase](https://lintcode.com/problem/lowercase-to-uppercase/)|||
+|145|[Lower case to Uppercase](https://lintcode.com/problem/lowercase-to-uppercase/)|[Rust](src/easy/to_lowercase.rs)||
 |147_LOCK|[Narcissistic Number](https://lintcode.com/problem/narcissistic-number)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/narcissistic_number.py)||
 |148|[Sort Colors](https://lintcode.com/problem/sort-colors/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/partition_array/sort_colors.py)|three_pointers, partition_array|
 |149|[Best Time to Buy and Sell Stock](https://lintcode.com/problem/best-time-to-buy-and-sell-stock/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/stock.py)||

@@ -4,9 +4,10 @@ struct Solution;
 
 impl Solution {
     // noinspection RsSelfConvention
-    fn to_lower_case(str: String) -> String {
+    #[allow(clippy::wrong_self_convention)]
+    fn to_lower_case(s: String) -> String {
         // 既然是ASCII编码，更高效的做法可能是u8数组判断在大写范围的挨个-32
-        str.to_ascii_lowercase()
+        s.to_ascii_lowercase()
     }
 }
 

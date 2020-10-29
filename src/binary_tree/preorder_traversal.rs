@@ -16,6 +16,24 @@ impl Solution {
         }
         res
     }
+
+    /* FIXME cannot borrow `stack` as mutable because it is also borrowed as immutable
+    fn preorder_traversal_mut_borrow_err(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+        let mut res = Vec::new();
+        let mut stack = vec![root];
+        // immutable borrow occurs here
+        while let Some(peek) = stack.last() {
+            if let Some(peek) = peek {
+                let peek = peek.borrow();
+                res.push(peek.val);
+                // mutable borrow occurs here
+                stack.push(peek.right.clone());
+                stack.push(peek.left.clone());
+            }
+        }
+        res
+    }
+    */
 }
 
 #[test]
