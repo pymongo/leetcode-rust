@@ -29,3 +29,4 @@ mod tail_recursion_fibonacci;
 mod to_lowercase;
 mod transpose_matrix;
 mod unique_path;
+mod reverse_integer_checked_mul_overflow;
