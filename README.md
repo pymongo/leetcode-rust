@@ -1,9 +1,9 @@
-Leetcode
-========
-
 - problem number with `🔒` suffix need leetcode/lintcode subscription to unlock
 - problem number with `🤔` suffix has many solutions
 - problem number with `🚫` suffix means TODO, maybe too hard to solve 
+
+leetcode_problems
+========
 
 ~~(表格中没有代码文件链接的都是过于简单30秒就能搞定的题)~~
 
@@ -49,6 +49,7 @@ Leetcode
 |45|[Jump Game II](https://leetcode.com/problems/jump-game-ii/)|[Rust](src/dp/jump_game_2.rs)|greedy|
 |46|[Permutations](https://leetcode.com/problems/permutations/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/permutation.py)|backtracking|
 |47|[Permutations II](https://leetcode.com/problems/permutations-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/permutation.py)|backtracking|
+|48|[Rotate Image](https://leetcode.com/problems/rotate-image/)|[Rust](src/easy/grid_or_matrix/rotate_matrix.rs)|
 |49|[Group Anagrams](https://leetcode.com/problems/group-anagrams/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/group_anagrams.py)||
 |50|[Pow(x, n)](https://leetcode.com/problems/powx-n/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/math/pow.py)|binary_search|
 |51|[N Queens](https://leetcode.com/problems/n-queens)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/n_queens.py), [Rust](src/backtracking/n_queens.rs)||
@@ -317,12 +318,12 @@ Leetcode
 |1528|[Shuffle String](https://leetcode.com/problems/shuffle-string/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/shuffle_string.py)||
 |1534|[Count Good Triplets](https://leetcode.com/problems/count-good-triplets/)|[Rust](src/easy/array/count_good_triplets.rs)||
 |1551|[Minimum Operations to Make Array Equal](https://leetcode.com/problems/minimum-operations-to-make-array-equal/)|[Rust](src/easy/min_operations_to_make_array_equal.rs)||
-|1572/5491|[Shuffle String](https://leetcode.com/problems/matrix-diagonal-sum/)|[Rust](src/easy/matrix_diagonal_sum.rs)||
-|1576/5507|[Replace All ?'s to Avoid Consecutive Repeating Characters](https://leetcode.com/problems/replace-all-s-to-avoid-consecutive-repeating-characters/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/replace_question_mark_to_avoid_consecutive_repeating_char.py)||
-|1577/5508|[Number of Ways Where Square of Number Is Equal to Product of Two Numbers](https://leetcode.com/problems/number-of-ways-where-square-of-number-is-equal-to-product-of-two-numbers/)|[Rust](src/easy/number_of_ways_where_square_of_number_is_equal_to_product_of_two_numbers.rs)||
-|1578/5509|[Minimum Deletion Cost to Avoid Repeating Letters](https://leetcode.com/problems/minimum-deletion-cost-to-avoid-repeating-letters/submissions/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/minimum_deletion_cost_to_avoid_repeating_letters.py)||
-|1582/5511|[Number of Ways Where Square of Number Is Equal to Product of Two Numbers](https://leetcode.com/problems/special-positions-in-a-binary-matrix/)|[Rust](src/easy/special_positions_in_a_binary_matrix.rs)||
-|1584/5513|[Min Cost to Connect All Points](https://leetcode.com/problems/min-cost-to-connect-all-points/)|[Rust](src/union_find/min_cost_to_connect_all_points.rs)||
+|1572|[Matrix Diagonal Sum](https://leetcode.com/problems/matrix-diagonal-sum/)|[Rust](src/easy/matrix_diagonal_sum.rs)||
+|1576|[Replace All ?'s to Avoid Consecutive Repeating Characters](https://leetcode.com/problems/replace-all-s-to-avoid-consecutive-repeating-characters/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/replace_question_mark_to_avoid_consecutive_repeating_char.py)||
+|1577|[Number of Ways Where Square of Number Is Equal to Product of Two Numbers](https://leetcode.com/problems/number-of-ways-where-square-of-number-is-equal-to-product-of-two-numbers/)|[Rust](src/easy/number_of_ways_where_square_of_number_is_equal_to_product_of_two_numbers.rs)||
+|1578|[Minimum Deletion Cost to Avoid Repeating Letters](https://leetcode.com/problems/minimum-deletion-cost-to-avoid-repeating-letters/submissions/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/minimum_deletion_cost_to_avoid_repeating_letters.py)||
+|1582|[Number of Ways Where Square of Number Is Equal to Product of Two Numbers](https://leetcode.com/problems/special-positions-in-a-binary-matrix/)|[Rust](src/easy/special_positions_in_a_binary_matrix.rs)||
+|1584|[Min Cost to Connect All Points](https://leetcode.com/problems/min-cost-to-connect-all-points/)|[Rust](src/union_find/min_cost_to_connect_all_points.rs)||
 |1588|[Sum of All Odd Length Subarrays](https://leetcode.com/problems/sum-of-all-odd-length-subarrays/)|[Rust](src/easy/array/sum_of_all_odd_length_subarrays.rs)||
 
 ---
@@ -340,28 +341,16 @@ Leetcode
 
 ---
 
-程序员面试金典
-========
-
-| # | Title | Solutions | Category |
-|---| ----- | -------- | ---------- |
-|面试题 01.07|[旋转矩阵](https://leetcode-cn.com/problems/rotate-matrix-lcci/)|[Rust](src/easy/grid_or_matrix/rotate_matrix.rs)||
-
----
-
 从200926开始，由于精力有限暂不更新lintcode上的题解了，leetcode上做过但是lintcode未做的题有:
-
 - Trapping Rain Water
 
 ---
 
 TODO:
 
-43/415 字符串整数相乘/相加
-
-415是经典面试题利用字符串模拟竖式加法进行大数相加
-
-有兴趣但是困难级别的题: 1. 推箱子 2. 华容道
+- [ ] 43/415 字符串整数相乘/相加
+- [ ] 415是经典面试题利用字符串模拟竖式加法进行大数相加
+- [ ] 有兴趣但是困难级别的题: 1. 推箱子 2. 华容道
 
 有意思的但是没有找到题号的问题:
 
@@ -370,12 +359,11 @@ TODO:
 
 因为leetcode-cn上我多做了一些面试题/剑指5OFFER题(其实是重复的题目)，所以我leetcode国服账户会比全球服账户多AC了29题
 
-Rust刷题的优势: 数组题非常快，例如1584.最小生成树模板题，Rust耗时96ms，C++耗时808ms
 Rust刷题的劣势: 部分树/链表的题不能用Rust求解，例如559.N叉树的最大深度
 
 ---
 
-LintCode
+lintcode_problems
 ========
 
 | # | Title | Solutions | Category |
@@ -494,6 +482,7 @@ LintCode
 |158|[Valid Anagram](https://lintcode.com/problem/valid-anagram/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/valid_anagram.py)||
 |159|[Find Minimum in Rotated Sorted Array](https://lintcode.com/problem/find-minimum-in-rotated-sorted-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/rotated_sorted_array_search.py)|binary_search|
 |160|[Find Minimum in Rotated Sorted Array II](https://lintcode.com/problem/find-minimum-in-rotated-sorted-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/rotated_sorted_array_min_2_with_duplicate.py)|binary_search|
+|161|[Rotate Image](https://lintcode.com/problem/rotate-image/)|[Rust](src/easy/grid_or_matrix/rotate_matrix.rs)|
 |162|[Set Matrix Zeroes](https://lintcode.com/problem/set-matrix-zeroes/)|[Rust](src/easy/grid_or_matrix/set_matrix_zeroes.rs)||
 |165|[Merge Two Sorted Lists](https://lintcode.com/problem/merge-two-sorted-lists/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/divide_conquer/merge_k_sorted_lists.py)||
 |167|[Add Two Numbers](https://lintcode.com/problem/add-two-numbers/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/add_two_numbers.py), [Rust](src/linked_list/add_two_linked_list.rs), [Go](https://github.com/pymongo/go_leetcode/blob/master/traverse_two_list_node_test.go), [Java](https://github.com/pymongo/java_leetcode/blob/master/src/test/java/com/leetcode/collections/TraverseTwoListNode.java)|create/traverse_list_node|
