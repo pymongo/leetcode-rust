@@ -1,3 +1,18 @@
+/*!
+# 链表
+
+## 侵入式和非侵入式
+
+Rust标准库的双向链表和C++ STL的链表一样都是较为简单的非侵入式链表(non-intrusive)，侵入式链表好处的内存利用率高，缺点是指针生命周期管理太复杂
+
+## 非随机访问数据结构
+
+array is a 'random access data structure'
+
+数组可以通过下标乘元素长度计算出内存偏移地址去任意下标的访问数据，但是链表访问第N个节点的数据前必须遍历前N-1个元素
+
+所以数组是随机访问数据结构，而链表是非随机访问数据结构
+*/
 mod add_two_linked_list;
 mod linked_list_is_palindrome;
 mod merge_two_sorted_linked_list;

@@ -1,49 +1,55 @@
-use std::collections::VecDeque;
+/*!
+https://leetcode.com/problems/max-area-of-island
+VecDeque双端队列内部通过ring buffer环形数组实现
+在rust的1.21版本之前以下函数是错的
+fn is_full(&self) -> bool {
+    self.cap() - self.len() == 1
+}
+因为环状数组，tail在head的前一位索引时表示已满，所以is_full方法内需要对cap()逻辑容量进行-1后再跟物理容量len去比较
+*/
+struct Solution;
 
-// 跟is_island一题过程类似，只是要返回的数据不同
-fn bfs(mut grid: Vec<Vec<i32>>) -> i32 {
-    let m = grid.len();
-    if m == 0 {
-        return -1;
-    }
-    let n = grid[0].len();
-    let m_i32 = m as i32;
-    let n_i32 = n as i32;
-
-    let mut queue: VecDeque<(i32, i32)> = VecDeque::new();
-    let mut max_count = 0;
-    for i in 0..m {
-        for j in 0..n {
-            if grid[i][j] != 1 {
-                continue;
-            }
-            queue.push_back((i as i32, j as i32));
-            let mut curr_count = 0;
-            while !queue.is_empty() {
-                let (curr_x, curr_y) = queue.pop_front().unwrap();
-                if grid[curr_x as usize][curr_y as usize] == 2 {
-                    // 如果2和3都连向4则4会被重复算一次，所以这里「也要」过滤掉已被访问过的节点
+impl Solution {
+    /// 跟`Number of Islands`一题中判断is_island的过程类似，只是要返回的数据不同
+    fn max_area_of_island(mut grid: Vec<Vec<i32>>) -> i32 {
+        let (m, n) = (grid.len(), grid[0].len());
+        let mut queue = std::collections::VecDeque::new();
+        let mut max_island_area = 0;
+        for i in 0..m {
+            for j in 0..n {
+                if grid[i][j] != 1 {
                     continue;
                 }
-                // 将访问过的点标记为2，避免图中有环
-                grid[curr_x as usize][curr_y as usize] = 2;
-                curr_count += 1;
-                for &(dx, dy) in &[(1, 0), (-1, 0), (0, 1), (0, -1)] {
-                    // 注意不能用usize，因为下一对x,y可能是负数
-                    let (x, y) = (curr_x + dx, curr_y + dy);
-                    if x < 0 || x >= m_i32 || y < 0 || y >= n_i32 {
+                queue.push_back((i, j));
+                let mut curr_island_area_count = 0;
+                while let Some((x, y)) = queue.pop_front() {
+                    if grid[x][y] == 2 {
+                        // 如果(0,1)和(1,0)都连向(1,1) 则(1,1)会被重复算一次，所以这里「也要」过滤掉已被访问过的节点
                         continue;
                     }
-                    if grid[x as usize][y as usize] != 1 {
-                        continue;
+                    // 将访问过的点标记为2，避免图中有环导致重复遍历陷入死循环
+                    grid[x][y] = 2;
+                    curr_island_area_count += 1;
+                    // up and down
+                    if x > 0 && grid[x - 1][y] == 1 {
+                        queue.push_back((x - 1, y));
                     }
-                    queue.push_back((x, y));
+                    if x < m - 1 && grid[x + 1][y] == 1 {
+                        queue.push_back((x + 1, y));
+                    }
+                    // left and right
+                    if y > 0 && grid[x][y - 1] == 1 {
+                        queue.push_back((x, y - 1));
+                    }
+                    if y < n - 1 && grid[x][y + 1] == 1 {
+                        queue.push_back((x, y + 1));
+                    }
                 }
+                max_island_area = max_island_area.max(curr_island_area_count);
             }
-            max_count = max_count.max(curr_count);
-        } // for j in 0..n
-    } // for i in 0..m
-    return max_count;
+        }
+        max_island_area
+    }
 }
 
 #[cfg(test)]
@@ -58,13 +64,9 @@ const TEST_CASES: [(&[&[i32]], i32); 1] = [(
 )];
 
 #[test]
-fn test() {
+fn test_max_area_of_island() {
     for &(grid, max_area) in &TEST_CASES {
-        // let mut grid_vec = Vec::new();
-        // for &row in grid {
-        //     grid_vec.push(row.to_vec());
-        // }
-        let grid_vec: Vec<Vec<i32>> = grid.iter().map(|each| each.to_vec()).collect();
-        assert_eq!(max_area, bfs(grid_vec));
+        let grid: Vec<Vec<i32>> = grid.iter().map(|each| each.to_vec()).collect();
+        assert_eq!(Solution::max_area_of_island(grid), max_area);
     }
 }
