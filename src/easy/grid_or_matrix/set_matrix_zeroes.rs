@@ -1,6 +1,7 @@
 struct Solution;
 
-// 如果矩阵的某个元素为0，则将0所在行和所在列的全部元素置0，尽量避免重复操作而且要遍历完矩阵才能设0，避免污染
+/// 需求: 如果矩阵的某个元素为0，则将0所在行和所在列的全部元素置0
+/// 尽量避免重复操作而且要遍历完矩阵才能设0，避免污染
 impl Solution {
     pub fn set_zeroes(matrix: &mut Vec<Vec<i32>>) {
         let (m, n) = (matrix.len(), matrix[0].len());

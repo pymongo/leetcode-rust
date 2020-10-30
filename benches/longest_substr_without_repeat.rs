@@ -1,6 +1,5 @@
 #![feature(test)]
 extern crate test;
-// cargo +nightly bench --bench longest_substr_without_repeat
 
 extern crate leetcode;
 use leetcode::string::longest_non_repeated_substr::{

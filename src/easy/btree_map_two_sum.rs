@@ -13,9 +13,6 @@ bitwise_补码的解法收录在java_leetcode中
 3. 函数的最后，如果测试用例没有匹配项的话，可以写unreachable!()或返回vec![]
 */
 
-/**
-
-*/
 pub const TEST_CASES: [(&[i32], i32, &[i32]); 3] = [
     (&[2, 7, 9, 11], 9, &[0, 1]),
     (&[-3, 4, 3, 90], 0, &[0, 2]),
@@ -83,7 +80,7 @@ fn test_two_sum_btree_map() {
 }
 
 pub fn two_sum_btree_map(nums: Vec<i32>, target: i32) -> Vec<i32> {
-    let mut sum_tracker: std::collections::BTreeMap<i32, usize> = std::collections::BTreeMap::new();
+    let mut sum_tracker = std::collections::BTreeMap::new();
     for (i, num) in nums.iter().enumerate() {
         if sum_tracker.contains_key(num) {
             return vec![*sum_tracker.get(num).unwrap() as i32, i as i32];
@@ -104,7 +101,7 @@ fn test_sum_hashmap() {
 }
 
 pub fn two_sum_hashmap(nums: Vec<i32>, target: i32) -> Vec<i32> {
-    let mut sum_tracker: std::collections::HashMap<i32, usize> = std::collections::HashMap::new();
+    let mut sum_tracker = std::collections::HashMap::new();
     for (i, num) in nums.iter().enumerate() {
         if sum_tracker.contains_key(num) {
             return vec![*sum_tracker.get(num).unwrap() as i32, i as i32];
@@ -112,5 +109,4 @@ pub fn two_sum_hashmap(nums: Vec<i32>, target: i32) -> Vec<i32> {
         sum_tracker.insert(target - *num, i);
     }
     unreachable!()
-    // vec![]
 }

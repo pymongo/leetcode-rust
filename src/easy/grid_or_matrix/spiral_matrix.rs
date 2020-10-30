@@ -2,7 +2,7 @@ struct Solution;
 
 // 螺旋式遍历矩阵，从外圈遍历到内
 impl Solution {
-    pub fn spiral_order(a: Vec<Vec<i32>>) -> Vec<i32> {
+    fn spiral_order(a: Vec<Vec<i32>>) -> Vec<i32> {
         let m = a.len();
         if m == 0 {
             return Vec::with_capacity(0);
@@ -52,8 +52,7 @@ impl Solution {
         res
     }
 
-    // 根据spiral_matrix最佳答案写出的
-    // 不完全正确，没考虑边界情况
+    /// FIXME 根据spiral_matrix最佳答案写出的，不完全正确，没考虑边界情况
     #[cfg(FALSE)]
     fn spiral_order_2(a: Vec<Vec<i32>>) -> Vec<i32> {
         let m = a.len();

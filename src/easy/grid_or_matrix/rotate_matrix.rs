@@ -1,10 +1,13 @@
+/*!
+## 解法一: 先上下颠倒，再转置矩阵
+
+matrix[::] = zip(*matrix[::-1])
+
+之所以要用matrix[::]是为了避免Python shadowing重写绑定一个新的matrix局部变量
+*/
 struct Solution;
 
-// 解法一: 先上下颠倒，再转置矩阵
-// matrix[::] = zip(*matrix[::-1])
-// 之所以要用matrix[::]是为了避免shadowing重写绑定一个新的matrix局部变量
-
-/*
+/**
 1 2 3
 4 5 6
 7 8 9
@@ -13,7 +16,7 @@ let top_left = 2;
 m[0][1] = m[1][0];
 */
 impl Solution {
-    pub fn rotate(m: &mut Vec<Vec<i32>>) {
+    fn rotate(m: &mut Vec<Vec<i32>>) {
         let n = m.len();
         // 四个角落的元素原地转圈圈交换
         for i in 0..n / 2 {
@@ -34,8 +37,8 @@ impl Solution {
 }
 
 #[test]
-fn test() {
+fn test_rotate() {
     let mut matrix = vec![vec![1, 2, 3], vec![4, 5, 6], vec![7, 8, 9]];
     Solution::rotate(&mut matrix);
-    println!("{:?}", matrix);
+    assert_eq!(matrix, vec![vec![7, 4, 1], vec![8, 5, 2], vec![9, 6, 3]]);
 }

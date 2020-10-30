@@ -1,6 +1,6 @@
 struct Solution;
 
-// 按螺旋遍历生成n*n的矩阵
+/// 按螺旋遍历生成n*n的矩阵
 impl Solution {
     #[allow(clippy::many_single_char_names)]
     fn generate_matrix(n: i32) -> Vec<Vec<i32>> {
