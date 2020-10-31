@@ -13,11 +13,44 @@ bitwise_补码的解法收录在java_leetcode中
 3. 函数的最后，如果测试用例没有匹配项的话，可以写unreachable!()或返回vec![]
 */
 
+struct Solution;
+
+impl Solution {
+    pub fn two_sum_btree_map(nums: Vec<i32>, target: i32) -> Vec<i32> {
+        let mut sum_tracker = std::collections::BTreeMap::new();
+        for (i, num) in nums.iter().enumerate() {
+            if sum_tracker.contains_key(num) {
+                return vec![*sum_tracker.get(num).unwrap() as i32, i as i32];
+            }
+            sum_tracker.insert(target - *num, i);
+        }
+        unreachable!()
+    }
+
+    pub fn two_sum_hashmap(nums: Vec<i32>, target: i32) -> Vec<i32> {
+        let mut sum_tracker = std::collections::HashMap::new();
+        for (i, num) in nums.iter().enumerate() {
+            if sum_tracker.contains_key(num) {
+                return vec![*sum_tracker.get(num).unwrap() as i32, i as i32];
+            }
+            sum_tracker.insert(target - *num, i);
+        }
+        unreachable!()
+    }
+}
+
 pub const TEST_CASES: [(&[i32], i32, &[i32]); 3] = [
     (&[2, 7, 9, 11], 9, &[0, 1]),
     (&[-3, 4, 3, 90], 0, &[0, 2]),
     (&[0, 4, 3, 0], 0, &[0, 3]),
 ];
+
+#[test]
+fn test_two_sum_btree_map() {
+    for &(nums, target, expected) in TEST_CASES.iter() {
+        assert_eq!(Solution::two_sum_btree_map(nums.to_vec(), target), expected.to_vec());
+    }
+}
 
 #[test]
 fn test_two_sum_bitwise() {
@@ -43,7 +76,7 @@ fn test_two_sum_bitwise() {
 但是在数字电路中，一个值两种状态都能表示不仅是一个UB，而且还浪费了宝贵的状态
 所以出现了 负数补码=反码+1 也就是让负数的从-0开始全部往后挪一位
 -0变成了-1，-7变成了-8，所以4bit寄存器有符号数的范围是[-8, 7]
-* */
+*/
 pub fn two_sum_bitwise(nums: Vec<i32>, target: i32) -> Vec<i32> {
     // 2047是input case的最大值，确保：
     // 1. a & bit_mode = a;
@@ -70,27 +103,6 @@ pub fn two_sum_bitwise(nums: Vec<i32>, target: i32) -> Vec<i32> {
 }
 
 #[test]
-fn test_two_sum_btree_map() {
-    for &(nums, target, expected) in TEST_CASES.iter() {
-        let nums: Vec<i32> = nums.to_vec();
-        let result = two_sum_btree_map(nums, target);
-        let expected: Vec<i32> = expected.to_vec();
-        assert_eq!(result, expected)
-    }
-}
-
-pub fn two_sum_btree_map(nums: Vec<i32>, target: i32) -> Vec<i32> {
-    let mut sum_tracker = std::collections::BTreeMap::new();
-    for (i, num) in nums.iter().enumerate() {
-        if sum_tracker.contains_key(num) {
-            return vec![*sum_tracker.get(num).unwrap() as i32, i as i32];
-        }
-        sum_tracker.insert(target - *num, i);
-    }
-    unreachable!()
-}
-
-#[test]
 fn test_sum_hashmap() {
     for &(nums, target, expected) in TEST_CASES.iter() {
         let nums: Vec<i32> = nums.to_vec();
@@ -98,15 +110,4 @@ fn test_sum_hashmap() {
         let expected: Vec<i32> = expected.to_vec();
         assert_eq!(result, expected)
     }
-}
-
-pub fn two_sum_hashmap(nums: Vec<i32>, target: i32) -> Vec<i32> {
-    let mut sum_tracker = std::collections::HashMap::new();
-    for (i, num) in nums.iter().enumerate() {
-        if sum_tracker.contains_key(num) {
-            return vec![*sum_tracker.get(num).unwrap() as i32, i as i32];
-        }
-        sum_tracker.insert(target - *num, i);
-    }
-    unreachable!()
 }

@@ -2,6 +2,7 @@
 - problem number with `🤔` suffix has many solutions
 - problem number with `🚫` suffix means TODO, maybe too hard to solve
 - problem number with `🐢` suffix without 0ms solution
+- problem number with `❌` suffix is a bad solution(like 372 Python can't do bitwise add)
 
 leetcode_problems
 ========
@@ -9,7 +10,6 @@ leetcode_problems
 ~~(表格中没有代码文件链接的都是过于简单30秒就能搞定的题)~~
 
 %w(Python Rust Go Java C++).sort().reverse() = \["Rust", "Python", "Java", "Go", "C++"]
-
 
 | # | Title | Solutions | Category/Comment |
 |---| ----- | -------- | ---------- |
@@ -202,7 +202,7 @@ leetcode_problems
 |367|[Valid Perfect Square](https://leetcode.com/problems/valid-perfect-square/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/math/sqrt.py)||
 |368|[Largest Divisible Subset](https://leetcode.com/problems/largest-divisible-subset/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/largest_divisible_subset.py)||
 |369🔒|[Plus One Linked List](https://leetcode.com/problems/plus-one-linked-list/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/bottom_up_plus_one_linked_list.py)||
-|371|[Sum of Two Integers](https://leetcode.com/problems/sum-of-two-integers/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/bitwise/binary_addition.py)|binary_addition|
+|371❌|[Sum of Two Integers](https://leetcode.com/problems/sum-of-two-integers/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/bitwise/binary_addition.py)|binary_addition|
 |377|[Combination Sum IV](https://leetcode.com/problems/combination-sum-iv/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/backpack_4_coin_change_combination_sum_4.py)|完全背包问题|
 |380|[Insert Delete GetRandom O(1)](https://leetcode.com/problems/insert-delete-getrandom-o1/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/insert_delete_get_random_o1.py)||
 |381|[Insert Delete GetRandom O(1) - Duplicates allowed](https://leetcode.com/problems/insert-delete-getrandom-o1-duplicates-allowed/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/insert_delete_get_random_o1.py)||
@@ -372,8 +372,8 @@ lintcode_problems
 
 | # | Title | Solutions | Category |
 |---| ----- | -------- | ---------- |
-|1|[A + B Problem](https://lintcode.com/problem/a-b-problem/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/bitwise/binary_addition.py)|binary_addition|
-|2|[Trailing Zeros](https://lintcode.com/problem/trailing-zeros/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/factorization/factorial_trailing_zeroes.py)|factorial|
+|1|[A + B Problem](https://lintcode.com/problem/a-b-problem/)|leetcode_372|
+|2|[Trailing Zeros](https://lintcode.com/problem/trailing-zeros/)|leetcode_172|
 |3|[Digit Counts](https://lintcode.com/problem/digit-counts/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/unclassified/digits_count.py)||
 |4|[Ugly Number II](https://lintcode.com/problem/ugly-number-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/unclassified/ugly_number_2_nth_ugly.py)||
 |5|[Kth Largest Element](https://lintcode.com/problem/kth-largest-element/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/sorting_and_query/quick_select_kth_largest.py)|quick_select, quick_sort, heap|
