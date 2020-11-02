@@ -5,10 +5,8 @@ mod sum_root_to_leaf_numbers;
 pub use std::cell::RefCell;
 pub use std::rc::Rc;
 
-pub type OptionalTreeNode = Option<Rc<RefCell<TreeNode>>>;
-
-/// TODO add OptionalTreeNode to str function
-pub fn str_to_optional_tree_node(s: &str) -> OptionalTreeNode {
+/// TODO add tree_node to str function
+pub fn str_to_tree_node(s: &str) -> Option<Rc<RefCell<TreeNode>>> {
     let mut stack: Vec<Rc<RefCell<TreeNode>>> = Vec::new();
     let mut val_len = 0;
     let mut is_left_subtree_empty = false;
@@ -56,15 +54,15 @@ pub fn str_to_optional_tree_node(s: &str) -> OptionalTreeNode {
 #[test]
 fn test_str_to_optional_tree_node() {
     // Rust的Debug可以完整地递归打印出二叉树，比我用Python写的打印二叉树更准更好，约等于leetcode的Python/Java print二叉树的效果
-    dbg!(str_to_optional_tree_node("1()(2(3))"));
-    dbg!(str_to_optional_tree_node("3(9)(20(15)(7))"));
+    dbg!(str_to_tree_node("1()(2(3))"));
+    dbg!(str_to_tree_node("3(9)(20(15)(7))"));
 }
 
 #[derive(Debug, PartialEq, Eq)]
 pub struct TreeNode {
     pub val: i32,
-    pub left: OptionalTreeNode,
-    pub right: OptionalTreeNode,
+    pub left: Option<Rc<RefCell<TreeNode>>>,
+    pub right: Option<Rc<RefCell<TreeNode>>>,
 }
 
 impl TreeNode {

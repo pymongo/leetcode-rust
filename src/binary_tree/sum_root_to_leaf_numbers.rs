@@ -73,7 +73,7 @@ impl Solution {
 #[test]
 fn test_preorder_traversal() {
     // 4->9->5, 4->9->1, 4->0: 495+491+40=1026
-    let root = super::str_to_optional_tree_node("4(9(5)(1))(0)");
+    let root = super::str_to_tree_node("4(9(5)(1))(0)");
     assert_eq!(Solution::sum_numbers(root.clone()), 1026);
     assert_eq!(Solution::sum_numbers_best(root), 1026);
 }

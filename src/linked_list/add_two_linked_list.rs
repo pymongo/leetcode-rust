@@ -1,12 +1,13 @@
-//! 已偷看答案，原因：遍历、生成ListNode时一直语法错，实在是不会遍历/生成Option<Box<ListNode>>数据结构啊
-//! 隐含约束1：遍历时要注意，两个输入的链表长度可能不相等，最长的链表遍历完才算遍历结束
-//! 隐含约束2：如果一个链表较短则在前面补 00，比如 987 + 23 = 987 + 023 = 1010
-//! 隐含约束3：需要考虑进位
-/* 收获
-1. Box<T>感觉像是空指针占位符(Allocates memory on the heap)，*node to unbox Box<ListNode>
-2. Option<Box<ListNode>>不知道怎么遍历，一直报错，一会报错borrowed、一会又moved的，不想在浪费时间花在与算法无关的思考上
-3. 还能同时match两个Option(通过排列组合，2个option都用Some和None分支总共4个分支)，学到了！
-4. if let 是 match optional的缩写版
+/*! https://leetcode.com/problems/add-two-numbers/
+
+## 遍历两个链表的注意事项
+1. 遍历时要注意，两个输入的链表长度可能不相等，最长的链表遍历完才算遍历结束
+2. 如果一个链表较短则在前面补 00，比如 987 + 23 = 987 + 023 = 1010
+3. 需要考虑进位
+
+## 收获
+1. 还能同时match两个Option(通过排列组合，2个option都用Some和None分支总共4个分支)，学到了！
+2. if let 是 match optional的缩写版
 if let (x) = optional { f(x) }
 等价于：
 match optional {
@@ -14,6 +15,7 @@ match optional {
     _ => {}
 }
 */
+
 use super::ListNode;
 
 fn add_two_linked_list(
@@ -53,7 +55,7 @@ fn add_two_linked_list(
                 break;
             }
         }
-        /* 遍历思路 */
+        // 遍历思路
         // 1. curr一开始为None
         // 2. 初始化curr的值为ListNode
         // 3. 将current_node指向current_node.next(因为next为None，所以刚好回到第一步)
@@ -64,9 +66,9 @@ fn add_two_linked_list(
     head_node
 }
 
-/*
-输入：(2 -> 4 -> 3) + (5 -> 6 -> 4)
-输出： 7 -> 0 -> 8
+/**
+Input : (2 -> 4 -> 3) + (5 -> 6 -> 4)
+Output: 7 -> 0 -> 8
 */
 #[cfg(test)]
 const TEST_CASES: [(&[i32], &[i32], &[i32]); 1] = [(&[2, 4, 3], &[5, 6, 4], &[7, 0, 8])];

@@ -12,6 +12,9 @@ array is a 'random access data structure'
 数组可以通过下标乘元素长度计算出内存偏移地址去任意下标的访问数据，但是链表访问第N个节点的数据前必须遍历前N-1个元素
 
 所以数组是随机访问数据结构，而链表是非随机访问数据结构
+
+## Rust链表可以用dummyHead去遍历也可以不用
+
 */
 mod add_two_linked_list;
 mod linked_list_is_palindrome;
@@ -21,6 +24,7 @@ mod reverse_linked_list;
 mod reverse_linked_list_2;
 mod swap_nodes_in_pairs;
 
+/// non-interest single_linked_list Node
 #[derive(PartialEq, Eq, Clone, Debug)]
 pub struct ListNode {
     pub val: i32,
@@ -45,7 +49,8 @@ fn arr_to_linked_list(nums: &[i32]) -> Option<Box<ListNode>> {
     head
 }
 
-/* Java版数组转链表
+/**
+```java
 public static ListNode arrayToListNode(int []nums) {
     ListNode dummy = new ListNode();
     ListNode cur = dummyHead;
@@ -55,6 +60,7 @@ public static ListNode arrayToListNode(int []nums) {
     }
     return dummy.next;
 }
+```
 */
 #[cfg(FALSE)]
 pub fn arr_to_linked_list_with_dummy(nums: &[i32]) -> Option<Box<ListNode>> {
@@ -68,7 +74,8 @@ pub fn arr_to_linked_list_with_dummy(nums: &[i32]) -> Option<Box<ListNode>> {
     dummy?.next
 }
 
-/* Java版链表转数组
+/**
+```java
 public static int[] listNodeToArray(ListNode head) {
     List<Integer> nums = new ArrayList<>();
     ListNode curr = head;
@@ -78,28 +85,31 @@ public static int[] listNodeToArray(ListNode head) {
     }
     return nums.stream().mapToInt(i -> i).toArray();
 }
+```
 */
 pub fn linked_list_to_vec(head: &Option<Box<ListNode>>) -> Vec<i32> {
     let mut nums: Vec<i32> = Vec::new();
-    // 由于链表转数组只需要读链表不需要修改链表各节点，所以curr=head而不是curr=&mut head，而且代码也简洁多了
+    // 由于链表转数组只需要读链表不需要修改链表各节点，所以curr=head即可而不是curr=&mut head，而且代码也简洁多了
+    // 但是一旦用了dummyHead，可能只需要修改head一个节点，但是出于遍历原因可变引用需要往后传染，所以后面的节点被迫也用可变引用
+
+    /*
+    let mut curr = head.as_ref();
+    while let Some(curr_node) = curr {
+        nums.push(curr_node.val);
+        curr = curr_node.next.as_ref();
+    }
+    */
     let mut curr = head;
     while let Some(curr_node) = curr {
         nums.push(curr_node.val);
         curr = &curr_node.next;
     }
-    // println!("{:?}", nums);
     nums
 }
 
-#[cfg(test)]
-const TEST_CASES: [&[i32]; 1] = [&[1, 2, 3, 4, 5]];
-
 #[test]
 fn test_arr_to_linked_list() {
-    for nums in &TEST_CASES {
-        let head = arr_to_linked_list(nums);
-        let nums_vec = linked_list_to_vec(&head);
-        assert_eq!(nums_vec, vec![1, 2, 3, 4, 5])
-        // println!("{:?}", nums_vec);
-    }
+    let head = arr_to_linked_list(&[1, 2, 3, 4, 5]);
+    let nums_vec = linked_list_to_vec(&head);
+    assert_eq!(nums_vec, vec![1, 2, 3, 4, 5])
 }

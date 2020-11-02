@@ -4,7 +4,7 @@
 */
 
 mod array;
-pub mod btree_map_two_sum;
+mod two_sum;
 mod coin_lcci;
 mod construct_product_array;
 mod contains_duplicate_2;

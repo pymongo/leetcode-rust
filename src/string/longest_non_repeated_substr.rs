@@ -9,7 +9,7 @@
 //! ## (数据结构)ascii记录字符出现位置
 //! 比HashMap<char, Integer>更高效，用一个长度为128的数组，索引是ascii字母值，value是在字符串中的索引的存储结构效率最高
 
-pub const TEST_CASES: [(&str, i32); 5] = [
+const TEST_CASES: [(&str, i32); 5] = [
     ("abcabcbb", 3),
     ("bbbbb", 1),
     ("pwwkew", 3),
@@ -24,7 +24,7 @@ fn test_i32_ascii_table() {
     }
 }
 
-pub fn i32_ascii_table(s: String) -> i32 {
+fn i32_ascii_table(s: String) -> i32 {
     let len: i32 = s.len() as i32;
     if len <= 1 {
         return len;
@@ -65,7 +65,7 @@ fn test_usize_ascii_table() {
     }
 }
 
-pub fn usize_ascii_table(s: String) -> i32 {
+fn usize_ascii_table(s: String) -> i32 {
     let len = s.len();
     if len <= 1 {
         return len as i32;

@@ -13,9 +13,9 @@ leetcode_problems
 
 | # | Title | Solutions | Category/Comment |
 |---| ----- | -------- | ---------- |
-|1|[Two Sum](https://leetcode.com/problems/two-sum/)|[Rust](src/easy/btree_map_two_sum.rs), [Java](https://github.com/pymongo/java_leetcode/blob/master/src/test/java/com/leetcode/collections/HashMapTwoSum.java), [Go](https://github.com/pymongo/go_leetcode/blob/master/two_sum_test.go)|btree_map, bitwise|
-|2|[Add Two Numbers](https://leetcode.com/problems/add-two-numbers/)|[Rust](src/linked_list/add_two_linked_list.rs), [Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/add_two_numbers.py), [Java](https://github.com/pymongo/java_leetcode/blob/master/src/test/java/com/leetcode/collections/TraverseTwoListNode.java), [Go](https://github.com/pymongo/go_leetcode/blob/master/traverse_two_list_node_test.go)|linked_list|
-|3|[Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/string/longest_non_repeated_substr.py), [Rust](src/string/longest_non_repeated_substr.rs)|sliding_window|
+|1|[Two Sum](https://leetcode.com/problems/two-sum/)|[Rust](src/easy/two_sum.rs), [Java](https://github.com/pymongo/java_leetcode/blob/master/src/test/java/com/leetcode/collections/HashMapTwoSum.java), [Go](https://github.com/pymongo/go_leetcode/blob/master/two_sum_test.go)|bitwise|
+|2🐢|[Add Two Numbers](https://leetcode.com/problems/add-two-numbers/)|[Rust](src/linked_list/add_two_linked_list.rs), [Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/add_two_numbers.py), [Java](https://github.com/pymongo/java_leetcode/blob/master/src/test/java/com/leetcode/collections/TraverseTwoListNode.java), [Go](https://github.com/pymongo/go_leetcode/blob/master/traverse_two_list_node_test.go)|linked_list|
+|3|[Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/)|[Rust](src/string/longest_non_repeated_substr.rs), [Python](https://github.com/pymongo/python_leetcode/blob/master/string/longest_non_repeated_substr.py)|sliding_window|
 |4|[Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/median_of_two_sorted_arrays.py), [Rust](src/binary_search/median_of_two_sorted_arrays.rs)|binary_search|
 |5🤔|[Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/palindrome/longest_palindromic_substr.py), [Rust](src/string/longest_palindromic_substr.rs)|manacher, suffix_array|
 |6|[ZigZag Conversion](https://leetcode.com/problems/zigzag-conversion/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/string/zigzag_conversion.py)|
@@ -343,9 +343,6 @@ leetcode_problems
 |62|[圆圈中最后剩下的数字](https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/brain_twists/josephus.py)|约瑟夫环|
 |66|[构建乘积数组](https://leetcode-cn.com/problems/gou-jian-cheng-ji-shu-zu-lcof)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/contruct_product_array.py), [Rust](src/easy/construct_product_array.rs)||
 
----
-
-从200926开始，由于精力有限暂不更新lintcode上的题解了，leetcode上做过但是lintcode未做的题有:
 - Trapping Rain Water
 
 ---
@@ -407,7 +404,7 @@ lintcode_problems
 |50|[Product of Array Exclude Itself](https://lintcode.com/problem/product-of-array-exclude-itself/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/contruct_product_array.py), [Rust](src/easy/construct_product_array.rs)||
 |52|[Next Permutation](https://lintcode.com/problem/next-permutation/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/next_permutation.py)||
 |53|[Reverse Words in a String](https://lintcode.com/problem/reverse-words-in-a-string/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/rotate_reverse_circle_shift/reverse_words_in_a_string.py)||
-|56|[Two Sum](https://lintcode.com/problem/two-sum/)|[Rust](src/easy/btree_map_two_sum.rs), [Go](https://github.com/pymongo/go_leetcode/blob/master/two_sum_test.go), [Java](https://github.com/pymongo/java_leetcode/blob/master/src/test/java/com/leetcode/collections/HashMapTwoSum.java)|btree_map, bitwise(two_s_complement)|
+|56|[Two Sum](https://lintcode.com/problem/two-sum/)|leetcode_1|
 |57|[3Sum](https://lintcode.com/problem/3sum/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/three_sum_plans_detail.py)|two_pointers, two_sum|
 |58|[4Sum](https://lintcode.com/problem/4sum/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/four_sum_plans_detail.py)|two_pointers, two_sum|
 |59|[3Sum Closest](https://lintcode.com/problem/3sum-closest/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/three_sum_closest.py)|two_sum|
@@ -489,7 +486,7 @@ lintcode_problems
 |161|[Rotate Image](https://lintcode.com/problem/rotate-image/)|[Rust](src/easy/grid_or_matrix/rotate_matrix.rs)|
 |162|[Set Matrix Zeroes](https://lintcode.com/problem/set-matrix-zeroes/)|[Rust](src/easy/grid_or_matrix/set_matrix_zeroes.rs)||
 |165|[Merge Two Sorted Lists](https://lintcode.com/problem/merge-two-sorted-lists/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/divide_conquer/merge_k_sorted_lists.py)||
-|167|[Add Two Numbers](https://lintcode.com/problem/add-two-numbers/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/add_two_numbers.py), [Rust](src/linked_list/add_two_linked_list.rs), [Go](https://github.com/pymongo/go_leetcode/blob/master/traverse_two_list_node_test.go), [Java](https://github.com/pymongo/java_leetcode/blob/master/src/test/java/com/leetcode/collections/TraverseTwoListNode.java)|create/traverse_list_node|
+|167|[Add Two Numbers](https://lintcode.com/problem/add-two-numbers/)|leetcode_2|
 |168|[Burst Balloons](https://lintcode.com/problem/burst-balloons/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/burst_ballon.py)||
 |171|[Anagrams](https://lintcode.com/problem/anagrams/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/group_anagrams.py)||
 |172|[Subarray Sum](https://lintcode.com/problem/remove-element/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/partition_array/move_zeros.py)||
@@ -522,7 +519,7 @@ lintcode_problems
 |381|[Spiral Matrix II](https://lintcode.com/problem/spiral-matrix-2/)|[Rust](src/easy/grid_or_matrix/spiral_matrix_2.rs)||
 |382🔒|[Triangle Count](https://lintcode.com/problem/triangle-count/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/triangle_count.py)|two_sum, 双指针|
 |383|[Container With Most Water](https://lintcode.com/problem/container-with-most-water/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/container_with_most_water.py)||
-|384|[Longest Substring Without Repeating Characters](https://lintcode.com/problem/longest-substring-without-repeating-characters/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/string/longest_non_repeated_substr.py), [Rust](src/string/longest_non_repeated_substr.rs)|sliding_window|
+|384|[Longest Substring Without Repeating Characters](https://lintcode.com/problem/longest-substring-without-repeating-characters/)|leetcode_3|
 |386|[Longest Substring with At Most K Distinct Characters](https://lintcode.com/problem/longest-substring-with-at-most-k-distinct-characters/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/longest_substr_with_longest_k_distinct_chars.py)||
 |388|[Permutation Sequence](https://lintcode.com/problem/permutation-sequence/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/permutation.py)||
 |389|[Valid Sudoku](https://lintcode.com/problem/valid-sudoku/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/valid_soduku.py)||
@@ -728,7 +725,6 @@ lintcode_problems
 |1876|[Alien Dictionary(easy)](https://lintcode.com/problem/alien-dictionaryeasy/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/unclassified/verifying_an_alien_dictionary.py)||
 |1901|[Squares of a Sorted Array](https://lintcode.com/problem/squares-of-a-sorted-array/)|||
 
-
 ---
 
 # Category
@@ -763,10 +759,47 @@ TODO k sum
 
 ---
 
-我主要用Rust、Python、C++、Go、Java这几种编程语言刷题
+## 我从leetcode Rust刷题中学到了什么
 
-我习惯通过单步调试(可以一边单步运行一边往后打断点)+纸笔推演去读懂别人的优秀算法，但是Rust的单步调试经常跳到汇编代码中，按半天F7/F8才能跳出来，所以需要先用Go语言去理解我不懂的算法。
+- two_sum: BTreeMap
+- add_two_numbers: 学会let Some，match两个链表的写法，学习Box智能指针
+- 某个每日一题，忘了: peekable Iterator
+- reverse_int: checked_add的优雅判断溢出
+- 很多题usize类型如何避免`0-1`的溢出
+- bigdecimal-rs的PR
+- 性能好
 
-Python的单元测试也简单，还支持typehint，更重要的是国内的面试官大部分都懂python代码
+## 为什么要用Rust刷题
 
-python自带的pip没有类似`pom.xml`或`package.json`之类管理项目第三方依赖的清单文件，所以推荐用pyenv管理python版本，pipenv管理第三方依赖(Pipfile + Pipfile.lock)，或者用poetry做包管理
+- 刚学习Rust没有公司项目练手，通过leetcode的题可以理解成就是一个个的业务需求
+- 性能好(放一个图 rust4ms， 其它语言都是10ms+的图)，简直是leetcode亲儿子，leetcode特殊优化，
+- 数组类题型性能目前是leetcode第一，二叉树/链表的题型性能略微吃亏
+- 锻炼编程能力，学习更多Rust标准库的用法例如windows
+
+## Rust工程化的体现 刷题特有的优势
+
+0. dbg!超方便，但是Rust的Debug单步调试又不如Python等方便(容易跳入汇编代码)
+
+1. 单元测试方便，(这里PPT画个图，代码提交出错，Rust加入新的测试用例，然后调试好代码再提交的循环)
+
+2. assert_eq!支持链表、二叉树等复杂数据结构的比较，单元测试常用assert比较是否满足期待值
+(实际上支持ParticalEq和Eq Trait的数据类型都能验证是否相等)
+
+3. 链表、二叉树自动实现类似格式化打印，方便调试
+
+\[演说稿]: 我以前用Python刷题时，因为自己不太会实现逐层递归打印链表/二叉树的方法，所以经常需要在leetcode上print程序运行到第几行时状态是多少
+
+综上几点，Rust刷题容易做到完全脱离leetcode网页的IDE，自己本地IDE测试通过后，复制到网页上提交一般也能通过
+
+> ListNode{val: 2, next: ListNode{val: 4, next: ListNode{val: 3, next: None}}}
+
+## code force刷题的体验
+
+简单介绍下从stdin读内容
+
+## 当前leetcode对Rust支持的不足
+
+- 所有N叉树的题都没有Rust
+- 所有多线程的题没有Rust
+- 部分高难度链表修改题没有Rust
+- LRU没有Rust
