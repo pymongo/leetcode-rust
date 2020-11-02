@@ -356,6 +356,7 @@ leetcode_problems
 
 TODO:
 
+- [ ] Rust的leetcode/codeforces都不支持OnceCell API，但是罗马数字转阿拉伯需要用lazy_static的HashMap，所以能不能「复制粘贴」一份OnceCell的代码试试手，顺便理解源码
 - [ ] 43/415 字符串整数相乘/相加
 - [ ] 415是经典面试题利用字符串模拟竖式加法进行大数相加
 - [ ] 有兴趣但是困难级别的题: 1. 推箱子 2. 华容道
