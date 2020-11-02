@@ -39,6 +39,6 @@ impl Solution {
 
 #[test]
 fn test_preorder_traversal() {
-    let root = super::str_to_optional_tree_node("1()(2(3))");
+    let root = super::str_to_tree_node("1()(2(3))");
     assert_eq!(Solution::preorder_traversal(root), vec![1, 2, 3]);
 }

@@ -12,7 +12,7 @@ bitwise_补码的解法收录在java_leetcode中
 3. 函数的最后，如果测试用例没有匹配项的话，可以写unreachable!()或返回vec![]
 */
 
-struct Solutions;
+struct Solution;
 
 /**
 test bench_test_two_sum_btree_map ... bench:       1,426 ns/iter (+/- 245)
@@ -20,7 +20,7 @@ test bench_two_sum_bitwise        ... bench:       1,375 ns/iter (+/- 149)
 test bench_two_sum_hashmap        ... bench:       1,555 ns/iter (+/- 341)
 TODO 为什么Java的TreeMap比HashMap的two_sum解法耗时长，但是在Rust中BTreeMap反而比HashMap解法更快
 */
-impl Solutions {
+impl Solution {
     /**
     # Two's complement(补码)存储负数的解法
 
@@ -76,7 +76,7 @@ impl Solutions {
 
 #[cfg(test)]
 mod test_two_sum_solutions {
-    use super::Solutions;
+    use super::Solution;
 
     const TEST_CASES: [(&[i32], i32, &[i32]); 3] = [
         (&[2, 7, 9, 11], 9, &[0, 1]),
