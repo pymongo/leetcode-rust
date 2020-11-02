@@ -20,12 +20,17 @@ The first (and the only) input line contains integer number w (1≤w≤100)
 好在Rust的单元测试可以模拟stdin和stdout，通过泛型和trait让stdin,array,vector等抽象成一个函数去复用(如图1红框所示)
 
 */
-fn solution<R: std::io::Read, W: std::io::Write>(mut reader: R, mut writer: W) {
+fn solution<R, W>(mut reader: R, mut writer: W) -> Result<(), Box<dyn std::error::Error>>
+where
+    R: std::io::Read,
+    W: std::io::Write,
+{
     // max input len testcase is "100\r\n"([49,48,48,13(CR),10(LF)])
     let mut read_buffer = [0u8; 5];
-    let _read_size = reader.read(&mut read_buffer).unwrap();
+    let _read_size = reader.read(&mut read_buffer)?;
     let mut num = 0u8;
-    for i in 0..5 { // for in in 0..input_size-2(remove \r\n)
+    for i in 0..5 {
+        // for in in 0..input_size-2(remove \r\n)
         if read_buffer[i] == b'\r' || read_buffer[i] == b'\n' {
             break;
         }
@@ -33,28 +38,28 @@ fn solution<R: std::io::Read, W: std::io::Write>(mut reader: R, mut writer: W) {
     }
     // println!("input: {:?}, num: {}, read_size: {}", input, num, read_size);
     if num % 2 == 0 && num != 2 {
-        // use `wirteln!`?
-        write!(&mut writer, "YES").unwrap();
+        write!(&mut writer, "YES")?;
     } else {
-        write!(&mut writer, "NO").unwrap();
+        write!(&mut writer, "NO")?;
     };
+    Ok(())
 }
 
 fn main() {
-    solution(std::io::stdin().lock(), std::io::stdout().lock());
+    solution(std::io::stdin().lock(), std::io::stdout().lock()).unwrap();
 }
 
 #[cfg(test)]
-const TEST_CASES: [(&[u8], &[u8]); 2] = [
+const TESTCASES: [(&[u8], &[u8]); 2] = [
     (b"8\r\n", b"YES"), // codeforces testcase_1
-    (b"99\n", b"NO"), // mac_os input(without CR byte)
+    (b"99\n", b"NO"),   // mac_os input(without CR byte)
 ];
 
 #[test]
 fn test_solution() {
-    for &(input, expected_output) in &TEST_CASES {
+    for &(input, expected_output) in &TESTCASES {
         let mut output = Vec::new();
-        solution(input, &mut output);
+        solution(input, &mut output).unwrap();
         assert_eq!(output, expected_output);
     }
 }

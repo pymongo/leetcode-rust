@@ -10,6 +10,7 @@ codeforces_problems
 | Title | Solutions | Category/Comment |
 | ----- | --------- | ---------------- |
 |[4A - Watermelon](https://codeforces.com/problemset/problem/4/A)|[Rust](examples/codeforces_4a_watermelon.rs)|very_ease|
+|[71A - Way Too Long Words](https://codeforces.com/problemset/problem/71/A)|[Rust](examples/codeforces_71a_way_too_long_words.rs)|very_ease|
 
 leetcode_problems
 ===
