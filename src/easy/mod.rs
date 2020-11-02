@@ -1,10 +1,4 @@
-/*
-剑指Offer 17. 打印从1到最大n位的十进制数:
-(1..10i32.pow(n as u32)).collect()
-*/
-
 mod array;
-mod two_sum;
 mod coin_lcci;
 mod construct_product_array;
 mod contains_duplicate_2;
@@ -22,11 +16,13 @@ mod min_time_visiting_all_points;
 mod nim_game;
 mod number_of_ways_where_square_of_number_is_equal_to_product_of_two_numbers;
 mod one_or_two_bit_char;
+mod reverse_integer_checked_mul_overflow;
 mod self_dividing_numbers;
 mod special_positions_in_a_binary_matrix;
 mod string;
 mod tail_recursion_fibonacci;
 mod to_lowercase;
 mod transpose_matrix;
+mod two_sum;
 mod unique_path;
-mod reverse_integer_checked_mul_overflow;
+mod very_easy;

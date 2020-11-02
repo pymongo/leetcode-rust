@@ -38,7 +38,8 @@ impl Solution {
     fn reverse(x: i32) -> i32 {
         fn helper(mut n: i32) -> Option<i32> {
             let mut res = 0i32;
-            while n.abs() != 0 { // or n.abs().is_positive()
+            while n.abs() != 0 {
+                // or n.abs().is_positive()
                 res = res.checked_mul(10)?.checked_add(n % 10)?;
                 n /= 10;
             }

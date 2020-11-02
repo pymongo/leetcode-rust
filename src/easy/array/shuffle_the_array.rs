@@ -18,11 +18,11 @@ impl Solution {
 }
 
 #[cfg(test)]
-const TEST_CASES: [(&[i32], i32, &[i32]); 1] = [(&[2, 5, 1, 3, 4, 7], 3, &[2, 3, 5, 4, 1, 7])];
+const TESTCASES: [(&[i32], i32, &[i32]); 1] = [(&[2, 5, 1, 3, 4, 7], 3, &[2, 3, 5, 4, 1, 7])];
 
 #[test]
 fn test_shuffle() {
-    for &(nums, n, expected) in TEST_CASES.iter() {
+    for &(nums, n, expected) in TESTCASES.iter() {
         let output = Solution::shuffle(nums.to_vec(), n);
         assert_eq!(&output[..], expected);
     }

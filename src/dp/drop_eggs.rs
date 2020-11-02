@@ -99,7 +99,7 @@ fn dfs(k: i32, n: i32, memo: &mut HashMap<(i32, i32), i32>) -> i32 {
     return res;
 }
 
-const TEST_CASES: [(i32, i32, i32); 2] = [
+const TESTCASES: [(i32, i32, i32); 2] = [
     // 1+2+..+n=10 -> n(n+1)/2=10 -> n=times=4
     (2, 10, 4),
     (4, 5000, 19),
@@ -107,7 +107,7 @@ const TEST_CASES: [(i32, i32, i32); 2] = [
 
 #[test]
 fn test() {
-    for &(eggs_k, n, times) in TEST_CASES.iter() {
+    for &(eggs_k, n, times) in TESTCASES.iter() {
         assert_eq!(dp_binary_search(eggs_k, n), times);
     }
 }

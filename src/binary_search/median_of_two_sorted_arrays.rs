@@ -1,39 +1,102 @@
-//! 2 Solutions: binary_search_kth_min、array_divider
+//! https://leetcode.com/problems/median-of-two-sorted-arrays/
+//! TODO 这题可读性最好最容易记的应该是find_kth递归的解法，我写的Rust解法太长了可读性并不好，建议看我写的Python解法版本
 
-#[cfg(test)]
-const TEST_CASES: [(&[i32], &[i32], f64); 17] = [
-    (&[1, 2, 3, 4], &[3, 6, 8, 9], 3.5),
-    (&[1, 5, 6, 7], &[2, 3, 4, 8], 4.5),
-    (&[1, 2], &[3, 4, 5, 6, 7], 4f64),
-    (&[4, 5, 6], &[1, 2, 3], 3.5),
-    (&[4, 5], &[1, 2, 3, 6], 3.5),
-    (&[1, 3], &[2, 4, 5, 6], 3.5),
-    (&[1, 2], &[3, 4, 5, 6], 3.5),
-    (&[1, 3], &[2, 4, 5], 3f64),
-    (&[1, 2, 3], &[4, 5], 3f64),
-    (&[3, 4], &[1, 2, 5], 3f64),
-    (&[-2, -1], &[3], -1f64),
-    (&[1, 3], &[2], 2f64),
-    (&[3], &[-2, -1], -1f64),
-    (&[1, 2], &[3, 4], 2.5),
-    (&[4, 5], &[1, 2, 3], 3f64),
-    (&[1, 2], &[1, 2, 3], 2f64),
-    (&[1, 2, 3], &[1, 2, 3], 2f64),
-];
+struct Solution;
 
-#[test]
-fn test_move_divider_of_two_arrays() {
-    for &(nums1, nums2, expected) in TEST_CASES.iter() {
-        let nums1: Vec<i32> = nums1.to_vec();
-        let nums2: Vec<i32> = nums2.to_vec();
-        assert_eq!(find_median_sorted_arrays(nums1, nums2), expected);
+impl Solution {
+    /// [4ms, O(n*logn)]即便用了两个数组合并后排序的完全没利用上两个数组已经有序的笨方法，Rust的性能还是能跑进4ms
+    fn my_brute_force(mut nums1: Vec<i32>, mut nums2: Vec<i32>) -> f64 {
+        if nums1.len() < nums2.len() {
+            return Self::my_brute_force(nums2, nums1);
+        }
+        nums1.append(&mut nums2);
+        nums1.sort_unstable();
+        let len = nums1.len();
+        if len % 2 == 0 {
+            (nums1[len / 2 - 1] + nums1[len / 2 + 1]) as f64 / 2f64
+        } else {
+            nums1[len / 2] as f64
+        }
+    }
+
+    /// [0ms, O(n)]既然两个数组已经有序，那么可以用归并排序的归并操作去合并数组提升性能，使用二分法能达到更快的logn时间复杂度
+    fn merge_sort_solution(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
+        let (m, n, mut i, mut j) = (nums1.len(), nums2.len(), 0usize, 0usize);
+        let len = m + n;
+        let mut merged = Vec::with_capacity(len);
+        while i < m && j < n {
+            if nums1[i] <= nums2[j] {
+                merged.push(nums1[i]);
+                i += 1;
+            } else {
+                merged.push(nums2[j]);
+                j += 1;
+            }
+        }
+        while i < m {
+            merged.push(nums1[i]);
+            i += 1;
+        }
+        while j < n {
+            merged.push(nums2[j]);
+            j += 1;
+        }
+        if len % 2 == 0 {
+            (merged[len / 2 - 1] + merged[len / 2]) as f64 / 2f64
+        } else {
+            merged[len / 2] as f64
+        }
     }
 }
 
-/*
-不愧是log(min(m+n))的时间复杂度，稳定跑进0ms
-*/
 #[cfg(test)]
+mod test_find_median_sorted_arrays {
+    use super::Solution;
+
+    const TESTCASES: [(&[i32], &[i32], f64); 17] = [
+        (&[1, 2, 3, 4], &[3, 6, 8, 9], 3.5),
+        (&[1, 5, 6, 7], &[2, 3, 4, 8], 4.5),
+        (&[1, 2], &[3, 4, 5, 6, 7], 4f64),
+        (&[4, 5, 6], &[1, 2, 3], 3.5),
+        (&[4, 5], &[1, 2, 3, 6], 3.5),
+        (&[1, 3], &[2, 4, 5, 6], 3.5),
+        (&[1, 2], &[3, 4, 5, 6], 3.5),
+        (&[1, 3], &[2, 4, 5], 3f64),
+        (&[1, 2, 3], &[4, 5], 3f64),
+        (&[3, 4], &[1, 2, 5], 3f64),
+        (&[-2, -1], &[3], -1f64),
+        (&[1, 3], &[2], 2f64),
+        (&[3], &[-2, -1], -1f64),
+        (&[1, 2], &[3, 4], 2.5),
+        (&[4, 5], &[1, 2, 3], 3f64),
+        (&[1, 2], &[1, 2, 3], 2f64),
+        (&[1, 2, 3], &[1, 2, 3], 2f64),
+    ];
+
+    #[test]
+    fn test_my_brute_force() {
+        for &(nums1, nums2, expected) in TESTCASES.iter() {
+            assert_eq!(
+                Solution::my_brute_force(nums1.to_vec(), nums2.to_vec()),
+                expected
+            );
+        }
+    }
+
+    #[test]
+    fn test_merge_sort_solution() {
+        for &(nums1, nums2, expected) in TESTCASES.iter() {
+            assert_eq!(
+                Solution::merge_sort_solution(nums1.to_vec(), nums2.to_vec()),
+                expected
+            );
+        }
+    }
+}
+
+/// [0ms, O(logn)] solution, but too long and hard to read
+/// TODO Refactor, use checked_sub to detect usize overflow?
+#[cfg(FALSE)]
 fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     let (len_a, len_b) = (nums1.len(), nums2.len());
     // 保证数组a的长度更短，我们遍历较短的数组a节约时间，加上二分查找后使得时间复杂度降低到O(log(min(m,n)))
@@ -147,7 +210,7 @@ fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     }
 }
 
-/*
+/**
 https://www.youtube.com/watch?v=ScCg9v921ns
 数组A、B初始化时都在A、B中间设一个分割线
 先不考虑奇数的情况，让代码简单点，自己尝试敲一下，不然干看答案也不理解
@@ -163,8 +226,9 @@ https://www.youtube.com/watch?v=ScCg9v921ns
 时间复杂度O(logn)，而尾递归二分查找第k小的项的时间复杂度是O(log(m+n))
 
 流程：移动较短数组的分割线
+
+FIXME [1,2],[3,4]的测试用例在本地运行能通过，在leetcode上运行就不行
 */
-// move_divider_of_two_arrays
 #[cfg(FALSE)]
 fn move_divider_of_two_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     let (len_a, len_b) = (nums1.len(), nums2.len());
@@ -238,12 +302,6 @@ fn move_divider_of_two_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
         } else {
             nums2[a_divider_right_index]
         };
-        // dbg!((
-        //     a_divider_left,
-        //     a_divider_right,
-        //     b_divider_left,
-        //     b_divider_right
-        // ));
 
         // a的右半边太大了，a的分隔线左移，b的分隔线右移
         if a_divider_left > b_divider_right {
@@ -293,11 +351,7 @@ fn move_divider_of_two_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
 /// 右中位数是nums1[nums1_idx+1]和nums2[nums2_idx+1]的最大值
 /// 需要对nums1或nums2为空的情况做处理
 ///
-/// ### TODO
-///
-/// 没有考虑各种边际情况，leetcode上部分测试用例不通过
-/// 没有考虑nums1或nums2为空的情况，没有考虑nums1一个元素都不取和nums2一个元素都不取的情况
-///
+/// FIXME 没有考虑各种边际情况，leetcode上部分测试用例不通过，没有考虑nums1或nums2为空的情况，没有考虑nums1一个元素都不取和nums2一个元素都不取的情况
 #[cfg(FALSE)]
 fn my_binary_search_kth(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     let (len1, len2) = (nums1.len(), nums2.len());
@@ -336,273 +390,4 @@ fn my_binary_search_kth(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     } else {
         nums1[i].min(nums2[j]) as f64
     }
-}
-
-#[test]
-fn test_my_brute_force() {
-    for case in &TEST_CASES {
-        let nums1: Vec<i32> = case.0.to_vec();
-        let nums2: Vec<i32> = case.1.to_vec();
-        assert_eq!(my_brute_force(nums1, nums2), case.2);
-    }
-}
-
-/*
-思路：遍历小的数组，二分插入到大的数组中
-能跑进0ms，但是不是每次都稳进0ms
-*/
-#[cfg(test)]
-fn my_brute_force(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
-    let len1 = nums1.len();
-    let mut len2 = nums2.len();
-    let total_len = len1 + len2;
-    let median_left_part_final_count = total_len / 2;
-    let shorter_nums: Vec<i32>;
-    let mut longer_nums: Vec<i32>;
-    if len2 > len1 {
-        longer_nums = nums2;
-        shorter_nums = nums1;
-        len2 = len1;
-    } else {
-        longer_nums = nums1;
-        shorter_nums = nums2;
-    }
-    // 已经挑选出组成中位数的左半部分的个数
-    // 二分搜索nums2的第一个元素
-    // let mut median_left_part_current_count;
-    let mut binary_search_index;
-    for j in 0..len2 {
-        binary_search_index = match longer_nums.binary_search(&shorter_nums[j]) {
-            Ok(index) => index,
-            Err(index) => index,
-        };
-        longer_nums.insert(binary_search_index, shorter_nums[j]);
-        // 以下写法会漏掉测试用例1的元素nums1的4
-        // median_left_part_current_count = binary_search_index +j;
-        // if median_left_part_current_count >= median_left_part_final_count {
-        //     break;
-        // }
-    }
-    return if total_len % 2 == 0 {
-        (longer_nums[median_left_part_final_count] + longer_nums[median_left_part_final_count - 1])
-            as f64
-            / 2_f64
-    } else {
-        longer_nums[median_left_part_final_count] as f64
-    };
-}
-
-/*
-思路：遍历小的数组，冒泡排序搬的插入到大的数组中
-我首次Accept该题的提交，现在看来思路很乱而且优化空间很大
-这么笨的算法rust都能跑进4ms，Rust的性能太强了
-执行用时 : 4 ms, 在所有 Rust 提交中击败了72.09%的用户
-内存消耗 : 2 MB, 在所有 Rust 提交中击败了100.00%的用户
-*/
-#[cfg(FALSE)]
-pub fn my_brute_force_old(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
-    let ans: f64;
-    let mut len = nums1.len();
-    let len1 = nums1.len();
-    let mut len2 = nums2.len();
-    let total_sum = nums1.len() + nums2.len();
-    let stop_index = total_sum / 2;
-    let mut i = 0;
-    let mut j = 0;
-    let mut arr: Vec<i32>;
-    let pending_to_insert_arr: Vec<i32>;
-    if len1 > len2 {
-        arr = nums1;
-        pending_to_insert_arr = nums2;
-    } else {
-        arr = nums2;
-        pending_to_insert_arr = nums1;
-        len = len2;
-        len2 = len1;
-    }
-    // 奇偶数判断
-    while j < len2 {
-        // 既然第二个数组是有序的，我就不用二分插入了
-        // TODO 这个while比二分查找蠢多了
-        while arr[i.min(len - 1)] < pending_to_insert_arr[j] {
-            if i < len {
-                i += 1;
-            } else {
-                break;
-            }
-        }
-        if i < len {
-            arr.insert(i, pending_to_insert_arr[j]);
-        } else {
-            arr.push(pending_to_insert_arr[j]);
-            i += 1;
-        }
-        j += 1;
-        len += 1;
-    }
-    if total_sum % 2 == 0 {
-        ans = (arr[stop_index] + arr[stop_index - 1]) as f64 / 2_f64;
-    } else {
-        ans = arr[stop_index] as f64;
-    }
-    ans
-}
-
-// 全球服第一、二分查找第k小的元素的算法
-#[cfg(FALSE)]
-use std::cmp::Ordering;
-
-#[cfg(FALSE)]
-fn search_sep_idx(n1: &Vec<i32>, n2: &Vec<i32>) -> usize {
-    let (mut left, mut right) = (0, n1.len() + 1);
-    while (right > left) {
-        let mid = (left + right) / 2;
-        match check_sep(n1, n2, mid) {
-            Ordering::Equal => return mid,
-            Ordering::Greater => right = mid,
-            Ordering::Less => left = mid + 1,
-        }
-    }
-    unreachable!()
-}
-
-#[cfg(FALSE)]
-fn get_min_maxs(n1: &Vec<i32>, n2: &Vec<i32>, sep_idx1: usize) -> (i32, i32, i32, i32) {
-    let final_len = n1.len() + n2.len();
-    let sep_idx2 = final_len / 2 - sep_idx1;
-    let left_max1 = if sep_idx1 == 0 {
-        std::i32::MIN
-    } else {
-        n1[sep_idx1 - 1]
-    };
-    let left_max2 = if sep_idx2 == 0 {
-        std::i32::MIN
-    } else {
-        n2[sep_idx2 - 1]
-    };
-
-    let right_min1 = if sep_idx1 == n1.len() {
-        std::i32::MAX
-    } else {
-        n1[sep_idx1]
-    };
-    let right_min2 = if sep_idx2 == n2.len() {
-        std::i32::MAX
-    } else {
-        n2[sep_idx2]
-    };
-
-    (left_max1, left_max2, right_min1, right_min2)
-}
-
-#[cfg(FALSE)]
-fn check_sep(n1: &Vec<i32>, n2: &Vec<i32>, sep_idx1: usize) -> Ordering {
-    let (left_max1, left_max2, right_min1, right_min2) = get_min_maxs(n1, n2, sep_idx1);
-    let left_max = left_max1.max(left_max2);
-    let right_min = right_min1.min(right_min2);
-    if left_max <= right_min {
-        Ordering::Equal
-    } else if left_max1 > right_min {
-        Ordering::Greater
-    } else {
-        Ordering::Less
-    }
-}
-
-#[cfg(FALSE)]
-pub fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
-    if nums1.len() > nums2.len() {
-        return Self::find_median_sorted_arrays(nums2, nums1);
-    }
-    let sep1 = search_sep_idx(&nums1, &nums2);
-    let (left_max1, left_max2, right_min1, right_min2) = get_min_maxs(&nums1, &nums2, sep1);
-    let left_max = left_max1.max(left_max2);
-    let right_min = right_min1.min(right_min2);
-    if (nums1.len() + nums2.len()) % 2 == 0 {
-        // even
-        (left_max + right_min) as f64 / 2.0
-    } else {
-        // odd
-        right_min as f64
-    }
-}
-
-// 国服第一、二分查找第k小的元素的算法
-#[cfg(FALSE)]
-fn get_min(x: usize, y: usize) -> usize {
-    if x > y {
-        return y;
-    } else {
-        return x;
-    }
-}
-
-#[cfg(FALSE)]
-fn get_kth(
-    nums1: &Vec<i32>,
-    start1: usize,
-    end1: usize,
-    nums2: &Vec<i32>,
-    start2: usize,
-    end2: usize,
-    k: usize,
-) -> i32 {
-    let len1 = end1 - start1 + 1;
-    let len2 = end2 - start2 + 1;
-    if len1 > len2 {
-        return Solution::getKth(nums2, start2, end2, nums1, start1, end1, k);
-    }
-
-    if len1 == 0 {
-        return nums2[start2 + k - 1];
-    }
-
-    if k == 1 {
-        let mut temp1 = nums1[start1];
-        let mut temp2 = nums2[start2];
-        if temp1 > temp2 {
-            return temp2;
-        } else {
-            return temp1;
-        }
-    }
-
-    let i = start1 + Solution::get_min(len1, k / 2) - 1;
-    let j = start2 + Solution::get_min(len2, k / 2) - 1;
-    if nums1[i] > nums2[j] {
-        return Solution::getKth(
-            nums1,
-            start1,
-            end1,
-            nums2,
-            j + 1,
-            end2,
-            k - (j - start2 + 1),
-        );
-    } else {
-        return Solution::getKth(
-            nums1,
-            i + 1,
-            end1,
-            nums2,
-            start2,
-            end2,
-            k - (i - start1 + 1),
-        );
-    }
-}
-
-#[cfg(FALSE)]
-pub fn find_median_sorted_arrays_china_best(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
-    let n = nums1.len();
-    let m = nums2.len();
-
-    let left = (n + m + 1) / 2;
-    let right = (n + m + 2) / 2;
-
-    let temp: f64 = 0.5;
-
-    return (Solution::getKth(&nums1, 0, n - 1, &nums2, 0, m - 1, left)
-        + Solution::getKth(&nums1, 0, n - 1, &nums2, 0, m - 1, right)) as f64
-        * temp;
 }

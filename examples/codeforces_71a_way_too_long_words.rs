@@ -34,9 +34,10 @@ fn main() {
 }
 
 #[cfg(test)]
-const TESTCASES: [(&[u8], &[u8]); 1] = [
-    (b"4\nword\nlocalization\ninternationalization\npneumonoultramicroscopicsilicovolcanoconiosis", b"word\nl10n\ni18n\np43s\n"),
-];
+const TESTCASES: [(&[u8], &[u8]); 1] = [(
+    b"4\nword\nlocalization\ninternationalization\npneumonoultramicroscopicsilicovolcanoconiosis",
+    b"word\nl10n\ni18n\np43s\n",
+)];
 
 #[test]
 fn test_solution() {

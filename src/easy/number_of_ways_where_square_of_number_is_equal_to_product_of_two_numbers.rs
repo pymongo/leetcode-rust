@@ -50,7 +50,7 @@ impl Solution {
 }
 
 #[cfg(test)]
-const TEST_CASES: [(&[i32], &[i32], i32); 4] = [
+const TESTCASES: [(&[i32], &[i32], i32); 4] = [
     (&[1, 1], &[1, 1, 1], 9),
     (&[7, 4], &[5, 2, 8, 9], 1),
     (&[7, 7, 8, 3], &[1, 2, 9, 7], 2),
@@ -59,7 +59,7 @@ const TEST_CASES: [(&[i32], &[i32], i32); 4] = [
 
 #[test]
 fn test_diagonal_sum() {
-    for &(nums1, nums2, res) in &TEST_CASES {
+    for &(nums1, nums2, res) in &TESTCASES {
         assert_eq!(Solution::num_triplets(nums1.to_vec(), nums2.to_vec()), res);
     }
 }

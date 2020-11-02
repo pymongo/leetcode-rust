@@ -45,11 +45,11 @@ impl Solution {
 }
 
 #[cfg(test)]
-const TEST_CASES: [(&[i32], bool); 1] = [(&[0, 0], true)];
+const TESTCASES: [(&[i32], bool); 1] = [(&[0, 0], true)];
 
 #[test]
 fn test_linked_list_is_palindrome() {
-    for &(ln, expected) in TEST_CASES.iter() {
+    for &(ln, expected) in TESTCASES.iter() {
         let head = super::arr_to_linked_list(ln);
         assert_eq!(Solution::is_palindrome(head), expected);
     }

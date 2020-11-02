@@ -4,23 +4,23 @@
 - problem number with `🐢` suffix without 0ms solution
 - problem number with `❌` suffix is a bad solution(like 372 Python can't do bitwise add)
 
-codeforces_problems
+codeforces_solutions
 ===
 
-| Title | Solutions | Category/Comment |
-| ----- | --------- | ---------------- |
+| Problem | Solutions | Category/Comment |
+| ------- | --------- | ---------------- |
 |[4A - Watermelon](https://codeforces.com/problemset/problem/4/A)|[Rust](examples/codeforces_4a_watermelon.rs)|very_ease|
 |[71A - Way Too Long Words](https://codeforces.com/problemset/problem/71/A)|[Rust](examples/codeforces_71a_way_too_long_words.rs)|very_ease|
 
-leetcode_problems
+leetcode_solutions
 ===
 
 ~~(表格中没有代码文件链接的都是过于简单30秒就能搞定的题)~~
 
 %w(Python Rust Go Java C++).sort().reverse() = \["Rust", "Python", "Java", "Go", "C++"]
 
-| # | Title | Solutions | Category/Comment |
-|---| ----- | --------- | ---------------- |
+| # | Problem | Solutions | Category/Comment |
+|---| ------- | --------- | ---------------- |
 |1|[Two Sum](https://leetcode.com/problems/two-sum/)|[Rust](src/easy/two_sum.rs), [Java](https://github.com/pymongo/java_leetcode/blob/master/src/test/java/com/leetcode/collections/HashMapTwoSum.java), [Go](https://github.com/pymongo/go_leetcode/blob/master/two_sum_test.go)|bitwise|
 |2🐢|[Add Two Numbers](https://leetcode.com/problems/add-two-numbers/)|[Rust](src/linked_list/add_two_linked_list.rs), [Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/add_two_numbers.py), [Java](https://github.com/pymongo/java_leetcode/blob/master/src/test/java/com/leetcode/collections/TraverseTwoListNode.java), [Go](https://github.com/pymongo/go_leetcode/blob/master/traverse_two_list_node_test.go)|linked_list|
 |3|[Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/)|[Rust](src/string/longest_non_repeated_substr.rs), [Python](https://github.com/pymongo/python_leetcode/blob/master/string/longest_non_repeated_substr.py)|sliding_window|

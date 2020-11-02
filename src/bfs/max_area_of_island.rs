@@ -53,7 +53,7 @@ impl Solution {
 }
 
 #[cfg(test)]
-const TEST_CASES: [(&[&[i32]], i32); 1] = [(
+const TESTCASES: [(&[&[i32]], i32); 1] = [(
     &[
         &[1, 1, 0, 0, 0],
         &[1, 1, 0, 0, 0],
@@ -65,7 +65,7 @@ const TEST_CASES: [(&[&[i32]], i32); 1] = [(
 
 #[test]
 fn test_max_area_of_island() {
-    for &(grid, max_area) in &TEST_CASES {
+    for &(grid, max_area) in &TESTCASES {
         let grid: Vec<Vec<i32>> = grid.iter().map(|each| each.to_vec()).collect();
         assert_eq!(Solution::max_area_of_island(grid), max_area);
     }

@@ -49,10 +49,10 @@ impl Solution {
         let mut map = std::collections::HashMap::new();
         for (i, letter) in s.iter().enumerate() {
             if let Some(&left_index) = map.get(letter) {
-                start = start.max(left_index+1);
+                start = start.max(left_index + 1);
             }
             // 必须要更新完左边界再去算window长度才是正确的
-            max_len = max_len.max(i-start+1);
+            max_len = max_len.max(i - start + 1);
             // insert or update
             map.insert(*letter, i);
         }
@@ -61,7 +61,7 @@ impl Solution {
 }
 
 mod test_solution {
-    const TEST_CASES: [(&str, i32); 7] = [
+    const TESTCASES: [(&str, i32); 7] = [
         ("dvdf", 3),
         ("abcabcbb", 3),
         ("bbbbb", 1),
@@ -73,16 +73,22 @@ mod test_solution {
 
     #[test]
     fn test_i32_ascii_table() {
-        for &(input, expected) in TEST_CASES.iter() {
-            assert_eq!(super::Solution::ascii_table_array_solution(input.to_string()), expected);
+        for &(input, expected) in TESTCASES.iter() {
+            assert_eq!(
+                super::Solution::ascii_table_array_solution(input.to_string()),
+                expected
+            );
         }
     }
 
     #[test]
     fn test_sliding_window_hashmap() {
-        for &(input, expected) in TEST_CASES.iter() {
+        for &(input, expected) in TESTCASES.iter() {
             dbg!(input);
-            assert_eq!(super::Solution::sliding_window_hashmap(input.to_string()), expected);
+            assert_eq!(
+                super::Solution::sliding_window_hashmap(input.to_string()),
+                expected
+            );
         }
     }
 }

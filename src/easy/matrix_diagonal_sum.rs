@@ -25,7 +25,7 @@ impl Solution {
 }
 
 #[cfg(test)]
-const TEST_CASES: [(&[&[i32]], i32); 2] = [
+const TESTCASES: [(&[&[i32]], i32); 2] = [
     (
         &[&[1, 1, 1, 1], &[1, 1, 1, 1], &[1, 1, 1, 1], &[1, 1, 1, 1]],
         8,
@@ -35,7 +35,7 @@ const TEST_CASES: [(&[&[i32]], i32); 2] = [
 
 #[test]
 fn test_diagonal_sum() {
-    for &(mat, res) in &TEST_CASES {
+    for &(mat, res) in &TESTCASES {
         let n = mat.len();
         let mut mat_vec = Vec::with_capacity(n);
         for &row in mat {

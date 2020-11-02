@@ -19,7 +19,7 @@ impl Solution {
 }
 
 #[cfg(test)]
-const TEST_CASES: [(&str, &str, bool); 4] = [
+const TESTCASES: [(&str, &str, bool); 4] = [
     ("ab#c", "ad#c", true),
     ("ab##", "c#d#", true),
     ("a##c", "#a#c", true),
@@ -28,7 +28,7 @@ const TEST_CASES: [(&str, &str, bool); 4] = [
 
 #[test]
 fn test_backspace_compare() {
-    for &(s, t, expected) in &TEST_CASES {
+    for &(s, t, expected) in &TESTCASES {
         assert_eq!(
             Solution::backspace_compare(s.to_string(), t.to_string()),
             expected

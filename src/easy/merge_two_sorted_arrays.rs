@@ -1,7 +1,7 @@
 //! https://leetcode.com/problems/merge-sorted-array/
 
 #[cfg(test)]
-const TEST_CASES: [(&[i32], i32, &[i32], i32, &[i32]); 3] = [
+const TESTCASES: [(&[i32], i32, &[i32], i32, &[i32]); 3] = [
     (&[1, 2, 3, 0, 0, 0], 3, &[2, 5, 6], 3, &[1, 2, 2, 3, 5, 6]),
     (&[2, 0], 1, &[1], 1, &[1, 2]),
     (&[0], 0, &[1], 1, &[1]),
@@ -9,7 +9,7 @@ const TEST_CASES: [(&[i32], i32, &[i32], i32, &[i32]); 3] = [
 
 #[test]
 fn test_my_first_solution() {
-    for &(nums1, m, nums2, n, expected) in TEST_CASES.iter() {
+    for &(nums1, m, nums2, n, expected) in TESTCASES.iter() {
         let mut nums1: Vec<i32> = nums1.to_vec();
         let mut nums2: Vec<i32> = nums2.to_vec();
         let expected: Vec<i32> = expected.to_vec();

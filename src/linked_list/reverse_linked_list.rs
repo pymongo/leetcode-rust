@@ -49,12 +49,12 @@ impl Solution {
 }
 
 #[cfg(test)]
-const TEST_CASES: [(&[i32], &[i32]); 1] = [(&[1, 2, 3], &[3, 2, 1])];
+const TESTCASES: [(&[i32], &[i32]); 1] = [(&[1, 2, 3], &[3, 2, 1])];
 
 #[test]
 fn test_traverse_two_list_node() {
     use crate::linked_list::{arr_to_linked_list, linked_list_to_vec};
-    for &(input, output) in &TEST_CASES {
+    for &(input, output) in &TESTCASES {
         let head = arr_to_linked_list(input);
         assert_eq!(
             linked_list_to_vec(&Solution::reverse_list(head)),

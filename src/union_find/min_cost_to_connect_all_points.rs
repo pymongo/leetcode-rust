@@ -1,5 +1,3 @@
-struct Solution;
-
 struct UnionFind {
     parents: Vec<usize>,
 }
@@ -32,6 +30,8 @@ impl UnionFind {
         }
     }
 }
+
+struct Solution;
 
 // 平面上有若干点，找出能连接所有点的最短边的总和
 // 除了并查集排除重复连边，还能用「最小生成树的模板」的Prim或Kruskal算法
@@ -71,24 +71,29 @@ impl Solution {
 }
 
 #[cfg(test)]
-fn test_cases() -> Vec<(Vec<Vec<i32>>, i32)> {
+fn testcases() -> Vec<(Vec<Vec<i32>>, i32)> {
     vec![
-        (
-            vec![vec![0, 0], vec![2, 2], vec![3, 10], vec![5, 2], vec![7, 0]],
-            20,
-        ),
-        (
-            vec![vec![2, -3], vec![-17, -8], vec![13, 8], vec![-17, -15]],
-            53,
-        ),
-        (vec![vec![3, 12], vec![-2, 5], vec![-4, 1]], 18),
-        (vec![vec![0, 0], vec![1, 1], vec![1, 0], vec![-1, 1]], 4),
+        (vec![(0, 0), (2, 2), (3, 10), (5, 2), (7, 0)], 20),
+        (vec![(2, -3), (-17, -8), (13, 8), (-17, -15)], 53),
+        (vec![(3, 12), (-2, 5), (-4, 1)], 18),
+        (vec![(0, 0), (1, 1), (1, 0), (-1, 1)], 4),
     ]
+        .iter()
+        .map(|(points, cost)| {
+            (
+                points
+                    .iter()
+                    .map(|&(x, y)| vec![x, y])
+                    .collect::<Vec<Vec<i32>>>(),
+                *cost,
+            )
+        })
+        .collect()
 }
 
 #[test]
 fn test() {
-    for (points, min_cost) in test_cases() {
+    for (points, min_cost) in testcases() {
         assert_eq!(Solution::min_cost_connect_points(points), min_cost);
     }
 }

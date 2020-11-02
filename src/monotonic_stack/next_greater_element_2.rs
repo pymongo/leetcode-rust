@@ -25,11 +25,11 @@ impl Solution {
 }
 
 #[cfg(test)]
-const TEST_CASES: [(&[i32], &[i32]); 1] = [(&[1, 2, 1], &[2, -1, 2])];
+const TESTCASES: [(&[i32], &[i32]); 1] = [(&[1, 2, 1], &[2, -1, 2])];
 
 #[test]
 fn test() {
-    for &(nums, output) in TEST_CASES.iter() {
+    for &(nums, output) in TESTCASES.iter() {
         assert_eq!(
             Solution::next_greater_elements(nums.to_vec()),
             output.to_vec()

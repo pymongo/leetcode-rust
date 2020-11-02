@@ -125,7 +125,7 @@ impl Solution {
 }
 
 #[cfg(test)]
-const TEST_CASES: [(&str, &str, bool); 6] = [
+const TESTCASES: [(&str, &str, bool); 6] = [
     ("alex", "alexxr", false),
     ("pyplrz", "ppyypllr", false),
     ("alex", "aaleex", true),
@@ -137,7 +137,7 @@ const TEST_CASES: [(&str, &str, bool); 6] = [
 
 #[test]
 fn test_is_long_pressed_name() {
-    for &(name, typed, expected) in &TEST_CASES {
+    for &(name, typed, expected) in &TESTCASES {
         dbg!(name, typed);
         // dbg!(Solution::is_long_pressed_name(name.to_string(), typed.to_string()));
         assert_eq!(

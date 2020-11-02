@@ -8,7 +8,7 @@
 2. stdin每行的分隔符是CR+LF两个byte，例如本题的测试用例8在stdin上为: [56,13,10]+EOF
 
 但是在mac上(terminal或IDEA)，stdin输入回车只有LF，不是codeforces的CRLF，不方便模拟和测试
-mac: [49,48,48,13(CR),10(LF)]
+mac/linux: [49,48,48,13(CR),10(LF)]
 codeforces: [49,48,48,10(LF)]
 
 本题问的是一个数能否被分成两个偶数之和，显然只要不等于2的所有偶数都符合条件
@@ -29,14 +29,12 @@ where
     let mut read_buffer = [0u8; 5];
     let _read_size = reader.read(&mut read_buffer)?;
     let mut num = 0u8;
-    for i in 0..5 {
-        // for in in 0..input_size-2(remove \r\n)
-        if read_buffer[i] == b'\r' || read_buffer[i] == b'\n' {
+    for &byte in read_buffer.iter() {
+        if byte == b'\r' || byte == b'\n' {
             break;
         }
-        num = num * 10 + read_buffer[i] - b'0';
+        num = num * 10 + byte - b'0';
     }
-    // println!("input: {:?}, num: {}, read_size: {}", input, num, read_size);
     if num % 2 == 0 && num != 2 {
         write!(&mut writer, "YES")?;
     } else {

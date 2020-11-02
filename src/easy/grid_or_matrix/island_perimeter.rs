@@ -33,7 +33,7 @@ impl Solution {
 
 #[test]
 fn test_island_perimeter() {
-    let test_cases: Vec<(Vec<Vec<i32>>, i32)> = vec![(
+    let testcases: Vec<(Vec<Vec<i32>>, i32)> = vec![(
         vec![
             vec![0, 1, 0, 0],
             vec![1, 1, 1, 0],
@@ -42,7 +42,7 @@ fn test_island_perimeter() {
         ],
         16,
     )];
-    for (grid, perimeter) in test_cases {
+    for (grid, perimeter) in testcases {
         assert_eq!(Solution::island_perimeter(grid), perimeter)
     }
 }

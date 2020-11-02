@@ -1,9 +1,10 @@
+//! https://leetcode.com/problems/longest-palindromic-substring/
 //! 本题多达五种解法：
 //! 1. O(n): Manacher，后缀数组:
 //! 2. O(n^2), dp: 如果a[0]==a[-1]，而且a[1..-2]是个回文数，则a也是个回文数
 
 #[cfg(test)]
-const TEST_CASES: [(&str, &str); 6] = [
+const TESTCASES: [(&str, &str); 6] = [
     ("babad", "bab"),
     ("abadd", "aba"),
     ("cbbd", "bb"),
@@ -14,8 +15,8 @@ const TEST_CASES: [(&str, &str); 6] = [
 
 #[test]
 fn test_manacher() {
-    // 也可以写成 for (input, expected) in &TEST_CASES，不过这样写intellij-rust不能识别input和expected类型
-    for &(input, expected) in TEST_CASES.iter() {
+    // 也可以写成 for (input, expected) in &TESTCASES，不过这样写intellij-rust不能识别input和expected类型
+    for &(input, expected) in TESTCASES.iter() {
         assert_eq!(manacher(input.to_string()), expected.to_string());
     }
 }
@@ -95,7 +96,7 @@ fn manacher(s: String) -> String {
 
 #[test]
 fn test_manacher_old() {
-    for &(input, expected) in TEST_CASES.iter() {
+    for &(input, expected) in TESTCASES.iter() {
         assert_eq!(manacher_old(input.to_string()), expected.to_string());
     }
 }
@@ -234,7 +235,7 @@ fn manacher_old(s: String) -> String {
 
 #[test]
 fn test_expand_around_center() {
-    for &(input, expected) in TEST_CASES.iter() {
+    for &(input, expected) in TESTCASES.iter() {
         assert_eq!(
             expand_around_center(input.to_string()),
             expected.to_string()
@@ -326,7 +327,7 @@ fn expand_around_center_helper(chars: &[u8], len: usize, left: usize, right: usi
 
 #[test]
 fn test_dp_new() {
-    for &(input, expected) in TEST_CASES.iter() {
+    for &(input, expected) in TESTCASES.iter() {
         assert_eq!(dp_new(input.to_string()), expected.to_string());
     }
 }
@@ -394,7 +395,7 @@ fn dp_new(s: String) -> String {
 
 #[test]
 fn test_dp() {
-    for &(input, expected) in TEST_CASES.iter() {
+    for &(input, expected) in TESTCASES.iter() {
         if input == "babad" {
             let result = &dp(input.to_string());
             assert!(result == "bab" || result == "aba");

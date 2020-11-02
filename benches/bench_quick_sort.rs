@@ -1,6 +1,55 @@
 #![feature(test)]
 extern crate test;
 
+fn my_quick_sort(start: usize, end: usize, nums: &mut [i32]) {
+    if start >= end {
+        return;
+    }
+    let pivot = nums[start + (end - start) / 2];
+    let mut left = start;
+    let mut right = end;
+    while left <= right {
+        while left <= right && nums[left] < pivot {
+            left += 1;
+        }
+        while left <= right && nums[right] > pivot {
+            right -= 1;
+        }
+        if left <= right {
+            nums.swap(left, right);
+            left += 1;
+            right -= 1;
+        }
+    }
+    my_quick_sort(start, right, nums);
+    my_quick_sort(left, end, nums);
+}
+
+#[bench]
+fn bench_my_quick_sort(bencher: &mut test::Bencher) {
+    bencher.iter(|| {
+        let mut nums = NUMS.to_vec();
+        my_quick_sort(0, LEN - 1, &mut nums);
+    });
+}
+
+#[bench]
+fn bench_stdlib_merge_sort(bencher: &mut test::Bencher) {
+    bencher.iter(|| {
+        let mut nums = NUMS.to_vec();
+        #[allow(clippy::stable_sort_primitive)]
+        nums.sort();
+    });
+}
+
+#[bench]
+fn bench_stdlib_quick_sort(bencher: &mut test::Bencher) {
+    bencher.iter(|| {
+        let mut nums = NUMS.to_vec();
+        nums.sort_unstable();
+    });
+}
+
 const NUMS: [i32; 1000] = [
     986, 280, 908, 24, 458, 741, 378, 682, 443, 878, 252, 255, 82, 557, 317, 921, 929, 484, 65,
     414, 416, 921, 221, 607, 888, 969, 712, 718, 528, 678, 778, 372, 143, 406, 94, 990, 122, 33,
@@ -58,53 +107,3 @@ const NUMS: [i32; 1000] = [
 ];
 
 const LEN: usize = 1000;
-
-#[bench]
-fn bench_stdlib_merge_sort(bencher: &mut test::Bencher) {
-    bencher.iter(|| {
-        let mut nums = NUMS.to_vec();
-        nums.sort();
-    });
-}
-
-#[bench]
-fn bench_stdlib_quick_sort(bencher: &mut test::Bencher) {
-    bencher.iter(|| {
-        let mut nums = NUMS.to_vec();
-        nums.sort_unstable();
-    });
-}
-
-fn quick_sort(start: usize, end: usize, nums: &mut Vec<i32>) {
-    if start >= end {
-        return;
-    }
-    let pivot = nums[start + (end - start) / 2];
-    let mut left = start;
-    let mut right = end;
-    while left <= right {
-        while left <= right && nums[left] < pivot {
-            left += 1;
-        }
-        while left <= right && nums[right] > pivot {
-            right -= 1;
-        }
-        if left <= right {
-            let temp = nums[right];
-            nums[right] = nums[left];
-            nums[left] = temp;
-            left += 1;
-            right -= 1;
-        }
-    }
-    quick_sort(start, right, nums);
-    quick_sort(left, end, nums);
-}
-
-#[bench]
-fn bench_my_quick_sort(bencher: &mut test::Bencher) {
-    bencher.iter(|| {
-        let mut nums = NUMS.to_vec();
-        quick_sort(0, LEN - 1, &mut nums);
-    });
-}
