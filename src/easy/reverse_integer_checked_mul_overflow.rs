@@ -1,4 +1,5 @@
-/** https://leetcode.com/problems/reverse-integer/ & https://leetcode.com/problems/palindrome-number/
+/** https://leetcode.com/problems/reverse-integer/
+& https://leetcode.com/problems/palindrome-number/
 
 ```text
 https://twitter.com/ospopen/status/1322127786618748928

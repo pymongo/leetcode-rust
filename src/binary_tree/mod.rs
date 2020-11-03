@@ -6,6 +6,7 @@ pub use std::cell::RefCell;
 pub use std::rc::Rc;
 
 /// TODO add tree_node to str function
+/// due to orphan rule, can't impl From<str> to TreeNode directly
 pub fn str_to_tree_node(s: &str) -> Option<Rc<RefCell<TreeNode>>> {
     let mut stack: Vec<Rc<RefCell<TreeNode>>> = Vec::new();
     let mut val_len = 0;
