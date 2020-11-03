@@ -1,7 +1,7 @@
 //! https://leetcode.com/problems/climbing-stairs/
 
 #[cfg(test)]
-const TEST_CASE: [(i32, i32); 5] = [(1, 1), (2, 2), (3, 3), (4, 5), (5, 8)];
+const TESTCASES: [(i32, i32); 5] = [(1, 1), (2, 2), (3, 3), (4, 5), (5, 8)];
 
 /*
 def climb_stairs(n):
@@ -15,7 +15,7 @@ def climb_stairs(n):
 */
 #[test]
 fn test_tail_recursion() {
-    for &(input, expected) in TEST_CASE.iter() {
+    for &(input, expected) in TESTCASES.iter() {
         assert_eq!(tail_recursion_helper(input), expected);
     }
 }
@@ -41,7 +41,7 @@ fn tail_recursion(n: u32, a: u32, b: u32) -> u32 {
 
 #[test]
 fn test_iterate() {
-    for &(input, expected) in TEST_CASE.iter() {
+    for &(input, expected) in TESTCASES.iter() {
         assert_eq!(iterate(input), expected);
     }
 }

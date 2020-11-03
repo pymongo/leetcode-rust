@@ -25,7 +25,7 @@ impl Solution {
             }
             res += left_smaller * right_bigger + left_bigger * right_smaller;
         }
-        return res;
+        res
         /*
         let n = a.len();
         let mut res = 0;
@@ -38,7 +38,7 @@ impl Solution {
                 }
             }
         }
-        return res;
+        res
         */
     }
 }

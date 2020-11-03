@@ -4,7 +4,7 @@ struct Solution;
 
 impl Solution {
     pub fn solve_n_queens(n: i32) -> Vec<Vec<String>> {
-        return entrance(n);
+        entrance(n)
     }
 }
 
@@ -21,7 +21,7 @@ fn entrance(n: i32) -> Vec<Vec<String>> {
 
     let mut res: Vec<Vec<String>> = Vec::new();
     dfs(&mut queens, &mut used_cols, &mut sum, &mut dif, n, &mut res);
-    return res;
+    res
 }
 
 fn dfs(

@@ -7,7 +7,6 @@ mod count_negative_numbers_in_a_sorted_matrix;
 mod count_number_of_teams;
 mod find_common_characters;
 mod grid_or_matrix;
-mod i32_is_palindromic;
 mod majority_element;
 mod matrix_diagonal_sum;
 mod merge_two_sorted_arrays;

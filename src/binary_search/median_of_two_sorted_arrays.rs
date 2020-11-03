@@ -13,7 +13,7 @@ impl Solution {
         nums1.sort_unstable();
         let len = nums1.len();
         if len % 2 == 0 {
-            (nums1[len / 2 - 1] + nums1[len / 2 + 1]) as f64 / 2f64
+            (nums1[len / 2 - 1] + nums1[len / 2]) as f64 / 2f64
         } else {
             nums1[len / 2] as f64
         }
@@ -96,7 +96,6 @@ mod test_find_median_sorted_arrays {
 
 /// [0ms, O(logn)] solution, but too long and hard to read
 /// TODO Refactor, use checked_sub to detect usize overflow?
-#[cfg(FALSE)]
 fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     let (len_a, len_b) = (nums1.len(), nums2.len());
     // 保证数组a的长度更短，我们遍历较短的数组a节约时间，加上二分查找后使得时间复杂度降低到O(log(min(m,n)))
@@ -229,7 +228,6 @@ https://www.youtube.com/watch?v=ScCg9v921ns
 
 FIXME [1,2],[3,4]的测试用例在本地运行能通过，在leetcode上运行就不行
 */
-#[cfg(FALSE)]
 fn move_divider_of_two_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     let (len_a, len_b) = (nums1.len(), nums2.len());
     // 保证数组a的长度更短，我们遍历较短的数组a节约时间，加上二分查找后使得时间复杂度降低到O(log(min(m,n)))
@@ -352,7 +350,6 @@ fn move_divider_of_two_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
 /// 需要对nums1或nums2为空的情况做处理
 ///
 /// FIXME 没有考虑各种边际情况，leetcode上部分测试用例不通过，没有考虑nums1或nums2为空的情况，没有考虑nums1一个元素都不取和nums2一个元素都不取的情况
-#[cfg(FALSE)]
 fn my_binary_search_kth(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     let (len1, len2) = (nums1.len(), nums2.len());
     // 如果是奇数，恰好是中位数，如果是偶数，则是左中位数

@@ -13,6 +13,6 @@ impl Solution {
                 i += 2;
             }
         }
-        return i == last_idx;
+        i == last_idx
     }
 }

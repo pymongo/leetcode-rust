@@ -1,4 +1,4 @@
-/*!
+/*! https://leetcode.com/problems/trapping-rain-water/
 trapping_rain_water接雨水: 当前柱子能接水的最大高度等于两侧柱子高度的最小值-当前柱子的高度
 所以第一个柱子和最后一个柱子的两侧只有一个柱子，必定不能接水
 我们可以用动态规划的思想去优化寻找左侧最高柱子和右侧最高柱子的过程

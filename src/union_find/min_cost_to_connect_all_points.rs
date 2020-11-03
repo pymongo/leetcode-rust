@@ -16,7 +16,7 @@ impl UnionFind {
             curr_node = curr_node_parent;
             curr_node_parent = self.parents[curr_node];
         }
-        return curr_node_parent;
+        curr_node_parent
     }
 
     // 如果a和b不相连，则添加一条node_a连向node_b边
@@ -66,7 +66,7 @@ impl Solution {
                 break;
             }
         }
-        return total_cost;
+        total_cost
     }
 }
 
@@ -78,17 +78,17 @@ fn testcases() -> Vec<(Vec<Vec<i32>>, i32)> {
         (vec![(3, 12), (-2, 5), (-4, 1)], 18),
         (vec![(0, 0), (1, 1), (1, 0), (-1, 1)], 4),
     ]
-        .iter()
-        .map(|(points, cost)| {
-            (
-                points
-                    .iter()
-                    .map(|&(x, y)| vec![x, y])
-                    .collect::<Vec<Vec<i32>>>(),
-                *cost,
-            )
-        })
-        .collect()
+    .iter()
+    .map(|(points, cost)| {
+        (
+            points
+                .iter()
+                .map(|&(x, y)| vec![x, y])
+                .collect::<Vec<Vec<i32>>>(),
+            *cost,
+        )
+    })
+    .collect()
 }
 
 #[test]

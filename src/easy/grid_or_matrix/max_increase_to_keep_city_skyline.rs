@@ -24,6 +24,6 @@ impl Solution {
                 res += std::cmp::min(curr_max_row, max_col[j]) - grid[i][j];
             }
         }
-        return res;
+        res
     }
 }

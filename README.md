@@ -1,14 +1,14 @@
 - problem number with `🔒` suffix need leetcode/lintcode subscription to unlock
 - problem number with `🤔` suffix has many solutions(I hasn't write all solutions)
 - problem number with `🚫` suffix means TODO, maybe too hard to solve
-- problem number with `🐢` suffix without 0ms solution
 - problem number with `❌` suffix is a bad solution(like 372 Python can't do bitwise add)
+- ~~problem number with `🐢` suffix without 0ms solution~~
 
 codeforces_solutions
 ===
 
-| Problem | Solutions | Category/Comment |
-| ------- | --------- | ---------------- |
+| Problem | Solution | Category/Comment |
+| ------- | -------- | ---------------- |
 |[4A - Watermelon](https://codeforces.com/problemset/problem/4/A)|[Rust](examples/codeforces_4a_watermelon.rs)|very_ease|
 |[71A - Way Too Long Words](https://codeforces.com/problemset/problem/71/A)|[Rust](examples/codeforces_71a_way_too_long_words.rs)|very_ease|
 
@@ -22,14 +22,14 @@ leetcode_solutions
 | # | Problem | Solutions | Category/Comment |
 |---| ------- | --------- | ---------------- |
 |1|[Two Sum](https://leetcode.com/problems/two-sum/)|[Rust](src/easy/two_sum.rs), [Java](https://github.com/pymongo/java_leetcode/blob/master/src/test/java/com/leetcode/collections/HashMapTwoSum.java), [Go](https://github.com/pymongo/go_leetcode/blob/master/two_sum_test.go)|bitwise|
-|2🐢|[Add Two Numbers](https://leetcode.com/problems/add-two-numbers/)|[Rust](src/linked_list/add_two_linked_list.rs), [Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/add_two_numbers.py), [Java](https://github.com/pymongo/java_leetcode/blob/master/src/test/java/com/leetcode/collections/TraverseTwoListNode.java), [Go](https://github.com/pymongo/go_leetcode/blob/master/traverse_two_list_node_test.go)|linked_list|
+|2|[Add Two Numbers](https://leetcode.com/problems/add-two-numbers/)|[Rust](src/linked_list/add_two_linked_list.rs), [Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/add_two_numbers.py), [Java](https://github.com/pymongo/java_leetcode/blob/master/src/test/java/com/leetcode/collections/TraverseTwoListNode.java), [Go](https://github.com/pymongo/go_leetcode/blob/master/traverse_two_list_node_test.go)|linked_list|
 |3|[Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/)|[Rust](src/string/longest_non_repeated_substr.rs), [Python](https://github.com/pymongo/python_leetcode/blob/master/string/longest_non_repeated_substr.py)|sliding_window|
 |4|[Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/)|[Rust](src/binary_search/median_of_two_sorted_arrays.rs), [Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/median_of_two_sorted_arrays.py)|binary_search|
-|5🤔|[Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/)|[Rust](src/string/longest_palindromic_substr.rs), [Python](https://github.com/pymongo/python_leetcode/blob/master/palindrome/longest_palindromic_substr.py)|manacher, suffix_array|
+|5🤔|[Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/)|[Rust](src/dp/longest_palindromic_substr.rs), [Python](https://github.com/pymongo/python_leetcode/blob/master/palindrome/longest_palindromic_substr.py)|manacher, suffix_array|
 |6|[ZigZag Conversion](https://leetcode.com/problems/zigzag-conversion/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/string/zigzag_conversion.py)|
 |7|[Reverse Integer](https://leetcode.com/problems/reverse-integer/)|[Rust](src/easy/reverse_integer_checked_mul_overflow.rs)|
 |8|[String to Integer (atoi)](https://leetcode.com/problems/string-to-integer-atoi/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/string_to_integer_atoi.py)||
-|9|[Palindromic Number](https://leetcode.com/problems/palindrome-number/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/palindrome/longest_palindromic_substr.py), [Rust](src/easy/i32_is_palindromic.rs)|half_traverse_i32|
+|9|[Palindromic Number](https://leetcode.com/problems/palindrome-number/)|[Rust](src/easy/reverse_integer_checked_mul_overflow.rs), [Python](https://github.com/pymongo/python_leetcode/blob/master/palindrome/longest_palindromic_substr.py)|
 |10|[Regular Expression Matching](https://leetcode.com/problem/regular-expression-matching/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/regular_expression_matching.py)|
 |11|[Container With Most Water](https://leetcode.com/problems/container-with-most-water/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/container_with_most_water.py)|
 |12|[Integer to Roman](https://leetcode.com/problems/integer-to-roman/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/int_to_roman.py)|
@@ -498,7 +498,7 @@ lintcode_problems
 |167|[Add Two Numbers](https://lintcode.com/problem/add-two-numbers/)|leetcode_2|
 |168|[Burst Balloons](https://lintcode.com/problem/burst-balloons/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/burst_ballon.py)||
 |171|[Anagrams](https://lintcode.com/problem/anagrams/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/group_anagrams.py)||
-|172|[Subarray Sum](https://lintcode.com/problem/remove-element/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/partition_array/move_zeros.py)||
+|172|[Remove Element](https://lintcode.com/problem/remove-element/)|leetcode_27|
 |174|[Remove Nth Node From End of List](https://lintcode.com/problem/remove-nth-node-from-end-of-list/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/remove_nth_node_from_end.py)|sliding_window|
 |175|[Invert Binary Tree](https://lintcode.com/problem/invert-binary-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/invert_binary_tree.py), [Rust](src/linked_list/reverse_linked_list.rs)||
 |177|[Convert Sorted Array to Binary Search Tree With Minimal Height](https://www.lintcode.com/problem/convert-sorted-array-to-binary-search-tree-with-minimal-height/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/divide_conquer/sorted_list_or_array_to_bst.py)|divide_and_conquer|
@@ -518,7 +518,8 @@ lintcode_problems
 |254|[Drop Eggs](https://lintcode.com/problem/drop-eggs/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/drop_eggs.py)|sqrt_n|
 |272🔒|[Climbing Stairs II](https://lintcode.com/problem/climbing-stairs-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/climb_stairs_2.py)||
 |283|[Max of 3 Numbers](https://lintcode.com/problem/max-of-3-numbers/)|||
-|309|[Interleaved Array](https://lintcode.com/problem/interleaved-array/)|||
+|309|[Interleaved Array](https://lintcode.com/problem/interleaved-array/)||
+|363|[Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/)|leetcode_42|
 |366|[Fibonacci](https://lintcode.com/problem/fibonacci/)|[Rust](src/easy/tail_recursion_fibonacci.rs)|tail_recursion, fibonacci|
 |372|[Delete Node in a Linked List](https://lintcode.com/problem/delete-node-in-a-linked-list/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/delete_node_in_a_linked_list.py)||
 |373|[Partition Array by Odd and Even](https://lintcode.com/problem/partition-array-by-odd-and-even/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/partition_array/partition_array_by_odd_and_even.py)||

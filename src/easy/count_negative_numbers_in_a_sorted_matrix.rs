@@ -26,6 +26,6 @@ impl Solution {
                 }
             }
         }
-        return cnt as i32;
+        cnt as i32
     }
 }

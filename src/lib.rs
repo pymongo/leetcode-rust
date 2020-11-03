@@ -1,5 +1,5 @@
 #![feature(is_sorted)]
-#![allow(dead_code, clippy::needless_return, clippy::needless_range_loop)]
+#![allow(dead_code, clippy::needless_range_loop)]
 #![deny(warnings)]
 mod backtracking;
 mod bfs;

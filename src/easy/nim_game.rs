@@ -3,11 +3,11 @@
 //! 如果轮到A的回合时，石头数量是4的倍数，那么A必败(博弈问题的必败态)
 
 #[cfg(test)]
-const TEST_CASE: [(i32, bool); 1] = [(4, false)];
+const TESTCASES: [(i32, bool); 1] = [(4, false)];
 
 #[test]
 fn test_nim_bitwise() {
-    for &(input, expected) in TEST_CASE.iter() {
+    for &(input, expected) in TESTCASES.iter() {
         assert_eq!(nim_bitwise(input), expected);
     }
 }

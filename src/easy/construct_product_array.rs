@@ -38,6 +38,5 @@ fn solution(nums: &[i32]) -> Vec<i32> {
             res[i] *= nums[j];
         }
     }
-
-    return res;
+    res
 }

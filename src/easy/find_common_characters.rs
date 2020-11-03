@@ -1,34 +1,5 @@
-struct TestCase {
-    input: Vec<String>,
-    output: Vec<String>,
-}
-
-impl TestCase {
-    fn new(input: &[&str], output: &[&str]) -> Self {
-        Self {
-            input: input.iter().map(|&s| s.to_string()).collect(),
-            output: output.iter().map(|&s| s.to_string()).collect(),
-        }
-    }
-}
-
-fn get_test_case() -> Vec<TestCase> {
-    vec![
-        // e和l都在所有单词中出现，l在所有单词中至少出现了2次，所以返回e,l,l
-        TestCase::new(&["bella", "label", "roller"], &["e", "l", "l"]),
-        TestCase::new(&["cool", "lock", "cook"], &["c", "o"]),
-    ]
-}
-
-#[test]
-fn test() {
-    for test_case in get_test_case() {
-        assert_eq!(Solution::common_chars(test_case.input), test_case.output);
-    }
-}
-
+//! https://leetcode.com/problems/find-common-characters/
 struct Solution;
-const CHAR_A: u8 = b'a';
 
 impl Solution {
     /**
@@ -40,7 +11,7 @@ impl Solution {
         let mut arr = vec![vec![0u8; n]; 26];
         for word in 0..n {
             for &c in a[word].as_bytes() {
-                arr[(c - CHAR_A) as usize][word] += 1;
+                arr[(c - b'a') as usize][word] += 1;
             }
         }
 
@@ -58,12 +29,27 @@ impl Solution {
                     common_occur_times = common_occur_times.min(letter_occur_times);
                 }
             }
-            let letter_char = (letter as u8 + CHAR_A) as char;
+            let letter_char = (letter as u8 + b'a') as char;
             for _ in 0..common_occur_times {
                 res.push(letter_char.to_string());
             }
         }
 
         res
+    }
+}
+
+#[cfg(test)]
+const TESTCASES: [(&[&str], &[&str]); 2] = [
+    (&["bella", "label", "roller"], &["e", "l", "l"]),
+    (&["cool", "lock", "cook"], &["c", "o"]),
+];
+
+#[test]
+fn test() {
+    for &(input, output) in &TESTCASES {
+        let input: Vec<String> = input.iter().map(ToString::to_string).collect();
+        let output: Vec<String> = output.iter().map(ToString::to_string).collect();
+        assert_eq!(Solution::common_chars(input), output);
     }
 }

@@ -6,7 +6,7 @@ impl Solution {
         let mut cur: Vec<i32> = Vec::with_capacity(k);
         let mut res: Vec<Vec<i32>> = Vec::new();
         Solution::dfs(&mut res, &mut cur, 1, n, k);
-        return res;
+        res
     }
 
     fn dfs(res: &mut Vec<Vec<i32>>, cur: &mut Vec<i32>, start: i32, n: i32, k: usize) {

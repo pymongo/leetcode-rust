@@ -5,7 +5,7 @@ struct Solution;
 impl Solution {
     fn eggs_drop(k: i32, n: i32) -> i32 {
         let mut memo: HashMap<(i32, i32), i32> = HashMap::new();
-        return dfs(k, n, &mut memo);
+        dfs(k, n, &mut memo)
     }
 }
 
@@ -47,7 +47,7 @@ fn dp_binary_search(k: i32, n: i32) -> i32 {
             dp[i][j] = 1 + std::cmp::max(dp[left - 1][j - 1], dp[i - left][j]);
         }
     }
-    return dp[n][k] as i32;
+    dp[n][k] as i32
 }
 
 /*
@@ -96,7 +96,7 @@ fn dfs(k: i32, n: i32, memo: &mut HashMap<(i32, i32), i32>) -> i32 {
     // println!("k={}, n={}, res={}", k, n, k);
     // dbg!(k, n, res);
     memo.insert((k, n), res);
-    return res;
+    res
 }
 
 const TESTCASES: [(i32, i32, i32); 2] = [

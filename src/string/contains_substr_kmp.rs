@@ -3,12 +3,12 @@
 //! 功能：查找字符串中的一个子串的出现位置，类似于find()、contains() API
 
 #[cfg(test)]
-const TEST_CASE: [(&str, &str, i32); 3] =
+const TESTCASES: [(&str, &str, i32); 3] =
     [("hello", "ll", 2), ("aaaaa", "bba", -1), ("bike", "", 0)];
 
 #[test]
 fn test_kmp() {
-    for &(source, target, expected) in TEST_CASE.iter() {
+    for &(source, target, expected) in TESTCASES.iter() {
         assert_eq!(cheat(source.to_string(), target.to_string()), expected);
     }
 }

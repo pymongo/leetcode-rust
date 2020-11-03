@@ -13,7 +13,7 @@ impl Solution {
             result.push(nums[i]);
             result.push(nums[i + n]);
         }
-        return result;
+        result
     }
 }
 

@@ -37,7 +37,7 @@ impl Solution {
             }
             l += 1;
         }
-        return m;
+        m
     }
 }
 

@@ -2,3 +2,4 @@
 .idea/
 target/
 Cargo.lock
+find_max_lines_file.py
