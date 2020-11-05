@@ -34,7 +34,7 @@ const fn nim_game_bitwise(n: i32) -> bool {
 
 请你将数组按 [x1,y1,x2,y2,...,xn,yn] 格式重新排列
 */
-fn shuffle(nums: Vec<i32>, n: i32) -> Vec<i32> {
+fn shuffle_the_array(nums: Vec<i32>, n: i32) -> Vec<i32> {
     let n: usize = n as usize;
     let mut result: Vec<i32> = Vec::with_capacity(2 * n);
     for i in 0..n {
@@ -48,7 +48,7 @@ fn shuffle(nums: Vec<i32>, n: i32) -> Vec<i32> {
 fn test_shuffle() {
     const TESTCASES: [(&[i32], i32, &[i32]); 1] = [(&[2, 5, 1, 3, 4, 7], 3, &[2, 3, 5, 4, 1, 7])];
     for &(nums, n, expected) in TESTCASES.iter() {
-        let output = Solution::shuffle(nums.to_vec(), n);
+        let output = shuffle_the_array(nums.to_vec(), n);
         assert_eq!(&output[..], expected);
     }
 }
@@ -85,4 +85,77 @@ fn fib_iterative(n: i32) -> i32 {
 fn to_lower_case(s: String) -> String {
     // 既然是ASCII编码，更高效的做法可能是u8数组判断在大写范围的挨个-32
     s.to_ascii_lowercase()
+}
+
+/// https://leetcode.com/problems/self-dividing-numbers/
+fn self_dividing_numbers(left: i32, right: i32) -> Vec<i32> {
+    let mut res = Vec::new();
+    'outer: for num in left..=right {
+        let mut n = num;
+        while n != 0 {
+            match num.checked_rem(n % 10) {
+                Some(remainder) => {
+                    // 如果不能被组成该数字的其中一位整数，则不是自除数
+                    if remainder != 0 {
+                        continue 'outer;
+                    }
+                },
+                // 取余数%操作符的rhs是0时，则checked_rem会得到None，避免: panicked at 'attempt to calculate the remainder with a divisor of zero'
+                None => continue 'outer
+            }
+            n /= 10;
+        }
+        res.push(num);
+    }
+    res
+}
+
+#[test]
+fn test_self_dividing_numbers() {
+    assert_eq!(
+        self_dividing_numbers(1, 22),
+        vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22]
+    );
+}
+
+/** https://leetcode.com/problems/check-array-formation-through-concatenation/
+```compile_failed
+fn can_form_array(arr: Vec<i32>, pieces: Vec<Vec<i32>>) -> bool {
+    let mut pieces_index = vec![None; 101];
+    for ref piece in pieces {
+        // creates a temporary which is freed while still in use
+        pieces_index[piece[0] as usize] = Some(piece);
+    }
+    false
+}
+```
+*/
+fn can_form_array(arr: Vec<i32>, pieces: Vec<Vec<i32>>) -> bool {
+    // arr[i]/pieces[i][j] range 1..=100
+    const UNINIT: usize = 101;
+    let mut pieces_index = vec![UNINIT; 101];
+    for (i, piece) in pieces.iter().enumerate() {
+        // since integers in pieces are distinct, so each piece[0] is distinct
+        pieces_index[piece[0] as usize] = i;
+    }
+    let (mut i, n) = (0usize, arr.len());
+    while i < n {
+        let idx = pieces_index[arr[i] as usize];
+        if idx != UNINIT {
+            let piece = &pieces[idx];
+            let (mut j, m) = (0usize, piece.len());
+            while j < m && piece[j] == arr[i] {
+                i += 1;
+                j += 1;
+            }
+            // 如果piece的所有数字没有全被用上，也返回false
+            if j < m {
+                return false;
+            }
+        } else {
+            // 因为arr和pieces都是unique/distinct的，如果所有pieces都不是以arr[i]开头则不匹配
+            return false;
+        }
+    }
+    true
 }

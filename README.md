@@ -268,7 +268,7 @@ leetcode_solutions
 |713|[1-bit and 2-bit Characters](https://leetcode.com/problems/1-bit-and-2-bit-characters/)|[Rust](src/easy/one_or_two_bit_char.rs)||
 |714|[Best Time to Buy and Sell Stock with Transaction Fee](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/stock.py)||
 |716🔒|[Max Stack](https://leetcode.com/problems/max_stack/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/max_stack.py)||
-|728|[Self Dividing Numbers](https://leetcode.com/problems/self-dividing-numbers/)|[Rust](src/easy/self_dividing_numbers.rs)||
+|728|[Self Dividing Numbers](https://leetcode.com/problems/self-dividing-numbers/)|[Rust](src/easy/very_easy.rs)|
 |760🔒|[Find Anagram Mappings](https://leetcode.com/problems/find-anagram-mappings/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/mapping_two_anagram_list_int.py)||
 |796|[Rotate String](https://leetcode.com/problems/rotate-string/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/rotate_reverse_circle_shift/rotate_string.py)|Rabin-Karp(rolling_hash), kmp|
 |743|[Network Delay Time](https://leetcode.com/problems/network-delay-time/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/bfs/network_delay_time_dijkstra.py)||
@@ -337,6 +337,7 @@ leetcode_solutions
 |1582|[Number of Ways Where Square of Number Is Equal to Product of Two Numbers](https://leetcode.com/problems/special-positions-in-a-binary-matrix/)|[Rust](src/easy/special_positions_in_a_binary_matrix.rs)||
 |1584|[Min Cost to Connect All Points](https://leetcode.com/problems/min-cost-to-connect-all-points/)|[Rust](src/union_find/min_cost_to_connect_all_points.rs)||
 |1588|[Sum of All Odd Length Subarrays](https://leetcode.com/problems/sum-of-all-odd-length-subarrays/)|[Rust](src/easy/array/sum_of_all_odd_length_subarrays.rs)||
+|1640|[Check Array Formation Through Concatenation](https://leetcode.com/problems/check-array-formation-through-concatenation/)|[Rust](src/easy/very_easy.rs)|
 
 ---
 
@@ -632,7 +633,7 @@ lintcode_problems
 |724|[Minimum Partition](https://lintcode.com/problem/minimum-partition/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/backpack_1_2.py)|0-1背包问题|
 |740|[Coin Change 2](https://lintcode.com/problem/coin-change-2/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/backpack_4_coin_change_combination_sum_4.py)|完全背包问题|
 |741|[Calculate Maximum Value II](https://lintcode.com/problem/calculate-maximum-value-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/calculate_max_value_2.py)||
-|742|[Self Dividing Numbers](https://leetcode.com/problems/self-dividing-numbers/)|[Rust](src/easy/self_dividing_numbers.rs)||
+|742|[Self Dividing Numbers](https://lintcode.com/problem/self-dividing-numbers/)|leetcode_728|
 |749|[John's backyard garden](https://lintcode.com/problem/johns-backyard-garden/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/backpack_4_coin_change_combination_sum_4.py)||
 |761|[Smallest Subset](https://lintcode.com/problem/smallest-subset/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/smallest_subset.py)||
 |772|[Group Anagrams](https://lintcode.com/problem/group-anagrams/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/group_anagrams.py)||

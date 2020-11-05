@@ -51,7 +51,8 @@ const TESTCASES: [(&[i32], i32, &[i32], i32, &[i32]); 3] = [
 #[test]
 fn test_my_first_solution() {
     for &(nums1, m, nums2, n, expected) in TESTCASES.iter() {
-        my_first_solution(&mut nums1.to_vec(), m, &mut nums2.to_vec(), n);
+        let mut nums1 = nums1.to_vec();
+        my_first_solution(&mut nums1, m, &mut nums2.to_vec(), n);
         assert_eq!(nums1, expected.to_vec());
     }
 }

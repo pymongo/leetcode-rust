@@ -15,7 +15,6 @@ mod min_time_visiting_all_points;
 mod number_of_ways_where_square_of_number_is_equal_to_product_of_two_numbers;
 mod one_or_two_bit_char;
 mod reverse_integer_checked_mul_overflow;
-mod self_dividing_numbers;
 mod special_positions_in_a_binary_matrix;
 mod string;
 mod transpose_matrix;
