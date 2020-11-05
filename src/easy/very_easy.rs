@@ -99,9 +99,9 @@ fn self_dividing_numbers(left: i32, right: i32) -> Vec<i32> {
                     if remainder != 0 {
                         continue 'outer;
                     }
-                },
+                }
                 // 取余数%操作符的rhs是0时，则checked_rem会得到None，避免: panicked at 'attempt to calculate the remainder with a divisor of zero'
-                None => continue 'outer
+                None => continue 'outer,
             }
             n /= 10;
         }

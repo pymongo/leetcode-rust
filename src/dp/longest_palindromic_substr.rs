@@ -13,7 +13,7 @@ impl Solution {
         // 枚举子串的长度(枚举区间型动态规划的区间长度)，由于填表时依赖左下角的值，所以区间型动态规划最佳的填表方向是「左上-右下」对角线那样斜着填
         for len in 1..=n {
             // 枚举子串的起始位置i
-            for i in 0..(n-len+1) {
+            for i in 0..(n - len + 1) {
                 let j = i + len - 1;
                 if len == 1 {
                     // 最长的对角线
@@ -23,7 +23,7 @@ impl Solution {
                     dp[i][j] = s[i] == s[j];
                 } else {
                     // 依赖更小区间(左下角值)是否回文和扩展首尾后首尾字符是否相等
-                    dp[i][j] = dp[i+1][j-1] && s[i] == s[j];
+                    dp[i][j] = dp[i + 1][j - 1] && s[i] == s[j];
                 }
                 if dp[i][j] && len > max_len {
                     max_len = len;
@@ -32,7 +32,7 @@ impl Solution {
             }
         }
         let mut res = String::with_capacity(max_len);
-        for i in max_start..max_start+max_len {
+        for i in max_start..max_start + max_len {
             res.push(s[i] as char);
         }
         res

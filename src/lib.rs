@@ -9,7 +9,7 @@ mod binary_tree;
 mod dp;
 mod easy;
 mod linked_list;
-mod monotonic_stack;
 mod priority_queue;
+mod special_structure;
 mod string;
 mod union_find;

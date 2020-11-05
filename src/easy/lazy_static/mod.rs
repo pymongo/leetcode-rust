@@ -19,7 +19,7 @@ pub struct LazyStatic<T, F = fn() -> T> {
     /// 所以这也是lazy_static源码中有个字段内是Option加上TODO注释将来会换成MaybeUninit
     data: std::cell::UnsafeCell<Option<T>>,
     /// make our struct impl auto drop?
-    _marker: std::marker::PhantomData<T>
+    _marker: std::marker::PhantomData<T>,
 }
 
 unsafe impl<T> Send for LazyStatic<T> {}
@@ -31,7 +31,7 @@ impl<T, F> LazyStatic<T, F> {
             init_once: std::sync::Once::new(),
             init_function: std::cell::Cell::new(Some(f)),
             data: std::cell::UnsafeCell::new(None),
-            _marker: std::marker::PhantomData
+            _marker: std::marker::PhantomData,
         }
     }
 }
@@ -42,13 +42,13 @@ impl<T, F: FnOnce() -> T> LazyStatic<T, F> {
     pub fn get(this: &LazyStatic<T, F>) -> &T {
         this.init_once.call_once(|| {
             let data = this.init_function.take().unwrap()();
-            unsafe { *this.data.get() = Some(data);}
+            unsafe {
+                *this.data.get() = Some(data);
+            }
         });
         unsafe { (*this.data.get()).as_ref().unwrap() }
     }
 }
-
-
 
 #[cfg(test)]
 mod test_lazy_static {
