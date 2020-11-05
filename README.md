@@ -77,7 +77,7 @@ leetcode_solutions
 |66|[Plus One](https://leetcode.com/problems/plus-one/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/plus_one.py)||
 |67|[Add Binary](https://lintcode.com/problem/add-binary/)|[C++](https://github.com/pymongo/cpp_learn/blob/master/leetcode/easy/add_bigint_string.cpp)||
 |69|[Sqrt(x)](https://leetcode.com/problems/sqrtx/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/math/sqrt.py)|牛顿连续均值求根法|
-|70|[Climb Stairs](https://leetcode.com/problems/climbing-stairs/)|[Rust](src/easy/tail_recursion_fibonacci.rs)src/easy/tail_recursion_fibonacci.rs)|tail_recursion, fibonacci|
+|70|[Climb Stairs](https://leetcode.com/problems/climbing-stairs/)|[Rust](src/easy/very_easy.rs)|fibonacci|
 |72|[Edit Distance](https://leetcode.com/problems/edit-distance/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/edit_distance.py)||
 |73|[Set Matrix Zeroes](https://leetcode.com/problems/set-matrix-zeroes/)|[Rust](src/easy/grid_or_matrix/set_matrix_zeroes.rs)||
 |74|[Search a 2D Matrix](https://leetcode.com/problems/search-a-2d-matrix/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/search_a_2d_matrix.py)||
@@ -111,8 +111,8 @@ leetcode_solutions
 |119|[Pascals Triangle II](https://leetcode.com/problems/pascals-triangle-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/pascals_triangle.py)||
 |120|[Triangle](https://leetcode.com/problems/triangle/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/triangle.py)||
 |121|[Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/stock.py)||
-|122|[Best Time to Buy and Sell Stock II](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/stock.py)||
-|123|[Best Time to Buy and Sell Stock III](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/stock.py)||
+|122|[Best Time to Buy and Sell Stock II](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/stock.py)|
+|123|[Best Time to Buy and Sell Stock III](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/stock.py)|
 |124|[Binary Tree Maximum Path Sum](https://leetcode.com/problems/binary-tree-maximum-path-sum/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/binary_tree_maximum_path_sum.py)||
 |125|[Valid Palindrome](https://leetcode.com/problems/valid-palindrome/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/palindrome/valid_palindrome.py)|two_pointers|
 |126|[Word Ladder II](https://leetcode.com/problems/word-ladder-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/bfs/word_ladder_2.py)|BFS+DFS|
@@ -125,8 +125,8 @@ leetcode_solutions
 |138|[Copy List with Random Pointer](https://leetcode.com/problems/copy-list-with-random-pointer/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/graph/clone_linked_list_with_random_ptr.py)||
 |139|[Word Break](https://leetcode.com/problems/word-break/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/backpack_4_word_break_coin_change.py)|完全背包问题|
 |140|[Word Break II](https://leetcode.com/problems/word-break-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/word_break_2.py)||
-|141|[Linked List Cycle](https://lintcode.com/problem/linked-list-cycle/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/linked_list_cycle.py)||
-|142|[Linked List Cycle II](https://lintcode.com/problem/linked-list-cycle-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/linked_list_cycle.py)||
+|141|[Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/linked_list_cycle.py)|
+|142|[Linked List Cycle II](https://leetcode.com/problems/linked-list-cycle-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/linked_list_cycle.py)|
 |144|[Binary Tree Preorder Traversal](https://leetcode.com/problems/binary-tree-preorder-traversal/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/traversal_pre_order.py), [Rust](src/binary_tree/preorder_traversal.rs)|DFS, stack|
 |145|[Binary Tree Postorder Traversal](https://leetcode.com/problems/binary-tree-postorder-traversal/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/traversal_pre_order.py)|DFS, stack|
 |145|[LRU Cache](https://leetcode.com/problems/lru-cache/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/lru_cache.py)|double_linked_list, OrderedDict|
@@ -214,7 +214,7 @@ leetcode_solutions
 |377|[Combination Sum IV](https://leetcode.com/problems/combination-sum-iv/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/backpack_4_coin_change_combination_sum_4.py)|完全背包问题|
 |380|[Insert Delete GetRandom O(1)](https://leetcode.com/problems/insert-delete-getrandom-o1/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/insert_delete_get_random_o1.py)||
 |381|[Insert Delete GetRandom O(1) - Duplicates allowed](https://leetcode.com/problems/insert-delete-getrandom-o1-duplicates-allowed/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/insert_delete_get_random_o1.py)||
-|387|[First Unique Character in a String](https://leetcode.com/problems/first-unique-character-in-a-string/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/first_unique_char_in_a_str.py)||
+|387|[First Unique Character in a String](https://leetcode.com/problems/first-unique-character-in-a-string/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/very_easy.py)|
 |404|[Sum of Left Leaves](https://leetcode.com/problems/sum-of-left-leaves/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/sum_of_left_leaves.py)||
 |409|[Longest Palindrome](https://leetcode.com/problems/longest-palindrome/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/palindrome/longest_palindromic_combination.py)|dp(greedy)|
 |412|[Fizz Buzz](https://leetcode.com/problems/fizz-buzz/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/very_easy.py)||
@@ -233,7 +233,7 @@ leetcode_solutions
 |498|[Diagonal Traverse](https://leetcode.com/problems/diagonal-traverse/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/unclassified/diagonal_traverse.py)||
 |503|[Next Greater Element II](https://leetcode.com/problems/next-greater-element-ii/)|[Rust](src/monotonic_stack/next_greater_element_2.rs)||
 |507|[Perfect Number](https://leetcode.com/problems/perfect-number/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/factorization/perfect_number.py)||
-|509|[Fibonacci Number](https://leetcode.com/problems/fibonacci-number/)|[Rust](src/easy/tail_recursion_fibonacci.rs)|tail_recursion, fibonacci|
+|509|[Fibonacci Number](https://leetcode.com/problems/fibonacci-number/)|[Rust](src/easy/very_easy.rs)|
 |518|[Coin Change 2](https://leetcode.com/problem/coin-change-2/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/backpack_4_coin_change_combination_sum_4.py)|完全背包问题|
 |535|[Encode and Decode TinyURL](https://leetcode.com/problems/encode-and-decode-tinyurl/)|||
 |536🔒|[Construct Binary Tree from String](https://leetcode.com/problems/construct-binary-tree-from-string/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/construct_from_string_with_parentheses.py)||
@@ -264,7 +264,7 @@ leetcode_solutions
 |704|[Binary Search](https://leetcode.com/problems/binary-search/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/binary_search.py)|binary_search|
 |705|[Design HashSet](https://leetcode.com/problems/design-hashset/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/impl_hashmap.py)||
 |706|[Design HashMap](https://leetcode.com/problems/design-hashmap/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/impl_hashmap.py)||
-|709|[To Lower Case](https://leetcode.com/problems/to-lower-case/)|[Rust](src/easy/to_lowercase.rs)||
+|709|[To Lower Case](https://leetcode.com/problems/to-lower-case/)|[Rust](src/easy/very_easy.rs)|
 |713|[1-bit and 2-bit Characters](https://leetcode.com/problems/1-bit-and-2-bit-characters/)|[Rust](src/easy/one_or_two_bit_char.rs)||
 |714|[Best Time to Buy and Sell Stock with Transaction Fee](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/stock.py)||
 |716🔒|[Max Stack](https://leetcode.com/problems/max_stack/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/max_stack.py)||
@@ -301,7 +301,7 @@ leetcode_solutions
 |1108|[Defanging an IP Address](https://leetcode.com/problems/defanging-an-ip-address/)|[Rust](src/easy/string/defanging_an_ip_address.rs)||
 |1109|[Corporate Flight Bookings](https://leetcode.com/problems/corporate-flight-bookings/)|[Rust](src/easy/corporate_flight_bookings.rs)||
 |1143|[Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/longest_common_subsequence.py)||
-|1147|[Work Plan](https://www.lintcode.com/problem/work-plan/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/house_robber.py)||
+|1147|[Work Plan](https://lintcode.com/problem/work-plan/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/house_robber.py)||
 |1167🔒|[Longest Common Subsequence](https://leetcode.com/problems/minimum-cost-to-connect-sticks/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/minimum_cost_to_connect_sticks.py)||
 |1207|[Unique Number of Occurrences](https://leetcode.com/problems/unique-number-of-occurrences/)|[Rust](src/easy/array/unique_number_of_occurrences.rs)||
 |1213🔒|[Intersection of Three Sorted Arrays](https://leetcode.com/problems/intersection-of-three-sorted-arrays/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/intersection_of_two_arrays.py)||
@@ -327,7 +327,7 @@ leetcode_solutions
 |1480|[Running Sum of 1d Array](https://leetcode.com/problems/running-sum-of-1d-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/very_easy.py)|
 |1486|[XOR Operation in an Array](https://leetcode.com/problems/xor-operation-in-an-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/xor_operation_in_an_array.py)||
 |1512|[Number of Good Pairs](https://leetcode.com/problems/number-of-good-pairs/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/numbers_of_good_pairs.py)||
-|1528|[Shuffle String](https://leetcode.com/problems/shuffle-string/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/shuffle_string.py)||
+|1528|[Shuffle String](https://leetcode.com/problems/shuffle-string/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/very_easy.py)|
 |1534|[Count Good Triplets](https://leetcode.com/problems/count-good-triplets/)|[Rust](src/easy/array/count_good_triplets.rs)||
 |1551|[Minimum Operations to Make Array Equal](https://leetcode.com/problems/minimum-operations-to-make-array-equal/)|[Rust](src/easy/min_operations_to_make_array_equal.rs)||
 |1572|[Matrix Diagonal Sum](https://leetcode.com/problems/matrix-diagonal-sum/)|[Rust](src/easy/matrix_diagonal_sum.rs)||
@@ -350,8 +350,6 @@ leetcode_solutions
 |61|[扑克牌中的顺子](https://leetcode-cn.com/problems/bu-ke-pai-zhong-de-shun-zi-lcof/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/straight_in_playing_cards.py)||
 |62|[圆圈中最后剩下的数字](https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/brain_twists/josephus.py)|约瑟夫环|
 |66|[构建乘积数组](https://leetcode-cn.com/problems/gou-jian-cheng-ji-shu-zu-lcof)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/contruct_product_array.py), [Rust](src/easy/construct_product_array.rs)||
-
-- Trapping Rain Water
 
 ---
 
@@ -400,8 +398,8 @@ lintcode_problems
 |22|[Flatten List](https://lintcode.com/problem/flatten-list/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/flatten_list.py)||
 |28|[Search a 2D Matrix](https://lintcode.com/problem/search-a-2d-matrix/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/search_a_2d_matrix.py)||
 |31|[Partition Array](https://lintcode.com/problem/partition-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/partition_array/partition_array.py)|two_pointers|
-|33|[N Queens](https://lintcode.com/problem/n-queens)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/n_queens.py), [Rust](src/backtracking/n_queens.rs)||
-|34|[N Queens II](https://lintcode.com/problem/n-queens-ii)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/n_queens.py), [Rust](src/backtracking/n_queens.rs)||
+|33|[N Queens](https://lintcode.com/problem/n-queens)|leetcode_51|
+|34|[N Queens II](https://lintcode.com/problem/n-queens-ii)|leetcode_52|
 |35|[Reverse Linked List](https://lintcode.com/problem/reverse-linked-list/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/reverse_linked_list.py), [Rust](src/linked_list/reverse_linked_list.rs)||
 |36|[Reverse Linked List II](https://lintcode.com/problem/reverse-linked-list-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/reverse_linked_list.py), [Rust](src/linked_list/reverse_linked_list_2.rs)||
 |37|[Reverse 3-digit Integer](https://lintcode.com/problem/reverse-3-digit-integer/)|||
@@ -446,9 +444,9 @@ lintcode_problems
 |95|[Validate Binary Search Tree](https://lintcode.com/problem/validate-binary-search-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/bst_valid.py)||
 |97|[Maximum Depth of Binary Tree](https://lintcode.com/problem/maximum-depth-of-binary-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/depth_max_min.py)||
 |100|[Remove Duplicates from Sorted Array](https://lintcode.com/problem/remove-duplicates-from-sorted-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/partition_array/move_zeros.py)||
-|102|[Linked List Cycle](https://lintcode.com/problem/linked-list-cycle/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/linked_list_cycle.py)||
-|103|[Linked List Cycle II](https://lintcode.com/problem/linked-list-cycle-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/linked_list_cycle.py)||
-|104|[Merge k Sorted Lists](https://lintcode.com/problem/merge-k-sorted-lists/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/divide_conquer/merge_k_sorted_lists.py)||
+|102|[Linked List Cycle](https://lintcode.com/problem/linked-list-cycle/)|leetcode_141|
+|103|[Linked List Cycle II](https://lintcode.com/problem/linked-list-cycle-ii/)|leetcode_142|
+|104|[Merge k Sorted Lists](https://lintcode.com/problem/merge-k-sorted-lists/)|leetcode_23|
 |105|[Copy List with Random Pointer](https://lintcode.com/problem/copy-list-with-random-pointer/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/graph/clone_linked_list_with_random_ptr.py)||
 |106|[Convert Sorted List to Binary Search Tree](https://lintcode.com/problem/convert-sorted-list-to-binary-search-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/divide_conquer/sorted_list_or_array_to_bst.py)|divide_and_conquer|
 |107|[Word Break](https://lintcode.com/problem/word-break/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/backpack_4_word_break_coin_change.py)|完全背包问题|
@@ -479,12 +477,12 @@ lintcode_problems
 |142|[O(1) Check Power of 2](https://lintcode.com/problem/o1-check-power-of-2/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/bitwise/is_power_of_2.py)|bitwise, dichotomy|
 |143|[Sort Colors II](https://lintcode.com/problem/sort-colors-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/sorting_and_query/sort_colors_2.py)|quick_sort, counting_sort|
 |144|[interleaving_positive_and_negative_numbers](https://lintcode.com/problem/sort-colors-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/partition_array/interleaving_positive_and_negative_numbers.py)||
-|145|[Lower case to Uppercase](https://lintcode.com/problem/lowercase-to-uppercase/)|[Rust](src/easy/to_lowercase.rs)||
+|145|[Lower case to Uppercase](https://lintcode.com/problem/lowercase-to-uppercase/)|leetcode_709|
 |147🔒|[Narcissistic Number](https://lintcode.com/problem/narcissistic-number)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/narcissistic_number.py)||
 |148|[Sort Colors](https://lintcode.com/problem/sort-colors/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/partition_array/sort_colors.py)|three_pointers, partition_array|
-|149|[Best Time to Buy and Sell Stock](https://lintcode.com/problem/best-time-to-buy-and-sell-stock/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/stock.py)||
-|150|[Best Time to Buy and Sell Stock II](https://lintcode.com/problem/best-time-to-buy-and-sell-stock-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/stock.py)||
-|151|[Best Time to Buy and Sell Stock III](https://lintcode.com/problem/best-time-to-buy-and-sell-stock-iii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/stock.py)||
+|149|[Best Time to Buy and Sell Stock](https://lintcode.com/problem/best-time-to-buy-and-sell-stock/)|leetcode_121|
+|150|[Best Time to Buy and Sell Stock II](https://lintcode.com/problem/best-time-to-buy-and-sell-stock-ii/)|leetcode_122|
+|151|[Best Time to Buy and Sell Stock III](https://lintcode.com/problem/best-time-to-buy-and-sell-stock-iii/)|leetcode_123|
 |152|[Combinations](https://lintcode.com/problem/combinartions/)|[Rust](src/backtracking/combinations.rs), [C++](https://github.com/pymongo/cpp_learn/blob/master/leetcode/bfs/n_ary_tree_level_order.cpp)||
 |153|[Combination Sum II](https://lintcode.com/problem/combination-sum-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/combination_target_sum.py), [Rust](src/backtracking/combination_sum_1_2.rs)||
 |154|[Regular Expression Matching](https://lintcode.com/problem/regular-expression-matching/)|leetcode_10|
@@ -501,15 +499,15 @@ lintcode_problems
 |172|[Remove Element](https://lintcode.com/problem/remove-element/)|leetcode_27|
 |174|[Remove Nth Node From End of List](https://lintcode.com/problem/remove-nth-node-from-end-of-list/)|leetcode_19|
 |175|[Invert Binary Tree](https://lintcode.com/problem/invert-binary-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/invert_binary_tree.py), [Rust](src/linked_list/reverse_linked_list.rs)||
-|177|[Convert Sorted Array to Binary Search Tree With Minimal Height](https://www.lintcode.com/problem/convert-sorted-array-to-binary-search-tree-with-minimal-height/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/divide_conquer/sorted_list_or_array_to_bst.py)|divide_and_conquer|
+|177|[Convert Sorted Array to Binary Search Tree With Minimal Height](https://lintcode.com/problem/convert-sorted-array-to-binary-search-tree-with-minimal-height/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/divide_conquer/sorted_list_or_array_to_bst.py)|divide_and_conquer|
 |183|[Wood Cut](https://lintcode.com/problem/wood-cut/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/wood_cut.py)|greedy|   
 |187|[Gas Station](https://lintcode.com/problem/gas-station/)|leetcode_134|
 |190|[Next Permutation II](https://lintcode.com/problem/next-permutation-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/next_permutation.py)||
 |192|[Wildcard Matching](https://lintcode.com/problem/wildcard-matching/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/wildcard_matching.py)||
 |197|[Permutation Index](https://lintcode.com/problem/permutation-index/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/permutation_index.py)||
 |200|[Longest Palindromic Substring](https://lintcode.com/problem/longest-palindromic-substring/)|leetcode_5|
-|209|[First Unique Character in a String](https://lintcode.com/problem/first-unique-character-in-a-string/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/first_unique_char_in_a_str.py)||
-|221_FIXME|[String Permutation](https://lintcode.com/problem/string-permutation/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/valid_anagram.py)||
+|209|[First Unique Character in a String](https://lintcode.com/problem/first-unique-character-in-a-string/)|leetcode_387|
+|221|[String Permutation](https://lintcode.com/problem/string-permutation/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/valid_anagram.py)||
 |224_FIXME|[String Permutation](https://lintcode.com/problem/string-permutation/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/valid_anagram.py)|
 |228🔒|[Middle of the Linked List](https://lintcode.com/problem/middle-of-linked-list/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/middle_of_linked_list.py), [Rust](src/linked_list/middle_of_linked_list.rs)|快慢指针|
 |235|[Prime Factorization](https://lintcode.com/problem/prime-factorization/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/factorization/prime_factorization.py)|分解质因数|
@@ -520,19 +518,19 @@ lintcode_problems
 |283|[Max of 3 Numbers](https://lintcode.com/problem/max-of-3-numbers/)|
 |309|[Interleaved Array](https://lintcode.com/problem/interleaved-array/)|
 |363|[Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/)|leetcode_42|
-|366|[Fibonacci](https://lintcode.com/problem/fibonacci/)|[Rust](src/easy/tail_recursion_fibonacci.rs)|tail_recursion, fibonacci|
+|366|[Fibonacci](https://lintcode.com/problem/fibonacci/)|leetcode_509|
 |372|[Delete Node in a Linked List](https://lintcode.com/problem/delete-node-in-a-linked-list/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/delete_node_in_a_linked_list.py)||
 |373|[Partition Array by Odd and Even](https://lintcode.com/problem/partition-array-by-odd-and-even/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/partition_array/partition_array_by_odd_and_even.py)||
 |374|[Spiral Matrix](https://lintcode.com/problem/spiral-matrix/)|leetcode_54|
 |376|[Binary Tree Path Sum](https://lintcode.com/problem/binary-tree-path-sum/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/root_to_leaf_paths_target_sum.py)|DFS, backtracking|
 |380|[Intersection of Two Linked Lists](https://lintcode.com/problem/intersection-of-two-linked-lists/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/linked_list_cycle.py)||
-|381|[Spiral Matrix II](https://lintcode.com/problem/spiral-matrix-2/)|[Rust](src/easy/grid_or_matrix/spiral_matrix_2.rs)||
+|381|[Spiral Matrix II](https://lintcode.com/problem/spiral-matrix-2/)|leetcode_59|
 |382🔒|[Triangle Count](https://lintcode.com/problem/triangle-count/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/triangle_count.py)|two_sum, 双指针|
 |383|[Container With Most Water](https://lintcode.com/problem/container-with-most-water/)|leetcode_11|
 |384|[Longest Substring Without Repeating Characters](https://lintcode.com/problem/longest-substring-without-repeating-characters/)|leetcode_3|
 |386|[Longest Substring with At Most K Distinct Characters](https://lintcode.com/problem/longest-substring-with-at-most-k-distinct-characters/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/longest_substr_with_longest_k_distinct_chars.py)||
 |388|[Permutation Sequence](https://lintcode.com/problem/permutation-sequence/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/permutation.py)||
-|389|[Valid Sudoku](https://lintcode.com/problem/valid-sudoku/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/valid_soduku.py)||
+|389|[Valid Sudoku](https://lintcode.com/problem/valid-sudoku/)|leetcode_36|
 |392|[House Robber](https://lintcode.com/problem/house-robber/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/house_robber.py)||
 |393|[Best Time to Buy and Sell Stock IV](https://lintcode.com/problem/best-time-to-buy-and-sell-stock-iv/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/stock.py)||
 |397|[Longest Continuous Increasing Subsequence](https://lintcode.com/problem/longest-continuous-increasing-subsequence/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/longest_continuous_increase_subsequence.py)||
@@ -553,7 +551,7 @@ lintcode_problems
 |442|[Implement Trie (Prefix Tree)](https://lintcode.com/problem/implement-trie-prefix-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/tire/impl_tire_prefix_tree.py)|前缀树/字典树|
 |443🔒|[Two Sum - Greater than target](https://lintcode.com/problem/two-sum-greater-than-target/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/two_sum_le_count.py)|two_pointers|
 |447🔒|[Search in a Big Sorted Array](https://lintcode.com/problem/search-in-a-big-sorted-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/binary_search_unknown_size_sorted_array.py)|binary_search_first, 倍增法|
-|451|[Swap Nodes in Pairs](https://lintcode.com/problem/swap-nodes-in-pairs/)|[Rust](src/linked_list/swap_nodes_in_pairs.rs)||
+|451|[Swap Nodes in Pairs](https://lintcode.com/problem/swap-nodes-in-pairs/)|leetcode_24|
 |453|[Flatten Binary Tree to Linked List](https://lintcode.com/problem/flatten-binary-tree-to-linked-list/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/in_place_flatten_binary_tree_to_linked_list.py)||
 |454|[Rectangle Area](https://lintcode.com/problem/rectangle-area/)|||
 |457|[Classical Binary Search](https://lintcode.com/problem/classical-binary-search/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/binary_search.py)|binary_search|
@@ -679,7 +677,7 @@ lintcode_problems
 |1079|[Count Binary Substrings](https://lintcode.com/problem/count-binary-substrings/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/unclassified/count_binary_substring.py)||
 |1115|[Average of Levels in Binary Tree](https://lintcode.com/problem/average-of-levels-in-binary-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/traversal_level_order.py)||
 |1137|[Construct String from Binary Tree](https://lintcode.com/problem/construct-string-from-binary-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/construct_from_string_with_parentheses.py)||
-|1153|[string sorting](https://www.lintcode.com/problem/string-sorting/)|||
+|1153|[string sorting](https://lintcode.com/problem/string-sorting/)|||
 |1162|[Merge Two Binary Trees](https://lintcode.com/problem/merge-two-binary-trees/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/merge_two_binary_tree.py)||
 |1173|[Reverse Words in a String III](https://lintcode.com/problem/reverse-words-in-a-string-iii/)|[C++](https://github.com/pymongo/cpp_learn/blob/master/leetcode/easy/reverse_words_in_a_string_3.cpp)||
 |1179🔒|[Friend Circles](https://lintcode.com/problem/friend-circles/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/graph/friend_circles.py)|union_find, DFS, BFS|
@@ -710,7 +708,7 @@ lintcode_problems
 |1343|[Sum of Two Strings](https://lintcode.com/problem/sum-of-two-strings/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/sum_of_to_strings.py)||
 |1354|[Pascals Triangle II](https://lintcode.com/problem/pascals-triangle-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/pascals_triangle.py)||
 |1355|[Pascals Triangle](https://lintcode.com/problem/pascals-triangle/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/pascals_triangle.py)||
-|1359|[Convert Sorted Array to Binary Search Tree](https://www.lintcode.com/problem/convert-sorted-array-to-binary-search-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/divide_conquer/sorted_list_or_array_to_bst.py)|divide_and_conquer|
+|1359|[Convert Sorted Array to Binary Search Tree](https://lintcode.com/problem/convert-sorted-array-to-binary-search-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/divide_conquer/sorted_list_or_array_to_bst.py)|divide_and_conquer|
 |1363|[ZigZag Conversion](https://lintcode.com/problem/zigzag-conversion/)|leetcode_6|
 |1375|[Substring With At Least K Distinct Characters](https://lintcode.com/problem/substring-with-at-least-k-distinct-characters/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/substring_with_at_least_k_distinct_characters.py)||
 |1424|[Longest Mountain in Array](https://lintcode.com/problem/longest-mountain-in-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/mountain_array_longest.py)|mountain_array|
@@ -718,12 +716,13 @@ lintcode_problems
 |1479|[Can Reach The Endpoint](https://lintcode.com/problem/can-reach-the-endpoint/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/bfs/can_reach_the_end_point.py)|bfs|
 |1492|[Koko Eating Bananas](https://lintcode.com/problem/koko-eating-bananas/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/koko_eating_bananas.py)||
 |1499|[Reordered Power of 2](https://lintcode.com/problem/reordered-power-of-2/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/brain_twists/reordered_power_of_2.py)|permutation|
+|1505|[Find The Number](https://lintcode.com/problem/find-the-number/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/very_easy.py)|
 |1508|[Score After Flipping Matrix](https://lintcode.com/problem/score-after-flipping-matrix/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/greedy/score_after_flipping_matrix.py)|greedy|
 |1524|[Search in a Binary Search Tree](https://lintcode.com/problem/search-in-a-binary-search-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/bst_search.py)||
 |1525|[N-ary Tree Postorder Traversal](https://lintcode.com/problem/n-ary-tree-postorder-traversal/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/n_ary_tree_preorder_postorder.py)||
 |1529|[N-ary Tree Preorder Traversal](https://lintcode.com/problem/n-ary-tree-preorder-traversal/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/n_ary_tree_preorder_postorder.py)||
 |1533|[N-ary Tree Level Order Traversal](https://lintcode.com/problem/n-ary-tree-level-order-traversal/)|[C++](https://github.com/pymongo/cpp_learn/blob/master/leetcode/bfs/n_ary_tree_level_order.cpp)||
-|1535|[To Lower Case](https://lintcode.com/problem/to-lower-case/)|[Rust](src/easy/to_lowercase.rs)||
+|1535|[To Lower Case](https://lintcode.com/problem/to-lower-case/)|leetcode_709|
 |1536|[Find First and Last Position of Element in Sorted Array](https://lintcode.com/problem/find-first-and-last-position-of-element-in-sorted-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/binary_search_first_and_last.py)|binary_search|
 |1593|[Construct Binary Tree from Preorder and Postorder Traversal](https://lintcode.com/problem/construct-binary-tree-from-preorder-and-postorder-traversal/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/construct_from_pre_order_and_post_order.py)|DFS|
 |1609|[Middle of the Linked List](https://lintcode.com/problem/middle-of-the-linked-list/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/middle_of_linked_list.py)|list_node, 快慢指针|
@@ -747,9 +746,8 @@ lintcode_problems
 
 ### 选或不选类DP
 
-#### 打家劫舍系列
-
-#### 股票买卖系列
+- 打家劫舍系列
+- 股票买卖系列
 
 ### 计数型动态规划
 
@@ -759,57 +757,10 @@ TODO k sum
 
 ### Palindrome Sequence
 
-- [Longest Palindromic Subsequence](https://lintcode.com/problem/longest-palindromic-subsequence) | [Python](https://github.com/pymongo/python_leetcode/blob/master/palindrome/longest_palindromic_subsequence.py) | dp(greedy)
-- [Valid Palindrome II](https://lintcode.com/problem/valid-palindrome-ii/) | [Python](https://github.com/pymongo/python_leetcode/blob/master/palindrome/valid_palindrome_2.py) | two_pointers, greedy
+- [Longest Palindromic Subsequence](https://lintcode.com/problem/longest-palindromic-subsequence)
+- [Valid Palindrome II](https://lintcode.com/problem/valid-palindrome-ii/)
 
 ### Palindrome Permutation
 
 - [Longest Palindromic Combination](https://lintcode.com/problem/longest-palindrome) | [Python](https://github.com/pymongo/python_leetcode/blob/master/palindrome/longest_palindromic_combination.py) | greedy
 - [Palindrome Permutation](https://lintcode.com/problem/palindrome-permutation/) | [Python](https://github.com/pymongo/python_leetcode/blob/master/palindrome/palindrome_permutation.py) | greedy
-
----
-
-## 我从leetcode Rust刷题中学到了什么
-
-- two_sum: BTreeMap
-- add_two_numbers: 学会let Some，match两个链表的写法，学习Box智能指针
-- 某个每日一题，忘了: peekable Iterator
-- reverse_int: checked_add的优雅判断溢出
-- 很多题usize类型如何避免`0-1`的溢出
-- bigdecimal-rs的PR
-- 性能好
-
-## 为什么要用Rust刷题
-
-- 刚学习Rust没有公司项目练手，通过leetcode的题可以理解成就是一个个的业务需求
-- 性能好(放一个图 rust4ms， 其它语言都是10ms+的图)，简直是leetcode亲儿子，leetcode特殊优化，
-- 数组类题型性能目前是leetcode第一，二叉树/链表的题型性能略微吃亏
-- 锻炼编程能力，学习更多Rust标准库的用法例如windows
-
-## Rust工程化的体现 刷题特有的优势
-
-0. dbg!超方便，但是Rust的Debug单步调试又不如Python等方便(容易跳入汇编代码)
-
-1. 单元测试方便，(这里PPT画个图，代码提交出错，Rust加入新的测试用例，然后调试好代码再提交的循环)
-
-2. assert_eq!支持链表、二叉树等复杂数据结构的比较，单元测试常用assert比较是否满足期待值
-(实际上支持ParticalEq和Eq Trait的数据类型都能验证是否相等)
-
-3. 链表、二叉树自动实现类似格式化打印，方便调试
-
-\[演说稿]: 我以前用Python刷题时，因为自己不太会实现逐层递归打印链表/二叉树的方法，所以经常需要在leetcode上print程序运行到第几行时状态是多少
-
-综上几点，Rust刷题容易做到完全脱离leetcode网页的IDE，自己本地IDE测试通过后，复制到网页上提交一般也能通过
-
-> ListNode{val: 2, next: ListNode{val: 4, next: ListNode{val: 3, next: None}}}
-
-## code force刷题的体验
-
-简单介绍下从stdin读内容
-
-## 当前leetcode对Rust支持的不足
-
-- 所有N叉树的题都没有Rust
-- 所有多线程的题没有Rust
-- 部分高难度链表修改题没有Rust
-- LRU没有Rust

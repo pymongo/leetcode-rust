@@ -210,7 +210,7 @@ fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
 }
 
 /**
-https://www.youtube.com/watch?v=ScCg9v921ns
+https://youtube.com/watch?v=ScCg9v921ns
 数组A、B初始化时都在A、B中间设一个分割线
 先不考虑奇数的情况，让代码简单点，自己尝试敲一下，不然干看答案也不理解
 初始化的分割线如图

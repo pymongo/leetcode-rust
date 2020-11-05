@@ -52,3 +52,37 @@ fn test_shuffle() {
         assert_eq!(&output[..], expected);
     }
 }
+
+/** https://leetcode.com/problems/climbing-stairs/
+& https://leetcode.com/problems/fibonacci-number/
+比尾递归O(n)更快的还有O(log(n))的解法：
+1. 斐波那契公式(公式中的乘方需要log(n)时间复杂度)
+2. Binet's formula 利用矩阵解斐波那契
+*/
+fn fib_recursive(n: u32, a: u32, b: u32) -> u32 {
+    if n == 1 {
+        b
+    } else {
+        // 注意尾递归解法只能从1逼近n，普通递归解法一般是从f(n-1)一直加到f(1)
+        fib_recursive(n - 1, b, a + b)
+    }
+}
+
+fn fib_iterative(n: i32) -> i32 {
+    let (mut a, mut b) = (1u32, 1u32);
+    let mut temp: u32;
+    let mut n = n;
+    while n > 1 {
+        temp = b;
+        b += a;
+        a = temp;
+        n -= 1;
+    }
+    b as i32
+}
+
+/// https://leetcode.com/problems/to-lower-case/
+fn to_lower_case(s: String) -> String {
+    // 既然是ASCII编码，更高效的做法可能是u8数组判断在大写范围的挨个-32
+    s.to_ascii_lowercase()
+}

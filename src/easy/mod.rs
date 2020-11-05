@@ -18,8 +18,6 @@ mod reverse_integer_checked_mul_overflow;
 mod self_dividing_numbers;
 mod special_positions_in_a_binary_matrix;
 mod string;
-mod tail_recursion_fibonacci;
-mod to_lowercase;
 mod transpose_matrix;
 mod two_sum;
 mod unique_path;
