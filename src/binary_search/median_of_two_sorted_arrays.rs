@@ -23,6 +23,7 @@ impl Solution {
     fn merge_sort_solution(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
         let (m, n, mut i, mut j) = (nums1.len(), nums2.len(), 0usize, 0usize);
         let len = m + n;
+        let half_len = len / 2;
         let mut merged = Vec::with_capacity(len);
         while i < m && j < n {
             if nums1[i] <= nums2[j] {
@@ -33,6 +34,16 @@ impl Solution {
                 j += 1;
             }
         }
+
+        // 如果元素个数已经够了，就提前返回，提升性能
+        if merged.len() > half_len {
+            return if len % 2 == 0 {
+                (merged[half_len - 1] + merged[half_len]) as f64 / 2f64
+            } else {
+                merged[half_len] as f64
+            }
+        }
+
         while i < m {
             merged.push(nums1[i]);
             i += 1;
@@ -42,9 +53,9 @@ impl Solution {
             j += 1;
         }
         if len % 2 == 0 {
-            (merged[len / 2 - 1] + merged[len / 2]) as f64 / 2f64
+            (merged[half_len - 1] + merged[half_len]) as f64 / 2f64
         } else {
-            merged[len / 2] as f64
+            merged[half_len] as f64
         }
     }
 }

@@ -159,3 +159,14 @@ fn can_form_array(arr: Vec<i32>, pieces: Vec<Vec<i32>>) -> bool {
     }
     true
 }
+
+// https://leetcode.com/problems/sort-integers-by-the-number-of-1-bits/
+pub fn sort_by_bits(mut arr: Vec<i32>) -> Vec<i32> {
+    // arr.sort_by_cached_key(|&x| (x.count_ones, x));
+    arr.sort_unstable_by(|a, b| {
+        // 下面这行加起来的算法还不如不加呢，lazy一点只有当a和b的count_ones相同的时候才继续往后比较
+        // (a.count_ones() as i32 + a).cmp(&(b.count_ones() as i32 + b))
+        a.count_ones().cmp(&b.count_ones()).then(a.cmp(b))
+    });
+    arr
+}
