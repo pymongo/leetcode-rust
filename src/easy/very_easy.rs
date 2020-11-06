@@ -281,3 +281,39 @@ fn test_max_depth() {
         assert_eq!(max_depth(s.to_owned()), expected);
     }
 }
+
+/// https://leetcode.com/problems/design-parking-system/
+struct ParkingSystem {
+    big_slot_cap: u16,
+    medium_slot_cap: u16,
+    small_slot_cap: u16,
+}
+
+impl ParkingSystem {
+    /// 0 <= big, medium, small <= 1000
+    fn new(big: i32, medium: i32, small: i32) -> Self {
+        Self {
+            big_slot_cap: big as u16,
+            small_slot_cap: small as u16,
+            medium_slot_cap: medium as u16,
+        }
+    }
+
+    fn add_car(&mut self, car_type: i32) -> bool {
+        #[inline(always)]
+        fn helper(slot: &mut u16) -> bool {
+            if *slot == 0 {
+                false
+            } else {
+                *slot -= 1;
+                true
+            }
+        }
+        match car_type {
+            1 => helper(&mut self.big_slot_cap),
+            2 => helper(&mut self.medium_slot_cap),
+            3 => helper(&mut self.small_slot_cap),
+            _ => false
+        }
+    }
+}
