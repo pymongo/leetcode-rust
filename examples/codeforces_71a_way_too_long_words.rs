@@ -34,7 +34,7 @@ fn main() {
 }
 
 #[cfg(test)]
-const TESTCASES: [(&[u8], &[u8]); 1] = [(
+const TEST_CASES: [(&[u8], &[u8]); 1] = [(
     b"4\nword\nlocalization\ninternationalization\npneumonoultramicroscopicsilicovolcanoconiosis",
     b"word\nl10n\ni18n\np43s\n",
 )];
@@ -44,7 +44,7 @@ fn test_solution() {
     if cfg!(windows) {
         panic!("This unittest is using LF line_separator, should assertion failed in windows");
     }
-    for &(input, expected_output) in &TESTCASES {
+    for &(input, expected_output) in &TEST_CASES {
         let mut output = Vec::new();
         solution(input, &mut output).unwrap();
         assert_eq!(output, expected_output);

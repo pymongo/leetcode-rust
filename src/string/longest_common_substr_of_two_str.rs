@@ -5,11 +5,11 @@
 /// 很新颖的方法，不过我又不能用严谨的数学证明它是对的，不推荐用，了解下即可
 
 #[cfg(test)]
-const TESTCASES: [(&str, &str, usize); 1] = [("caba", "abac", 3)];
+const TEST_CASES: [(&str, &str, usize); 1] = [("caba", "abac", 3)];
 
 #[test]
 fn test() {
-    for &(input1, input2, expected) in TESTCASES.iter() {
+    for &(input1, input2, expected) in TEST_CASES.iter() {
         assert_eq!(dp(input1.to_string(), input2.to_string()), expected);
     }
 }

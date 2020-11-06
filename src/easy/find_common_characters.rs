@@ -40,14 +40,14 @@ impl Solution {
 }
 
 #[cfg(test)]
-const TESTCASES: [(&[&str], &[&str]); 2] = [
+const TEST_CASES: [(&[&str], &[&str]); 2] = [
     (&["bella", "label", "roller"], &["e", "l", "l"]),
     (&["cool", "lock", "cook"], &["c", "o"]),
 ];
 
 #[test]
 fn test() {
-    for &(input, output) in &TESTCASES {
+    for &(input, output) in &TEST_CASES {
         let input: Vec<String> = input.iter().map(ToString::to_string).collect();
         let output: Vec<String> = output.iter().map(ToString::to_string).collect();
         assert_eq!(Solution::common_chars(input), output);

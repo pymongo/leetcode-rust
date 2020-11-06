@@ -52,11 +52,11 @@ impl Solution {
 }
 
 #[cfg(test)]
-const TESTCASES: [(&[i32], i32); 1] = [(&[0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1], 6)];
+const TEST_CASES: [(&[i32], i32); 1] = [(&[0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1], 6)];
 
 #[test]
 fn test() {
-    for &(nums, res) in &TESTCASES {
+    for &(nums, res) in &TEST_CASES {
         assert_eq!(Solution::brute_force(nums.to_vec()), res);
         assert_eq!(Solution::trap(nums.to_vec()), res);
     }

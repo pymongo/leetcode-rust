@@ -177,7 +177,7 @@ impl Solution {
                 // 情况2：i在right左边，但是不可能也在center的左边，因为center一定是访问过的
                 //       所以这种情况下，i在center和right的中间
                 // 情况2的分析具体看leetcode的题解「动态规划、中心扩散、Manacher 算法」
-                // https://leetcode-cn.com/problems/longest-palindromic-substring/solution/zhong-xin-kuo-san-dong-tai-gui-hua-by-liweiwei1419/
+                // https://leetcode.com/problems/longest-palindromic-substring/solution/zhong-xin-kuo-san-dong-tai-gui-hua-by-liweiwei1419/
 
                 // 因为mirror+i = 2*center
                 i_mirror_of_center = 2 * center - i;
@@ -306,7 +306,7 @@ impl Solution {
 mod test {
     use super::Solution;
 
-    const TESTCASES: [(&str, &str); 6] = [
+    const TEST_CASES: [(&str, &str); 6] = [
         ("babad", "bab"),
         ("abadd", "aba"),
         ("cbbd", "bb"),
@@ -317,21 +317,21 @@ mod test {
 
     #[test]
     fn test_dp() {
-        for &(input, expected) in TESTCASES.iter() {
+        for &(input, expected) in TEST_CASES.iter() {
             assert_eq!(Solution::dp(input.to_string()), expected.to_string());
         }
     }
 
     #[test]
     fn test_manacher() {
-        for &(input, expected) in TESTCASES.iter() {
+        for &(input, expected) in TEST_CASES.iter() {
             assert_eq!(Solution::manacher(input.to_string()), expected.to_string());
         }
     }
 
     #[test]
     fn test_manacher_old() {
-        for &(input, expected) in &TESTCASES {
+        for &(input, expected) in &TEST_CASES {
             assert_eq!(
                 Solution::manacher_old(input.to_string()),
                 expected.to_string()
@@ -341,7 +341,7 @@ mod test {
 
     #[test]
     fn test_expand_around_center() {
-        for &(input, expected) in TESTCASES.iter() {
+        for &(input, expected) in TEST_CASES.iter() {
             assert_eq!(
                 Solution::expand_around_center(input.to_string()),
                 expected.to_string()

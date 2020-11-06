@@ -1,5 +1,5 @@
 #[cfg(test)]
-const TESTCASES: [(&[i32], &[i32]); 3] = [
+const TEST_CASES: [(&[i32], &[i32]); 3] = [
     (&[1, 2, 3, 4], &[24, 12, 8, 6]),
     (&[1, 0, 3, 4], &[0, 12, 0, 0]),
     (&[1, 0, 3, 0], &[0, 0, 0, 0]),
@@ -7,7 +7,7 @@ const TESTCASES: [(&[i32], &[i32]); 3] = [
 
 #[test]
 fn test() {
-    for &(input, output) in &TESTCASES {
+    for &(input, output) in &TEST_CASES {
         assert_eq!(solution(input), output.to_vec())
     }
 }

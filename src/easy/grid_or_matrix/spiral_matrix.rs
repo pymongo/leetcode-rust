@@ -24,7 +24,7 @@ impl Solution {
         // 当前蛇形圈的边界(a[top][left], a[top][right], a[bottom][left], a[bottom][right])
         let (mut left, mut right, mut top, mut bottom) = (0, n - 1, 0, m - 1);
         while left <= right && top <= bottom {
-            // Step.1: 从左上扫到右上，参考图(我的解法中底下那行扫的个数不同): https://assets.leetcode-cn.com/solution-static/54/54_fig1.png
+            // Step.1: 从左上扫到右上，参考图(我的解法中底下那行扫的个数不同): https://assets.leetcode.com/solution-static/54/54_fig1.png
             for col in left..=right {
                 res.push(a[top][col]);
             }

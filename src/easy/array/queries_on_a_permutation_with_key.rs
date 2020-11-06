@@ -17,11 +17,11 @@ impl Solution {
 }
 
 #[cfg(test)]
-const TESTCASES: [(&[i32], i32, &[i32]); 1] = [(&[3, 1, 2, 1], 5, &[2, 1, 2, 1])];
+const TEST_CASES: [(&[i32], i32, &[i32]); 1] = [(&[3, 1, 2, 1], 5, &[2, 1, 2, 1])];
 
 #[test]
 fn test_process_queries() {
-    for &(queries, m, expected) in &TESTCASES {
+    for &(queries, m, expected) in &TEST_CASES {
         assert_eq!(
             Solution::process_queries(queries.to_vec(), m),
             expected.to_vec()

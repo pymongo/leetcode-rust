@@ -33,7 +33,7 @@ impl Solution {
 
 #[test]
 fn test_num_special() {
-    let testcases = vec![(
+    let test_cases = vec![(
         vec![
             vec![0, 0, 0, 1],
             vec![1, 0, 0, 0],
@@ -42,7 +42,7 @@ fn test_num_special() {
         ],
         2,
     )];
-    for (points, min_cost) in testcases {
+    for (points, min_cost) in test_cases {
         assert_eq!(Solution::num_special(points), min_cost);
     }
 }

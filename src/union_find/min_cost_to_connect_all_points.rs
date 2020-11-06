@@ -70,30 +70,26 @@ impl Solution {
     }
 }
 
-#[cfg(test)]
-fn testcases() -> Vec<(Vec<Vec<i32>>, i32)> {
-    vec![
+#[test]
+fn test() {
+    let test_cases: Vec<(Vec<Vec<i32>>, i32)> = vec![
         (vec![(0, 0), (2, 2), (3, 10), (5, 2), (7, 0)], 20),
         (vec![(2, -3), (-17, -8), (13, 8), (-17, -15)], 53),
         (vec![(3, 12), (-2, 5), (-4, 1)], 18),
         (vec![(0, 0), (1, 1), (1, 0), (-1, 1)], 4),
     ]
-    .into_iter()
-    .map(|(points, cost)| {
-        (
-            points
-                .into_iter()
-                .map(|(x, y)| vec![x, y])
-                .collect::<Vec<Vec<i32>>>(),
-            cost,
-        )
-    })
-    .collect()
-}
-
-#[test]
-fn test() {
-    for (points, min_cost) in testcases() {
+        .into_iter()
+        .map(|(points, cost)| {
+            (
+                points
+                    .into_iter()
+                    .map(|(x, y)| vec![x, y])
+                    .collect::<Vec<Vec<i32>>>(),
+                cost,
+            )
+        })
+        .collect();
+    for (points, min_cost) in test_cases {
         assert_eq!(Solution::min_cost_connect_points(points), min_cost);
     }
 }

@@ -1,14 +1,14 @@
-//! https://leetcode-cn.com/problems/implement-strstr/
+//! https://leetcode.com/problems/implement-strstr/
 //! 实现C语言自带的strstr()以及Java的indexOf() API
 //! 功能：查找字符串中的一个子串的出现位置，类似于find()、contains() API
 
 #[cfg(test)]
-const TESTCASES: [(&str, &str, i32); 3] =
+const TEST_CASES: [(&str, &str, i32); 3] =
     [("hello", "ll", 2), ("aaaaa", "bba", -1), ("bike", "", 0)];
 
 #[test]
 fn test_kmp() {
-    for &(source, target, expected) in TESTCASES.iter() {
+    for &(source, target, expected) in TEST_CASES.iter() {
         assert_eq!(cheat(source.to_string(), target.to_string()), expected);
     }
 }
@@ -29,7 +29,7 @@ fn cheat(haystack: String, needle: String) -> i32 {
 
 KMP用到的数据结构很像动态规划的dp数组，实际上是dfa(确定有限状态机)
 状态转移图可以看这篇题解：
-https://leetcode-cn.com/problems/implement-strstr/solution/kmp-suan-fa-xiang-jie-by-labuladong/
+https://leetcode.com/problems/implement-strstr/solution/kmp-suan-fa-xiang-jie-by-labuladong/
 */
 #[cfg(FALSE)]
 pub fn global_best_api(haystack: String, needle: String) -> i32 {

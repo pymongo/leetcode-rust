@@ -64,7 +64,7 @@ impl Solution {
 mod test_find_median_sorted_arrays {
     use super::Solution;
 
-    const TESTCASES: [(&[i32], &[i32], f64); 17] = [
+    const TEST_CASES: [(&[i32], &[i32], f64); 17] = [
         (&[1, 2, 3, 4], &[3, 6, 8, 9], 3.5),
         (&[1, 5, 6, 7], &[2, 3, 4, 8], 4.5),
         (&[1, 2], &[3, 4, 5, 6, 7], 4f64),
@@ -86,7 +86,7 @@ mod test_find_median_sorted_arrays {
 
     #[test]
     fn test_my_brute_force() {
-        for &(nums1, nums2, expected) in TESTCASES.iter() {
+        for &(nums1, nums2, expected) in TEST_CASES.iter() {
             assert_eq!(
                 Solution::my_brute_force(nums1.to_vec(), nums2.to_vec()),
                 expected
@@ -96,7 +96,7 @@ mod test_find_median_sorted_arrays {
 
     #[test]
     fn test_merge_sort_solution() {
-        for &(nums1, nums2, expected) in TESTCASES.iter() {
+        for &(nums1, nums2, expected) in TEST_CASES.iter() {
             assert_eq!(
                 Solution::merge_sort_solution(nums1.to_vec(), nums2.to_vec()),
                 expected

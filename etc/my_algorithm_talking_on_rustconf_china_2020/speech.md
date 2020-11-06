@@ -94,14 +94,28 @@ round背后的算法灵感来源于我在leetcode上做过的多道题。
 我的分享到此结束，谢谢大家！(鞠躬)
 ```
 
+## 有意思的可能会加入演讲PPT的代码片段
+
+leetcode 65题有效数字，体现了Rust代码简短可读性高，更符合语义
+https://leetcode.com/problems/valid-number/
+当然这题的正统解法是用DFA有限状态机。上述写法的语义和可读性强体现在，方法名是is_number，最后的返回值是is_ok，有种首尾呼应的感觉
+
+
+```rust
+fn is_number(s: String) -> bool {
+    s.trim().parse::<f32>().is_ok()
+}
+```
+
+---
+(以下是老的演讲稿大纲)
+
 ## 我从leetcode Rust刷题中学到了什么
 
-- two_sum: BTreeMap
 - add_two_numbers: 学会let Some，match两个链表的写法，学习Box智能指针
 - 某个每日一题，忘了: peekable Iterator
 - reverse_int: checked_add的优雅判断溢出
 - 很多题usize类型如何避免`0-1`的溢出
-- 性能好
 
 ## 为什么要用Rust刷题
 

@@ -46,8 +46,8 @@ fn shuffle_the_array(nums: Vec<i32>, n: i32) -> Vec<i32> {
 
 #[test]
 fn test_shuffle() {
-    const TESTCASES: [(&[i32], i32, &[i32]); 1] = [(&[2, 5, 1, 3, 4, 7], 3, &[2, 3, 5, 4, 1, 7])];
-    for &(nums, n, expected) in TESTCASES.iter() {
+    const TEST_CASES: [(&[i32], i32, &[i32]); 1] = [(&[2, 5, 1, 3, 4, 7], 3, &[2, 3, 5, 4, 1, 7])];
+    for &(nums, n, expected) in TEST_CASES.iter() {
         let output = shuffle_the_array(nums.to_vec(), n);
         assert_eq!(&output[..], expected);
     }
@@ -276,8 +276,8 @@ fn max_depth(s: String) -> i32 {
 
 #[test]
 fn test_max_depth() {
-    const TESTCASES: [(&str, i32); 3] = [("", 0), ("()()", 1), ("()(()())", 2)];
-    for &(s, expected) in TESTCASES.iter() {
+    const TEST_CASES: [(&str, i32); 3] = [("", 0), ("()()", 1), ("()(()())", 2)];
+    for &(s, expected) in TEST_CASES.iter() {
         assert_eq!(max_depth(s.to_owned()), expected);
     }
 }
@@ -315,5 +315,73 @@ impl ParkingSystem {
             3 => helper(&mut self.small_slot_cap),
             _ => false
         }
+    }
+}
+
+/// https://leetcode.com/problems/ugly-number/
+fn is_ugly(mut num: i32) -> bool {
+    if num == 0 {
+        return false;
+    }
+    while num % 2 == 0 {
+        num /= 2;
+    }
+    while num % 3 == 0 {
+        num /= 3;
+    }
+    while num % 5 == 0 {
+        num /= 5;
+    }
+    num == 1
+}
+
+/// https://leetcode.com/problems/valid-number/
+/// 这题正确的解法应该是DFA(有限状态机)，手写的状态机应该会比标准库的f32解析状态机性能更好
+fn is_number(s: String) -> bool {
+    s.trim().parse::<f32>().is_ok()
+}
+
+/// https://leetcode.com/problems/island-perimeter/
+/// 逐行遍历grid中所有为1的格子，遇到一个1就往上下左右四个方向延伸，遇到边界或0就周长加一，遇到1则不加
+fn island_perimeter(grid: Vec<Vec<i32>>) -> i32 {
+    let (m, n) = (grid.len(), grid[0].len());
+    let mut perimeter = 0;
+    for i in 0..m {
+        for j in 0..n {
+            if grid[i][j] == 0 {
+                continue;
+            }
+            // up and down
+            if i == 0 || grid[i - 1][j] == 0 {
+                perimeter += 1;
+            }
+            if i == m - 1 || grid[i + 1][j] == 0 {
+                perimeter += 1;
+            }
+            // left and right
+            if j == 0 || grid[i][j - 1] == 0 {
+                perimeter += 1;
+            }
+            if j == n - 1 || grid[i][j + 1] == 0 {
+                perimeter += 1;
+            }
+        }
+    }
+    perimeter
+}
+
+#[test]
+fn test_island_perimeter() {
+    let test_cases: Vec<(Vec<Vec<i32>>, i32)> = vec![(
+        vec![
+            vec![0, 1, 0, 0],
+            vec![1, 1, 1, 0],
+            vec![0, 1, 0, 0],
+            vec![1, 1, 0, 0],
+        ],
+        16,
+    )];
+    for (grid, perimeter) in test_cases {
+        assert_eq!(island_perimeter(grid), perimeter)
     }
 }

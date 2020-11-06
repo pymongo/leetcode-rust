@@ -2,11 +2,11 @@
 //! [走格子/棋盘问题 有多少条路径可走](https://blog.csdn.net/yusiguyuan/article/details/12875415)
 
 #[cfg(test)]
-const TESTCASES: [(i32, i32, i32); 2] = [(23, 12, 193536720), (51, 9, 1916797311)];
+const TEST_CASES: [(i32, i32, i32); 2] = [(23, 12, 193536720), (51, 9, 1916797311)];
 
 #[test]
 fn test_unique_paths() {
-    for &(m, n, expected) in TESTCASES.iter() {
+    for &(m, n, expected) in TEST_CASES.iter() {
         assert_eq!(unique_paths(m, n), expected);
     }
 }

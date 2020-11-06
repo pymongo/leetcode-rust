@@ -1,4 +1,4 @@
-// https://leetcode-cn.com/contest/biweekly-contest-34/problems/matrix-diagonal-sum/
+// https://leetcode.com/contest/biweekly-contest-34/problems/matrix-diagonal-sum/
 // 34周双周赛第一题
 
 struct Solution;
@@ -25,7 +25,7 @@ impl Solution {
 }
 
 #[cfg(test)]
-const TESTCASES: [(&[&[i32]], i32); 2] = [
+const TEST_CASES: [(&[&[i32]], i32); 2] = [
     (
         &[&[1, 1, 1, 1], &[1, 1, 1, 1], &[1, 1, 1, 1], &[1, 1, 1, 1]],
         8,
@@ -35,7 +35,7 @@ const TESTCASES: [(&[&[i32]], i32); 2] = [
 
 #[test]
 fn test_diagonal_sum() {
-    for &(mat, res) in &TESTCASES {
+    for &(mat, res) in &TEST_CASES {
         let n = mat.len();
         let mut mat_vec = Vec::with_capacity(n);
         for &row in mat {

@@ -44,12 +44,12 @@ fn my_first_solution(nums1: &mut Vec<i32>, m: i32, nums2: &mut Vec<i32>, n: i32)
 
 #[test]
 fn test_my_first_solution() {
-    const TESTCASES: [(&[i32], i32, &[i32], i32, &[i32]); 3] = [
+    const TEST_CASES: [(&[i32], i32, &[i32], i32, &[i32]); 3] = [
         (&[1, 2, 3, 0, 0, 0], 3, &[2, 5, 6], 3, &[1, 2, 2, 3, 5, 6]),
         (&[2, 0], 1, &[1], 1, &[1, 2]),
         (&[0], 0, &[1], 1, &[1]),
     ];
-    for &(nums1, m, nums2, n, expected) in TESTCASES.iter() {
+    for &(nums1, m, nums2, n, expected) in TEST_CASES.iter() {
         let mut nums1 = nums1.to_vec();
         my_first_solution(&mut nums1, m, &mut nums2.to_vec(), n);
         assert_eq!(nums1, expected.to_vec());

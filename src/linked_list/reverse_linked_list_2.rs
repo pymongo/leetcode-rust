@@ -108,11 +108,11 @@ impl Solution {
 }
 
 #[cfg(test)]
-const TESTCASES: [(&[i32], i32, i32, &[i32]); 1] = [(&[1, 2, 3, 4, 5], 2, 4, &[1, 4, 3, 2, 5])];
+const TEST_CASES: [(&[i32], i32, i32, &[i32]); 1] = [(&[1, 2, 3, 4, 5], 2, 4, &[1, 4, 3, 2, 5])];
 
 // #[test]
 // fn test_traverse_two_list_node() {
-//     for &(input, m, n, output) in &TESTCASES {
+//     for &(input, m, n, output) in &TEST_CASES {
 //         let head = arr_to_linked_list(input);
 //         let output_head = Solution::reverse_between(head, m, n);
 //         assert_eq!(linked_list_to_vec(&output_head), output.to_vec());
@@ -122,7 +122,7 @@ const TESTCASES: [(&[i32], i32, i32, &[i32]); 1] = [(&[1, 2, 3, 4, 5], 2, 4, &[1
 // #[test]
 // #[ignore]
 // fn test_reverse_range_inplace() {
-//     for &(input, m, n, output) in &TESTCASES {
+//     for &(input, m, n, output) in &TEST_CASES {
 //         let head = arr_to_linked_list(input);
 //         let output_head = Solution::reverse_range_inplace(head, m, n);
 //         assert_eq!(linked_list_to_vec(&output_head), output.to_vec());

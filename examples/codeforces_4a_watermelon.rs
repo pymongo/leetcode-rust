@@ -48,14 +48,14 @@ fn main() {
 }
 
 #[cfg(test)]
-const TESTCASES: [(&[u8], &[u8]); 2] = [
+const TEST_CASES: [(&[u8], &[u8]); 2] = [
     (b"8\r\n", b"YES"), // codeforces testcase_1
     (b"99\n", b"NO"),   // mac_os input(without CR byte)
 ];
 
 #[test]
 fn test_solution() {
-    for &(input, expected_output) in &TESTCASES {
+    for &(input, expected_output) in &TEST_CASES {
         let mut output = Vec::new();
         solution(input, &mut output).unwrap();
         assert_eq!(output, expected_output);

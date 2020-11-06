@@ -82,14 +82,14 @@ mod test {
 
     #[test]
     fn test_is_palindrome() {
-        const TESTCASES: [(i32, bool); 5] = [
+        const TEST_CASES: [(i32, bool); 5] = [
             (121, true),
             (-121, false),
             (10, false),
             (0, true),
             (1000000001, true),
         ];
-        for &(input, expected) in TESTCASES.iter() {
+        for &(input, expected) in TEST_CASES.iter() {
             assert_eq!(Solution::is_palindrome(input), expected);
             assert_eq!(Solution::is_palindrome_half_traverse(input), expected);
         }

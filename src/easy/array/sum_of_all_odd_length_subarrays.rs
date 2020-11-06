@@ -52,11 +52,11 @@ impl Solution {
 }
 
 #[cfg(test)]
-const TESTCASES: [(&[i32], i32); 1] = [(&[1, 4, 2, 5, 3], 58)];
+const TEST_CASES: [(&[i32], i32); 1] = [(&[1, 4, 2, 5, 3], 58)];
 
 #[test]
 fn test() {
-    for &(nums, sum) in &TESTCASES {
+    for &(nums, sum) in &TEST_CASES {
         assert_eq!(Solution::sum_odd_length_subarrays(nums.to_vec()), sum);
         assert_eq!(Solution::solution_use_slice_windows_api(nums.to_vec()), sum);
     }

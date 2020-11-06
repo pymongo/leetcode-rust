@@ -30,8 +30,8 @@ fn next_greater_elements(nums: Vec<i32>) -> Vec<i32> {
 
 #[test]
 fn test_next_greater_elements() {
-    const TESTCASES: [(&[i32], &[i32]); 1] = [(&[1, 2, 1], &[2, -1, 2])];
-    for &(nums, output) in TESTCASES.iter() {
+    const TEST_CASES: [(&[i32], &[i32]); 1] = [(&[1, 2, 1], &[2, -1, 2])];
+    for &(nums, output) in TEST_CASES.iter() {
         assert_eq!(next_greater_elements(nums.to_vec()), output.to_vec());
     }
 }

@@ -45,13 +45,13 @@ fn num_triplets(nums1: Vec<i32>, nums2: Vec<i32>) -> i32 {
 
 #[test]
 fn test_diagonal_sum() {
-    const TESTCASES: [(&[i32], &[i32], i32); 4] = [
+    const TEST_CASES: [(&[i32], &[i32], i32); 4] = [
         (&[1, 1], &[1, 1, 1], 9),
         (&[7, 4], &[5, 2, 8, 9], 1),
         (&[7, 7, 8, 3], &[1, 2, 9, 7], 2),
         (&[4, 7, 9, 11, 23], &[3, 5, 1024, 12, 18], 0),
     ];
-    for &(nums1, nums2, res) in &TESTCASES {
+    for &(nums1, nums2, res) in &TEST_CASES {
         assert_eq!(num_triplets(nums1.to_vec(), nums2.to_vec()), res);
     }
 }

@@ -51,9 +51,9 @@ fn max_sliding_window(nums: Vec<i32>, k: i32) -> Vec<i32> {
 
 #[test]
 fn test_max_sliding_window() {
-    const TESTCASES: [(&[i32], i32, &[i32]); 1] =
+    const TEST_CASES: [(&[i32], i32, &[i32]); 1] =
         [(&[1, 3, -1, -3, 5, 3, 6, 7], 3, &[3, 3, 5, 5, 6, 7])];
-    for &(nums, k, expected) in TESTCASES.iter() {
+    for &(nums, k, expected) in TEST_CASES.iter() {
         assert_eq!(max_sliding_window(nums.to_vec(), k), expected.to_vec());
     }
 }

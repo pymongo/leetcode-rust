@@ -78,7 +78,7 @@ impl Solution {
 mod test_two_sum_solutions {
     use super::Solution;
 
-    const TESTCASES: [(&[i32], i32, &[i32]); 3] = [
+    const TEST_CASES: [(&[i32], i32, &[i32]); 3] = [
         (&[2, 7, 9, 11], 9, &[0, 1]),
         (&[-3, 4, 3, 90], 0, &[0, 2]),
         (&[0, 4, 3, 0], 0, &[0, 3]),
@@ -86,7 +86,7 @@ mod test_two_sum_solutions {
 
     #[test]
     fn test_two_sum_bitwise() {
-        for &(nums, target, expected) in TESTCASES.iter() {
+        for &(nums, target, expected) in TEST_CASES.iter() {
             assert_eq!(
                 Solution::two_sum_bitwise(nums.to_vec(), target),
                 expected.to_vec()
@@ -96,7 +96,7 @@ mod test_two_sum_solutions {
 
     #[test]
     fn test_sum_hashmap() {
-        for &(nums, target, expected) in TESTCASES.iter() {
+        for &(nums, target, expected) in TEST_CASES.iter() {
             assert_eq!(
                 Solution::two_sum_hashmap(nums.to_vec(), target),
                 expected.to_vec()

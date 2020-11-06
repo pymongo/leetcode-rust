@@ -61,7 +61,7 @@ impl Solution {
 }
 
 mod test_solution {
-    const TESTCASES: [(&str, i32); 7] = [
+    const TEST_CASES: [(&str, i32); 7] = [
         ("dvdf", 3),
         ("abcabcbb", 3),
         ("bbbbb", 1),
@@ -73,7 +73,7 @@ mod test_solution {
 
     #[test]
     fn test_i32_ascii_table() {
-        for &(input, expected) in TESTCASES.iter() {
+        for &(input, expected) in TEST_CASES.iter() {
             assert_eq!(
                 super::Solution::ascii_table_array_solution(input.to_string()),
                 expected
@@ -83,7 +83,7 @@ mod test_solution {
 
     #[test]
     fn test_sliding_window_hashmap() {
-        for &(input, expected) in TESTCASES.iter() {
+        for &(input, expected) in TEST_CASES.iter() {
             dbg!(input);
             assert_eq!(
                 super::Solution::sliding_window_hashmap(input.to_string()),
