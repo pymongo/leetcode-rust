@@ -16,7 +16,7 @@ where
         if len <= 10 {
             writeln!(&mut writer, "{}", string)?;
         } else {
-            let bytes = string.as_bytes();
+            let bytes = string.into_bytes();
             writeln!(
                 &mut writer,
                 "{}{}{}",

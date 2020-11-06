@@ -13,7 +13,7 @@ fn my_first_solution(nums1: &mut Vec<i32>, m: i32, nums2: &mut Vec<i32>, n: i32)
     let mut nums1_read_index: usize = 0i32.max(m - 1) as usize;
     let mut nums2_read_index: usize = (n - 1) as usize;
     let mut nums1_write_index: usize = (m + n - 1) as usize;
-    let mut is_nums2_remain = true;
+    // let mut is_nums2_remain = true;
     // 利用nums1和nums2是有序的特点，从后往前遍历
     loop {
         if nums1[nums1_read_index] > nums2[nums2_read_index] {
@@ -25,7 +25,7 @@ fn my_first_solution(nums1: &mut Vec<i32>, m: i32, nums2: &mut Vec<i32>, n: i32)
         } else {
             nums1[nums1_write_index] = nums2[nums2_read_index];
             if nums2_read_index == 0 {
-                is_nums2_remain = false;
+                // is_nums2_remain = false;
                 break;
             }
             nums2_read_index -= 1;
@@ -34,22 +34,21 @@ fn my_first_solution(nums1: &mut Vec<i32>, m: i32, nums2: &mut Vec<i32>, n: i32)
     }
     // 如果nums1从后往前遍历完的时候，nums2还有剩余项
     // 则把nums2[0:nums2_read_index]赋值/复制到nums1[0:nums2_read_index]中
-    if is_nums2_remain {
-        for i in 0..=nums2_read_index {
-            nums1[i] = nums2[i]
-        }
-    }
+    // if is_nums2_remain {
+    //     for i in 0..=nums2_read_index {
+    //         nums1[i] = nums2[i]
+    //     }
+    // }
+    nums1[..nums2_read_index + 1].clone_from_slice(&nums2[..nums2_read_index + 1]);
 }
-
-#[cfg(test)]
-const TESTCASES: [(&[i32], i32, &[i32], i32, &[i32]); 3] = [
-    (&[1, 2, 3, 0, 0, 0], 3, &[2, 5, 6], 3, &[1, 2, 2, 3, 5, 6]),
-    (&[2, 0], 1, &[1], 1, &[1, 2]),
-    (&[0], 0, &[1], 1, &[1]),
-];
 
 #[test]
 fn test_my_first_solution() {
+    const TESTCASES: [(&[i32], i32, &[i32], i32, &[i32]); 3] = [
+        (&[1, 2, 3, 0, 0, 0], 3, &[2, 5, 6], 3, &[1, 2, 2, 3, 5, 6]),
+        (&[2, 0], 1, &[1], 1, &[1, 2]),
+        (&[0], 0, &[1], 1, &[1]),
+    ];
     for &(nums1, m, nums2, n, expected) in TESTCASES.iter() {
         let mut nums1 = nums1.to_vec();
         my_first_solution(&mut nums1, m, &mut nums2.to_vec(), n);

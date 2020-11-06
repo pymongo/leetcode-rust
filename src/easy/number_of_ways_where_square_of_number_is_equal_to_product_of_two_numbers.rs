@@ -40,7 +40,7 @@ fn num_triplets(nums1: Vec<i32>, nums2: Vec<i32>) -> i32 {
         res
     }
 
-    Self::helper(&nums1, &nums2) + Self::helper(&nums2, &nums1)
+    helper(&nums1, &nums2) + helper(&nums2, &nums1)
 }
 
 #[test]

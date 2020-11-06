@@ -41,7 +41,7 @@ impl Solution {
                 (merged[half_len - 1] + merged[half_len]) as f64 / 2f64
             } else {
                 merged[half_len] as f64
-            }
+            };
         }
 
         while i < m {

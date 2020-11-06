@@ -6,7 +6,7 @@ struct Solution;
 impl Solution {
     /// 斜着遍历矩阵不能命中CPU缓存，dp解法性能远不如中心对称
     fn dp(s: String) -> String {
-        let s = s.as_bytes();
+        let s = s.into_bytes();
         let n = s.len();
         let (mut max_len, mut max_start) = (0usize, 0usize);
         let mut dp = vec![vec![false; n]; n];
@@ -31,11 +31,7 @@ impl Solution {
                 }
             }
         }
-        let mut res = String::with_capacity(max_len);
-        for i in max_start..max_start + max_len {
-            res.push(s[i] as char);
-        }
-        res
+        unsafe { String::from_utf8_unchecked(s[max_start..max_start + max_len].to_owned()) }
     }
 
     // 除了manacher算法之外，用suffix array(后缀数组)算法也是O(n)的时间复杂度
@@ -271,10 +267,10 @@ impl Solution {
                 right - left - 1
             }
         }
-        let chars = s.as_bytes();
-        let len = chars.len();
+        let s = s.into_bytes();
+        let len = s.len();
         if len < 2 {
-            return s;
+            return unsafe { String::from_utf8_unchecked(s) };
         }
 
         let mut max_len = 0;
@@ -288,9 +284,9 @@ impl Solution {
         // 遍历到倒数第二个字符
         for i in 0..(len - 1) {
             // 从字符串内一个字符出发(奇数)
-            odd_expand_len = helper(chars, len, i, i);
+            odd_expand_len = helper(&s, len, i, i);
             // 从字符串内两个字符之间的间隙出发(偶数)
-            even_expand_len = helper(chars, len, i, i + 1);
+            even_expand_len = helper(&s, len, i, i + 1);
             temp_len = odd_expand_len.max(even_expand_len);
             if temp_len > max_len {
                 max_len = temp_len;
@@ -300,7 +296,7 @@ impl Solution {
         }
         let mut result = String::with_capacity(max_len);
         for i in max_len_start_index..(max_len_start_index + max_len) {
-            result.push(chars[i] as char);
+            result.push(s[i] as char);
         }
         result
     }
@@ -378,14 +374,13 @@ a     T
 当子串的长度是2或3时，不需要检查子串是否回文，所以边界条件可以是j-i<3
 */
 fn dp_new(s: String) -> String {
-    let chars = s.as_bytes();
-    let len = chars.len();
+    let s = s.into_bytes();
+    let len = s.len();
     if len < 2 {
-        return s;
+        return unsafe { String::from_utf8_unchecked(s) };
     }
 
     let mut max_start_index = 0usize;
-    let mut max_end_index = 0usize;
     let mut max_len = 1_usize;
     let mut temp_len;
     let mut dp = vec![vec![true; len]; len];
@@ -395,11 +390,10 @@ fn dp_new(s: String) -> String {
     for j in 1..len {
         for i in 0..j {
             // TODO 【优化】当子串的长度是2或3时，如果chars[i]==chars[j]那就肯定是回文了
-            if chars[i] == chars[j] && dp[i + 1][j - 1] {
+            if s[i] == s[j] && dp[i + 1][j - 1] {
                 temp_len = j - i + 1;
                 if temp_len > max_len {
                     max_start_index = i;
-                    max_end_index = j;
                     max_len = temp_len;
                 }
             } else {
@@ -407,11 +401,12 @@ fn dp_new(s: String) -> String {
             }
         }
     }
-    let mut result = String::with_capacity(max_len);
-    for i in max_start_index..=max_end_index {
-        result.push(chars[i] as char);
-    }
-    result
+    unsafe { String::from_utf8_unchecked(s[max_start_index..max_start_index + max_len].to_owned()) }
+    // let mut result = String::with_capacity(max_len);
+    // for i in max_start_index..=max_end_index {
+    //     result.push(s[i] as char);
+    // }
+    // result
 }
 
 /*

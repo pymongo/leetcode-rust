@@ -184,7 +184,11 @@ fn max_width_of_vertical_area(points: Vec<Vec<i32>>) -> i32 {
     let mut points_x: Vec<i32> = points.into_iter().map(|v| v[0]).collect();
     points_x.sort_unstable();
     // TODO 能不能用flat_map将windows拆成(a, b)这样的元组?
-    points_x.windows(2).map(|a| a[1]-a[0]).max().unwrap_or_default()
+    points_x
+        .windows(2)
+        .map(|a| a[1] - a[0])
+        .max()
+        .unwrap_or_default()
 }
 
 /// https://leetcode.com/problems/minimum-time-visiting-all-points/
@@ -246,5 +250,34 @@ fn set_zeroes(matrix: &mut Vec<Vec<i32>>) {
                 matrix[i][j] = 0;
             }
         }
+    }
+}
+
+/// https://leetcode.com/problems/maximum-nesting-depth-of-the-parentheses/
+/// 求字符串内有效括号的最大深度
+fn max_depth(s: String) -> i32 {
+    let mut res = 0;
+    let mut depth = 0;
+    for byte in s.into_bytes() {
+        // 由于leetcode这题暂时没有全是左括号例如"((("的测试用例，所以这样也能AC
+        match byte {
+            b'(' => {
+                depth += 1;
+                res = res.max(depth);
+            }
+            b')' => {
+                depth -= 1;
+            }
+            _ => {}
+        }
+    }
+    res
+}
+
+#[test]
+fn test_max_depth() {
+    const TESTCASES: [(&str, i32); 3] = [("", 0), ("()()", 1), ("()(()())", 2)];
+    for &(s, expected) in TESTCASES.iter() {
+        assert_eq!(max_depth(s.to_owned()), expected);
     }
 }

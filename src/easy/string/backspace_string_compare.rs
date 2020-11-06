@@ -5,7 +5,7 @@ impl Solution {
     fn backspace_compare(s: String, t: String) -> bool {
         fn parse(s: String) -> Vec<u8> {
             let mut res: Vec<u8> = Vec::new();
-            for &byte in s.as_bytes() {
+            for byte in s.into_bytes() {
                 if byte == b'#' {
                     let _ = res.pop();
                 } else {

@@ -24,8 +24,8 @@ impl Solution {
     */
     pub fn official_solution(name: String, typed: String) -> bool {
         let (mut i, mut j) = (0, 0);
-        let (name, typed, typed_len, name_len) =
-            (name.as_bytes(), typed.as_bytes(), typed.len(), name.len());
+        let (name, typed) = (name.into_bytes(), typed.into_bytes());
+        let (name_len, typed_len) = (name.len(), typed.len());
         while j < typed_len {
             if i < name_len && name[i] == typed[j] {
                 i += 1;
@@ -55,14 +55,14 @@ impl Solution {
         if name.is_empty() || typed.is_empty() {
             return false;
         }
-        let mut name = name.as_bytes().into_iter().peekable();
-        let mut typed = typed.as_bytes().into_iter().peekable();
-        let mut last_a = *name.next().unwrap();
-        let mut last_b = *typed.next().unwrap();
+        let mut name = name.into_bytes().into_iter().peekable();
+        let mut typed = typed.into_bytes().into_iter().peekable();
+        let mut last_a = name.next().unwrap();
+        let mut last_b = typed.next().unwrap();
         if last_a != last_b {
             return false;
         }
-        while let (Some(&&a), Some(&&b)) = (name.peek(), typed.peek()) {
+        while let (Some(&a), Some(&b)) = (name.peek(), typed.peek()) {
             // dbg!(a as char, b as char, last_a as char, last_b as char);
             match (a == last_a, b == last_b) {
                 (false, false) => {
@@ -77,15 +77,15 @@ impl Solution {
                         //   ^    ^
                         // dbg!("a == b");
                         // dbg!(a, b);
-                        last_a = *name.next().unwrap();
-                        last_b = *typed.next().unwrap();
+                        last_a = name.next().unwrap();
+                        last_b = typed.next().unwrap();
                     }
                 }
                 (false, true) => {
                     // dbg!("(false, true)");
                     // alex aaleex
                     //  ^    ^
-                    last_b = *typed.next().unwrap();
+                    last_b = typed.next().unwrap();
                 }
                 (true, false) => {
                     // dbg!("(true, false)");
@@ -95,13 +95,13 @@ impl Solution {
                 }
                 (true, true) => {
                     // dbg!("(true, true)");
-                    last_a = *name.next().unwrap();
-                    last_b = *typed.next().unwrap();
+                    last_a = name.next().unwrap();
+                    last_b = typed.next().unwrap();
                 }
             }
         }
         // TODO use unstable peekable iterator next_if API to simplify code
-        while let Some(&&b) = typed.peek() {
+        while let Some(&b) = typed.peek() {
             // vtkgn    vttkgnn
             //      ^        ^
             if b != last_b {

@@ -14,7 +14,7 @@ struct Solution;
 
 impl Solution {
     fn ascii_table_array_solution(s: String) -> i32 {
-        let s = s.as_bytes();
+        let s = s.into_bytes();
         let len: i32 = s.len() as i32;
         if len <= 1 {
             return len;
@@ -43,18 +43,18 @@ impl Solution {
 
     /// 即便用了性能不如ASCII数组的HashMap，依然是0ms的解法
     fn sliding_window_hashmap(s: String) -> i32 {
-        let s = s.as_bytes();
+        let s = s.into_bytes();
         let mut max_len = 0;
         let mut start = 0usize;
         let mut map = std::collections::HashMap::new();
         for (i, letter) in s.into_iter().enumerate() {
-            if let Some(&left_index) = map.get(letter) {
+            if let Some(&left_index) = map.get(&letter) {
                 start = start.max(left_index + 1);
             }
             // 必须要更新完左边界再去算window长度才是正确的
             max_len = max_len.max(i - start + 1);
             // insert or update
-            map.insert(*letter, i);
+            map.insert(letter, i);
         }
         max_len as i32
     }

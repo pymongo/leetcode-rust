@@ -10,7 +10,7 @@ impl Solution {
         let n = a.len();
         let mut arr = vec![vec![0u8; n]; 26];
         for word in 0..n {
-            for &c in a[word].as_bytes() {
+            for c in a[word].as_bytes() {
                 arr[(c - b'a') as usize][word] += 1;
             }
         }
