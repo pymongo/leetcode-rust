@@ -59,7 +59,7 @@ fn test_shuffle() {
 1. 斐波那契公式(公式中的乘方需要log(n)时间复杂度)
 2. Binet's formula 利用矩阵解斐波那契
 */
-fn fib_recursive(n: u32, a: u32, b: u32) -> u32 {
+const fn fib_recursive(n: u32, a: u32, b: u32) -> u32 {
     if n == 1 {
         b
     } else {
@@ -68,7 +68,7 @@ fn fib_recursive(n: u32, a: u32, b: u32) -> u32 {
     }
 }
 
-fn fib_iterative(n: i32) -> i32 {
+const fn fib_iterative(n: i32) -> i32 {
     let (mut a, mut b) = (1u32, 1u32);
     let mut temp: u32;
     let mut n = n;
@@ -160,8 +160,8 @@ fn can_form_array(arr: Vec<i32>, pieces: Vec<Vec<i32>>) -> bool {
     true
 }
 
-// https://leetcode.com/problems/sort-integers-by-the-number-of-1-bits/
-pub fn sort_by_bits(mut arr: Vec<i32>) -> Vec<i32> {
+/// https://leetcode.com/problems/sort-integers-by-the-number-of-1-bits/
+fn sort_by_bits(mut arr: Vec<i32>) -> Vec<i32> {
     // arr.sort_by_cached_key(|&x| (x.count_ones, x));
     arr.sort_unstable_by(|a, b| {
         // 下面这行加起来的算法还不如不加呢，lazy一点只有当a和b的count_ones相同的时候才继续往后比较
@@ -169,4 +169,82 @@ pub fn sort_by_bits(mut arr: Vec<i32>) -> Vec<i32> {
         a.count_ones().cmp(&b.count_ones()).then(a.cmp(b))
     });
     arr
+}
+
+/// https://leetcode.com/problems/widest-vertical-area-between-two-points-containing-no-points/
+fn max_width_of_vertical_area(points: Vec<Vec<i32>>) -> i32 {
+    // points.sort_unstable_by(|a, b| a[0].cmp(&b[0]));
+    // let mut max_width = 0;
+    // let mut last_x = points[0][0];
+    // for point in points.into_iter().skip(1) {
+    //     max_width = max_width.max(point[0] - last_x);
+    //     last_x = point[0];
+    // }
+    // max_width
+    let mut points_x: Vec<i32> = points.into_iter().map(|v| v[0]).collect();
+    points_x.sort_unstable();
+    // TODO 能不能用flat_map将windows拆成(a, b)这样的元组?
+    points_x.windows(2).map(|a| a[1]-a[0]).max().unwrap_or_default()
+}
+
+/// https://leetcode.com/problems/minimum-time-visiting-all-points/
+fn min_time_to_visit_all_points(points: Vec<Vec<i32>>) -> i32 {
+    let n = points.len();
+    let mut res = 0;
+    for i in 1..n {
+        let dx = (points[i][0] - points[i - 1][0]).abs();
+        let dy = (points[i][1] - points[i - 1][1]).abs();
+        res += dx.max(dy);
+    }
+    res
+}
+
+/// https://leetcode.com/problems/max-increase-to-keep-city-skyline/
+/// 大意: 先算出旧矩阵每行每列的最大值，然后遍历矩阵看看当前值最大能加到什么，然后累加最大能增加的量
+fn max_increase_keeping_skyline(grid: Vec<Vec<i32>>) -> i32 {
+    let (m, n) = (grid.len(), grid[0].len());
+    let mut max_row: Vec<i32> = Vec::with_capacity(m);
+    let mut max_col: Vec<i32> = vec![std::i32::MIN; n];
+    for i in 0..m {
+        max_row.push(*grid[i].iter().max().unwrap());
+    }
+    for j in 0..n {
+        for i in 0..m {
+            max_col[j] = max_col[j].max(grid[i][j]);
+        }
+    }
+
+    let mut res = 0;
+    for i in 0..m {
+        let curr_max_row = max_row[i];
+        for j in 0..n {
+            // 最大能增长的高度等于行列最大值二者的最小值
+            res += std::cmp::min(curr_max_row, max_col[j]) - grid[i][j];
+        }
+    }
+    res
+}
+
+/// https://leetcode.com/problems/set-matrix-zeroes/
+/// 需求: 如果矩阵的某个元素为0，则将0所在行和所在列的全部元素置0
+/// 注意: 要先遍历一次矩阵，发现哪些坐标是0，然后再将相应行和列置零，不能一边遍历一边置零否则会污染后面的元素
+fn set_zeroes(matrix: &mut Vec<Vec<i32>>) {
+    let (m, n) = (matrix.len(), matrix[0].len());
+    // 已经设成全为0的行和列
+    let (mut zero_row, mut zero_col) = (vec![false; m], vec![false; n]);
+    for i in 0..m {
+        for j in 0..n {
+            if matrix[i][j] == 0 {
+                zero_row[i] = true;
+                zero_col[j] = true;
+            }
+        }
+    }
+    for i in 0..m {
+        for j in 0..n {
+            if zero_row[i] || zero_col[j] {
+                matrix[i][j] = 0;
+            }
+        }
+    }
 }

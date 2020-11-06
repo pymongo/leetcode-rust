@@ -64,11 +64,11 @@ impl Solution {
     fn two_sum_hashmap(nums: Vec<i32>, target: i32) -> Vec<i32> {
         // 其实用BTreeMap也行，不过此题又用不到TreeMap的排序特性
         let mut sum_tracker = std::collections::HashMap::new();
-        for (i, num) in nums.iter().enumerate() {
-            if sum_tracker.contains_key(num) {
-                return vec![*sum_tracker.get(num).unwrap() as i32, i as i32];
+        for (i, num) in nums.into_iter().enumerate() {
+            if sum_tracker.contains_key(&num) {
+                return vec![*sum_tracker.get(&num).unwrap() as i32, i as i32];
             }
-            sum_tracker.insert(target - *num, i);
+            sum_tracker.insert(target - num, i);
         }
         unreachable!()
     }

@@ -2,7 +2,7 @@ struct Solution;
 
 impl Solution {
     fn sorted_squares(a: Vec<i32>) -> Vec<i32> {
-        let mut res = a.iter().map(|x| x * x).collect::<Vec<i32>>();
+        let mut res = a.into_iter().map(|x| x * x).collect::<Vec<i32>>();
         res.sort_unstable();
         res
     }

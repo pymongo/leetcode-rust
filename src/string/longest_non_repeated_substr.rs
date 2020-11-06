@@ -47,7 +47,7 @@ impl Solution {
         let mut max_len = 0;
         let mut start = 0usize;
         let mut map = std::collections::HashMap::new();
-        for (i, letter) in s.iter().enumerate() {
+        for (i, letter) in s.into_iter().enumerate() {
             if let Some(&left_index) = map.get(letter) {
                 start = start.max(left_index + 1);
             }

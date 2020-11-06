@@ -21,6 +21,6 @@ impl Solution {
                 heap.push((-cnt, num));
             }
         }
-        heap.iter().rev().map(|(_, num)| *num).collect()
+        heap.into_iter().rev().map(|(_, num)| num).collect()
     }
 }

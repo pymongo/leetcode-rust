@@ -78,14 +78,14 @@ fn testcases() -> Vec<(Vec<Vec<i32>>, i32)> {
         (vec![(3, 12), (-2, 5), (-4, 1)], 18),
         (vec![(0, 0), (1, 1), (1, 0), (-1, 1)], 4),
     ]
-    .iter()
+    .into_iter()
     .map(|(points, cost)| {
         (
             points
-                .iter()
-                .map(|&(x, y)| vec![x, y])
+                .into_iter()
+                .map(|(x, y)| vec![x, y])
                 .collect::<Vec<Vec<i32>>>(),
-            *cost,
+            cost,
         )
     })
     .collect()

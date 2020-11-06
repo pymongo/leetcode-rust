@@ -44,7 +44,7 @@ impl Solution {
             .map(|window_len| {
                 nums.windows(window_len)
                     .into_iter()
-                    .map(|window| window.iter().sum::<i32>())
+                    .map(|window| window.into_iter().sum::<i32>())
                     .sum::<i32>()
             })
             .sum()

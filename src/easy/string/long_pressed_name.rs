@@ -55,8 +55,8 @@ impl Solution {
         if name.is_empty() || typed.is_empty() {
             return false;
         }
-        let mut name = name.as_bytes().iter().peekable();
-        let mut typed = typed.as_bytes().iter().peekable();
+        let mut name = name.as_bytes().into_iter().peekable();
+        let mut typed = typed.as_bytes().into_iter().peekable();
         let mut last_a = *name.next().unwrap();
         let mut last_b = *typed.next().unwrap();
         if last_a != last_b {

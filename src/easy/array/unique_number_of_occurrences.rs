@@ -5,8 +5,8 @@ impl Solution {
     需要用到第三方库itertools进行unique操作的解法
     ```compile_fail
     fn unique_occurrences(arr: Vec<i32>) -> bool {
-        arr.iter()
-            .map(|x| arr.iter().filter(|&y| x==y).count())
+        arr.into_iter()
+            .map(|x| arr.into_iter().filter(|&y| x==y).count())
             .unique()
             .sum::<usize>()==arr.len()
     }

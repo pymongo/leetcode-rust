@@ -12,7 +12,6 @@ mod majority_element;
 mod matrix_diagonal_sum;
 mod merge_two_sorted_arrays;
 mod min_operations_to_make_array_equal;
-mod min_time_visiting_all_points;
 mod number_of_ways_where_square_of_number_is_equal_to_product_of_two_numbers;
 mod one_or_two_bit_char;
 mod reverse_integer_checked_mul_overflow;

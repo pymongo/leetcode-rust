@@ -9,7 +9,7 @@ struct Solution;
 
 impl Solution {
     pub fn jump(nums: Vec<i32>) -> i32 {
-        let nums = nums.iter().map(|&num| num as usize).collect::<Vec<usize>>();
+        let nums = nums.into_iter().map(|num| num as usize).collect::<Vec<usize>>();
         let n = nums.len();
         if n == 1 {
             return 0;
@@ -30,7 +30,7 @@ impl Solution {
 
     pub fn greedy(nums: Vec<i32>) -> i32 {
         let n = nums.len();
-        let nums = nums.iter().map(|&num| num as usize).collect::<Vec<usize>>();
+        let nums = nums.into_iter().map(|num| num as usize).collect::<Vec<usize>>();
         let mut step = 0i32;
         let mut right_most = 0usize;
         // 当前这一步最远能跳到哪

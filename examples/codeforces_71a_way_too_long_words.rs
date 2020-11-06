@@ -11,7 +11,7 @@ where
             input.push(str);
         }
     }
-    for string in input.iter().skip(1) {
+    for string in input.into_iter().skip(1) {
         let len = string.len();
         if len <= 10 {
             writeln!(&mut writer, "{}", string)?;

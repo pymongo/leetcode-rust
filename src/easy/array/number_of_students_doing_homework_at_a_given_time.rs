@@ -3,9 +3,9 @@ struct Solution;
 impl Solution {
     fn busy_student(start_time: Vec<i32>, end_time: Vec<i32>, query_time: i32) -> i32 {
         start_time
-            .iter()
-            .zip(end_time.iter())
-            .filter(|(&start, &end)| start <= query_time && query_time <= end)
+            .into_iter()
+            .zip(end_time.into_iter())
+            .filter(|&(start, end)| start <= query_time && query_time <= end)
             .count() as i32
     }
 }
