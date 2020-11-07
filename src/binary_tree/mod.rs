@@ -1,6 +1,7 @@
 mod invert_binary_tree;
 mod preorder_traversal;
 mod sum_root_to_leaf_numbers;
+mod search_val_or_range_in_bst;
 
 pub use std::cell::RefCell;
 pub use std::rc::Rc;

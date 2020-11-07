@@ -84,6 +84,7 @@ round背后的算法灵感来源于我在leetcode上做过的多道题。
 
 【当前leetcode对Rust支持的不足】{
     - 所有N叉树(N-array)的题都不支持Rust
+    - 必须调用clone或take才能非递归地遍历二叉树
     - 所有多线程的题不支持Rust
     - 部分复杂链表/二叉树题不支持Rust(例如LRU)
     - leetcode社区上Rust的题解讨论太少

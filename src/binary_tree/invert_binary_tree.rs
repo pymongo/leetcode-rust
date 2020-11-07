@@ -1,7 +1,4 @@
-use super::TreeNode;
-use std::cell::RefCell;
-use std::rc::Rc;
-
+use super::{Rc, RefCell, TreeNode};
 struct Solution;
 
 impl Solution {
