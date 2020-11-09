@@ -398,7 +398,7 @@ fn k_closest(mut points: Vec<Vec<i32>>, k: i32) -> Vec<Vec<i32>> {
 /// https://leetcode-cn.com/problems/find-k-closest-elements/
 /// 这题的正统解法应该是二分法，因为输入数组是有序的
 fn find_closest_elements(mut arr: Vec<i32>, k: i32, x: i32) -> Vec<i32> {
-    arr.sort_unstable_by(|a,b| (a-x).abs().cmp(&(b-x).abs()).then(a.cmp(b)));
+    arr.sort_unstable_by(|a, b| (a - x).abs().cmp(&(b - x).abs()).then(a.cmp(b)));
     arr.truncate(k as usize);
     // 找到最接近原点的k的点后，再次排序，确保输出能有序
     arr.sort_unstable();
@@ -442,4 +442,44 @@ fn test_diagonal_sum() {
         }
         assert_eq!(matrix_diagonal_sum(mat_vec), res);
     }
+}
+
+/// https://leetcode.com/problems/height-checker/
+/// 同学们按身高升序排列，统计未站在正确位置的学生数
+fn height_checker(heights: Vec<i32>) -> i32 {
+    let mut correct = heights.clone();
+    correct.sort_unstable();
+    heights.into_iter().zip(correct.into_iter()).filter(|(a, b)| a != b).count() as i32
+}
+
+/// https://leetcode.com/problems/number-of-1-bits/
+/// Rust: n.count_ones(), Java: Integer.bitCount(n)
+fn hamming_weight(n: u32) -> i32 {
+    fn impl_count_ones_best(n: u32) -> i32 {
+        let mut count = 0;
+        let mut mask = 0b1;
+        for _ in 0..32 {
+            if n & mask == 1 {
+                count += 1;
+            }
+            mask <<= 1;
+        }
+        count
+    }
+    fn impl_count_ones_by_mask(mut n: u32) -> i32 {
+        let mut count = 0;
+        while n != 0 {
+            n &= n - 1;
+            count += 1;
+        }
+        return count;
+    }
+    impl_count_ones_best(n)
+}
+
+/// https://leetcode.com/problems/hamming-distance/
+/// 两个整数之间的汉明距离指的是这两个数字对应二进制位不同的位置的数目
+/// 思路: 异或后数位1的个数
+fn hamming_distance(x: i32, y: i32) -> i32 {
+    (x ^ y).count_ones() as i32
 }
