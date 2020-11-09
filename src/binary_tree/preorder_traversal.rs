@@ -18,6 +18,11 @@ fn preorder_traversal_mut_borrow_err(root: Option<Rc<RefCell<TreeNode>>>) -> Vec
     res
 }
 */
+/**
+递归版preorder遍历太简单了，就不写了
+栈遍历的升级版是: 「莫里斯遍历+线索二叉树」
+莫尼斯遍历不需要借助队列或栈的空间，与前序遍历不同的是莫里斯遍历每个节点只会访问一次
+*/
 fn preorder_traversal(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
     let mut res = Vec::new();
     let mut stack = vec![root];
@@ -29,6 +34,22 @@ fn preorder_traversal(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
             stack.push(peek.left.clone());
         }
     }
+    res
+}
+
+fn preorder_traversal_2(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+    fn helper(res: &mut Vec<i32>, node: Option<Rc<RefCell<TreeNode>>>) -> Option<()> {
+        let mut stack = vec![node];
+        while let Some(peek) = stack.pop()? {
+            let peek = peek.borrow();
+            res.push(peek.val);
+            stack.push(peek.right.clone());
+            stack.push(peek.left.clone());
+        }
+        Some(())
+    }
+    let mut res = Vec::new();
+    helper(&mut res, root).unwrap_or_default();
     res
 }
 

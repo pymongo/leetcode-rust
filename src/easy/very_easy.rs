@@ -313,7 +313,7 @@ impl ParkingSystem {
             1 => helper(&mut self.big_slot_cap),
             2 => helper(&mut self.medium_slot_cap),
             3 => helper(&mut self.small_slot_cap),
-            _ => false
+            _ => false,
         }
     }
 }
@@ -383,5 +383,63 @@ fn test_island_perimeter() {
     )];
     for (grid, perimeter) in test_cases {
         assert_eq!(island_perimeter(grid), perimeter)
+    }
+}
+
+/// https://leetcode.com/problems/k-closest-points-to-origin/
+/// 这题的正统解法应该是quick_select_min过程重复k次
+fn k_closest(mut points: Vec<Vec<i32>>, k: i32) -> Vec<Vec<i32>> {
+    points
+        .sort_unstable_by_key(|x| unsafe { x.get_unchecked(0).pow(2) + x.get_unchecked(1).pow(2) });
+    points.truncate(k as usize);
+    points
+}
+
+/// https://leetcode-cn.com/problems/find-k-closest-elements/
+/// 这题的正统解法应该是二分法，因为输入数组是有序的
+fn find_closest_elements(mut arr: Vec<i32>, k: i32, x: i32) -> Vec<i32> {
+    arr.sort_unstable_by(|a,b| (a-x).abs().cmp(&(b-x).abs()).then(a.cmp(b)));
+    arr.truncate(k as usize);
+    // 找到最接近原点的k的点后，再次排序，确保输出能有序
+    arr.sort_unstable();
+    arr
+}
+
+/// https://leetcode.com/problems/matrix-diagonal-sum/
+fn matrix_diagonal_sum(mat: Vec<Vec<i32>>) -> i32 {
+    let n = mat.len();
+    let mut res = 0;
+
+    for j in 0..n {
+        // 累加左上-右下对角线
+        res += mat[n - j - 1][j];
+        // 累加左下-右上对角线
+        res += mat[j][j];
+    }
+
+    // 如果是矩阵长度为奇数，则中间元素会被重复计算，需要去掉
+    if n % 2 == 1 {
+        res -= mat[n / 2][n / 2];
+    }
+
+    res
+}
+
+#[test]
+fn test_diagonal_sum() {
+    const TEST_CASES: [(&[&[i32]], i32); 2] = [
+        (
+            &[&[1, 1, 1, 1], &[1, 1, 1, 1], &[1, 1, 1, 1], &[1, 1, 1, 1]],
+            8,
+        ),
+        (&[&[5]], 5),
+    ];
+    for &(mat, res) in &TEST_CASES {
+        let n = mat.len();
+        let mut mat_vec = Vec::with_capacity(n);
+        for &row in mat {
+            mat_vec.push(row.to_vec());
+        }
+        assert_eq!(matrix_diagonal_sum(mat_vec), res);
     }
 }

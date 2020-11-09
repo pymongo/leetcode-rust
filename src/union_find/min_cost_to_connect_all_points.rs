@@ -78,17 +78,17 @@ fn test() {
         (vec![(3, 12), (-2, 5), (-4, 1)], 18),
         (vec![(0, 0), (1, 1), (1, 0), (-1, 1)], 4),
     ]
-        .into_iter()
-        .map(|(points, cost)| {
-            (
-                points
-                    .into_iter()
-                    .map(|(x, y)| vec![x, y])
-                    .collect::<Vec<Vec<i32>>>(),
-                cost,
-            )
-        })
-        .collect();
+    .into_iter()
+    .map(|(points, cost)| {
+        (
+            points
+                .into_iter()
+                .map(|(x, y)| vec![x, y])
+                .collect::<Vec<Vec<i32>>>(),
+            cost,
+        )
+    })
+    .collect();
     for (points, min_cost) in test_cases {
         assert_eq!(Solution::min_cost_connect_points(points), min_cost);
     }
