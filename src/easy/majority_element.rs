@@ -2,7 +2,7 @@ use std::collections::HashMap;
 struct Solution;
 
 impl Solution {
-    pub fn majority_element(nums: Vec<i32>) -> i32 {
+    fn majority_element(nums: Vec<i32>) -> i32 {
         let n = nums.len();
         if n == 1 {
             return nums[0];

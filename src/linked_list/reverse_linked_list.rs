@@ -3,7 +3,7 @@ use super::ListNode;
 struct Solution;
 
 impl Solution {
-    pub fn reverse_list(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+    fn reverse_list(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
         let mut has_rev = None;
         let mut not_rev = head;
         while let Some(mut not_rev_node) = not_rev {

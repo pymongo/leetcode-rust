@@ -101,10 +101,21 @@ leetcode 65题有效数字，体现了Rust代码简短可读性高，更符合�
 https://leetcode.com/problems/valid-number/
 当然这题的正统解法是用DFA有限状态机。上述写法的语义和可读性强体现在，方法名是is_number，最后的返回值是is_ok，有种首尾呼应的感觉
 
+### 语义性更强的API, is_ok和is_number一一呼应
 
 ```rust
 fn is_number(s: String) -> bool {
     s.trim().parse::<f32>().is_ok()
+}
+```
+
+### Rust的api名称跟leetcode题目名称完全一样的示例
+
+https://leetcode.com/problems/reverse-bits/solution/
+
+```rust
+fn reverse_bits(x: u32) -> u32 {
+    x.reverse_bits()
 }
 ```
 

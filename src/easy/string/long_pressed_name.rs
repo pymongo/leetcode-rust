@@ -22,7 +22,7 @@ impl Solution {
     }
     ```
     */
-    pub fn official_solution(name: String, typed: String) -> bool {
+    fn official_solution(name: String, typed: String) -> bool {
         let (mut i, mut j) = (0, 0);
         let (name, typed) = (name.into_bytes(), typed.into_bytes());
         let (name_len, typed_len) = (name.len(), typed.len());
@@ -50,7 +50,7 @@ impl Solution {
 
     迭代器好用的API: inspect(允许chain迭代器时中途打印某层的值), partition(consume迭代器，将其根据条件分成两个Vec，用于快速排序)
     */
-    pub fn is_long_pressed_name(name: String, typed: String) -> bool {
+    fn is_long_pressed_name(name: String, typed: String) -> bool {
         // dbg!(&name, &typed);
         if name.is_empty() || typed.is_empty() {
             return false;

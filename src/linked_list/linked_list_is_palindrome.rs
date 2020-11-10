@@ -20,7 +20,7 @@ impl Solution {
         asc == desc
     }
 
-    pub fn is_palindrome(head: Option<Box<ListNode>>) -> bool {
+    fn is_palindrome(head: Option<Box<ListNode>>) -> bool {
         let mut nums = Vec::new();
         let mut curr = &head;
         while let Some(curr_inner) = curr {

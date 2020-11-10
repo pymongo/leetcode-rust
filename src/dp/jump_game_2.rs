@@ -8,7 +8,7 @@
 struct Solution;
 
 impl Solution {
-    pub fn jump(nums: Vec<i32>) -> i32 {
+    fn jump(nums: Vec<i32>) -> i32 {
         let nums = nums
             .into_iter()
             .map(|num| num as usize)
@@ -31,7 +31,7 @@ impl Solution {
         dp[n - 1]
     }
 
-    pub fn greedy(nums: Vec<i32>) -> i32 {
+    fn greedy(nums: Vec<i32>) -> i32 {
         let n = nums.len();
         let nums = nums
             .into_iter()

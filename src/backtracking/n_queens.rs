@@ -3,7 +3,7 @@ use std::collections::HashSet;
 struct Solution;
 
 impl Solution {
-    pub fn solve_n_queens(n: i32) -> Vec<Vec<String>> {
+    fn solve_n_queens(n: i32) -> Vec<Vec<String>> {
         entrance(n)
     }
 }

@@ -75,7 +75,7 @@ leetcode_solutions
 |63|[Unique Paths II](https://leetcode.com/problems/unique-paths-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/unique_paths_2.py)||
 |64|[Minimum Path Sum](https://leetcode.com/problems/minimum-path-sum/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/grid_min_path_sum.py)||
 |65|[Valid Number](https://leetcode.com/problems/valid-number/)|[Rust](src/easy/very_easy.rs)|
-|66|[Plus One](https://leetcode.com/problems/plus-one/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/plus_one.py)||
+|66|[Plus One](https://leetcode.com/problems/plus-one/)|[Rust](src/easy/very_easy.rs)|
 |67|[Add Binary](https://lintcode.com/problem/add-binary/)|[C++](https://github.com/pymongo/cpp_learn/blob/master/leetcode/easy/add_bigint_string.cpp)||
 |69|[Sqrt(x)](https://leetcode.com/problems/sqrtx/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/math/sqrt.py)|牛顿连续均值求根法|
 |70|[Climb Stairs](https://leetcode.com/problems/climbing-stairs/)|[Rust](src/easy/very_easy.rs)|fibonacci|
@@ -148,7 +148,7 @@ leetcode_solutions
 |183|[Customers Who Never Order](https://leetcode.com/problems/customers-who-never-order/)|||
 |188|[Best Time to Buy and Sell Stock IV](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/stock.py)||
 |189|[Rotate Array](http://leetcode.com/problems/rotate-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/rotate_reverse_circle_shift/rotate_array_right_circle_shift_elements.py)|reverse, circle_shift|
-|190|[Reverse Bits](https://leetcode.com/problems/reverse-bits/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/bitwise/number_of_1_bits.py)||
+|190|[Reverse Bits](https://leetcode.com/problems/reverse-bits/)|[Rust](src/easy/very_easy.rs)|
 |191|[Number of 1 Bits](https://leetcode.com/problems/number-of-1-bits/)|[Rust](src/easy/very_easy.rs)|
 |198|[House Robber](https://leetcode.com/problems/house-robber/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/house_robber.py)||
 |200|[Number of Islands](https://leetcode.com/problems/number-of-islands/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/graph/number_of_islands.py)|union_find, DFS, BFS|
@@ -230,6 +230,7 @@ leetcode_solutions
 |461|[Hamming Distance](https://leetcode.com/problems/hamming-distance/)|[Rust](src/easy/very_easy.rs)|
 |463|[Island Perimeter](https://leetcode.com/problems/island-perimeter/)|[Rust](src/easy/very_easy.rs)|
 |474|[Ones and Zeroes](https://leetcode.com/problems/ones-and-zeroes/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/backpack_ones_and_zeros.py)|完全背包问题|
+|485|[Max Consecutive Ones](https://leetcode.com/problems/max-consecutive-ones/)|[Rust](src/easy/very_easy.rs)|
 |490🔒|[The Maze](https://leetcode.com/problems/the-maze/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/bfs/the_maze.py)||
 |494|[Target Sum](https://leetcode.com/problems/target-sum/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/backpack_1_target_sum.py)|0-1背包问题|
 |498|[Diagonal Traverse](https://leetcode.com/problems/diagonal-traverse/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/unclassified/diagonal_traverse.py)||
@@ -373,10 +374,6 @@ TODO:
 
 1. 海盗分金币问题(比较脑筋急转弯的递推)
 2. 最大直方图矩阵(Longest Histogram Rectangle), 单调栈O(n^3)->O(n)
-
-因为leetcode-cn上我多做了一些面试题/剑指5OFFER题(其实是重复的题目)，所以我leetcode国服账户会比全球服账户多AC了29题
-
-Rust刷题的劣势: 部分树/链表的题不能用Rust求解，例如559.N叉树的最大深度
 
 ---
 
@@ -546,7 +543,7 @@ lintcode_problems
 |393|[Best Time to Buy and Sell Stock IV](https://lintcode.com/problem/best-time-to-buy-and-sell-stock-iv/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/stock.py)||
 |397|[Longest Continuous Increasing Subsequence](https://lintcode.com/problem/longest-continuous-increasing-subsequence/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/longest_continuous_increase_subsequence.py)||
 |406|[Minimum Size Subarray Sum](https://lintcode.com/problem/minimum-size-subarray-sum/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/minimun_size_subarray_sum.py)|sliding_window|
-|407|[Plus One](https://lintcode.com/problem/plus-one/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/plus_one.py)||
+|407|[Plus One](https://lintcode.com/problem/plus-one/)|leetcode_66|
 |408|[Add Binary](https://lintcode.com/problem/add-binary/)|[C++](https://github.com/pymongo/cpp_learn/blob/master/leetcode/easy/add_bigint_string.cpp)||
 |411|[Gray Code](https://lintcode.com/problem/gray-code/)|[Rust](src/easy/array/gray_code.rs), [Python](https://github.com/pymongo/python_leetcode/blob/master/easy/gray_code.py)||
 |415|[Valid Palindrome](https://lintcode.com/problem/valid-palindrome/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/palindrome/valid_palindrome.py)|two_pointers|
@@ -699,6 +696,7 @@ lintcode_problems
 |1201|[Next Greater Element II](https://lintcode.com/problem/next-greater-element-ii/)|leetcode_503|
 |1205|[Diagonal Traverse](https://lintcode.com/problem/diagonal-traverse/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/unclassified/diagonal_traverse.py)||
 |1208|[Target Sum](https://lintcode.com/problem/target-sum/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/backpack_1_target_sum.py)|0-1背包问题|
+|1212|[Max Consecutive Ones](https://lintcode.com/problem/max-consecutive-ones/)|leetcode_485|
 |1225|[Island Perimeter](https://lintcode.com/problem/island-perimeter/)|leetcode_463|
 |1235|[Serialize and Deserialize BST](https://lintcode.com/problem/serialize-and-deserialize-bst/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/bst_serialize.py)|DFS, stack|
 |1246|[Longest Repeating Character Replacement](https://lintcode.com/problem/longest-repeating-character-replacement/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/longest_repeating_character_replacement.py)||
@@ -715,7 +713,7 @@ lintcode_problems
 |1320|[Contains Duplicate](https://lintcode.com/problem/contains-duplicate-ii/)|||
 |1321🔒|[Combination Sum III](https://lintcode.com/problem/combination-sum-iii/)|[Rust](src/backtracking/combination_sum_3.rs)||
 |1332|[Number of 1 Bits](https://lintcode.com/problem/number-of-1-bits/)|leetcode_191|
-|1333|[Reverse Bits](https://lintcode.com/problem/reverse-bits/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/bitwise/number_of_1_bits.py)||
+|1333|[Reverse Bits](https://lintcode.com/problem/reverse-bits/)|leetcode_190|
 |1334|[Rotate Array](https://lintcode.com/problem/rotate-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/rotate_reverse_circle_shift/rotate_array_right_circle_shift_elements.py)|reverse, circle_shift|
 |1343|[Sum of Two Strings](https://lintcode.com/problem/sum-of-two-strings/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/sum_of_to_strings.py)||
 |1354|[Pascals Triangle II](https://lintcode.com/problem/pascals-triangle-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/pascals_triangle.py)||

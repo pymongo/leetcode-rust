@@ -39,7 +39,7 @@ impl<T, F> LazyStatic<T, F> {
 impl<T, F: FnOnce() -> T> LazyStatic<T, F> {
     /// 为了解决错误`call expression requires function`，为了能让init_function字段能call，必须改变trait bound所以不能用原来泛型约束的self
     /// cast `F = fn() -> T` to `F: FnOnce() -> T` inorder to call self.init_function
-    pub fn get(this: &LazyStatic<T, F>) -> &T {
+    fn get(this: &LazyStatic<T, F>) -> &T {
         this.init_once.call_once(|| {
             let data = this.init_function.take().unwrap()();
             unsafe {

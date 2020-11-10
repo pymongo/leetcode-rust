@@ -483,3 +483,62 @@ fn hamming_weight(n: u32) -> i32 {
 fn hamming_distance(x: i32, y: i32) -> i32 {
     (x ^ y).count_ones() as i32
 }
+
+/// https://leetcode.com/problems/reverse-bits/
+fn reverse_bits(x: u32) -> u32 {
+    fn reverse_bits_best(mut n: u32) -> u32 {
+        // ret = return
+        let (mut ret, mut power) = (0u32, 0u32);
+        while n != 0 {
+            ret += (n & 1) << power;
+            n >>= 1;
+            power -= 1;
+        }
+        ret
+    }
+
+    x.reverse_bits()
+}
+
+/// https://leetcode.com/problems/max-consecutive-ones/
+/// 这题跟count_binary_substring有点像
+fn find_max_consecutive_ones(nums: Vec<i32>) -> i32 {
+    let (mut cur_ones_len, mut max_ones_len) = (0, 0);
+    for num in nums.into_iter() {
+        if num == 1 {
+            cur_ones_len += 1;
+        } else {
+            max_ones_len = max_ones_len.max(cur_ones_len);
+            cur_ones_len = 0;
+        }
+    }
+    max_ones_len.max(cur_ones_len)
+}
+
+#[test]
+fn test_find_max_consecutive_ones() {
+    const TEST_CASES: [(&[i32], i32); 3] = [
+        (&[1], 1),
+        (&[1,0,1,1,0,1], 2),
+        (&[0], 0),
+    ];
+    for &(nums, expected) in TEST_CASES.iter() {
+        assert_eq!(find_max_consecutive_ones(nums.to_vec()), expected);
+    }
+}
+
+/// https://leetcode.com/problems/plus-one/
+fn plus_one(mut digits: Vec<i32>) -> Vec<i32> {
+    for digit in digits.iter_mut().rev() {
+        if *digit == 9 {
+            *digit = 0;
+        } else {
+            *digit += 1;
+            // 如果不需要进位，则提前return
+            return digits;
+        }
+    }
+    // 跳出循环时必定是`if *digit == 9`的分支
+    digits.insert(0, 1);
+    return digits;
+}

@@ -8,7 +8,7 @@
 struct Solution;
 
 impl Solution {
-    pub fn count_negatives(grid: Vec<Vec<i32>>) -> i32 {
+    fn count_negatives(grid: Vec<Vec<i32>>) -> i32 {
         let (m, n) = (grid.len(), grid[0].len());
         let (mut i, mut j) = (m - 1, 0);
         let mut cnt = 0;

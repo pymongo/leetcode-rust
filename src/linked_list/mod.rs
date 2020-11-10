@@ -63,7 +63,7 @@ public static ListNode arrayToListNode(int []nums) {
 ```
 */
 #[cfg(FALSE)]
-pub fn arr_to_linked_list_with_dummy(nums: &[i32]) -> Option<Box<ListNode>> {
+fn arr_to_linked_list_with_dummy(nums: &[i32]) -> Option<Box<ListNode>> {
     let mut dummy = Some(Box::new(ListNode::new(0)));
     let mut curr = &mut dummy;
     for num in nums {
@@ -87,7 +87,7 @@ public static int[] listNodeToArray(ListNode head) {
 }
 ```
 */
-pub fn linked_list_to_vec(head: &Option<Box<ListNode>>) -> Vec<i32> {
+fn linked_list_to_vec(head: &Option<Box<ListNode>>) -> Vec<i32> {
     let mut nums: Vec<i32> = Vec::new();
     // 由于链表转数组只需要读链表不需要修改链表各节点，所以curr=head即可而不是curr=&mut head，而且代码也简洁多了
     // 但是一旦用了dummyHead，可能只需要修改head一个节点，但是出于遍历原因可变引用需要往后传染，所以后面的节点被迫也用可变引用

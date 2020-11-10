@@ -13,7 +13,7 @@ def swap_pairs(self, head):
     return head
 */
 impl Solution {
-    pub fn swap_pairs_best(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+    fn swap_pairs_best(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
         // TODO 用map unwrap Option<T>，学到了，如果是head是None则不会走map的函数
         head.map(|mut left| match left.next.take() {
             None => left,

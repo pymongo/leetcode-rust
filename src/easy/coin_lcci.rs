@@ -2,7 +2,7 @@ struct Solution;
 
 // https://leetcode.com/problems/coin-lcci/
 impl Solution {
-    pub fn ways_to_change(n: i32) -> i32 {
+    fn ways_to_change(n: i32) -> i32 {
         if n == 900750 {
             return 504188296;
         }

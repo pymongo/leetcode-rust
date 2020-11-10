@@ -2,7 +2,7 @@ use super::{Rc, RefCell, TreeNode};
 struct Solution;
 
 impl Solution {
-    pub fn invert_tree(mut root: Option<Rc<RefCell<TreeNode>>>) -> Option<Rc<RefCell<TreeNode>>> {
+    fn invert_tree(mut root: Option<Rc<RefCell<TreeNode>>>) -> Option<Rc<RefCell<TreeNode>>> {
         Self::invert(&mut root.as_mut()?.borrow_mut());
         root
         // if let Some(root_node) = root {

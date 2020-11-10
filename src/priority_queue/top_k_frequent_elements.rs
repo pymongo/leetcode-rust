@@ -2,7 +2,7 @@ struct Solution;
 
 // return [num for num, _ in collections.Counter(nums).most_common(k)]
 impl Solution {
-    pub fn top_k_frequent(nums: Vec<i32>, k: i32) -> Vec<i32> {
+    fn top_k_frequent(nums: Vec<i32>, k: i32) -> Vec<i32> {
         let k = k as usize;
         let n = nums.len();
         let mut counter = std::collections::HashMap::<i32, i32>::with_capacity(n);

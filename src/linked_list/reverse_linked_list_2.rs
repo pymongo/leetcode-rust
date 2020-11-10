@@ -5,7 +5,7 @@ struct Solution;
 type Node = Option<Box<ListNode>>;
 
 impl Solution {
-    // pub fn reverse_range_inplace(
+    // fn reverse_range_inplace(
     //     head: Option<Box<ListNode>>,
     //     m: i32,
     //     _n: i32,
@@ -92,7 +92,7 @@ impl Solution {
         nums
     }
 
-    pub fn reverse_between(head: Option<Box<ListNode>>, m: i32, n: i32) -> Option<Box<ListNode>> {
+    fn reverse_between(head: Option<Box<ListNode>>, m: i32, n: i32) -> Option<Box<ListNode>> {
         let mut nums = Self::linked_list_to_vec(&head);
         // 因为入参m和n是从1开始编号的，所以这里要减1
         let mut left = (m - 1) as usize;

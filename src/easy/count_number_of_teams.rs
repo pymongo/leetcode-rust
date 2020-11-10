@@ -2,7 +2,7 @@ struct Solution;
 
 impl Solution {
     #[allow(clippy::comparison_chain)]
-    pub fn num_teams(nums: Vec<i32>) -> i32 {
+    fn num_teams(nums: Vec<i32>) -> i32 {
         let n = nums.len();
         let mut res = 0;
         for mid in 1..n - 1 {

@@ -3,7 +3,7 @@ use super::ListNode;
 struct Solution;
 
 impl Solution {
-    pub fn middle_node(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+    fn middle_node(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
         let mut fast = head.as_ref();
         let mut slow = head.as_ref();
         while let Some(fast_inner) = fast {

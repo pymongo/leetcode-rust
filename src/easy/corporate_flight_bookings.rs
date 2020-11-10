@@ -8,7 +8,7 @@ const GET_OFF_STATION: usize = 1;
 const COUNT: usize = 2;
 
 impl Solution {
-    pub fn corp_flight_bookings(data: Vec<Vec<i32>>, n: i32) -> Vec<i32> {
+    fn corp_flight_bookings(data: Vec<Vec<i32>>, n: i32) -> Vec<i32> {
         let n = n as usize;
         let mut stations = vec![0; n];
         for each in data {
@@ -27,7 +27,7 @@ impl Solution {
         stations
     }
 
-    pub fn func2(records: Vec<Vec<i32>>, n: i32) -> Vec<i32> {
+    fn func2(records: Vec<Vec<i32>>, n: i32) -> Vec<i32> {
         let n = n as usize;
         let mut stations = vec![0; n + 1];
         for record in records {
