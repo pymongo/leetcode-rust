@@ -395,7 +395,7 @@ fn k_closest(mut points: Vec<Vec<i32>>, k: i32) -> Vec<Vec<i32>> {
     points
 }
 
-/// https://leetcode-cn.com/problems/find-k-closest-elements/
+/// https://leetcode.com/problems/find-k-closest-elements/
 /// 这题的正统解法应该是二分法，因为输入数组是有序的
 fn find_closest_elements(mut arr: Vec<i32>, k: i32, x: i32) -> Vec<i32> {
     arr.sort_unstable_by(|a, b| (a - x).abs().cmp(&(b - x).abs()).then(a.cmp(b)));
@@ -608,4 +608,27 @@ impl RandomPickIndex {
         use rand::seq::SliceRandom;
         *self.index.get(&target).unwrap().choose(&mut self.rand_thread_rng).unwrap()
     }
+}
+
+/// return [num for num, _ in collections.Counter(nums).most_common(k)]
+fn top_k_frequent(nums: Vec<i32>, k: i32) -> Vec<i32> {
+    let k = k as usize;
+    let n = nums.len();
+    let mut counter = std::collections::HashMap::<i32, i32>::with_capacity(n);
+    for &num in &nums {
+        *counter.entry(num).or_insert(0) += 1;
+    }
+    // 小根堆: (-出现次数, 数字)，所以堆顶会是出现次数最低的数字，随时可以被别人挤掉
+    let mut heap = std::collections::BinaryHeap::<(i32, i32)>::with_capacity(k);
+    for (&num, &cnt) in &counter {
+        if heap.len() == k {
+            if -cnt < heap.peek().unwrap().0 {
+                heap.pop();
+                heap.push((-cnt, num));
+            }
+        } else {
+            heap.push((-cnt, num));
+        }
+    }
+    heap.into_iter().rev().map(|(_, num)| num).collect()
 }

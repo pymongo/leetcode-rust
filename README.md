@@ -205,7 +205,7 @@ leetcode_solutions
 |342|[Power of Four](https://leetcode.com/problems/power-of-four/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/bitwise/is_power_of_4.py)|bitwise|
 |343|[Integer Break](https://leetcode.com/problems/integer-break/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/integer_break.py)|划分类DP|
 |344|[Reverse Array](https://leetcode.com/problems/reverse-string/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/rotate_reverse_circle_shift/reverse_string.py)||
-|347|[Top K Frequent Elements](https://leetcode.com/problems/reverse-string/)|[Rust](src/priority_queue/top_k_frequent_elements.rs)||
+|347|[Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/)|[Rust](src/easy/very_easy.rs)|
 |349|[Intersection of Two Arrays](https://leetcode.com/problems/intersection-of-two-arrays/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/intersection_of_two_arrays.py)||
 |350|[Intersection of Two Arrays II](https://leetcode.com/problems/intersection-of-two-arrays-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/intersection_of_two_arrays.py)||
 |354|[Russian Doll Envelopes](https://leetcode.com/problems/russian-doll-envelopes/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/russian_doll_envelopes.py)||
@@ -238,6 +238,7 @@ leetcode_solutions
 |503|[Next Greater Element II](https://leetcode.com/problems/next-greater-element-ii/)|[Rust](src/special_structure/monotonic_stack_next_greater_element_2.rs)|
 |507|[Perfect Number](https://leetcode.com/problems/perfect-number/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/factorization/perfect_number.py)||
 |509|[Fibonacci Number](https://leetcode.com/problems/fibonacci-number/)|[Rust](src/easy/very_easy.rs)|
+|514|[Freedom Trail](https://leetcode.com/problems/freedom-trail/)|[Rust](src/dp/freedom_trail.rs)|
 |518|[Coin Change 2](https://leetcode.com/problem/coin-change-2/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/backpack_4_coin_change_combination_sum_4.py)|完全背包问题|
 |535|[Encode and Decode TinyURL](https://leetcode.com/problems/encode-and-decode-tinyurl/)|||
 |536🔒|[Construct Binary Tree from String](https://leetcode.com/problems/construct-binary-tree-from-string/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/construct_from_string_with_parentheses.py)||
@@ -694,6 +695,7 @@ lintcode_problems
 |1186|[Encode and Decode TinyURL](https://lintcode.com/problem/encode-and-decode-tinyurl/)|||
 |1199|[Perfect Number](https://lintcode.com/problem/perfect-number/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/factorization/perfect_number.py)||
 |1080|[Max Area of Island](https://lintcode.com/problem/max-area-of-island/)|[Rust](src/bfs/max_area_of_island.rs)||
+|1196|[Freedom Trail](https://lintcode.com/problem/freedom-trail/)|leetcode_514|
 |1201|[Next Greater Element II](https://lintcode.com/problem/next-greater-element-ii/)|leetcode_503|
 |1205|[Diagonal Traverse](https://lintcode.com/problem/diagonal-traverse/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/unclassified/diagonal_traverse.py)||
 |1208|[Target Sum](https://lintcode.com/problem/target-sum/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/backpack_1_target_sum.py)|0-1背包问题|
@@ -703,7 +705,7 @@ lintcode_problems
 |1246|[Longest Repeating Character Replacement](https://lintcode.com/problem/longest-repeating-character-replacement/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/longest_repeating_character_replacement.py)||
 |1254|[Sum of Left Leaves](https://lintcode.com/problem/sum-of-left-leaves/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/sum_of_left_leaves.py)||
 |1276|[Sum of Two Integers](https://lintcode.com/problem/sum-of-two-integers/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/bitwise/binary_addition.py)|binary_addition|
-|1281|[Top K Frequent Elements](https://lintcode.com/problem/reverse-string/)|[Rust](src/priority_queue/top_k_frequent_elements.rs)||
+|1281|[Top K Frequent Elements](https://lintcode.com/problem/top-k-frequent-elements/)|leetcode_347|
 |1283|[Reverse Array](https://lintcode.com/problem/reverse-string/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/rotate_reverse_circle_shift/reverse_string.py)||
 |1284|[Integer Break](https://lintcode.com/problem/integer-break/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/integer_break.py)|划分类DP|
 |1285|[Power of Four](https://lintcode.com/problem/power-of-four/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/bitwise/is_power_of_4.py)|bitwise|

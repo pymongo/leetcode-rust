@@ -4,5 +4,4 @@ version = "0.1.0"
 edition = "2018"
 
 [dependencies]
-rand = "*" # leetcode仅提供rand一个第三方库
-# libc = "*"
+rand = "*" # rand is the only extern crate that leetcode support

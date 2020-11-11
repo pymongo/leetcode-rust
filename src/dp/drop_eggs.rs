@@ -50,7 +50,8 @@ fn dp_binary_search(k: i32, n: i32) -> i32 {
     dp[n][k] as i32
 }
 
-/*
+/**
+```text
 def dp(k, n):
     if k == 1:
         return n
@@ -68,8 +69,9 @@ def dp(k, n):
 
     memo[(k, n)] = res
     return res
+```
 */
-// TODO 这个解法只能在lintcode上AC，leetcode会超时
+// TODO 这个解法只能在lintcode上AC，leetcode会超时(因为没有用二分群优化时间复杂度)
 fn dfs(k: i32, n: i32, memo: &mut HashMap<(i32, i32), i32>) -> i32 {
     // 如果只有一个鸡蛋，那么肯定要试k次
     if k == 1 {
