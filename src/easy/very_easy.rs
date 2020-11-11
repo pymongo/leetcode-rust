@@ -500,8 +500,49 @@ fn reverse_bits(x: u32) -> u32 {
     x.reverse_bits()
 }
 
+/** https://leetcode.com/problems/count-binary-substrings/
+要数0和1数量相等的子串，也就是统计0和1分隔位置两侧0和1个数的最小值
+```text
+L: last_count, R: current count
+
+1. last,curr=0,1    ans=0+0
+  |1|00|111|
+     ^
+ L|R|
+
+2. last,curr=1,2    ans=0+1
+  |1|00|111|
+        ^
+   L| R|
+
+3. last,curr=2,3    ans=1+2(out of loop)
+  |1|00|111|
+            ^
+      L|  R|
+```
+*/
+fn count_binary_substrings(s: String) -> i32 {
+    let s = s.into_bytes();
+    let mut ret = 0;
+    // curr_count和last_count表示连续1或连续0的长度
+    let (mut curr_count, mut last_count) = (1, 0);
+    let mut last_byte = s[0];
+    for byte in s.into_iter().skip(1) {
+        if byte == last_byte {
+            curr_count += 1;
+        } else {
+            ret += last_count.min(curr_count);
+            last_count = curr_count;
+            curr_count = 1;
+        }
+        last_byte = byte;
+    }
+    ret += last_count.min(curr_count);
+    ret
+}
+
 /// https://leetcode.com/problems/max-consecutive-ones/
-/// 这题跟count_binary_substring有点像
+/// 这题跟count_binary_substring有点像，也是全为0或1的数组
 fn find_max_consecutive_ones(nums: Vec<i32>) -> i32 {
     let (mut cur_ones_len, mut max_ones_len) = (0, 0);
     for num in nums.into_iter() {
@@ -541,4 +582,30 @@ fn plus_one(mut digits: Vec<i32>) -> Vec<i32> {
     // 跳出循环时必定是`if *digit == 9`的分支
     digits.insert(0, 1);
     return digits;
+}
+
+/// https://leetcode.com/problems/random-pick-index/
+/// 应对很长的无法全部存入内存的数组online data，正统做法应该用: 蓄水池抽样(Random Reservoir Sampling)
+struct RandomPickIndex {
+    rand_thread_rng: rand::rngs::ThreadRng,
+    index: std::collections::HashMap<i32, Vec<i32>>,
+}
+
+impl RandomPickIndex {
+    fn new(nums: Vec<i32>) -> Self {
+        let mut nums_index = std::collections::HashMap::new();
+        for (i, num) in nums.into_iter().enumerate() {
+            nums_index.entry(num).or_insert(Vec::new()).push(i as i32);
+        }
+        Self {
+            rand_thread_rng: rand::thread_rng(),
+            index: nums_index
+        }
+    }
+
+    /// 如果nums中存在多个target，则等概率地随机返回一个满足nums[i]=target的下标i
+    fn pick(&mut self, target: i32) -> i32 {
+        use rand::seq::SliceRandom;
+        *self.index.get(&target).unwrap().choose(&mut self.rand_thread_rng).unwrap()
+    }
 }

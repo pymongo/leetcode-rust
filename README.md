@@ -217,6 +217,7 @@ leetcode_solutions
 |380|[Insert Delete GetRandom O(1)](https://leetcode.com/problems/insert-delete-getrandom-o1/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/insert_delete_get_random_o1.py)||
 |381|[Insert Delete GetRandom O(1) - Duplicates allowed](https://leetcode.com/problems/insert-delete-getrandom-o1-duplicates-allowed/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/insert_delete_get_random_o1.py)||
 |387|[First Unique Character in a String](https://leetcode.com/problems/first-unique-character-in-a-string/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/very_easy.py)|
+|398|[Random Pick Index](https://leetcode.com/problems/random-pick-index/)|[Rust](src/easy/very_easy.rs)|
 |404|[Sum of Left Leaves](https://leetcode.com/problems/sum-of-left-leaves/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/sum_of_left_leaves.py)||
 |409|[Longest Palindrome](https://leetcode.com/problems/longest-palindrome/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/palindrome/longest_palindromic_combination.py)|dp(greedy)|
 |412|[Fizz Buzz](https://leetcode.com/problems/fizz-buzz/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/very_easy.py)||
@@ -260,7 +261,7 @@ leetcode_solutions
 |674|[Longest Continuous Increasing Subsequence](https://leetcode.com/problems/longest-continuous-increasing-subsequence/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/longest_continuous_increase_subsequence.py)||
 |680|[Valid Palindrome II](https://leetcode.com/problems/valid-palindrome-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/palindrome/valid_palindrome_2.py)|two_pointers, greedy|
 |695|[Max Area of Island](https://leetcode.com/problems/max-area-of-island/)|[Rust](src/bfs/max_area_of_island.rs)||
-|696|[Count Binary Substrings](https://leetcode.com/problems/count-binary-substrings/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/unclassified/count_binary_substring.py)||
+|696|[Count Binary Substrings](https://leetcode.com/problems/count-binary-substrings/)|[Rust](src/easy/very_easy.rs)|
 |700|[Search in a Binary Search Tree](https://leetcode.com/problems/search-in-a-binary-search-tree/)|[Rust](src/binary_tree/search_val_or_range_in_bst.rs)|
 |702🔒|[Search in a Sorted Array of Unknown Size](https://leetcode.com/problems/search-in-a-sorted-array-of-unknown-size/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/binary_search_unknown_size_sorted_array.py)|binary_search_first, 倍增法|
 |703|[Kth Largest Element in a Stream](https://leetcode.com/problems/kth-largest-element-in-a-stream/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/top_k_largest_stream_min_heap.py)|min_heap|
@@ -683,7 +684,7 @@ lintcode_problems
 |1010|[Max Increase to Keep City Skyline](https://lintcode.com/problem/max-increase-to-keep-city-skyline/)|leetcode_807|
 |1038|[Jewels and Stones](https://lintcode.com/problem/jewels-and-stones/)|leetcode_771|
 |1057|[Network Delay Time](https://lintcode.com/problem/network-delay-time/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/bfs/network_delay_time_dijkstra.py)||
-|1079|[Count Binary Substrings](https://lintcode.com/problem/count-binary-substrings/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/unclassified/count_binary_substring.py)||
+|1079|[Count Binary Substrings](https://lintcode.com/problem/count-binary-substrings/)|leetcode_696|
 |1115|[Average of Levels in Binary Tree](https://lintcode.com/problem/average-of-levels-in-binary-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/traversal_level_order.py)||
 |1137|[Construct String from Binary Tree](https://lintcode.com/problem/construct-string-from-binary-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/construct_from_string_with_parentheses.py)||
 |1153|[string sorting](https://lintcode.com/problem/string-sorting/)|||
