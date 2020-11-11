@@ -16,7 +16,6 @@ mod one_or_two_bit_char;
 mod reverse_integer_checked_mul_overflow;
 mod special_positions_in_a_binary_matrix;
 mod string;
-mod transpose_matrix;
 mod two_sum;
 mod unique_path;
 mod very_easy;

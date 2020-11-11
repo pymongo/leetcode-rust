@@ -84,6 +84,7 @@ round背后的算法灵感来源于我在leetcode上做过的多道题。
 
 【当前leetcode对Rust支持的不足】{
     - 所有N叉树(N-array)的题都不支持Rust
+    - 需要删除或挪动链表中间几个节点的题(例如leetcode 237Delete Node in a Linked List)
     - 必须调用clone或take才能非递归地遍历二叉树
     - 所有多线程的题不支持Rust
     - 部分复杂链表/二叉树题不支持Rust(例如LRU)
@@ -116,6 +117,35 @@ https://leetcode.com/problems/reverse-bits/solution/
 ```rust
 fn reverse_bits(x: u32) -> u32 {
     x.reverse_bits()
+}
+```
+
+### 检验IP地址
+
+468. Validate IP Address要求分辨输入的字符串是合法的IPv4或IPv6地址，如果都不是则返回"Neither"
+
+可以演示下单元测试怎么写
+
+```rust
+/// https://leetcode.com/problems/validate-ip-address/
+fn valid_ip_address(ip: String) -> String {
+    match ip.parse::<std::net::IpAddr>() {
+        Ok(std::net::IpAddr::V4(_)) => "IPv4",
+        Ok(std::net::IpAddr::V6(_)) => "IPv6",
+        Err(_) => "Neither"
+    }.to_string()
+}
+
+#[test]
+fn test_valid_ip_address() {
+    const TEST_CASES: [(&str, &str); 3] = [
+        ("172.16.254.1", "IPv4"),
+        ("2001:0db8:85a3:0:0:8A2E:0370:7334", "IPv6"),
+        ("256.256.256.256", "Neither"),
+    ];
+    for &(ip, _expected) in TEST_CASES.iter() {
+        assert_eq!(valid_ip_address(ip.to_string()), );
+    }
 }
 ```
 

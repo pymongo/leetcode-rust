@@ -610,6 +610,7 @@ impl RandomPickIndex {
     }
 }
 
+/// https://leetcode.com/problems/top-k-frequent-elements/
 /// return [num for num, _ in collections.Counter(nums).most_common(k)]
 fn top_k_frequent(nums: Vec<i32>, k: i32) -> Vec<i32> {
     let k = k as usize;
@@ -631,4 +632,50 @@ fn top_k_frequent(nums: Vec<i32>, k: i32) -> Vec<i32> {
         }
     }
     heap.into_iter().rev().map(|(_, num)| num).collect()
+}
+
+/// https://leetcode.com/problems/defanging-an-ip-address/
+fn defanging_an_ip_address(address: String) -> String {
+    address.replace(".", "[.]")
+}
+
+/// https://leetcode.com/problems/maximum-product-of-two-elements-in-an-array/
+fn maximum_product_of_two_elements_in_an_array(mut nums: Vec<i32>) -> i32 {
+    nums.sort_unstable_by_key(|&num| std::cmp::Reverse(num));
+    (nums[0] - 1) * (nums[1] - 1)
+}
+
+/// https://leetcode.com/problems/number-of-students-doing-homework-at-a-given-time/
+fn busy_student(start_time: Vec<i32>, end_time: Vec<i32>, query_time: i32) -> i32 {
+    start_time
+        .into_iter()
+        .zip(end_time.into_iter())
+        .filter(|&(start, end)| start <= query_time && query_time <= end)
+        .count() as i32
+}
+
+#[test]
+fn test_busy_student() {
+    assert_eq!(busy_student(vec![1, 2, 3], vec![3, 2, 7], 4), 1);
+}
+
+/// https://leetcode.com/problems/transpose-matrix/
+/// return [list(i) for i in zip(*a)]
+fn transpose_matrix(a: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
+    let (m, n) = (a.len(), a[0].len());
+    let mut res = Vec::with_capacity(n);
+    for j in 0..n {
+        let mut row = Vec::with_capacity(m);
+        for i in 0..m {
+            row.push(a[i][j]);
+        }
+        res.push(row);
+    }
+    res
+}
+
+/// https://leetcode.com/problems/maximum-product-of-two-elements-in-an-array/
+fn max_product(mut nums: Vec<i32>) -> i32 {
+    nums.sort_unstable_by_key(|&num| std::cmp::Reverse(num));
+    (nums[0] - 1) * (nums[1] - 1)
 }

@@ -37,6 +37,7 @@ impl Solution {
         total_sum
     }
 
+    /// 如果能用Itertools::tuple_windows的话，会比windows方便很多，可以实现`for (a, b) in nums.iter().tuple_windows的话(2)`
     fn solution_use_slice_windows_api(nums: Vec<i32>) -> i32 {
         (1..=nums.len())
             .step_by(2)
