@@ -94,6 +94,7 @@ leetcode_solutions
 |90|[Subsets](https://leetcode.com/problems/subsets-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/subsets_combinations.py)||
 |91|[Decode Ways](https://leetcode.com/problems/decode-ways/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/decode_ways.py)||
 |92|[Reverse Linked List II](https://leetcode.com/problems/reverse-linked-list-ii/)|[Rust](src/linked_list/reverse_linked_list.rs), [Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/reverse_linked_list.py)||
+|93|[Restore IP Addresses](https://leetcode.com/problems/restore-ip-addresses/)|[Rust](src/backtracking/restore_ip_address.rs)|
 |94|[Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/traversal_pre_order.py)|DFS, stack|
 |98|[Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/bst_valid.py)||
 |99|[Recover Binary Search Tree](https://leetcode.com/problems/recover-binary-search-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/bst_recover_swap_two_nodes.py)||
@@ -555,6 +556,7 @@ lintcode_problems
 |419|[Roman to Integer](https://lintcode.com/problem/roman-to-integer/)|leetcode_13|
 |423|[Valid Parentheses](https://lintcode.com/problem/valid-parentheses/)|leetcode_20|
 |425|[Letter Combinations of a Phone Number](https://lintcode.com/problem/letter-combinations-of-a-phone-number/)|leetcode_17|
+|426|[Restore IP Addresses](https://lintcode.com/problem/restore-ip-addresses/)|leetcode_93|
 |427|[Generate Parentheses](https://lintcode.com/problem/generate-parentheses/)|leetcode_22|
 |428|[Pow(x, n)](https://lintcode.com/problem/powx-n/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/math/pow.py)|binary_search, 快速幂运算|
 |433|[Number of Islands](https://lintcode.com/problem/number-of-islands/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/graph/number_of_islands.py)|union_find, DFS, BFS|

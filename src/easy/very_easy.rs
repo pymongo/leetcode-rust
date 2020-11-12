@@ -449,7 +449,11 @@ fn test_diagonal_sum() {
 fn height_checker(heights: Vec<i32>) -> i32 {
     let mut correct = heights.clone();
     correct.sort_unstable();
-    heights.into_iter().zip(correct.into_iter()).filter(|(a, b)| a != b).count() as i32
+    heights
+        .into_iter()
+        .zip(correct.into_iter())
+        .filter(|(a, b)| a != b)
+        .count() as i32
 }
 
 /// https://leetcode.com/problems/number-of-1-bits/
@@ -472,7 +476,7 @@ fn hamming_weight(n: u32) -> i32 {
             n &= n - 1;
             count += 1;
         }
-        return count;
+        count
     }
     impl_count_ones_best(n)
 }
@@ -558,11 +562,7 @@ fn find_max_consecutive_ones(nums: Vec<i32>) -> i32 {
 
 #[test]
 fn test_find_max_consecutive_ones() {
-    const TEST_CASES: [(&[i32], i32); 3] = [
-        (&[1], 1),
-        (&[1,0,1,1,0,1], 2),
-        (&[0], 0),
-    ];
+    const TEST_CASES: [(&[i32], i32); 3] = [(&[1], 1), (&[1, 0, 1, 1, 0, 1], 2), (&[0], 0)];
     for &(nums, expected) in TEST_CASES.iter() {
         assert_eq!(find_max_consecutive_ones(nums.to_vec()), expected);
     }
@@ -581,7 +581,7 @@ fn plus_one(mut digits: Vec<i32>) -> Vec<i32> {
     }
     // 跳出循环时必定是`if *digit == 9`的分支
     digits.insert(0, 1);
-    return digits;
+    digits
 }
 
 /// https://leetcode.com/problems/random-pick-index/
@@ -595,18 +595,26 @@ impl RandomPickIndex {
     fn new(nums: Vec<i32>) -> Self {
         let mut nums_index = std::collections::HashMap::new();
         for (i, num) in nums.into_iter().enumerate() {
-            nums_index.entry(num).or_insert(Vec::new()).push(i as i32);
+            nums_index
+                .entry(num)
+                .or_insert_with(Vec::new)
+                .push(i as i32);
         }
         Self {
             rand_thread_rng: rand::thread_rng(),
-            index: nums_index
+            index: nums_index,
         }
     }
 
     /// 如果nums中存在多个target，则等概率地随机返回一个满足nums[i]=target的下标i
     fn pick(&mut self, target: i32) -> i32 {
         use rand::seq::SliceRandom;
-        *self.index.get(&target).unwrap().choose(&mut self.rand_thread_rng).unwrap()
+        *self
+            .index
+            .get(&target)
+            .unwrap()
+            .choose(&mut self.rand_thread_rng)
+            .unwrap()
     }
 }
 

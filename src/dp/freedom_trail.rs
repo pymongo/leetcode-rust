@@ -18,7 +18,7 @@ fn find_rotate_steps(ring: String, key: String) -> i32 {
     let m = key.len();
 
     // 解释m为什么要+1，因为m表示key的下标值
-    let mut dp = vec![vec![std::usize::MAX; n]; m+1];
+    let mut dp = vec![vec![std::usize::MAX; n]; m + 1];
     // 因为状态转移方程/dp填表依赖当前行的下一行的值，初始填表时倒数第二行，所以除最后一行置零以外全部初始化为最大值
     for j in 0..n {
         dp[m][j] = 0;
@@ -36,11 +36,11 @@ fn find_rotate_steps(ring: String, key: String) -> i32 {
                 // for &k in ring_counter.get(&key[i]).unwrap()，由于ring全为小写字母，所以Counter用数组会比Hashmap性能更好
                 if ring[k] == key[i] {
                     // 从穷举的当前位置j，到转盘其中一个字母等于key[i]的位置k，所需要的正转/反转的步数
-                    let diff = if j < k { k-j } else {j-k};
+                    let diff = if j < k { k - j } else { j - k };
                     // 选正转或反转的步数最小值
                     let step = diff.min(n - diff);
                     // 状态转移方程: dp[i][j]=dp[i][j(ring[k]=key[i+1])].min(dp[i+1][k]+j到k正转或反转的最小步数)
-                    dp[i][j] = dp[i][j].min(dp[i+1][k]+step);
+                    dp[i][j] = dp[i][j].min(dp[i + 1][k] + step);
                 }
             }
         }
@@ -58,10 +58,10 @@ fn find_rotate_steps_optimized(ring: String, key: String) -> i32 {
     // 由于ring中全为小写字母，所以用ASCII数组会比Hashmap性能好
     let mut ring_counter = vec![Vec::new(); 26];
     for (i, ring_char) in ring.into_iter().enumerate() {
-        ring_counter[(ring_char-b'a') as usize].push(i);
+        ring_counter[(ring_char - b'a') as usize].push(i);
     }
     // 解释m为什么要+1，因为m表示key的下标值
-    let mut dp = vec![vec![std::usize::MAX; n]; m+1];
+    let mut dp = vec![vec![std::usize::MAX; n]; m + 1];
     // 因为状态转移方程/dp填表依赖当前行的下一行的值，初始填表时倒数第二行，所以除最后一行置零以外全部初始化为最大值
     for j in 0..n {
         dp[m][j] = 0;
@@ -73,11 +73,11 @@ fn find_rotate_steps_optimized(ring: String, key: String) -> i32 {
             // i: 转盘下一步要拨到key[i]的字母
             // j: 枚举转盘当前步的所有位置
             // k: 枚举转盘可以达到下一步key[i]字母的目标位置
-            for &k in ring_counter[(key[i]-b'a') as usize].iter() {
-                let diff = if j < k { k-j } else {j-k};
+            for &k in ring_counter[(key[i] - b'a') as usize].iter() {
+                let diff = if j < k { k - j } else { j - k };
                 // 选正转或反转的步数最小值
                 let step = diff.min(n - diff);
-                dp[i][j] = dp[i][j].min(step + dp[i+1][k]);
+                dp[i][j] = dp[i][j].min(step + dp[i + 1][k]);
             }
         }
     }
@@ -87,14 +87,15 @@ fn find_rotate_steps_optimized(ring: String, key: String) -> i32 {
 }
 
 #[cfg(test)]
-const TEST_CASES: [(&str, &str, i32); 1] = [
-    ("godding", "gd", 4)
-];
+const TEST_CASES: [(&str, &str, i32); 1] = [("godding", "gd", 4)];
 
 #[test]
 fn test_find_rotate_steps() {
     for &(ring, key, steps) in TEST_CASES.iter() {
         assert_eq!(find_rotate_steps(ring.to_owned(), key.to_owned()), steps);
-        assert_eq!(find_rotate_steps_optimized(ring.to_owned(), key.to_owned()), steps);
+        assert_eq!(
+            find_rotate_steps_optimized(ring.to_owned(), key.to_owned()),
+            steps
+        );
     }
 }

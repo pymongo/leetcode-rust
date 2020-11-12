@@ -18,15 +18,11 @@ struct IpAddrParseError;
 
 impl std::fmt::Display for IpAddrParseError {
     fn fmt(&self, fmt: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        fmt.write_str(&self.to_string())
+        fmt.write_str("invalid IP address syntax")
     }
 }
 
-impl std::error::Error for IpAddrParseError {
-    fn description(&self) -> &str {
-        "invalid IP address syntax"
-    }
-}
+impl std::error::Error for IpAddrParseError {}
 
 struct Solution;
 
@@ -54,14 +50,14 @@ impl Solution {
             }
             match checked_restore_u8(chunk) {
                 Some(_) => {}
-                None => return Err(IpAddrParseError)
+                None => return Err(IpAddrParseError),
             }
             chunks_count += 1;
         }
         if chunks_count != 4 {
             return Err(IpAddrParseError);
         }
-        return Ok("IPv4".to_string());
+        Ok("IPv4".to_string())
     }
 
     fn valid_ipv6_address(bytes: &[u8]) -> Result<String, IpAddrParseError> {
@@ -71,7 +67,10 @@ impl Solution {
             if !matches!(chunk.len(), 1..=4) {
                 return Err(IpAddrParseError);
             }
-            if chunk.iter().any(|&byte| !matches!(byte, b'0'..=b'9' | b'a'..=b'f' | b'A'..=b'F')) {
+            if chunk
+                .iter()
+                .any(|&byte| !matches!(byte, b'0'..=b'9' | b'a'..=b'f' | b'A'..=b'F'))
+            {
                 return Err(IpAddrParseError);
             }
             chunks_count += 1;
@@ -79,9 +78,9 @@ impl Solution {
         if chunks_count != 8 {
             return Err(IpAddrParseError);
         }
-        return Ok("IPv6".to_string());
+        Ok("IPv6".to_string())
     }
-    
+
     fn parse_ip_address_helper(ip: String) -> Result<String, IpAddrParseError> {
         let ip = ip.into_bytes();
         for &byte in ip.iter() {
@@ -91,14 +90,13 @@ impl Solution {
                 _ => {}
             }
         }
-        return Err(IpAddrParseError);
+        Err(IpAddrParseError)
     }
-    
+
     fn valid_ip_address(ip: String) -> String {
         Self::parse_ip_address_helper(ip).unwrap_or_else(|_| "Neither".to_string())
     }
 }
-
 
 #[test]
 fn test_valid_ip_address() {
@@ -111,6 +109,9 @@ fn test_valid_ip_address() {
     ];
     for &(ip, expected) in TEST_CASES.iter() {
         dbg!(ip, expected);
-        assert_eq!(Solution::valid_ip_address(ip.to_string()), expected.to_string());
+        assert_eq!(
+            Solution::valid_ip_address(ip.to_string()),
+            expected.to_string()
+        );
     }
 }
