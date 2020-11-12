@@ -687,3 +687,99 @@ fn max_product(mut nums: Vec<i32>) -> i32 {
     nums.sort_unstable_by_key(|&num| std::cmp::Reverse(num));
     (nums[0] - 1) * (nums[1] - 1)
 }
+
+/// https://leetcode-cn.com/problems/sort-array-by-parity/
+/// 重排数组，所有偶数元素连续的出现在前面，之后跟着所有奇数元素
+/// 这题算是sort_colors的简单版，只有两种情况，而sort_colors有0,1,2三种情况
+fn sort_array_by_parity(a: Vec<i32>) -> Vec<i32> {
+    // iter_partition_in_place is unstable
+    // a.iter_mut().partition_in_place(|x| x % 2 == 0);
+    fn partition_solution(a: Vec<i32>) -> Vec<i32> {
+        let (mut even, mut odd): (Vec<i32>, Vec<i32>) = a
+            .into_iter()
+            .partition(|x| x % 2 == 0);
+        even.append(&mut odd);
+        even
+    }
+
+    fn iter_chain_solution(a: Vec<i32>) -> Vec<i32> {
+        a.iter()
+            .filter(|&x| x % 2 == 0)
+            .chain(a.iter().filter(|&x| x % 2 == 1))
+            .copied() // .map(|x| *x)
+            .collect::<Vec<i32>>()
+    }
+
+    fn sort_by_mod_solution(mut a: Vec<i32>) -> Vec<i32> {
+        a.sort_unstable_by_key(|x| x % 2);
+        a
+    }
+
+    /// fastest in-place solution
+    fn two_pointers_partition_solution(mut a: Vec<i32>) -> Vec<i32> {
+        let n = a.len();
+        let (mut l, mut r) = (0, n-1);
+        while l < r {
+            while l < r && a[l] % 2 == 0 {
+                l += 1;
+            }
+            while l < r && a[r] % 2 == 1 {
+                r -= 1;
+            }
+            if l < r {
+                a.swap(l, r);
+            }
+        }
+        a
+    }
+
+    fn two_pointers_sort_color_solution(mut a: Vec<i32>) -> Vec<i32> {
+        let (mut even, mut odd) = (0, a.len() - 1);
+        let mut cur = 0;
+        while even < odd {
+            if a[cur] % 2 == 0 {
+                even += 1;
+                cur += 1;
+            } else {
+                // 参考sort_color一题，换完之后，cur指针不会前移，要判断换过来的新值是否复合偶数条件
+                a.swap(cur, odd);
+                odd -= 1;
+            }
+        }
+        a
+    }
+
+    two_pointers_partition_solution(a)
+}
+
+/// https://leetcode.com/problems/sort-array-by-parity-ii/
+/// In-place重排数组，使得奇数值在奇数下标，偶数值在偶数下标
+fn sort_array_by_parity_ii(mut a: Vec<i32>) -> Vec<i32> {
+    fn official_solution(mut a: Vec<i32>) -> Vec<i32> {
+        let n = a.len();
+        let mut odd = 1;
+        for even in (0..n).step_by(2) {
+            if a[even] % 2 == 1 {
+                while a[odd] % 2 == 1 {
+                    odd += 2;
+                }
+                a.swap(even, odd);
+            }
+        }
+        a
+    }
+    let n = a.len();
+    let (mut even, mut odd) = (0, 1);
+    while even < n && odd < n {
+        while even < n && a[even] % 2 == 0 {
+            even += 2;
+        }
+        while odd < n && a[odd] % 2 == 1 {
+            odd += 2;
+        }
+        if even < n && odd < n {
+            a.swap(even, odd);
+        }
+    }
+    a
+}

@@ -293,7 +293,9 @@ leetcode_solutions
 |877🚫|[Stone Game](https://leetcode.com/problems/stone-game/)|
 |887🚫|[Super Egg Drop](https://leetcode.com/problems/super-egg-drop)||dp|
 |889|[Construct Binary Tree from Preorder and Postorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/construct_from_pre_order_and_post_order.py)|DFS|
-|912🤔|[Sort An Array](https://leetcode.com/problems/sort-an-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/sorting_and_query/basic_sorting.py)|
+|905|[Sort Array By Parity](https://leetcode.com/problems/sort-array-by-parity/)|[Rust](src/easy/very_easy.rs)|sort_color|
+|912|[Sort An Array](https://leetcode.com/problems/sort-an-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/sorting_and_query/basic_sorting.py)|
+|922|[Sort Array By Parity II](https://leetcode.com/problems/sort-array-by-parity-ii/)|[Rust](src/easy/very_easy.rs)|
 |925|[Long Pressed Name](https://leetcode.com/problems/long-pressed-name/)|[Rust](src/easy/string/long_pressed_name.rs)||
 |938|[Range Sum of BST](https://leetcode.com/problems/range-sum-of-bst/)|[Rust](src/binary_tree/search_val_or_range_in_bst.rs)|
 |941|[Valid Mountain Array](https://leetcode.com/problems/find-in-mountain-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/mountain_array_valid.py)|mountain_array|
@@ -416,8 +418,8 @@ lintcode_problems
 |38|[Search a 2D Matrix II](https://lintcode.com/problem/search-a-2d-matrix-ii/)|leetcode_240|
 |40|[Implement Queue by Two Stacks](https://lintcode.com/problem/implement-queue-by-two-stacks/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/impl_queue_by_stack.py)||
 |41|[Maximum Subarray](https://lintcode.com/problem/maximum-subarray/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/greedy/maximum_subarray.py)|greedy, dp|
-|46|[Majority Element](https://lintcode.com/problem/majority-element/)|[Rust](src/easy/majority_element.rs)||
-|49|[Sort Letters by Case](https://lintcode.com/problem/sort-letters-by-case/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/partition_array/partition_array_by_odd_and_even.py)||
+|46|[Majority Element](https://lintcode.com/problem/majority-element/)|[Rust](src/easy/majority_element.rs)|
+|49|[Sort Letters by Case](https://lintcode.com/problem/sort-letters-by-case/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/partition_array/sort_colors.py)|
 |50|[Product of Array Exclude Itself](https://lintcode.com/problem/product-of-array-exclude-itself/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/contruct_product_array.py), [Rust](src/easy/construct_product_array.rs)||
 |52|[Next Permutation](https://lintcode.com/problem/next-permutation/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/next_permutation.py)||
 |53|[Reverse Words in a String](https://lintcode.com/problem/reverse-words-in-a-string/)|leetcode_151|
@@ -532,7 +534,7 @@ lintcode_problems
 |363|[Trapping Rain Water](https://lintcode.com/problem/trapping-rain-water/)|leetcode_42|
 |366|[Fibonacci](https://lintcode.com/problem/fibonacci/)|leetcode_509|
 |372|[Delete Node in a Linked List](https://lintcode.com/problem/delete-node-in-a-linked-list/)|leetcode_237|
-|373|[Partition Array by Odd and Even](https://lintcode.com/problem/partition-array-by-odd-and-even/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/partition_array/partition_array_by_odd_and_even.py)||
+|373|[Partition Array by Odd and Even](https://lintcode.com/problem/partition-array-by-odd-and-even/)|leetcode_905|
 |374|[Spiral Matrix](https://lintcode.com/problem/spiral-matrix/)|leetcode_54|
 |376|[Binary Tree Path Sum](https://lintcode.com/problem/binary-tree-path-sum/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/root_to_leaf_paths_target_sum.py)|DFS, backtracking|
 |380|[Intersection of Two Linked Lists](https://lintcode.com/problem/intersection-of-two-linked-lists/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/linked_list_cycle.py)||
