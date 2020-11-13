@@ -9,6 +9,7 @@ mod binary_tree;
 mod dp;
 mod easy;
 mod linked_list;
-mod special_structure;
+mod special_data_structure;
 mod string;
 mod union_find;
+mod greedy;
