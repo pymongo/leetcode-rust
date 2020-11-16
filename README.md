@@ -54,6 +54,7 @@ leetcode_solutions
 |35|[Search Insert Position](https://leetcode.com/problems/search-insert-position/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/search_insert_position.py)|
 |36|[Valid Sudoku](https://leetcode.com/problems/valid-sudoku/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/valid_soduku.py)|
 |37|[Soduku Solver](https://leetcode.com/problems/soduku-solver/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/soduku_solver.py)|
+|38|[Count And Say](https://leetcode.com/problems/count-and-say/)|[Rust](src/easy/very_easy.rs)|
 |39|[Combination Sum](https://leetcode.com/problems/combination-sum/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/combination_target_sum.py), [Rust](src/backtracking/combination_sum_1_2.rs)|
 |40|[Combination Sum II](https://leetcode.com/problems/combination-sum-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/combination_target_sum.py), [Rust](src/backtracking/combination_sum_1_2.rs)|
 |42|[Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/)|[Rust](src/dp/trapping_rain_water.rs)|
@@ -62,7 +63,7 @@ leetcode_solutions
 |46|[Permutations](https://leetcode.com/problems/permutations/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/permutation.py)|backtracking|
 |47|[Permutations II](https://leetcode.com/problems/permutations-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/permutation.py)|backtracking|
 |48|[Rotate Image](https://leetcode.com/problems/rotate-image/)|[Rust](src/easy/grid_or_matrix/rotate_matrix.rs)|
-|49|[Group Anagrams](https://leetcode.com/problems/group-anagrams/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/group_anagrams.py)||
+|49|[Group Anagrams](https://leetcode.com/problems/group-anagrams/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/group_anagrams.py)|
 |50|[Pow(x, n)](https://leetcode.com/problems/powx-n/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/math/pow.py)|binary_search|
 |51|[N Queens](https://leetcode.com/problems/n-queens)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/n_queens.py), [Rust](src/backtracking/n_queens.rs)||
 |52|[N Queens II](https://leetcode.com/problems/n-queens-ii)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/n_queens.py), [Rust](src/backtracking/n_queens.rs)||
@@ -226,6 +227,7 @@ leetcode_solutions
 |413|[Reverse Integer](https://leetcode.com/problems/reverse-integer/)|leetcode_7|
 |415|[Add String](https://leetcode.com/problems/add-strings/)|[C++](https://github.com/pymongo/cpp_learn/blob/master/leetcode/easy/add_bigint_string.cpp)||
 |416|[Partition Equal Subset Sum](https://leetcode.com/problems/partition-equal-subset-sum/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/backpack_1_2.py)|0-1背包问题|
+|420|[Count And Say](https://lintcode.com/problem/count-and-say/)|leetcode_38|
 |426|[Longest Repeating Character Replacement](https://leetcode.com/problems/longest-repeating-character-replacement/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/longest_repeating_character_replacement.py)||
 |429|[N-ary Tree Level Order Traversal](https://leetcode.com/problems/n-ary-tree-level-order-traversal/)|[C++](https://github.com/pymongo/cpp_learn/blob/master/leetcode/bfs/n_ary_tree_level_order.cpp)||
 |449|[Serialize and Deserialize BST](https://leetcode.com/problems/serialize-and-deserialize-bst/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/bst_serialize.py)|DFS, stack|

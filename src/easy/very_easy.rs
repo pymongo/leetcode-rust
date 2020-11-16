@@ -718,7 +718,7 @@ fn sort_array_by_parity(a: Vec<i32>) -> Vec<i32> {
     /// fastest in-place solution
     fn two_pointers_partition_solution(mut a: Vec<i32>) -> Vec<i32> {
         let n = a.len();
-        let (mut l, mut r) = (0, n-1);
+        let (mut l, mut r) = (0, n - 1);
         while l < r {
             while l < r && a[l] % 2 == 0 {
                 l += 1;
@@ -782,4 +782,39 @@ fn sort_array_by_parity_ii(mut a: Vec<i32>) -> Vec<i32> {
         }
     }
     a
+}
+
+/// https://leetcode.com/problems/count-and-say/
+fn count_and_say(n: i32) -> String {
+    let mut last = vec![b'1'];
+    for _ in 1..n {
+        let last_len = last.len();
+        let mut curr: Vec<u8> = Vec::new();
+        let mut same_byte_first_index = 0;
+        for i in 1..last_len {
+            if last[same_byte_first_index] != last[i] {
+                curr.push(b'0' + (i - same_byte_first_index) as u8);
+                curr.push(last[same_byte_first_index]);
+                same_byte_first_index = i;
+            }
+        }
+        // 防止从 "1" -> "11"的递推过程没有计数
+        curr.push(b'0' + (last_len - same_byte_first_index) as u8);
+        curr.push(last[same_byte_first_index]);
+        last = curr;
+    }
+    unsafe { String::from_utf8_unchecked(last) }
+}
+
+#[test]
+fn test_count_and_say() {
+    const TEST_CASES: [(i32, &str); 4] = [
+        (1, "1"),
+        (2, "11"),
+        (3, "21"),
+        (4, "1211"),
+    ];
+    for &(n, expected) in TEST_CASES.iter() {
+        assert_eq!(count_and_say(n), expected.to_string());
+    }
 }
