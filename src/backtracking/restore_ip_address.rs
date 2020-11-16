@@ -100,7 +100,10 @@ fn restore_ip_addresses(s: String) -> Vec<String> {
 fn test_restore_ip_addresses() {
     let test_cases = vec![
         ("0000", vec!["0.0.0.0".to_string()]),
-        ("25525511135", vec!["255.255.11.135".to_string(), "255.255.111.35".to_string()], ),
+        (
+            "25525511135",
+            vec!["255.255.11.135".to_string(), "255.255.111.35".to_string()],
+        ),
     ];
     for (s, expected) in test_cases {
         assert_eq!(restore_ip_addresses(s.to_string()), expected);

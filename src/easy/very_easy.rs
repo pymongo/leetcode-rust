@@ -695,9 +695,7 @@ fn sort_array_by_parity(a: Vec<i32>) -> Vec<i32> {
     // iter_partition_in_place is unstable
     // a.iter_mut().partition_in_place(|x| x % 2 == 0);
     fn partition_solution(a: Vec<i32>) -> Vec<i32> {
-        let (mut even, mut odd): (Vec<i32>, Vec<i32>) = a
-            .into_iter()
-            .partition(|x| x % 2 == 0);
+        let (mut even, mut odd): (Vec<i32>, Vec<i32>) = a.into_iter().partition(|x| x % 2 == 0);
         even.append(&mut odd);
         even
     }
@@ -808,13 +806,48 @@ fn count_and_say(n: i32) -> String {
 
 #[test]
 fn test_count_and_say() {
-    const TEST_CASES: [(i32, &str); 4] = [
-        (1, "1"),
-        (2, "11"),
-        (3, "21"),
-        (4, "1211"),
-    ];
+    const TEST_CASES: [(i32, &str); 4] = [(1, "1"), (2, "11"), (3, "21"), (4, "1211")];
     for &(n, expected) in TEST_CASES.iter() {
         assert_eq!(count_and_say(n), expected.to_string());
+    }
+}
+
+/// https://leetcode.com/problems/queue-reconstruction-by-height/
+fn reconstruct_queue(mut a: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
+    // 按身高h倒序排列再按k(前面有几个人身高大于等于当前people)升序
+    a.sort_unstable_by(|a, b| b[0].cmp(&a[0]).then(a[1].cmp(&b[1])));
+    // 预先创建好全为空slot的返回值数组，采用「插空」的方法，依次给每一个人在当前的队列中选择一个插入的位置，
+    // 因为每个人前面有几个比他大的人数是确定的，而且身高逆序排列后能优先将大个子安排在index较前的slot
+    // 用insert的原因是，后面遇到小个子，例如(7,0)之后是(5,0)，7已经占据了下标0，所以小个子就(insert(0))往后挪一格占据下标1
+    let mut res = Vec::with_capacity(a.len());
+    for people in a.into_iter() {
+        let slot_index = people[1] as usize;
+        res.insert(slot_index, people);
+    }
+    res
+}
+
+#[test]
+fn test_reconstruct_queue() {
+    let test_cases = vec![(
+        vec![
+            vec![7, 0],
+            vec![4, 4],
+            vec![7, 1],
+            vec![5, 0],
+            vec![6, 1],
+            vec![5, 2],
+        ],
+        vec![
+            vec![5, 0],
+            vec![7, 0],
+            vec![5, 2],
+            vec![6, 1],
+            vec![4, 4],
+            vec![7, 1],
+        ],
+    )];
+    for (input, output) in test_cases.into_iter() {
+        assert_eq!(reconstruct_queue(input), output);
     }
 }

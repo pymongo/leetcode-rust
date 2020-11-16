@@ -222,12 +222,12 @@ leetcode_solutions
 |387|[First Unique Character in a String](https://leetcode.com/problems/first-unique-character-in-a-string/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/very_easy.py)|
 |398|[Random Pick Index](https://leetcode.com/problems/random-pick-index/)|[Rust](src/easy/very_easy.rs)|
 |404|[Sum of Left Leaves](https://leetcode.com/problems/sum-of-left-leaves/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/sum_of_left_leaves.py)||
+|406|[Queue Reconstruction by Height](https://leetcode.com/problems/queue-reconstruction-by-height/)|[Rust](src/easy/very_easy.rs)|
 |409|[Longest Palindrome](https://leetcode.com/problems/longest-palindrome/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/palindrome/longest_palindromic_combination.py)|dp(greedy)|
 |412|[Fizz Buzz](https://leetcode.com/problems/fizz-buzz/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/very_easy.py)||
 |413|[Reverse Integer](https://leetcode.com/problems/reverse-integer/)|leetcode_7|
 |415|[Add String](https://leetcode.com/problems/add-strings/)|[C++](https://github.com/pymongo/cpp_learn/blob/master/leetcode/easy/add_bigint_string.cpp)||
 |416|[Partition Equal Subset Sum](https://leetcode.com/problems/partition-equal-subset-sum/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/backpack_1_2.py)|0-1背包问题|
-|420|[Count And Say](https://lintcode.com/problem/count-and-say/)|leetcode_38|
 |426|[Longest Repeating Character Replacement](https://leetcode.com/problems/longest-repeating-character-replacement/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/longest_repeating_character_replacement.py)||
 |429|[N-ary Tree Level Order Traversal](https://leetcode.com/problems/n-ary-tree-level-order-traversal/)|[C++](https://github.com/pymongo/cpp_learn/blob/master/leetcode/bfs/n_ary_tree_level_order.cpp)||
 |449|[Serialize and Deserialize BST](https://leetcode.com/problems/serialize-and-deserialize-bst/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/bst_serialize.py)|DFS, stack|
@@ -561,6 +561,7 @@ lintcode_problems
 |417|[Valid number](https://lintcode.com/problem/valid-number/)|leetcode_65|
 |418|[Integer to Roman](https://lintcode.com/problem/integer-to-roman/)|leetcode_12|
 |419|[Roman to Integer](https://lintcode.com/problem/roman-to-integer/)|leetcode_13|
+|420|[Count And Say](https://lintcode.com/problem/count-and-say/)|leetcode_38|
 |423|[Valid Parentheses](https://lintcode.com/problem/valid-parentheses/)|leetcode_20|
 |425|[Letter Combinations of a Phone Number](https://lintcode.com/problem/letter-combinations-of-a-phone-number/)|leetcode_17|
 |426|[Restore IP Addresses](https://lintcode.com/problem/restore-ip-addresses/)|leetcode_93|
@@ -713,7 +714,8 @@ lintcode_problems
 |1222|[Validate IP Address](https://lintcode.com/problem/validate-ip-address/)|leetcode_486|
 |1225|[Island Perimeter](https://lintcode.com/problem/island-perimeter/)|leetcode_463|
 |1235|[Serialize and Deserialize BST](https://lintcode.com/problem/serialize-and-deserialize-bst/)|leetcode_449|
-|1246|[Longest Repeating Character Replacement](https://lintcode.com/problem/longest-repeating-character-replacement/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/longest_repeating_character_replacement.py)||
+|1246|[Longest Repeating Character Replacement](https://lintcode.com/problem/longest-repeating-character-replacement/)|leetcode_426|
+|1252|[Queue Reconstruction by Height](https://lintcode.com/problem/queue-reconstruction-by-height/)|leetcode_406|
 |1254|[Sum of Left Leaves](https://lintcode.com/problem/sum-of-left-leaves/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/sum_of_left_leaves.py)||
 |1276|[Sum of Two Integers](https://lintcode.com/problem/sum-of-two-integers/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/bitwise/binary_addition.py)|binary_addition|
 |1281|[Top K Frequent Elements](https://lintcode.com/problem/top-k-frequent-elements/)|leetcode_347|
