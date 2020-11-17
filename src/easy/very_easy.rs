@@ -688,7 +688,7 @@ fn max_product(mut nums: Vec<i32>) -> i32 {
     (nums[0] - 1) * (nums[1] - 1)
 }
 
-/// https://leetcode-cn.com/problems/sort-array-by-parity/
+/// https://leetcode.com/problems/sort-array-by-parity/
 /// 重排数组，所有偶数元素连续的出现在前面，之后跟着所有奇数元素
 /// 这题算是sort_colors的简单版，只有两种情况，而sort_colors有0,1,2三种情况
 fn sort_array_by_parity(a: Vec<i32>) -> Vec<i32> {
@@ -850,4 +850,23 @@ fn test_reconstruct_queue() {
     for (input, output) in test_cases.into_iter() {
         assert_eq!(reconstruct_queue(input), output);
     }
+}
+
+/// https://leetcode.com/problems/matrix-cells-in-distance-order/
+fn all_cells_dist_order(r: i32, c: i32, r0: i32, c0: i32) -> Vec<Vec<i32>> {
+    let max_dist = r0.max(r-1-r0) + c0.max(c-1-c0);
+    // 桶排序
+    let mut bucket = vec![Vec::new(); max_dist as usize + 1];
+    for i in 0..r {
+        for j in 0..c {
+            bucket[((r0-i).abs()+(c0-j).abs()) as usize].push(vec![i, j]);
+        }
+    }
+
+    // 由于距离相等时，顺序点的坐标无关，所以可以将排序好的桶组合接起来
+    let mut res = Vec::new();
+    for each in bucket.into_iter() {
+        res.extend(each);
+    }
+    res
 }

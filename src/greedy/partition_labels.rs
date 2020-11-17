@@ -1,4 +1,4 @@
-//! https://leetcode-cn.com/problems/partition-labels/
+//! https://leetcode.com/problems/partition-labels/
 fn partition_labels(s: String) -> Vec<i32> {
     const NOT_FOUND: usize = 501;
     let s = s.into_bytes();
