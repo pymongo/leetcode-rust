@@ -870,3 +870,33 @@ fn all_cells_dist_order(r: i32, c: i32, r0: i32, c0: i32) -> Vec<Vec<i32>> {
     }
     res
 }
+
+/// https://leetcode.com/problems/xor-operation-in-an-array/
+fn xor_operation(n: i32, start: i32) -> i32 {
+    let mut res = 0;
+    let mut num = start;
+    for _ in 0..n {
+        res ^= num;
+        num += 2;
+    }
+    res
+}
+
+/// https://leetcode.com/problems/create-target-array-in-the-given-order/submissions/
+fn create_target_array(nums: Vec<i32>, index: Vec<i32>) -> Vec<i32> {
+    let n = nums.len();
+    let mut res = Vec::with_capacity(n);
+    for i in 0..n {
+        res.insert(index[i] as usize, nums[i]);
+    }
+    res
+}
+
+/// https://leetcode.com/problems/decompress-run-length-encoded-list/
+fn decompress_run_length_encoded_list(nums: Vec<i32>) -> Vec<i32> {
+    let mut res = Vec::new();
+    for i in (0..nums.len()).step_by(2) {
+        res.extend(vec![nums[i+1]].repeat(nums[i] as usize));
+    }
+    res
+}

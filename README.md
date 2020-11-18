@@ -123,7 +123,7 @@ leetcode_solutions
 |128|[Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/longest_consecutive_sequence.py)|并查集|
 |129|[Sum Root to Leaf Numbers](https://leetcode.com/problems/sum-root-to-leaf-numbers/)|[Rust](src/binary_tree/sum_root_to_leaf_numbers.rs)||
 |133|[Clone Graph](https://leetcode.com/problems/clone-graphs/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/graph/clone_graph.py)|DFS, BFS|
-|134|[Gas Station](https://leetcode.com/problems/gas-station/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/greedy/gas_station.py)|greedy|
+|134|[Gas Station](https://leetcode.com/problems/gas-station/)|[Rust](src/greedy/gas_station.rs)|
 |136|[Single Number](https://leetcode.com/problems/single-number/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/bitwise/xor_find_single.py)||
 |138|[Copy List with Random Pointer](https://leetcode.com/problems/copy-list-with-random-pointer/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/graph/clone_linked_list_with_random_ptr.py)||
 |139|[Word Break](https://leetcode.com/problems/word-break/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/backpack_4_word_break_coin_change.py)|完全背包问题|
@@ -332,7 +332,7 @@ leetcode_solutions
 |1356|[Sort Integers by The Number of 1 Bits](https://leetcode.com/problems/sort-integers-by-the-number-of-1-bits/)|[Rust](src/easy/very_easy.rs)|
 |1365|[How Many Numbers Are Smaller Than the Current Number](https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/how_many_numbers_are_smaller_than_current.py)|[Rust](src/easy/array/how_many_numbers_are_smaller_than_the_current_number.rs)|前缀和|
 |1379|[Find a Corresponding Node of a Binary Tree in a Clone of That Tree](https://leetcode.com/problems/find-a-corresponding-node-of-a-binary-tree-in-a-clone-of-that-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/find_a_corresponding_node_in_a_cloned_tree.py)||
-|1389|[Create Target Array in the Given Order](https://leetcode.com/problems/create-target-array-in-the-given-order/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/create_target_array_in_the_given_order.py)||
+|1389|[Create Target Array in the Given Order](https://leetcode.com/problems/create-target-array-in-the-given-order/)|[Rust](src/easy/very_easy.rs)|
 |1395|[Count Number of Teams](https://leetcode.com/problems/count-number-of-teams/)|[Rust](src/easy/count_number_of_teams.rs)||
 |1409|[Queries on a Permutation With Key](https://leetcode.com/problems/queries-on-a-permutation-with-key/)|[Rust](src/easy/array/queries_on_a_permutation_with_key.rs)||
 |1429🔒|[First Unique Number](https://leetcode.com/problems/first-unique-number/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/first_unique_number_in_stream.py)||
@@ -342,7 +342,7 @@ leetcode_solutions
 |1470|[Shuffle the Array](https://leetcode.com/problems/shuffle-the-array/)|[Rust](src/easy/very_easy.rs)|
 |1476|[Subrectangle Queries](https://leetcode.com/problems/subrectangle-queries/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/subrectangle_queries.py)||
 |1480|[Running Sum of 1d Array](https://leetcode.com/problems/running-sum-of-1d-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/very_easy.py)|
-|1486|[XOR Operation in an Array](https://leetcode.com/problems/xor-operation-in-an-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/xor_operation_in_an_array.py)||
+|1486|[XOR Operation in an Array](https://leetcode.com/problems/xor-operation-in-an-array/)|[Rust](src/easy/very_easy.rs)|
 |1512|[Number of Good Pairs](https://leetcode.com/problems/number-of-good-pairs/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/numbers_of_good_pairs.py)||
 |1528|[Shuffle String](https://leetcode.com/problems/shuffle-string/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/very_easy.py)|
 |1534|[Count Good Triplets](https://leetcode.com/problems/count-good-triplets/)|[Rust](src/easy/array/count_good_triplets.rs)||
@@ -504,7 +504,7 @@ lintcode_problems
 |153|[Combination Sum II](https://lintcode.com/problem/combination-sum-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/combination_target_sum.py), [Rust](src/backtracking/combination_sum_1_2.rs)||
 |154|[Regular Expression Matching](https://lintcode.com/problem/regular-expression-matching/)|leetcode_10|
 |155|[Minimum Depth of Binary Tree](https://lintcode.com/problem/minimum-depth-of-binary-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/depth_max_min.py)||
-|158|[Valid Anagram](https://lintcode.com/problem/valid-anagram/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/valid_anagram.py)||
+|158|[Valid Anagram](https://lintcode.com/problem/valid-anagram/)|leetcode_242|
 |159|[Find Minimum in Rotated Sorted Array](https://lintcode.com/problem/find-minimum-in-rotated-sorted-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/rotated_sorted_array_search.py)|binary_search|
 |160|[Find Minimum in Rotated Sorted Array II](https://lintcode.com/problem/find-minimum-in-rotated-sorted-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/rotated_sorted_array_min_2_with_duplicate.py)|binary_search|
 |161|[Rotate Image](https://lintcode.com/problem/rotate-image/)|[Rust](src/easy/grid_or_matrix/rotate_matrix.rs)|
@@ -659,7 +659,7 @@ lintcode_problems
 |749|[John's backyard garden](https://lintcode.com/problem/johns-backyard-garden/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/backpack_4_coin_change_combination_sum_4.py)||
 |761|[Smallest Subset](https://lintcode.com/problem/smallest-subset/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/smallest_subset.py)||
 |772|[Group Anagrams](https://lintcode.com/problem/group-anagrams/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/group_anagrams.py)||
-|773|[Vlid Anagram](https://lintcode.com/problem/vlid-anagram/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/valid_anagram.py)||
+|773|[Valid Anagram](https://lintcode.com/problem/vlid-anagram/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/valid_anagram.py)||
 |777|[Valid Perfect Square](https://lintcode.com/problem/valid-perfect-square/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/math/sqrt.py)||
 |787|[The Maze](https://lintcode.com/problem/the-maze/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/bfs/the_maze.py)||
 |793|[Intersection of Arrays](https://lintcode.com/problem/intersection-of-arrays/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/intersection_of_two_arrays.py)||
