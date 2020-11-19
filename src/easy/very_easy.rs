@@ -209,8 +209,8 @@ fn max_increase_keeping_skyline(grid: Vec<Vec<i32>>) -> i32 {
     let (m, n) = (grid.len(), grid[0].len());
     let mut max_row: Vec<i32> = Vec::with_capacity(m);
     let mut max_col: Vec<i32> = vec![std::i32::MIN; n];
-    for i in 0..m {
-        max_row.push(*grid[i].iter().max().unwrap());
+    for row in grid.iter() {
+        max_row.push(*row.iter().max().unwrap());
     }
     for j in 0..n {
         for i in 0..m {
@@ -899,4 +899,127 @@ fn decompress_run_length_encoded_list(nums: Vec<i32>) -> Vec<i32> {
         res.extend(vec![nums[i+1]].repeat(nums[i] as usize));
     }
     res
+}
+
+/// https://leetcode.com/problems/move-zeroes/
+/// 还有一种做法是快慢双指针，慢指针指向最后一个非0元素的下一个元素，快指针往后遇到0则交换到慢指针的位置，然后慢指针前移
+/// (如果快慢指针是赋值而不是交换，则最后将慢指针往后的所有元素置0)
+fn move_zeroes(nums: &mut Vec<i32>) {
+    let mut last_non_zero_next_idx = 0;
+    for i in 0..nums.len() {
+        if nums[i] != 0 {
+            nums.swap(i, last_non_zero_next_idx);
+            last_non_zero_next_idx += 1;
+        }
+    }
+}
+
+/// https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/
+/// 尽管题目要求逆序(左往右)累加累乘每位，但是由于加法和乘法的各项可以互换，所以我右往左遍历每位也是可以的
+fn subtract_product_and_sum(mut n: i32) -> i32 {
+    let (mut sum, mut product) = (0, 1);
+    while n != 0 {
+        let digit = n % 10;
+        sum += digit;
+        product *= digit;
+        n /= 10;
+    }
+    product - sum
+}
+
+/// https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/
+fn kids_with_candies(candies: Vec<i32>, extra_candies: i32) -> Vec<bool> {
+    let max = *candies.iter().max().unwrap();
+    let mut res = Vec::with_capacity(candies.len());
+    for candy in candies.into_iter() {
+        res.push(candy + extra_candies >= max);
+    }
+    res
+}
+
+/// https://leetcode.com/problems/range-sum-query-immutable/submissions/
+struct RangeSumOffline {
+    prefix_sum: Vec<i32>
+}
+
+impl RangeSumOffline {
+    fn new(mut nums: Vec<i32>) -> Self {
+        // nums.iter().scan(0, |acc, n| { *acc += n; Some(*acc) }).collect()
+        for i in 1..nums.len() {
+            nums[i] += nums[i-1];
+        }
+        Self {
+            prefix_sum: nums
+        }
+    }
+
+    /// 另一种前缀和的表示方法是，arr[i]表示数组前i项的和，arr[0]=0，求解答案的表达式是arr[j+1]-arr[i]
+    fn sum_range(&self, i: i32, j: i32) -> i32 {
+        unsafe {
+            self.prefix_sum.get_unchecked(j as usize) - self.prefix_sum.get((i-1) as usize).unwrap_or(&0)
+        }
+    }
+}
+
+#[test]
+fn test_range_sum_offline() {
+    let arr = RangeSumOffline::new(vec![-2, 0, 3, -5, 2, -1]);
+    assert_eq!(arr.sum_range(0, 2), 1);
+    assert_eq!(arr.sum_range(2, 5), -1);
+    assert_eq!(arr.sum_range(0, 5), -3);
+}
+
+/** https://leetcode.com/problems/2-keys-keyboard/
+初次看到这题，我还以为是用倍增法，例如要生成9个字符，我以我是2**3+1，最后一下鼠标复制一个字符再粘贴
+结果这题只能是「全选后复制粘贴」
+所以如果n是质数，那就只能就最初的1个字母复制1次，粘贴n-1次
+如果n是非质数: 答案就是n分解质因数的因子之和，例如6=2*3，次数是5
+*/
+fn copy_and_paste_min_steps(mut n: i32) -> i32 {
+    let mut factor = 2;
+    let mut factor_sum = 0;
+    while n > 1 {
+        while n % factor == 0 {
+            n /= factor;
+            factor_sum += factor;
+        }
+        factor += 1;
+    }
+    factor_sum
+}
+
+/// https://leetcode.com/problems/design-an-ordered-stream/
+struct OrderedStream {
+    data: Vec<Option<String>>,
+    len: usize,
+    ptr: usize,
+}
+
+impl OrderedStream {
+    fn new(n: i32) -> Self {
+        let n = (n+1) as usize;
+        Self {
+            data: vec![None; n],
+            len: n,
+            ptr: 1
+        }
+    }
+
+    fn insert(&mut self, id: i32, value: String) -> Vec<String> {
+        let mut res = Vec::new();
+        let idx = id as usize;
+        self.data[idx] = Some(value);
+        if self.ptr == idx {
+            for i in idx..self.len {
+                if let Some(s) = self.data[i].take() {
+                    res.push(s);
+                } else {
+                    // Then, update ptr to the last id + 1
+                    self.ptr = i;
+                    break;
+                }
+            }
+        }
+        res
+    }
 }

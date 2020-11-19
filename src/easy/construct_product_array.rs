@@ -34,7 +34,6 @@ fn solution(nums: &[i32]) -> Vec<i32> {
     // 左下三角区域的乘积运算
     for i in 0..n {
         for j in 0..i {
-            // dbg!((i, j, nums[j]));
             res[i] *= nums[j];
         }
     }
