@@ -190,3 +190,16 @@ fn test_valid_ip_address() {
 TODO code force刷题的体验
 
 简单介绍下从stdin读内容
+
+---
+
+## 我的议题
+
+```
+Topic 名称: TODO
+Topic 简介: TODO
+Speaker 名称: 吴翱翔
+Speaker 简介: tokio-postgres,sqlx,bigdecimal-rs等库的代码贡献者，嵌入式相关库saks的作者，leetcode刷题量400+
+Speaker 公司: Rust社区
+Speaker Title: Rust社区
+``` 
