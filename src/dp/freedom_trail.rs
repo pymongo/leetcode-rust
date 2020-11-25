@@ -57,6 +57,8 @@ fn find_rotate_steps_optimized(ring: String, key: String) -> i32 {
 
     // 由于ring中全为小写字母，所以用ASCII数组会比Hashmap性能好
     let mut ring_counter = vec![Vec::new(); 26];
+    // the trait `Copy` is not implemented for `Vec<usize>`
+    // let mut ring_counter = [Vec::with_capacity(0); 26];
     for (i, ring_char) in ring.into_iter().enumerate() {
         ring_counter[(ring_char - b'a') as usize].push(i);
     }

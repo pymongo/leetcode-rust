@@ -8,5 +8,5 @@
 - [ ] http://lintcode.com/problem/delete-digits/
 - [ ] http://lintcode.com/problem/task-scheduler/
 */
-mod partition_labels;
 mod gas_station;
+mod partition_labels;

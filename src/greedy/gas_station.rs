@@ -31,6 +31,9 @@ fn test_can_complete_circuit() {
     ];
 
     for &(gas, cost, start_index) in TEST_CASES.iter() {
-        assert_eq!(can_complete_circuit(gas.to_vec(), cost.to_vec()), start_index);
+        assert_eq!(
+            can_complete_circuit(gas.to_vec(), cost.to_vec()),
+            start_index
+        );
     }
 }

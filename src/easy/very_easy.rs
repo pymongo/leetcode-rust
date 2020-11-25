@@ -36,12 +36,12 @@ const fn nim_game_bitwise(n: i32) -> bool {
 */
 fn shuffle_the_array(nums: Vec<i32>, n: i32) -> Vec<i32> {
     let n: usize = n as usize;
-    let mut result: Vec<i32> = Vec::with_capacity(2 * n);
+    let mut ret: Vec<i32> = Vec::with_capacity(2 * n);
     for i in 0..n {
-        result.push(nums[i]);
-        result.push(nums[i + n]);
+        ret.push(nums[i]);
+        ret.push(nums[i + n]);
     }
-    result
+    ret
 }
 
 #[test]
@@ -89,7 +89,7 @@ fn to_lower_case(s: String) -> String {
 
 /// https://leetcode.com/problems/self-dividing-numbers/
 fn self_dividing_numbers(left: i32, right: i32) -> Vec<i32> {
-    let mut res = Vec::new();
+    let mut ret = Vec::new();
     'outer: for num in left..=right {
         let mut n = num;
         while n != 0 {
@@ -105,9 +105,9 @@ fn self_dividing_numbers(left: i32, right: i32) -> Vec<i32> {
             }
             n /= 10;
         }
-        res.push(num);
+        ret.push(num);
     }
-    res
+    ret
 }
 
 #[test]
@@ -194,13 +194,13 @@ fn max_width_of_vertical_area(points: Vec<Vec<i32>>) -> i32 {
 /// https://leetcode.com/problems/minimum-time-visiting-all-points/
 fn min_time_to_visit_all_points(points: Vec<Vec<i32>>) -> i32 {
     let n = points.len();
-    let mut res = 0;
+    let mut ret = 0;
     for i in 1..n {
         let dx = (points[i][0] - points[i - 1][0]).abs();
         let dy = (points[i][1] - points[i - 1][1]).abs();
-        res += dx.max(dy);
+        ret += dx.max(dy);
     }
-    res
+    ret
 }
 
 /// https://leetcode.com/problems/max-increase-to-keep-city-skyline/
@@ -218,15 +218,15 @@ fn max_increase_keeping_skyline(grid: Vec<Vec<i32>>) -> i32 {
         }
     }
 
-    let mut res = 0;
+    let mut ret = 0;
     for i in 0..m {
         let curr_max_row = max_row[i];
         for j in 0..n {
             // 最大能增长的高度等于行列最大值二者的最小值
-            res += std::cmp::min(curr_max_row, max_col[j]) - grid[i][j];
+            ret += std::cmp::min(curr_max_row, max_col[j]) - grid[i][j];
         }
     }
-    res
+    ret
 }
 
 /// https://leetcode.com/problems/set-matrix-zeroes/
@@ -256,14 +256,14 @@ fn set_zeroes(matrix: &mut Vec<Vec<i32>>) {
 /// https://leetcode.com/problems/maximum-nesting-depth-of-the-parentheses/
 /// 求字符串内有效括号的最大深度
 fn max_depth(s: String) -> i32 {
-    let mut res = 0;
+    let mut ret = 0;
     let mut depth = 0;
     for byte in s.into_bytes() {
         // 由于leetcode这题暂时没有全是左括号例如"((("的测试用例，所以这样也能AC
         match byte {
             b'(' => {
                 depth += 1;
-                res = res.max(depth);
+                ret = ret.max(depth);
             }
             b')' => {
                 depth -= 1;
@@ -271,7 +271,7 @@ fn max_depth(s: String) -> i32 {
             _ => {}
         }
     }
-    res
+    ret
 }
 
 #[test]
@@ -408,21 +408,21 @@ fn find_closest_elements(mut arr: Vec<i32>, k: i32, x: i32) -> Vec<i32> {
 /// https://leetcode.com/problems/matrix-diagonal-sum/
 fn matrix_diagonal_sum(mat: Vec<Vec<i32>>) -> i32 {
     let n = mat.len();
-    let mut res = 0;
+    let mut ret = 0;
 
     for j in 0..n {
         // 累加左上-右下对角线
-        res += mat[n - j - 1][j];
+        ret += mat[n - j - 1][j];
         // 累加左下-右上对角线
-        res += mat[j][j];
+        ret += mat[j][j];
     }
 
     // 如果是矩阵长度为奇数，则中间元素会被重复计算，需要去掉
     if n % 2 == 1 {
-        res -= mat[n / 2][n / 2];
+        ret -= mat[n / 2][n / 2];
     }
 
-    res
+    ret
 }
 
 #[test]
@@ -671,15 +671,15 @@ fn test_busy_student() {
 /// return [list(i) for i in zip(*a)]
 fn transpose_matrix(a: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
     let (m, n) = (a.len(), a[0].len());
-    let mut res = Vec::with_capacity(n);
+    let mut ret = Vec::with_capacity(n);
     for j in 0..n {
         let mut row = Vec::with_capacity(m);
         for i in 0..m {
             row.push(a[i][j]);
         }
-        res.push(row);
+        ret.push(row);
     }
-    res
+    ret
 }
 
 /// https://leetcode.com/problems/maximum-product-of-two-elements-in-an-array/
@@ -819,12 +819,12 @@ fn reconstruct_queue(mut a: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
     // 预先创建好全为空slot的返回值数组，采用「插空」的方法，依次给每一个人在当前的队列中选择一个插入的位置，
     // 因为每个人前面有几个比他大的人数是确定的，而且身高逆序排列后能优先将大个子安排在index较前的slot
     // 用insert的原因是，后面遇到小个子，例如(7,0)之后是(5,0)，7已经占据了下标0，所以小个子就(insert(0))往后挪一格占据下标1
-    let mut res = Vec::with_capacity(a.len());
+    let mut ret = Vec::with_capacity(a.len());
     for people in a.into_iter() {
         let slot_index = people[1] as usize;
-        res.insert(slot_index, people);
+        ret.insert(slot_index, people);
     }
-    res
+    ret
 }
 
 #[test]
@@ -854,51 +854,51 @@ fn test_reconstruct_queue() {
 
 /// https://leetcode.com/problems/matrix-cells-in-distance-order/
 fn all_cells_dist_order(r: i32, c: i32, r0: i32, c0: i32) -> Vec<Vec<i32>> {
-    let max_dist = r0.max(r-1-r0) + c0.max(c-1-c0);
+    let max_dist = r0.max(r - 1 - r0) + c0.max(c - 1 - c0);
     // 桶排序
     let mut bucket = vec![Vec::new(); max_dist as usize + 1];
     for i in 0..r {
         for j in 0..c {
-            bucket[((r0-i).abs()+(c0-j).abs()) as usize].push(vec![i, j]);
+            bucket[((r0 - i).abs() + (c0 - j).abs()) as usize].push(vec![i, j]);
         }
     }
 
     // 由于距离相等时，顺序点的坐标无关，所以可以将排序好的桶组合接起来
-    let mut res = Vec::new();
+    let mut ret = Vec::new();
     for each in bucket.into_iter() {
-        res.extend(each);
+        ret.extend(each);
     }
-    res
+    ret
 }
 
 /// https://leetcode.com/problems/xor-operation-in-an-array/
 fn xor_operation(n: i32, start: i32) -> i32 {
-    let mut res = 0;
+    let mut ret = 0;
     let mut num = start;
     for _ in 0..n {
-        res ^= num;
+        ret ^= num;
         num += 2;
     }
-    res
+    ret
 }
 
 /// https://leetcode.com/problems/create-target-array-in-the-given-order/submissions/
 fn create_target_array(nums: Vec<i32>, index: Vec<i32>) -> Vec<i32> {
     let n = nums.len();
-    let mut res = Vec::with_capacity(n);
+    let mut ret = Vec::with_capacity(n);
     for i in 0..n {
-        res.insert(index[i] as usize, nums[i]);
+        ret.insert(index[i] as usize, nums[i]);
     }
-    res
+    ret
 }
 
 /// https://leetcode.com/problems/decompress-run-length-encoded-list/
 fn decompress_run_length_encoded_list(nums: Vec<i32>) -> Vec<i32> {
-    let mut res = Vec::new();
+    let mut ret = Vec::new();
     for i in (0..nums.len()).step_by(2) {
-        res.extend(vec![nums[i+1]].repeat(nums[i] as usize));
+        ret.extend(vec![nums[i + 1]].repeat(nums[i] as usize));
     }
-    res
+    ret
 }
 
 /// https://leetcode.com/problems/move-zeroes/
@@ -930,33 +930,32 @@ fn subtract_product_and_sum(mut n: i32) -> i32 {
 /// https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/
 fn kids_with_candies(candies: Vec<i32>, extra_candies: i32) -> Vec<bool> {
     let max = *candies.iter().max().unwrap();
-    let mut res = Vec::with_capacity(candies.len());
+    let mut ret = Vec::with_capacity(candies.len());
     for candy in candies.into_iter() {
-        res.push(candy + extra_candies >= max);
+        ret.push(candy + extra_candies >= max);
     }
-    res
+    ret
 }
 
 /// https://leetcode.com/problems/range-sum-query-immutable/submissions/
 struct RangeSumOffline {
-    prefix_sum: Vec<i32>
+    prefix_sum: Vec<i32>,
 }
 
 impl RangeSumOffline {
     fn new(mut nums: Vec<i32>) -> Self {
         // nums.iter().scan(0, |acc, n| { *acc += n; Some(*acc) }).collect()
         for i in 1..nums.len() {
-            nums[i] += nums[i-1];
+            nums[i] += nums[i - 1];
         }
-        Self {
-            prefix_sum: nums
-        }
+        Self { prefix_sum: nums }
     }
 
     /// 另一种前缀和的表示方法是，arr[i]表示数组前i项的和，arr[0]=0，求解答案的表达式是arr[j+1]-arr[i]
     fn sum_range(&self, i: i32, j: i32) -> i32 {
         unsafe {
-            self.prefix_sum.get_unchecked(j as usize) - self.prefix_sum.get((i-1) as usize).unwrap_or(&0)
+            self.prefix_sum.get_unchecked(j as usize)
+                - self.prefix_sum.get((i - 1) as usize).unwrap_or(&0)
         }
     }
 }
@@ -997,22 +996,22 @@ struct OrderedStream {
 
 impl OrderedStream {
     fn new(n: i32) -> Self {
-        let n = (n+1) as usize;
+        let n = (n + 1) as usize;
         Self {
             data: vec![None; n],
             len: n,
-            ptr: 1
+            ptr: 1,
         }
     }
 
     fn insert(&mut self, id: i32, value: String) -> Vec<String> {
-        let mut res = Vec::new();
+        let mut ret = Vec::new();
         let idx = id as usize;
         self.data[idx] = Some(value);
         if self.ptr == idx {
             for i in idx..self.len {
                 if let Some(s) = self.data[i].take() {
-                    res.push(s);
+                    ret.push(s);
                 } else {
                     // Then, update ptr to the last id + 1
                     self.ptr = i;
@@ -1020,7 +1019,7 @@ impl OrderedStream {
                 }
             }
         }
-        res
+        ret
     }
 }
 
@@ -1031,10 +1030,46 @@ fn group_anagrams(strs: Vec<String>) -> Vec<Vec<String>> {
     for s in strs.into_iter() {
         let mut counter = [0u8; 26]; // 0 <= strs[i].length <= 100
         for &byte in s.as_bytes() {
-            counter[(byte-b'a') as usize] += 1;
+            counter[(byte - b'a') as usize] += 1;
         }
-        group.entry(counter).or_insert(Vec::new()).push(s)
+        group.entry(counter).or_insert_with(Vec::new).push(s)
     }
     // same as nightly `into_values` API: consume HashMap and get a vec of values
     group.into_iter().map(|(_k, v)| v).collect()
+}
+
+/// https://leetcode.com/problems/increasing-decreasing-string/
+fn sort_string(s: String) -> String {
+    let n = s.len();
+    let mut counter = [0u8; 26];
+    for byte in s.into_bytes().into_iter() {
+        counter[(byte - b'a') as usize] += 1;
+    }
+
+    let mut ret = Vec::with_capacity(n);
+    while ret.len() < n {
+        for i in 0..26 {
+            if counter[i] > 0 {
+                counter[i] -= 1;
+                ret.push(b'a' + i as u8);
+            }
+        }
+        for i in (0..26).rev() {
+            if counter[i] > 0 {
+                counter[i] -= 1;
+                ret.push(b'a' + i as u8);
+            }
+        }
+    }
+
+    unsafe { String::from_utf8_unchecked(ret) }
+}
+
+#[test]
+fn test_sort_string() {
+    const TEST_CASES: [(&str, &str); 2] =
+        [("aaaabbbbcccc", "abccbaabccba"), ("leetcode", "cdelotee")];
+    for &(input, output) in TEST_CASES.iter() {
+        assert_eq!(sort_string(input.to_string()), output.to_string());
+    }
 }

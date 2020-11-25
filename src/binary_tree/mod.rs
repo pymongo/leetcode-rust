@@ -1,8 +1,8 @@
 mod invert_binary_tree;
+mod level_order_traversal;
 mod preorder_traversal;
 mod search_val_or_range_in_bst;
 mod sum_root_to_leaf_numbers;
-mod level_order_traversal;
 
 pub use std::cell::RefCell;
 pub use std::rc::Rc;

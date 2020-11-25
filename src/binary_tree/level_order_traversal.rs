@@ -50,7 +50,7 @@ impl Solution {
                 // cur_level is end
                 cur_level.clear();
                 // add level separator to queue end
-                if queue.len() > 0 {
+                if !queue.is_empty() {
                     queue.push_back(None);
                 }
             }
