@@ -136,8 +136,9 @@ leetcode_solutions
 |151|[Reverse Words in a String](https://leetcode.com/problems/reverse-words-in-a-string/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/rotate_reverse_circle_shift/reverse_words_in_a_string.py)||
 |153|[Find Minimum in Rotated Sorted Array](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/rotated_sorted_array_search.py)|binary_search|
 |154|[Find Minimum in Rotated Sorted Array II](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/rotated_sorted_array_min_2_with_duplicate.py)|binary_search|
-|155|[Min Stack](https://leetcode.com/problems/min-stack/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/min_stack.py)||
-|160|[Intersection of Two Linked Lists](https://leetcode.com/problems/intersection-of-two-linked-lists/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/linked_list_cycle.py)||
+|155|[Min Stack](https://leetcode.com/problems/min-stack/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/min_stack.py)|
+|160|[Intersection of Two Linked Lists](https://leetcode.com/problems/intersection-of-two-linked-lists/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/linked_list_cycle.py)|
+|164|[Maximum Gap](https://leetcode.com/problems/maximum-gap/)|[Rust](src/easy/very_easy.rs)|
 |167|[Two Sum II - Input array is sorted](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/two_sum_2_input_is_sorted.py)|two_pointers|
 |169|[Majority Element](https://leetcode.com/problems/majority-element/)|[Rust](src/easy/majority_element.rs)||
 |170🔒|[Two Sum III - Data structure design](https://leetcode.com/problems/two-sum-iii-data-structure-design/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/two_sum_3_impl.py)|two_pointers|
@@ -556,9 +557,10 @@ lintcode_problems
 |392|[House Robber](https://lintcode.com/problem/house-robber/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/house_robber.py)||
 |393|[Best Time to Buy and Sell Stock IV](https://lintcode.com/problem/best-time-to-buy-and-sell-stock-iv/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/stock.py)||
 |397|[Longest Continuous Increasing Subsequence](https://lintcode.com/problem/longest-continuous-increasing-subsequence/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/longest_continuous_increase_subsequence.py)||
+|400|[Maximum Gap](https://lintcode.com/problem/maximum-gap/)|leetcode_164|
 |406|[Minimum Size Subarray Sum](https://lintcode.com/problem/minimum-size-subarray-sum/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/minimun_size_subarray_sum.py)|sliding_window|
 |407|[Plus One](https://lintcode.com/problem/plus-one/)|leetcode_66|
-|408|[Add Binary](https://lintcode.com/problem/add-binary/)|[C++](https://github.com/pymongo/cpp_learn/blob/master/leetcode/easy/add_bigint_string.cpp)||
+|408|[Add Binary](https://lintcode.com/problem/add-binary/)|[C++](https://github.com/pymongo/cpp_learn/blob/master/leetcode/easy/add_bigint_string.cpp)|
 |411|[Gray Code](https://lintcode.com/problem/gray-code/)|[Rust](src/easy/array/gray_code.rs), [Python](https://github.com/pymongo/python_leetcode/blob/master/easy/gray_code.py)||
 |415|[Valid Palindrome](https://lintcode.com/problem/valid-palindrome/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/palindrome/valid_palindrome.py)|two_pointers|
 |417|[Valid number](https://lintcode.com/problem/valid-number/)|leetcode_65|

@@ -1073,3 +1073,14 @@ fn test_sort_string() {
         assert_eq!(sort_string(input.to_string()), output.to_string());
     }
 }
+
+/// https://leetcode.com/problems/maximum-gap/
+fn maximum_gap(mut nums: Vec<i32>) -> i32 {
+    nums.sort_unstable();
+    // nums.windows(2).fold(0, |s, x| s.max(x[1] - x[0]))
+    let mut ret = 0; // all num is positive
+    for i in 1..nums.len() {
+        ret = ret.max(nums[i] - nums[i - 1]);
+    }
+    ret
+}
