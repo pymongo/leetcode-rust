@@ -1084,3 +1084,32 @@ fn maximum_gap(mut nums: Vec<i32>) -> i32 {
     }
     ret
 }
+
+/// https://leetcode.com/problems/4sum-ii/
+fn four_sum_count(a: Vec<i32>, b: Vec<i32>, c: Vec<i32>, d: Vec<i32>) -> i32 {
+    let mut pairs = std::collections::HashMap::new();
+    for num_a in a.into_iter() {
+        for num_b in b.iter() {
+            *pairs.entry(num_a + num_b).or_default() += 1;
+        }
+    }
+    let mut count = 0;
+    for num_c in c.into_iter() {
+        for num_d in d.iter() {
+            count += pairs.get(&(-num_c - num_d)).unwrap_or(&0);
+        }
+    }
+    count
+}
+
+/// https://leetcode.com/problems/largest-perimeter-triangle/
+/// 贪心的角度去想，排序后从右到左遍历连续的三个数，就能找到较长周长的三角形
+fn largest_perimeter(mut a: Vec<i32>) -> i32 {
+    a.sort_unstable();
+    for i in (2..a.len()).rev() {
+        if a[i-2] + a[i-1] > a[i] {
+            return a[i-2] + a[i-1] + a[i];
+        }
+    }
+    0i32
+}
