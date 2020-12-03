@@ -1,5 +1,5 @@
 [package]
-name = "leetcode"
+name = "rust_leetcode_codeforce"
 version = "0.1.0"
 edition = "2018"
 

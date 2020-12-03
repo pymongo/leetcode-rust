@@ -1113,3 +1113,47 @@ fn largest_perimeter(mut a: Vec<i32>) -> i32 {
     }
     0i32
 }
+
+/// https://leetcode.com/problems/contains-duplicate/
+fn contains_duplicate(nums: Vec<i32>) -> bool {
+    let mut set = std::collections::HashSet::new();
+    for num in nums.into_iter() {
+        if set.contains(&num) {
+            return true;
+        }
+        set.insert(num);
+    }
+    false
+}
+
+/// https://leetcode.com/problems/contains-duplicate-2/
+/// 一个长度为k的窗口内，是否存在重复元素
+fn contains_nearby_duplicate(nums: Vec<i32>, k: i32) -> bool {
+    if k == 0 {
+        return false;
+    }
+    let n = nums.len();
+    let k = if k > n as i32 { n } else { k as usize };
+    let mut set = std::collections::HashSet::with_capacity(k);
+    for i in 0..k {
+        if set.contains(&nums[i]) {
+            return true;
+        }
+        set.insert(nums[i]);
+    }
+    for i in k..n {
+        if set.contains(&nums[i]) {
+            return true;
+        }
+        set.remove(&nums[i - k]);
+        set.insert(nums[i]);
+    }
+    false
+}
+
+#[test]
+fn t() {
+    let a = vec![5,7,7,8,8,10];
+    let res = a.binary_search(&8);
+    dbg!(&res);
+}
