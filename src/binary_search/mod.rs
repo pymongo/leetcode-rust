@@ -27,7 +27,7 @@ fn binary_search_first_and_last(nums: Vec<i32>, target: i32) -> Vec<i32> {
                 // 1. Equal分支时, search_first(right=mid), search_last(start=mid去排除较前的值为target的部分)
                 // 2. 如果是search_first，跳出循环后优先判断 if nums[left]==target
                 std::cmp::Ordering::Equal => right = mid,
-                std::cmp::Ordering::Greater => right = mid - 1
+                std::cmp::Ordering::Greater => right = mid - 1,
             }
         }
         if target.eq(unsafe { nums.get_unchecked(left) }) {
@@ -52,7 +52,7 @@ fn binary_search_first_and_last(nums: Vec<i32>, target: i32) -> Vec<i32> {
             match unsafe { nums.get_unchecked(mid) }.cmp(&target) {
                 std::cmp::Ordering::Less => left = mid + 1,
                 std::cmp::Ordering::Equal => left = mid,
-                std::cmp::Ordering::Greater => right = mid - 1
+                std::cmp::Ordering::Greater => right = mid - 1,
             }
         }
         if target.eq(unsafe { nums.get_unchecked(right) }) {
@@ -79,6 +79,9 @@ fn test_binary_search_first_and_last() {
         (&[], 0, &[-1, -1]),
     ];
     for &(nums, target, excepted) in TEST_CASES.iter() {
-        assert_eq!(binary_search_first_and_last(nums.to_vec(), target), excepted.to_vec());
+        assert_eq!(
+            binary_search_first_and_last(nums.to_vec(), target),
+            excepted.to_vec()
+        );
     }
 }

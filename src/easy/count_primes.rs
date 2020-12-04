@@ -1,7 +1,5 @@
 //! https://leetcode.com/problems/count-primes/
-const TEST_CASES: [(i32, i32); 3] = [
-    (0, 0), (10, 4), (10000, 1229)
-];
+const TEST_CASES: [(i32, i32); 3] = [(0, 0), (10, 4), (10000, 1229)];
 
 #[test]
 fn test_count_primes_brute_force() {

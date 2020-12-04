@@ -1169,5 +1169,17 @@ fn replace_elements(mut arr: Vec<i32>) -> Vec<i32> {
 
 #[test]
 fn test_replace_elements() {
-    assert_eq!(replace_elements(vec![17, 18, 5, 4, 6, 1]), vec![18, 6, 6, 6, 1, -1]);
+    assert_eq!(
+        replace_elements(vec![17, 18, 5, 4, 6, 1]),
+        vec![18, 6, 6, 6, 1, -1]
+    );
+}
+
+/// https://leetcode.com/problems/richest-customer-wealth/
+fn maximum_wealth(accounts: Vec<Vec<i32>>) -> i32 {
+    accounts
+        .into_iter()
+        .map(|row| row.into_iter().sum::<i32>())
+        .max()
+        .unwrap_or_default()
 }
