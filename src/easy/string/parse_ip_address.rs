@@ -7,8 +7,8 @@ fn valid_posix_ip_str(ip: String) -> String {
         Err(_) => "Neither"
     }.to_string()
 }
-assert_eq!(valid_posix_ip_str("01.01.01.01".into()), "IPv4".into());
-assert_eq!(valid_posix_ip_str("2001:db8:85a3:0::8a2E:0370:7334".into()), "IPv6".into());
+assert_eq!(valid_posix_ip_str("01.01.01.01".into()), "IPv4");
+assert_eq!(valid_posix_ip_str("2001:db8:85a3:0::8a2E:0370:7334".into()), "IPv6");
 ```
 */
 // use std::net::AddrParseError;

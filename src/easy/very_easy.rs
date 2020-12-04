@@ -406,6 +406,7 @@ fn find_closest_elements(mut arr: Vec<i32>, k: i32, x: i32) -> Vec<i32> {
 }
 
 /// https://leetcode.com/problems/matrix-diagonal-sum/
+/// 本题仅要求算两条主对角线，既↘和↙两个方向的最长对角线
 fn matrix_diagonal_sum(mat: Vec<Vec<i32>>) -> i32 {
     let n = mat.len();
     let mut ret = 0;

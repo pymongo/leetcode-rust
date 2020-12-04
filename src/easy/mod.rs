@@ -9,6 +9,7 @@ mod find_common_characters;
 mod grid_or_matrix;
 mod lazy_static;
 mod majority_element;
+mod matrix_diagonal_traverse;
 mod merge_two_sorted_arrays;
 mod min_operations_to_make_array_equal;
 mod number_of_ways_where_square_of_number_is_equal_to_product_of_two_numbers;
