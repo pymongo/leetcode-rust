@@ -1107,8 +1107,8 @@ fn four_sum_count(a: Vec<i32>, b: Vec<i32>, c: Vec<i32>, d: Vec<i32>) -> i32 {
 fn largest_perimeter(mut a: Vec<i32>) -> i32 {
     a.sort_unstable();
     for i in (2..a.len()).rev() {
-        if a[i-2] + a[i-1] > a[i] {
-            return a[i-2] + a[i-1] + a[i];
+        if a[i - 2] + a[i - 1] > a[i] {
+            return a[i - 2] + a[i - 1] + a[i];
         }
     }
     0i32
@@ -1151,9 +1151,23 @@ fn contains_nearby_duplicate(nums: Vec<i32>, k: i32) -> bool {
     false
 }
 
+/// https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/
+fn replace_elements(mut arr: Vec<i32>) -> Vec<i32> {
+    let n = arr.len();
+    if n == 1 {
+        return vec![-1];
+    }
+    let mut max = arr[n - 1];
+    arr[n - 1] = -1;
+    for i in (0..=(n - 2)).rev() {
+        let temp = arr[i];
+        arr[i] = max;
+        max = max.max(temp);
+    }
+    arr
+}
+
 #[test]
-fn t() {
-    let a = vec![5,7,7,8,8,10];
-    let res = a.binary_search(&8);
-    dbg!(&res);
+fn test_replace_elements() {
+    assert_eq!(replace_elements(vec![17, 18, 5, 4, 6, 1]), vec![18, 6, 6, 6, 1, -1]);
 }

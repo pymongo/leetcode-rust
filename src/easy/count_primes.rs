@@ -31,11 +31,9 @@ fn count_primes_brute_force(n: i32) -> i32 {
         }
         let max_lower_factor = (num as f32).sqrt() as usize;
         for lower_factor in (3..=max_lower_factor).step_by(2) {
-            if primes[lower_factor] {
-                if num % lower_factor == 0 {
-                    primes[num] = false;
-                    continue 'outer;
-                }
+            if primes[lower_factor] && num % lower_factor == 0 {
+                primes[num] = false;
+                continue 'outer;
             }
         }
         primes_count += 1;
@@ -69,7 +67,7 @@ fn count_primes_brute_force_2(n: i32) -> i32 {
         }
         primes.push(i);
     }
-    return primes.len() as i32;
+    primes.len() as i32
 }
 
 /// 埃氏筛: 如果发现2是质数，则排除掉2,4,6,…,n/2的所有数
