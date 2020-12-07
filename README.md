@@ -44,8 +44,8 @@ leetcode_solutions
 |22|[Generate Parentheses](https://leetcode.com/problems/generate-parentheses/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/generate_parentheses.py)|backtracking|
 |23|[Merge k Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/divide_conquer/merge_k_sorted_lists.py)|
 |24|[Swap Nodes in Pairs](https://leetcode.com/problems/swap-nodes-in-pairs/)|[Rust](src/linked_list/swap_nodes_in_pairs.rs)|
-|26|[Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/partition_array/move_zeros.py)|
-|27|[Remove Element](https://leetcode.com/problems/remove-element/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/partition_array/move_zeros.py)|
+|26|[Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/)|[Rust](src/easy/very_easy.rs)|
+|27|[Remove Element](https://leetcode.com/problems/remove-element/)|[Rust](src/easy/very_easy.rs)|
 |28🤔|[Implement strStr()](https://leetcode.com/problems/implement-strstr/)|[Rust](src/string/contains_substr_kmp.rs), [Python](https://github.com/pymongo/python_leetcode/blob/master/string/find_substr.py)|kmp, dfa|
 |31|[Next Permutation](https://leetcode.com/problems/next-permutation/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/next_permutation.py)|
 |33|[Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/rotated_sorted_array_search.py)|binary_search|
@@ -287,6 +287,7 @@ leetcode_solutions
 |763|[Partition Labels](https://leetcode.com/problems/partition-labels/)|[Rust](src/greedy/partition_labels.rs)|
 |771|[Jewels and Stones](https://leetcode.com/problems/jewels-and-stones/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/very_easy.py)|
 |807|[Max Increase to Keep City Skyline](https://leetcode.com/problems/max-increase-to-keep-city-skyline/)|[Rust](src/easy/very_easy.rs)|
+|832|[Flipping an Image](https://leetcode.com/problems/flipping-an-image/)|[Rust](src/easy/very_easy.rs)|
 |841|[Keys and Rooms](https://leetcode.com/problems/keys-and-rooms/)|[C++](https://github.com/pymongo/cpp_learn/blob/master/leetcode/bfs/keys_and_rooms.cpp)||
 |844|[Backspace String Compare](https://leetcode.com/problems/backspace-string-compare/)|[Rust](src/easy/string/backspace_string_compare.rs)||
 |845|[Longest Mountain in Array](https://leetcode.com/problems/longest-mountain-in-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/mountain_array_longest.py)|mountain_array|
