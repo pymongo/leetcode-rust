@@ -2,7 +2,6 @@
 - problem number with `🤔` suffix has many solutions(I hasn't write all solutions)
 - problem number with `🚫` suffix means TODO, maybe too hard to solve
 - problem number with `❌` suffix is a bad solution(like 372 Python can't do bitwise add)
-- ~~problem number with `🐢` suffix without 0ms solution~~
 
 codeforces_solutions
 ===
@@ -90,7 +89,7 @@ leetcode_solutions
 |81|[Search in Rotated Sorted Array II](https://leetcode.com/problems/search-in-rotated-sorted-array-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/rotated_sorted_array_search_2_with_duplicate.py)|binary_search|
 |82|[Remove Duplicates from Sorted List II](https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/)|[C++](https://github.com/pymongo/cpp_learn/blob/master/leetcode/linked_list/remove_duplicates_from_sorted_list.cpp)||
 |83|[Remove Duplicates from Sorted List](https://leetcode.com/problems/remove-duplicates-from-sorted-list/)|[C++](https://github.com/pymongo/cpp_learn/blob/master/leetcode/linked_list/remove_duplicates_from_sorted_list.cpp)||
-|88|[Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/)|[Rust](src/easy/merge_two_sorted_arrays.rs), [Python](https://github.com/pymongo/python_leetcode/blob/master/divide_conquer/merge_two_sorted_arrays.py), [Go](https://github.com/pymongo/go_leetcode/blob/master/merge_two_sorted_arrays_test.go)|merge_sort|
+|88|[Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/)|[Rust](src/easy/very_easy.rs), [Python](https://github.com/pymongo/python_leetcode/blob/master/divide_conquer/merge_two_sorted_arrays.py), [Go](https://github.com/pymongo/go_leetcode/blob/master/merge_two_sorted_arrays_test.go)|merge_sort|
 |89|[Gray Code](https://leetcode.com/problems/gray-code/)|[Rust](src/easy/array/gray_code.rs), [Python](https://github.com/pymongo/python_leetcode/blob/master/easy/gray_code.py)||
 |90|[Subsets](https://leetcode.com/problems/subsets-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/subsets_combinations.py)||
 |91|[Decode Ways](https://leetcode.com/problems/decode-ways/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/decode_ways.py)||
@@ -305,7 +304,8 @@ leetcode_solutions
 |925|[Long Pressed Name](https://leetcode.com/problems/long-pressed-name/)|[Rust](src/easy/string/long_pressed_name.rs)||
 |938|[Range Sum of BST](https://leetcode.com/problems/range-sum-of-bst/)|[Rust](src/binary_tree/search_val_or_range_in_bst.rs)|
 |941|[Valid Mountain Array](https://leetcode.com/problems/find-in-mountain-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/mountain_array_valid.py)|mountain_array|
-|953|[Verifying an Alien Dictionary](https://leetcode.com/problems/verifying-an-alien-dictionary/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/unclassified/verifying_an_alien_dictionary.py)||
+|950|[Reveal Cards In Increasing Order](https://leetcode.com/problems/reveal-cards-in-increasing-order/)|[Rust](src/easy/very_easy.rs)|
+|953|[Verifying an Alien Dictionary](https://leetcode.com/problems/verifying-an-alien-dictionary/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/unclassified/verifying_an_alien_dictionary.py)|
 |973|[K Closest Points to Origin](https://leetcode.com/problems/k-closest-points-to-origin/)|[Rust](src/easy/very_easy.rs)|quick_select|
 |976|[Largest Perimeter Triangle](https://leetcode.com/problems/largest-perimeter-triangle/)|[Rust](src/easy/very_easy.rs)|
 |977|[Squares of a Sorted Array](https://leetcode.com/problems/squares-of-a-sorted-array/)|[Rust](src/easy/array/squares_of_a_sorted_array.rs)||
@@ -468,7 +468,7 @@ lintcode_problems
 |94|[Binary Tree Maximum Path Sum](https://lintcode.com/problem/binary-tree-maximum-path-sum/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/binary_tree_maximum_path_sum.py)||
 |95|[Validate Binary Search Tree](https://lintcode.com/problem/validate-binary-search-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/bst_valid.py)||
 |97|[Maximum Depth of Binary Tree](https://lintcode.com/problem/maximum-depth-of-binary-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/depth_max_min.py)||
-|100|[Remove Duplicates from Sorted Array](https://lintcode.com/problem/remove-duplicates-from-sorted-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/partition_array/move_zeros.py)||
+|100|[Remove Duplicates from Sorted Array](https://lintcode.com/problem/remove-duplicates-from-sorted-array/)|leetcode_26|
 |102|[Linked List Cycle](https://lintcode.com/problem/linked-list-cycle/)|leetcode_141|
 |103|[Linked List Cycle II](https://lintcode.com/problem/linked-list-cycle-ii/)|leetcode_142|
 |104|[Merge k Sorted Lists](https://lintcode.com/problem/merge-k-sorted-lists/)|leetcode_23|

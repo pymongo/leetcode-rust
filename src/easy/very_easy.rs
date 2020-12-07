@@ -585,6 +585,7 @@ fn plus_one(mut digits: Vec<i32>) -> Vec<i32> {
     digits
 }
 
+#[cfg(FALSE)]
 /// https://leetcode.com/problems/random-pick-index/
 /// 应对很长的无法全部存入内存的数组online data，正统做法应该用: 蓄水池抽样(Random Reservoir Sampling)
 struct RandomPickIndex {
@@ -592,6 +593,7 @@ struct RandomPickIndex {
     index: std::collections::HashMap<i32, Vec<i32>>,
 }
 
+#[cfg(FALSE)]
 impl RandomPickIndex {
     fn new(nums: Vec<i32>) -> Self {
         let mut nums_index = std::collections::HashMap::new();
@@ -1183,4 +1185,102 @@ fn maximum_wealth(accounts: Vec<Vec<i32>>) -> i32 {
         .map(|row| row.into_iter().sum::<i32>())
         .max()
         .unwrap_or_default()
+}
+
+/// https://leetcode.com/problems/remove-duplicates-from-sorted-array/
+/// 用Rust的dedup API两行搞定:
+/// nums.dedup();
+/// nums.len() as i32
+/// 用标准库的dedup性能更好，因为`Avoid bounds checks by using raw pointers`
+fn remove_duplicates(nums: &mut Vec<i32>) -> i32 {
+    nums.dedup();
+    let n = nums.len();
+    if n == 0 {
+        return 0;
+    }
+    let mut last_unique = 0usize;
+    for i in 1..n {
+        if nums[i] != nums[last_unique] {
+            // 先前移到下个空位(slow)，再把unique的数字换过来
+            last_unique += 1;
+            nums.swap(last_unique, i);
+        }
+    }
+    last_unique as i32 + 1
+}
+
+#[test]
+fn test_remove_duplicates() {
+    assert_eq!(remove_duplicates(&mut Vec::new()), 0);
+    assert_eq!(remove_duplicates(&mut vec![1, 1, 2]), 1);
+}
+
+/** https://leetcode.com/problems/merge-sorted-array/
+## 从后往前遍历的解题思路
+参考一道面试题，如何将占据内存地址[0:10]的数组复制到内存地址[5:15]上
+首先顺序复制的话，复制到第6个时会把第1个给覆盖掉
+如果使用倒序复制的方法，新旧数组的指针都从后往前遍历，那就能避免重复
+这道题数组nums1的后半部分预留了全是0的存储空间，所以从后往前遍历时既能更新nums1又不用担心nums1出现重叠导致覆盖的问题
+*/
+fn merge_two_sorted_array(nums1: &mut Vec<i32>, m: i32, nums2: &mut Vec<i32>, n: i32) {
+    let (m, n) = (m as usize, n as usize);
+    let (mut p1, mut p2, mut p) = (m - 1, n.wrapping_sub(1), m + n - 1);
+    while p1 != std::usize::MAX && p2 != std::usize::MAX {
+        if nums1[p1] > nums2[p2] {
+            nums1[p] = nums1[p1];
+            p1 = p1.wrapping_sub(1);
+        } else {
+            nums1[p] = nums2[p2];
+            p2 = p2.wrapping_sub(1);
+        }
+        p -= 1;
+    }
+    while p1 != std::usize::MAX {
+        nums1[p] = nums1[p1];
+        p = p.wrapping_sub(1);
+        p1 = p1.wrapping_sub(1);
+    }
+    while p2 != std::usize::MAX {
+        nums1[p] = nums2[p2];
+        p = p.wrapping_sub(1);
+        p2 = p2.wrapping_sub(1);
+    }
+}
+
+#[test]
+fn test_merge_two_sorted_array() {
+    const TEST_CASES: [(&[i32], i32, &[i32], i32, &[i32]); 2] = [
+        (&[1, 2, 3, 0, 0, 0], 3, &[2, 5, 6], 3, &[1, 2, 2, 3, 5, 6]),
+        (&[2, 0], 1, &[1], 1, &[1, 2]),
+    ];
+    for &(nums1, m, nums2, n, expected) in TEST_CASES.iter() {
+        let mut nums1 = nums1.to_vec();
+        merge_two_sorted_array(&mut nums1, m, &mut nums2.to_vec(), n);
+        assert_eq!(nums1, expected.to_vec());
+    }
+}
+
+/// https://leetcode.com/problems/reveal-cards-in-increasing-order/
+fn deck_revealed_increasing(mut deck: Vec<i32>) -> Vec<i32> {
+    deck.sort_unstable();
+    let mut ret = vec![deck.pop().unwrap()];
+    while let Some(deck_last) = deck.pop() {
+        let ret_last = ret.pop().unwrap();
+        ret.insert(0, ret_last);
+        // error: ret.insert(0, ret.pop().unwrap());
+        ret.insert(0, deck_last);
+    }
+    ret
+}
+
+/**
+1. 排序deck: [17,13,11,2,3,5,7] => [2,3,5,7,11,13,17], ret: []
+2. deck: [2,3,5,7,11,13], ret: [17]
+3. deck: [2,3,5,7,11], ret: [13,17]
+4. deck: [2,3,5,7], ret: [17,13] => [11,17,13]
+...
+*/
+#[test]
+fn test_deck_revealed_increasing() {
+    assert_eq!(deck_revealed_increasing(vec![17, 13, 11, 2, 3, 5, 7]), vec![2, 13, 3, 11, 5, 17, 7]);
 }
