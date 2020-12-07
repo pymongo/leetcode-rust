@@ -1282,5 +1282,29 @@ fn deck_revealed_increasing(mut deck: Vec<i32>) -> Vec<i32> {
 */
 #[test]
 fn test_deck_revealed_increasing() {
-    assert_eq!(deck_revealed_increasing(vec![17, 13, 11, 2, 3, 5, 7]), vec![2, 13, 3, 11, 5, 17, 7]);
+    assert_eq!(
+        deck_revealed_increasing(vec![17, 13, 11, 2, 3, 5, 7]),
+        vec![2, 13, 3, 11, 5, 17, 7]
+    );
 }
+
+/// https://leetcode.com/problems/cells-with-odd-values-in-a-matrix/
+fn odd_cells(n: i32, m: i32, indices: Vec<Vec<i32>>) -> i32 {
+    // 注意题目的入参是n行m列，而非正常的m行n列
+    let (m, n) = (n as usize, m as usize);
+    // 一开始的矩阵，都是0，所以都不是偶数(false)
+    let mut mat = vec![vec![false; n]; m];
+    for indice in indices.into_iter() {
+        let (row, col) = (indice[0] as usize, indice[1] as usize);
+        for i in 0..m {
+            mat[i][col] = !mat[i][col];
+        }
+        for j in 0..n {
+            mat[row][j] = !mat[row][j];
+        }
+    }
+    mat.into_iter()
+        .map(|row| row.into_iter().filter(|&each| each).count())
+        .sum::<usize>() as i32
+}
+
