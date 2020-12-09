@@ -1,181 +1,9 @@
-/*!
-简短一行Rust代码能解决的题:
-[剑指Offer 17. 打印从1到最大n位的十进制数]: (1..10i32.pow(n as u32)).collect()
+/*! 简短一行Rust代码能解决的题:
+- [剑指Offer 17. 打印从1到最大n位的十进制数]: (1..10i32.pow(n as u32)).collect()
 */
-
-mod partition_array {
-    /// https://leetcode.com/problems/move-zeroes/
-    /// 还有一种做法是快慢双指针，慢指针指向最后一个非0元素的下一个元素，快指针往后遇到0则交换到慢指针的位置，然后慢指针前移
-    /// (如果快慢指针是赋值而不是交换，则最后将慢指针往后的所有元素置0)
-    /// move_zeros是sort_colors的简化版
-    fn move_zeroes(nums: &mut Vec<i32>) {
-        let mut last_non_zero_next_idx = 0;
-        for i in 0..nums.len() {
-            if nums[i] != 0 {
-                nums.swap(i, last_non_zero_next_idx);
-                last_non_zero_next_idx += 1;
-            }
-        }
-    }
-
-    /// https://leetcode.com/problems/remove-element/
-    /// 这题跟move_zeros完全一样，或者说move_zeros是remove_elementy一题target=0的情况
-    fn remove_element(nums: &mut Vec<i32>, val: i32) -> i32 {
-        let mut last_non_target_next_idx = 0;
-        for i in 0..nums.len() {
-            if nums[i] != val {
-                nums.swap(i, last_non_target_next_idx);
-                last_non_target_next_idx += 1;
-            }
-        }
-        last_non_target_next_idx as i32
-    }
-
-    /// https://leetcode.com/problems/remove-duplicates-from-sorted-array/
-    /// 用Rust的dedup API两行搞定:
-    /// nums.dedup();
-    /// nums.len() as i32
-    /// 用标准库的dedup性能更好，因为`Avoid bounds checks by using raw pointers`
-    fn remove_duplicates_from_sorted_array(nums: &mut Vec<i32>) -> i32 {
-        let n = nums.len();
-        if n == 0 {
-            return 0;
-        }
-        let mut last_unique = 0usize;
-        for i in 1..n {
-            if nums[i] != nums[last_unique] {
-                // 先前移到下个空位(slow)，再把unique的数字换过来
-                last_unique += 1;
-                nums.swap(last_unique, i);
-            }
-        }
-        last_unique as i32 + 1
-    }
-
-    /// https://leetcode.com/problems/sort-array-by-parity/
-    /// 重排数组，所有偶数元素连续的出现在前面，之后跟着所有奇数元素
-    /// 这题算是sort_colors的简单版，只有两种情况，而sort_colors有0,1,2三种情况
-    fn sort_array_by_parity(a: Vec<i32>) -> Vec<i32> {
-        // iter_partition_in_place is unstable
-        // a.iter_mut().partition_in_place(|x| x % 2 == 0);
-        fn partition_solution(a: Vec<i32>) -> Vec<i32> {
-            let (mut even, mut odd): (Vec<i32>, Vec<i32>) = a.into_iter().partition(|x| x % 2 == 0);
-            even.append(&mut odd);
-            even
-        }
-
-        fn iter_chain_solution(a: Vec<i32>) -> Vec<i32> {
-            a.iter()
-                .filter(|&x| x % 2 == 0)
-                .chain(a.iter().filter(|&x| x % 2 == 1))
-                .copied() // .map(|x| *x)
-                .collect::<Vec<i32>>()
-        }
-
-        fn sort_by_mod_solution(mut a: Vec<i32>) -> Vec<i32> {
-            a.sort_unstable_by_key(|x| x % 2);
-            a
-        }
-
-        /// fastest in-place solution
-        fn two_pointers_partition_solution(mut a: Vec<i32>) -> Vec<i32> {
-            let n = a.len();
-            let (mut l, mut r) = (0, n - 1);
-            while l < r {
-                while l < r && a[l] % 2 == 0 {
-                    l += 1;
-                }
-                while l < r && a[r] % 2 == 1 {
-                    r -= 1;
-                }
-                if l < r {
-                    a.swap(l, r);
-                }
-            }
-            a
-        }
-
-        fn two_pointers_sort_color_solution(mut a: Vec<i32>) -> Vec<i32> {
-            let (mut even, mut odd) = (0, a.len() - 1);
-            let mut cur = 0;
-            while even < odd {
-                if a[cur] % 2 == 0 {
-                    even += 1;
-                    cur += 1;
-                } else {
-                    // 参考sort_color一题，换完之后，cur指针不会前移，要判断换过来的新值是否复合偶数条件
-                    a.swap(cur, odd);
-                    odd -= 1;
-                }
-            }
-            a
-        }
-
-        two_pointers_partition_solution(a)
-    }
-
-    /// https://leetcode.com/problems/sort-array-by-parity-ii/
-    /// In-place重排数组，使得奇数值在奇数下标，偶数值在偶数下标
-    fn sort_array_by_parity_ii(mut a: Vec<i32>) -> Vec<i32> {
-        fn official_solution(mut a: Vec<i32>) -> Vec<i32> {
-            let n = a.len();
-            let mut odd = 1;
-            for even in (0..n).step_by(2) {
-                if a[even] % 2 == 1 {
-                    while a[odd] % 2 == 1 {
-                        odd += 2;
-                    }
-                    a.swap(even, odd);
-                }
-            }
-            a
-        }
-        let n = a.len();
-        let (mut even, mut odd) = (0, 1);
-        while even < n && odd < n {
-            while even < n && a[even] % 2 == 0 {
-                even += 2;
-            }
-            while odd < n && a[odd] % 2 == 1 {
-                odd += 2;
-            }
-            if even < n && odd < n {
-                a.swap(even, odd);
-            }
-        }
-        a
-    }
-}
-
-/** https://leetcode.com/problems/nim-game/
-nim游戏规则：有若干个石头，两人每回合轮流拿走一些石头，每个人可以拿走1-3块石头
-如果轮到A的回合时，石头数量是4的倍数，那么A必败(博弈问题的必败态)
-或者利用二进制判断是不是 4 的倍数，
-只需要通过和 3 （二进制 11）进行相与，
-如果是 4 的倍数，那么结果一定是 0。
-
-算法如下：
-    x&3==0，则是4的倍数。
-原理：
-先来看一组数字的二进制表示
-    4　　　　0100
-    8　　　　1000
-    12      1100
-    16     10000
-    20     10100
-由此可见 4 的倍数的二进制表示的后 2 为一定为 0。
-
-从另外一个角度来看，4 的二进制表示是 0100，任何 4 的倍数一定是在此基础上增加 n 个 0100
-由此也可得 4 的倍数的二进制表示的后 2 为一定为 0。
-*/
-const fn nim_game_bitwise(n: i32) -> bool {
-    // (n % 4) != 0
-    (n & 3) != 0
-}
 
 /** https://leetcode.com/problems/shuffle-the-array/
 数组nums按 \[x1,x2,...,xn,y1,y2,...,yn] 的格式排列
-
 请你将数组按 [x1,y1,x2,y2,...,xn,yn] 格式重新排列
 */
 fn shuffle_the_array(nums: Vec<i32>, n: i32) -> Vec<i32> {
@@ -601,54 +429,6 @@ fn height_checker(heights: Vec<i32>) -> i32 {
         .count() as i32
 }
 
-/// https://leetcode.com/problems/number-of-1-bits/
-/// Rust: n.count_ones(), Java: Integer.bitCount(n)
-fn hamming_weight(n: u32) -> i32 {
-    fn impl_count_ones_best(n: u32) -> i32 {
-        let mut count = 0;
-        let mut mask = 0b1;
-        for _ in 0..32 {
-            if n & mask == 1 {
-                count += 1;
-            }
-            mask <<= 1;
-        }
-        count
-    }
-    fn impl_count_ones_by_mask(mut n: u32) -> i32 {
-        let mut count = 0;
-        while n != 0 {
-            n &= n - 1;
-            count += 1;
-        }
-        count
-    }
-    impl_count_ones_best(n)
-}
-
-/// https://leetcode.com/problems/hamming-distance/
-/// 两个整数之间的汉明距离指的是这两个数字对应二进制位不同的位置的数目
-/// 思路: 异或后数位1的个数
-fn hamming_distance(x: i32, y: i32) -> i32 {
-    (x ^ y).count_ones() as i32
-}
-
-/// https://leetcode.com/problems/reverse-bits/
-fn reverse_bits(x: u32) -> u32 {
-    fn reverse_bits_best(mut n: u32) -> u32 {
-        // ret = return
-        let (mut ret, mut power) = (0u32, 0u32);
-        while n != 0 {
-            ret += (n & 1) << power;
-            n >>= 1;
-            power -= 1;
-        }
-        ret
-    }
-
-    x.reverse_bits()
-}
-
 /** https://leetcode.com/problems/count-binary-substrings/
 要数0和1数量相等的子串，也就是统计0和1分隔位置两侧0和1个数的最小值
 ```text
@@ -926,13 +706,7 @@ fn all_cells_dist_order(r: i32, c: i32, r0: i32, c0: i32) -> Vec<Vec<i32>> {
 
 /// https://leetcode.com/problems/xor-operation-in-an-array/
 fn xor_operation(n: i32, start: i32) -> i32 {
-    let mut ret = 0;
-    let mut num = start;
-    for _ in 0..n {
-        ret ^= num;
-        num += 2;
-    }
-    ret
+    (start..).step_by(2).take(n as usize).fold(0, |a, b| a ^ b)
 }
 
 /// https://leetcode.com/problems/create-target-array-in-the-given-order/submissions/
@@ -1224,12 +998,6 @@ fn maximum_wealth(accounts: Vec<Vec<i32>>) -> i32 {
         .unwrap_or_default()
 }
 
-#[test]
-fn test_remove_duplicates() {
-    assert_eq!(remove_duplicates(&mut Vec::new()), 0);
-    assert_eq!(remove_duplicates(&mut vec![1, 1, 2]), 1);
-}
-
 /** https://leetcode.com/problems/merge-sorted-array/
 ## 从后往前遍历的解题思路
 参考一道面试题，如何将占据内存地址[0:10]的数组复制到内存地址[5:15]上
@@ -1330,4 +1098,159 @@ fn flip_and_invert_image(mut a: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
         row.iter_mut().for_each(|val| *val = 1 - *val);
     }
     a
+}
+
+/// https://leetcode.com/problems/shuffle-string/
+/// 能不能用In-Place的swap操作完成重排？我联想到rotate_string那题教室换座位的情况，A的新座位在B，A挤到B的slot，把B挤出教室，然后B再去挤自己的新座位...
+fn restore_string(s: String, indices: Vec<i32>) -> String {
+    let mut ret = vec![0u8; s.len()];
+    for (i, byte) in indices.into_iter().zip(s.into_bytes().into_iter()) {
+        ret[i as usize] = byte;
+    }
+    unsafe { String::from_utf8_unchecked(ret) }
+}
+
+/// https://leetcode.com/problems/jewels-and-stones/
+fn num_jewels_in_stones(j: String, s: String) -> i32 {
+    let jewels: std::collections::HashSet<u8> = j.into_bytes().into_iter().collect(); // HashSet::from_iter
+    let mut ret = 0;
+    for stone in s.into_bytes().into_iter() {
+        if jewels.contains(&stone) {
+            ret += 1;
+        }
+    }
+    ret
+}
+
+/** https://leetcode.com/problems/minimum-deletion-cost-to-avoid-repeating-letters/
+```python
+# 周赛#205第三题(https://leetcode-cn.com/contest/weekly-contest-205/problems/replace-all-s-to-avoid-consecutive-repeating-characters/)
+@staticmethod
+def f(s: str, cost: List[int]) -> int:
+    n, i = len(cost), 1
+    ret = 0
+    while i < n:
+        if s[i] == s[i - 1]:
+            j = i
+            # 找到连续的一片重复字母
+            while j < n and s[j] == s[j - 1]:
+                j += 1
+            ret += sum(cost[i - 1:j]) - max(cost[i - 1:j])
+            i = j
+        else:
+            i += 1
+    return ret
+```
+花最小代价让字符串相邻两个元素不重复，所以遇到连续的重复字符，例如连续5个a，则需要删掉4个a，留下cost数组中耗费最大的那个a
+*/
+fn minimum_deletion_cost_to_avoid_repeating_letters(s: String, cost: Vec<i32>) -> i32 {
+    let s = s.into_bytes();
+    let n = s.len();
+    let mut i = 0;
+    let mut ret = 0;
+    while i < n {
+        let byte = s[i];
+        let mut max_cost_of_same_byte = 0;
+        let mut cost_sum = 0;
+        while i < n && s[i] == byte {
+            max_cost_of_same_byte = max_cost_of_same_byte.max(cost[i]);
+            cost_sum += cost[i];
+            i += 1;
+        }
+        ret += cost_sum - max_cost_of_same_byte;
+    }
+    ret
+}
+
+#[test]
+fn test_minimum_deletion_cost_to_avoid_repeating_letters() {
+    assert_eq!(
+        minimum_deletion_cost_to_avoid_repeating_letters("abaac".into(), vec![1, 2, 3, 4, 5]),
+        3
+    );
+}
+
+/// https://leetcode.com/problems/replace-all-s-to-avoid-consecutive-repeating-characters/
+fn replace_question_mark_to_avoid_consecutive_repeating_char(s: String) -> String {
+    let mut s = s.into_bytes();
+    let n = s.len();
+    for i in 0..n {
+        if s[i] != b'?' {
+            continue;
+        }
+        for letter in b'a'..=b'z' {
+            if let Some(left) = s.get(i.wrapping_sub(1)) {
+                if letter.eq(left) {
+                    continue;
+                }
+            }
+            if let Some(right) = s.get(i + 1) {
+                if letter.eq(right) {
+                    continue;
+                }
+            }
+            s[i] = letter;
+        }
+    }
+    unsafe { String::from_utf8_unchecked(s) }
+}
+
+/// https://leetcode.com/problems/running-sum-of-1d-array/
+fn running_sum(mut nums: Vec<i32>) -> Vec<i32> {
+    for i in 1..nums.len() {
+        nums[i] += nums[i - 1];
+    }
+    nums
+}
+
+/// https://leetcode.com/problems/fizz-buzz/
+fn fizz_buzz(n: i32) -> Vec<String> {
+    let mut ret = Vec::new();
+    for i in 1..=n {
+        if i % 3 == 0 {
+            if i % 5 == 0 {
+                ret.push("FizzBuzz".to_string());
+            } else {
+                ret.push("Fizz".to_string());
+            }
+        } else if i % 5 == 0 {
+            ret.push("Buzz".to_string());
+        } else {
+            ret.push(i.to_string());
+        }
+    }
+    ret
+}
+
+/// https://leetcode.com/problems/first-bad-version/
+struct FirstBadVersion(i32);
+
+impl FirstBadVersion {
+    #[allow(non_snake_case)]
+    fn isBadVersion(&self, versions: i32) -> bool {
+        versions >= self.0
+    }
+
+    fn first_bad_version(&self, n: i32) -> i32 {
+        let (mut start, mut end) = (0, n);
+        while start < end {
+            let mid = start + (end - start) / 2;
+            if self.isBadVersion(mid) {
+                // 如果出错了，不能排除掉mid，错误可能在[mid,end]
+                end = mid;
+            } else {
+                start = mid + 1;
+            }
+        }
+        start
+    }
+}
+
+#[test]
+fn test_first_bad_version() {
+    const TEST_CASES: [(i32, i32); 1] = [(4, 5)];
+    for &(bad, len) in TEST_CASES.iter() {
+        let temp = FirstBadVersion(bad);
+        assert_eq!(temp.first_bad_version(len), bad);
+    }
 }

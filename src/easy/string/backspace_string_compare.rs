@@ -4,15 +4,15 @@ struct Solution;
 impl Solution {
     fn backspace_compare(s: String, t: String) -> bool {
         fn parse(s: String) -> Vec<u8> {
-            let mut res: Vec<u8> = Vec::new();
+            let mut ret: Vec<u8> = Vec::new();
             for byte in s.into_bytes() {
                 if byte == b'#' {
-                    let _ = res.pop();
+                    let _ = ret.pop();
                 } else {
-                    res.push(byte);
+                    ret.push(byte);
                 }
             }
-            res
+            ret
         }
         parse(s) == parse(t)
     }

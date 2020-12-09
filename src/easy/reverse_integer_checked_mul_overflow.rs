@@ -35,14 +35,14 @@ def reverse_number(n: int) -> int:
 ```
 */
 impl Solution {
-    fn reverse(x: i32) -> i32 {
+    fn reverse_integer(x: i32) -> i32 {
         fn helper(mut n: i32) -> Option<i32> {
-            let mut res = 0i32;
+            let mut ret = 0i32;
             while n.abs() != 0 {
-                res = res.checked_mul(10)?.checked_add(n % 10)?;
+                ret = ret.checked_mul(10)?.checked_add(n % 10)?;
                 n /= 10;
             }
-            Some(res)
+            Some(ret)
         }
         helper(x).unwrap_or_default()
     }
@@ -52,7 +52,7 @@ impl Solution {
         if x < 0 {
             return false;
         }
-        x == Self::reverse(x)
+        x == Self::reverse_integer(x)
     }
 
     fn is_palindrome_half_traverse(x: i32) -> bool {
@@ -77,7 +77,7 @@ mod test {
 
     #[test]
     fn test_reverse() {
-        assert_eq!(Solution::reverse(-123), -321);
+        assert_eq!(Solution::reverse_integer(-123), -321);
     }
 
     #[test]

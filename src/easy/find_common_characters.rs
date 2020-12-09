@@ -15,7 +15,7 @@ impl Solution {
             }
         }
 
-        let mut res = Vec::new();
+        let mut ret = Vec::new();
         'outer: for letter in 0..26usize {
             let mut common_occur_times = 0;
             for word in 0..n {
@@ -31,11 +31,11 @@ impl Solution {
             }
             let letter_char = (letter as u8 + b'a') as char;
             for _ in 0..common_occur_times {
-                res.push(letter_char.to_string());
+                ret.push(letter_char.to_string());
             }
         }
 
-        res
+        ret
     }
 }
 

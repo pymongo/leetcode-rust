@@ -19,9 +19,9 @@ fn entrance(n: i32) -> Vec<Vec<String>> {
     // 存储直线方程x-y的常系数
     let mut dif: HashSet<i32> = HashSet::with_capacity(n);
 
-    let mut res: Vec<Vec<String>> = Vec::new();
-    dfs(&mut queens, &mut used_cols, &mut sum, &mut dif, n, &mut res);
-    res
+    let mut ret: Vec<Vec<String>> = Vec::new();
+    dfs(&mut queens, &mut used_cols, &mut sum, &mut dif, n, &mut ret);
+    ret
 }
 
 fn dfs(
@@ -30,10 +30,10 @@ fn dfs(
     sum: &mut HashSet<i32>,
     dif: &mut HashSet<i32>,
     n: usize,
-    res: &mut Vec<Vec<String>>,
+    ret: &mut Vec<Vec<String>>,
 ) {
     if queens.len() == n {
-        render_solution(queens, res, n);
+        render_solution(queens, ret, n);
         return;
     }
     let x = queens.len() as i32;
@@ -58,7 +58,7 @@ fn dfs(
         dif.insert(cur_dif);
         used_cols[y] = true;
         queens.push(y_i32);
-        dfs(queens, used_cols, sum, dif, n, res);
+        dfs(queens, used_cols, sum, dif, n, ret);
         queens.pop().unwrap();
         sum.remove(&cur_sum);
         dif.remove(&cur_dif);

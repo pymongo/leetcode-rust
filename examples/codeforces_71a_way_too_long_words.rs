@@ -21,7 +21,7 @@ where
                 &mut writer,
                 "{}{}{}",
                 bytes[0] as char,
-                len - 2,
+                len - 2, // len - 2(first and last)
                 *bytes.last().unwrap() as char
             )?;
         }
