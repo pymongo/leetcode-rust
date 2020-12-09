@@ -51,6 +51,7 @@ fn diagonal_sort(mut mat: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
             cur_diagonal.push(mat[row + offset][col + offset]);
         }
         cur_diagonal.sort_unstable();
+        #[allow(clippy::manual_memcpy)]
         for offset in 0..cur_diagonal_len {
             mat[row + offset][col + offset] = cur_diagonal[offset];
         }

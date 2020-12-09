@@ -116,6 +116,7 @@ fn can_form_array(arr: Vec<i32>, pieces: Vec<Vec<i32>>) -> bool {
         if idx != UNINIT {
             let piece = &pieces[idx];
             let (mut j, m) = (0usize, piece.len());
+            #[allow(clippy::suspicious_operation_groupings)]
             while j < m && piece[j] == arr[i] {
                 i += 1;
                 j += 1;
@@ -545,30 +546,6 @@ impl RandomPickIndex {
     }
 }
 
-/// https://leetcode.com/problems/top-k-frequent-elements/
-/// return [num for num, _ in collections.Counter(nums).most_common(k)]
-fn top_k_frequent(nums: Vec<i32>, k: i32) -> Vec<i32> {
-    let k = k as usize;
-    let n = nums.len();
-    let mut counter = std::collections::HashMap::<i32, i32>::with_capacity(n);
-    for &num in &nums {
-        *counter.entry(num).or_insert(0) += 1;
-    }
-    // 小根堆: (-出现次数, 数字)，所以堆顶会是出现次数最低的数字，随时可以被别人挤掉
-    let mut heap = std::collections::BinaryHeap::<(i32, i32)>::with_capacity(k);
-    for (&num, &cnt) in &counter {
-        if heap.len() == k {
-            if -cnt < heap.peek().unwrap().0 {
-                heap.pop();
-                heap.push((-cnt, num));
-            }
-        } else {
-            heap.push((-cnt, num));
-        }
-    }
-    heap.into_iter().rev().map(|(_, num)| num).collect()
-}
-
 /// https://leetcode.com/problems/defanging-an-ip-address/
 fn defanging_an_ip_address(address: String) -> String {
     address.replace(".", "[.]")
@@ -837,57 +814,6 @@ impl OrderedStream {
     }
 }
 
-/// https://leetcode.com/problems/group-anagrams/
-/// 由于Python没有原始数组，list是可变的不能Hash，所以list要转为tuple多了很多额外的操作
-fn group_anagrams(strs: Vec<String>) -> Vec<Vec<String>> {
-    let mut group = std::collections::HashMap::new();
-    for s in strs.into_iter() {
-        let mut counter = [0u8; 26]; // 0 <= strs[i].length <= 100
-        for &byte in s.as_bytes() {
-            counter[(byte - b'a') as usize] += 1;
-        }
-        group.entry(counter).or_insert_with(Vec::new).push(s)
-    }
-    // same as nightly `into_values` API: consume HashMap and get a vec of values
-    group.into_iter().map(|(_k, v)| v).collect()
-}
-
-/// https://leetcode.com/problems/increasing-decreasing-string/
-fn sort_string(s: String) -> String {
-    let n = s.len();
-    let mut counter = [0u8; 26];
-    for byte in s.into_bytes().into_iter() {
-        counter[(byte - b'a') as usize] += 1;
-    }
-
-    let mut ret = Vec::with_capacity(n);
-    while ret.len() < n {
-        for i in 0..26 {
-            if counter[i] > 0 {
-                counter[i] -= 1;
-                ret.push(b'a' + i as u8);
-            }
-        }
-        for i in (0..26).rev() {
-            if counter[i] > 0 {
-                counter[i] -= 1;
-                ret.push(b'a' + i as u8);
-            }
-        }
-    }
-
-    unsafe { String::from_utf8_unchecked(ret) }
-}
-
-#[test]
-fn test_sort_string() {
-    const TEST_CASES: [(&str, &str); 2] =
-        [("aaaabbbbcccc", "abccbaabccba"), ("leetcode", "cdelotee")];
-    for &(input, output) in TEST_CASES.iter() {
-        assert_eq!(sort_string(input.to_string()), output.to_string());
-    }
-}
-
 /// https://leetcode.com/problems/maximum-gap/
 fn maximum_gap(mut nums: Vec<i32>) -> i32 {
     nums.sort_unstable();
@@ -1123,27 +1049,9 @@ fn num_jewels_in_stones(j: String, s: String) -> i32 {
 }
 
 /** https://leetcode.com/problems/minimum-deletion-cost-to-avoid-repeating-letters/
-```python
-# 周赛#205第三题(https://leetcode-cn.com/contest/weekly-contest-205/problems/replace-all-s-to-avoid-consecutive-repeating-characters/)
-@staticmethod
-def f(s: str, cost: List[int]) -> int:
-    n, i = len(cost), 1
-    ret = 0
-    while i < n:
-        if s[i] == s[i - 1]:
-            j = i
-            # 找到连续的一片重复字母
-            while j < n and s[j] == s[j - 1]:
-                j += 1
-            ret += sum(cost[i - 1:j]) - max(cost[i - 1:j])
-            i = j
-        else:
-            i += 1
-    return ret
-```
 花最小代价让字符串相邻两个元素不重复，所以遇到连续的重复字符，例如连续5个a，则需要删掉4个a，留下cost数组中耗费最大的那个a
 */
-fn minimum_deletion_cost_to_avoid_repeating_letters(s: String, cost: Vec<i32>) -> i32 {
+fn min_cost_to_avoid_repeating_chars(s: String, cost: Vec<i32>) -> i32 {
     let s = s.into_bytes();
     let n = s.len();
     let mut i = 0;
@@ -1152,6 +1060,7 @@ fn minimum_deletion_cost_to_avoid_repeating_letters(s: String, cost: Vec<i32>) -
         let byte = s[i];
         let mut max_cost_of_same_byte = 0;
         let mut cost_sum = 0;
+        // 找到连续的一片重复字母
         while i < n && s[i] == byte {
             max_cost_of_same_byte = max_cost_of_same_byte.max(cost[i]);
             cost_sum += cost[i];
@@ -1164,10 +1073,7 @@ fn minimum_deletion_cost_to_avoid_repeating_letters(s: String, cost: Vec<i32>) -
 
 #[test]
 fn test_minimum_deletion_cost_to_avoid_repeating_letters() {
-    assert_eq!(
-        minimum_deletion_cost_to_avoid_repeating_letters("abaac".into(), vec![1, 2, 3, 4, 5]),
-        3
-    );
+    assert_eq!(min_cost_to_avoid_repeating_chars("abaac".into(), vec![1, 2, 3, 4, 5]), 3);
 }
 
 /// https://leetcode.com/problems/replace-all-s-to-avoid-consecutive-repeating-characters/
@@ -1252,5 +1158,54 @@ fn test_first_bad_version() {
     for &(bad, len) in TEST_CASES.iter() {
         let temp = FirstBadVersion(bad);
         assert_eq!(temp.first_bad_version(len), bad);
+    }
+}
+
+/// https://leetcode.com/problems/minimum-operations-to-make-array-equal/submissions/
+fn min_operations(n: i32) -> i32 {
+    (1..)
+        .step_by(2)
+        .take(n as usize / 2)
+        .map(|each| n - (each + 1))
+        .sum()
+    // return n * n /4;
+}
+
+/// https://leetcode.com/problems/goal-parser-interpretation/
+fn goal_parser_interpret(command: String) -> String {
+    let s = command.into_bytes();
+    let n = s.len();
+    let mut ret = Vec::with_capacity(n);
+    let mut i = 0;
+    while i < n {
+        match s[i] {
+            b'G' => {
+                ret.push(b'G');
+                i += 1;
+            },
+            b'(' => {
+                if s[i+1] == b')' {
+                    ret.push(b'o');
+                    i += 2;
+                } else {
+                    ret.push(b'a');
+                    ret.push(b'l');
+                    i += 4;
+                }
+            }
+            _ => unreachable!()
+        }
+    }
+    unsafe { String::from_utf8_unchecked(ret) }
+}
+
+#[test]
+fn test_goal_parser_interpret() {
+    const TEST_CASE: [(&str, &str); 2] = [
+        ("()()", "oo"),
+        ("G()(al)", "Goal"),
+    ];
+    for &(input, output) in TEST_CASE.iter() {
+        assert_eq!(goal_parser_interpret(input.to_string()), output.to_string())
     }
 }

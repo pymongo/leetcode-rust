@@ -7,8 +7,7 @@ number-of-good-pairs一题数值的范围在1..=100，而且长度范围也在1.
 test bench_fixed_len_array_counter ... bench:          51 ns/iter (+/- 10)
 test bench_hashmap_counter         ... bench:       1,772 ns/iter (+/- 158)
 */
-#![feature(test)]
-#![feature(array_map)]
+#![feature(test, array_map)]
 extern crate test;
 
 const NUMS: [i32; 97] = [
@@ -25,6 +24,7 @@ fn bench_fixed_len_array_counter(bencher: &mut test::Bencher) {
         for &num in NUMS.iter() {
             counter[num as usize] += 1;
         }
+        // array暂不支持into_iter, issue#66145
         let _ret = counter
             .iter()
             .map(|&v| (v as i32 - 1) * v as i32 / 2)

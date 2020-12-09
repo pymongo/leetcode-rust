@@ -27,6 +27,7 @@ impl Solution {
         let (name, typed) = (name.into_bytes(), typed.into_bytes());
         let (name_len, typed_len) = (name.len(), typed.len());
         while j < typed_len {
+            #[allow(clippy::suspicious_operation_groupings)]
             if i < name_len && name[i] == typed[j] {
                 i += 1;
                 j += 1;
