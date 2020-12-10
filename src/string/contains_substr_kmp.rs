@@ -9,12 +9,12 @@ const TEST_CASES: [(&str, &str, i32); 3] =
 #[test]
 fn test_kmp() {
     for &(source, target, expected) in TEST_CASES.iter() {
-        assert_eq!(cheat(source.to_string(), target.to_string()), expected);
+        assert_eq!(dirty_solution(source.to_string(), target.to_string()), expected);
     }
 }
 
 #[cfg(test)]
-fn cheat(haystack: String, needle: String) -> i32 {
+fn dirty_solution(haystack: String, needle: String) -> i32 {
     match haystack.find(&needle) {
         Some(index) => index as i32,
         None => -1,
@@ -22,7 +22,7 @@ fn cheat(haystack: String, needle: String) -> i32 {
 }
 
 // 尽管最佳解答使用了KMP算法，但是耗时也是4ms，还不如Rust内置的find API
-/* KMP算法
+/** KMP算法
 相关知识：3. Longest Substring Without Repeating Characters
 例如：ABABD中搜索ABD，KMP算法的优势在于发现第一个AB不合条件后，指针立即跳到第二个AB的A上，
 有点像双指针滑动窗口遍历最长无重复子串中，遇到重复的子串时立即查表，去偏移尾指针
@@ -68,7 +68,7 @@ fn global_best_api(haystack: String, needle: String) -> i32 {
     -1
 }
 
-/*
+/**
 这个数组应该叫dp或dfa，叫pattern或部分匹配表也行
 "部分匹配值"就是"前缀"和"后缀"的最长的共有元素的长度。以"ABCDABD"为例，
  - "A"的前缀和后缀都为空集，共有元素的长度为0；

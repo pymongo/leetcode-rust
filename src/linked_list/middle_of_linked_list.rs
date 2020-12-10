@@ -27,6 +27,6 @@ impl Solution {
             fast = fast?.next.as_ref()?.next.as_ref();
         }
 
-        slow.cloned() // slow.map(|node| node.clone())
+        slow.cloned()
     }
 }
