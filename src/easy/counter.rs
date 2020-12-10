@@ -158,7 +158,7 @@ fn unique_occurrences(arr: Vec<i32>) -> bool {
 fn unique_occurrences(arr: Vec<i32>) -> bool {
     let mut counter = std::collections::HashMap::new();
     for num in arr {
-        *counter.entry(num).or_insert(0) += 1;;
+        *counter.entry(num).or_insert(0) += 1;
     }
     let mut seen_count = std::collections::HashSet::new();
     /* Second solution

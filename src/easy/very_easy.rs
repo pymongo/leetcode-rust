@@ -1209,3 +1209,27 @@ fn test_goal_parser_interpret() {
         assert_eq!(goal_parser_interpret(input.to_string()), output.to_string())
     }
 }
+
+/// https://leetcode.com/problems/generate-a-string-with-characters-that-have-odd-counts/
+fn generate_the_string(n: i32) -> String {
+    if n % 2 == 1 {
+        "a".repeat(n as usize)
+    } else {
+        let mut ret = "a".repeat(n as usize - 1);
+        ret.push('b');
+        ret
+    }
+}
+
+/// https://leetcode.com/problems/can-make-arithmetic-progression-from-sequence/
+/// 任意重排数组，能否形成等差数列
+fn can_make_arithmetic_progression(mut arr: Vec<i32>) -> bool {
+    arr.sort_unstable();
+    let difference = arr[1] - arr[0];
+    for i in 2..arr.len() {
+        if arr[i] - arr[i-1] != difference {
+            return false;
+        }
+    }
+    true
+}
