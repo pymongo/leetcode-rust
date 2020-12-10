@@ -23,6 +23,7 @@ mod middle_of_linked_list;
 mod reverse_linked_list;
 mod reverse_linked_list_2;
 mod swap_nodes_in_pairs;
+mod insertion_sort_linked_list;
 
 /// non-interest single_linked_list Node
 #[derive(PartialEq, Eq, Clone, Debug)]

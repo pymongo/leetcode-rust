@@ -131,7 +131,8 @@ leetcode_solutions
 |142|[Linked List Cycle II](https://leetcode.com/problems/linked-list-cycle-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/linked_list_cycle.py)|
 |144|[Binary Tree Preorder Traversal](https://leetcode.com/problems/binary-tree-preorder-traversal/)|[Rust](src/binary_tree/preorder_traversal.rs)|
 |145|[Binary Tree Postorder Traversal](https://leetcode.com/problems/binary-tree-postorder-traversal/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/traversal_pre_order.py)|DFS, stack|
-|145|[LRU Cache](https://leetcode.com/problems/lru-cache/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/lru_cache.py)|double_linked_list, OrderedDict|
+|146|[LRU Cache](https://leetcode.com/problems/lru-cache/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/lru_cache.py)|double_linked_list, OrderedDict|
+|147|[Insertion Sort List](https://leetcode.com/problems/insertion-sort-list/)|[Rust](src/linked_list/insertion_sort_linked_list.rs)|
 |151|[Reverse Words in a String](https://leetcode.com/problems/reverse-words-in-a-string/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/rotate_reverse_circle_shift/reverse_words_in_a_string.py)||
 |153|[Find Minimum in Rotated Sorted Array](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/rotated_sorted_array_search.py)|binary_search|
 |154|[Find Minimum in Rotated Sorted Array II](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/rotated_sorted_array_min_2_with_duplicate.py)|binary_search|
@@ -518,9 +519,9 @@ lintcode_problems
 |152|[Combinations](https://lintcode.com/problem/combinartions/)|leetcode_77|
 |153|[Combination Sum II](https://lintcode.com/problem/combination-sum-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/combination_target_sum.py), [Rust](src/backtracking/combination_sum_1_2.rs)||
 |154|[Regular Expression Matching](https://lintcode.com/problem/regular-expression-matching/)|leetcode_10|
-|155|[Minimum Depth of Binary Tree](https://lintcode.com/problem/minimum-depth-of-binary-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/depth_max_min.py)||
+|155|[Minimum Depth of Binary Tree](https://lintcode.com/problem/minimum-depth-of-binary-tree/)|leetcode_111|
 |158|[Valid Anagram](https://lintcode.com/problem/valid-anagram/)|leetcode_242|
-|159|[Find Minimum in Rotated Sorted Array](https://lintcode.com/problem/find-minimum-in-rotated-sorted-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/rotated_sorted_array_search.py)|binary_search|
+|159|[Find Minimum in Rotated Sorted Array](https://lintcode.com/problem/find-minimum-in-rotated-sorted-array/)|leetcode_153|
 |160|[Find Minimum in Rotated Sorted Array II](https://lintcode.com/problem/find-minimum-in-rotated-sorted-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/rotated_sorted_array_min_2_with_duplicate.py)|binary_search|
 |161|[Rotate Image](https://lintcode.com/problem/rotate-image/)|[Rust](src/easy/grid_or_matrix/rotate_matrix.rs)|
 |162|[Set Matrix Zeroes](https://lintcode.com/problem/set-matrix-zeroes/)|leetcode_73|
@@ -529,6 +530,7 @@ lintcode_problems
 |168|[Burst Balloons](https://lintcode.com/problem/burst-balloons/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/burst_ballon.py)||
 |171|[Anagrams](https://lintcode.com/problem/anagrams/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/group_anagrams.py)||
 |172|[Remove Element](https://lintcode.com/problem/remove-element/)|leetcode_27|
+|173|[Insertion Sort List](https://lintcode.com/problem/insertion-sort-list/)|leetcode_147|
 |174|[Remove Nth Node From End of List](https://lintcode.com/problem/remove-nth-node-from-end-of-list/)|leetcode_19|
 |175|[Invert Binary Tree](https://lintcode.com/problem/invert-binary-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/invert_binary_tree.py), [Rust](src/linked_list/reverse_linked_list.rs)||
 |177|[Convert Sorted Array to Binary Search Tree With Minimal Height](https://lintcode.com/problem/convert-sorted-array-to-binary-search-tree-with-minimal-height/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/divide_conquer/sorted_list_or_array_to_bst.py)|divide_and_conquer|
@@ -699,7 +701,7 @@ lintcode_problems
 |901|[Closest Binary Search Tree Value II](https://lintcode.com/problem/closest-binary-search-tree-value-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/bst_closest_value_2.py)||
 |902|[Kth Smallest Element in a BST](https://lintcode.com/problem/kth-smallest-element-in-a-bst/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/traversal_pre_order.py)|DFS, stack|
 |904|[Plus One Linked List](https://lintcode.com/problem/plus-one-linked-list/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/bottom_up_plus_one_linked_list.py)||
-|916|[Palindrome Permutation](https://lintcode.com/problem/palindrome-permutation/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/palindrome/palindrome_permutation.py)|greedy|
+|916|[Palindrome Permutation](https://lintcode.com/problem/palindrome-permutation/)|leetcode_266|
 |943|[Range Sum Query - Immutable](https://lintcode.com/problem/range-sum-query-immutable/)|leetcode_303|
 |954|[Insert Delete GetRandom O(1) - Duplicates allowed](https://lintcode.com/problem/insert-delete-getrandom-o1-duplicates-allowed/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/insert_delete_get_random_o1.py)||
 |955|[Implement Queue by Circular Array](https://lintcode.com/problem/implement-queue-by-circular-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/impl_queue_by_circluar_array.py)||
@@ -712,10 +714,10 @@ lintcode_problems
 |1000|[Best Time to Buy and Sell Stock with Transaction Fee](https://lintcode.com/problem/best-time-to-buy-and-sell-stock-with-transaction-fee/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/stock.py)||
 |1010|[Max Increase to Keep City Skyline](https://lintcode.com/problem/max-increase-to-keep-city-skyline/)|leetcode_807|
 |1038|[Jewels and Stones](https://lintcode.com/problem/jewels-and-stones/)|leetcode_771|
-|1057|[Network Delay Time](https://lintcode.com/problem/network-delay-time/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/bfs/network_delay_time_dijkstra.py)||
+|1057|[Network Delay Time](https://lintcode.com/problem/network-delay-time/)|leetcode_743|
 |1079|[Count Binary Substrings](https://lintcode.com/problem/count-binary-substrings/)|leetcode_696|
-|1115|[Average of Levels in Binary Tree](https://lintcode.com/problem/average-of-levels-in-binary-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/traversal_level_order.py)||
-|1137|[Construct String from Binary Tree](https://lintcode.com/problem/construct-string-from-binary-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/construct_from_string_with_parentheses.py)||
+|1115|[Average of Levels in Binary Tree](https://lintcode.com/problem/average-of-levels-in-binary-tree/)|leetcode_633|
+|1137|[Construct String from Binary Tree](https://lintcode.com/problem/construct-string-from-binary-tree/)|leetcode_606|
 |1153|[string sorting](https://lintcode.com/problem/string-sorting/)|||
 |1162|[Merge Two Binary Trees](https://lintcode.com/problem/merge-two-binary-trees/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/merge_two_binary_tree.py)||
 |1173|[Reverse Words in a String III](https://lintcode.com/problem/reverse-words-in-a-string-iii/)|[C++](https://github.com/pymongo/cpp_learn/blob/master/leetcode/easy/reverse_words_in_a_string_3.cpp)||

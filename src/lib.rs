@@ -1,7 +1,7 @@
 #![feature(is_sorted)]
 #![allow(dead_code)]
 #![allow(clippy::needless_range_loop)]
-#![deny(warnings)]
+// #![deny(warnings)]
 #![doc(html_playground_url = "https://play.rust-lang.org/")]
 mod backtracking;
 mod bfs;
