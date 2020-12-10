@@ -1233,3 +1233,37 @@ fn can_make_arithmetic_progression(mut arr: Vec<i32>) -> bool {
     }
     true
 }
+
+/// https://leetcode.com/problems/lemonade-change/
+fn lemonade_change(bills: Vec<i32>) -> bool {
+    // 面值为20的纸币是最大的，基本没用，不能用于找零
+    let (mut currency_5, mut currency_10) = (0u16, 0u16);
+    for bill in bills {
+        match bill {
+            // 多一张面值为5的纸币
+            5 => currency_5 += 1,
+            10 => {
+                if currency_5 == 0 {
+                    // 不能找零5元
+                    return false;
+                }
+                currency_5 -= 1;
+                currency_10 += 1;
+            },
+            // 难点在这，找零10+5还是找零5+5+5呢?由于面值为5的泛用性更强，能给10找零，所以贪心一点优先找零10的
+            // 因为用5美元找零的场景比用10美元的多，所以优先消耗
+            20 => {
+                if currency_10 > 0 && currency_5 > 0 {
+                    currency_10 -= 1;
+                    currency_5 -= 1;
+                } else if currency_5 >= 3 {
+                    currency_5 -= 3;
+                } else {
+                    return false;
+                }
+            },
+            _ => unreachable!()
+        }
+    }
+    true
+}

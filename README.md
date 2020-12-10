@@ -293,6 +293,7 @@ leetcode_solutions
 |844|[Backspace String Compare](https://leetcode.com/problems/backspace-string-compare/)|[Rust](src/easy/string/backspace_string_compare.rs)||
 |845|[Longest Mountain in Array](https://leetcode.com/problems/longest-mountain-in-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/mountain_array_longest.py)|mountain_array|
 |852|[Peak Index in a Mountain Array](https://leetcode.com/problems/peak-index-in-a-mountain-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/mountain_array_max.py)|mountain_array, binary_search|
+|860|[Lemonade Change](https://leetcode.com/problems/lemonade-change/)|[Rust](src/easy/very_easy.rs)|
 |861|[Score After Flipping Matrix](https://leetcode.com/problems/score-after-flipping-matrix/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/greedy/score_after_flipping_matrix.py)|greedy|
 |867|[Transpose Matrix](https://leetcode.com/problems/transpose-matrix/)|[Rust](src/easy/very_easy.rs), [Go](https://github.com/pymongo/go_leetcode/blob/master/easy/transpose_matrix_test.go), [C++](https://github.com/pymongo/cpp_learn/blob/master/leetcode/easy/transpose_matrix.cpp)|
 |869|[Reordered Power of 2](https://leetcode.com/problems/reordered-power-of-2/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/brain_twists/reordered_power_of_2.py)|permutation|
@@ -310,7 +311,7 @@ leetcode_solutions
 |953|[Verifying an Alien Dictionary](https://leetcode.com/problems/verifying-an-alien-dictionary/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/unclassified/verifying_an_alien_dictionary.py)|
 |973|[K Closest Points to Origin](https://leetcode.com/problems/k-closest-points-to-origin/)|[Rust](src/easy/very_easy.rs)|quick_select|
 |976|[Largest Perimeter Triangle](https://leetcode.com/problems/largest-perimeter-triangle/)|[Rust](src/easy/very_easy.rs)|
-|977|[Squares of a Sorted Array](https://leetcode.com/problems/squares-of-a-sorted-array/)|[Rust](src/easy/array/squares_of_a_sorted_array.rs)||
+|977|[Squares of a Sorted Array](https://leetcode.com/problems/squares-of-a-sorted-array/)|[Rust](src/easy/array/squares_of_a_sorted_array.rs)|
 |1002|[Find Common Characters](https://leetcode.com/problems/find-common-characters/)|[Rust](src/easy/find_common_characters.rs)|
 |1030|[Matrix Cells in Distance Order](https://leetcode.com/problems/matrix-cells-in-distance-order/)|[Rust](src/easy/very_easy.rs)|
 |1038|[Binary Search Tree to Greater Sum Tree](https://leetcode.com/problems/binary-search-tree-to-greater-sum-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/bst_to_gst.py)||
@@ -763,6 +764,7 @@ lintcode_problems
 |1499|[Reordered Power of 2](https://lintcode.com/problem/reordered-power-of-2/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/brain_twists/reordered_power_of_2.py)|permutation|
 |1505|[Find The Number](https://lintcode.com/problem/find-the-number/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/very_easy.py)|
 |1508|[Score After Flipping Matrix](https://lintcode.com/problem/score-after-flipping-matrix/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/greedy/score_after_flipping_matrix.py)|greedy|
+|1509|[Lemonade Change](https://lintcode.com/problem/lemonade-change/)|[Rust](src/easy/very_easy.rs)|
 |1524|[Search in a Binary Search Tree](https://lintcode.com/problem/search-in-a-binary-search-tree/)|leetcode_700|
 |1525|[N-ary Tree Postorder Traversal](https://lintcode.com/problem/n-ary-tree-postorder-traversal/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/n_ary_tree_preorder_postorder.py)||
 |1529|[N-ary Tree Preorder Traversal](https://lintcode.com/problem/n-ary-tree-preorder-traversal/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/n_ary_tree_preorder_postorder.py)||
@@ -779,7 +781,7 @@ lintcode_problems
 |1870|[number of substrings with all zeroes](https://lintcode.com/problem/number-of-substrings-with-all-zeroes/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/number_of_substrings_with_all_zeroes.py)|
 |1872|[Longest Common Subsequence](https://lintcode.com/problem/minimum-cost-to-connect-sticks/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/minimum_cost_to_connect_sticks.py)||
 |1876|[Alien Dictionary(easy)](https://lintcode.com/problem/alien-dictionaryeasy/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/unclassified/verifying_an_alien_dictionary.py)||
-|1901|[Squares of a Sorted Array](https://lintcode.com/problem/squares-of-a-sorted-array/)|||
+|1901|[Squares of a Sorted Array](https://lintcode.com/problem/squares-of-a-sorted-array/)|leetcode_977|
 
 ---
 
