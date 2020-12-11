@@ -1008,8 +1008,8 @@ fn odd_cells(n: i32, m: i32, indices: Vec<Vec<i32>>) -> i32 {
         for i in 0..m {
             mat[i][col] = !mat[i][col];
         }
-        for j in 0..n {
-            mat[row][j] = !mat[row][j];
+        for each_col in mat[row].iter_mut().take(n) {
+            *each_col = !*each_col;
         }
     }
     mat.into_iter()
@@ -1073,7 +1073,10 @@ fn min_cost_to_avoid_repeating_chars(s: String, cost: Vec<i32>) -> i32 {
 
 #[test]
 fn test_minimum_deletion_cost_to_avoid_repeating_letters() {
-    assert_eq!(min_cost_to_avoid_repeating_chars("abaac".into(), vec![1, 2, 3, 4, 5]), 3);
+    assert_eq!(
+        min_cost_to_avoid_repeating_chars("abaac".into(), vec![1, 2, 3, 4, 5]),
+        3
+    );
 }
 
 /// https://leetcode.com/problems/replace-all-s-to-avoid-consecutive-repeating-characters/
@@ -1182,9 +1185,9 @@ fn goal_parser_interpret(command: String) -> String {
             b'G' => {
                 ret.push(b'G');
                 i += 1;
-            },
+            }
             b'(' => {
-                if s[i+1] == b')' {
+                if s[i + 1] == b')' {
                     ret.push(b'o');
                     i += 2;
                 } else {
@@ -1193,7 +1196,7 @@ fn goal_parser_interpret(command: String) -> String {
                     i += 4;
                 }
             }
-            _ => unreachable!()
+            _ => unreachable!(),
         }
     }
     unsafe { String::from_utf8_unchecked(ret) }
@@ -1201,10 +1204,7 @@ fn goal_parser_interpret(command: String) -> String {
 
 #[test]
 fn test_goal_parser_interpret() {
-    const TEST_CASE: [(&str, &str); 2] = [
-        ("()()", "oo"),
-        ("G()(al)", "Goal"),
-    ];
+    const TEST_CASE: [(&str, &str); 2] = [("()()", "oo"), ("G()(al)", "Goal")];
     for &(input, output) in TEST_CASE.iter() {
         assert_eq!(goal_parser_interpret(input.to_string()), output.to_string())
     }
@@ -1227,7 +1227,7 @@ fn can_make_arithmetic_progression(mut arr: Vec<i32>) -> bool {
     arr.sort_unstable();
     let difference = arr[1] - arr[0];
     for i in 2..arr.len() {
-        if arr[i] - arr[i-1] != difference {
+        if arr[i] - arr[i - 1] != difference {
             return false;
         }
     }
@@ -1249,7 +1249,7 @@ fn lemonade_change(bills: Vec<i32>) -> bool {
                 }
                 currency_5 -= 1;
                 currency_10 += 1;
-            },
+            }
             // 难点在这，找零10+5还是找零5+5+5呢?由于面值为5的泛用性更强，能给10找零，所以贪心一点优先找零10的
             // 因为用5美元找零的场景比用10美元的多，所以优先消耗
             20 => {
@@ -1261,9 +1261,24 @@ fn lemonade_change(bills: Vec<i32>) -> bool {
                 } else {
                     return false;
                 }
-            },
-            _ => unreachable!()
+            }
+            _ => unreachable!(),
         }
     }
     true
+}
+
+/// https://leetcode.com/problems/arithmetic-slices/
+fn number_of_arithmetic_slices(a: Vec<i32>) -> i32 {
+    let mut ret = 0;
+    let mut continues_arithmetic_len = 0;
+    for i in 2..a.len() {
+        if a[i - 1] - a[i - 2] == a[i] - a[i - 1] {
+            continues_arithmetic_len += 1
+        } else {
+            ret += continues_arithmetic_len * (continues_arithmetic_len + 1) / 2;
+            continues_arithmetic_len = 0;
+        }
+    }
+    ret + continues_arithmetic_len * (continues_arithmetic_len + 1) / 2
 }

@@ -1,10 +1,13 @@
-//! https://codeforces.com/problemset/problem/71/A
+/*! https://codeforces.com/problemset/problem/71/A
+在英语中通常会将很长的单词进行缩写，其中有一种缩写方法是: 首字母+中间有几个字母+尾字母
+例如 kubernetes 开头字母是k，结尾字母是s，k和s中间有8个字母，所以缩写成k8s
+例如 internationalization 开头字母i和结尾字母n中间有18个字母，所以缩写成i18n
+*/
 
-fn solution<R, W>(reader: R, mut writer: W) -> Result<(), Box<dyn std::error::Error>>
-where
-    R: std::io::BufRead,
-    W: std::io::Write,
-{
+fn solution(
+    reader: impl std::io::BufRead,
+    mut writer: impl std::io::Write,
+) -> Result<(), Box<dyn std::error::Error>> {
     let mut input: Vec<String> = Vec::new();
     for line in reader.lines() {
         if let Ok(str) = line {
@@ -41,9 +44,6 @@ const TEST_CASES: [(&[u8], &[u8]); 1] = [(
 
 #[test]
 fn test_solution() {
-    if cfg!(windows) {
-        panic!("This unittest is using LF line_separator, should assertion failed in windows");
-    }
     for &(input, expected_output) in &TEST_CASES {
         let mut output = Vec::new();
         solution(input, &mut output).unwrap();

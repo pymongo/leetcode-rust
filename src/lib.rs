@@ -1,8 +1,10 @@
 #![feature(is_sorted)]
 #![allow(dead_code)]
-#![allow(clippy::needless_range_loop)]
+// #![allow(clippy::needless_range_loop)]
 // #![deny(warnings)]
 #![doc(html_playground_url = "https://play.rust-lang.org/")]
+extern crate core;
+
 mod backtracking;
 mod bfs;
 mod binary_search;

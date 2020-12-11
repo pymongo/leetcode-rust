@@ -2,7 +2,9 @@
 use super::ListNode;
 
 fn insertion_sort_list(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
-    if head.is_none() { return head; }
+    if head.is_none() {
+        return head;
+    }
     let mut dummy = Some(Box::new(ListNode { val: 0, next: head }));
     let mut last_sorted = &mut dummy.as_mut()?.next as *mut Option<Box<ListNode>>;
     unsafe {

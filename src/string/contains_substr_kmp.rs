@@ -9,7 +9,10 @@ const TEST_CASES: [(&str, &str, i32); 3] =
 #[test]
 fn test_kmp() {
     for &(source, target, expected) in TEST_CASES.iter() {
-        assert_eq!(dirty_solution(source.to_string(), target.to_string()), expected);
+        assert_eq!(
+            dirty_solution(source.to_string(), target.to_string()),
+            expected
+        );
     }
 }
 

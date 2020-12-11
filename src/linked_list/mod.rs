@@ -14,16 +14,15 @@ array is a 'random access data structure'
 所以数组是随机访问数据结构，而链表是非随机访问数据结构
 
 ## Rust链表可以用dummyHead去遍历也可以不用
-
 */
 mod add_two_linked_list;
+mod insertion_sort_linked_list;
 mod linked_list_is_palindrome;
 mod merge_two_sorted_linked_list;
 mod middle_of_linked_list;
 mod reverse_linked_list;
 mod reverse_linked_list_2;
 mod swap_nodes_in_pairs;
-mod insertion_sort_linked_list;
 
 /// non-interest single_linked_list Node
 #[derive(PartialEq, Eq, Clone, Debug)]
@@ -36,6 +35,12 @@ impl ListNode {
     #[inline]
     fn new(val: i32) -> Self {
         ListNode { next: None, val }
+    }
+}
+
+impl std::fmt::Display for ListNode {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{:?}", linked_list_to_vec(&Some(Box::new(self.clone()))))
     }
 }
 
