@@ -1,9 +1,8 @@
-/*! https://codeforces.com/problemset/problem/71/A
-在英语中通常会将很长的单词进行缩写，其中有一种缩写方法是: 首字母+中间有几个字母+尾字母
-例如 kubernetes 开头字母是k，结尾字母是s，k和s中间有8个字母，所以缩写成k8s
-例如 internationalization 开头字母i和结尾字母n中间有18个字母，所以缩写成i18n
+/** https://codeforces.com/problemset/problem/71/A
+在英语中有一种将很长的单词缩写方法是: 首字母+中间有几个字母+尾字母
+例如 kubernetes 开头k结尾s，k和s中间有8个字母，所以缩写成k8s
+例如 internationalization 开头i结尾n中间18个字母，缩写成i18n
 */
-
 fn solution(
     reader: impl std::io::BufRead,
     mut writer: impl std::io::Write,

@@ -10,6 +10,7 @@ codeforces_solutions
 |[1A - Theatre Square](https://codeforces.com/problemset/problem/1/A)|[Rust](examples/codeforces_easy_problems.rs)|
 |[4A - Watermelon](https://codeforces.com/problemset/problem/4/A)|[Rust](examples/codeforces_easy_problems.rs)|
 |[71A - Way Too Long Words](https://codeforces.com/problemset/problem/71/A)|[Rust](examples/codeforces_easy_problems.rs)|
+|[231A - Team](https://codeforces.com/problemset/problem/231/A)|[Rust](examples/codeforces_easy_problems.rs)|
 
 leetcode_solutions
 ===
