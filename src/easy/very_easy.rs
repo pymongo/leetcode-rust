@@ -510,42 +510,6 @@ fn plus_one(mut digits: Vec<i32>) -> Vec<i32> {
     digits
 }
 
-#[cfg(FALSE)]
-/// https://leetcode.com/problems/random-pick-index/
-/// 应对很长的无法全部存入内存的数组online data，正统做法应该用: 蓄水池抽样(Random Reservoir Sampling)
-struct RandomPickIndex {
-    rand_thread_rng: rand::rngs::ThreadRng,
-    index: std::collections::HashMap<i32, Vec<i32>>,
-}
-
-#[cfg(FALSE)]
-impl RandomPickIndex {
-    fn new(nums: Vec<i32>) -> Self {
-        let mut nums_index = std::collections::HashMap::new();
-        for (i, num) in nums.into_iter().enumerate() {
-            nums_index
-                .entry(num)
-                .or_insert_with(Vec::new)
-                .push(i as i32);
-        }
-        Self {
-            rand_thread_rng: rand::thread_rng(),
-            index: nums_index,
-        }
-    }
-
-    /// 如果nums中存在多个target，则等概率地随机返回一个满足nums[i]=target的下标i
-    fn pick(&mut self, target: i32) -> i32 {
-        use rand::seq::SliceRandom;
-        *self
-            .index
-            .get(&target)
-            .unwrap()
-            .choose(&mut self.rand_thread_rng)
-            .unwrap()
-    }
-}
-
 /// https://leetcode.com/problems/defanging-an-ip-address/
 fn defanging_an_ip_address(address: String) -> String {
     address.replace(".", "[.]")

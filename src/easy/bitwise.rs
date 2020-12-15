@@ -34,6 +34,7 @@ fn hamming_distance(x: i32, y: i32) -> i32 {
 /// https://leetcode.com/problems/number-of-1-bits/
 /// Rust: n.count_ones(), Java: Integer.bitCount(n)
 fn hamming_weight(n: u32) -> i32 {
+    n.count_ones();
     fn impl_count_ones_best(n: u32) -> i32 {
         let mut count = 0;
         let mut mask = 0b1;

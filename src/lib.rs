@@ -16,3 +16,4 @@ mod linked_list;
 mod special_data_structure;
 mod string;
 mod union_find;
+mod random;
