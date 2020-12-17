@@ -133,17 +133,6 @@ fn can_form_array(arr: Vec<i32>, pieces: Vec<Vec<i32>>) -> bool {
     true
 }
 
-/// https://leetcode.com/problems/sort-integers-by-the-number-of-1-bits/
-fn sort_by_bits(mut arr: Vec<i32>) -> Vec<i32> {
-    // arr.sort_by_cached_key(|&x| (x.count_ones, x));
-    arr.sort_unstable_by(|a, b| {
-        // 下面这行加起来的算法还不如不加呢，lazy一点只有当a和b的count_ones相同的时候才继续往后比较
-        // (a.count_ones() as i32 + a).cmp(&(b.count_ones() as i32 + b))
-        a.count_ones().cmp(&b.count_ones()).then(a.cmp(b))
-    });
-    arr
-}
-
 /// https://leetcode.com/problems/widest-vertical-area-between-two-points-containing-no-points/
 fn max_width_of_vertical_area(points: Vec<Vec<i32>>) -> i32 {
     // points.sort_unstable_by(|a, b| a[0].cmp(&b[0]));
@@ -1245,4 +1234,31 @@ fn number_of_arithmetic_slices(a: Vec<i32>) -> i32 {
         }
     }
     ret + continues_arithmetic_len * (continues_arithmetic_len + 1) / 2
+}
+
+/// https://leetcode.com/problems/destination-city/
+/// 找出无环图中的终点(出度为0的点)
+/// 还有种解法是把所有起点做成HashSet再遍历找到not contains的终点，则为第一个出度为0的点
+fn dest_city(paths: Vec<Vec<String>>) -> String {
+    let mut outdegree = std::collections::HashMap::<String, u8>::with_capacity(paths.len());
+    for path in paths.into_iter() {
+        let mut it = path.into_iter().take(2);
+        *outdegree.entry(it.next().unwrap()).or_default() += 1;
+        outdegree.entry(it.next().unwrap()).or_default();
+    }
+    for (city, outdegree) in outdegree.into_iter() {
+        if outdegree == 0 {
+            return city;
+        }
+    }
+    unreachable!()
+}
+
+#[test]
+fn t() {
+    dest_city(vec![
+        vec!["B".to_string(), "C".to_string()],
+        vec!["D".to_string(), "B".to_string()],
+        vec!["C".to_string(), "A".to_string()],
+    ]);
 }

@@ -20,4 +20,3 @@ mod string;
 mod two_sum;
 mod unique_path;
 mod very_easy;
-mod random;

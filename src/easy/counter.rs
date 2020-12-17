@@ -21,17 +21,17 @@ fn num_identical_pairs(nums: Vec<i32>) -> i32 {
 
 /// 以下都是number_of_good_pairs不断迭代的过程(counter算法的几重境界)
 fn number_of_good_pairs_v1(nums: Vec<i32>) -> i32 {
-    let mut counter = std::collections::HashMap::new();
+    let mut counter = std::collections::HashMap::<i32, i32>::new();
     for &num in nums.iter() {
-        *counter.entry(num).or_insert(0) += 1;
+        *counter.entry(num).or_default() += 1;
     }
     counter.iter().map(|(_k, &v)| (v - 1) * v / 2).sum()
 }
 
 fn number_of_good_pairs_v2(nums: Vec<i32>) -> i32 {
-    let mut counter = std::collections::HashMap::with_capacity(nums.len());
+    let mut counter = std::collections::HashMap::<i32, i32>::with_capacity(nums.len());
     for num in nums.into_iter() {
-        *counter.entry(num).or_insert(0) += 1;
+        *counter.entry(num).or_default() += 1;
     }
     counter.into_iter().map(|(_k, v)| (v - 1) * v / 2).sum()
 }
@@ -44,9 +44,9 @@ fn number_of_good_pairs_v2(nums: Vec<i32>) -> i32 {
 2. (V-1)*v两个u8相乘可能会超过255
 */
 fn number_of_good_pairs_v3(nums: Vec<i32>) -> i32 {
-    let mut counter = std::collections::HashMap::with_capacity(nums.len());
+    let mut counter = std::collections::HashMap::<i32, u8>::with_capacity(nums.len());
     for num in nums.into_iter() {
-        *counter.entry(num).or_insert(0u8) += 1;
+        *counter.entry(num).or_default() += 1;
     }
     counter
         .into_iter()
@@ -74,11 +74,11 @@ fn first_unique_char(s: String) -> i32 {
 fn group_anagrams(strs: Vec<String>) -> Vec<Vec<String>> {
     let mut group = std::collections::HashMap::new();
     for s in strs.into_iter() {
-        let mut counter = [0u8; 26]; // 0 <= strs[i].length <= 100
+        let mut counter = [0u8; 26];
         for &byte in s.as_bytes() {
             counter[(byte - b'a') as usize] += 1;
         }
-        group.entry(counter).or_insert_with(Vec::new).push(s)
+        group.entry(counter).or_insert_with(Vec::new).push(s);
     }
     // same as nightly `into_values` API: consume HashMap and get a vec of values
     group.into_iter().map(|(_k, v)| v).collect()
@@ -91,7 +91,7 @@ fn top_k_frequent(nums: Vec<i32>, k: i32) -> Vec<i32> {
     let n = nums.len();
     let mut counter = std::collections::HashMap::<i32, i32>::with_capacity(n);
     for &num in &nums {
-        *counter.entry(num).or_insert(0) += 1;
+        *counter.entry(num).or_default() += 1;
     }
     // 小根堆: (-出现次数, 数字)，所以堆顶会是出现次数最低的数字，随时可以被别人挤掉
     let mut heap = std::collections::BinaryHeap::<(i32, i32)>::with_capacity(k);

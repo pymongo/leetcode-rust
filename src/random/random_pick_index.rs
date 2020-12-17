@@ -33,7 +33,7 @@ impl RandomPickIndex {
             count += 1;
             // 蓄水池抽样: 以1/n的概率更新return_value(留下当前的数据) 或 (n-1)/n不更新return_value(继续用之前的ret的值)
             // n为数据流(online_data,stream_data)中过去数据里值等于target的个数(也就是count变量)
-            if unsafe {rand()} % count == 0 {
+            if unsafe { rand() } % count == 0 {
                 ret = i;
             }
         }
@@ -58,15 +58,13 @@ impl RandomPickIndexCounterSolution1 {
         unsafe {
             srand(time(&mut std::mem::zeroed()) as u32);
         }
-        Self {
-            nums_index,
-        }
+        Self { nums_index }
     }
 
     /// 如果nums中存在多个target，则等概率地随机返回一个满足nums[i]=target的下标i
     fn pick(&mut self, target: i32) -> i32 {
         let candidates = self.nums_index.get(&target).unwrap();
-        let random_number = unsafe {rand()};
+        let random_number = unsafe { rand() };
         candidates[random_number as usize % (candidates.len() + 1)]
     }
 }

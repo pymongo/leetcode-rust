@@ -339,7 +339,7 @@ leetcode_solutions
 |1329|[Sort The Matrix Diagonally](https://leetcode.com/problems/sort-the-matrix-diagonally/)|[Rust](src/easy/matrix_diagonal_traverse.rs)|
 |1342|[Number of Steps to Reduce a Number to Zero](https://leetcode.com/problems/number-of-steps-to-reduce-a-number-to-zero/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/number_of_steps_to_reduce_a_number_to_zero.py)|
 |1351|[Count Negative Numbers in a Sorted Matrix](https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix/)|[Rust](src/easy/count_negative_numbers_in_a_sorted_matrix.rs)|
-|1356|[Sort Integers by The Number of 1 Bits](https://leetcode.com/problems/sort-integers-by-the-number-of-1-bits/)|[Rust](src/easy/very_easy.rs)|
+|1356|[Sort Integers by The Number of 1 Bits](https://leetcode.com/problems/sort-integers-by-the-number-of-1-bits/)|[Rust](src/easy/bitwise.rs)|
 |1365|[How Many Numbers Are Smaller Than the Current Number](https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/how_many_numbers_are_smaller_than_current.py)|[Rust](src/easy/array/how_many_numbers_are_smaller_than_the_current_number.rs)|前缀和|
 |1370|[Increasing Decreasing String](https://leetcode.com/problems/increasing-decreasing-string/)|[Rust](src/easy/counter.rs)|
 |1374|[Generate a String With Characters That Have Odd Counts](https://leetcode.com/problems/generate-a-string-with-characters-that-have-odd-counts/)|[Rust](src/easy/counter.rs)|
@@ -349,6 +349,7 @@ leetcode_solutions
 |1409|[Queries on a Permutation With Key](https://leetcode.com/problems/queries-on-a-permutation-with-key/)|[Rust](src/easy/array/queries_on_a_permutation_with_key.rs)||
 |1429🔒|[First Unique Number](https://leetcode.com/problems/first-unique-number/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/first_unique_number_in_stream.py)|
 |1431|[Kids With the Greatest Number of Candies](https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/)|[Rust](src/easy/very_easy.rs)|
+|1436|[Destination City](https://leetcode.com/problems/destination-city/)|[Rust](src/easy/very_easy.rs)|
 |1450|[Number of Students Doing Homework at a Given Time](https://leetcode.com/problems/number-of-students-doing-homework-at-a-given-time/)|[Rust](src/easy/very_easy.rs)|
 |1464|[Maximum Product of Two Elements in an Array](https://leetcode.com/problems/maximum-product-of-two-elements-in-an-array/)|[Rust](src/easy/very_easy.rs)|
 |1470|[Shuffle the Array](https://leetcode.com/problems/shuffle-the-array/)|[Rust](src/easy/very_easy.rs)|
