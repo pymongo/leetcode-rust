@@ -106,6 +106,7 @@ mod count_ones {
 
 /**
 |136|[Single Number](https://leetcode.com/problems/single-number/)
+|137|[Single Number II](https://leetcode.com/problems/single-number-ii/)
 |389|[Find The Difference](https://leetcode.com/problems/find-the-difference/)
 */
 mod find_single_number {
@@ -121,6 +122,15 @@ mod find_single_number {
         // leetcode的Rust版本太低，还没有bitxor API(或者需要`use std::ops::BitXor;`)
         // nums.into_iter().fold(0, |a, b| a.bitxor(b))
         nums.into_iter().fold(0, |a, b| a ^ b)
+    }
+
+    /// single_number_2的bitwise解法要用状态机去理解，不方便背诵
+    fn single_number_2_sum_solution(nums: Vec<i32>) -> i32 {
+        let nums_set: std::collections::HashSet<i64> =
+            nums.clone().into_iter().map(|num| num as i64).collect();
+        let nums_set_sum = nums_set.into_iter().sum::<i64>();
+        let nums_sum = nums.into_iter().map(|num| num as i64).sum::<i64>();
+        ((nums_set_sum * 3 - nums_sum) / 2) as i32
     }
 
     fn find_the_difference_counter_solution(s: String, t: String) -> char {
