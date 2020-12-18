@@ -107,6 +107,7 @@ mod count_ones {
 /**
 |136|[Single Number](https://leetcode.com/problems/single-number/)
 |137|[Single Number II](https://leetcode.com/problems/single-number-ii/)
+|260|[Single Number III](https://leetcode.com/problems/single-number-iii/)|
 |389|[Find The Difference](https://leetcode.com/problems/find-the-difference/)
 */
 mod find_single_number {
@@ -131,6 +132,23 @@ mod find_single_number {
         let nums_set_sum = nums_set.into_iter().sum::<i64>();
         let nums_sum = nums.into_iter().map(|num| num as i64).sum::<i64>();
         ((nums_set_sum * 3 - nums_sum) / 2) as i32
+    }
+
+    fn single_number_3_counter_solution(nums: Vec<i32>) -> Vec<i32> {
+        let mut counter = std::collections::HashMap::with_capacity(nums.len());
+        for num in nums.into_iter() {
+            *counter.entry(num).or_insert(0u16) += 1;
+        }
+        let mut ret = Vec::with_capacity(2);
+        for (num, count) in counter.into_iter() {
+            if count == 1 {
+                ret.push(num);
+                if ret.len() == 2 {
+                    return ret;
+                }
+            }
+        }
+        unreachable!()
     }
 
     fn find_the_difference_counter_solution(s: String, t: String) -> char {

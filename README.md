@@ -123,6 +123,7 @@ leetcode_solutions
 |133|[Clone Graph](https://leetcode.com/problems/clone-graphs/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/graph/clone_graph.py)|DFS, BFS|
 |134|[Gas Station](https://leetcode.com/problems/gas-station/)|[Rust](src/greedy/gas_station.rs)|
 |136|[Single Number](https://leetcode.com/problems/single-number/)|[Rust](src/easy/bitwise.rs)|
+|137|[Single Number II](https://leetcode.com/problems/single-number-ii/)|[Rust](src/easy/bitwise.rs)|
 |138|[Copy List with Random Pointer](https://leetcode.com/problems/copy-list-with-random-pointer/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/graph/clone_linked_list_with_random_ptr.py)||
 |139|[Word Break](https://leetcode.com/problems/word-break/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/backpack_4_word_break_coin_change.py)|完全背包问题|
 |140|[Word Break II](https://leetcode.com/problems/word-break-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/word_break_2.py)||
@@ -184,6 +185,7 @@ leetcode_solutions
 |240|[Search a 2D Matrix II](https://leetcode.com/problems/search-a-2d-matrix-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/search_a_2d_matrix_2.py)|
 |242|[Valid Anagram](https://leetcode.com/problems/valid-anagram/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/valid_anagram.py)||
 |257|[Binary Tree Paths](https://leetcode.com/problems/binary-tree-paths/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/root_to_leaf_paths_find_all.py)|DFS, backtracking|
+|260|[Single Number III](https://leetcode.com/problems/single-number-iii/)|[Rust](src/easy/bitwise.rs)|
 |263|[Ugly Number](https://leetcode.com/problems/ugly-number/)|[Rust](src/easy/very_easy.rs)|
 |264|[Ugly Number II](https://leetcode.com/problems/ugly-number-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/unclassified/ugly_number_2_nth_ugly.py)|
 |266🔒|[Palindrome Permutation](https://leetcode.com/problems/palindrome-permutation/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/palindrome/palindrome_permutation.py)|greedy|
@@ -471,6 +473,8 @@ lintcode_problems
 |79|[Longest Common Substring](https://lintcode.com/problem/longest-common-substring/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/longest_common_substring.py)||
 |80|[Median](https://lintcode.com/problem/median/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/sorting_and_query/quick_select_kth_largest.py)|quick_select|
 |82|[Single Number](https://lintcode.com/problem/single-number/)|leetcode_136|
+|83|[Single Number II](https://lintcode.com/problem/single-number-ii/)|leetcode_137|
+|84|[Single Number III](https://lintcode.com/problem/single-number-iii/)|leetcode_260|
 |86|[Binary Search Tree Iterator](https://lintcode.com/problem/binary-search-tree-iterator/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/bst_in_order_iterator.py)||
 |88|[Lowest Common Ancestor of a Binary Tree](https://lintcode.com/problem/lowest-common-ancestor-of-a-binary-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/binary_tree_lowest_common_ancestor.py)|divide_and_conquer|
 |90|[k Sum II](https://lintcode.com/problem/k-sum-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/k_sum_2.py)||
