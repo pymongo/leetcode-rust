@@ -104,6 +104,54 @@ mod count_ones {
     }
 }
 
-fn hamming_weight(n: u32) -> i32 {
-    n.count_ones() as i32
+/**
+|136|[Single Number](https://leetcode.com/problems/single-number/)
+|389|[Find The Difference](https://leetcode.com/problems/find-the-difference/)
+*/
+mod find_single_number {
+    /// nums是一个长度为2n+1的的数组，有其中一个元素出现了一次，其余元素都是出现了两次
+    /// 利用数学运算规律: (sum_all_other+single)*2 - (sum_all_other*2+single) = single
+    fn single_number_sum_solution(nums: Vec<i32>) -> i32 {
+        let nums_set: std::collections::HashSet<i32> = nums.clone().into_iter().collect();
+        nums_set.into_iter().sum::<i32>() * 2 - nums.into_iter().sum::<i32>()
+    }
+
+    /// 利用异或规律: A^B^A = A^A^B = 0^B = B
+    fn single_number_xor_solution(nums: Vec<i32>) -> i32 {
+        // leetcode的Rust版本太低，还没有bitxor API(或者需要`use std::ops::BitXor;`)
+        // nums.into_iter().fold(0, |a, b| a.bitxor(b))
+        nums.into_iter().fold(0, |a, b| a ^ b)
+    }
+
+    fn find_the_difference_counter_solution(s: String, t: String) -> char {
+        let mut counter = [0u16; 26];
+        for each in s.into_bytes().into_iter() {
+            counter[(each - b'a') as usize] += 1;
+        }
+        for each in t.into_bytes().into_iter() {
+            let idx = (each - b'a') as usize;
+            match counter[idx].checked_sub(1) {
+                Some(new_val) => counter[idx] = new_val,
+                None => return each as char,
+            }
+        }
+        for (i, each) in counter.iter().enumerate() {
+            if each.eq(&1) {
+                return (i as u8 + b'a') as char;
+            }
+        }
+        unreachable!()
+    }
+
+    fn find_the_difference_sum_solution(s: String, t: String) -> char {
+        (t.into_bytes().into_iter().sum::<u8>() - s.into_bytes().into_iter().sum::<u8>()) as char
+    }
+
+    fn find_the_difference_xor_solution(s: String, t: String) -> char {
+        s.into_bytes()
+            .into_iter()
+            .chain(t.into_bytes().into_iter())
+            .fold(0, |a, b| a ^ b)
+            .into()
+    }
 }

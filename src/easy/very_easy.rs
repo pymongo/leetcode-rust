@@ -2,6 +2,8 @@
 - [剑指Offer 17. 打印从1到最大n位的十进制数]: (1..10i32.pow(n as u32)).collect()
 */
 
+use std::ops::BitXor;
+
 /** https://leetcode.com/problems/shuffle-the-array/
 数组nums按 \[x1,x2,...,xn,y1,y2,...,yn] 的格式排列
 请你将数组按 [x1,y1,x2,y2,...,xn,yn] 格式重新排列
