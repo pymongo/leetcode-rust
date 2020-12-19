@@ -109,6 +109,7 @@ fn top_k_frequent(nums: Vec<i32>, k: i32) -> Vec<i32> {
 }
 
 /// https://leetcode.com/problems/increasing-decreasing-string/
+#[allow(clippy::needless_range_loop)]
 fn sort_string(s: String) -> String {
     let n = s.len();
     let mut counter = [0u8; 26];
@@ -181,4 +182,37 @@ fn unique_occurrences(arr: Vec<i32>) -> bool {
 fn test_unique_occurrences() {
     assert_eq!(unique_occurrences(vec![1, 2, 2, 1, 1, 3]), true);
     assert_eq!(unique_occurrences(vec![1, 2]), false);
+}
+
+/// https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/
+/// 前缀和还有一个应用是币币交易撮合引擎的orderbook深度展示
+fn smaller_numbers_than_current_prefix_sum_solution(nums: Vec<i32>) -> Vec<i32> {
+    let mut prefix_sum_counter = [0i32; 101];
+    for &num in &nums {
+        prefix_sum_counter[num as usize] += 1;
+    }
+    for i in 1..=100 {
+        prefix_sum_counter[i] += prefix_sum_counter[i - 1];
+    }
+
+    let mut res = Vec::with_capacity(nums.len());
+    for num in nums {
+        if num == 0 {
+            res.push(0);
+        } else {
+            res.push(prefix_sum_counter[(num - 1) as usize]);
+        }
+    }
+    res
+}
+
+#[test]
+fn test_smaller_numbers_than_current() {
+    const TEST_CASES: [(&[i32], &[i32]); 1] = [(&[8, 1, 2, 2, 3], &[4, 0, 1, 1, 3])];
+    for &(nums, output) in &TEST_CASES {
+        assert_eq!(
+            smaller_numbers_than_current_prefix_sum_solution(nums.to_vec()),
+            output.to_vec()
+        );
+    }
 }

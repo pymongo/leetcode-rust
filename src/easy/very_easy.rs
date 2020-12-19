@@ -167,6 +167,7 @@ fn min_time_to_visit_all_points(points: Vec<Vec<i32>>) -> i32 {
 
 /// https://leetcode.com/problems/max-increase-to-keep-city-skyline/
 /// 大意: 先算出旧矩阵每行每列的最大值，然后遍历矩阵看看当前值最大能加到什么，然后累加最大能增加的量
+#[allow(clippy::needless_range_loop)]
 fn max_increase_keeping_skyline(grid: Vec<Vec<i32>>) -> i32 {
     let (m, n) = (grid.len(), grid[0].len());
     let mut max_row: Vec<i32> = Vec::with_capacity(m);
@@ -189,30 +190,6 @@ fn max_increase_keeping_skyline(grid: Vec<Vec<i32>>) -> i32 {
         }
     }
     ret
-}
-
-/// https://leetcode.com/problems/set-matrix-zeroes/
-/// 需求: 如果矩阵的某个元素为0，则将0所在行和所在列的全部元素置0
-/// 注意: 要先遍历一次矩阵，发现哪些坐标是0，然后再将相应行和列置零，不能一边遍历一边置零否则会污染后面的元素
-fn set_zeroes(matrix: &mut Vec<Vec<i32>>) {
-    let (m, n) = (matrix.len(), matrix[0].len());
-    // 已经设成全为0的行和列
-    let (mut zero_row, mut zero_col) = (vec![false; m], vec![false; n]);
-    for i in 0..m {
-        for j in 0..n {
-            if matrix[i][j] == 0 {
-                zero_row[i] = true;
-                zero_col[j] = true;
-            }
-        }
-    }
-    for i in 0..m {
-        for j in 0..n {
-            if zero_row[i] || zero_col[j] {
-                matrix[i][j] = 0;
-            }
-        }
-    }
 }
 
 /// https://leetcode.com/problems/maximum-nesting-depth-of-the-parentheses/
@@ -367,46 +344,6 @@ fn find_closest_elements(mut arr: Vec<i32>, k: i32, x: i32) -> Vec<i32> {
     arr
 }
 
-/// https://leetcode.com/problems/matrix-diagonal-sum/
-/// 本题仅要求算两条主对角线，既↘和↙两个方向的最长对角线
-fn matrix_diagonal_sum(mat: Vec<Vec<i32>>) -> i32 {
-    let n = mat.len();
-    let mut ret = 0;
-
-    for j in 0..n {
-        // 累加左上-右下对角线
-        ret += mat[n - j - 1][j];
-        // 累加左下-右上对角线
-        ret += mat[j][j];
-    }
-
-    // 如果是矩阵长度为奇数，则中间元素会被重复计算，需要去掉
-    if n % 2 == 1 {
-        ret -= mat[n / 2][n / 2];
-    }
-
-    ret
-}
-
-#[test]
-fn test_diagonal_sum() {
-    const TEST_CASES: [(&[&[i32]], i32); 2] = [
-        (
-            &[&[1, 1, 1, 1], &[1, 1, 1, 1], &[1, 1, 1, 1], &[1, 1, 1, 1]],
-            8,
-        ),
-        (&[&[5]], 5),
-    ];
-    for &(mat, res) in &TEST_CASES {
-        let n = mat.len();
-        let mut mat_vec = Vec::with_capacity(n);
-        for &row in mat {
-            mat_vec.push(row.to_vec());
-        }
-        assert_eq!(matrix_diagonal_sum(mat_vec), res);
-    }
-}
-
 /// https://leetcode.com/problems/height-checker/
 /// 同学们按身高升序排列，统计未站在正确位置的学生数
 fn height_checker(heights: Vec<i32>) -> i32 {
@@ -526,6 +463,7 @@ fn test_busy_student() {
 
 /// https://leetcode.com/problems/transpose-matrix/
 /// return [list(i) for i in zip(*a)]
+#[allow(clippy::needless_range_loop)]
 fn transpose_matrix(a: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
     let (m, n) = (a.len(), a[0].len());
     let mut ret = Vec::with_capacity(n);
@@ -639,7 +577,7 @@ fn xor_operation(n: i32, start: i32) -> i32 {
     (start..).step_by(2).take(n as usize).fold(0, |a, b| a ^ b)
 }
 
-/// https://leetcode.com/problems/create-target-array-in-the-given-order/submissions/
+/// https://leetcode.com/problems/create-target-array-in-the-given-order/
 fn create_target_array(nums: Vec<i32>, index: Vec<i32>) -> Vec<i32> {
     let n = nums.len();
     let mut ret = Vec::with_capacity(n);
@@ -681,7 +619,7 @@ fn kids_with_candies(candies: Vec<i32>, extra_candies: i32) -> Vec<bool> {
     ret
 }
 
-/// https://leetcode.com/problems/range-sum-query-immutable/submissions/
+/// https://leetcode.com/problems/range-sum-query-immutable/
 struct RangeSumOffline {
     prefix_sum: Vec<i32>,
 }
@@ -821,6 +759,7 @@ fn contains_duplicate(nums: Vec<i32>) -> bool {
 
 /// https://leetcode.com/problems/contains-duplicate-2/
 /// 一个长度为k的窗口内，是否存在重复元素
+#[allow(clippy::needless_range_loop)]
 fn contains_nearby_duplicate(nums: Vec<i32>, k: i32) -> bool {
     if k == 0 {
         return false;
@@ -958,11 +897,11 @@ fn odd_cells(n: i32, m: i32, indices: Vec<Vec<i32>>) -> i32 {
     let mut mat = vec![vec![false; n]; m];
     for indice in indices.into_iter() {
         let (row, col) = (indice[0] as usize, indice[1] as usize);
-        for i in 0..m {
-            mat[i][col] = !mat[i][col];
+        for row in mat.iter_mut().take(m) {
+            row[col] = !row[col];
         }
-        for each_col in mat[row].iter_mut().take(n) {
-            *each_col = !*each_col;
+        for each in mat[row].iter_mut().take(n) {
+            *each = !*each;
         }
     }
     mat.into_iter()
@@ -981,12 +920,64 @@ fn flip_and_invert_image(mut a: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
 
 /// https://leetcode.com/problems/shuffle-string/
 /// 能不能用In-Place的swap操作完成重排？我联想到rotate_string那题教室换座位的情况，A的新座位在B，A挤到B的slot，把B挤出教室，然后B再去挤自己的新座位...
-fn restore_string(s: String, indices: Vec<i32>) -> String {
+fn shuffle_string_normal_solution(s: String, indices: Vec<i32>) -> String {
     let mut ret = vec![0u8; s.len()];
     for (i, byte) in indices.into_iter().zip(s.into_bytes().into_iter()) {
         ret[i as usize] = byte;
     }
     unsafe { String::from_utf8_unchecked(ret) }
+}
+
+// #[test]
+// fn t() {
+//     let mut a = vec![1,2,3];
+//     let mut b = 4i32;
+//     std::mem::swap(&mut a[0], &mut b);
+//     dbg!(a, b);
+// }
+
+/**
+codeleet
+lodeceet 换来的l之前下标是4，正好是indices[0]指示的正确下标值，所以这轮结束
+*/
+fn shuffle_string_in_place_solution(s: String, indices: Vec<i32>) -> String {
+    let mut s = s.into_bytes();
+    let mut indices: Vec<usize> = indices.into_iter().map(|x| x as usize).collect();
+    let len = s.len();
+    for i in 0..len {
+        // 当前遍历到的数组下标i不在正确的位置上
+        if indices[i] != i {
+            // 放到了错误位置的字符ch(unallocated_char)
+            let mut ch = s[i];
+            // ch的正确位置
+            let mut ch_correct_idx = indices[i];
+            while ch_correct_idx != i {
+                std::mem::swap(&mut s[ch_correct_idx], &mut ch);
+                // ch被放到正确位置后，将indices[ch_correct_idx]标记成已修正(indices[i]=i时表示s[i]已修正)
+                // 迭代:
+                //     ch=s[ch_correct_idx](相当于换座位场景A的新座位是B，A把B的桌子移到走廊，此时待分配的ch就变成B)
+                //     ch_correct_idx = indices[indices[ch_correct_idx]]
+                std::mem::swap(&mut indices[ch_correct_idx], &mut ch_correct_idx);
+            }
+            // 此时的ch的正确位置是i
+            s[i] = ch;
+            // 将下标i标记成已修正
+            indices[i] = i;
+        }
+    }
+    unsafe { String::from_utf8_unchecked(s) }
+}
+
+#[test]
+fn test_() {
+    const TEST_CASES: [(&str, &[i32], &str); 1] =
+        [("codeleet", &[4, 5, 6, 7, 0, 2, 1, 3], "leetcode")];
+    for &(s, indices, expected) in TEST_CASES.iter() {
+        assert_eq!(
+            shuffle_string_in_place_solution(s.to_string(), indices.to_vec()),
+            expected
+        );
+    }
 }
 
 /// https://leetcode.com/problems/jewels-and-stones/
@@ -1117,7 +1108,7 @@ fn test_first_bad_version() {
     }
 }
 
-/// https://leetcode.com/problems/minimum-operations-to-make-array-equal/submissions/
+/// https://leetcode.com/problems/minimum-operations-to-make-array-equal/
 fn min_operations(n: i32) -> i32 {
     (1..)
         .step_by(2)

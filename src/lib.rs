@@ -1,15 +1,12 @@
-#![feature(is_sorted)]
-#![feature(asm)]
+#![feature(is_sorted, asm)]
 #![allow(dead_code)]
-// #![allow(clippy::needless_range_loop)]
 // #![deny(warnings)]
 #![doc(html_playground_url = "https://play.rust-lang.org/")]
-extern crate core;
-
 mod backtracking;
 mod bfs;
 mod binary_search;
 mod binary_tree;
+mod bitwise;
 mod dp;
 mod easy;
 mod greedy;

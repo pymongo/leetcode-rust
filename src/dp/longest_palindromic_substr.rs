@@ -35,6 +35,7 @@ impl Solution {
     }
 
     // 除了manacher算法之外，用suffix array(后缀数组)算法也是O(n)的时间复杂度
+    #[allow(clippy::needless_range_loop)]
     fn manacher(s: String) -> String {
         let len = s.len();
         if len < 2 {
@@ -120,6 +121,7 @@ impl Solution {
     例如最大回文串是'a#b#a'，长度+1除以2之后得到了aba的长度是3，中心位置是b索引为2，原字符串开始位置的索引为2-(3+1)/2
     例如最大回文串是'b#b'，长度+1除以2之后得到了bb的长度是2，中心位置是#索引为1，原字符串开始位置的索引为1-(2+1)/2
     */
+    #[allow(clippy::needless_range_loop)]
     fn manacher_old(s: String) -> String {
         let input_str_len = s.len();
         if input_str_len < 2 {
@@ -239,6 +241,7 @@ impl Solution {
 
     没想到中心对称的算法的性能比dp解法好多了，同样是O(n^2)的时间复杂度，中心对称算法空间复杂度是O(1)，耗时4ms
     */
+    #[allow(clippy::needless_range_loop)]
     fn expand_around_center(s: String) -> String {
         fn helper(chars: &[u8], len: usize, left: usize, right: usize) -> usize {
             let (mut left, mut right) = (left, right);
@@ -402,15 +405,9 @@ fn dp_new(s: String) -> String {
         }
     }
     unsafe { String::from_utf8_unchecked(s[max_start_index..max_start_index + max_len].to_owned()) }
-    // let mut result = String::with_capacity(max_len);
-    // for i in max_start_index..=max_end_index {
-    //     result.push(s[i] as char);
-    // }
-    // result
 }
 
 /*
-TODO 建议看Python版本的区间型动态规划
 动态规划(数学归纳法)的解法：
 递推/状态转移方程：如果a[0]==a[-1]，而且a[1..-2]是个回文数，则a也是个回文数
 因为需要原顺序与逆序进行比较，所以可以列出 横坐标是start 纵坐标是end 的表

@@ -8,6 +8,7 @@
 struct Solution;
 
 impl Solution {
+    #[allow(clippy::needless_range_loop)]
     fn jump(nums: Vec<i32>) -> i32 {
         let nums = nums
             .into_iter()
@@ -31,6 +32,7 @@ impl Solution {
         dp[n - 1]
     }
 
+    #[allow(clippy::needless_range_loop)]
     fn greedy(nums: Vec<i32>) -> i32 {
         let n = nums.len();
         let nums = nums

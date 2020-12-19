@@ -12,6 +12,7 @@
 然后分别计算出转盘从j正转到k和从j反转的k的步数的最小值
 对于倒数第二步来说，状态转移方程就是: dp[i][j]=dp[i][j(ring[k]=key[i+1])].min(dp[i+1][k]+j到k正转或反转的最小步数)
 */
+#[allow(clippy::needless_range_loop)]
 fn find_rotate_steps(ring: String, key: String) -> i32 {
     let (ring, key) = (ring.into_bytes(), key.into_bytes());
     let n = ring.len();

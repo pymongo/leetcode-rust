@@ -91,6 +91,7 @@ fn eratosthenes(n: i32) -> i32 {
 
 /// 线性筛，本题唯一O(n)解法，常用于求解积性函数题型
 /// 埃氏筛其实还是存在冗余的标记操作，比如对于 4545 这个数，它会同时被 3,53,5 两个数标记为合数，因此我们优化的目标是让每个合数只被标记一次
+#[allow(clippy::needless_range_loop)]
 fn linear(n: i32) -> i32 {
     let n = n as usize;
 

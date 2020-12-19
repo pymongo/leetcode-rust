@@ -30,6 +30,7 @@ impl Solution {
         res
     }
 
+    #[allow(clippy::needless_range_loop)]
     fn brute_force(nums: Vec<i32>) -> i32 {
         let mut res = 0;
         let n = nums.len();

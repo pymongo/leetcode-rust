@@ -1,6 +1,7 @@
 struct Solution;
 
 impl Solution {
+    #[allow(clippy::needless_range_loop)]
     #[allow(clippy::comparison_chain)]
     fn num_teams(nums: Vec<i32>) -> i32 {
         let n = nums.len();

@@ -8,12 +8,6 @@
 #[allow(non_camel_case_types)]
 type time_t = isize;
 
-extern "C" {
-    fn time(time: *mut time_t) -> time_t;
-    fn rand() -> i32;
-    fn srand(seed: u32);
-}
-
 struct RandomPickIndex {
     nums: Vec<i32>,
 }
@@ -24,6 +18,9 @@ impl RandomPickIndex {
     }
 
     fn pick(&mut self, target: i32) -> i32 {
+        extern "C" {
+            fn rand() -> i32;
+        }
         let mut count = 0i32;
         let mut ret = 0usize;
         for (i, num) in self.nums.iter().enumerate() {
@@ -47,6 +44,10 @@ struct RandomPickIndexCounterSolution1 {
 
 impl RandomPickIndexCounterSolution1 {
     fn new(nums: Vec<i32>) -> Self {
+        extern "C" {
+            fn time(time: *mut time_t) -> time_t;
+            fn srand(seed: u32);
+        }
         let mut nums_index = std::collections::HashMap::new();
         for (i, num) in nums.into_iter().enumerate() {
             nums_index
@@ -63,6 +64,9 @@ impl RandomPickIndexCounterSolution1 {
 
     /// 如果nums中存在多个target，则等概率地随机返回一个满足nums[i]=target的下标i
     fn pick(&mut self, target: i32) -> i32 {
+        extern "C" {
+            fn rand() -> i32;
+        }
         let candidates = self.nums_index.get(&target).unwrap();
         let random_number = unsafe { rand() };
         candidates[random_number as usize % (candidates.len() + 1)]

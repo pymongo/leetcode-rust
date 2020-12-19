@@ -23,9 +23,9 @@ fn dp_binary_search(k: i32, n: i32) -> i32 {
     }
     // 鸡蛋个数为0时尝试次数只能为0
     // 鸡蛋个数为1时尝试次数就是楼层高度
-    for i in 0..=n {
-        dp[i][0] = 0;
-        dp[i][1] = i;
+    for (i, dp_row) in dp.iter_mut().take(n + 1).enumerate() {
+        dp_row[0] = 0;
+        dp_row[1] = i;
     }
 
     // 由于本题类似答案集二分的题型，鸡蛋个数固定时，尝试次数和楼层高度成正比，所以可以在DP决策层用「二分」

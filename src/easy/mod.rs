@@ -1,5 +1,4 @@
 mod array;
-mod bitwise;
 mod coin_lcci;
 mod construct_product_array;
 mod corporate_flight_bookings;

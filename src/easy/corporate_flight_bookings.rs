@@ -8,6 +8,7 @@ const GET_OFF_STATION: usize = 1;
 const COUNT: usize = 2;
 
 impl Solution {
+    #[allow(clippy::needless_range_loop)]
     fn corp_flight_bookings(data: Vec<Vec<i32>>, n: i32) -> Vec<i32> {
         let n = n as usize;
         let mut stations = vec![0; n];
@@ -27,6 +28,7 @@ impl Solution {
         stations
     }
 
+    #[allow(clippy::needless_range_loop)]
     fn func2(records: Vec<Vec<i32>>, n: i32) -> Vec<i32> {
         let n = n as usize;
         let mut stations = vec![0; n + 1];
