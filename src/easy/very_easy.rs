@@ -1244,3 +1244,47 @@ fn dest_city(paths: Vec<Vec<String>>) -> String {
     }
     unreachable!()
 }
+
+/// https://leetcode-cn.com/contest/weekly-contest-220/problems/reformat-phone-number/
+/// https://leetcode.com/problems/reformat-phone-number/
+fn reformat_phone_number(number: String) -> String {
+    let mut s: Vec<u8> = number.into_bytes().into_iter().filter(|x| x.is_ascii_digit()).collect();
+    let len = s.len();
+    let mut n_3_pairs = len / 3;
+    let rem_3 = len % 3;
+    let mut n_2_pairs = 0;
+    if rem_3 == 1 {re'a
+        n_3_pairs -= 1;
+        n_2_pairs += 2;
+    } else if rem_3 == 2 {
+        n_2_pairs += 1;
+    }
+
+    let mut insert = 0;
+    for _ in 0..n_3_pairs {
+        insert += 3;
+        s.insert(insert, b'-');
+        insert += 1;
+    }
+    for _ in 0..n_2_pairs {
+        insert += 2;
+        s.insert(insert, b'-');
+        insert += 1;
+    }
+    // 去掉末尾的'-'
+    s.pop();
+
+    // println!("{:?}", s.clone().into_iter().map(|x| x as char).collect::<Vec<char>>());
+    unsafe { String::from_utf8_unchecked(s) }
+}
+
+#[test]
+fn test_reformat_phone_number() {
+    const TEST_CASES: [(&str, &str);2] = [
+        ("--17-5 229 35-39475 ", "175-229-353-94-75"),
+        ("1-23-45 6", "123-456")
+    ];
+    for &(input, output) in TEST_CASES.iter() {
+        assert_eq!()
+    }
+}

@@ -378,6 +378,7 @@ leetcode_solutions
 |1656|[Design an Ordered Stream](https://leetcode.com/problems/design-an-ordered-stream/)|[Rust](src/easy/very_easy.rs)|
 |1672|[Richest Customer Wealth](https://leetcode.com/problems/richest-customer-wealth/)|[Rust](src/easy/very_easy.rs)|
 |1678|[Goal Parser Interpretation](https://leetcode.com/problems/goal-parser-interpretation/)|[Rust](src/easy/very_easy.rs)|
+|1694|[Reformat Phone Number](https://leetcode.com/problems/reformat-phone-number/)|[Rust](src/easy/very_easy.rs)|
 
 ---
 
