@@ -928,14 +928,6 @@ fn shuffle_string_normal_solution(s: String, indices: Vec<i32>) -> String {
     unsafe { String::from_utf8_unchecked(ret) }
 }
 
-// #[test]
-// fn t() {
-//     let mut a = vec![1,2,3];
-//     let mut b = 4i32;
-//     std::mem::swap(&mut a[0], &mut b);
-//     dbg!(a, b);
-// }
-
 /**
 codeleet
 lodeceet 换来的l之前下标是4，正好是indices[0]指示的正确下标值，所以这轮结束
@@ -1253,7 +1245,7 @@ fn reformat_phone_number(number: String) -> String {
     let mut n_3_pairs = len / 3;
     let rem_3 = len % 3;
     let mut n_2_pairs = 0;
-    if rem_3 == 1 {re'a
+    if rem_3 == 1 {
         n_3_pairs -= 1;
         n_2_pairs += 2;
     } else if rem_3 == 2 {
@@ -1280,11 +1272,31 @@ fn reformat_phone_number(number: String) -> String {
 
 #[test]
 fn test_reformat_phone_number() {
-    const TEST_CASES: [(&str, &str);2] = [
+    const TEST_CASES: [(&str, &str); 2] = [
         ("--17-5 229 35-39475 ", "175-229-353-94-75"),
         ("1-23-45 6", "123-456")
     ];
     for &(input, output) in TEST_CASES.iter() {
-        assert_eq!()
+        assert_eq!(reformat_phone_number(input.to_string()), output.to_string());
+    }
+}
+
+/// https://leetcode.com/problems/min-cost-climbing-stairs/
+/// 不改输入数组的话，用prev和curr两个状态变量也可以进行dp
+fn min_cost_climbing_stairs(mut cost: Vec<i32>) -> i32 {
+    let len = cost.len();
+    for i in 2..len {
+        cost[i] += cost[i-1].min(cost[i-2]);
+    }
+    cost[len-1].min(cost[len-2])
+}
+
+#[test]
+fn test_min_cost_climbing_stairs() {
+    const TEST_CASES: [(&[i32], i32); 1] = [
+        (&[1, 100, 1, 1, 1, 100, 1, 1, 100, 1], 6),
+    ];
+    for &(input, output) in TEST_CASES.iter() {
+        assert_eq!(min_cost_climbing_stairs(input.to_vec()), output);
     }
 }
