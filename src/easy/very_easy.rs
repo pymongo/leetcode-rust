@@ -1300,3 +1300,19 @@ fn test_min_cost_climbing_stairs() {
         assert_eq!(min_cost_climbing_stairs(input.to_vec()), output);
     }
 }
+
+/// https://leetcode.com/problems/robot-return-to-origin/
+fn judge_circle(moves: String) -> bool {
+    let mut up_and_down = 0i32;
+    let mut left_and_right = 0i32;
+    moves.into_bytes().into_iter().for_each(|byte| {
+        match byte {
+            b'U' => up_and_down += 1,
+            b'D' => up_and_down -= 1,
+            b'L' => left_and_right += 1,
+            b'R' => left_and_right -= 1,
+            _ => unreachable!()
+        }
+    });
+    up_and_down == 0 && left_and_right == 0
+}
