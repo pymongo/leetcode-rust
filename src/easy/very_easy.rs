@@ -1,6 +1,7 @@
 /*! 简短一行Rust代码能解决的题:
 - [剑指Offer 17. 打印从1到最大n位的十进制数]: (1..10i32.pow(n as u32)).collect()
 */
+use crate::parse_2d_array;
 
 /** https://leetcode.com/problems/shuffle-the-array/
 数组nums按 \[x1,x2,...,xn,y1,y2,...,yn] 的格式排列
@@ -311,17 +312,15 @@ fn island_perimeter(grid: Vec<Vec<i32>>) -> i32 {
 
 #[test]
 fn test_island_perimeter() {
-    let test_cases: Vec<(Vec<Vec<i32>>, i32)> = vec![(
-        vec![
-            vec![0, 1, 0, 0],
-            vec![1, 1, 1, 0],
-            vec![0, 1, 0, 0],
-            vec![1, 1, 0, 0],
-        ],
+    const TEST_CASES: [(&str, i32); 1] = [(
+        "[[0, 1, 0, 0],
+          [1, 1, 1, 0],
+          [0, 1, 0, 0],
+          [1, 1, 0, 0],]",
         16,
     )];
-    for (grid, perimeter) in test_cases {
-        assert_eq!(island_perimeter(grid), perimeter)
+    for &(grid, perimeter) in TEST_CASES.iter() {
+        assert_eq!(island_perimeter(parse_2d_array(grid)), perimeter);
     }
 }
 
@@ -530,26 +529,15 @@ fn reconstruct_queue(mut a: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
 
 #[test]
 fn test_reconstruct_queue() {
-    let test_cases = vec![(
-        vec![
-            vec![7, 0],
-            vec![4, 4],
-            vec![7, 1],
-            vec![5, 0],
-            vec![6, 1],
-            vec![5, 2],
-        ],
-        vec![
-            vec![5, 0],
-            vec![7, 0],
-            vec![5, 2],
-            vec![6, 1],
-            vec![4, 4],
-            vec![7, 1],
-        ],
+    const TEST_CASES: [(&str, &str); 1] = [(
+        "[[7,0],[4,4],[7,1],[5,0],[6,1],[5,2]]",
+        "[[5,0],[7,0],[5,2],[6,1],[4,4],[7,1]]",
     )];
-    for (input, output) in test_cases.into_iter() {
-        assert_eq!(reconstruct_queue(input), output);
+    for (input, output) in TEST_CASES.iter() {
+        assert_eq!(
+            reconstruct_queue(parse_2d_array(input)),
+            parse_2d_array(output)
+        );
     }
 }
 
@@ -1245,19 +1233,65 @@ fn candy(ratings: Vec<i32>) -> i32 {
     let mut nums = vec![1; n];
     // 先看每个孩子的左边情况，如果当前孩子比左边的成绩更好，则理应比左边的多一个糖果
     for i in 1..n {
-        if ratings[i] > ratings[i-1] {
-            nums[i] = nums[i-1] + 1;
+        if ratings[i] > ratings[i - 1] {
+            nums[i] = nums[i - 1] + 1;
         }
     }
-    for i in (0..n-1).rev() {
-        if ratings[i] > ratings[i+1] {
-            nums[i] = nums[i].max(nums[i+1]+1);
+    for i in (0..n - 1).rev() {
+        if ratings[i] > ratings[i + 1] {
+            nums[i] = nums[i].max(nums[i + 1] + 1);
         }
     }
     nums.into_iter().sum()
 }
 
+/// https://leetcode.com/problems/corporate-flight-bookings
+#[allow(clippy::needless_range_loop)]
+fn corp_flight_bookings(records: Vec<Vec<i32>>, n: i32) -> Vec<i32> {
+    let n = n as usize;
+    let mut stations = vec![0; n + 1];
+    for record in records {
+        // 每个record的下标 0=上车站点, 1=下车站点, 2=上下车的人数
+        let cnt = record[2];
+        stations[record[0] as usize - 1] += cnt;
+        stations[record[1] as usize] -= cnt;
+    }
+    let mut curr = 0;
+    // 根据差分数组还原原数组
+    for i in 0..=n as usize {
+        curr += stations[i];
+        stations[i] = curr;
+    }
+    stations.pop();
+    stations
+}
+
+#[test]
+fn test_corp_flight_bookings() {
+    // const TEST_CASES: [(&[&[i32]], i32, &[&[i32]]); 1] = [(
+    //     &[&[1, 2, 10], &[2, 3, 20], &[2, 5, 25]], 5,
+    //     &[&[1, 2, 10], &[2, 3, 20], &[2, 5, 25]],
+    // )];
+    const TEST_CASES: [(&str, i32, &[i32]); 1] = [
+        ("[[1,2,10],[2,3,20],[2,5,25]]", 5, &[10, 55, 45, 25, 25])
+    ];
+    for &(records, n, output) in TEST_CASES.iter() {
+        assert_eq!(corp_flight_bookings(crate::parse_2d_array(records), n), output);
+    }
+}
+
 /// https://leetcode.com/problems/all-paths-from-source-to-target/
 fn all_paths_source_target(graph: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
     todo!()
+}
+
+#[test]
+fn test_all_paths_source_target() {
+    const TEST_CASES: [(&str, &str); 1] = [("[[1,2],[3],[3],[]]", "[[0,1,3],[0,2,3]]")];
+    for &(input, output) in TEST_CASES.iter() {
+        assert_eq!(
+            all_paths_source_target(parse_2d_array(input)),
+            parse_2d_array(output)
+        );
+    }
 }

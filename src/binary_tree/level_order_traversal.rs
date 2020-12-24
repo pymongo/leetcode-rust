@@ -44,9 +44,7 @@ fn level_order(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<Vec<i32>> {
                 queue.push_back(Some(right));
             }
         } else {
-            ret.push(cur_level.clone());
-            // cur_level is end
-            cur_level.clear();
+            ret.push(std::mem::take(&mut cur_level));
             // add level separator to queue end
             if !queue.is_empty() {
                 queue.push_back(None);
@@ -84,15 +82,12 @@ fn zigzag_level_order(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<Vec<i32>> {
                 cur_level.reverse();
             }
             left_to_right = !left_to_right;
-            ret.push(cur_level.clone());
-            // cur_level is end
-            cur_level.clear();
+            ret.push(std::mem::take(&mut cur_level));
             // add level separator to queue end
             if !queue.is_empty() {
                 queue.push_back(None);
             }
         }
     }
-
     ret
 }

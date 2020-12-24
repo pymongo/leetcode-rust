@@ -139,27 +139,6 @@ fn reverse_string(s: &mut Vec<char>) {
     s.reverse();
 }
 
-/**
-# 编译型语言和脚本语言在一些计算上的差异
-## -1 / 10
-Python/Ruby: -1
-Java/Rust: 0
-
-## -1 % 10
-Python/Ruby: 9
-Java/Rust: -1
-*/
-#[test]
-fn test_partial_reverse() {
-    assert_eq!(1u8.rotate_left(1), 0b0000_0010);
-    let mut nums = [1, 2, 3, 4];
-    nums[1..=2].rotate_left(1);
-    assert_eq!(nums, [1, 3, 2, 4]);
-    let mut nums = [1, 2, 3, 4];
-    nums[1..=2].reverse();
-    assert_eq!(nums, [1, 3, 2, 4]);
-}
-
 /** https://leetcode.com/problems/rotate-array/
 Input:  nums = [1,2,3,4,5,6,7], k = 3
 Output: [5,6,7,1,2,3,4]

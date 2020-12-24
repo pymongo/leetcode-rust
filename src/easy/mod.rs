@@ -1,7 +1,6 @@
 mod array;
 mod coin_lcci;
 mod construct_product_array;
-mod corporate_flight_bookings;
 mod count_negative_numbers_in_a_sorted_matrix;
 mod count_number_of_teams;
 mod count_primes;
