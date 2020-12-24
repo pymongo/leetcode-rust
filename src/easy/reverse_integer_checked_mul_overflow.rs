@@ -12,7 +12,7 @@ https://twitter.com/ospopen/status/1322127786618748928
 struct Solution;
 
 /**
-注意Python/Ruby/js等脚本语言不能这么写(abs())，因为这三种语言-1整除10都等于-1，会陷入死循环，而C/Java/Rust则不会
+注意Python/Ruby不能这么写(abs())，因为这三种语言-1整除10都等于-1，会陷入死循环，而C/Java/Rust则不会
 
 ```python
 I32_MIN = -2 ** 31

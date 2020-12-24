@@ -918,60 +918,6 @@ fn flip_and_invert_image(mut a: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
     a
 }
 
-/// https://leetcode.com/problems/shuffle-string/
-/// 能不能用In-Place的swap操作完成重排？我联想到rotate_string那题教室换座位的情况，A的新座位在B，A挤到B的slot，把B挤出教室，然后B再去挤自己的新座位...
-fn shuffle_string_normal_solution(s: String, indices: Vec<i32>) -> String {
-    let mut ret = vec![0u8; s.len()];
-    for (i, byte) in indices.into_iter().zip(s.into_bytes().into_iter()) {
-        ret[i as usize] = byte;
-    }
-    unsafe { String::from_utf8_unchecked(ret) }
-}
-
-/**
-codeleet
-lodeceet 换来的l之前下标是4，正好是indices[0]指示的正确下标值，所以这轮结束
-*/
-fn shuffle_string_in_place_solution(s: String, indices: Vec<i32>) -> String {
-    let mut s = s.into_bytes();
-    let mut indices: Vec<usize> = indices.into_iter().map(|x| x as usize).collect();
-    let len = s.len();
-    for i in 0..len {
-        // 当前遍历到的数组下标i不在正确的位置上
-        if indices[i] != i {
-            // 放到了错误位置的字符ch(unallocated_char)
-            let mut ch = s[i];
-            // ch的正确位置
-            let mut ch_correct_idx = indices[i];
-            while ch_correct_idx != i {
-                std::mem::swap(&mut s[ch_correct_idx], &mut ch);
-                // ch被放到正确位置后，将indices[ch_correct_idx]标记成已修正(indices[i]=i时表示s[i]已修正)
-                // 迭代:
-                //     ch=s[ch_correct_idx](相当于换座位场景A的新座位是B，A把B的桌子移到走廊，此时待分配的ch就变成B)
-                //     ch_correct_idx = indices[indices[ch_correct_idx]]
-                std::mem::swap(&mut indices[ch_correct_idx], &mut ch_correct_idx);
-            }
-            // 此时的ch的正确位置是i
-            s[i] = ch;
-            // 将下标i标记成已修正
-            indices[i] = i;
-        }
-    }
-    unsafe { String::from_utf8_unchecked(s) }
-}
-
-#[test]
-fn test_() {
-    const TEST_CASES: [(&str, &[i32], &str); 1] =
-        [("codeleet", &[4, 5, 6, 7, 0, 2, 1, 3], "leetcode")];
-    for &(s, indices, expected) in TEST_CASES.iter() {
-        assert_eq!(
-            shuffle_string_in_place_solution(s.to_string(), indices.to_vec()),
-            expected
-        );
-    }
-}
-
 /// https://leetcode.com/problems/jewels-and-stones/
 fn num_jewels_in_stones(j: String, s: String) -> i32 {
     let jewels: std::collections::HashSet<u8> = j.into_bytes().into_iter().collect(); // HashSet::from_iter
@@ -1013,31 +959,6 @@ fn test_minimum_deletion_cost_to_avoid_repeating_letters() {
         min_cost_to_avoid_repeating_chars("abaac".into(), vec![1, 2, 3, 4, 5]),
         3
     );
-}
-
-/// https://leetcode.com/problems/replace-all-s-to-avoid-consecutive-repeating-characters/
-fn replace_question_mark_to_avoid_consecutive_repeating_char(s: String) -> String {
-    let mut s = s.into_bytes();
-    let n = s.len();
-    for i in 0..n {
-        if s[i] != b'?' {
-            continue;
-        }
-        for letter in b'a'..=b'z' {
-            if let Some(left) = s.get(i.wrapping_sub(1)) {
-                if letter.eq(left) {
-                    continue;
-                }
-            }
-            if let Some(right) = s.get(i + 1) {
-                if letter.eq(right) {
-                    continue;
-                }
-            }
-            s[i] = letter;
-        }
-    }
-    unsafe { String::from_utf8_unchecked(s) }
 }
 
 /// https://leetcode.com/problems/running-sum-of-1d-array/
@@ -1240,7 +1161,11 @@ fn dest_city(paths: Vec<Vec<String>>) -> String {
 /// https://leetcode-cn.com/contest/weekly-contest-220/problems/reformat-phone-number/
 /// https://leetcode.com/problems/reformat-phone-number/
 fn reformat_phone_number(number: String) -> String {
-    let mut s: Vec<u8> = number.into_bytes().into_iter().filter(|x| x.is_ascii_digit()).collect();
+    let mut s: Vec<u8> = number
+        .into_bytes()
+        .into_iter()
+        .filter(|x| x.is_ascii_digit())
+        .collect();
     let len = s.len();
     let mut n_3_pairs = len / 3;
     let rem_3 = len % 3;
@@ -1274,7 +1199,7 @@ fn reformat_phone_number(number: String) -> String {
 fn test_reformat_phone_number() {
     const TEST_CASES: [(&str, &str); 2] = [
         ("--17-5 229 35-39475 ", "175-229-353-94-75"),
-        ("1-23-45 6", "123-456")
+        ("1-23-45 6", "123-456"),
     ];
     for &(input, output) in TEST_CASES.iter() {
         assert_eq!(reformat_phone_number(input.to_string()), output.to_string());
@@ -1286,16 +1211,14 @@ fn test_reformat_phone_number() {
 fn min_cost_climbing_stairs(mut cost: Vec<i32>) -> i32 {
     let len = cost.len();
     for i in 2..len {
-        cost[i] += cost[i-1].min(cost[i-2]);
+        cost[i] += cost[i - 1].min(cost[i - 2]);
     }
-    cost[len-1].min(cost[len-2])
+    cost[len - 1].min(cost[len - 2])
 }
 
 #[test]
 fn test_min_cost_climbing_stairs() {
-    const TEST_CASES: [(&[i32], i32); 1] = [
-        (&[1, 100, 1, 1, 1, 100, 1, 1, 100, 1], 6),
-    ];
+    const TEST_CASES: [(&[i32], i32); 1] = [(&[1, 100, 1, 1, 1, 100, 1, 1, 100, 1], 6)];
     for &(input, output) in TEST_CASES.iter() {
         assert_eq!(min_cost_climbing_stairs(input.to_vec()), output);
     }
@@ -1305,14 +1228,36 @@ fn test_min_cost_climbing_stairs() {
 fn judge_circle(moves: String) -> bool {
     let mut up_and_down = 0i32;
     let mut left_and_right = 0i32;
-    moves.into_bytes().into_iter().for_each(|byte| {
-        match byte {
-            b'U' => up_and_down += 1,
-            b'D' => up_and_down -= 1,
-            b'L' => left_and_right += 1,
-            b'R' => left_and_right -= 1,
-            _ => unreachable!()
-        }
+    moves.into_bytes().into_iter().for_each(|byte| match byte {
+        b'U' => up_and_down += 1,
+        b'D' => up_and_down -= 1,
+        b'L' => left_and_right += 1,
+        b'R' => left_and_right -= 1,
+        _ => unreachable!(),
     });
     up_and_down == 0 && left_and_right == 0
+}
+
+/// https://leetcode.com/problems/candy/
+fn candy(ratings: Vec<i32>) -> i32 {
+    let n = ratings.len();
+    // 首先每个孩子至少要给1个糖果
+    let mut nums = vec![1; n];
+    // 先看每个孩子的左边情况，如果当前孩子比左边的成绩更好，则理应比左边的多一个糖果
+    for i in 1..n {
+        if ratings[i] > ratings[i-1] {
+            nums[i] = nums[i-1] + 1;
+        }
+    }
+    for i in (0..n-1).rev() {
+        if ratings[i] > ratings[i+1] {
+            nums[i] = nums[i].max(nums[i+1]+1);
+        }
+    }
+    nums.into_iter().sum()
+}
+
+/// https://leetcode.com/problems/all-paths-from-source-to-target/
+fn all_paths_source_target(graph: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
+    todo!()
 }
