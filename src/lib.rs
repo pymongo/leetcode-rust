@@ -21,38 +21,20 @@ pub fn parse_2d_array(s: &str) -> Vec<Vec<i32>> {
     let len = s.len();
     // assert_eq!(s[0], b'[');
     // assert_eq!(s[len-1], b']');
-    let s = &s[1..len-1];
+    let s = &s[1..len - 1];
     let mut ret = vec![];
-    for nums_str in s.split("],[") {
-        let nums_str = nums_str.replace("[", "").replace("]", "");
+    for nums_str in s.split("],") {
+        let nums_str = nums_str.trim().replace('[', "").replace(']', "");
         let mut nums = vec![];
         for num in nums_str.split(',') {
             if num.is_empty() {
                 continue;
             }
-            nums.push(num.parse::<i32>().unwrap());
+            nums.push(num.trim().parse::<i32>().unwrap());
         }
         ret.push(nums);
     }
     ret
-    // for byte in &s[1..s.len() - 1] {
-    //     match byte {
-    //         b'-' => next_number_is_negetive = true,
-    //         b'0'..=b'9' => {
-    //             let number = (byte - b'0') as i32;
-    //             if next_number_is_negetive {
-    //                 curr.push(-number);
-    //                 next_number_is_negetive = false;
-    //             } else {
-    //                 curr.push(number);
-    //             }
-    //         },
-    //         b']' => {
-    //             // same as ret.push(std::mem::take(&mut curr));
-    //         }
-    //         _ => {}
-    //     }
-    // }
 }
 
 #[test]

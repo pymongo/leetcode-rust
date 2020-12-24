@@ -97,6 +97,8 @@ fn diagonal_traverse_from_top_left_in_bottom_left_direction() {
     }
 }
 
+/// https://leetcode.com/problems/diagonal-traverse/
+/// FIXME wrong answer
 fn find_diagonal_order(mat: Vec<Vec<i32>>) -> Vec<i32> {
     let m = mat.len();
     if m == 0 {
@@ -137,11 +139,26 @@ fn find_diagonal_order(mat: Vec<Vec<i32>>) -> Vec<i32> {
 #[test]
 #[should_panic]
 fn test_find_diagonal_order() {
-    assert_eq!(
-        find_diagonal_order(vec![vec![2, 5], vec![8, 4], vec![0, -1]]),
-        vec![2, 5, 8, 0, 4, -1]
-    );
-    let mat = vec![vec![1, 2, 3], vec![4, 5, 6], vec![7, 8, 9]];
-    assert_eq!(find_diagonal_order(mat), vec![1, 2, 4, 7, 5, 3, 6, 8, 9]);
-    assert_eq!(find_diagonal_order(vec![vec![2, 3]]), vec![2, 3]);
+    const TEST_CASES: [(&str, &[i32]); 3] = [
+        (
+            "[[2,5],
+           [8,4],
+           [0,-1]]",
+            &[2, 5, 8, 0, 4, -1],
+        ),
+        (
+            "[[1,2,3],
+           [4,5,6],
+           [7,8,9]]",
+            &[1, 2, 4, 7, 5, 3, 6, 8, 9],
+        ),
+        (
+            "[[2,3],
+           [2,3],",
+            &[2, 3],
+        ),
+    ];
+    for &(input, output) in TEST_CASES.iter() {
+        assert_eq!(find_diagonal_order(crate::parse_2d_array(input)), output);
+    }
 }

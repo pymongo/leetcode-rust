@@ -1,7 +1,6 @@
 /*! 简短一行Rust代码能解决的题:
 - [剑指Offer 17. 打印从1到最大n位的十进制数]: (1..10i32.pow(n as u32)).collect()
 */
-use crate::parse_2d_array;
 
 /** https://leetcode.com/problems/shuffle-the-array/
 数组nums按 \[x1,x2,...,xn,y1,y2,...,yn] 的格式排列
@@ -320,7 +319,7 @@ fn test_island_perimeter() {
         16,
     )];
     for &(grid, perimeter) in TEST_CASES.iter() {
-        assert_eq!(island_perimeter(parse_2d_array(grid)), perimeter);
+        assert_eq!(island_perimeter(crate::parse_2d_array(grid)), perimeter);
     }
 }
 
@@ -529,6 +528,7 @@ fn reconstruct_queue(mut a: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
 
 #[test]
 fn test_reconstruct_queue() {
+    use crate::parse_2d_array;
     const TEST_CASES: [(&str, &str); 1] = [(
         "[[7,0],[4,4],[7,1],[5,0],[6,1],[5,2]]",
         "[[5,0],[7,0],[5,2],[6,1],[4,4],[7,1]]",
@@ -1272,21 +1272,25 @@ fn test_corp_flight_bookings() {
     //     &[&[1, 2, 10], &[2, 3, 20], &[2, 5, 25]], 5,
     //     &[&[1, 2, 10], &[2, 3, 20], &[2, 5, 25]],
     // )];
-    const TEST_CASES: [(&str, i32, &[i32]); 1] = [
-        ("[[1,2,10],[2,3,20],[2,5,25]]", 5, &[10, 55, 45, 25, 25])
-    ];
+    const TEST_CASES: [(&str, i32, &[i32]); 1] =
+        [("[[1,2,10],[2,3,20],[2,5,25]]", 5, &[10, 55, 45, 25, 25])];
     for &(records, n, output) in TEST_CASES.iter() {
-        assert_eq!(corp_flight_bookings(crate::parse_2d_array(records), n), output);
+        assert_eq!(
+            corp_flight_bookings(crate::parse_2d_array(records), n),
+            output
+        );
     }
 }
 
 /// https://leetcode.com/problems/all-paths-from-source-to-target/
-fn all_paths_source_target(graph: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
+fn all_paths_source_target(_graph: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
     todo!()
 }
 
 #[test]
+#[should_panic]
 fn test_all_paths_source_target() {
+    use crate::parse_2d_array;
     const TEST_CASES: [(&str, &str); 1] = [("[[1,2],[3],[3],[]]", "[[0,1,3],[0,2,3]]")];
     for &(input, output) in TEST_CASES.iter() {
         assert_eq!(

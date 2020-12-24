@@ -53,18 +53,23 @@ fn spiral_matrix_1(a: Vec<Vec<i32>>) -> Vec<i32> {
 
 #[test]
 fn test_spiral_matrix_1() {
-    assert_eq!(
-        spiral_matrix_1(vec![vec![1, 2, 3], vec![4, 5, 6], vec![7, 8, 9]]),
-        vec![1, 2, 3, 6, 9, 8, 7, 4, 5]
-    );
-    assert_eq!(
-        spiral_matrix_1(vec![
-            vec![1, 2, 3, 4],
-            vec![5, 6, 7, 8],
-            vec![9, 10, 11, 12]
-        ]),
-        vec![1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7]
-    );
+    const TEST_CASES: [(&str, &[i32]); 2] = [
+        (
+            "[[1,2,3],
+           [4,5,6],
+           [7,8,9]]",
+            &[1, 2, 3, 6, 9, 8, 7, 4, 5],
+        ),
+        (
+            "[[1,2,3,4],
+           [5,6,7,8],
+           [9,10,11,12]]",
+            &[1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7],
+        ),
+    ];
+    for &(input, output) in TEST_CASES.iter() {
+        assert_eq!(spiral_matrix_1(crate::parse_2d_array(input)), output);
+    }
 }
 
 /// https://leetcode.com/problems/spiral-matrix-ii/
@@ -109,11 +114,18 @@ fn spiral_matrix_2(n: i32) -> Vec<Vec<i32>> {
 
 #[test]
 fn test_spiral_matrix_2() {
-    let n: usize = 5;
-    let res = spiral_matrix_2(n as i32);
-    for i in 0..n {
-        println!("{:?}", res[i]);
-    }
+    assert_eq!(
+        spiral_matrix_2(5),
+        crate::parse_2d_array(
+            "[
+        [1, 2, 3, 4, 5],
+        [16, 17, 18, 19, 6],
+        [15, 24, 25, 20, 7],
+        [14, 23, 22, 21, 8],
+        [13, 12, 11, 10, 9]
+    ]"
+        )
+    );
 }
 
 /// FIXME 根据spiral_matrix最佳答案写出的，不完全正确，没考虑边界情况
