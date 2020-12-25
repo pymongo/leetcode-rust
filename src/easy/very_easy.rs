@@ -1268,34 +1268,12 @@ fn corp_flight_bookings(records: Vec<Vec<i32>>, n: i32) -> Vec<i32> {
 
 #[test]
 fn test_corp_flight_bookings() {
-    // const TEST_CASES: [(&[&[i32]], i32, &[&[i32]]); 1] = [(
-    //     &[&[1, 2, 10], &[2, 3, 20], &[2, 5, 25]], 5,
-    //     &[&[1, 2, 10], &[2, 3, 20], &[2, 5, 25]],
-    // )];
     const TEST_CASES: [(&str, i32, &[i32]); 1] =
         [("[[1,2,10],[2,3,20],[2,5,25]]", 5, &[10, 55, 45, 25, 25])];
     for &(records, n, output) in TEST_CASES.iter() {
         assert_eq!(
             corp_flight_bookings(crate::parse_2d_array(records), n),
             output
-        );
-    }
-}
-
-/// https://leetcode.com/problems/all-paths-from-source-to-target/
-fn all_paths_source_target(_graph: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
-    todo!()
-}
-
-#[test]
-#[should_panic]
-fn test_all_paths_source_target() {
-    use crate::parse_2d_array;
-    const TEST_CASES: [(&str, &str); 1] = [("[[1,2],[3],[3],[]]", "[[0,1,3],[0,2,3]]")];
-    for &(input, output) in TEST_CASES.iter() {
-        assert_eq!(
-            all_paths_source_target(parse_2d_array(input)),
-            parse_2d_array(output)
         );
     }
 }
