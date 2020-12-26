@@ -47,6 +47,17 @@ fn is_power_of_two_bitwise_solution_2(n: i32) -> bool {
     n & (n - 1) == 0
 }
 
+/**
+## clippy::float_cmp reproduce
+error: strict comparison of `f32` or `f64`
+   = note: `#[deny(clippy::float_cmp)]` on by default
+   = note: `f32::EPSILON` and `f64::EPSILON` are available for the `error_margin`
+*/
+#[cfg(not)]
+fn clippy_float() {
+    assert_eq!(1f32, 1.0001f32);
+}
+
 #[test]
 fn test_is_power_of_two() {
     /// https://stackoverflow.com/questions/5796983/checking-if-float-is-an-integer

@@ -4,3 +4,4 @@ mod combinations;
 mod n_queens;
 mod perm_comb;
 mod restore_ip_address;
+mod all_paths_from_source_to_target;

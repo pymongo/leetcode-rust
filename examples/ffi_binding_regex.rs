@@ -32,14 +32,18 @@ extern "C" {
     fn regfree(preg: *mut regex_t);
 }
 
+const REG_MATCH: i32 = 0;
+const REG_NOT_MATCH: i32 = 1;
+
 fn main() {
     unsafe {
         let mut preg: regex_t = std::mem::zeroed();
-        let regcomp_res = regcomp(&mut preg as *mut _, b"[:lower:]".as_ptr() as *const _, 0);
+        // let regcomp_res = regcomp(&mut preg as *mut _, b"^[\\+\\-]?\\d+".as_ptr() as *const _, 0);
+        let regcomp_res = regcomp(&mut preg as *mut _, b"[:digit:]".as_ptr() as *const _, 0);
         assert_eq!(regcomp_res, 0);
         let res = regexec(
             &mut preg as *mut _,
-            b"1".as_ptr() as *const _,
+            b"1\n".as_ptr() as *const _,
             0,
             std::ptr::null_mut(),
             0,

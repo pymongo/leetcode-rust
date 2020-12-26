@@ -162,7 +162,7 @@ fn rotate_array_solution(nums: &mut Vec<i32>, k: i32) {
 fn rotate_array_reverse_solution(nums: &mut Vec<i32>, k: i32) {
     let len = nums.len();
     let k = k as usize % len;
-    nums[..len].reverse();
+    nums.reverse();
     nums[0..k].reverse();
     nums[k..len].reverse();
 }
