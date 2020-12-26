@@ -1277,3 +1277,18 @@ fn test_corp_flight_bookings() {
         );
     }
 }
+
+/// https://leetcode.com/problems/assign-cookies/
+fn assign_cookies(g: Vec<i32>, s: Vec<i32>) -> i32 {
+    0i32
+}
+
+#[test]
+fn test_find_content_children() {
+    const TEST_CASES: [(&[i32], &[i32], i32); 2] = [
+        // 两个面值为1的糖果🍬只能满足第一个孩子(胃口为1)，因为每个孩子最多吃一个糖果
+        (&[1,2,3], &[1,1], 1),
+        (&[1,2], &[1,2,3], 2)
+    ];
+    // for &(input, output) in
+}

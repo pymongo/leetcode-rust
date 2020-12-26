@@ -707,7 +707,7 @@ lintcode_problems
 |839|[Merge Two Sorted Interval Lists](https://lintcode.com/problem/merge-two-sorted-interval-lists/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/divide_conquer/merge_two_sorted_interval_lists.py)||
 |840|[Range Sum Query - Mutable](https://lintcode.com/problem/range-sum-query-mutable/)|leetcode_307|
 |841|[String Replace](https://lintcode.com/problem/string-replace/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/tire/string_replace.py)||
-|845|[Greatest Common Divisor](https://lintcode.com/problem/greatest-common-divisor/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/math/greatest_common_divisor.py)||
+|845|[Greatest Common Divisor](https://lintcode.com/problem/greatest-common-divisor/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/math/greatest_common_divisor.py)|
 |859|[Max Stack](https://lintcode.com/problem/max_stack/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/max_stack.py)||
 |871|[Minimum Factorization](https://lintcode.com/problem/minimum-factorization/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/factorization/minimum_factorization.py)|greedy|
 |880|[Construct Binary Tree from String](https://lintcode.com/problem/construct-binary-tree-from-string/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/construct_from_string_with_parentheses.py)||
