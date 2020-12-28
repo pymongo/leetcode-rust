@@ -1292,3 +1292,14 @@ fn test_find_content_children() {
     ];
     // for &(input, output) in
 }
+
+/// https://leetcode.com/problems/count-of-matches-in-tournament/
+fn number_of_matches(mut n: i32) -> i32 {
+    let mut ret = 0;
+    while n != 1 {
+        let matches = n / 2;
+        ret += matches;
+        n -= matches;
+    }
+    ret
+}
