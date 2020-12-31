@@ -1287,8 +1287,8 @@ fn assign_cookies(g: Vec<i32>, s: Vec<i32>) -> i32 {
 fn test_find_content_children() {
     const TEST_CASES: [(&[i32], &[i32], i32); 2] = [
         // 两个面值为1的糖果🍬只能满足第一个孩子(胃口为1)，因为每个孩子最多吃一个糖果
-        (&[1,2,3], &[1,1], 1),
-        (&[1,2], &[1,2,3], 2)
+        (&[1, 2, 3], &[1, 1], 1),
+        (&[1, 2], &[1, 2, 3], 2),
     ];
     // for &(input, output) in
 }
@@ -1302,4 +1302,30 @@ fn number_of_matches(mut n: i32) -> i32 {
         n -= matches;
     }
     ret
+}
+
+/// https://leetcode-cn.com/problems/count-sorted-vowel-strings/
+fn count_vowel_strings(n: i32) -> i32 {
+    const VOWELS_LEN: usize = 5;
+    const VOWELS: [u8; VOWELS_LEN] = [b'a', b'e', b'i', b'o', b'u'];
+    let mut cur_len = 1;
+    let mut last = 0;
+    todo!()
+}
+
+/// https://leetcode-cn.com/problems/hanota-lcci/
+fn hanota(a: &mut Vec<i32>, b: &mut Vec<i32>, c: &mut Vec<i32>) {
+    // std::mem::swap(a, c);
+    fn move_top_down(n: usize, a: &mut Vec<i32>, b: &mut Vec<i32>, c: &mut Vec<i32>) {
+        if n == 0 {
+            return;
+        }
+        // 先将a前n-1个圆盘经由c移到b
+        move_top_down(n - 1, a, c, b);
+        // 把a最底下(也就最后一个/最大圆盘)从a移到b
+        c.push(a.pop().unwrap());
+        // 再将b的所有圆盘经由a移到c
+        move_top_down(n - 1, b, a, c);
+    }
+    move_top_down(a.len(), a, b, c);
 }

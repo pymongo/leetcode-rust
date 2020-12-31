@@ -13,16 +13,16 @@ fn move_zeroes(nums: &mut Vec<i32>) {
 }
 
 /// https://leetcode.com/problems/remove-element/
-/// 这题跟move_zeros完全一样，或者说move_zeros是remove_elementy一题target=0的情况
+/// 这题跟move_zeros完全一样，或者说move_zeros是remove_element一题target=0的情况
 fn remove_element(nums: &mut Vec<i32>, val: i32) -> i32 {
-    let mut last_non_target_next_idx = 0;
+    let mut last_unique_next_idx = 0;
     for i in 0..nums.len() {
         if nums[i] != val {
-            nums.swap(i, last_non_target_next_idx);
-            last_non_target_next_idx += 1;
+            nums.swap(i, last_unique_next_idx);
+            last_unique_next_idx += 1;
         }
     }
-    last_non_target_next_idx as i32
+    last_unique_next_idx as i32
 }
 
 #[test]
