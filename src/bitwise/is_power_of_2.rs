@@ -48,10 +48,12 @@ fn is_power_of_two_bitwise_solution_2(n: i32) -> bool {
 }
 
 /**
-## clippy::float_cmp reproduce
+## reproduce ve'rclippy::float_cmp
 error: strict comparison of `f32` or `f64`
    = note: `#[deny(clippy::float_cmp)]` on by default
    = note: `f32::EPSILON` and `f64::EPSILON` are available for the `error_margin`
+const float EPSINON = 0.00001;
+if ((x >= - EPSINON) && (x <= EPSINON) {}
 */
 #[cfg(not)]
 fn clippy_float() {

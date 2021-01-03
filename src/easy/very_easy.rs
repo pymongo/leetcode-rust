@@ -1279,8 +1279,33 @@ fn test_corp_flight_bookings() {
 }
 
 /// https://leetcode.com/problems/assign-cookies/
-fn assign_cookies(g: Vec<i32>, s: Vec<i32>) -> i32 {
-    0i32
+/// children表示每个child的所需摄入的热量，cookie表示每个饼干的热量，贪心思路是排序后尽量让小的饼干满足小胃口的孩子
+fn assign_cookies(mut children: Vec<i32>, mut cookies: Vec<i32>) -> i32 {
+    children.sort_unstable();
+    cookies.sort_unstable();
+    // let (len_g, len_s) = (children.len(), cookies.len());
+    // let (mut i, mut j) = (0, 0);
+    // while i < len_g && j < len_s {
+    //     if cookies[j] >= children[i] {
+    //         i += 1;
+    //         j += 1;
+    //     } else {
+    //         j += 1;
+    //     }
+    // }
+    // i as i32
+    let mut children = children.into_iter();
+    let mut cookies = cookies.into_iter();
+    let mut ret = 0;
+    while let Some(child) = children.next() {
+        while let Some(cookie) = cookies.next() {
+            if cookie >= child {
+                ret += 1;
+                break;
+            }
+        }
+    }
+    ret
 }
 
 #[test]
@@ -1304,12 +1329,13 @@ fn number_of_matches(mut n: i32) -> i32 {
     ret
 }
 
+#[cfg(not)]
 /// https://leetcode-cn.com/problems/count-sorted-vowel-strings/
 fn count_vowel_strings(n: i32) -> i32 {
     const VOWELS_LEN: usize = 5;
     const VOWELS: [u8; VOWELS_LEN] = [b'a', b'e', b'i', b'o', b'u'];
-    let mut cur_len = 1;
-    let mut last = 0;
+    // let mut cur_len = 1;
+    // let mut last = 0;
     todo!()
 }
 
@@ -1328,4 +1354,77 @@ fn hanota(a: &mut Vec<i32>, b: &mut Vec<i32>, c: &mut Vec<i32>) {
         move_top_down(n - 1, b, a, c);
     }
     move_top_down(a.len(), a, b, c);
+}
+
+/// https://leetcode-cn.com/contest/weekly-contest-222/problems/maximum-units-on-a-truck/
+///
+/// 有点像背包问题，因为所有物体的容积都是1，所以这题应该也能用贪心去解题，尽量先放价值更高的物件
+fn maximum_units(mut box_types: Vec<Vec<i32>>, mut truck_size: i32) -> i32 {
+    // box_type[0]=number of object, box_type[1]=value of object
+    box_types.sort_unstable_by_key(|box_type| -box_type[1]);
+    let mut ret = 0;
+    for box_type in box_types.into_iter() {
+        if box_type[0] <= truck_size {
+            ret += box_type[0] * box_type[1];
+            truck_size -= box_type[0];
+        } else {
+            ret += truck_size * box_type[1];
+            break;
+        }
+    }
+    ret
+}
+
+#[test]
+fn test_maximum_units() {
+    const TEST_CASES: [(&str, i32, i32); 1] = [
+        ("[[1,3],[2,2],[3,1]]", 4, 8)
+    ];
+    for &(box_types, truck_size, max_value) in TEST_CASES.iter() {
+        let box_types = crate::parse_2d_array(box_types);
+        assert_eq!(maximum_units(box_types, truck_size), max_value);
+    }
+}
+
+fn count_pairs(nums: Vec<i32>) -> i32 {
+    fn is_power_of_2(n: i64) -> bool {
+        if n == 0 {
+            return false;
+        }
+        n & (n - 1) == 0
+    }
+    let mut counter = std::collections::BTreeMap::new();
+    for num in nums.into_iter() {
+        *counter.entry(num).or_insert(0) += 1;
+    }
+    let unique: Vec<i32> = counter.keys().copied().collect();
+    // 由于nums是有序的，插入counter时也是有序的，所以不用排序
+    // unique.sort_unstable();
+    let mut ret = 0i64;
+    let n = unique.len();
+    for i in 0..n {
+        for j in i..n {
+            if is_power_of_2(unique[i] as i64 + unique[j] as i64) {
+                if i == j {
+                    // math.comb(count, 2)
+                    let count = *counter.get(&unique[i]).unwrap() as i64;
+                    ret += count * (count - 1) / 2;
+                } else {
+                    ret += *counter.get(&unique[i]).unwrap() as i64 * *counter.get(&unique[j]).unwrap() as i64;
+                }
+            }
+        }
+    }
+    (ret % (10i64.pow(9) + 7)) as i32
+}
+
+#[test]
+fn test_count_pairs() {
+    const TEST_CASES: [(&[i32], i32); 2] = [
+        (&[1, 3, 5, 7, 9], 4),
+        (&[1, 1, 1, 3, 3, 3, 7], 15)
+    ];
+    for &(input, output) in TEST_CASES.iter() {
+        assert_eq!(count_pairs(input.into()), output);
+    }
 }
