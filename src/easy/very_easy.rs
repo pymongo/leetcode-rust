@@ -1357,18 +1357,20 @@ fn hanota(a: &mut Vec<i32>, b: &mut Vec<i32>, c: &mut Vec<i32>) {
 }
 
 /// https://leetcode-cn.com/contest/weekly-contest-222/problems/maximum-units-on-a-truck/
-///
+/// https://leetcode.com/problems/maximum-units-on-a-truck/
 /// 有点像背包问题，因为所有物体的容积都是1，所以这题应该也能用贪心去解题，尽量先放价值更高的物件
 fn maximum_units(mut box_types: Vec<Vec<i32>>, mut truck_size: i32) -> i32 {
-    // box_type[0]=number of object, box_type[1]=value of object
-    box_types.sort_unstable_by_key(|box_type| -box_type[1]);
+    box_types.sort_unstable_by_key(|box_type| - box_type[1]);
     let mut ret = 0;
     for box_type in box_types.into_iter() {
-        if box_type[0] <= truck_size {
-            ret += box_type[0] * box_type[1];
-            truck_size -= box_type[0];
+        // 这里类似于Go语言解构数组的写法: const [size, unit] = boxTypes[i];
+        // refutable pattern: let [quantity, unit_price, ..] = box_type[..]; 意思是这种写法是可辩驳的(refutable)，要写成if let或match
+        let (quantity, unit_price) = (box_type[0], box_type[1]);
+        if quantity <= truck_size {
+            ret += quantity * unit_price;
+            truck_size -= quantity;
         } else {
-            ret += truck_size * box_type[1];
+            ret += truck_size * unit_price;
             break;
         }
     }
