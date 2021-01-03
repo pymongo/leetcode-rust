@@ -387,6 +387,7 @@ leetcode_solutions
 |1688|[Count of Matches in Tournament](https://leetcode.com/problems/count-of-matches-in-tournament/)|[Rust](src/easy/very_easy.rs)|
 |1694|[Reformat Phone Number](https://leetcode.com/problems/reformat-phone-number/)|[Rust](src/easy/very_easy.rs)|
 |1710|[Maximum Units on a Truck](https://leetcode.com/problems/maximum-units-on-a-truck/)|[Rust](src/easy/very_easy.rs)|
+|1711|[Count Good Meals](https://leetcode.com/problems/count-good-meals/)|[Rust](src/easy/counter.rs)|
 
 ---
 
