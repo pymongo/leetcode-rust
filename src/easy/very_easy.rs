@@ -1360,7 +1360,7 @@ fn hanota(a: &mut Vec<i32>, b: &mut Vec<i32>, c: &mut Vec<i32>) {
 /// https://leetcode.com/problems/maximum-units-on-a-truck/
 /// 有点像背包问题，因为所有物体的容积都是1，所以这题应该也能用贪心去解题，尽量先放价值更高的物件
 fn maximum_units(mut box_types: Vec<Vec<i32>>, mut truck_size: i32) -> i32 {
-    box_types.sort_unstable_by_key(|box_type| - box_type[1]);
+    box_types.sort_unstable_by_key(|box_type| -box_type[1]);
     let mut ret = 0;
     for box_type in box_types.into_iter() {
         // 这里类似于Go语言解构数组的写法: const [size, unit] = boxTypes[i];
@@ -1379,9 +1379,7 @@ fn maximum_units(mut box_types: Vec<Vec<i32>>, mut truck_size: i32) -> i32 {
 
 #[test]
 fn test_maximum_units() {
-    const TEST_CASES: [(&str, i32, i32); 1] = [
-        ("[[1,3],[2,2],[3,1]]", 4, 8)
-    ];
+    const TEST_CASES: [(&str, i32, i32); 1] = [("[[1,3],[2,2],[3,1]]", 4, 8)];
     for &(box_types, truck_size, max_value) in TEST_CASES.iter() {
         let box_types = crate::parse_2d_array(box_types);
         assert_eq!(maximum_units(box_types, truck_size), max_value);

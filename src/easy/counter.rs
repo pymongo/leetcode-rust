@@ -242,7 +242,6 @@ fn count_pairs_permutation_solution(nums: Vec<i32>) -> i32 {
     for i in 0..n {
         for j in i..n {
             if is_power_of_2(unique[i] + unique[j]) {
-                println!("({}, {})", unique[i], unique[j]);
                 if i == j {
                     // math.comb(count, 2)
                     ret += (counter[i] - 1) * counter[i] / 2;
@@ -283,6 +282,7 @@ fn test_gen_twos_geometric_series() {
     println!("{:?}", gen_twos_geometric_series::<22>());
 }
 
+/// 这个解法也就是把时间复杂度从O(n^2)降低到O(22n
 fn count_pairs_two_sum_solution(nums: Vec<i32>) -> i32 {
     // 照顾下leetcode.com的const fn不支持while loop
     // const TWO_SUMS: [i32; 22] = [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144, 524288, 1048576, 2097152];
@@ -307,8 +307,13 @@ fn count_pairs_two_sum_solution(nums: Vec<i32>) -> i32 {
 #[test]
 fn test_count_pairs() {
     const TEST_CASES: [(&[i32], i32); 4] = [
-        (&[1,1,3,7,15,31,63,127,255,511], 17),
-        (&[149, 107, 1, 63, 0, 1, 6867, 1325, 5611, 2581, 39, 89, 46, 18, 12, 20, 22, 234], 12),
+        (&[1, 1, 3, 7, 15, 31, 63, 127, 255, 511], 17),
+        (
+            &[
+                149, 107, 1, 63, 0, 1, 6867, 1325, 5611, 2581, 39, 89, 46, 18, 12, 20, 22, 234,
+            ],
+            12,
+        ),
         (&[1, 3, 5, 7, 9], 4),
         (&[1, 1, 1, 3, 3, 3, 7], 15),
     ];
@@ -316,4 +321,24 @@ fn test_count_pairs() {
         assert_eq!(count_pairs_permutation_solution(input.into()), output);
         assert_eq!(count_pairs_two_sum_solution(input.into()), output);
     }
+}
+
+/// https://leetcode.com/problems/valid-anagram/
+fn is_anagram(s: String, t: String) -> bool {
+    if s.len() != t.len() {
+        return false;
+    }
+    let mut counter = [0u16; 26];
+    for each in s.into_bytes().into_iter() {
+        counter[(each - b'a') as usize] += 1;
+    }
+    for each in t.into_bytes().into_iter() {
+        let idx = (each - b'a') as usize;
+        if counter[idx] == 0 {
+            return false;
+        } else {
+            counter[idx] -= 1;
+        }
+    }
+    true
 }

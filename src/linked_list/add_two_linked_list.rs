@@ -18,6 +18,41 @@ match optional {
 
 use super::ListNode;
 
+/**
+Python解法参考:
+
+```python
+def add_two_numbers(ln1: ListNode, ln2: ListNode) -> ListNode:
+    dummy_head = ListNode(-1)
+    curr_node = dummy_head
+    sum_or_carry = 0
+    while True:
+        if ln1 is None and ln2 is None:
+            break
+        elif ln1 is None and ln2 is not None:
+            sum_or_carry = sum_or_carry + ln2.val
+            curr_node.next = ListNode(sum_or_carry % 10)
+            curr_node = curr_node.next
+            sum_or_carry //= 10
+            ln2 = ln2.next
+        elif ln1 is not None and ln2 is None:
+            sum_or_carry = sum_or_carry + ln1.val
+            curr_node.next = ListNode(sum_or_carry % 10)
+            curr_node = curr_node.next
+            sum_or_carry //= 10
+            ln1 = ln1.next
+        else:
+            sum_or_carry = sum_or_carry + ln1.val + ln2.val
+            curr_node.next = ListNode(sum_or_carry % 10)
+            curr_node = curr_node.next
+            sum_or_carry //= 10
+            ln1 = ln1.next
+            ln2 = ln2.next
+    if sum_or_carry > 0:
+        curr_node.next = ListNode(sum_or_carry)
+    return dummy_head.next
+```
+*/
 fn add_two_linked_list(
     mut l1: Option<Box<ListNode>>,
     mut l2: Option<Box<ListNode>>,
