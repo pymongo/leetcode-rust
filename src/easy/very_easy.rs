@@ -439,16 +439,12 @@ fn reconstruct_queue(mut a: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
 
 #[test]
 fn test_reconstruct_queue() {
-    use crate::parse_2d_array;
-    const TEST_CASES: [(&str, &str); 1] = [(
-        "[[7,0],[4,4],[7,1],[5,0],[6,1],[5,2]]",
-        "[[5,0],[7,0],[5,2],[6,1],[4,4],[7,1]]",
+    let test_cases = vec![(
+        vec_vec![[7, 0], [4, 4], [7, 1], [5, 0], [6, 1], [5, 2]],
+        vec_vec![[5, 0], [7, 0], [5, 2], [6, 1], [4, 4], [7, 1]],
     )];
-    for (input, output) in TEST_CASES.iter() {
-        assert_eq!(
-            reconstruct_queue(parse_2d_array(input)),
-            parse_2d_array(output)
-        );
+    for (input, output) in test_cases.into_iter() {
+        assert_eq!(reconstruct_queue(input), output);
     }
 }
 
@@ -1160,13 +1156,13 @@ fn corp_flight_bookings(records: Vec<Vec<i32>>, n: i32) -> Vec<i32> {
 
 #[test]
 fn test_corp_flight_bookings() {
-    const TEST_CASES: [(&str, i32, &[i32]); 1] =
-        [("[[1,2,10],[2,3,20],[2,5,25]]", 5, &[10, 55, 45, 25, 25])];
-    for &(records, n, output) in TEST_CASES.iter() {
-        assert_eq!(
-            corp_flight_bookings(crate::parse_2d_array(records), n),
-            output
-        );
+    let test_cases = vec![(
+        vec_vec![[1, 2, 10], [2, 3, 20], [2, 5, 25]],
+        5,
+        vec![10, 55, 45, 25, 25],
+    )];
+    for (records, n, output) in test_cases.into_iter() {
+        assert_eq!(corp_flight_bookings(records, n), output);
     }
 }
 
@@ -1260,9 +1256,8 @@ fn maximum_units(mut box_types: Vec<Vec<i32>>, mut truck_size: i32) -> i32 {
 
 #[test]
 fn test_maximum_units() {
-    const TEST_CASES: [(&str, i32, i32); 1] = [("[[1,3],[2,2],[3,1]]", 4, 8)];
-    for &(box_types, truck_size, max_value) in TEST_CASES.iter() {
-        let box_types = crate::parse_2d_array(box_types);
+    let test_cases = vec![(vec_vec![[1, 3], [2, 2], [3, 1]], 4, 8)];
+    for (box_types, truck_size, max_value) in test_cases.into_iter() {
         assert_eq!(maximum_units(box_types, truck_size), max_value);
     }
 }
@@ -1307,11 +1302,12 @@ fn count_students(students: Vec<i32>, sandwiches: Vec<i32>) -> i32 {
 
 #[test]
 fn test_count_students() {
-    const TEST_CASES: [(&[i32], &[i32], i32); 1] = [
-        (&[1, 1, 1, 0, 0, 1], &[1, 0, 0, 0, 1, 1], 3)
-    ];
+    const TEST_CASES: [(&[i32], &[i32], i32); 1] = [(&[1, 1, 1, 0, 0, 1], &[1, 0, 0, 0, 1, 1], 3)];
     std::mem::size_of_val(&9i32);
     for &(students, sandwiches, n_students_not_eat) in &TEST_CASES {
-        assert_eq!(count_students(students.to_vec(), sandwiches.to_vec()), n_students_not_eat);
+        assert_eq!(
+            count_students(students.to_vec(), sandwiches.to_vec()),
+            n_students_not_eat
+        );
     }
 }

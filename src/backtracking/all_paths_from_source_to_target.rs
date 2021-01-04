@@ -49,13 +49,12 @@ fn dfs(
 
 #[test]
 fn test_all_paths_source_target() {
-    use crate::parse_2d_array;
     // 入参graph的数据格式是邻接表，graph[0]表示节点0的连向节点1和节点2
-    const TEST_CASES: [(&str, &str); 1] = [("[[1,2],[3],[3],[]]", "[[0,1,3],[0,2,3]]")];
-    for &(input, output) in TEST_CASES.iter() {
-        assert_eq!(
-            all_paths_source_target(parse_2d_array(input)),
-            parse_2d_array(output)
-        );
+    let test_cases = vec![(
+        vec_vec![[1, 2], [3], [3], []],
+        vec_vec![[0, 1, 3], [0, 2, 3]],
+    )];
+    for (input, output) in test_cases.into_iter() {
+        assert_eq!(all_paths_source_target(input), output);
     }
 }

@@ -139,26 +139,15 @@ fn find_diagonal_order(mat: Vec<Vec<i32>>) -> Vec<i32> {
 #[test]
 #[should_panic]
 fn test_find_diagonal_order() {
-    const TEST_CASES: [(&str, &[i32]); 3] = [
+    let test_cases = vec![
+        (vec_vec![[2, 5], [8, 4], [0, -1]], vec![2, 5, 8, 0, 4, -1]),
         (
-            "[[2,5],
-           [8,4],
-           [0,-1]]",
-            &[2, 5, 8, 0, 4, -1],
+            vec_vec![[1, 2, 3], [4, 5, 6], [7, 8, 9]],
+            vec![1, 2, 4, 7, 5, 3, 6, 8, 9],
         ),
-        (
-            "[[1,2,3],
-           [4,5,6],
-           [7,8,9]]",
-            &[1, 2, 4, 7, 5, 3, 6, 8, 9],
-        ),
-        (
-            "[[2,3],
-           [2,3],",
-            &[2, 3],
-        ),
+        (vec_vec![[2, 3], [2, 3]], vec![2, 3]),
     ];
-    for &(input, output) in TEST_CASES.iter() {
-        assert_eq!(find_diagonal_order(crate::parse_2d_array(input)), output);
+    for (input, output) in test_cases.into_iter() {
+        assert_eq!(find_diagonal_order(input), output);
     }
 }

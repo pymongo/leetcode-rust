@@ -38,18 +38,12 @@ fn rotate(m: &mut Vec<Vec<i32>>) {
 
 #[test]
 fn test_rotate() {
-    use crate::parse_2d_array;
-    const TEST_CASES: [(&str, &str); 1] = [(
-        "[[1,2,3],
-           [4,5,6],
-           [7,8,9]]",
-        "[[7,4,1],
-           [8,5,2],
-           [9,6,3]]",
+    let test_cases = vec![(
+        vec_vec![[1, 2, 3], [4, 5, 6], [7, 8, 9]],
+        vec_vec![[7, 4, 1], [8, 5, 2], [9, 6, 3]],
     )];
-    for &(input, output) in TEST_CASES.iter() {
-        let mut matrix = parse_2d_array(input);
-        rotate(&mut matrix);
-        assert_eq!(matrix, parse_2d_array(output));
+    for (mut input, output) in test_cases.into_iter() {
+        rotate(&mut input);
+        assert_eq!(input, output);
     }
 }

@@ -70,16 +70,13 @@ fn min_cost_connect_points(points: Vec<Vec<i32>>) -> i32 {
 
 #[test]
 fn test_min_cost_connect_points() {
-    const TEST_CASES: [(&str, i32); 4] = [
-        ("[[0,0],[2,2],[3,10],[5,2],[7,0]]", 20),
-        ("[[3,12],[-2,5],[-4,1]]", 18),
-        ("[[0,0],[1,1],[1,0],[-1,1]]", 4),
-        ("[[2,-3],[-17,-8],[13,8],[-17,-15]]", 53),
+    let test_cases = vec![
+        (vec_vec![[0, 0], [2, 2], [3, 10], [5, 2], [7, 0]], 20),
+        (vec_vec![[3, 12], [-2, 5], [-4, 1]], 18),
+        (vec_vec![[0, 0], [1, 1], [1, 0], [-1, 1]], 4),
+        (vec_vec![[2, -3], [-17, -8], [13, 8], [-17, -15]], 53),
     ];
-    for &(points, min_cost) in TEST_CASES.iter() {
-        assert_eq!(
-            min_cost_connect_points(crate::parse_2d_array(points)),
-            min_cost
-        );
+    for (points, min_cost) in test_cases.into_iter() {
+        assert_eq!(min_cost_connect_points(points), min_cost);
     }
 }

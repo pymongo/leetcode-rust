@@ -29,14 +29,17 @@ fn island_perimeter(grid: Vec<Vec<i32>>) -> i32 {
 
 #[test]
 fn test_island_perimeter() {
-    const TEST_CASES: [(&str, i32); 1] = [(
-        "[[0, 1, 0, 0],
-          [1, 1, 1, 0],
-          [0, 1, 0, 0],
-          [1, 1, 0, 0]]",
+    /*
+    "[[0, 1, 0, 0],
+      [1, 1, 1, 0],
+      [0, 1, 0, 0],
+      [1, 1, 0, 0]]",
+    */
+    let test_cases = vec![(
+        vec_vec![[0, 1, 0, 0], [1, 1, 1, 0], [0, 1, 0, 0], [1, 1, 0, 0]],
         16,
     )];
-    for &(grid, perimeter) in TEST_CASES.iter() {
-        assert_eq!(island_perimeter(crate::parse_2d_array(grid)), perimeter);
+    for (grid, perimeter) in test_cases.into_iter() {
+        assert_eq!(island_perimeter(grid), perimeter);
     }
 }
