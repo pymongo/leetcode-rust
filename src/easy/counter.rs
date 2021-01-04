@@ -1,4 +1,4 @@
-//! 所有用到了类似Python的collections.Counter的题型
+//! 所有用到了类似Python的collections.Counter的题型，以及没用到Counter但是有计数需求的简单
 
 /** https://leetcode.com/problems/number-of-good-pairs/
 count if nums[i] == nums[j] and i < j
@@ -217,7 +217,7 @@ fn test_smaller_numbers_than_current() {
     }
 }
 
-/// https://leetcode.com/problems/count-good-meals/submissions/
+/// https://leetcode.com/problems/count-good-meals/
 fn count_pairs_permutation_solution(nums: Vec<i32>) -> i32 {
     fn is_power_of_2(n: i32) -> bool {
         if n == 0 {
@@ -269,7 +269,7 @@ const fn gen_power_of_2() -> [i32; 22] {
 /// 生成从2^0到2^N次方的等比数列
 const fn gen_twos_geometric_series<const N: usize>() -> [i32; N] {
     let mut ret = [0i32; N];
-    let mut i = 0;
+    let mut i = 0usize;
     while i < N {
         ret[i] = 2i32.pow(i as u32);
         i += 1;

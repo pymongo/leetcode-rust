@@ -19,8 +19,6 @@ mod union_find;
 
 pub fn parse_2d_array(s: &str) -> Vec<Vec<i32>> {
     let len = s.len();
-    // assert_eq!(s[0], b'[');
-    // assert_eq!(s[len-1], b']');
     let s = &s[1..len - 1];
     let mut ret = vec![];
     for nums_str in s.split("],") {

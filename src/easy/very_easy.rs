@@ -1272,7 +1272,6 @@ fn can_place_flowers(mut flowerbed: Vec<i32>, n: i32) -> bool {
     // 头尾加上0，这样就不用边界检查
     flowerbed.insert(0, 0);
     flowerbed.push(0);
-
     let mut ret = 0i32;
     let len = flowerbed.len();
     for i in 1..len - 1 {
@@ -1282,4 +1281,37 @@ fn can_place_flowers(mut flowerbed: Vec<i32>, n: i32) -> bool {
         }
     }
     n <= ret
+}
+
+/// https://leetcode.com/problems/number-of-students-unable-to-eat-lunch/
+/// 不能想当然的去比较三文治0的个数和需要三文治0的学生数，假设三文治前两个是0，后面有999个1，学生有1个0和999个1，因为第二个三明治是0卡住了后面999全是1的学生
+fn count_students(students: Vec<i32>, sandwiches: Vec<i32>) -> i32 {
+    let mut ones = students.into_iter().sum::<i32>();
+    // 既然数组全由0和1组成，那么0的个数就等于 len-sum
+    let mut zeros = sandwiches.len() as i32 - ones;
+    for sandwich in sandwiches {
+        if sandwich == 0 {
+            if zeros == 0 {
+                break;
+            }
+            zeros -= 1;
+        } else {
+            if ones == 0 {
+                break;
+            }
+            ones -= 1;
+        }
+    }
+    ones + zeros
+}
+
+#[test]
+fn test_count_students() {
+    const TEST_CASES: [(&[i32], &[i32], i32); 1] = [
+        (&[1, 1, 1, 0, 0, 1], &[1, 0, 0, 0, 1, 1], 3)
+    ];
+    std::mem::size_of_val(&9i32);
+    for &(students, sandwiches, n_students_not_eat) in &TEST_CASES {
+        assert_eq!(count_students(students.to_vec(), sandwiches.to_vec()), n_students_not_eat);
+    }
 }
