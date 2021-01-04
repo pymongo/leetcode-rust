@@ -28,7 +28,7 @@ fn remove_element(nums: &mut Vec<i32>, val: i32) -> i32 {
 #[test]
 fn test_remove_duplicates() {
     assert_eq!(remove_duplicates_from_sorted_array(&mut Vec::new()), 0);
-    assert_eq!(remove_duplicates_from_sorted_array(&mut vec![1, 1, 2]), 1);
+    assert_eq!(remove_duplicates_from_sorted_array(&mut vec![1, 1, 2]), 2);
 }
 
 /// https://leetcode.com/problems/remove-duplicates-from-sorted-array/

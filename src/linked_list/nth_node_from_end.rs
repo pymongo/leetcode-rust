@@ -1,23 +1,5 @@
-/*
-blocking/non-blocking sync/async
+use super::ListNode;
 
-blocking: 用户态/用户空间(User-Mode)通过系统调用向内核空间(Kernel-Mode)请求IO操作时，操作系统会把用户线程挂起，直到操作系统将IO操作完成(软中断)
-non-blocking:n
-
-
-Linux OS: 宏内核操作系统，重内核
-
-
-tokio: 用户空间的异步IO
-
-
-
-*/
-use super::{arr_to_linked_list, ListNode};
-
-/*
-边缘计算
-*/
 /// https://leetcode-cn.com/problems/kth-node-from-end-of-list-lcci/
 /// 找出单向链表中倒数第 k 个节点，返回该节点的值，容易想到用滑动窗口的方法，宽度为k窗口往右划底时，左边界就是倒数第k个节点
 fn kth_to_last(head: Option<Box<ListNode>>, k: i32) -> i32 {
@@ -42,7 +24,7 @@ fn kth_to_last(head: Option<Box<ListNode>>, k: i32) -> i32 {
 fn test_kth_to_last() {
     const TEST_CASES: [(&[i32], i32, i32); 2] = [(&[1, 2, 3, 4, 5], 2, 4), (&[1], 1, 1)];
     for &(nums, k, output) in TEST_CASES.iter() {
-        assert_eq!(kth_to_last(arr_to_linked_list(nums), k), output);
+        assert_eq!(kth_to_last(super::arr_to_linked_list(nums), k), output);
     }
 }
 
@@ -75,6 +57,7 @@ fn remove_nth_from_end(head: Option<Box<ListNode>>, n: i32) -> Option<Box<ListNo
 
 #[test]
 fn test_remove_nth_from_end() {
+    use super::arr_to_linked_list;
     const TEST_CASES: [(&[i32], i32, &[i32]); 2] =
         [(&[1, 2, 3, 4, 5], 2, &[1, 2, 3, 5]), (&[1], 1, &[])];
     for &(nums, k, output) in TEST_CASES.iter() {

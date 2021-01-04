@@ -5,6 +5,7 @@ fn hamming_weight_count_ones_solution(n: u32) -> i32 {
 }
 
 /// 用汇编的popcnt指令去统计正整数里有几个1
+/// __builtin_popcount in c++
 fn hamming_weight_asm_popcnt_solution(n: u32) -> i32 {
     let popcnt_input: usize = n as usize;
     let popcnt_output: usize;

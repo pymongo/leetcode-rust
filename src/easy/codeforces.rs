@@ -11,7 +11,6 @@ codeforces: [49,48,48,10(LF)]
 
 注意在IDEA上发送EOF的快捷键是cmd+d
 */
-#![allow(dead_code)]
 
 /// https://codeforces.com/problemset/problem/4/A
 /// 本题问的是一个数能否被分成两个偶数之和，显然只要不等于2的所有偶数都符合条件

@@ -74,7 +74,7 @@ fn test_is_power_of_two() {
     unsafe {
         srand(time(&mut std::mem::zeroed()) as u32);
     }
-    for _ in 0..100_000 {
+    for _ in 0..10_000 {
         let input = unsafe { rand() };
         let input_is_power_of_2 = is_f32_an_integer((input as f32).log2());
         assert_eq!(

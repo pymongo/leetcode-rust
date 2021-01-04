@@ -27,7 +27,7 @@ fn dfs(
     curr: &mut Vec<usize>,
     visited: &mut Vec<bool>,
     ret: &mut Vec<Vec<usize>>,
-    graph: &Vec<Vec<usize>>,
+    graph: &[Vec<usize>],
     dest: usize,
 ) {
     for &next in graph[*curr.last().unwrap()].iter() {

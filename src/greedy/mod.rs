@@ -8,5 +8,6 @@
 - [ ] http://lintcode.com/problem/delete-digits/
 - [ ] http://lintcode.com/problem/task-scheduler/
 */
+mod candy;
 mod gas_station;
 mod partition_labels;

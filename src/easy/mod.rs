@@ -1,4 +1,5 @@
 mod array;
+mod codeforces;
 mod coin_lcci;
 mod construct_product_array;
 mod count_negative_numbers_in_a_sorted_matrix;
@@ -9,6 +10,7 @@ mod find_common_characters;
 mod grid_or_matrix;
 mod lazy_static;
 mod majority_element;
+mod math;
 mod matrix_diagonal_traverse;
 mod number_of_ways_where_square_of_number_is_equal_to_product_of_two_numbers;
 mod one_or_two_bit_char;

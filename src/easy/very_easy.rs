@@ -25,34 +25,6 @@ fn test_shuffle() {
     }
 }
 
-/** https://leetcode.com/problems/climbing-stairs/
-& https://leetcode.com/problems/fibonacci-number/
-比尾递归O(n)更快的还有O(log(n))的解法：
-1. 斐波那契公式(公式中的乘方需要log(n)时间复杂度)
-2. Binet's formula 利用矩阵解斐波那契
-*/
-const fn fib_recursive(n: u32, a: u32, b: u32) -> u32 {
-    if n == 1 {
-        b
-    } else {
-        // 注意尾递归解法只能从1逼近n，普通递归解法一般是从f(n-1)一直加到f(1)
-        fib_recursive(n - 1, b, a + b)
-    }
-}
-
-const fn fib_iterative(n: i32) -> i32 {
-    let (mut a, mut b) = (1u32, 1u32);
-    let mut temp: u32;
-    let mut n = n;
-    while n > 1 {
-        temp = b;
-        b += a;
-        a = temp;
-        n -= 1;
-    }
-    b as i32
-}
-
 /// https://leetcode.com/problems/to-lower-case/
 fn to_lower_case(s: String) -> String {
     // 既然是ASCII编码，更高效的做法可能是u8数组判断在大写范围的挨个-32
@@ -145,7 +117,6 @@ fn max_width_of_vertical_area(points: Vec<Vec<i32>>) -> i32 {
     // max_width
     let mut points_x: Vec<i32> = points.into_iter().map(|v| v[0]).collect();
     points_x.sort_unstable();
-    // TODO 能不能用flat_map将windows拆成(a, b)这样的元组?
     points_x
         .windows(2)
         .map(|a| a[1] - a[0])
@@ -257,70 +228,10 @@ impl ParkingSystem {
     }
 }
 
-/// https://leetcode.com/problems/ugly-number/
-fn is_ugly(mut num: i32) -> bool {
-    if num == 0 {
-        return false;
-    }
-    while num % 2 == 0 {
-        num /= 2;
-    }
-    while num % 3 == 0 {
-        num /= 3;
-    }
-    while num % 5 == 0 {
-        num /= 5;
-    }
-    num == 1
-}
-
 /// https://leetcode.com/problems/valid-number/
 /// 这题正确的解法应该是DFA(有限状态机)，手写的状态机应该会比标准库的f32解析状态机性能更好
 fn is_number(s: String) -> bool {
     s.trim().parse::<f32>().is_ok()
-}
-
-/// https://leetcode.com/problems/island-perimeter/
-/// 逐行遍历grid中所有为1的格子，遇到一个1就往上下左右四个方向延伸，遇到边界或0就周长加一，遇到1则不加
-fn island_perimeter(grid: Vec<Vec<i32>>) -> i32 {
-    let (m, n) = (grid.len(), grid[0].len());
-    let mut perimeter = 0;
-    for i in 0..m {
-        for j in 0..n {
-            if grid[i][j] == 0 {
-                continue;
-            }
-            // up and down
-            if i == 0 || grid[i - 1][j] == 0 {
-                perimeter += 1;
-            }
-            if i == m - 1 || grid[i + 1][j] == 0 {
-                perimeter += 1;
-            }
-            // left and right
-            if j == 0 || grid[i][j - 1] == 0 {
-                perimeter += 1;
-            }
-            if j == n - 1 || grid[i][j + 1] == 0 {
-                perimeter += 1;
-            }
-        }
-    }
-    perimeter
-}
-
-#[test]
-fn test_island_perimeter() {
-    const TEST_CASES: [(&str, i32); 1] = [(
-        "[[0, 1, 0, 0],
-          [1, 1, 1, 0],
-          [0, 1, 0, 0],
-          [1, 1, 0, 0],]",
-        16,
-    )];
-    for &(grid, perimeter) in TEST_CASES.iter() {
-        assert_eq!(island_perimeter(crate::parse_2d_array(grid)), perimeter);
-    }
 }
 
 /// https://leetcode.com/problems/k-closest-points-to-origin/
@@ -1226,25 +1137,6 @@ fn judge_circle(moves: String) -> bool {
     up_and_down == 0 && left_and_right == 0
 }
 
-/// https://leetcode.com/problems/candy/
-fn candy(ratings: Vec<i32>) -> i32 {
-    let n = ratings.len();
-    // 首先每个孩子至少要给1个糖果
-    let mut nums = vec![1; n];
-    // 先看每个孩子的左边情况，如果当前孩子比左边的成绩更好，则理应比左边的多一个糖果
-    for i in 1..n {
-        if ratings[i] > ratings[i - 1] {
-            nums[i] = nums[i - 1] + 1;
-        }
-    }
-    for i in (0..n - 1).rev() {
-        if ratings[i] > ratings[i + 1] {
-            nums[i] = nums[i].max(nums[i + 1] + 1);
-        }
-    }
-    nums.into_iter().sum()
-}
-
 /// https://leetcode.com/problems/corporate-flight-bookings
 #[allow(clippy::needless_range_loop)]
 fn corp_flight_bookings(records: Vec<Vec<i32>>, n: i32) -> Vec<i32> {
@@ -1294,10 +1186,9 @@ fn assign_cookies(mut children: Vec<i32>, mut cookies: Vec<i32>) -> i32 {
     //     }
     // }
     // i as i32
-    let mut children = children.into_iter();
     let mut cookies = cookies.into_iter();
     let mut ret = 0;
-    while let Some(child) = children.next() {
+    for child in children.into_iter() {
         while let Some(cookie) = cookies.next() {
             if cookie >= child {
                 ret += 1;
@@ -1327,16 +1218,6 @@ fn number_of_matches(mut n: i32) -> i32 {
         n -= matches;
     }
     ret
-}
-
-#[cfg(not)]
-/// https://leetcode-cn.com/problems/count-sorted-vowel-strings/
-fn count_vowel_strings(n: i32) -> i32 {
-    const VOWELS_LEN: usize = 5;
-    const VOWELS: [u8; VOWELS_LEN] = [b'a', b'e', b'i', b'o', b'u'];
-    // let mut cur_len = 1;
-    // let mut last = 0;
-    todo!()
 }
 
 /// https://leetcode-cn.com/problems/hanota-lcci/
@@ -1384,4 +1265,21 @@ fn test_maximum_units() {
         let box_types = crate::parse_2d_array(box_types);
         assert_eq!(maximum_units(box_types, truck_size), max_value);
     }
+}
+
+/// https://leetcode.com/problems/can-place-flowers/
+fn can_place_flowers(mut flowerbed: Vec<i32>, n: i32) -> bool {
+    // 头尾加上0，这样就不用边界检查
+    flowerbed.insert(0, 0);
+    flowerbed.push(0);
+
+    let mut ret = 0i32;
+    let len = flowerbed.len();
+    for i in 1..len - 1 {
+        if flowerbed[i - 1] == 0 && flowerbed[i] == 0 && flowerbed[i + 1] == 0 {
+            flowerbed[i] = 1;
+            ret += 1;
+        }
+    }
+    n <= ret
 }
