@@ -22,19 +22,19 @@ f(m,n)=f(m-1,n)+f(m,n-1)
 
 ```go
 func UniquePaths(m int, n int) int {
-	// 端点是4x4，但是棋盘的格子就3x3
-	max, min := m-1, n-1
-	if min > max {
-		max, min = min, max
-	}
-	result := 1
-	sum := max+min
-	for i:=0; i<min; i++ {
-		result *= sum-i
-		// 先乘后除，避免result溢出
-		result /= i+1
-	}
-	return result
+    // 端点是4x4，但是棋盘的格子就3x3
+    max, min := m-1, n-1
+    if min > max {
+        max, min = min, max
+    }
+    result := 1
+    sum := max+min
+    for i:=0; i<min; i++ {
+        result *= sum-i
+        // 先乘后除，避免result溢出
+        result /= i+1
+    }
+    return result
 }
 ```
 

@@ -1,5 +1,5 @@
 //! 数学相关问题或位运算
-mod fibonacci;
+mod count_primes;
 mod sqrt;
 
 /// https://leetcode.com/problems/ugly-number/

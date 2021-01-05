@@ -5,7 +5,7 @@ count if nums[i] == nums[j] and i < j
 思路: collection.Counter统计输入数组每个数字的出现次数，例如3出现了3次，那么就有math.comb(3,2)=3*2=6对满足i<j且nums[i]==nums[j]
 
 除了Counter，还有已知输入全小写字母字符串需要一些记忆操作例如最长无重复子串，也建议用固定长数组，下标寻址比HashMap快
-> return sum(map(lambda v: math_or_puzzle_game.comb(v, 2), collections.Counter(nums).values()))
+> return sum(map(lambda v: math.comb(v, 2), collections.Counter(nums).values()))
 */
 fn num_identical_pairs(nums: Vec<i32>) -> i32 {
     let mut counter = [0u8; 101];
@@ -243,7 +243,7 @@ fn count_pairs_permutation_solution(nums: Vec<i32>) -> i32 {
         for j in i..n {
             if is_power_of_2(unique[i] + unique[j]) {
                 if i == j {
-                    // math_or_puzzle_game.comb(count, 2)
+                    // math.comb(count, 2)
                     ret += (counter[i] - 1) * counter[i] / 2;
                 } else {
                     ret += counter[i] * counter[j];

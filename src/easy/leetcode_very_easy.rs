@@ -1,11 +1,28 @@
-/*! 简短一行Rust代码能解决的题:
+/*! leetcode超简单题，不看答案20分钟内搞定，例如每次周赛第一题(送分题)
+## 简短一行Rust代码能解决的题:
 - [剑指Offer 17. 打印从1到最大n位的十进制数]: (1..10i32.pow(n as u32)).collect()
 */
 
-/** https://leetcode.com/problems/shuffle-the-array/
-数组nums按 \[x1,x2,...,xn,y1,y2,...,yn] 的格式排列
-请你将数组按 [x1,y1,x2,y2,...,xn,yn] 格式重新排列
-*/
+/// https://leetcode.com/problems/to-lower-case/
+fn to_lower_case(s: String) -> String {
+    s.to_ascii_lowercase()
+}
+
+/// https://leetcode.com/problems/valid-number/
+/// 这题正确的解法应该是DFA(有限状态机)，手写的状态机应该会比标准库的f32解析状态机性能更好
+fn is_number(s: String) -> bool {
+    s.trim().parse::<f32>().is_ok()
+}
+
+/// https://leetcode.com/problems/running-sum-of-1d-array/
+fn running_sum(mut nums: Vec<i32>) -> Vec<i32> {
+    for i in 1..nums.len() {
+        nums[i] += nums[i - 1];
+    }
+    nums
+}
+
+/// https://leetcode.com/problems/shuffle-the-array/
 fn shuffle_the_array(nums: Vec<i32>, n: i32) -> Vec<i32> {
     let n: usize = n as usize;
     let mut ret: Vec<i32> = Vec::with_capacity(2 * n);
@@ -16,19 +33,90 @@ fn shuffle_the_array(nums: Vec<i32>, n: i32) -> Vec<i32> {
     ret
 }
 
-#[test]
-fn test_shuffle() {
-    const TEST_CASES: [(&[i32], i32, &[i32]); 1] = [(&[2, 5, 1, 3, 4, 7], 3, &[2, 3, 5, 4, 1, 7])];
-    for &(nums, n, expected) in TEST_CASES.iter() {
-        let output = shuffle_the_array(nums.to_vec(), n);
-        assert_eq!(&output[..], expected);
+/// https://leetcode.com/problems/count-of-matches-in-tournament/
+fn number_of_matches(mut n: i32) -> i32 {
+    let mut ret = 0;
+    while n != 1 {
+        let matches = n / 2;
+        ret += matches;
+        n -= matches;
+    }
+    ret
+}
+
+/// https://leetcode.com/problems/generate-a-string-with-characters-that-have-odd-counts/
+fn generate_the_string(n: i32) -> String {
+    if n % 2 == 1 {
+        "a".repeat(n as usize)
+    } else {
+        let mut ret = "a".repeat(n as usize - 1);
+        ret.push('b');
+        ret
     }
 }
 
-/// https://leetcode.com/problems/to-lower-case/
-fn to_lower_case(s: String) -> String {
-    // 既然是ASCII编码，更高效的做法可能是u8数组判断在大写范围的挨个-32
-    s.to_ascii_lowercase()
+/// https://leetcode.com/problems/robot-return-to-origin/
+fn judge_circle(moves: String) -> bool {
+    let mut up_and_down = 0i32;
+    let mut left_and_right = 0i32;
+    moves.into_bytes().into_iter().for_each(|byte| match byte {
+        b'U' => up_and_down += 1,
+        b'D' => up_and_down -= 1,
+        b'L' => left_and_right += 1,
+        b'R' => left_and_right -= 1,
+        _ => unreachable!(),
+    });
+    up_and_down == 0 && left_and_right == 0
+}
+
+/// https://leetcode.com/problems/fizz-buzz/
+fn fizz_buzz(n: i32) -> Vec<String> {
+    let mut ret = Vec::new();
+    for i in 1..=n {
+        if i % 3 == 0 {
+            if i % 5 == 0 {
+                ret.push("FizzBuzz".to_string());
+            } else {
+                ret.push("Fizz".to_string());
+            }
+        } else if i % 5 == 0 {
+            ret.push("Buzz".to_string());
+        } else {
+            ret.push(i.to_string());
+        }
+    }
+    ret
+}
+
+/// https://leetcode.com/problems/minimum-time-visiting-all-points/
+fn min_time_to_visit_all_points(points: Vec<Vec<i32>>) -> i32 {
+    let n = points.len();
+    let mut ret = 0;
+    for i in 1..n {
+        let dx = (points[i][0] - points[i - 1][0]).abs();
+        let dy = (points[i][1] - points[i - 1][1]).abs();
+        ret += dx.max(dy);
+    }
+    ret
+}
+
+/// https://leetcode.com/problems/widest-vertical-area-between-two-points-containing-no-points/
+fn max_width_of_vertical_area(points: Vec<Vec<i32>>) -> i32 {
+    // points.sort_unstable_by(|a, b| a[0].cmp(&b[0]));
+    // let mut max_width = 0;
+    // let mut last_x = points[0][0];
+    // for point in points.into_iter().skip(1) {
+    //     max_width = max_width.max(point[0] - last_x);
+    //     last_x = point[0];
+    // }
+    // max_width
+    let mut points_x: Vec<i32> = points.into_iter().map(|v| v[0]).collect();
+    points_x.sort_unstable();
+    points_x
+        .windows(2)
+        .map(|a| a[1] - a[0])
+        .max()
+        .unwrap_or_default()
 }
 
 /// https://leetcode.com/problems/self-dividing-numbers/
@@ -62,80 +150,6 @@ fn test_self_dividing_numbers() {
     );
 }
 
-/** https://leetcode.com/problems/check-array-formation-through-concatenation/
-```compile_failed
-fn can_form_array(arr: Vec<i32>, pieces: Vec<Vec<i32>>) -> bool {
-    let mut pieces_index = vec![None; 101];
-    for ref piece in pieces {
-        // creates a temporary which is freed while still in use
-        pieces_index[piece[0] as usize] = Some(piece);
-    }
-    false
-}
-```
-*/
-fn can_form_array(arr: Vec<i32>, pieces: Vec<Vec<i32>>) -> bool {
-    // arr[i]/pieces[i][j] range 1..=100
-    const UNINIT: usize = 101;
-    let mut pieces_index = vec![UNINIT; 101];
-    for (i, piece) in pieces.iter().enumerate() {
-        // since integers in pieces are distinct, so each piece[0] is distinct
-        pieces_index[piece[0] as usize] = i;
-    }
-    let (mut i, n) = (0usize, arr.len());
-    while i < n {
-        let idx = pieces_index[arr[i] as usize];
-        if idx != UNINIT {
-            let piece = &pieces[idx];
-            let (mut j, m) = (0usize, piece.len());
-            #[allow(clippy::suspicious_operation_groupings)]
-            while j < m && piece[j] == arr[i] {
-                i += 1;
-                j += 1;
-            }
-            // 如果piece的所有数字没有全被用上，也返回false
-            if j < m {
-                return false;
-            }
-        } else {
-            // 因为arr和pieces都是unique/distinct的，如果所有pieces都不是以arr[i]开头则不匹配
-            return false;
-        }
-    }
-    true
-}
-
-/// https://leetcode.com/problems/widest-vertical-area-between-two-points-containing-no-points/
-fn max_width_of_vertical_area(points: Vec<Vec<i32>>) -> i32 {
-    // points.sort_unstable_by(|a, b| a[0].cmp(&b[0]));
-    // let mut max_width = 0;
-    // let mut last_x = points[0][0];
-    // for point in points.into_iter().skip(1) {
-    //     max_width = max_width.max(point[0] - last_x);
-    //     last_x = point[0];
-    // }
-    // max_width
-    let mut points_x: Vec<i32> = points.into_iter().map(|v| v[0]).collect();
-    points_x.sort_unstable();
-    points_x
-        .windows(2)
-        .map(|a| a[1] - a[0])
-        .max()
-        .unwrap_or_default()
-}
-
-/// https://leetcode.com/problems/minimum-time-visiting-all-points/
-fn min_time_to_visit_all_points(points: Vec<Vec<i32>>) -> i32 {
-    let n = points.len();
-    let mut ret = 0;
-    for i in 1..n {
-        let dx = (points[i][0] - points[i - 1][0]).abs();
-        let dy = (points[i][1] - points[i - 1][1]).abs();
-        ret += dx.max(dy);
-    }
-    ret
-}
-
 /// https://leetcode.com/problems/max-increase-to-keep-city-skyline/
 /// 大意: 先算出旧矩阵每行每列的最大值，然后遍历矩阵看看当前值最大能加到什么，然后累加最大能增加的量
 #[allow(clippy::needless_range_loop)]
@@ -161,35 +175,6 @@ fn max_increase_keeping_skyline(grid: Vec<Vec<i32>>) -> i32 {
         }
     }
     ret
-}
-
-/// https://leetcode.com/problems/maximum-nesting-depth-of-the-parentheses/
-/// 求字符串内有效括号的最大深度
-fn max_depth(s: String) -> i32 {
-    let mut ret = 0;
-    let mut depth = 0;
-    for byte in s.into_bytes() {
-        // 由于leetcode这题暂时没有全是左括号例如"((("的测试用例，所以这样也能AC
-        match byte {
-            b'(' => {
-                depth += 1;
-                ret = ret.max(depth);
-            }
-            b')' => {
-                depth -= 1;
-            }
-            _ => {}
-        }
-    }
-    ret
-}
-
-#[test]
-fn test_max_depth() {
-    const TEST_CASES: [(&str, i32); 3] = [("", 0), ("()()", 1), ("()(()())", 2)];
-    for &(s, expected) in TEST_CASES.iter() {
-        assert_eq!(max_depth(s.to_owned()), expected);
-    }
 }
 
 /// https://leetcode.com/problems/design-parking-system/
@@ -226,12 +211,6 @@ impl ParkingSystem {
             _ => false,
         }
     }
-}
-
-/// https://leetcode.com/problems/valid-number/
-/// 这题正确的解法应该是DFA(有限状态机)，手写的状态机应该会比标准库的f32解析状态机性能更好
-fn is_number(s: String) -> bool {
-    s.trim().parse::<f32>().is_ok()
 }
 
 /// https://leetcode.com/problems/k-closest-points-to-origin/
@@ -545,61 +524,6 @@ fn test_range_sum_offline() {
     assert_eq!(arr.sum_range(0, 5), -3);
 }
 
-/** https://leetcode.com/problems/2-keys-keyboard/
-初次看到这题，我还以为是用倍增法，例如要生成9个字符，我以我是2**3+1，最后一下鼠标复制一个字符再粘贴
-结果这题只能是「全选后复制粘贴」
-所以如果n是质数，那就只能就最初的1个字母复制1次，粘贴n-1次
-如果n是非质数: 答案就是n分解质因数的因子之和，例如6=2*3，次数是5
-*/
-fn copy_and_paste_min_steps(mut n: i32) -> i32 {
-    let mut factor = 2;
-    let mut factor_sum = 0;
-    while n > 1 {
-        while n % factor == 0 {
-            n /= factor;
-            factor_sum += factor;
-        }
-        factor += 1;
-    }
-    factor_sum
-}
-
-/// https://leetcode.com/problems/design-an-ordered-stream/
-struct OrderedStream {
-    data: Vec<Option<String>>,
-    len: usize,
-    ptr: usize,
-}
-
-impl OrderedStream {
-    fn new(n: i32) -> Self {
-        let n = (n + 1) as usize;
-        Self {
-            data: vec![None; n],
-            len: n,
-            ptr: 1,
-        }
-    }
-
-    fn insert(&mut self, id: i32, value: String) -> Vec<String> {
-        let mut ret = Vec::new();
-        let idx = id as usize;
-        self.data[idx] = Some(value);
-        if self.ptr == idx {
-            for i in idx..self.len {
-                if let Some(s) = self.data[i].take() {
-                    ret.push(s);
-                } else {
-                    // Then, update ptr to the last id + 1
-                    self.ptr = i;
-                    break;
-                }
-            }
-        }
-        ret
-    }
-}
-
 /// https://leetcode.com/problems/maximum-gap/
 fn maximum_gap(mut nums: Vec<i32>) -> i32 {
     nums.sort_unstable();
@@ -609,35 +533,6 @@ fn maximum_gap(mut nums: Vec<i32>) -> i32 {
         ret = ret.max(nums[i] - nums[i - 1]);
     }
     ret
-}
-
-/// https://leetcode.com/problems/4sum-ii/
-fn four_sum_count(a: Vec<i32>, b: Vec<i32>, c: Vec<i32>, d: Vec<i32>) -> i32 {
-    let mut pairs = std::collections::HashMap::new();
-    for num_a in a.into_iter() {
-        for num_b in b.iter() {
-            *pairs.entry(num_a + num_b).or_default() += 1;
-        }
-    }
-    let mut count = 0;
-    for num_c in c.into_iter() {
-        for num_d in d.iter() {
-            count += pairs.get(&(-num_c - num_d)).unwrap_or(&0);
-        }
-    }
-    count
-}
-
-/// https://leetcode.com/problems/largest-perimeter-triangle/
-/// 贪心的角度去想，排序后从右到左遍历连续的三个数，就能找到较长周长的三角形
-fn largest_perimeter(mut a: Vec<i32>) -> i32 {
-    a.sort_unstable();
-    for i in (2..a.len()).rev() {
-        if a[i - 2] + a[i - 1] > a[i] {
-            return a[i - 2] + a[i - 1] + a[i];
-        }
-    }
-    0i32
 }
 
 /// https://leetcode.com/problems/contains-duplicate/
@@ -756,32 +651,37 @@ fn test_merge_two_sorted_array() {
     }
 }
 
-/// https://leetcode.com/problems/reveal-cards-in-increasing-order/
-fn deck_revealed_increasing(mut deck: Vec<i32>) -> Vec<i32> {
-    deck.sort_unstable();
-    let mut ret = vec![deck.pop().unwrap()];
-    while let Some(deck_last) = deck.pop() {
-        let ret_last = ret.pop().unwrap();
-        ret.insert(0, ret_last);
-        // error: ret.insert(0, ret.pop().unwrap());
-        ret.insert(0, deck_last);
+/// https://leetcode.com/problems/first-bad-version/
+struct FirstBadVersion(i32);
+
+impl FirstBadVersion {
+    #[allow(non_snake_case)]
+    fn isBadVersion(&self, versions: i32) -> bool {
+        versions >= self.0
     }
-    ret
+
+    fn first_bad_version(&self, n: i32) -> i32 {
+        let (mut start, mut end) = (0, n);
+        while start < end {
+            let mid = start + (end - start) / 2;
+            if self.isBadVersion(mid) {
+                // 如果出错了，不能排除掉mid，错误可能在[mid,end]
+                end = mid;
+            } else {
+                start = mid + 1;
+            }
+        }
+        start
+    }
 }
 
-/**
-1. 排序deck: [17,13,11,2,3,5,7] => [2,3,5,7,11,13,17], ret: []
-2. deck: [2,3,5,7,11,13], ret: [17]
-3. deck: [2,3,5,7,11], ret: [13,17]
-4. deck: [2,3,5,7], ret: [17,13] => [11,17,13]
-...
-*/
 #[test]
-fn test_deck_revealed_increasing() {
-    assert_eq!(
-        deck_revealed_increasing(vec![17, 13, 11, 2, 3, 5, 7]),
-        vec![2, 13, 3, 11, 5, 17, 7]
-    );
+fn test_first_bad_version() {
+    const TEST_CASES: [(i32, i32); 1] = [(4, 5)];
+    for &(bad, len) in TEST_CASES.iter() {
+        let temp = FirstBadVersion(bad);
+        assert_eq!(temp.first_bad_version(len), bad);
+    }
 }
 
 /// https://leetcode.com/problems/cells-with-odd-values-in-a-matrix/
@@ -825,9 +725,8 @@ fn num_jewels_in_stones(j: String, s: String) -> i32 {
     ret
 }
 
-/** https://leetcode.com/problems/minimum-deletion-cost-to-avoid-repeating-letters/
-花最小代价让字符串相邻两个元素不重复，所以遇到连续的重复字符，例如连续5个a，则需要删掉4个a，留下cost数组中耗费最大的那个a
-*/
+/// https://leetcode.com/problems/minimum-deletion-cost-to-avoid-repeating-letters/
+/// 花最小代价让字符串相邻两个元素不重复，所以遇到连续的重复字符，例如连续5个a，则需要删掉4个a，留下cost数组中耗费最大的那个a
 fn min_cost_to_avoid_repeating_chars(s: String, cost: Vec<i32>) -> i32 {
     let s = s.into_bytes();
     let n = s.len();
@@ -856,66 +755,6 @@ fn test_minimum_deletion_cost_to_avoid_repeating_letters() {
     );
 }
 
-/// https://leetcode.com/problems/running-sum-of-1d-array/
-fn running_sum(mut nums: Vec<i32>) -> Vec<i32> {
-    for i in 1..nums.len() {
-        nums[i] += nums[i - 1];
-    }
-    nums
-}
-
-/// https://leetcode.com/problems/fizz-buzz/
-fn fizz_buzz(n: i32) -> Vec<String> {
-    let mut ret = Vec::new();
-    for i in 1..=n {
-        if i % 3 == 0 {
-            if i % 5 == 0 {
-                ret.push("FizzBuzz".to_string());
-            } else {
-                ret.push("Fizz".to_string());
-            }
-        } else if i % 5 == 0 {
-            ret.push("Buzz".to_string());
-        } else {
-            ret.push(i.to_string());
-        }
-    }
-    ret
-}
-
-/// https://leetcode.com/problems/first-bad-version/
-struct FirstBadVersion(i32);
-
-impl FirstBadVersion {
-    #[allow(non_snake_case)]
-    fn isBadVersion(&self, versions: i32) -> bool {
-        versions >= self.0
-    }
-
-    fn first_bad_version(&self, n: i32) -> i32 {
-        let (mut start, mut end) = (0, n);
-        while start < end {
-            let mid = start + (end - start) / 2;
-            if self.isBadVersion(mid) {
-                // 如果出错了，不能排除掉mid，错误可能在[mid,end]
-                end = mid;
-            } else {
-                start = mid + 1;
-            }
-        }
-        start
-    }
-}
-
-#[test]
-fn test_first_bad_version() {
-    const TEST_CASES: [(i32, i32); 1] = [(4, 5)];
-    for &(bad, len) in TEST_CASES.iter() {
-        let temp = FirstBadVersion(bad);
-        assert_eq!(temp.first_bad_version(len), bad);
-    }
-}
-
 /// https://leetcode.com/problems/minimum-operations-to-make-array-equal/
 fn min_operations(n: i32) -> i32 {
     (1..)
@@ -926,53 +765,6 @@ fn min_operations(n: i32) -> i32 {
     // return n * n /4;
 }
 
-/// https://leetcode.com/problems/goal-parser-interpretation/
-fn goal_parser_interpret(command: String) -> String {
-    let s = command.into_bytes();
-    let n = s.len();
-    let mut ret = Vec::with_capacity(n);
-    let mut i = 0;
-    while i < n {
-        match s[i] {
-            b'G' => {
-                ret.push(b'G');
-                i += 1;
-            }
-            b'(' => {
-                if s[i + 1] == b')' {
-                    ret.push(b'o');
-                    i += 2;
-                } else {
-                    ret.push(b'a');
-                    ret.push(b'l');
-                    i += 4;
-                }
-            }
-            _ => unreachable!(),
-        }
-    }
-    unsafe { String::from_utf8_unchecked(ret) }
-}
-
-#[test]
-fn test_goal_parser_interpret() {
-    const TEST_CASE: [(&str, &str); 2] = [("()()", "oo"), ("G()(al)", "Goal")];
-    for &(input, output) in TEST_CASE.iter() {
-        assert_eq!(goal_parser_interpret(input.to_string()), output.to_string())
-    }
-}
-
-/// https://leetcode.com/problems/generate-a-string-with-characters-that-have-odd-counts/
-fn generate_the_string(n: i32) -> String {
-    if n % 2 == 1 {
-        "a".repeat(n as usize)
-    } else {
-        let mut ret = "a".repeat(n as usize - 1);
-        ret.push('b');
-        ret
-    }
-}
-
 /// https://leetcode.com/problems/can-make-arithmetic-progression-from-sequence/
 /// 任意重排数组，能否形成等差数列
 fn can_make_arithmetic_progression(mut arr: Vec<i32>) -> bool {
@@ -981,40 +773,6 @@ fn can_make_arithmetic_progression(mut arr: Vec<i32>) -> bool {
     for i in 2..arr.len() {
         if arr[i] - arr[i - 1] != difference {
             return false;
-        }
-    }
-    true
-}
-
-/// https://leetcode.com/problems/lemonade-change/
-fn lemonade_change(bills: Vec<i32>) -> bool {
-    // 面值为20的纸币是最大的，基本没用，不能用于找零
-    let (mut currency_5, mut currency_10) = (0u16, 0u16);
-    for bill in bills {
-        match bill {
-            // 多一张面值为5的纸币
-            5 => currency_5 += 1,
-            10 => {
-                if currency_5 == 0 {
-                    // 不能找零5元
-                    return false;
-                }
-                currency_5 -= 1;
-                currency_10 += 1;
-            }
-            // 难点在这，找零10+5还是找零5+5+5呢?由于面值为5的泛用性更强，能给10找零，所以贪心一点优先找零10的
-            // 因为用5美元找零的场景比用10美元的多，所以优先消耗
-            20 => {
-                if currency_10 > 0 && currency_5 > 0 {
-                    currency_10 -= 1;
-                    currency_5 -= 1;
-                } else if currency_5 >= 3 {
-                    currency_5 -= 3;
-                } else {
-                    return false;
-                }
-            }
-            _ => unreachable!(),
         }
     }
     true
@@ -1053,8 +811,127 @@ fn dest_city(paths: Vec<Vec<String>>) -> String {
     unreachable!()
 }
 
-/// https://leetcode-cn.com/contest/weekly-contest-220/problems/reformat-phone-number/
+/// https://leetcode.com/problems/assign-cookies/
+/// children表示每个child的所需摄入的热量，cookie表示每个饼干的热量，贪心思路是排序后尽量让小的饼干满足小胃口的孩子
+fn assign_cookies(mut children: Vec<i32>, mut cookies: Vec<i32>) -> i32 {
+    children.sort_unstable();
+    cookies.sort_unstable();
+    // let (len_g, len_s) = (children.len(), cookies.len());
+    // let (mut i, mut j) = (0, 0);
+    // while i < len_g && j < len_s {
+    //     if cookies[j] >= children[i] {
+    //         i += 1;
+    //         j += 1;
+    //     } else {
+    //         j += 1;
+    //     }
+    // }
+    // i as i32
+    let mut cookies = cookies.into_iter();
+    let mut ret = 0;
+    for child in children.into_iter() {
+        while let Some(cookie) = cookies.next() {
+            if cookie >= child {
+                ret += 1;
+                break;
+            }
+        }
+    }
+    ret
+}
+
+#[test]
+fn test_find_content_children() {
+    const TEST_CASES: [(&[i32], &[i32], i32); 2] = [
+        // 两个面值为1的糖果🍬只能满足第一个孩子(胃口为1)，因为每个孩子最多吃一个糖果
+        (&[1, 2, 3], &[1, 1], 1),
+        (&[1, 2], &[1, 2, 3], 2),
+    ];
+    // for &(input, output) in
+}
+
+/// https://leetcode-cn.com/contest/weekly-contest-222/problems/maximum-units-on-a-truck/
+/// https://leetcode.com/problems/maximum-units-on-a-truck/
+/// 有点像背包问题，因为所有物体的容积都是1，所以这题应该也能用贪心去解题，尽量先放价值更高的物件
+fn maximum_units(mut box_types: Vec<Vec<i32>>, mut truck_size: i32) -> i32 {
+    box_types.sort_unstable_by_key(|box_type| -box_type[1]);
+    let mut ret = 0;
+    for box_type in box_types.into_iter() {
+        // 这里类似于Go语言解构数组的写法: const [size, unit] = boxTypes[i];
+        // refutable pattern: let [quantity, unit_price, ..] = box_type[..]; 意思是这种写法是可辩驳的(refutable)，要写成if let或match
+        let (quantity, unit_price) = (box_type[0], box_type[1]);
+        if quantity <= truck_size {
+            ret += quantity * unit_price;
+            truck_size -= quantity;
+        } else {
+            ret += truck_size * unit_price;
+            break;
+        }
+    }
+    ret
+}
+
+#[test]
+fn test_maximum_units() {
+    let test_cases = vec![(vec_vec![[1, 3], [2, 2], [3, 1]], 4, 8)];
+    for (box_types, truck_size, max_value) in test_cases.into_iter() {
+        assert_eq!(maximum_units(box_types, truck_size), max_value);
+    }
+}
+
+/// https://leetcode.com/problems/positions-of-large-groups/
+fn large_group_positions(s: String) -> Vec<Vec<i32>> {
+    let s = s.into_bytes();
+    let (mut i, n) = (0, s.len());
+    let mut ret = vec![];
+    while i < n {
+        let start = i;
+        while i < n && s[i] == s[start] {
+            i += 1;
+        }
+        if i - start >= 3 {
+            ret.push(vec![start as i32, i as i32 - 1]);
+        }
+    }
+    ret
+}
+
+/// https://leetcode.com/problems/lemonade-change/
+fn lemonade_change(bills: Vec<i32>) -> bool {
+    // 面值为20的纸币是最大的，基本没用，不能用于找零
+    let (mut currency_5, mut currency_10) = (0u16, 0u16);
+    for bill in bills {
+        match bill {
+            // 多一张面值为5的纸币
+            5 => currency_5 += 1,
+            10 => {
+                if currency_5 == 0 {
+                    // 不能找零5元
+                    return false;
+                }
+                currency_5 -= 1;
+                currency_10 += 1;
+            }
+            // 难点在这，找零10+5还是找零5+5+5呢?由于面值为5的泛用性更强，能给10找零，所以贪心一点优先找零10的
+            // 因为用5美元找零的场景比用10美元的多，所以优先消耗
+            20 => {
+                if currency_10 > 0 && currency_5 > 0 {
+                    currency_10 -= 1;
+                    currency_5 -= 1;
+                } else if currency_5 >= 3 {
+                    currency_5 -= 3;
+                } else {
+                    return false;
+                }
+            }
+            _ => unreachable!(),
+        }
+    }
+    true
+}
+
 /// https://leetcode.com/problems/reformat-phone-number/
+/// https://leetcode-cn.com/contest/weekly-contest-220/problems/reformat-phone-number/
 fn reformat_phone_number(number: String) -> String {
     let mut s: Vec<u8> = number
         .into_bytes()
@@ -1101,230 +978,45 @@ fn test_reformat_phone_number() {
     }
 }
 
-/// https://leetcode.com/problems/min-cost-climbing-stairs/
-/// 不改输入数组的话，用prev和curr两个状态变量也可以进行dp
-fn min_cost_climbing_stairs(mut cost: Vec<i32>) -> i32 {
-    let len = cost.len();
-    for i in 2..len {
-        cost[i] += cost[i - 1].min(cost[i - 2]);
-    }
-    cost[len - 1].min(cost[len - 2])
-}
-
-#[test]
-fn test_min_cost_climbing_stairs() {
-    const TEST_CASES: [(&[i32], i32); 1] = [(&[1, 100, 1, 1, 1, 100, 1, 1, 100, 1], 6)];
-    for &(input, output) in TEST_CASES.iter() {
-        assert_eq!(min_cost_climbing_stairs(input.to_vec()), output);
-    }
-}
-
-/// https://leetcode.com/problems/robot-return-to-origin/
-fn judge_circle(moves: String) -> bool {
-    let mut up_and_down = 0i32;
-    let mut left_and_right = 0i32;
-    moves.into_bytes().into_iter().for_each(|byte| match byte {
-        b'U' => up_and_down += 1,
-        b'D' => up_and_down -= 1,
-        b'L' => left_and_right += 1,
-        b'R' => left_and_right -= 1,
-        _ => unreachable!(),
-    });
-    up_and_down == 0 && left_and_right == 0
-}
-
-/// https://leetcode.com/problems/corporate-flight-bookings
+/// https://leetcode.com/problems/count-number-of-teams/
 #[allow(clippy::needless_range_loop)]
-fn corp_flight_bookings(records: Vec<Vec<i32>>, n: i32) -> Vec<i32> {
-    let n = n as usize;
-    let mut stations = vec![0; n + 1];
-    for record in records {
-        // 每个record的下标 0=上车站点, 1=下车站点, 2=上下车的人数
-        let cnt = record[2];
-        stations[record[0] as usize - 1] += cnt;
-        stations[record[1] as usize] -= cnt;
-    }
-    let mut curr = 0;
-    // 根据差分数组还原原数组
-    for i in 0..=n as usize {
-        curr += stations[i];
-        stations[i] = curr;
-    }
-    stations.pop();
-    stations
-}
-
-#[test]
-fn test_corp_flight_bookings() {
-    let test_cases = vec![(
-        vec_vec![[1, 2, 10], [2, 3, 20], [2, 5, 25]],
-        5,
-        vec![10, 55, 45, 25, 25],
-    )];
-    for (records, n, output) in test_cases.into_iter() {
-        assert_eq!(corp_flight_bookings(records, n), output);
-    }
-}
-
-/// https://leetcode.com/problems/assign-cookies/
-/// children表示每个child的所需摄入的热量，cookie表示每个饼干的热量，贪心思路是排序后尽量让小的饼干满足小胃口的孩子
-fn assign_cookies(mut children: Vec<i32>, mut cookies: Vec<i32>) -> i32 {
-    children.sort_unstable();
-    cookies.sort_unstable();
-    // let (len_g, len_s) = (children.len(), cookies.len());
-    // let (mut i, mut j) = (0, 0);
-    // while i < len_g && j < len_s {
-    //     if cookies[j] >= children[i] {
-    //         i += 1;
-    //         j += 1;
-    //     } else {
-    //         j += 1;
-    //     }
-    // }
-    // i as i32
-    let mut cookies = cookies.into_iter();
+#[allow(clippy::comparison_chain)]
+fn num_teams(nums: Vec<i32>) -> i32 {
+    let n = nums.len();
     let mut ret = 0;
-    for child in children.into_iter() {
-        while let Some(cookie) = cookies.next() {
-            if cookie >= child {
-                ret += 1;
-                break;
+    for mid in 1..n - 1 {
+        let mid_num = nums[mid];
+        let (mut left_smaller, mut left_bigger) = (0, 0);
+        for i in 0..mid {
+            if nums[i] < mid_num {
+                left_smaller += 1;
+            } else if nums[i] > mid_num {
+                left_bigger += 1;
+            }
+        }
+        let (mut right_smaller, mut right_bigger) = (0, 0);
+        for i in mid + 1..n {
+            if nums[i] < mid_num {
+                right_smaller += 1;
+            } else if nums[i] > mid_num {
+                right_bigger += 1;
+            }
+        }
+        ret += left_smaller * right_bigger + left_bigger * right_smaller;
+    }
+    ret
+    /*
+    let n = a.len();
+    let mut res = 0;
+    for i in 0..n {
+        for j in i+1..n {
+            for k in j+1..n {
+                if (a[i] < a[j] && a[j] < a[k]) || (a[i] > a[j] && a[j] > a[k]) {
+                    res += 1;
+                }
             }
         }
     }
-    ret
-}
-
-#[test]
-fn test_find_content_children() {
-    const TEST_CASES: [(&[i32], &[i32], i32); 2] = [
-        // 两个面值为1的糖果🍬只能满足第一个孩子(胃口为1)，因为每个孩子最多吃一个糖果
-        (&[1, 2, 3], &[1, 1], 1),
-        (&[1, 2], &[1, 2, 3], 2),
-    ];
-    // for &(input, output) in
-}
-
-/// https://leetcode.com/problems/count-of-matches-in-tournament/
-fn number_of_matches(mut n: i32) -> i32 {
-    let mut ret = 0;
-    while n != 1 {
-        let matches = n / 2;
-        ret += matches;
-        n -= matches;
-    }
-    ret
-}
-
-/// https://leetcode-cn.com/problems/hanota-lcci/
-fn hanota(a: &mut Vec<i32>, b: &mut Vec<i32>, c: &mut Vec<i32>) {
-    // std::mem::swap(a, c);
-    fn move_top_down(n: usize, a: &mut Vec<i32>, b: &mut Vec<i32>, c: &mut Vec<i32>) {
-        if n == 0 {
-            return;
-        }
-        // 先将a前n-1个圆盘经由c移到b
-        move_top_down(n - 1, a, c, b);
-        // 把a最底下(也就最后一个/最大圆盘)从a移到b
-        c.push(a.pop().unwrap());
-        // 再将b的所有圆盘经由a移到c
-        move_top_down(n - 1, b, a, c);
-    }
-    move_top_down(a.len(), a, b, c);
-}
-
-/// https://leetcode-cn.com/contest/weekly-contest-222/problems/maximum-units-on-a-truck/
-/// https://leetcode.com/problems/maximum-units-on-a-truck/
-/// 有点像背包问题，因为所有物体的容积都是1，所以这题应该也能用贪心去解题，尽量先放价值更高的物件
-fn maximum_units(mut box_types: Vec<Vec<i32>>, mut truck_size: i32) -> i32 {
-    box_types.sort_unstable_by_key(|box_type| -box_type[1]);
-    let mut ret = 0;
-    for box_type in box_types.into_iter() {
-        // 这里类似于Go语言解构数组的写法: const [size, unit] = boxTypes[i];
-        // refutable pattern: let [quantity, unit_price, ..] = box_type[..]; 意思是这种写法是可辩驳的(refutable)，要写成if let或match
-        let (quantity, unit_price) = (box_type[0], box_type[1]);
-        if quantity <= truck_size {
-            ret += quantity * unit_price;
-            truck_size -= quantity;
-        } else {
-            ret += truck_size * unit_price;
-            break;
-        }
-    }
-    ret
-}
-
-#[test]
-fn test_maximum_units() {
-    let test_cases = vec![(vec_vec![[1, 3], [2, 2], [3, 1]], 4, 8)];
-    for (box_types, truck_size, max_value) in test_cases.into_iter() {
-        assert_eq!(maximum_units(box_types, truck_size), max_value);
-    }
-}
-
-/// https://leetcode.com/problems/can-place-flowers/
-fn can_place_flowers(mut flowerbed: Vec<i32>, n: i32) -> bool {
-    // 头尾加上0，这样就不用边界检查
-    flowerbed.insert(0, 0);
-    flowerbed.push(0);
-    let mut ret = 0i32;
-    let len = flowerbed.len();
-    for i in 1..len - 1 {
-        if flowerbed[i - 1] == 0 && flowerbed[i] == 0 && flowerbed[i + 1] == 0 {
-            flowerbed[i] = 1;
-            ret += 1;
-        }
-    }
-    n <= ret
-}
-
-/// https://leetcode.com/problems/number-of-students-unable-to-eat-lunch/
-/// 不能想当然的去比较三文治0的个数和需要三文治0的学生数，假设三文治前两个是0，后面有999个1，学生有1个0和999个1，因为第二个三明治是0卡住了后面999全是1的学生
-fn count_students(students: Vec<i32>, sandwiches: Vec<i32>) -> i32 {
-    let mut ones = students.into_iter().sum::<i32>();
-    // 既然数组全由0和1组成，那么0的个数就等于 len-sum
-    let mut zeros = sandwiches.len() as i32 - ones;
-    for sandwich in sandwiches {
-        if sandwich == 0 {
-            if zeros == 0 {
-                break;
-            }
-            zeros -= 1;
-        } else {
-            if ones == 0 {
-                break;
-            }
-            ones -= 1;
-        }
-    }
-    ones + zeros
-}
-
-#[test]
-fn test_count_students() {
-    const TEST_CASES: [(&[i32], &[i32], i32); 1] = [(&[1, 1, 1, 0, 0, 1], &[1, 0, 0, 0, 1, 1], 3)];
-    std::mem::size_of_val(&9i32);
-    for &(students, sandwiches, n_students_not_eat) in &TEST_CASES {
-        assert_eq!(
-            count_students(students.to_vec(), sandwiches.to_vec()),
-            n_students_not_eat
-        );
-    }
-}
-
-/// https://leetcode.com/problems/positions-of-large-groups/
-fn large_group_positions(s: String) -> Vec<Vec<i32>> {
-    let s = s.into_bytes();
-    let (mut i, n) = (0, s.len());
-    let mut ret = vec![];
-    while i < n {
-        let start = i;
-        while i < n && s[i] == s[start] {
-            i += 1;
-        }
-        if i - start >= 3 {
-            ret.push(vec![start as i32, i as i32 - 1]);
-        }
-    }
-    ret
+    res
+    */
 }

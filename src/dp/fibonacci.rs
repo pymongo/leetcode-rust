@@ -1,5 +1,6 @@
 /** https://leetcode.com/problems/climbing-stairs/
 & https://leetcode.com/problems/fibonacci-number/
+虽然斐波那契数超简单的dp，但是作为经典题值得单独整理成一个文件
 比尾递归O(n)更快的还有O(log(n))的解法：
 1. 斐波那契公式(公式中的乘方需要log(n)时间复杂度)
 2. Binet's formula 利用矩阵解斐波那契
