@@ -1,6 +1,5 @@
 mod count_good_triplets;
 mod find_numbers_with_even_number_of_digits;
-mod gray_code;
 mod partition_array;
 mod queries_on_a_permutation_with_key;
 mod squares_of_a_sorted_array;

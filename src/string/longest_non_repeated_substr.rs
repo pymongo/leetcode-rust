@@ -13,7 +13,7 @@
 struct Solution;
 
 impl Solution {
-    fn ascii_table_array_solution(s: String) -> i32 {
+    fn sliding_window_ascii(s: String) -> i32 {
         let s = s.into_bytes();
         let len: i32 = s.len() as i32;
         if len <= 1 {
@@ -75,7 +75,7 @@ mod test_solution {
     fn test_i32_ascii_table() {
         for &(input, expected) in TEST_CASES.iter() {
             assert_eq!(
-                super::Solution::ascii_table_array_solution(input.to_string()),
+                super::Solution::sliding_window_ascii(input.to_string()),
                 expected
             );
         }

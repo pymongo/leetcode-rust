@@ -9,5 +9,7 @@
 - [ ] http://lintcode.com/problem/task-scheduler/
 */
 mod candy;
+mod container_with_most_water;
 mod gas_station;
+mod majority_element;
 mod partition_labels;

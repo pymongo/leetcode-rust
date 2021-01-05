@@ -31,12 +31,7 @@ fn num_special(mat: Vec<Vec<i32>>) -> i32 {
 #[test]
 fn test_num_special() {
     let test_cases = vec![(
-        vec![
-            vec![0, 0, 0, 1],
-            vec![1, 0, 0, 0],
-            vec![0, 1, 1, 0],
-            vec![0, 0, 0, 0],
-        ],
+        vec_vec![[0, 0, 0, 1], [1, 0, 0, 0], [0, 1, 1, 0], [0, 0, 0, 0]],
         2,
     )];
     for (points, min_cost) in test_cases {

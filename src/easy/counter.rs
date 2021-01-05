@@ -5,7 +5,7 @@ count if nums[i] == nums[j] and i < j
 思路: collection.Counter统计输入数组每个数字的出现次数，例如3出现了3次，那么就有math.comb(3,2)=3*2=6对满足i<j且nums[i]==nums[j]
 
 除了Counter，还有已知输入全小写字母字符串需要一些记忆操作例如最长无重复子串，也建议用固定长数组，下标寻址比HashMap快
-> return sum(map(lambda v: math.comb(v, 2), collections.Counter(nums).values()))
+> return sum(map(lambda v: math_or_puzzle_game.comb(v, 2), collections.Counter(nums).values()))
 */
 fn num_identical_pairs(nums: Vec<i32>) -> i32 {
     let mut counter = [0u8; 101];
@@ -243,7 +243,7 @@ fn count_pairs_permutation_solution(nums: Vec<i32>) -> i32 {
         for j in i..n {
             if is_power_of_2(unique[i] + unique[j]) {
                 if i == j {
-                    // math.comb(count, 2)
+                    // math_or_puzzle_game.comb(count, 2)
                     ret += (counter[i] - 1) * counter[i] / 2;
                 } else {
                     ret += counter[i] * counter[j];
@@ -282,7 +282,7 @@ fn test_gen_twos_geometric_series() {
     println!("{:?}", gen_twos_geometric_series::<22>());
 }
 
-/// 这个解法也就是把时间复杂度从O(n^2)降低到O(22n
+/// 这个解法也就是把时间复杂度从O(n^2)降低到O(22n）
 fn count_pairs_two_sum_solution(nums: Vec<i32>) -> i32 {
     // 照顾下leetcode.com的const fn不支持while loop
     // const TWO_SUMS: [i32; 22] = [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144, 524288, 1048576, 2097152];

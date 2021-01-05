@@ -6,7 +6,7 @@ macro_rules! vec_vec {
 }
 
 #[test]
-fn test_vec_vec_i32() {
+fn test_vec_i32() {
     let expected = vec![vec![17, 2], vec![-31], vec![3], vec![]];
     assert_eq!(vec_vec![[17, 2], [-31], [3], []], expected);
     assert_eq!(vec_vec!([17, 2], [-31], [3], [],), expected);
