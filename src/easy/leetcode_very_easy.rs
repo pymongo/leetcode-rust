@@ -773,21 +773,6 @@ fn can_make_arithmetic_progression(mut arr: Vec<i32>) -> bool {
     true
 }
 
-/// https://leetcode.com/problems/arithmetic-slices/
-fn number_of_arithmetic_slices(a: Vec<i32>) -> i32 {
-    let mut ret = 0;
-    let mut continues_arithmetic_len = 0;
-    for i in 2..a.len() {
-        if a[i - 1] - a[i - 2] == a[i] - a[i - 1] {
-            continues_arithmetic_len += 1
-        } else {
-            ret += continues_arithmetic_len * (continues_arithmetic_len + 1) / 2;
-            continues_arithmetic_len = 0;
-        }
-    }
-    ret + continues_arithmetic_len * (continues_arithmetic_len + 1) / 2
-}
-
 /// https://leetcode.com/problems/destination-city/
 /// 找出无环图中的终点(出度为0的点)
 /// 还有种解法是把所有起点做成HashSet再遍历找到not contains的终点，则为第一个出度为0的点
@@ -1079,4 +1064,37 @@ fn test_num_special() {
     for (points, min_cost) in test_cases {
         assert_eq!(num_special(points), min_cost);
     }
+}
+
+/// https://leetcode.com/problems/lucky-numbers-in-a-matrix/
+fn lucky_numbers(matrix: Vec<Vec<i32>>) -> Vec<i32> {
+    let (m, n) = (matrix.len(), matrix[0].len());
+    let mut ret = Vec::with_capacity(m.max(n));
+    'outer: for i in 0..m {
+        // 找到当前行的最小值及其列坐标
+        let mut row_min_val = matrix[i][0];
+        let mut row_min_idx = 0;
+        for j in 0..n {
+            if matrix[i][j] < row_min_val {
+                row_min_val = matrix[i][j];
+                row_min_idx = j;
+            }
+        }
+        // 判断这个行最小值是不是所在列的最大值
+        for row in matrix.iter().take(m) {
+            if row[row_min_idx] > row_min_val {
+                continue 'outer;
+            }
+        }
+        ret.push(row_min_val);
+    }
+    ret
+}
+
+#[test]
+fn test_lucky_numbers() {
+    assert_eq!(
+        lucky_numbers(vec_vec![[3, 7, 8], [9, 11, 13], [15, 16, 17]]),
+        vec![15]
+    );
 }

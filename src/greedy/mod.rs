@@ -11,5 +11,6 @@
 mod candy;
 mod container_with_most_water;
 mod gas_station;
+mod int_to_roman;
 mod majority_element;
 mod partition_labels;

@@ -1,14 +1,36 @@
-//! https://leetcode.com/problems/longest-substring-without-repeating-characters/
-//! ## 暴力遍历
-//! 两层for循环，穷举出所有可能的字符串逐个进行检查，通过HashSet等数据结构存储已出现过(seen)的字符串来提升性能
-//!
-//! ## sliding_window
-//! 通过左右两个浮标，按右浮标遍历String时发现重复的字符串时，让左浮标往右移到重复字符串的位置，从而缩小搜索范围
-//! 时间复杂度是O(N)，最坏的情况O(2N)左右浮标分别完整的遍历一次字符串
-//!
-//! ## (数据结构)ascii记录字符出现位置
-//! leetcode大部分输入字符串的题全是小写字母，用ASCII表的数组性能比HashMap要好
-//! 比HashMap<char, Integer>更高效，用一个长度为128的数组，索引是ascii字母值，value是在字符串中的索引的存储结构效率最高
+/** https://leetcode.com/problems/longest-substring-without-repeating-characters/
+## 暴力遍历
+两层for循环，穷举出所有可能的字符串逐个进行检查，通过HashSet等数据结构存储已出现过(seen)的字符串来提升性能
+
+## sliding_window
+通过左右两个浮标，按右浮标遍历String时发现重复的字符串时，让左浮标往右移到重复字符串的位置，从而缩小搜索范围
+时间复杂度是O(N)，最坏的情况O(2N)左右浮标分别完整的遍历一次字符串
+
+## (数据结构)ascii记录字符出现位置
+leetcode大部分输入字符串的题全是小写字母，用ASCII表的数组性能比HashMap要好
+比HashMap<char, Integer>更高效，用一个长度为128的数组，索引是ascii字母值，value是在字符串中的索引的存储结构效率最高
+
+```python
+def length_of_longest_substring(s: str) -> int:
+    size = len(s)
+    left = 0
+    max_len = 0
+    table = [-1 for _ in range(128)]
+
+    for right in range(size):
+        ord_right = ord(s[right])
+        if table[ord_right] != -1:
+            # 避免重复的字符「不在当前的移动窗口中」
+            # max能确保左指针只会向前移动
+            # 例如abba的用例，当right移到第二个a时，left在第二个b，此时虽有重复但是left不能往左移到第一个a，会导致计算的最大长度变大
+            left = max(left, table[ord_right] + 1)
+        table[ord_right] = right
+        temp_max = right - left + 1
+        if temp_max > max_len:
+            max_len = temp_max
+    return max_len
+```
+*/
 
 struct Solution;
 

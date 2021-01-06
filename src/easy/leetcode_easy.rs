@@ -361,7 +361,7 @@ fn construct_product_array(nums: &[i32]) -> Vec<i32> {
     ret
 }
 
-/*
+/** T表示一行中需要累乘的元素
   1 2 3 4
 1   T T T
 2 T   T T
@@ -379,4 +379,19 @@ fn test_construct_product_array() {
     for &(input, output) in &TEST_CASES {
         assert_eq!(construct_product_array(input), output.to_vec())
     }
+}
+
+/// https://leetcode.com/problems/arithmetic-slices/
+fn number_of_arithmetic_slices(a: Vec<i32>) -> i32 {
+    let mut ret = 0;
+    let mut continues_arithmetic_len = 0;
+    for i in 2..a.len() {
+        if a[i - 1] - a[i - 2] == a[i] - a[i - 1] {
+            continues_arithmetic_len += 1
+        } else {
+            ret += continues_arithmetic_len * (continues_arithmetic_len + 1) / 2;
+            continues_arithmetic_len = 0;
+        }
+    }
+    ret + continues_arithmetic_len * (continues_arithmetic_len + 1) / 2
 }
