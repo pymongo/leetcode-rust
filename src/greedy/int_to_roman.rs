@@ -48,7 +48,7 @@ fn int_to_roman(mut num: i32) -> String {
         // }
         if num >= int {
             ret.extend(roman.repeat((num / int) as usize));
-            num = num % int;
+            num %= int;
         }
     }
     unsafe { String::from_utf8_unchecked(ret) }

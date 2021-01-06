@@ -28,7 +28,7 @@ impl Solution {
                     }
                 }
 
-                // leave current recursive backtracking
+                // leave current recursive bfs_dfs_backtracking
                 *curr_path_sum = old_curr_path_sum;
             }
         }
@@ -58,7 +58,7 @@ impl Solution {
                     sum += dfs_backtracking_best(node.right.clone(), curr_path_sum);
                 }
             }
-            // leave current recursive backtracking
+            // leave current recursive bfs_dfs_backtracking
             *curr_path_sum = old_curr_path_sum;
             sum
         }

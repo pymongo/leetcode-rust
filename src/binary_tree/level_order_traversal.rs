@@ -22,6 +22,7 @@ fn count_nodes(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
 }
 
 /// https://leetcode.com/problems/binary-tree-level-order-traversal/
+/// https://leetcode.com/problems/binary-tree-level-order-traversal-ii/
 fn level_order(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<Vec<i32>> {
     if root.is_none() {
         return Vec::new();
@@ -52,6 +53,8 @@ fn level_order(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<Vec<i32>> {
         }
     }
 
+    // level-order-ii这题，将ret.reverse()即可，频繁insert(0)性能很差，reverse操作是In-Place的
+    // ret.reverse()
     ret
 }
 

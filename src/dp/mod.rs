@@ -12,7 +12,10 @@ TODO 动态规划的题型:
 TODO 动态规划的实现方法:
 [ ] 记忆化搜索(DFS回溯): Unique Path III的简单的DFS解法
 [x] 递推迭代: Triangle
+
+## 动态规划知识
 动态规划的递归依赖不能有「循环依赖」
+记忆化搜索只是动态规划的一种实现方式
 */
 mod dp_easy;
 mod drop_eggs;
@@ -23,3 +26,4 @@ mod longest_common_substr;
 mod longest_palindromic_substr;
 mod trapping_rain_water;
 mod unique_paths;
+mod triangle;

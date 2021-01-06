@@ -7,8 +7,7 @@
 #[macro_use]
 mod macros;
 
-mod backtracking;
-mod bfs;
+mod bfs_dfs_backtracking;
 mod binary_search;
 mod binary_tree;
 mod bitwise;

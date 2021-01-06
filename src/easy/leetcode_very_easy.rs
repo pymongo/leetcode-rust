@@ -1098,3 +1098,36 @@ fn test_lucky_numbers() {
         vec![15]
     );
 }
+
+/// https://leetcode.com/problems/check-if-n-and-its-double-exist/
+fn check_if_n_and_its_double_exist(nums: Vec<i32>) -> bool {
+    let mut set = std::collections::HashSet::new();
+    for num in nums.into_iter() {
+        if set.contains(&num) {
+            return true;
+        } else {
+            // if set.contains(&(2 * n)) || (n % 2 == 0 && set.contains(&(n / 2))) {
+            //     return true;
+            // }
+            // set.insert(n);
+            if num % 2 == 0 {
+                set.insert(num / 2);
+            }
+            set.insert(2 * num);
+        }
+    }
+    false
+}
+
+#[test]
+fn test_check_if_n_and_its_double_exist() {
+    const TEST_CASES: [(&[i32], bool); 3] = [
+        (&[-2, 0, 10, -19, 4, 6, -8], false),
+        (&[-10, 12, -20, -8, 15], true),
+        (&[7, 1, 14, 11], true) // 14=2*7
+    ];
+    for &(input, output) in &TEST_CASES {
+        assert_eq!(check_if_n_and_its_double_exist(input.into()), output);
+    }
+}
+
