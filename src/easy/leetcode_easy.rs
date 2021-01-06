@@ -73,7 +73,7 @@ fn test_max_depth() {
     }
 }
 
-/// https://leetcode-cn.com/problems/hanota-lcci/
+/// https://leetcode.com/problems/hanota-lcci/
 fn hanota(a: &mut Vec<i32>, b: &mut Vec<i32>, c: &mut Vec<i32>) {
     // std::mem::swap(a, c);
     fn move_top_down(n: usize, a: &mut Vec<i32>, b: &mut Vec<i32>, c: &mut Vec<i32>) {

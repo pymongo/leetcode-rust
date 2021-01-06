@@ -827,7 +827,7 @@ fn test_find_content_children() {
     // for &(input, output) in
 }
 
-/// https://leetcode-cn.com/contest/weekly-contest-222/problems/maximum-units-on-a-truck/
+/// https://leetcode.com/contest/weekly-contest-222/problems/maximum-units-on-a-truck/
 /// https://leetcode.com/problems/maximum-units-on-a-truck/
 /// 有点像背包问题，因为所有物体的容积都是1，所以这题应该也能用贪心去解题，尽量先放价值更高的物件
 fn maximum_units(mut box_types: Vec<Vec<i32>>, mut truck_size: i32) -> i32 {
@@ -908,7 +908,7 @@ fn lemonade_change(bills: Vec<i32>) -> bool {
 }
 
 /// https://leetcode.com/problems/reformat-phone-number/
-/// https://leetcode-cn.com/contest/weekly-contest-220/problems/reformat-phone-number/
+/// https://leetcode.com/contest/weekly-contest-220/problems/reformat-phone-number/
 fn reformat_phone_number(number: String) -> String {
     let mut s: Vec<u8> = number
         .into_bytes()
@@ -1124,10 +1124,9 @@ fn test_check_if_n_and_its_double_exist() {
     const TEST_CASES: [(&[i32], bool); 3] = [
         (&[-2, 0, 10, -19, 4, 6, -8], false),
         (&[-10, 12, -20, -8, 15], true),
-        (&[7, 1, 14, 11], true) // 14=2*7
+        (&[7, 1, 14, 11], true), // 14=2*7
     ];
     for &(input, output) in &TEST_CASES {
         assert_eq!(check_if_n_and_its_double_exist(input.into()), output);
     }
 }
-

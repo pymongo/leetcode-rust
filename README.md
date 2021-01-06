@@ -225,6 +225,7 @@ leetcode_solutions
 |377|[Combination Sum IV](https://leetcode.com/problems/combination-sum-iv/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/backpack_4_coin_change_combination_sum_4.py)|完全背包问题|
 |380|[Insert Delete GetRandom O(1)](https://leetcode.com/problems/insert-delete-getrandom-o1/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/insert_delete_get_random_o1.py)||
 |381|[Insert Delete GetRandom O(1) - Duplicates allowed](https://leetcode.com/problems/insert-delete-getrandom-o1-duplicates-allowed/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/insert_delete_get_random_o1.py)||
+|386|[Lexicographical Numbers](https://leetcode.com/problems/lexicographical-numbers/)|[Rust](src/bfs_dfs_backtracking/lexicographical_numbers.rs)|
 |387|[First Unique Character in a String](https://leetcode.com/problems/first-unique-character-in-a-string/)|[Rust](src/counter/mod.rs)|
 |389|[Find The Difference](https://leetcode.com/problems/find-the-difference/)|[Rust](src/bitwise/find_single_number.rs)|
 |398|[Random Pick Index](https://leetcode.com/problems/random-pick-index/)|[Rust](src/random/random_pick_index.rs)|
@@ -758,6 +759,7 @@ lintcode_problems
 |1252|[Queue Reconstruction by Height](https://lintcode.com/problem/queue-reconstruction-by-height/)|leetcode_406|
 |1254|[Sum of Left Leaves](https://lintcode.com/problem/sum-of-left-leaves/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/sum_of_left_leaves.py)||
 |1266|[Find The Difference](https://lintcode.com/problem/find-the-difference/)|leetcode_389|
+|386|[Lexicographical Numbers](https://lintcode.com/problem/lexicographical-numbers/)|leetcode_386|
 |1276|[Sum of Two Integers](https://lintcode.com/problem/sum-of-two-integers/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/bitwise/binary_addition.py)|binary_addition|
 |1281|[Top K Frequent Elements](https://lintcode.com/problem/top-k-frequent-elements/)|leetcode_347|
 |1283|[Reverse String](https://lintcode.com/problem/reverse-string/)|leetcode_344|

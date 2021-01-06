@@ -74,10 +74,7 @@ fn roman_to_int(s: String) -> i32 {
 
 #[test]
 fn test() {
-    const TEST_CASES: [(&str, i32); 2] = [
-        ("LVIII", 58),
-        ("MCMXCIV", 1994)
-    ];
+    const TEST_CASES: [(&str, i32); 2] = [("LVIII", 58), ("MCMXCIV", 1994)];
     for &(roman, int) in &TEST_CASES {
         assert_eq!(int_to_roman(int), roman);
         assert_eq!(roman_to_int(roman.to_string()), int);

@@ -1,6 +1,6 @@
 const KEYMAP: [&[u8]; 10] = [
-    &[], // 0
-    &[], // 1
+    &[],                 // 0
+    &[],                 // 1
     &[b'a', b'b', b'c'], // 2
     &[b'd', b'e', b'f'],
     &[b'g', b'h', b'i'],
@@ -23,7 +23,7 @@ fn letter_combinations_bfs(digits: String) -> Vec<String> {
         let mut curr_combs = Vec::with_capacity(last_combs.len() * 4);
         for last_comb in last_combs.into_iter() {
             // 这里必须要克隆，因为例如会将一份last_comb="a"给拼成"ad","ae","af"
-            for &letter in KEYMAP[(digit-b'0') as usize] {
+            for &letter in KEYMAP[(digit - b'0') as usize] {
                 let mut curr_comb = last_comb.clone();
                 curr_comb.push(letter);
                 curr_combs.push(curr_comb);
@@ -31,16 +31,20 @@ fn letter_combinations_bfs(digits: String) -> Vec<String> {
         }
         last_combs = curr_combs;
     }
-    last_combs.into_iter().map(|each| unsafe { String::from_utf8_unchecked(each) }).collect()
+    last_combs
+        .into_iter()
+        .map(|each| unsafe { String::from_utf8_unchecked(each) })
+        .collect()
 }
 
 // 用DFS回溯的写法会麻烦很多
 
 #[test]
 fn test_letter_combinations() {
-    const TEST_CASES: [(&str, &[&str]); 1] = [
-        ("23", &["ad","ae","af","bd","be","bf","cd","ce","cf"])
-    ];
+    const TEST_CASES: [(&str, &[&str]); 1] = [(
+        "23",
+        &["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"],
+    )];
     for &(input, output) in &TEST_CASES {
         assert_eq!(letter_combinations_bfs(input.into()), output);
     }

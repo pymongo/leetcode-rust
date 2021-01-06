@@ -1,6 +1,6 @@
 use super::ListNode;
 
-/// https://leetcode-cn.com/problems/kth-node-from-end-of-list-lcci/
+/// https://leetcode.com/problems/kth-node-from-end-of-list-lcci/
 /// 找出单向链表中倒数第 k 个节点，返回该节点的值，容易想到用滑动窗口的方法，宽度为k窗口往右划底时，左边界就是倒数第k个节点
 fn kth_to_last(head: Option<Box<ListNode>>, k: i32) -> i32 {
     fn helper(head: Option<Box<ListNode>>, k: i32) -> Option<i32> {

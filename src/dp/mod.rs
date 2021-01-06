@@ -25,5 +25,5 @@ mod jump_game_2;
 mod longest_common_substr;
 mod longest_palindromic_substr;
 mod trapping_rain_water;
-mod unique_paths;
 mod triangle;
+mod unique_paths;
