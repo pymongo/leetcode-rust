@@ -8,6 +8,11 @@ fn to_lower_case(s: String) -> String {
     s.to_ascii_lowercase()
 }
 
+/// https://leetcode.com/problems/defanging-an-ip-address/
+fn defanging_an_ip_address(address: String) -> String {
+    address.replace(".", "[.]")
+}
+
 /// https://leetcode.com/problems/valid-number/
 /// 这题正确的解法应该是DFA(有限状态机)，手写的状态机应该会比标准库的f32解析状态机性能更好
 fn is_number(s: String) -> bool {
@@ -103,13 +108,11 @@ fn min_time_to_visit_all_points(points: Vec<Vec<i32>>) -> i32 {
 /// https://leetcode.com/problems/widest-vertical-area-between-two-points-containing-no-points/
 fn max_width_of_vertical_area(points: Vec<Vec<i32>>) -> i32 {
     // points.sort_unstable_by(|a, b| a[0].cmp(&b[0]));
-    // let mut max_width = 0;
     // let mut last_x = points[0][0];
     // for point in points.into_iter().skip(1) {
     //     max_width = max_width.max(point[0] - last_x);
     //     last_x = point[0];
     // }
-    // max_width
     let mut points_x: Vec<i32> = points.into_iter().map(|v| v[0]).collect();
     points_x.sort_unstable();
     points_x
@@ -185,7 +188,6 @@ struct ParkingSystem {
 }
 
 impl ParkingSystem {
-    /// 0 <= big, medium, small <= 1000
     fn new(big: i32, medium: i32, small: i32) -> Self {
         Self {
             big_slot_cap: big as u16,
@@ -253,12 +255,10 @@ L: last_count, R: current count
   |1|00|111|
      ^
  L|R|
-
 2. last,curr=1,2    ans=0+1
   |1|00|111|
         ^
    L| R|
-
 3. last,curr=2,3    ans=1+2(out of loop)
   |1|00|111|
             ^
@@ -322,11 +322,6 @@ fn plus_one(mut digits: Vec<i32>) -> Vec<i32> {
     // 跳出循环时必定是`if *digit == 9`的分支
     digits.insert(0, 1);
     digits
-}
-
-/// https://leetcode.com/problems/defanging-an-ip-address/
-fn defanging_an_ip_address(address: String) -> String {
-    address.replace(".", "[.]")
 }
 
 /// https://leetcode.com/problems/maximum-product-of-two-elements-in-an-array/
@@ -816,8 +811,6 @@ fn dest_city(paths: Vec<Vec<String>>) -> String {
 fn assign_cookies(mut children: Vec<i32>, mut cookies: Vec<i32>) -> i32 {
     children.sort_unstable();
     cookies.sort_unstable();
-    // let (len_g, len_s) = (children.len(), cookies.len());
-    // let (mut i, mut j) = (0, 0);
     // while i < len_g && j < len_s {
     //     if cookies[j] >= children[i] {
     //         i += 1;
@@ -826,7 +819,6 @@ fn assign_cookies(mut children: Vec<i32>, mut cookies: Vec<i32>) -> i32 {
     //         j += 1;
     //     }
     // }
-    // i as i32
     let mut cookies = cookies.into_iter();
     let mut ret = 0;
     for child in children.into_iter() {
@@ -962,7 +954,6 @@ fn reformat_phone_number(number: String) -> String {
     }
     // 去掉末尾的'-'
     s.pop();
-
     // println!("{:?}", s.clone().into_iter().map(|x| x as char).collect::<Vec<char>>());
     unsafe { String::from_utf8_unchecked(s) }
 }
@@ -1006,17 +997,86 @@ fn num_teams(nums: Vec<i32>) -> i32 {
     }
     ret
     /*
-    let n = a.len();
-    let mut res = 0;
     for i in 0..n {
         for j in i+1..n {
             for k in j+1..n {
                 if (a[i] < a[j] && a[j] < a[k]) || (a[i] > a[j] && a[j] > a[k]) {
-                    res += 1;
+                    ret += 1;
                 }
             }
         }
     }
-    res
     */
+}
+
+/// '#'表示退格操作，请你比较两个含退格操作符的字符串是否相等
+fn backspace_compare(s: String, t: String) -> bool {
+    fn parse(s: String) -> Vec<u8> {
+        let mut ret: Vec<u8> = Vec::new();
+        for byte in s.into_bytes() {
+            if byte == b'#' {
+                let _ = ret.pop();
+            } else {
+                ret.push(byte);
+            }
+        }
+        ret
+    }
+    parse(s) == parse(t)
+}
+
+#[test]
+fn test_backspace_compare() {
+    const TEST_CASES: [(&str, &str, bool); 4] = [
+        ("ab#c", "ad#c", true),
+        ("ab##", "c#d#", true),
+        ("a##c", "#a#c", true),
+        ("a#c", "b", false),
+    ];
+    for &(s, t, expected) in &TEST_CASES {
+        assert_eq!(backspace_compare(s.to_string(), t.to_string()), expected);
+    }
+}
+
+/// https://leetcode.com/problems/special-positions-in-a-binary-matrix/
+/// 数一数矩阵上总共有几个值为1的位置满足横竖两个方向上仅有它一个为1，其余为0
+#[allow(clippy::needless_range_loop)]
+fn num_special(mat: Vec<Vec<i32>>) -> i32 {
+    let (m, n) = (mat.len(), mat[0].len());
+    let mut ret = 0;
+    for i in 0..m {
+        'for_j: for j in 0..n {
+            if mat[i][j] == 1 {
+                for row in 0..m {
+                    if row == i {
+                        continue; // for row in 0..m
+                    }
+                    if mat[row][j] == 1 {
+                        continue 'for_j;
+                    }
+                }
+                for col in 0..n {
+                    if col == j {
+                        continue;
+                    }
+                    if mat[i][col] == 1 {
+                        continue 'for_j;
+                    }
+                }
+                ret += 1;
+            }
+        }
+    }
+    ret
+}
+
+#[test]
+fn test_num_special() {
+    let test_cases = vec![(
+        vec_vec![[0, 0, 0, 1], [1, 0, 0, 0], [0, 1, 1, 0], [0, 0, 0, 0]],
+        2,
+    )];
+    for (points, min_cost) in test_cases {
+        assert_eq!(num_special(points), min_cost);
+    }
 }

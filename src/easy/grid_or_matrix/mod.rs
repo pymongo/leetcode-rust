@@ -1,4 +1,6 @@
+mod count_negative_numbers_in_a_sorted_matrix;
 mod island_perimeter;
+mod matrix_diagonal_traverse;
 mod rotate_matrix;
 mod spiral_matrix;
 

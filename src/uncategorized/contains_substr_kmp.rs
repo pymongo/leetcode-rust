@@ -1,73 +1,47 @@
-//! https://leetcode.com/problems/implement-strstr/
-//! 实现C语言自带的strstr()以及Java的indexOf() API
-//! 功能：查找字符串中的一个子串的出现位置，类似于find()、contains() API
+/*! https://leetcode.com/problems/implement-strstr/
+实现C语言自带的strstr()以及Java的indexOf() API
+功能：查找字符串中的一个子串的出现位置，类似于find()、contains() API
+## KMP算法
+相关知识：3. Longest Substring Without Repeating Characters
+例如：ABABD中搜索ABD，KMP算法的优势在于发现第一个AB不合条件后，指针立即跳到第二个AB的A上，
+有点像双指针滑动窗口遍历最长无重复子串中，遇到重复的子串时立即查表，去偏移尾指针
 
-#[cfg(test)]
-const TEST_CASES: [(&str, &str, i32); 3] =
-    [("hello", "ll", 2), ("aaaaa", "bba", -1), ("bike", "", 0)];
+KMP用到的数据结构很像动态规划的dp数组，实际上是dfa(确定有限状态机)
+*/
 
-#[test]
-fn test_kmp() {
-    for &(source, target, expected) in TEST_CASES.iter() {
-        assert_eq!(
-            dirty_solution(source.to_string(), target.to_string()),
-            expected
-        );
-    }
-}
-
-#[cfg(test)]
-fn dirty_solution(haystack: String, needle: String) -> i32 {
+fn impl_strstr_dirty_solution(haystack: String, needle: String) -> i32 {
     match haystack.find(&needle) {
         Some(index) => index as i32,
         None => -1,
     }
 }
 
-// 尽管最佳解答使用了KMP算法，但是耗时也是4ms，还不如Rust内置的find API
-/** KMP算法
-相关知识：3. Longest Substring Without Repeating Characters
-例如：ABABD中搜索ABD，KMP算法的优势在于发现第一个AB不合条件后，指针立即跳到第二个AB的A上，
-有点像双指针滑动窗口遍历最长无重复子串中，遇到重复的子串时立即查表，去偏移尾指针
-
-KMP用到的数据结构很像动态规划的dp数组，实际上是dfa(确定有限状态机)
-状态转移图可以看这篇题解：
-https://leetcode.com/problems/implement-strstr/solution/kmp-suan-fa-xiang-jie-by-labuladong/
-*/
+/// 抄别人的kmp算法
 #[cfg(FALSE)]
-fn global_best_api(haystack: String, needle: String) -> i32 {
+fn kmp(haystack: String, needle: String) -> i32 {
     let haystack = haystack.into_bytes();
     let needle = needle.into_bytes();
     let prefix = Self::prefix_arr(&needle);
-    println!("{:?}", &prefix);
-
     let mut needle_p = 0;
     let mut haystack_p = 0;
-
     loop {
-        println!("needle: {}", needle_p);
         if needle_p >= needle.len() {
             return haystack_p as i32 - needle.len() as i32;
         }
-
         if haystack_p >= haystack.len() {
             break;
         }
-
         if needle[needle_p] == haystack[haystack_p] {
             needle_p += 1;
             haystack_p += 1;
             continue;
         }
-
         if needle_p == 0 {
             haystack_p += 1;
             continue;
         }
-
         needle_p = prefix[needle_p - 1];
     }
-
     -1
 }
 
@@ -89,17 +63,6 @@ A B C D A B D
 例如 haystack=ABCDABE, needle=ABCDABC
 匹配到E不满足时，会前移6-2(B)个位置，有点像双指针最长无重复子串的尾指针前移的情况
 */
-#[cfg(FALSE)]
-fn prefix_arr(needle: &[u8]) -> Vec<usize> {
-    let mut p = 0;
-    let mut res = vec![0; needle.len()];
-    for i in 1..needle.len() {
-        if needle[i] == needle[p] {
-            p += 1;
-        } else if needle[0] != needle[i] {
-            p = 0;
-        }
-        res[i] = p;
-    }
-    res
+fn kmp_prefix_arr(_needle: &[u8]) -> Vec<usize> {
+    todo!()
 }

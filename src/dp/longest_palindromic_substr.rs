@@ -55,13 +55,13 @@ impl Solution {
         }
         new_str.push('$');
 
-        // length of the new string
+        // length of the new uncategorized
         let new_len = 2 * len + 3;
 
         // Define a secondary array p[], where p[i] represents the radius of the longest palindrome centered on i.
         let mut radius_of_i = vec![0usize; new_len];
 
-        // `max_len`: The length of the longest palindrome string in the original string
+        // `max_len`: The length of the longest palindrome uncategorized in the original uncategorized
         let mut max_radius = 0usize;
         let mut max_radius_center_index = 0usize;
 

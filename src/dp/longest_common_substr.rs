@@ -1,6 +1,7 @@
 /// ## 两个字符串之间的最长公共子串
 /// 本算法不是leetcode的题，只是leetcode第五题的最长公共子串的解法的引申出「如何寻找两个字符串的最长公共部分」d的问题
 /// DP思路：如果s1[x]==s2[y]且s1[x-1]==s2[y-1]，说明当前子串是公共子串
+#[allow(clippy::needless_range_loop)]
 fn longest_common_substr_dp(s1: String, s2: String) -> String {
     let (s1, s2) = (s1.into_bytes(), s2.into_bytes());
     let (str1_len, str2_len) = (s1.len(), s2.len());
