@@ -1,12 +1,8 @@
 use std::collections::HashMap;
 
-struct Solution;
-
-impl Solution {
-    fn eggs_drop(k: i32, n: i32) -> i32 {
-        let mut memo: HashMap<(i32, i32), i32> = HashMap::new();
-        dfs(k, n, &mut memo)
-    }
+fn eggs_drop(k: i32, n: i32) -> i32 {
+    let mut memo: HashMap<(i32, i32), i32> = HashMap::new();
+    dfs(k, n, &mut memo)
 }
 
 fn dp_binary_search(k: i32, n: i32) -> i32 {

@@ -3,13 +3,12 @@ mod level_order_traversal;
 mod preorder_traversal;
 mod search_val_or_range_in_bst;
 mod sum_root_to_leaf_numbers;
-
-pub use std::cell::RefCell;
-pub use std::rc::Rc;
+use std::cell::RefCell;
+use std::rc::Rc;
 
 /// TODO add tree_node to str function
 /// due to orphan rule, can't impl From<str> to TreeNode directly
-pub fn str_to_tree_node(s: &str) -> Option<Rc<RefCell<TreeNode>>> {
+fn str_to_tree_node(s: &str) -> Option<Rc<RefCell<TreeNode>>> {
     let mut stack: Vec<Rc<RefCell<TreeNode>>> = Vec::new();
     let mut val_len = 0;
     let mut is_left_subtree_empty = false;
@@ -62,15 +61,15 @@ fn test_str_to_optional_tree_node() {
 }
 
 #[derive(Debug, PartialEq, Eq)]
-pub struct TreeNode {
-    pub val: i32,
-    pub left: Option<Rc<RefCell<TreeNode>>>,
-    pub right: Option<Rc<RefCell<TreeNode>>>,
+struct TreeNode {
+    val: i32,
+    left: Option<Rc<RefCell<TreeNode>>>,
+    right: Option<Rc<RefCell<TreeNode>>>,
 }
 
 impl TreeNode {
     #[inline]
-    pub fn new(val: i32) -> Self {
+    fn new(val: i32) -> Self {
         TreeNode {
             val,
             left: None,

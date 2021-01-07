@@ -1130,3 +1130,28 @@ fn test_check_if_n_and_its_double_exist() {
         assert_eq!(check_if_n_and_its_double_exist(input.into()), output);
     }
 }
+
+/// https://leetcode.com/problems/n-repeated-element-in-size-2n-array/
+fn repeated_n_times(a: Vec<i32>) -> i32 {
+    // let n = a.len() as u16 / 2;
+    // let mut counter = std::collections::HashMap::new();
+    // for num in a.into_iter() {
+    //     *counter.entry(num).or_insert(0u16) += 1;
+    // }
+    //
+    // for (num, count) in counter.into_iter() {
+    //     if count == n {
+    //         return num
+    //     }
+    // }
+    // unreachable!()
+
+    // 由于其他元素只出现了一次，所以不需要counter也行
+    let mut set = std::collections::HashSet::new();
+    for num in a.into_iter() {
+        if !set.insert(num) {
+            return i;
+        }
+    }
+    unreachable!()
+}

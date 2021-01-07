@@ -28,9 +28,9 @@ mod swap_nodes_in_pairs;
 
 /// non-interest single_linked_list Node
 #[derive(PartialEq, Eq, Clone, Debug)]
-pub struct ListNode {
-    pub val: i32,
-    pub next: Option<Box<ListNode>>,
+struct ListNode {
+    val: i32,
+    next: Option<Box<ListNode>>,
 }
 
 impl ListNode {
@@ -82,7 +82,7 @@ fn arr_to_linked_list_with_dummy(nums: &[i32]) -> Option<Box<ListNode>> {
 
 /**
 ```java
-public static int[] listNodeToArray(ListNode head) {
+static int[] listNodeToArray(ListNode head) {
     List<Integer> nums = new ArrayList<>();
     ListNode curr = head;
     while (curr != null) {

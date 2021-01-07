@@ -1,38 +1,6 @@
-//! https://leetcode.com/problems/min-cost-to-connect-all-points/
+use super::UnionFind;
 
-struct UnionFind {
-    parents: Vec<usize>,
-}
-
-impl UnionFind {
-    fn new(n: usize) -> Self {
-        UnionFind {
-            parents: (0..n).collect(),
-        }
-    }
-
-    fn find_root(&self, node: usize) -> usize {
-        let mut curr_node = node;
-        let mut curr_node_parent = self.parents[curr_node];
-        while curr_node_parent != curr_node {
-            curr_node = curr_node_parent;
-            curr_node_parent = self.parents[curr_node];
-        }
-        curr_node_parent
-    }
-
-    // 如果a和b不相连，则添加一条node_a连向node_b边
-    fn union(&mut self, node_a: usize, node_b: usize) {
-        // 路径压缩: 不要直接将b连到a上，而是将b的祖先连向a的祖先，以此压缩路径减少连边
-        let root_a = Self::find_root(self, node_a);
-        let root_b = Self::find_root(self, node_b);
-        if root_a != root_b {
-            // 将b的祖先挂载到a的祖先下
-            self.parents[root_b] = root_a;
-        }
-    }
-}
-
+/// https://leetcode.com/problems/min-cost-to-connect-all-points/
 /// 平面上有若干点，找出能连接所有点的最短边的总和
 /// 除了并查集排除重复连边，还能用「最小生成树的模板」的Prim或Kruskal算法
 fn min_cost_connect_points(points: Vec<Vec<i32>>) -> i32 {
@@ -58,8 +26,9 @@ fn min_cost_connect_points(points: Vec<Vec<i32>>) -> i32 {
         if root_a == root_b {
             continue;
         }
-        total_cost += cost;
+        // 如果a和b不相连，则添加一条node_a连向node_b边
         union_find.parents[root_b] = root_a;
+        total_cost += cost;
         used_edges += 1;
         if used_edges == n - 1 {
             break;

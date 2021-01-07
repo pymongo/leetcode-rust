@@ -37,12 +37,12 @@ single_thread_immutable lazy_static stable rust implement, doesn't support no_st
 
 int_to_roman, roman_to_int(但是这两题用python更合适，需要HashMap有序)
 
-## 另一种泛型约束写法`pub struct LazyStaticCell<T, F: FnOnce() -> T> {`的缺点
+## 另一种泛型约束写法`struct LazyStaticCell<T, F: FnOnce() -> T> {`的缺点
 
 - 缺点1: 每个impl都要写老长<T, F: FnOnce() -> T>
 - 缺点2: 使用closure的语句都要多写闭包的函数签名，`static A: LazyStaticCell<i32, fn() -> i32> = LazyStaticCell::new(|| 0i32);`，可读性不好
 */
-pub struct LazyStatic<T, F = fn() -> T> {
+struct LazyStatic<T, F = fn() -> T> {
     init_once: std::sync::Once,
     /// 用Option为了让初次调用init_function初始化时能把F闭包给move掉
     init_function: std::cell::Cell<Option<F>>,
@@ -57,7 +57,7 @@ unsafe impl<T> Send for LazyStatic<T> {}
 unsafe impl<T> Sync for LazyStatic<T> {}
 
 impl<T, F> LazyStatic<T, F> {
-    pub const fn new(f: F) -> Self {
+    const fn new(f: F) -> Self {
         Self {
             init_once: std::sync::Once::new(),
             init_function: std::cell::Cell::new(Some(f)),

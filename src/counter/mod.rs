@@ -1,4 +1,4 @@
-//! 所有用到了类似Python的collections.Counter的题型，以及没用到Counter但是有计数需求的简单
+//! 所有用到了类似Python的collections.Counter的题型(包括very_easy的题)，以及没用到Counter但是有计数需求的简单
 //! 或者用到类似计数过程，有的题可能需要组合数
 mod anagrams;
 mod count_good_meals;
