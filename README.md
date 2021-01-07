@@ -296,6 +296,7 @@ leetcode_solutions
 |746|[Min Cost Climbing Stairs](https://leetcode.com/problems/min-cost-climbing-stairs/)|[Rust](src/dp/dp_easy.rs)|
 |763|[Partition Labels](https://leetcode.com/problems/partition-labels/)|[Rust](src/greedy/partition_labels.rs)|
 |771|[Jewels and Stones](https://leetcode.com/problems/jewels-and-stones/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|788|[Rotated Digits](https://leetcode.com/problems/rotated-digits/)|[Rust](src/easy/leetcode_easy.rs)|
 |797|[All Paths From Source to Target](https://leetcode.com/problems/all-paths-from-source-to-target/)|[Rust](src/bfs_dfs_backtracking/all_paths_from_source_to_target.rs)|
 |807|[Max Increase to Keep City Skyline](https://leetcode.com/problems/max-increase-to-keep-city-skyline/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |830|[Positions of Large Groups](https://leetcode.com/problems/positions-of-large-groups/)|[Rust](src/easy/leetcode_very_easy.rs)|
@@ -572,7 +573,8 @@ lintcode_problems
 |241🔒|[String to Integer (atoi)](https://lintcode.com/problem/string-to-integer-atoi/)|leetcode_8|
 |249|[Count of Smaller Number before itself](https://lintcode.com/problem/count-of-smaller-number-before-itself/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/segment_tree/count_of_smaller_number_before_itself.py)|sqrt_n|
 |254|[Drop Eggs](https://lintcode.com/problem/drop-eggs/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/drop_eggs.py)|sqrt_n|
-|272🔒|[Climbing Stairs II](https://lintcode.com/problem/climbing-stairs-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/climb_stairs_2.py)||
+|272🔒|[Climbing Stairs II](https://lintcode.com/problem/climbing-stairs-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/climb_stairs_2.py)|
+|298|[Find Primes](https://lintcode.com/problem/find-prime/)|leetcode_204|
 |309|[Interleaved Array](https://lintcode.com/problem/interleaved-array/)|
 |328|[String Partition](https://lintcode.com/problem/string-partition/)|leetcode_763|
 |334|[Order Check](https://lintcode.com/problem/order-check/)|leetcode_1051|
@@ -730,9 +732,10 @@ lintcode_problems
 |976|[4Sum II](https://lintcode.com/problem/4sum-ii/)|leetcode_454|
 |980|[Basic Calculator II](https://lintcode.com/problem/basic-calculator-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/brain_twists/calculator_2.py)||
 |982|[Arithmetic Slices](https://lintcode.com/problem/arithmetic-slices/)|leetcode_413|
-|995|[Best Time to Buy and Sell Stock with Cooldown](https://lintcode.com/problem/best-time-to-buy-and-sell-stock-with-cooldown/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/stock.py)||
-|1000|[Best Time to Buy and Sell Stock with Transaction Fee](https://lintcode.com/problem/best-time-to-buy-and-sell-stock-with-transaction-fee/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/stock.py)||
+|995|[Best Time ... Stock with Cooldown](https://lintcode.com/problem/best-time-to-buy-and-sell-stock-with-cooldown/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/stock.py)|
+|1000|[Best Time ... Stock with ... Fee](https://lintcode.com/problem/best-time-to-buy-and-sell-stock-with-transaction-fee/)|leetcode_714|
 |1010|[Max Increase to Keep City Skyline](https://lintcode.com/problem/max-increase-to-keep-city-skyline/)|leetcode_807|
+|1028|[Rotated Digits](https://leetcode.com/problems/rotated-digits/)|leetcode_788|
 |1038|[Jewels and Stones](https://lintcode.com/problem/jewels-and-stones/)|leetcode_771|
 |1054|[Min Cost Climbing Stairs](https://lintcode.com/problem/min-cost-climbing-stairs/)|leetcode_746|
 |1057|[Network Delay Time](https://lintcode.com/problem/network-delay-time/)|leetcode_743|

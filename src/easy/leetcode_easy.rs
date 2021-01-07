@@ -395,3 +395,33 @@ fn number_of_arithmetic_slices(a: Vec<i32>) -> i32 {
     }
     ret + continues_arithmetic_len * (continues_arithmetic_len + 1) / 2
 }
+
+/** https://leetcode.com/problems/rotated-digits/
+这题的题目描述信息太少表述不清，大意指的是数码管(seven-segment display)显示的 0-9 数字
+只有 2和5 互为左右翻转，6和9互为上下翻转
+0,1,8上下翻转后还是自身，3,4,7翻转后不是合法的数字
+请问一个十进制数num的如果能翻转，翻转后的数不等于自身，则称num为好数，统计1..=n中一共有几个好数
+*/
+fn rotated_digits(n: i32) -> i32 {
+    fn is_good(mut num: i32) -> bool {
+        // 因为n<=10000而且10000不是好数，所以可以认为至多是4位数
+        let mut digits = [0u8; 4];
+        for i in (0..4).rev() {
+            let digit = (num % 10) as u8;
+            if digit == 3 || digit == 4 || digit == 7 {
+                // 只要有一位不合法，就不是好数
+                return false;
+            }
+            digits[i] = digit;
+            num /= 10;
+        }
+        for &digit in &digits {
+            // 如果所有数字都合法，只要有一位翻转后的数字不一样，就是好数
+            if digit == 2 || digit == 5 || digit == 6 || digit == 9 {
+                return true;
+            }
+        }
+        false
+    }
+    (1..=n).into_iter().filter(|&num| is_good(num)).count() as i32
+}

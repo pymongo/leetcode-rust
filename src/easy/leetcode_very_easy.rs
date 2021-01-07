@@ -1150,7 +1150,7 @@ fn repeated_n_times(a: Vec<i32>) -> i32 {
     let mut set = std::collections::HashSet::new();
     for num in a.into_iter() {
         if !set.insert(num) {
-            return i;
+            return num;
         }
     }
     unreachable!()
