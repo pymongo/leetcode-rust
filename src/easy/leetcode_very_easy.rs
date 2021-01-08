@@ -1155,3 +1155,45 @@ fn repeated_n_times(a: Vec<i32>) -> i32 {
     }
     unreachable!()
 }
+
+/// https://leetcode.com/problems/defuse-the-bomb/
+fn defuse_the_bomb(mut code: Vec<i32>, k: i32) -> Vec<i32> {
+    let n = code.len();
+    if k == 0 {
+        return vec![0; n];
+    }
+    let is_negative = k < 0;
+    let k = if is_negative {
+        code.reverse();
+        -k as usize
+    } else {
+        k as usize
+    };
+    let mut ret = Vec::with_capacity(n);
+
+    for i in 0..n {
+        let mut sum = 0;
+        for j in 1..=k {
+            // rotate-array循环数组遍历除了mod，还可以整个数组往右复制一份
+            sum += code[(i + j) % n];
+        }
+        ret.push(sum);
+    }
+    if is_negative {
+        ret.reverse();
+    }
+
+    ret
+}
+
+#[test]
+fn test_defuse_the_bomb() {
+    const TEST_CASES: [(&[i32], i32, &[i32]); 2] = [
+        (&[5, 7, 1, 4], 3, &[12, 10, 16, 13]),
+        (&[2, 4, 9, 3], -2, &[12, 5, 6, 13]),
+        // 3 9 4 2
+    ];
+    for &(code, k, output) in TEST_CASES.iter() {
+        assert_eq!(defuse_the_bomb(code.to_vec(), k), output);
+    }
+}

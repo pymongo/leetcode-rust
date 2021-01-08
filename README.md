@@ -295,6 +295,7 @@ leetcode_solutions
 |743|[Network Delay Time](https://leetcode.com/problems/network-delay-time/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/bfs/network_delay_time_dijkstra.py)|
 |746|[Min Cost Climbing Stairs](https://leetcode.com/problems/min-cost-climbing-stairs/)|[Rust](src/dp/dp_easy.rs)|
 |763|[Partition Labels](https://leetcode.com/problems/partition-labels/)|[Rust](src/greedy/partition_labels.rs)|
+|766|[Toeplitz Matrix](https://leetcode.com/problems/toeplitz-matrix/)|[Rust](src/easy/grid_or_matrix/matrix_diagonal_traverse.rs)|
 |771|[Jewels and Stones](https://leetcode.com/problems/jewels-and-stones/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |788|[Rotated Digits](https://leetcode.com/problems/rotated-digits/)|[Rust](src/easy/leetcode_easy.rs)|
 |797|[All Paths From Source to Target](https://leetcode.com/problems/all-paths-from-source-to-target/)|[Rust](src/bfs_dfs_backtracking/all_paths_from_source_to_target.rs)|
@@ -386,6 +387,7 @@ leetcode_solutions
 |1637|[Widest Vertical Area Between Two Points ...](https://leetcode.com/problems/widest-vertical-area-between-two-points-containing-no-points/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1640|[Check Array Formation Through Concatenation](https://leetcode.com/problems/check-array-formation-through-concatenation/)|[Rust](src/easy/leetcode_easy.rs)|
 |1656|[Design an Ordered Stream](https://leetcode.com/problems/design-an-ordered-stream/)|[Rust](src/easy/leetcode_easy.rs)|
+|1658|[Defuse The Bomb](https://leetcode.com/problems/defuse-the-bomb/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1672|[Richest Customer Wealth](https://leetcode.com/problems/richest-customer-wealth/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1678|[Goal Parser Interpretation](https://leetcode.com/problems/goal-parser-interpretation/)|[Rust](src/easy/leetcode_easy.rs)|
 |1688|[Count of Matches in Tournament](https://leetcode.com/problems/count-of-matches-in-tournament/)|[Rust](src/easy/leetcode_very_easy.rs)|
@@ -735,7 +737,7 @@ lintcode_problems
 |995|[Best Time ... Stock with Cooldown](https://lintcode.com/problem/best-time-to-buy-and-sell-stock-with-cooldown/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/stock.py)|
 |1000|[Best Time ... Stock with ... Fee](https://lintcode.com/problem/best-time-to-buy-and-sell-stock-with-transaction-fee/)|leetcode_714|
 |1010|[Max Increase to Keep City Skyline](https://lintcode.com/problem/max-increase-to-keep-city-skyline/)|leetcode_807|
-|1028|[Rotated Digits](https://leetcode.com/problems/rotated-digits/)|leetcode_788|
+|1028|[Rotated Digits](https://lintcode.com/problem/rotated-digits/)|leetcode_788|
 |1038|[Jewels and Stones](https://lintcode.com/problem/jewels-and-stones/)|leetcode_771|
 |1054|[Min Cost Climbing Stairs](https://lintcode.com/problem/min-cost-climbing-stairs/)|leetcode_746|
 |1057|[Network Delay Time](https://lintcode.com/problem/network-delay-time/)|leetcode_743|
@@ -799,7 +801,6 @@ lintcode_problems
 |1525|[N-ary Tree Postorder Traversal](https://lintcode.com/problem/n-ary-tree-postorder-traversal/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/n_ary_tree_preorder_postorder.py)||
 |1529|[N-ary Tree Preorder Traversal](https://lintcode.com/problem/n-ary-tree-preorder-traversal/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/n_ary_tree_preorder_postorder.py)||
 |1533|[N-ary Tree Level Order Traversal](https://lintcode.com/problem/n-ary-tree-level-order-traversal/)|leetcode_429|
-|1535|[To Lower Case](https://lintcode.com/problem/to-lower-case/)|leetcode_709|
 |1536|[Find First and Last Position of Element ...](https://lintcode.com/problem/find-first-and-last-position-of-element-in-sorted-array/)|leetcode_34|
 |1593|[Construct Binary Tree from Preorder and Postorder ...](https://lintcode.com/problem/construct-binary-tree-from-preorder-and-postorder-traversal/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/construct_from_pre_order_and_post_order.py)|DFS|
 |1609|[Middle of the Linked List](https://lintcode.com/problem/middle-of-the-linked-list/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/middle_of_linked_list.py)|list_node, 快慢指针|
@@ -812,7 +813,6 @@ lintcode_problems
 |1901|[Squares of a Sorted Array](https://lintcode.com/problem/squares-of-a-sorted-array/)|leetcode_977|
 
 ---
-
 ### 划分型动态规划
 戳气球、石子归并(dp/stone_game_merge.py)
 

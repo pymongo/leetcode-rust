@@ -155,7 +155,7 @@ Explanation: nums数组向右循环移位 3位
 */
 fn rotate_array_solution(nums: &mut Vec<i32>, k: i32) {
     let len = nums.len();
-    nums.rotate_left(k as usize % len);
+    nums.rotate_right(k as usize % len);
 }
 
 /// 三次反转的解法，先整体反转，再反转0..k和k..len

@@ -59,6 +59,25 @@ fn diagonal_sort(mut mat: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
     mat
 }
 
+/// https://leetcode.com/problems/toeplitz-matrix/
+fn is_toeplitz_matrix(mat: Vec<Vec<i32>>) -> bool {
+    let (m, n) = (mat.len(), mat[0].len());
+    let m_minus_1 = m - 1;
+    // bottom_right_direction traverse
+    for diagonal in 0..m + n {
+        // current diagonal start row and col
+        let row = m_minus_1.saturating_sub(diagonal);
+        let col = diagonal.saturating_sub(m_minus_1);
+        let cur_diagonal_len = (m - row).min(n - col);
+        for offset in 1..cur_diagonal_len {
+            if mat[row + offset][col + offset] != mat[row + offset - 1][col + offset - 1] {
+                return false;
+            }
+        }
+    }
+    true
+}
+
 /**
 (d=diagonal,i=row,j=col,len=cur_diagonal_len)
 m=3,n=3:
