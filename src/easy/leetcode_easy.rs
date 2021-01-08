@@ -425,3 +425,18 @@ fn rotated_digits(n: i32) -> i32 {
     }
     (1..=n).into_iter().filter(|&num| is_good(num)).count() as i32
 }
+
+/// https://leetcode.com/problems/distribute-candies/
+/// 由于糖果数量是偶数，而且需要平分，那么可以分为以下两种情况
+/// 1. candy种类大于等于n/2，每种拿1个最多拿n/2种
+/// 2. candy种类小于n/2，每种拿一个后还不够n/2，绰绰有余，所以糖果A可以多拿几个
+/// 这题我本来想的是遍历生成counter后，count>1的糖果挨个减1，这样能尽量保留多点种类(如果动物标本要扔掉一半，尽量保留更多的种类)，
+/// 如果丢弃数还不到一半，再随便找些count=1的扔掉，但是太懒了没写偷看答案了
+fn distribute_candies(nums: Vec<i32>) -> i32 {
+    let len = nums.len();
+    let set: std::collections::HashSet<i32> = nums.into_iter().collect();
+    set.len().min(len / 2) as i32
+    // nums.sort_unstable();
+    // nums.dedup();
+    // nums.len().min(len / 2) as i32
+}
