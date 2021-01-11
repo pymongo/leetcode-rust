@@ -1197,3 +1197,42 @@ fn test_defuse_the_bomb() {
         assert_eq!(defuse_the_bomb(code.to_vec(), k), output);
     }
 }
+
+/// https://leetcode.com/problems/summary-ranges/
+fn summary_ranges(nums: Vec<i32>) -> Vec<String> {
+    if nums.is_empty() {
+        return Vec::with_capacity(0);
+    }
+    let mut range_start = 0;
+    let mut range_end = 0;
+
+    let mut ret = Vec::new();
+    for i in 1..nums.len() {
+        if nums[i] - nums[range_end] == 1 {
+            range_end = i;
+        } else {
+            if range_start == range_end {
+                ret.push(nums[range_end].to_string());
+            } else {
+                ret.push(format!("{}->{}", nums[range_start], nums[range_end]));
+            }
+            range_start = i;
+            range_end = i;
+        }
+    }
+    if range_start == range_end {
+        ret.push(nums[range_end].to_string());
+    } else {
+        ret.push(format!("{}->{}", nums[range_start], nums[range_end]));
+    }
+    ret
+}
+
+#[test]
+fn test_summary_ranges() {
+    const TEST_CASES: [(&[i32], &[&str]); 2] =
+        [(&[0, 1, 2, 4, 5, 7], &["0->2", "4->5", "7"]), (&[], &[])];
+    for &(input, output) in TEST_CASES.iter() {
+        assert_eq!(summary_ranges(input.into()), output);
+    }
+}

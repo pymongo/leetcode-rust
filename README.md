@@ -175,6 +175,7 @@ leetcode_solutions
 |225|[Implement Stack using Queues](https://leetcode.com/problems/implement-stack-using-queues/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/impl_stack_by_queue.py)|
 |226|[Invert Binary Tree](https://leetcode.com/problems/invert-binary-tree/)|[Rust](src/binary_tree/invert_binary_tree.rs)|
 |227|[Basic Calculator II](https://leetcode.com/problems/basic-calculator/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/brain_twists/calculator_2.py)||
+|228|[Summary Ranges](https://leetcode.com/problems/summary-ranges/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |230|[Kth Smallest Element in a BST](https://leetcode.com/problems/kth-smallest-element-in-a-bst/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/traversal_pre_order.py)|DFS, stack|
 |231|[Power of Two](https://leetcode.com/problems/power-of-two/)|[Rust](src/bitwise/is_power_of_2.rs)|
 |232|[Implement Queue using Stacks](https://leetcode.com/problems/implement-queue-using-stacks/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/impl_stack_by_queue.py)||
@@ -243,6 +244,7 @@ leetcode_solutions
 |455|[Assign Cookies](https://leetcode.com/problems/assign-cookies/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |461|[Hamming Distance](https://leetcode.com/problems/hamming-distance/)|[Rust](src/bitwise/count_ones.rs)|
 |463|[Island Perimeter](https://leetcode.com/problems/island-perimeter/)|[Rust](src/easy/grid_or_matrix/island_perimeter.rs)|
+|470|[impl rand10 using rand7](https://leetcode.com/problems/implement-rand10-using-rand7/)|[Rust](src/random/impl_rand10_by_rand7.rs)|
 |474|[Ones and Zeroes](https://leetcode.com/problems/ones-and-zeroes/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/backpack_ones_and_zeros.py)|完全背包问题|
 |485|[Max Consecutive Ones](https://leetcode.com/problems/max-consecutive-ones/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |486|[Validate IP Address](https://leetcode.com/problems/validate-ip-address/)|[Rust](src/easy/string/parse_ip_address.rs)|
