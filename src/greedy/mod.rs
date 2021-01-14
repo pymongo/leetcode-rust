@@ -1,4 +1,4 @@
-/*!
+/*! 贪心或脑筋急转弯的题目合集
 # 几个必须掌握的贪心算法题
 - [x] http://leetcode.com/problems/majority-number/
 - [ ] http://lintcode.com/problem/create-maximum-number/
@@ -14,3 +14,4 @@ mod gas_station;
 mod int_to_roman;
 mod majority_element;
 mod partition_labels;
+mod count_number_of_nice_subarrays;
