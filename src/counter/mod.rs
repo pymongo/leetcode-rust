@@ -116,3 +116,25 @@ fn test_smaller_numbers_than_current() {
         );
     }
 }
+
+/// https://leetcode.com/problems/find-words-that-can-be-formed-by-characters/
+fn count_characters(words: Vec<String>, chars: String) -> i32 {
+    let mut counter = [0u8; 26];
+    for each in chars.into_bytes().into_iter() {
+        counter[(each - b'a') as usize] += 1;
+    }
+    let mut ret = 0usize;
+    'next_word: for word in words.into_iter() {
+        let mut cnt = counter;
+        let word_len = word.len();
+        for each in word.into_bytes().into_iter() {
+            let idx = (each - b'a') as usize;
+            if cnt[idx] == 0 {
+                continue 'next_word;
+            }
+            cnt[idx] -= 1;
+        }
+        ret += word_len;
+    }
+    ret as i32
+}

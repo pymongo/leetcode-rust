@@ -1,4 +1,4 @@
-/// https://leetcode-cn.com/problems/number-of-provinces/
+/// https://leetcode.com/problems/number-of-provinces/
 /// https://leetcode.com/problems/friend-circles/
 /// 以前这题叫「朋友圈」，不知道为什么改名为「省份数量」，其实就是数邻接矩阵中相连岛屿的数量
 use super::UnionFind;

@@ -5,6 +5,8 @@ mod search_val_or_range_in_bst;
 mod sum_root_to_leaf_numbers;
 use std::cell::RefCell;
 use std::rc::Rc;
+mod is_bst;
+mod same_tree;
 
 /// TODO add tree_node to str function
 /// due to orphan rule, can't impl From<str> to TreeNode directly
