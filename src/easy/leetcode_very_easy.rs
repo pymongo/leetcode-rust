@@ -1236,3 +1236,15 @@ fn test_summary_ranges() {
         assert_eq!(summary_ranges(input.into()), output);
     }
 }
+
+/// https://leetcode-cn.com/problems/binary-prefix-divisible-by-5/
+fn prefixes_div_by5(a: Vec<i32>) -> Vec<bool> {
+    let mut num = 0;
+    let mut ret = Vec::with_capacity(a.len());
+    for bit in a.into_iter() {
+        // 由于是否能被5整除只跟十位和个位有关，所以num每次迭代时都%10避免溢出
+        num = (num * 2 + bit) % 10;
+        ret.push(num % 5 == 0);
+    }
+    ret
+}
