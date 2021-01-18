@@ -440,3 +440,16 @@ fn distribute_candies(nums: Vec<i32>) -> i32 {
     // nums.dedup();
     // nums.len().min(len / 2) as i32
 }
+
+/// https://leetcode.com/problems/check-if-it-is-a-straight-line/
+fn check_straight_line(p: Vec<Vec<i32>>) -> bool {
+    let dx0 = p[1][0] - p[0][0];
+    let dy0 = p[1][1] - p[0][1];
+    let n = p.len();
+    for i in 2..n {
+        if (p[i][1] - p[i - 1][1]) * dx0 != (p[i][0] - p[i - 1][0]) * dy0 {
+            return false;
+        }
+    }
+    true
+}
