@@ -145,7 +145,8 @@ leetcode_solutions
 |169|[Majority Element](https://leetcode.com/problems/majority-element/)|[Rust](src/greedy/majority_element.rs)|
 |170🔒|[Two Sum III - Data structure design](https://leetcode.com/problems/two-sum-iii-data-structure-design/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/two_sum_3_impl.py)|two_pointers|
 |172|[Factorial Trailing Zeroes](https://leetcode.com/problems/factorial-trailing-zeroes/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/factorization/factorial_trailing_zeroes.py)|factorial|
-|173|[Binary Search Tree Iterator](https://leetcode.com/problems/binary-search-tree-iterator/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/bst_in_order_iterator.py)||
+|173|[Binary Search Tree Iterator](https://leetcode.com/problems/binary-search-tree-iterator/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/bst_in_order_iterator.py)|
+|174|[Dungeon Game](https://leetcode.com/problems/dungeon-game/)|[Rust](src/dp/calculate_minimun_hp.rs)|
 |175|[Combine Two Tables](https://leetcode.com/problems/combine-two-tables/)|
 |176|[Second Highest Salary](https://leetcode.com/problems/second-highest-salary/)|[SQL](https://github.com/pymongo/python_leetcode/blob/master/database_problems/second_highest_salary.sql)||
 |181|[Employees Earning More Than Their Managers](https://leetcode.com/problems/employees-earning-more-than-their-managers/)|[SQL](sql_problems/very_easy.sql)|
@@ -207,7 +208,7 @@ leetcode_solutions
 |307|[Range Sum Query - Mutable](https://leetcode.com/problems/range-sum-query-mutable/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/segment_tree/segment_tree_range_sum.py)|
 |309|[Best Time to Buy and Sell Stock with Cooldown](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/stock.py)||
 |311🔒|[Sparse Matrix Multiplication](https://leetcode.com/problems/sparse-matrix-multiplication/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/math/sparse_matrix_multiplication.py)||
-|312|[Burst Balloons](https://leetcode.com/problems/burst-balloons/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/burst_ballon.py)||
+|312|[Burst Balloons](https://leetcode.com/problems/burst-balloons/)|[Rust](src/dp/burst_balloons.rs)|
 |322|[Coin Change](https://leetcode.com/problem/coin-change/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/backpack_4_coin_change_combination_sum_4.py)|完全背包问题|
 |326|[Power of Three](https://leetcode.com/problems/power-of-three/)|[Rust](src/bitwise/is_power_of_x.rs)|
 |328|[Odd Even Linked List](https://leetcode.com/problems/odd-even-linked-list/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/odd_even_linked_list.py)|
