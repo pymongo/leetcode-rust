@@ -1248,3 +1248,23 @@ fn prefixes_div_by5(a: Vec<i32>) -> Vec<bool> {
     }
     ret
 }
+
+/// https://leetcode.com/problems/number-of-rectangles-that-can-form-the-largest-square/
+fn count_good_rectangles(rectangles: Vec<Vec<i32>>) -> i32 {
+    let mut max_width = 0;
+    let mut max_width_count = 0;
+    for rec in rectangles.into_iter() {
+        let width = rec[0].min(rec[1]);
+        match width.cmp(&max_width) {
+            std::cmp::Ordering::Less => {}
+            std::cmp::Ordering::Equal => {
+                max_width_count += 1;
+            }
+            std::cmp::Ordering::Greater => {
+                max_width = width;
+                max_width_count = 1;
+            }
+        }
+    }
+    max_width_count
+}
