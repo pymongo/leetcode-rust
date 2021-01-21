@@ -398,6 +398,7 @@ leetcode_solutions
 |1640|[Check Array Formation Through Concatenation](https://leetcode.com/problems/check-array-formation-through-concatenation/)|[Rust](src/easy/leetcode_easy.rs)|
 |1656|[Design an Ordered Stream](https://leetcode.com/problems/design-an-ordered-stream/)|[Rust](src/easy/leetcode_easy.rs)|
 |1658|[Defuse The Bomb](https://leetcode.com/problems/defuse-the-bomb/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|1662|[Check If Two String Arrays are Equivalent](https://leetcode.com/problems/check-if-two-string-arrays-are-equivalent/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1672|[Richest Customer Wealth](https://leetcode.com/problems/richest-customer-wealth/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1678|[Goal Parser Interpretation](https://leetcode.com/problems/goal-parser-interpretation/)|[Rust](src/easy/leetcode_easy.rs)|
 |1688|[Count of Matches in Tournament](https://leetcode.com/problems/count-of-matches-in-tournament/)|[Rust](src/easy/leetcode_very_easy.rs)|
@@ -406,6 +407,7 @@ leetcode_solutions
 |1710|[Maximum Units on a Truck](https://leetcode.com/problems/maximum-units-on-a-truck/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1711|[Count Good Meals](https://leetcode.com/problems/count-good-meals/)|[Rust](src/counter/count_good_meals.rs)|
 |1716|[Calculate Money in Leetcode Bank](https://leetcode.com/problems/calculate-money-in-leetcode-bank/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|1720|[Decode XORed Array](https://leetcode.com/problems/decode-xored-array/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1725|[Number Of Rectangles That Can ...](https://leetcode.com/problems/number-of-rectangles-that-can-form-the-largest-square/)|[Rust](src/easy/leetcode_very_easy.rs)|
 
 ---

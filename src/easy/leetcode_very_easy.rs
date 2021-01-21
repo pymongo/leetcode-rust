@@ -1281,3 +1281,53 @@ fn total_money(mut n: i32) -> i32 {
     ret += (nth_week + nth_week + n - 1) * n / 2;
     ret
 }
+
+/// https://leetcode.com/problems/decode-xored-array/
+fn decode_xored_array(encoded: Vec<i32>, first: i32) -> Vec<i32> {
+    let mut ret = vec![first];
+    for each in encoded {
+        ret.push(ret.last().unwrap()^each);
+    }
+    ret
+}
+
+#[test]
+fn test_decode_xored_array() {
+    /*
+    encoded: 1 2 3
+    decoded: 1 ? ? ? (first=1)
+    decoded[0]^decoded[1]=encoded[0]
+    1^decoded[1]=1
+    1^1^decoded[1]=1^1
+    decoded[1]=0
+    */
+    const TEST_CASES: [(&[i32], i32, &[i32]); 1] = [
+        (&[1, 2, 3], 1, &[1, 0, 2, 1])
+    ];
+    for &(encoded, first, decoded) in &TEST_CASES {
+        assert_eq!(decode_xored_array(encoded.into(), first), decoded);
+    }
+}
+
+/// https://leetcode.com/problems/check-if-two-string-arrays-are-equivalent/
+fn array_strings_are_equal(word1: Vec<String>, word2: Vec<String>) -> bool {
+    // word1.join("") == word2.join("")
+    let mut s1 = Vec::new();
+    let mut s2 = Vec::new();
+    for word in word1 {
+        s1.extend(word.into_bytes());
+    }
+    for word in word2 {
+        s2.extend(word.into_bytes());
+    }
+    s1 == s2
+    // if s1.len() != s2.len() {
+    //     return false;
+    // }
+    // for (ch1, ch2) in s1.into_iter().zip(s2.into_iter()) {
+    //     if ch1 != ch2 {
+    //         return false;
+    //     }
+    // }
+    // true
+}
