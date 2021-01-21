@@ -9,3 +9,4 @@ mod max_area_of_island;
 mod n_queens;
 mod perm_comb;
 mod restore_ip_address;
+mod surrounded_regions;

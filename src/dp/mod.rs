@@ -17,6 +17,7 @@ TODO 动态规划的实现方法:
 动态规划的递归依赖不能有「循环依赖」
 记忆化搜索只是动态规划的一种实现方式
 */
+mod burst_balloons;
 mod calculate_minimun_hp;
 mod dp_easy;
 mod drop_eggs;
@@ -28,4 +29,3 @@ mod longest_palindromic_substr;
 mod trapping_rain_water;
 mod triangle;
 mod unique_paths;
-mod burst_balloons;

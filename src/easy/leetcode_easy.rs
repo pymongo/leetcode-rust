@@ -459,5 +459,5 @@ fn check_straight_line(p: Vec<Vec<i32>>) -> bool {
 fn maximum_product(mut nums: Vec<i32>) -> i32 {
     let n = nums.len();
     nums.sort_unstable();
-    (nums[n-1]*nums[n-2]*nums[n-3]).max(nums[0]*nums[1]*nums[n-1])
+    (nums[n - 1] * nums[n - 2] * nums[n - 3]).max(nums[0] * nums[1] * nums[n - 1])
 }

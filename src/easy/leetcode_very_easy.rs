@@ -1274,10 +1274,10 @@ fn total_money(mut n: i32) -> i32 {
     let mut nth_week = 1;
     let mut ret = 0;
     while n >= 7 {
-        ret += (nth_week +nth_week+6)*7/2;
+        ret += (nth_week + nth_week + 6) * 7 / 2;
         n -= 7;
         nth_week += 1;
     }
-    ret += (nth_week+nth_week+n-1)*n/2;
+    ret += (nth_week + nth_week + n - 1) * n / 2;
     ret
 }
