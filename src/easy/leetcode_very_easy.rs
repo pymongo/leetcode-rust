@@ -1286,7 +1286,7 @@ fn total_money(mut n: i32) -> i32 {
 fn decode_xored_array(encoded: Vec<i32>, first: i32) -> Vec<i32> {
     let mut ret = vec![first];
     for each in encoded {
-        ret.push(ret.last().unwrap()^each);
+        ret.push(ret.last().unwrap() ^ each);
     }
     ret
 }
@@ -1301,9 +1301,7 @@ fn test_decode_xored_array() {
     1^1^decoded[1]=1^1
     decoded[1]=0
     */
-    const TEST_CASES: [(&[i32], i32, &[i32]); 1] = [
-        (&[1, 2, 3], 1, &[1, 0, 2, 1])
-    ];
+    const TEST_CASES: [(&[i32], i32, &[i32]); 1] = [(&[1, 2, 3], 1, &[1, 0, 2, 1])];
     for &(encoded, first, decoded) in &TEST_CASES {
         assert_eq!(decode_xored_array(encoded.into(), first), decoded);
     }
@@ -1330,4 +1328,93 @@ fn array_strings_are_equal(word1: Vec<String>, word2: Vec<String>) -> bool {
     //     }
     // }
     // true
+}
+
+/// https://leetcode.com/problems/design-twitter/
+struct Twitter {
+    tweets: Vec<Tweet>,
+    /// key: user_id, value: user_following
+    user_following: std::collections::HashMap<i32, std::collections::HashSet<i32>>,
+}
+
+struct Tweet {
+    tweet_id: i32,
+    user_id: i32,
+}
+
+impl Twitter {
+    /** Initialize your data structure here. */
+    #[inline]
+    fn new() -> Self {
+        Self {
+            tweets: vec![],
+            user_following: std::collections::HashMap::new(),
+        }
+    }
+
+    /** Compose a new tweet. */
+    fn post_tweet(&mut self, user_id: i32, tweet_id: i32) {
+        self.tweets.push(Tweet { tweet_id, user_id });
+        self.user_following
+            .entry(user_id)
+            .or_insert_with(|| [user_id].iter().copied().collect());
+    }
+
+    /** Retrieve the 10 most recent tweet ids in the user's news feed.
+    Each item in the news feed must be posted by users who the user followed or by the user herself.
+    Tweets must be ordered from most recent to least recent. */
+    fn get_news_feed(&self, user_id: i32) -> Vec<i32> {
+        self.user_following
+            .get(&user_id)
+            .map(|following| {
+                self.tweets
+                    .iter()
+                    .rev()
+                    .filter(|tweet| following.contains(&tweet.user_id))
+                    .take(10)
+                    .map(|tweet| tweet.tweet_id)
+                    .collect()
+            })
+            .unwrap_or_default()
+    }
+
+    /** Follower follows a followee. If the operation is invalid, it should be a no-op. */
+    fn follow(&mut self, user_id: i32, followee_id: i32) {
+        match self.user_following.get_mut(&user_id) {
+            Some(following) => {
+                following.insert(followee_id);
+            }
+            None => {
+                self.user_following
+                    .insert(user_id, [user_id, followee_id].iter().copied().collect());
+            }
+        }
+        self.user_following
+            .entry(user_id)
+            .or_default()
+            .insert(followee_id);
+    }
+
+    /** Follower unfollows a followee. If the operation is invalid, it should be a no-op. */
+    fn unfollow(&mut self, user_id: i32, followee_id: i32) {
+        if user_id == followee_id {
+            // 自己不能取关自己
+            return;
+        }
+        if let Some(following) = self.user_following.get_mut(&user_id) {
+            following.remove(&followee_id);
+        }
+    }
+}
+
+#[test]
+fn test_design_twitter() {
+    let mut twitter = Twitter::new();
+    twitter.post_tweet(1, 5);
+    assert_eq!(twitter.get_news_feed(1), vec![5]);
+    twitter.follow(1, 2);
+    twitter.post_tweet(2, 6);
+    assert_eq!(twitter.get_news_feed(1), vec![6, 5]);
+    twitter.unfollow(1, 2);
+    assert_eq!(twitter.get_news_feed(1), vec![5]);
 }

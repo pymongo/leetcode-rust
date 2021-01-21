@@ -72,7 +72,7 @@ fn restore_ip_addresses(s: String) -> Vec<String> {
         let mut ip_addr_seg = 0;
         for i in args.s_index..args.s_len {
             fn checked_addr_seg_add(old_val: u8, new_digit: u8) -> Option<u8> {
-                Some(old_val.checked_mul(10)?.checked_add(new_digit - b'0')?)
+                old_val.checked_mul(10)?.checked_add(new_digit - b'0')
             }
             match checked_addr_seg_add(ip_addr_seg, args.s[i]) {
                 Some(new_val) => {
