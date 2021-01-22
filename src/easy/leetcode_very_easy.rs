@@ -1418,3 +1418,56 @@ fn test_design_twitter() {
     twitter.unfollow(1, 2);
     assert_eq!(twitter.get_news_feed(1), vec![5]);
 }
+
+/// https://leetcode.com/problems/add-to-array-form-of-integer/
+fn add_to_array_form(mut a: Vec<i32>, mut k: i32) -> Vec<i32> {
+    a.reverse();
+    let mut carry = 0;
+    let mut i = 0;
+    while k != 0 || carry == 1 {
+        // 如果有进位
+        if i == a.len() {
+            a.push(0);
+        }
+
+        let temp = a[i] + k % 10 + carry;
+        a[i] = temp % 10;
+        carry = temp / 10;
+
+        k /= 10;
+        i += 1;
+    }
+    a.reverse();
+    a
+}
+
+#[cfg(not)]
+fn add_to_array_form_overflow(a: Vec<i32>, k: i32) -> Vec<i32> {
+    let mut num = 0u128;
+    for digit in a.into_iter() {
+        num = num * 10 + digit as u128;
+    }
+    num += k as u128;
+    if num == 0 {
+        return vec![0];
+    }
+    let mut ret = vec![];
+    while num != 0 {
+        ret.push((num % 10) as i32);
+        num /= 10;
+    }
+    ret.reverse();
+    ret
+}
+
+#[test]
+fn a() {
+    const TEST_CASES: [(&[i32], i32, &[i32]); 3] = [
+        (&[1, 2, 0, 0], 34, &[1, 2, 3, 4]),
+        (&[0], 999, &[9, 9, 9]),
+        (&[9], 1, &[1, 0]),
+    ];
+    for &(a, k, output) in TEST_CASES.iter() {
+        assert_eq!(add_to_array_form(a.to_vec(), k), output);
+    }
+}
