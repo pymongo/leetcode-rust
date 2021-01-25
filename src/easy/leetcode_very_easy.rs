@@ -1461,7 +1461,7 @@ fn add_to_array_form_overflow(a: Vec<i32>, k: i32) -> Vec<i32> {
 }
 
 #[test]
-fn a() {
+fn test_add_to_array_form() {
     const TEST_CASES: [(&[i32], i32, &[i32]); 3] = [
         (&[1, 2, 0, 0], 34, &[1, 2, 3, 4]),
         (&[0], 999, &[9, 9, 9]),
@@ -1470,4 +1470,21 @@ fn a() {
     for &(a, k, output) in TEST_CASES.iter() {
         assert_eq!(add_to_array_form(a.to_vec(), k), output);
     }
+}
+
+/// https://leetcode.com/problems/final-prices-with-a-special-discount-in-a-shop/
+fn final_prices(prices: Vec<i32>) -> Vec<i32> {
+    let n = prices.len();
+    let mut ret = vec![];
+    for i in 0..n {
+        let mut discount = 0;
+        for j in i+1..n {
+            if prices[j] <= prices[i] {
+                discount = prices[j];
+                break;
+            }
+        }
+        ret.push(prices[i]-discount);
+    }
+    ret
 }
