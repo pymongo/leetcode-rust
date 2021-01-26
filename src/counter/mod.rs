@@ -4,6 +4,7 @@ mod anagrams;
 mod count_good_meals;
 mod count_num1_square_eq_two_num2_product;
 mod increasing_decreasing_string;
+mod number_of_equivalent_domino_pairs;
 mod number_of_good_pairs;
 
 /// https://leetcode.com/problems/first-unique-character-in-a-string/

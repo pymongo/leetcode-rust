@@ -1478,13 +1478,13 @@ fn final_prices(prices: Vec<i32>) -> Vec<i32> {
     let mut ret = vec![];
     for i in 0..n {
         let mut discount = 0;
-        for j in i+1..n {
+        for j in i + 1..n {
             if prices[j] <= prices[i] {
                 discount = prices[j];
                 break;
             }
         }
-        ret.push(prices[i]-discount);
+        ret.push(prices[i] - discount);
     }
     ret
 }
