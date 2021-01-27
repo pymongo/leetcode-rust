@@ -1488,3 +1488,34 @@ fn final_prices(prices: Vec<i32>) -> Vec<i32> {
     }
     ret
 }
+
+/// https://leetcode.com/problems/sort-array-by-increasing-frequency/
+/// 按出现次数少到次数多排序，如果出现次数相同，则按数值大小倒序
+fn frequency_sort(nums: Vec<i32>) -> Vec<i32> {
+    let mut counter = [0u8; 201];
+    let mut max_freq = 1u8;
+    for num in nums {
+        let idx = (num + 100) as usize;
+        counter[idx] += 1;
+        max_freq = max_freq.max(counter[idx]);
+    }
+    // 类似桶排序的思想
+    let mut ret = vec![vec![]; (max_freq + 1) as usize];
+    for i in (0..201).rev() {
+        let num = i as i32 - 100;
+        let count = counter[i] as usize;
+        ret[count].append(&mut vec![num].repeat(count));
+    }
+    ret.into_iter().fold(vec![], |mut a, mut b| {
+        a.append(&mut b);
+        a
+    })
+}
+
+#[test]
+fn test_frequency_sort() {
+    const TEST_CASES: [(&[i32], &[i32]); 1] = [(&[2, 3, 1, 3, 2], &[1, 3, 3, 2, 2])];
+    for &(input, output) in &TEST_CASES {
+        assert_eq!(frequency_sort(input.into()), output);
+    }
+}
