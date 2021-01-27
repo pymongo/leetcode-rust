@@ -11,7 +11,9 @@
 mod candy;
 mod container_with_most_water;
 mod count_number_of_nice_subarrays;
+mod di_string_match;
 mod gas_station;
 mod int_to_roman;
 mod majority_element;
 mod partition_labels;
+mod product_of_array_except_self;

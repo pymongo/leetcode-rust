@@ -184,6 +184,7 @@ leetcode_solutions
 |234|[Palindrome Linked List](https://leetcode.com/problems/palindrome-linked-list/)|[Rust](src/linked_list/linked_list_is_palindrome.rs)|
 |235|[Lowest Common Ancestor of a Binary Search Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/bst_lowest_common_ancestor.py)||
 |236|[Lowest Common Ancestor of a Binary Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/binary_tree_lowest_common_ancestor.py)|divide_and_conquer|
+|238|[Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/)|[Rust](src/greedy/product_of_array_except_self.rs)|
 |239|[Sliding Window Maximum](https://leetcode.com/problems/sliding-window-maximum/)|[Rust](src/special_data_structure/monotonic_queue_sliding_window_max.rs)|
 |240|[Search a 2D Matrix II](https://leetcode.com/problems/search-a-2d-matrix-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/search_a_2d_matrix_2.py)|
 |242|[Valid Anagram](https://leetcode.com/problems/valid-anagram/)|[Rust](src/counter/anagrams.rs)|
@@ -327,6 +328,7 @@ leetcode_solutions
 |925|[Long Pressed Name](https://leetcode.com/problems/long-pressed-name/)|[Rust](src/easy/string/long_pressed_name.rs)|
 |938|[Range Sum of BST](https://leetcode.com/problems/range-sum-of-bst/)|[Rust](src/binary_tree/search_val_or_range_in_bst.rs)|
 |941|[Valid Mountain Array](https://leetcode.com/problems/find-in-mountain-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/mountain_array_valid.py)|mountain_array|
+|942|[DI String Match](https://leetcode.com/problems/di-string-match/)|[Rust](src/greedy/di_string_match.rs)|
 |950|[Reveal Cards In Increasing Order](https://leetcode.com/problems/reveal-cards-in-increasing-order/)|[Rust](src/easy/leetcode_easy.rs)|
 |953|[Verifying an Alien Dictionary](https://leetcode.com/problems/verifying-an-alien-dictionary/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/unclassified/verifying_an_alien_dictionary.py)|
 |961|[N-Repeated Element in Size 2N Array](https://leetcode.com/problems/n-repeated-element-in-size-2n-array/)|[Rust](src/easy/leetcode_very_easy.rs)|
@@ -425,7 +427,6 @@ leetcode_solutions
 |60|[n个骰子的点数](https://leetcode.com/problems/nge-tou-zi-de-dian-shu-lcof/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/dices_sum.py)||
 |61|[扑克牌中的顺子](https://leetcode.com/problems/bu-ke-pai-zhong-de-shun-zi-lcof/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/straight_in_playing_cards.py)||
 |62|[圆圈中最后剩下的数字](https://leetcode.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/brain_twists/josephus.py)|约瑟夫环|
-|66|[构建乘积数组](https://leetcode.com/problems/gou-jian-cheng-ji-shu-zu-lcof)|[Rust](src/easy/leetcode_easy.rs)|
 
 ---
 
