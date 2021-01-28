@@ -1519,3 +1519,39 @@ fn test_frequency_sort() {
         assert_eq!(frequency_sort(input.into()), output);
     }
 }
+
+/// https://leetcode.com/problems/find-pivot-index/
+fn pivot_index(nums: Vec<i32>) -> i32 {
+    let n = nums.len();
+    if n < 3 {
+        return -1;
+    }
+
+    let mut left_sum = 0;
+    let mut right_sum: i32 = nums.iter().skip(1).sum();
+    if left_sum == right_sum {
+        return 0;
+    }
+
+    for pivot in 1..n {
+        left_sum += nums[pivot - 1];
+        right_sum -= nums[pivot];
+        if left_sum == right_sum {
+            return pivot as i32;
+        }
+    }
+
+    -1
+}
+
+#[test]
+fn test_pivot_index() {
+    const TEST_CASES: [(&[i32], i32); 3] = [
+        (&[1, 7, 3, 6, 5, 6], 3),
+        (&[1, 2, 3], -1),
+        (&[-1, -1, -1, 0, 1, 1], 0),
+    ];
+    for &(input, output) in &TEST_CASES {
+        assert_eq!(pivot_index(input.into()), output);
+    }
+}
