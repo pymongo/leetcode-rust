@@ -417,6 +417,7 @@ leetcode_solutions
 |1716|[Calculate Money in Leetcode Bank](https://leetcode.com/problems/calculate-money-in-leetcode-bank/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1720|[Decode XORed Array](https://leetcode.com/problems/decode-xored-array/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1725|[Number Of Rectangles That Can ...](https://leetcode.com/problems/number-of-rectangles-that-can-form-the-largest-square/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|1732|[Find the Highest Altitude](https://leetcode.com/problems/find-the-highest-altitude/)|[Rust](src/easy/leetcode_very_easy.rs)|
 
 ---
 

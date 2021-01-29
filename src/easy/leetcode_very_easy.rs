@@ -1555,3 +1555,22 @@ fn test_pivot_index() {
         assert_eq!(pivot_index(input.into()), output);
     }
 }
+
+/// https://leetcode.com/problems/find-the-highest-altitude/
+fn largest_altitude(gain: Vec<i32>) -> i32 {
+    let mut cur = 0;
+    let mut max = 0;
+    for each in gain {
+        cur += each;
+        max = max.max(cur);
+    }
+    max
+}
+
+#[test]
+fn test_largest_altitude() {
+    const TEST_CASES: [(&[i32], i32); 1] = [(&[-5, 1, 5, 0, -7], 1)];
+    for &(input, output) in &TEST_CASES {
+        assert_eq!(largest_altitude(input.into()), output);
+    }
+}
