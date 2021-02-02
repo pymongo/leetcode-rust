@@ -1574,3 +1574,47 @@ fn test_largest_altitude() {
         assert_eq!(largest_altitude(input.into()), output);
     }
 }
+
+/// https://leetcode.com/problems/count-the-number-of-consistent-strings/
+fn count_consistent_strings(allowed: String, words: Vec<String>) -> i32 {
+    let mut counter = [false; 26];
+    for ch in allowed.into_bytes() {
+        counter[(ch - b'a') as usize] = true;
+    }
+    let mut ret = 0;
+    'loop_words: for word in words {
+        for ch in word.into_bytes() {
+            if !counter[(ch - b'a') as usize] {
+                continue 'loop_words;
+            }
+        }
+        ret += 1;
+    }
+    ret
+}
+
+#[test]
+fn test_count_consistent_strings() {
+    const TEST_CASES: [(&str, &[&str], i32); 1] =
+        [("ab", &["ad", "bd", "aaab", "baa", "badab"], 2)];
+    for &(allowed, words, output) in &TEST_CASES {
+        let words = words.iter().copied().map(ToString::to_string).collect();
+        assert_eq!(count_consistent_strings(allowed.to_string(), words), output);
+    }
+}
+
+/// https://leetcode.com/problems/fair-candy-swap/
+fn fair_candy_swap(a: Vec<i32>, b: Vec<i32>) -> Vec<i32> {
+    todo!()
+}
+
+#[test]
+fn test_fair_candy_swap() {
+    const TEST_CASES: [(&[i32], &[i32], &[i32]); 4] = [
+        (&[1, 1], &[2, 2], &[1, 2]),
+        (&[1, 2], &[2, 3], &[1, 2]),
+        (&[2], &[1, 3], &[2, 3]),
+        (&[1, 2, 5], &[2, 4], &[5, 4]),
+    ];
+    for &(a, b, output) in &TEST_CASES {}
+}
