@@ -322,6 +322,7 @@ leetcode_solutions
 |875|[Koko Eating Bananas](https://leetcode.com/problems/koko-eating-bananas/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/koko_eating_bananas.py)||
 |876|[Middle of the Linked List](https://leetcode.com/problems/middle-of-the-linked-list/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/middle_of_linked_list.py), [Rust](src/linked_list/middle_of_linked_list.rs)|快慢双指针|
 |887|[Super Egg Drop](https://leetcode.com/problems/super-egg-drop)|[Rust](src/dp/drop_eggs.rs)|
+|888|[Fair Candy Swap](https://leetcode.com/problems/fair-candy-swap/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |889|[Construct Binary Tree from Preorder and Postorder...](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/construct_from_pre_order_and_post_order.py)|DFS|
 |905|[Sort Array By Parity](https://leetcode.com/problems/sort-array-by-parity/)|[Rust](src/easy/array/partition_array.rs)|
 |912|[Sort An Array](https://leetcode.com/problems/sort-an-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/sorting_and_query/basic_sorting.py)|
