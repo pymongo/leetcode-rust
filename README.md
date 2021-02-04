@@ -278,6 +278,7 @@ leetcode_solutions
 |627|[Swap Salary](https://leetcode.com/problems/swap-salary/)|[SQL](https://github.com/pymongo/python_leetcode/blob/master/database_problems/invert_sex.sql)|
 |628|[Maximum Product of Three Numbers](https://leetcode.com/problems/maximum-product-of-three-numbers/)|[Rust](src/easy/leetcode_easy.rs)|
 |633|[Average of Levels in Binary Tree](https://leetcode.com/problems/average-of-levels-in-binary-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/traversal_level_order.py)||
+|643|[Maximum Average Subarray I](https://leetcode.com/problems/maximum-average-subarray-i/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |650|[2 Keys Keyboard](https://leetcode.com/problems/2-keys-keyboard/)|[Rust](src/easy/leetcode_easy.rs)|
 |653|[First Unique Number in Data Stream](https://leetcode.com/problems/two-sum-iv-input-is-a-bst/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/bst_two_sum.py)||
 |657|[Robot Return to Origin](https://leetcode.com/problems/robot-return-to-origin/)|[Rust](src/easy/leetcode_very_easy.rs)|

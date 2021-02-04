@@ -1637,3 +1637,23 @@ fn test_fair_candy_swap() {
         assert_eq!(fair_candy_swap(a.into(), b.into()), output.to_vec());
     }
 }
+
+/// https://leetcode.com/problems/maximum-average-subarray-i/
+fn find_max_average(nums: Vec<i32>, k: i32) -> f64 {
+    let k = k as usize;
+    let mut window_sum: i32 = nums.iter().take(k).sum();
+    let mut max_sum = window_sum;
+    for i in k..nums.len() {
+        window_sum = window_sum - nums[i - k] + nums[i];
+        max_sum = max_sum.max(window_sum);
+    }
+    max_sum as f64 / k as f64
+}
+
+#[test]
+fn test_find_max_average() {
+    const TEST_CASES: [(&[i32], i32, f64); 1] = [(&[1, 12, -5, -6, 50, 3], 4, 12.75)];
+    for &(nums, k, output) in &TEST_CASES {
+        assert_eq!(find_max_average(nums.to_vec(), k), output);
+    }
+}
