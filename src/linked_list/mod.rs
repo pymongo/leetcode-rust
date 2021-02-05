@@ -22,6 +22,7 @@ mod merge_two_sorted_linked_list;
 mod middle_of_linked_list;
 mod nth_node_from_end;
 mod partition_list;
+mod plus_one;
 mod reverse_linked_list;
 mod reverse_linked_list_2;
 mod swap_nodes_in_pairs;

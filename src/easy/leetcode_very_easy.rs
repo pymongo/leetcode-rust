@@ -319,7 +319,7 @@ fn plus_one(mut digits: Vec<i32>) -> Vec<i32> {
             return digits;
         }
     }
-    // 跳出循环时必定是`if *digit == 9`的分支
+    // 跳出循环时必定是`if *digit == 9`(需要进位)的分支
     digits.insert(0, 1);
     digits
 }
