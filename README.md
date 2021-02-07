@@ -149,9 +149,9 @@ leetcode_solutions
 |173|[Binary Search Tree Iterator](https://leetcode.com/problems/binary-search-tree-iterator/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/bst_in_order_iterator.py)|
 |174|[Dungeon Game](https://leetcode.com/problems/dungeon-game/)|[Rust](src/dp/calculate_minimun_hp.rs)|
 |175|[Combine Two Tables](https://leetcode.com/problems/combine-two-tables/)|
-|176|[Second Highest Salary](https://leetcode.com/problems/second-highest-salary/)|[SQL](https://github.com/pymongo/python_leetcode/blob/master/database_problems/second_highest_salary.sql)||
+|176|[Second Highest Salary](https://leetcode.com/problems/second-highest-salary/)|[SQL](sql_problems/second_highest_salary.sql)|
 |181|[Employees Earning More Than Their Managers](https://leetcode.com/problems/employees-earning-more-than-their-managers/)|[SQL](sql_problems/very_easy.sql)|
-|182|[Duplicate Emails](https://leetcode.com/problems/duplicate-emails/)|[SQL](https://github.com/pymongo/python_leetcode/blob/master/database_problems/duplicate_emails.sql)|
+|182|[Duplicate Emails](https://leetcode.com/problems/duplicate-emails/)|[SQL](sql_problems/duplicate_emails.sql)|
 |183|[Customers Who Never Order](https://leetcode.com/problems/customers-who-never-order/)|sql|
 |188|[Best Time to Buy and Sell Stock IV](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/stock.py)||
 |189|[Rotate Array](http://leetcode.com/problems/rotate-array/)|[Rust](src/uncategorized/string_in_place.rs)|
@@ -275,7 +275,7 @@ leetcode_solutions
 |605|[Can Place Flowers](https://leetcode.com/problems/can-place-flowers/)|[Rust](src/easy/leetcode_easy.rs)|
 |620|[Not Boring Movies](https://leetcode.com/problems/not-boring-movies/)|[SQL](sql_problems/very_easy.sql)|
 |625🔒|[Minimum Factorization](https://leetcode.com/problems/minimum-factorization/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/factorization/minimum_factorization.py)|greedy|
-|627|[Swap Salary](https://leetcode.com/problems/swap-salary/)|[SQL](https://github.com/pymongo/python_leetcode/blob/master/database_problems/invert_sex.sql)|
+|627|[Swap Salary](https://leetcode.com/problems/swap-salary/)|[SQL](sql_problems/invert_sex.sql)|
 |628|[Maximum Product of Three Numbers](https://leetcode.com/problems/maximum-product-of-three-numbers/)|[Rust](src/easy/leetcode_easy.rs)|
 |633|[Average of Levels in Binary Tree](https://leetcode.com/problems/average-of-levels-in-binary-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/traversal_level_order.py)||
 |643|[Maximum Average Subarray I](https://leetcode.com/problems/maximum-average-subarray-i/)|[Rust](src/easy/leetcode_very_easy.rs)|
@@ -411,6 +411,7 @@ leetcode_solutions
 |1662|[Check If Two String Arrays are Equivalent](https://leetcode.com/problems/check-if-two-string-arrays-are-equivalent/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1672|[Richest Customer Wealth](https://leetcode.com/problems/richest-customer-wealth/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1678|[Goal Parser Interpretation](https://leetcode.com/problems/goal-parser-interpretation/)|[Rust](src/easy/leetcode_easy.rs)|
+|1683🔒|[Invalid Tweets](https://leetcode.com/problems/invalid-tweets/)|[SQL](sql_problems/very_easy.sql)|
 |1684|[Count the Number of Consistent Strings](https://leetcode.com/problems/count-the-number-of-consistent-strings/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1688|[Count of Matches in Tournament](https://leetcode.com/problems/count-of-matches-in-tournament/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1694|[Reformat Phone Number](https://leetcode.com/problems/reformat-phone-number/)|[Rust](src/easy/leetcode_very_easy.rs)|

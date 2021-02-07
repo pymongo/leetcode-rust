@@ -6,4 +6,10 @@ from Employee as e
 where e.Salary > m.Salary;
 
 -- https://leetcode.com/problems/not-boring-movies/
-select id,movie,description,rating from cinema where id%2=1 and description <> 'boring' order by rating desc;
+select id,movie,description,rating
+from cinema
+where id%2=1 and description <> 'boring'
+order by rating desc;
+
+-- https://leetcode.com/problems/invalid-tweets/
+select tweet_id from Tweets where length(content) > 15;
