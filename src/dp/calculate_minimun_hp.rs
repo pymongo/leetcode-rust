@@ -8,7 +8,7 @@ fn calculate_minimum_hp(dungeon: Vec<Vec<i32>>) -> i32 {
     let (m, n) = (dungeon.len(), dungeon[0].len());
     // 为了处理边界情况: 右边扩宽一列，下方扩宽一行
     // dp的默认值是i32::MAX，这样最底下一行和最右侧列抉择时不会选上
-    let mut dp = vec![vec![std::i32::MAX; n + 1]; m + 1];
+    let mut dp = vec![vec![i32::MAX; n + 1]; m + 1];
     // 终点的右侧和下侧的生命值为1
     dp[m - 1][n] = 1;
     dp[m][n - 1] = 1;

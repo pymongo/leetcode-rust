@@ -19,7 +19,7 @@ fn find_rotate_steps(ring: String, key: String) -> i32 {
     let m = key.len();
 
     // 解释m为什么要+1，因为m表示key的下标值
-    let mut dp = vec![vec![std::usize::MAX; n]; m + 1];
+    let mut dp = vec![vec![usize::MAX; n]; m + 1];
     // 因为状态转移方程/dp填表依赖当前行的下一行的值，初始填表时倒数第二行，所以除最后一行置零以外全部初始化为最大值
     for j in 0..n {
         dp[m][j] = 0;
@@ -64,7 +64,7 @@ fn find_rotate_steps_optimized(ring: String, key: String) -> i32 {
         ring_counter[(ring_char - b'a') as usize].push(i);
     }
     // 解释m为什么要+1，因为m表示key的下标值
-    let mut dp = vec![vec![std::usize::MAX; n]; m + 1];
+    let mut dp = vec![vec![usize::MAX; n]; m + 1];
     // 因为状态转移方程/dp填表依赖当前行的下一行的值，初始填表时倒数第二行，所以除最后一行置零以外全部初始化为最大值
     for j in 0..n {
         dp[m][j] = 0;

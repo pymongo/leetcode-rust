@@ -252,7 +252,7 @@ leetcode_solutions
 |474|[Ones and Zeroes](https://leetcode.com/problems/ones-and-zeroes/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/backpack_ones_and_zeros.py)|完全背包问题|
 |485|[Max Consecutive Ones](https://leetcode.com/problems/max-consecutive-ones/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |486|[Validate IP Address](https://leetcode.com/problems/validate-ip-address/)|[Rust](src/easy/string/parse_ip_address.rs)|
-|490🔒|[The Maze](https://leetcode.com/problems/the-maze/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/bfs/the_maze.py)|
+|490🔒|[The Maze](https://leetcode.com/problems/the-maze/)|[Rust](src/bfs_dfs_backtracking/the_maze.rs)|
 |494|[Target Sum](https://leetcode.com/problems/target-sum/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/backpack_1_target_sum.py)|0-1背包问题|
 |498|[Diagonal Traverse](https://leetcode.com/problems/diagonal-traverse/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/unclassified/diagonal_traverse.py)|
 |503|[Next Greater Element II](https://leetcode.com/problems/next-greater-element-ii/)|[Rust](src/special_data_structure/monotonic_stack_next_greater_element_2.rs)|
@@ -388,7 +388,7 @@ leetcode_solutions
 |1475|[Final Prices With a Special Discount...](https://leetcode.com/problems/final-prices-with-a-special-discount-in-a-shop/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1476|[Subrectangle Queries](https://leetcode.com/problems/subrectangle-queries/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/subrectangle_queries.py)||
 |1480|[Running Sum of 1d Array](https://leetcode.com/problems/running-sum-of-1d-array/)|[Rust](src/easy/leetcode_very_easy.rs)|
-|1486|[XOR Operation in an Array](https://leetcode.com/problems/xor-operation-in-an-array/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|1486|[XOR Operation in an Array](https://leetcode.com/problems/xor-operation-in-an-array/)|[Rust](src/easy/leetcode_very_easy.rs), [Racket](https://github.com/pymongo/leetcode_racket/blob/main/leetcode_1486_xor_operation_in_an_array.rkt)|
 |1502|[Can Make Arithmetic Progression From Sequence](https://leetcode.com/problems/can-make-arithmetic-progression-from-sequence/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1512|[Number of Good Pairs](https://leetcode.com/problems/number-of-good-pairs/)|[Rust](src/counter/number_of_good_pairs.rs)|
 |1528|[Shuffle String](https://leetcode.com/problems/shuffle-string/)|[Rust](src/uncategorized/string_in_place.rs)|
@@ -421,6 +421,9 @@ leetcode_solutions
 |1720|[Decode XORed Array](https://leetcode.com/problems/decode-xored-array/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1725|[Number Of Rectangles That Can ...](https://leetcode.com/problems/number-of-rectangles-that-can-form-the-largest-square/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1732|[Find the Highest Altitude](https://leetcode.com/problems/find-the-highest-altitude/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|1752|[Check if Array Is Sorted and Rotated](https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|1753|[Maximum Score From Removing Stones](https://leetcode.com/problems/maximum-score-from-removing-stones/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|1754|[Largest Merge Of Two Strings](https://leetcode.com/problems/largest-merge-of-two-strings/)|[Rust](src/easy/leetcode_very_easy.rs)|
 
 ---
 
@@ -728,7 +731,7 @@ lintcode_problems
 |772|[Group Anagrams](https://lintcode.com/problem/group-anagrams/)|leetcode_49|
 |773|[Valid Anagram](https://lintcode.com/problem/vlid-anagram/)|leetcode_242|
 |777|[Valid Perfect Square](https://lintcode.com/problem/valid-perfect-square/)|leetcode_367|
-|787|[The Maze](https://lintcode.com/problem/the-maze/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/bfs/the_maze.py)||
+|787|[The Maze](https://lintcode.com/problem/the-maze/)|leetcode_490|
 |793|[Intersection of Arrays](https://lintcode.com/problem/intersection-of-arrays/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/intersection_of_two_arrays.py)||
 |802|[Soduku Solver](https://lintcode.com/problem/soduku-solver/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/soduku_solver.py)||
 |813|[Find Anagram Mappings](https://lintcode.com/problem/find-anagram-mappings/)|leetcode_760|

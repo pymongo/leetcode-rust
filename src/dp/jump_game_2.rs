@@ -18,7 +18,7 @@ impl Solution {
         if n == 1 {
             return 0;
         }
-        let mut dp = vec![std::i32::MAX; n];
+        let mut dp = vec![i32::MAX; n];
         dp[0] = 0;
         for i in 0..n {
             let right_most = i + nums[i];

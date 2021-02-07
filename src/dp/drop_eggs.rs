@@ -8,7 +8,7 @@ fn eggs_drop(k: i32, n: i32) -> i32 {
 fn dp_binary_search(k: i32, n: i32) -> i32 {
     let (k, n) = (k as usize, n as usize);
     // dp[i][j]: i层楼有j个鸡蛋的最小尝试次数
-    let mut dp: Vec<Vec<usize>> = vec![vec![std::usize::MAX; k + 1]; n + 1];
+    let mut dp: Vec<Vec<usize>> = vec![vec![usize::MAX; k + 1]; n + 1];
     // 楼层为0时，第0行: 不管鸡蛋的个数多少，都测不出鸡蛋的耐摔层度，所以次数全为0
     for j in 0..=k {
         dp[0][j] = 0;
@@ -81,7 +81,7 @@ fn dfs(k: i32, n: i32, memo: &mut HashMap<(i32, i32), i32>) -> i32 {
         return *val;
     }
 
-    let mut res = std::i32::MAX;
+    let mut res = i32::MAX;
     // 穷举在第i层扔下鸡蛋后可能的情况(没碎或碎)
     for i in 1..=n {
         // dp(k  , n-i): 鸡蛋没碎，那么刚扔下的鸡蛋还可以继续用从i+1..=n层的范围搜索，但是还是有k次机会

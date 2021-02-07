@@ -159,7 +159,7 @@ fn test_self_dividing_numbers() {
 fn max_increase_keeping_skyline(grid: Vec<Vec<i32>>) -> i32 {
     let (m, n) = (grid.len(), grid[0].len());
     let mut max_row: Vec<i32> = Vec::with_capacity(m);
-    let mut max_col: Vec<i32> = vec![std::i32::MIN; n];
+    let mut max_col: Vec<i32> = vec![i32::MIN; n];
     for row in grid.iter() {
         max_row.push(*row.iter().max().unwrap());
     }
@@ -611,7 +611,7 @@ fn maximum_wealth(accounts: Vec<Vec<i32>>) -> i32 {
 fn merge_two_sorted_array(nums1: &mut Vec<i32>, m: i32, nums2: &mut Vec<i32>, n: i32) {
     let (m, n) = (m as usize, n as usize);
     let (mut p1, mut p2, mut p) = (m - 1, n.wrapping_sub(1), m + n - 1);
-    while p1 != std::usize::MAX && p2 != std::usize::MAX {
+    while p1 != usize::MAX && p2 != usize::MAX {
         if nums1[p1] > nums2[p2] {
             nums1[p] = nums1[p1];
             p1 = p1.wrapping_sub(1);
@@ -621,12 +621,12 @@ fn merge_two_sorted_array(nums1: &mut Vec<i32>, m: i32, nums2: &mut Vec<i32>, n:
         }
         p -= 1;
     }
-    while p1 != std::usize::MAX {
+    while p1 != usize::MAX {
         nums1[p] = nums1[p1];
         p = p.wrapping_sub(1);
         p1 = p1.wrapping_sub(1);
     }
-    while p2 != std::usize::MAX {
+    while p2 != usize::MAX {
         nums1[p] = nums2[p2];
         p = p.wrapping_sub(1);
         p2 = p2.wrapping_sub(1);
@@ -1655,5 +1655,133 @@ fn test_find_max_average() {
     const TEST_CASES: [(&[i32], i32, f64); 1] = [(&[1, 12, -5, -6, 50, 3], 4, 12.75)];
     for &(nums, k, output) in &TEST_CASES {
         assert_eq!(find_max_average(nums.to_vec(), k), output);
+    }
+}
+
+/// https://leetcode-cn.com/contest/weekly-contest-227/problems/check-if-array-is-sorted-and-rotated/
+fn check_if_array_is_sorted_and_rotated(nums: Vec<i32>) -> bool {
+    let n = nums.len();
+    let nums = nums.repeat(2);
+    let mut start = 0;
+    'outer: while start < n {
+        for i in (start + 1..).take(n - 1) {
+            if nums[i - 1] > nums[i] {
+                start = i;
+                continue 'outer;
+            }
+        }
+        return true;
+    }
+    false
+}
+
+#[test]
+fn test_check_if_array_is_sorted_and_rotated() {
+    const TEST_CASES: [(&[i32], bool); 5] = [
+        // 可以通过rotate_left得到有序数组[1,2,3,4,5]，所以返回true
+        (&[3, 4, 5, 1, 2], true),
+        (&[2, 1, 3, 4], false),
+        (&[1, 2, 3], true),
+        (&[1, 1, 1], true),
+        (&[2, 1], true),
+    ];
+    for &(input, output) in &TEST_CASES {
+        assert_eq!(check_if_array_is_sorted_and_rotated(input.to_vec()), output);
+    }
+}
+
+/// https://leetcode-cn.com/contest/weekly-contest-227/problems/maximum-score-from-removing-stones/
+/// 有三堆石子，每次从两堆中拿一个并加一分，请问最多能得几分？
+/// 贪心: 每次从最多的两个石子堆中拿一个(我也是看输入输出示例的规律才想到每次就是从两个数量最大的石子堆里取一个)
+fn maximum_score_from_removing_stones(a: i32, b: i32, c: i32) -> i32 {
+    let mut score = 0;
+    let mut nums = [a, b, c];
+    loop {
+        nums.sort_unstable();
+        if nums[0] == 0 && nums[1] == 0 {
+            break;
+        }
+        // 从最大的两堆石子各拿一个
+        nums[1] -= 1;
+        nums[2] -= 1;
+        score += 1;
+    }
+    score
+}
+
+/// 周赛第一名的解答
+fn maximum_score_from_removing_stones_best(a: i32, b: i32, c: i32) -> i32 {
+    let mut nums = [a, b, c];
+    nums.sort_unstable();
+    if nums[0] + nums[1] < nums[2] {
+        return nums[0] + nums[1];
+    }
+    return (nums[0] + nums[1] + nums[2]) / 2;
+}
+
+#[test]
+fn test_maximum_score_from_removing_stones() {
+    const TEST_CASES: [(i32, i32, i32, i32); 3] = [(1, 8, 8, 8), (2, 4, 6, 6), (4, 4, 6, 7)];
+    for &(a, b, c, score) in &TEST_CASES {
+        assert_eq!(maximum_score_from_removing_stones(a, b, c), score);
+    }
+}
+
+/// https://leetcode-cn.com/contest/weekly-contest-227/problems/largest-merge-of-two-strings/
+/// 有点像归并排序的归并操作，从两个Vec<u8>中选较大的push到新数组中
+fn largest_merge_of_two_strings(word1: String, word2: String) -> String {
+    let (nums1, nums2) = (word1.into_bytes(), word2.into_bytes());
+    let (nums1_len, nums2_len) = (nums1.len(), nums2.len());
+    let mut ret = Vec::with_capacity(nums1_len + nums2_len);
+    let (mut p1, mut p2) = (0, 0);
+    while p1 < nums1_len && p2 < nums2_len {
+        match nums1[p1].cmp(&nums2[p2]) {
+            std::cmp::Ordering::Less => {
+                ret.push(nums2[p2]);
+                p2 += 1;
+            }
+            // 其实只要这个分支就够了
+            std::cmp::Ordering::Equal => {
+                // 等于时情况比较复杂
+                // "cabaa" "bcaaa"
+                //   ^        ^
+                // 这时候显然是要取nums1的a，因为nums1的a的后一位比nums2 a的后一位要大
+                // 好在Rust能像Python比较字符串或数组的大小，不用自己写递归的数组比较函数
+                if &nums1[p1..] > &nums2[p2..] {
+                    ret.push(nums1[p1]);
+                    p1 += 1;
+                } else {
+                    ret.push(nums2[p2]);
+                    p2 += 1;
+                }
+            }
+            std::cmp::Ordering::Greater => {
+                ret.push(nums1[p1]);
+                p1 += 1;
+            }
+        }
+    }
+    while p1 < nums1_len {
+        ret.push(nums1[p1]);
+        p1 += 1
+    }
+    while p2 < nums2_len {
+        ret.push(nums2[p2]);
+        p2 += 1
+    }
+    unsafe { String::from_utf8_unchecked(ret) }
+}
+
+#[test]
+fn test_largest_merge_of_two_strings() {
+    const TEST_CASES: [(&str, &str, &str); 2] = [
+        ("cabaa", "bcaaa", "cbcabaaaaa"),
+        ("abcabc", "abdcaba", "abdcabcabcaba"),
+    ];
+    for &(word1, word2, output) in &TEST_CASES {
+        assert_eq!(
+            largest_merge_of_two_strings(word1.to_owned(), word2.to_owned()),
+            output.to_owned()
+        );
     }
 }

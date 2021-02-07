@@ -10,3 +10,4 @@ mod n_queens;
 mod perm_comb;
 mod restore_ip_address;
 mod surrounded_regions;
+mod the_maze;
