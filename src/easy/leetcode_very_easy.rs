@@ -1785,3 +1785,34 @@ fn test_largest_merge_of_two_strings() {
         );
     }
 }
+
+/// https://leetcode.com/problems/dot-product-of-two-sparse-vectors/
+/// 稀疏矩阵指的是大部分都是0的向量，如何高效存储计算两个一维稀疏向量的点积
+struct SparseVector {
+    nums: Vec<i32>,
+}
+
+impl SparseVector {
+    fn new(nums: Vec<i32>) -> Self {
+        Self { nums }
+    }
+
+    fn dot_product(self, vec: SparseVector) -> i32 {
+        self.nums
+            .into_iter()
+            .zip(vec.nums.into_iter())
+            .fold(0, |acc, (a, b)| acc + a * b)
+    }
+}
+
+/// https://leetcode.com/problems/remove-vowels-from-a-string/
+fn remove_vowels(s: String) -> String {
+    let mut ret = vec![];
+    for ch in s.into_bytes() {
+        match ch {
+            b'a' | b'e' | b'i' | b'o' | b'u' => {}
+            _ => ret.push(ch),
+        }
+    }
+    unsafe { String::from_utf8_unchecked(ret) }
+}
