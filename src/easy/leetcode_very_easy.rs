@@ -1816,3 +1816,34 @@ fn remove_vowels(s: String) -> String {
     }
     unsafe { String::from_utf8_unchecked(ret) }
 }
+
+/// https://leetcode.com/problems/number-of-steps-to-reduce-a-number-to-zero/
+/// 给你一个非负整数 num ，请你返回将它变成 0 所需要的步数。 如果当前数字是偶数，你需要把它除以 2 ；否则，减去 1
+fn number_of_steps(mut num: i32) -> i32 {
+    let mut ret = 0;
+    while num != 0 {
+        if num % 2 == 1 {
+            // num-=1 or num^=1 or num&-2
+            num -= 1;
+        } else {
+            num /= 2;
+        }
+        ret += 1;
+    }
+    ret
+}
+
+/// https://leetcode.com/problems/minimum-cost-to-connect-sticks/
+fn connect_sticks(sticks: Vec<i32>) -> i32 {
+    let mut total_cost = 0;
+    let mut heap = std::collections::BinaryHeap::with_capacity(sticks.len());
+    for stick in sticks {
+        heap.push(-stick);
+    }
+    while heap.len() >= 2 {
+        let new_stick = -(heap.pop().unwrap() + heap.pop().unwrap());
+        total_cost += new_stick;
+        heap.push(-new_stick);
+    }
+    total_cost
+}

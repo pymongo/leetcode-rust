@@ -13,3 +13,37 @@ order by rating desc;
 
 -- https://leetcode.com/problems/invalid-tweets/
 select tweet_id from Tweets where length(content) > 15;
+
+-- https://leetcode.com/problems/find-total-time-spent-by-each-employee/
+select
+    event_day as day,
+    emp_id,
+    sum(out_time-in_time) as total_time
+from
+    Employees
+group by
+    event_day,
+    emp_id
+;
+
+-- https://leetcode.com/problems/find-the-team-size/
+-- select e1.employee_id, count(*) as team_size from Employee e1, Employee e2 where e1.team_id = e2.team_id group by e1.employee_id;
+-- select employee_id, count(*) over(partition by team_id) as team_size from employee
+select
+    a.employee_id as employee_id,
+    b.team_size as team_size
+from
+    Employee as a
+left join
+    (
+        select
+            team_id,
+            count(employee_id) as team_size
+        from
+            Employee
+        group by
+            team_id
+    ) as b
+on
+    a.team_id = b.team_id
+;
