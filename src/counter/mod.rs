@@ -142,7 +142,7 @@ fn count_characters(words: Vec<String>, chars: String) -> i32 {
 
 /// https://leetcode.com/problems/intersection-of-three-sorted-arrays/
 fn arrays_intersection(arr1: Vec<i32>, arr2: Vec<i32>, arr3: Vec<i32>) -> Vec<i32> {
-    let mut counter = [0u16; 2001];
+    let mut counter = [0u8; 2001];
     for num in arr1 {
         counter[num as usize] += 1;
     }

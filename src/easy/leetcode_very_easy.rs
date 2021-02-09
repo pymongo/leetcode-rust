@@ -1847,3 +1847,15 @@ fn connect_sticks(sticks: Vec<i32>) -> i32 {
     }
     total_cost
 }
+
+/// https://leetcode.com/problems/armstrong-number/
+fn is_armstrong(n: i32) -> bool {
+    let digits = (n as f32).log10() as u32 + 1;
+    let mut num = n;
+    let mut ret = 0;
+    while num != 0 {
+        ret += (num % 10).pow(digits);
+        num /= 10;
+    }
+    ret == n
+}

@@ -32,3 +32,18 @@ fn group_anagrams(strs: Vec<String>) -> Vec<Vec<String>> {
     // same as nightly `into_values` API: consume HashMap and get a vec of values
     group.into_iter().map(|(_k, v)| v).collect()
 }
+
+/// https://leetcode.com/problems/find-anagram-mappings/
+/// 有两个互为anagram的数组(anagram的定义请看valid_anagram一题)
+/// 请你找出A的每个元素在B中的索引，如有重复元素则返回任意一个索引
+/// 例如A=[12,28],B=[28,12]，因为A[0]=B[1],A[1]=B[0]，所以返回[1,0]
+fn anagram_mappings(mut a: Vec<i32>, b: Vec<i32>) -> Vec<i32> {
+    let mut map = std::collections::HashMap::with_capacity(b.len());
+    for (i, b) in b.into_iter().enumerate() {
+        map.insert(b, i as i32);
+    }
+    for a in a.iter_mut() {
+        *a = *map.get(a).unwrap();
+    }
+    a
+}

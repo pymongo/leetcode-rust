@@ -47,3 +47,17 @@ left join
 on
     a.team_id = b.team_id
 ;
+
+-- https://leetcode.com/problems/average-selling-price/
+select
+    p.product_id,
+    round(sum(p.price * u.units) / sum(u.units), 2) as average_price
+from
+    Prices as p,
+    UnitsSold as u
+where
+    p.product_id = u.product_id
+    and u.purchase_date between start_date and end_date
+group by
+    p.product_id
+;

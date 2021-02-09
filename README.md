@@ -301,7 +301,7 @@ leetcode_solutions
 |716🔒|[Max Stack](https://leetcode.com/problems/max_stack/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/max_stack.py)||
 |724|[Find Pivot Index](https://leetcode.com/problems/find-pivot-index/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |728|[Self Dividing Numbers](https://leetcode.com/problems/self-dividing-numbers/)|[Rust](src/easy/leetcode_very_easy.rs)|
-|760🔒|[Find Anagram Mappings](https://leetcode.com/problems/find-anagram-mappings/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/mapping_two_anagram_list_int.py)|
+|760🔒|[Find Anagram Mappings](https://leetcode.com/problems/find-anagram-mappings/)|[Rust](src/counter/anagrams.rs)|
 |796|[Rotate String](https://leetcode.com/problems/rotate-string/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/rotate_reverse_circle_shift/rotate_string.py)|Rabin-Karp(rolling_hash), kmp|
 |743|[Network Delay Time](https://leetcode.com/problems/network-delay-time/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/bfs/network_delay_time_dijkstra.py)|
 |746|[Min Cost Climbing Stairs](https://leetcode.com/problems/min-cost-climbing-stairs/)|[Rust](src/dp/dp_easy.rs)|
@@ -353,6 +353,7 @@ leetcode_solutions
 |1128|[Number of Equivalent Domino Pairs](https://leetcode.com/problems/number-of-equivalent-domino-pairs/)|[Rust](src/counter/number_of_equivalent_domino_pairs.rs)|
 |1109|[Corporate Flight Bookings](https://leetcode.com/problems/corporate-flight-bookings/)|[Rust](src/easy/leetcode_easy.rs)|
 |1119🔒|[Remove Vowels from a String](https://leetcode.com/problems/remove-vowels-from-a-string/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|1134🔒|[Armstrong Number](https://leetcode.com/problems/armstrong-number/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1143|[Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/longest_common_subsequence.py)|
 |1160|[Find Words That Can Be Formed by Ch...](https://leetcode.com/problems/find-words-that-can-be-formed-by-characters/)|[Rust](src/counter/mod.rs)|
 |1167🔒|[Minimum Cost To Connect Sticks](https://leetcode.com/problems/minimum-cost-to-connect-sticks/)|[Rust](src/easy/leetcode_very_easy.rs)|
@@ -362,6 +363,7 @@ leetcode_solutions
 |1227|[Airplane Seat Assignment Probability](https://leetcode.com/problems/airplane-seat-assignment-probability/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/brain_twists/airplane_seat_assignment_probability.py)||
 |1232|[Check If It Is a Straight Line](https://leetcode.com/problems/check-if-it-is-a-straight-line/)|[Rust](src/easy/leetcode_easy.rs)|
 |1248|[Count Number of Nice Subarrays](https://leetcode.com/problems/count-number-of-nice-subarrays/)|[Rust](src/greedy/count_number_of_nice_subarrays.rs)|
+|1251🔒|[Average Selling Price](https://leetcode.com/problems/average-selling-price/)|[SQL](sql_problems/very_easy.sql)|
 |1252|[Cells with Odd Values in a Matrix](https://leetcode.com/problems/cells-with-odd-values-in-a-matrix/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1265🔒|[Print Immutable Linked List in Reverse](https://leetcode.com/problems/print-immutable-linked-list-in-reverse/)|[C](https://github.com/pymongo/learn_cpp/blob/master/leetcode/easy/print_immutable_linked_list_in_reverse.c)|
 |1266|[Minimum Time Visiting All Points](https://leetcode.com/problems/minimum-time-visiting-all-points/)|[Rust](src/easy/leetcode_very_easy.rs)|
