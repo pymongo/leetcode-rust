@@ -1603,41 +1603,6 @@ fn test_count_consistent_strings() {
     }
 }
 
-/// https://leetcode.com/problems/fair-candy-swap/
-/// 其实就是two_sum两数之差的变种题
-fn fair_candy_swap(a: Vec<i32>, b: Vec<i32>) -> Vec<i32> {
-    let a_sum: i32 = a.iter().sum();
-    let b_sum: i32 = b.iter().sum();
-    let avg_sum = (a_sum + b_sum) / 2;
-    // a_sum + b - a = avg_sum
-    // b - a = target
-    let target = avg_sum - a_sum;
-    // 现在就转为两数之差(two sum)类解法了
-    let mut map = std::collections::HashMap::with_capacity(b.len());
-    for b in b {
-        map.insert(b - target, b);
-    }
-    for a in a {
-        if let Some(b) = map.get(&a) {
-            return vec![a, *b];
-        }
-    }
-    unreachable!()
-}
-
-#[test]
-fn test_fair_candy_swap() {
-    const TEST_CASES: [(&[i32], &[i32], &[i32]); 4] = [
-        (&[1, 1], &[2, 2], &[1, 2]),
-        (&[1, 2], &[2, 3], &[1, 2]),
-        (&[2], &[1, 3], &[2, 3]),
-        (&[1, 2, 5], &[2, 4], &[5, 4]),
-    ];
-    for &(a, b, output) in &TEST_CASES {
-        assert_eq!(fair_candy_swap(a.into(), b.into()), output.to_vec());
-    }
-}
-
 /// https://leetcode.com/problems/maximum-average-subarray-i/
 fn find_max_average(nums: Vec<i32>, k: i32) -> f64 {
     let k = k as usize;
@@ -1871,8 +1836,8 @@ fn count_letters(s: String) -> i32 {
         while r < n && s[r] == s[l] {
             r += 1;
         }
-        let len = r-l;
-        ret += len * (len+1) / 2;
+        let len = r - l;
+        ret += len * (len + 1) / 2;
         l = r;
     }
     ret as i32
@@ -1880,11 +1845,37 @@ fn count_letters(s: String) -> i32 {
 
 #[test]
 fn test_count_letters() {
-    const TEST_CASES: [(&str, i32); 2] = [
-        ("aaaba", 8),
-        ("aaaaaaaaaa", 55),
-    ];
+    const TEST_CASES: [(&str, i32); 2] = [("aaaba", 8), ("aaaaaaaaaa", 55)];
     for &(input, output) in &TEST_CASES {
         assert_eq!(count_letters(input.to_string()), output);
+    }
+}
+
+/// https://leetcode.com/problems/sparse-matrix-multiplication/
+/// 如果面试官问优化方案，可以答GPU运算，GPU有对矩阵运算的硬件加速(simd，各种GPU向量运算指令)，而CPU只能逐行逐列的扫
+fn sparse_matrix_multiplication(a: Vec<Vec<i32>>, b: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
+    let a_rows = a.len();
+    let b_rows = b.len();
+    let b_cols = b[0].len();
+    let mut ret = vec![vec![0; b_cols]; a_rows];
+    for i in 0..a_rows {
+        for j in 0..b_cols {
+            for k in 0..b_rows {
+                ret[i][j] += a[i][k] * b[k][j];
+            }
+        }
+    }
+    ret
+}
+
+#[test]
+fn test_sparse_matrix_multiplication() {
+    let test_cases = vec![(
+        vec_vec![[1, 0, 0], [-1, 0, 3]],
+        vec_vec![[7, 0, 0], [0, 0, 0], [0, 0, 1]],
+        vec_vec![[7, 0, 0], [-7, 0, 3]],
+    )];
+    for (a, b, output) in test_cases {
+        assert_eq!(sparse_matrix_multiplication(a, b), output);
     }
 }

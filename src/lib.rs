@@ -20,4 +20,5 @@ mod linked_list;
 mod math;
 mod random;
 mod special_data_structure;
+mod two_sum_two_pointers;
 mod uncategorized;

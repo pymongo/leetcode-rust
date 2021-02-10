@@ -71,3 +71,11 @@ where s.product_id = p.product_id;
 
 -- https://leetcode.com/problems/product-sales-analysis-ii/
 select product_id, sum(quantity) as total_quantity from Sales group by product_id;
+
+-- https://leetcode.com/problems/triangle-judgement/
+-- SELECT x,y,z,(CASE WHEN x+y>z AND x+z>y AND z+y>x THEN 'Yes' ELSE 'No' END) as triangle FROM triangle;
+select
+    x, y, z,
+    -- 两最小边之和大于最长边，则能构成三角形
+    if( x+y+z-greatest(x,y,z)>greatest(x,y,z), 'Yes', 'No' ) as triangle
+from triangle;

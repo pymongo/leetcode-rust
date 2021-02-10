@@ -102,23 +102,6 @@ fn largest_perimeter(mut a: Vec<i32>) -> i32 {
     0i32
 }
 
-/// https://leetcode.com/problems/4sum-ii/
-fn four_sum_count(a: Vec<i32>, b: Vec<i32>, c: Vec<i32>, d: Vec<i32>) -> i32 {
-    let mut pairs = std::collections::HashMap::new();
-    for num_a in a.into_iter() {
-        for num_b in b.iter() {
-            *pairs.entry(num_a + num_b).or_default() += 1;
-        }
-    }
-    let mut count = 0;
-    for num_c in c.into_iter() {
-        for num_d in d.iter() {
-            count += pairs.get(&(-num_c - num_d)).unwrap_or(&0);
-        }
-    }
-    count
-}
-
 /// https://leetcode.com/problems/can-place-flowers/
 fn can_place_flowers(mut flowerbed: Vec<i32>, n: i32) -> bool {
     // 头尾加上0，这样就不用边界检查(这个我没想到，还有戳气球dp那题也是头尾加个分值为1的气球避免边界情况要单独讨论)
