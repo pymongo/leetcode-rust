@@ -61,3 +61,13 @@ where
 group by
     p.product_id
 ;
+
+-- https://leetcode.com/problems/product-sales-analysis-i/
+-- select product_name, year, price from Sales left join Product using (product_id)
+-- join on 后面的条件已经把结果过滤了一遍，而where是笛卡尔积后才根据限制条件进行过滤，所以join性能要比where好
+select p.product_name, s.year, s.price
+from Sales as s, Product as p
+where s.product_id = p.product_id;
+
+-- https://leetcode.com/problems/product-sales-analysis-ii/
+select product_id, sum(quantity) as total_quantity from Sales group by product_id;

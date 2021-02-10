@@ -1859,3 +1859,32 @@ fn is_armstrong(n: i32) -> bool {
     }
     ret == n
 }
+
+/// https://leetcode.com/problems/count-substrings-with-only-one-distinct-letter/
+/// https://math.stackexchange.com/questions/177405/prove-by-induction-2n-cn-0-cn-1-cdots-cn-n
+fn count_letters(s: String) -> i32 {
+    let s = s.into_bytes();
+    let n = s.len();
+    let mut ret = 0;
+    let (mut l, mut r) = (0, 0);
+    while l < n {
+        while r < n && s[r] == s[l] {
+            r += 1;
+        }
+        let len = r-l;
+        ret += len * (len+1) / 2;
+        l = r;
+    }
+    ret as i32
+}
+
+#[test]
+fn test_count_letters() {
+    const TEST_CASES: [(&str, i32); 2] = [
+        ("aaaba", 8),
+        ("aaaaaaaaaa", 55),
+    ];
+    for &(input, output) in &TEST_CASES {
+        assert_eq!(count_letters(input.to_string()), output);
+    }
+}

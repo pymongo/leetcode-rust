@@ -347,6 +347,8 @@ leetcode_solutions
 |1046|[Last Stone Weight](https://leetcode.com/problems/last-stone-weight/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/last_stone_weight.py)||
 |1049|[Last Stone Weight II](https://leetcode.com/problems/last-stone-weight-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/backpack_1_2.py)|0-1背包问题|
 |1051|[Height Checker](https://leetcode.com/problems/height-checker/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|1068🔒|[Product Sales Analysis I](https://leetcode.com/problems/product-sales-analysis-i/)|[SQL](sql_problems/very_easy.sql)|
+|1069🔒|[Product Sales Analysis II](https://leetcode.com/problems/product-sales-analysis-ii/)|[SQL](sql_problems/very_easy.sql)|
 |1095|[Find in Mountain Array](https://leetcode.com/problems/find-in-mountain-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/mountain_array_find.py)|binary_search, mountain_array|
 |1099🔒|[Two Sum Less Than K](https://leetcode.com/problems/two-sum-less-than-k/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/two_sum_le_count.py)|two_pointers|
 |1108|[Defanging an IP Address](https://leetcode.com/problems/defanging-an-ip-address/)|[Rust](src/easy/leetcode_very_easy.rs)|
@@ -357,6 +359,7 @@ leetcode_solutions
 |1143|[Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/longest_common_subsequence.py)|
 |1160|[Find Words That Can Be Formed by Ch...](https://leetcode.com/problems/find-words-that-can-be-formed-by-characters/)|[Rust](src/counter/mod.rs)|
 |1167🔒|[Minimum Cost To Connect Sticks](https://leetcode.com/problems/minimum-cost-to-connect-sticks/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|1180🔒|[Count Substrings with Only One Distinct Letter](https://leetcode.com/problems/count-substrings-with-only-one-distinct-letter/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1207|[Unique Number of Occurrences](https://leetcode.com/problems/unique-number-of-occurrences/)|[Rust](src/counter/mod.rs)|
 |1213🔒|[Intersection of Three Sorted Arrays](https://leetcode.com/problems/intersection-of-three-sorted-arrays/)|[Rust](src/counter/mod.rs)|
 |1226|[The Dining Philosophers](https://leetcode.com/problems/the-dining-philosophers/)|[C++](https://github.com/pymongo/learn_cpp/blob/master/leetcode/concurrency/dining_philosophers_problem.cpp)||
@@ -367,7 +370,7 @@ leetcode_solutions
 |1252|[Cells with Odd Values in a Matrix](https://leetcode.com/problems/cells-with-odd-values-in-a-matrix/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1265🔒|[Print Immutable Linked List in Reverse](https://leetcode.com/problems/print-immutable-linked-list-in-reverse/)|[C](https://github.com/pymongo/learn_cpp/blob/master/leetcode/easy/print_immutable_linked_list_in_reverse.c)|
 |1266|[Minimum Time Visiting All Points](https://leetcode.com/problems/minimum-time-visiting-all-points/)|[Rust](src/easy/leetcode_very_easy.rs)|
-|1281|[Subtract the Product and Sum of Digits of an Integer](https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/)|[Python](src/easy/leetcode_very_easy.rs)|
+|1281|[Subtract the Product and Sum of Digits of an Integer](https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/)|[Python](src/easy/leetcode_very_easy.rs)
 |1295|[Find Numbers with Even Number of Digits](https://leetcode.com/problems/find-numbers-with-even-number-of-digits/)|[Rust](src/easy/array/find_numbers_with_even_number_of_digits.rs)|
 |1299|[Replace Elements with Greatest Element on Right Side](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1303🔒|[Find the Team Size](httpsn://leetcode.com/problems/find-the-team-size/)|[SQL](sql_problems/very_easy.sql)|
