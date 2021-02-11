@@ -153,8 +153,8 @@ fn arrays_intersection(arr1: Vec<i32>, arr2: Vec<i32>, arr3: Vec<i32>) -> Vec<i3
         counter[num as usize] += 1;
     }
     let mut ret = vec![];
-    for i in 1..2000 {
-        if counter[i] == 3 {
+    for (i, count) in counter.iter().enumerate().take(2000).skip(1) {
+        if *count == 3 {
             ret.push(i as i32);
         }
     }

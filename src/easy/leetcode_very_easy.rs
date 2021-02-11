@@ -1681,7 +1681,7 @@ fn maximum_score_from_removing_stones_best(a: i32, b: i32, c: i32) -> i32 {
     if nums[0] + nums[1] < nums[2] {
         return nums[0] + nums[1];
     }
-    return (nums[0] + nums[1] + nums[2]) / 2;
+    nums[0] + nums[1] + nums[2] / 2
 }
 
 #[test]
@@ -1712,7 +1712,7 @@ fn largest_merge_of_two_strings(word1: String, word2: String) -> String {
                 //   ^        ^
                 // 这时候显然是要取nums1的a，因为nums1的a的后一位比nums2 a的后一位要大
                 // 好在Rust能像Python比较字符串或数组的大小，不用自己写递归的数组比较函数
-                if &nums1[p1..] > &nums2[p2..] {
+                if nums1[p1..] > nums2[p2..] {
                     ret.push(nums1[p1]);
                     p1 += 1;
                 } else {

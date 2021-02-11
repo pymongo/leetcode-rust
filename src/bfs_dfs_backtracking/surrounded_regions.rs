@@ -1,9 +1,9 @@
-struct BFSHelper {
+struct BfsHelper {
     max_x: usize,
     max_y: usize,
 }
 
-impl BFSHelper {
+impl BfsHelper {
     fn bfs(&self, i: usize, j: usize, board: &mut Vec<Vec<char>>) {
         let mut stack = vec![(i, j)];
         while let Some((x, y)) = stack.pop() {
@@ -32,7 +32,7 @@ fn surrounded_regions(board: &mut Vec<Vec<char>>) {
         return;
     }
     let (m, n) = (board.len(), board[0].len());
-    let bfs_helper = BFSHelper {
+    let bfs_helper = BfsHelper {
         max_x: m - 1,
         max_y: n - 1,
     };
