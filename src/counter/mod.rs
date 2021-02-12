@@ -160,3 +160,18 @@ fn arrays_intersection(arr1: Vec<i32>, arr2: Vec<i32>, arr3: Vec<i32>) -> Vec<i3
     }
     ret
 }
+
+/// https://leetcode.com/problems/sum-of-unique-elements/
+fn sum_of_unique(nums: Vec<i32>) -> i32 {
+    let mut counter = [0u8; 101];
+    for num in nums {
+        counter[num as usize] += 1;
+    }
+    let mut ret = 0;
+    for (num, &count) in counter.iter().enumerate() {
+        if count == 1 {
+            ret += num;
+        }
+    }
+    ret as i32
+}

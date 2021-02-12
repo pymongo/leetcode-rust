@@ -436,6 +436,7 @@ leetcode_solutions
 |1725|[Number Of Rectangles That Can ...](https://leetcode.com/problems/number-of-rectangles-that-can-form-the-largest-square/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1732|[Find the Highest Altitude](https://leetcode.com/problems/find-the-highest-altitude/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1741🔒|[Find Total Time Spent by Each Employee](https://leetcode.com/problems/find-total-time-spent-by-each-employee/)|[SQL](sql_problems/very_easy.sql)|
+|1748|[Sum of Unique Elements](https://leetcode.com/problems/sum-of-unique-elements/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1752|[Check if Array Is Sorted and Rotated](https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1753|[Maximum Score From Removing Stones](https://leetcode.com/problems/maximum-score-from-removing-stones/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1754|[Largest Merge Of Two Strings](https://leetcode.com/problems/largest-merge-of-two-strings/)|[Rust](src/easy/leetcode_very_easy.rs)|
