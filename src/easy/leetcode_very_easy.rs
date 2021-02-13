@@ -1853,6 +1853,7 @@ fn test_count_letters() {
 
 /// https://leetcode.com/problems/sparse-matrix-multiplication/
 /// 如果面试官问优化方案，可以答GPU运算，GPU有对矩阵运算的硬件加速(simd，各种GPU向量运算指令)，而CPU只能逐行逐列的扫
+#[allow(clippy::needless_range_loop)]
 fn sparse_matrix_multiplication(a: Vec<Vec<i32>>, b: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
     let a_rows = a.len();
     let b_rows = b.len();

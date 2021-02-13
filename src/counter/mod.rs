@@ -3,6 +3,7 @@
 mod anagrams;
 mod count_good_meals;
 mod count_num1_square_eq_two_num2_product;
+mod find_all_numbers_disappeared_in_an_array;
 mod increasing_decreasing_string;
 mod number_of_equivalent_domino_pairs;
 mod number_of_good_pairs;
