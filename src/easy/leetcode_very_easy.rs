@@ -1880,3 +1880,29 @@ fn test_sparse_matrix_multiplication() {
         assert_eq!(sparse_matrix_multiplication(a, b), output);
     }
 }
+
+/** https://leetcode.com/problems/reshape-the-matrix/
+```python
+if m * n != r * c:
+    return nums
+ans = [[0] * c for _ in range(r)]
+for x in range(m * n):
+    ans[x // c][x % c] = nums[x // n][x % n]
+```
+*/
+fn matrix_reshape(nums: Vec<Vec<i32>>, r: i32, c: i32) -> Vec<Vec<i32>> {
+    let (r, c) = (r as usize, c as usize);
+    let (m, n) = (nums.len(), nums[0].len());
+    if r * c > m * n {
+        return nums;
+    }
+    let mut ret = vec![vec![0; c]; r];
+    let mut idx = 0;
+    for row in nums {
+        for num in row {
+            ret[idx / c][idx % c] = num;
+            idx += 1;
+        }
+    }
+    ret
+}
