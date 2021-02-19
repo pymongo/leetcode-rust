@@ -223,6 +223,7 @@ leetcode_solutions
 |350|[Intersection of Two Arrays II](https://leetcode.com/problems/intersection-of-two-arrays-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/intersection_of_two_arrays.py)||
 |354|[Russian Doll Envelopes](https://leetcode.com/problems/russian-doll-envelopes/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/russian_doll_envelopes.py)|
 |355|[Design Twitter](https://leetcode.com/problems/design-twitter/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|359🔒|[Logger Rate Limiter](https://leetcode.com/problems/logger-rate-limiter/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |367|[Valid Perfect Square](https://leetcode.com/problems/valid-perfect-square/)|[Rust](src/math/sqrt.rs)|
 |368|[Largest Divisible Subset](https://leetcode.com/problems/largest-divisible-subset/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/largest_divisible_subset.py)||
 |369🔒|[Plus One Linked List](https://leetcode.com/problems/plus-one-linked-list/)|[Rust](src/linked_list/plus_one.rs)|

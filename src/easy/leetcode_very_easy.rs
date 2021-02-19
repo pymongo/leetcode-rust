@@ -1906,3 +1906,37 @@ fn matrix_reshape(nums: Vec<Vec<i32>>, r: i32, c: i32) -> Vec<Vec<i32>> {
     }
     ret
 }
+
+/// https://leetcode.com/problems/logger-rate-limiter/
+struct Logger {
+    /// key_message: String, value_timestamp: i32
+    map: std::collections::HashMap<String, i32>,
+}
+
+impl Logger {
+    fn new() -> Self {
+        Self {
+            map: std::collections::HashMap::new(),
+        }
+    }
+
+    /** Returns true if the message should be printed in the given timestamp, otherwise returns false.
+    If this method returns false, the message will not be printed.
+    The timestamp is in seconds granularity. */
+    fn should_print_message(&mut self, timestamp: i32, message: String) -> bool {
+        match self.map.get_mut(&message) {
+            Some(last_timestamp) => {
+                if timestamp < *last_timestamp {
+                    false
+                } else {
+                    *last_timestamp = timestamp + 10;
+                    true
+                }
+            }
+            None => {
+                self.map.insert(message, timestamp + 10);
+                true
+            }
+        }
+    }
+}
