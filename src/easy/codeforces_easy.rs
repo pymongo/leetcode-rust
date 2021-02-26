@@ -90,10 +90,8 @@ fn cf_71a_way_too_long_words(
     mut writer: impl std::io::Write,
 ) -> Result<(), Box<dyn std::error::Error>> {
     let mut input: Vec<String> = Vec::new();
-    for line in reader.lines() {
-        if let Ok(str) = line {
-            input.push(str);
-        }
+    for line in reader.lines().flatten() {
+        input.push(line);
     }
     for string in input.into_iter().skip(1) {
         let len = string.len();
@@ -132,10 +130,8 @@ fn cf_231a_team(
     mut writer: impl std::io::Write,
 ) -> Result<(), Box<dyn std::error::Error>> {
     let mut input: Vec<String> = Vec::new();
-    for line in reader.lines() {
-        if let Ok(str) = line {
-            input.push(str);
-        }
+    for line in reader.lines().flatten() {
+        input.push(line);
     }
     let mut ret = 0u16;
     for each in input.into_iter().skip(1) {

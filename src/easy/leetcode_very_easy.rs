@@ -1940,3 +1940,81 @@ impl Logger {
         }
     }
 }
+
+#[cfg(not)]
+fn length_of_last_word(s: String) -> i32 {
+    dbg!(&s);
+    let s = s.into_bytes();
+    let len = s.len();
+    match s.iter().rev().position(|&x| x == b' ') {
+        Some(last_space_index) => {
+            dbg!(last_space_index);
+            // undo rev get real idx
+            let last_space_index = len - 1 - last_space_index;
+            dbg!(last_space_index);
+            // case "a "
+            if last_space_index != 0
+                && s[last_space_index - 1].is_ascii_lowercase()
+                && s[last_space_index + 1..].iter().all(|&x| x == b' ')
+            {
+                // FIXME handle case " a "
+                return last_space_index as i32;
+            }
+            (len - last_space_index - 1) as i32
+        }
+        None => s.len() as i32,
+    }
+}
+
+/// https://leetcode.com/problems/length-of-last-word/
+fn length_of_last_word(s: String) -> i32 {
+    // trim_start
+    let s: Vec<u8> = s
+        .into_bytes()
+        .into_iter()
+        .skip_while(|&x| x == b' ')
+        .collect();
+    // trim_end
+    let mut ret = 0;
+    for ch in s.into_iter().rev().skip_while(|&x| x == b' ') {
+        if ch.is_ascii_alphabetic() {
+            ret += 1;
+        } else {
+            break;
+        }
+    }
+    ret
+}
+
+fn length_of_last_word_best(s: String) -> i32 {
+    s.into_bytes()
+        .into_iter()
+        .rev()
+        .skip_while(|&c| c == b' ')
+        .take_while(|&c| c != b' ')
+        .count() as i32
+}
+
+#[test]
+fn test_length_of_last_word() {
+    const TEST_CASES: [(&str, i32); 5] = [
+        (" ", 0),
+        ("a ", 1),
+        ("", 0),
+        ("hello world", 5),
+        ("        ", 0),
+    ];
+    for &(input, output) in &TEST_CASES {
+        assert_eq!(length_of_last_word(input.to_string()), output);
+    }
+}
+
+/*
+今日工作:
+1. 优化graphql接口
+2. 解决开发环境mongodb的问题
+
+明日计划:
+1. 迭代graphql接口
+2. 给zhangtao提供一个粉丝数较多的帐号
+*/

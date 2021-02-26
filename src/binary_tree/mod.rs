@@ -48,11 +48,7 @@ fn str_to_tree_node(s: &str) -> Option<Rc<RefCell<TreeNode>>> {
             }
         }
     }
-    if let Some(peek) = stack.last() {
-        Some(peek.clone())
-    } else {
-        None
-    }
+    stack.last().cloned()
 }
 
 #[test]
