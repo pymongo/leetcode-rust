@@ -400,3 +400,60 @@ fn maximum_product(mut nums: Vec<i32>) -> i32 {
     nums.sort_unstable();
     (nums[n - 1] * nums[n - 2] * nums[n - 3]).max(nums[0] * nums[1] * nums[n - 1])
 }
+
+/// https://leetcode.com/problems/range-sum-query-2d-immutable/
+struct NumMatrix {
+    p_sum: Vec<Vec<i32>>,
+}
+
+impl NumMatrix {
+    /**
+    更简单的但效率慢点的方法是，只保存每行的前缀和，所以辅助矩阵的长宽为m,(n+1)
+    ```
+            j-1 j
+        A   B   C
+    i-1 D   E   F
+    i   G   H   I
+    prefix_sum[i][j]
+    =A+B+D+E
+    =   (A+B)          +  (A+D)           -  A                 +E
+    =prefix_sum[i-1][j]+prefix_sum[i][j-1]-prefix_sum[i-1][j-1]+matrix[i-1][j-1]
+    ```
+    */
+    fn new(matrix: Vec<Vec<i32>>) -> Self {
+        let m = matrix.len();
+        let n = if m == 0 { 0 } else { matrix[0].len() };
+        let mut prefix_sum = vec![vec![0; n + 1]; m + 1];
+        for i in 1..m + 1 {
+            for j in 1..n + 1 {
+                prefix_sum[i][j] = prefix_sum[i - 1][j] + prefix_sum[i][j - 1]
+                    - prefix_sum[i - 1][j - 1]
+                    + matrix[i - 1][j - 1];
+            }
+        }
+        // for r in &prefix_sum {
+        //     eprintln!("r = {:?}", r);
+        // }
+        Self { p_sum: prefix_sum }
+    }
+
+    fn sum_region(&self, row1: i32, col1: i32, row2: i32, col2: i32) -> i32 {
+        let (row1, col1, row2, col2) = (row1 as usize, col1 as usize, row2 as usize, col2 as usize);
+        self.p_sum[row2 + 1][col2 + 1] + self.p_sum[row1][col1]
+            - self.p_sum[row1][col2 + 1]
+            - self.p_sum[row2 + 1][col1]
+    }
+}
+
+#[test]
+fn test_range_sum_query_2d_matrix_immutable() {
+    let m = NumMatrix::new(vec_vec![
+        [3, 0, 1, 4, 2],
+        [5, 6, 3, 2, 1],
+        [1, 2, 0, 1, 5],
+        [4, 1, 0, 1, 7],
+        [1, 0, 3, 0, 5]
+    ]);
+    assert_eq!(m.sum_region(2, 1, 4, 3), 8);
+    assert_eq!(m.sum_region(1, 1, 2, 2), 11);
+}
