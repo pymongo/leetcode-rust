@@ -217,6 +217,7 @@ leetcode_solutions
 |326|[Power of Three](https://leetcode.com/problems/power-of-three/)|[Rust](src/bitwise/is_power_of_x.rs)|
 |328|[Odd Even Linked List](https://leetcode.com/problems/odd-even-linked-list/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/odd_even_linked_list.py)|
 |337|[House Robber III](https://leetcode.com/problems/house-robber-iii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/house_robber.py)|
+|338|[Counting Bits](https://leetcode.com/problems/counting-bits/)|[Rust](src/dp/counting_bits.rs)|
 |342|[Power of Four](https://leetcode.com/problems/power-of-four/)|[Rust](src/bitwise/is_power_of_x.rs)|
 |343|[Integer Break](https://leetcode.com/problems/integer-break/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/integer_break.py)|划分类DP|
 |344|[Reverse String](https://leetcode.com/problems/reverse-string/)|[Rust](src/uncategorized/string_in_place.rs)|

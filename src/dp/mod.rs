@@ -19,6 +19,7 @@ TODO 动态规划的实现方法:
 */
 mod burst_balloons;
 mod calculate_minimun_hp;
+mod counting_bits;
 mod dp_easy;
 mod drop_eggs;
 mod fibonacci;
