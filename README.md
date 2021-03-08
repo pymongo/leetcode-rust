@@ -10,6 +10,7 @@ codeforces_solutions
 |[1A - Theatre Square](https://codeforces.com/problemset/problem/1/A)|[Rust](src/easy/codeforces_easy.rs)|
 |[4A - Watermelon](https://codeforces.com/problemset/problem/4/A)|[Rust](src/easy/codeforces_easy.rs)|
 |[71A - Way Too Long Words](https://codeforces.com/problemset/problem/71/A)|[Rust](src/easy/codeforces_easy.rs)|
+|[158A - Next Round](https://codeforces.com/problemset/problem/158/A)|[Rust](src/easy/codeforces_easy.rs)|
 |[231A - Team](https://codeforces.com/problemset/problem/231/A)|[Rust](src/easy/codeforces_easy.rs)|
 
 leetcode_solutions

@@ -155,6 +155,57 @@ fn test_cf_231a_team() {
     }
 }
 
+/// https://codeforces.com/problemset/problem/158/A
+fn cf_158a_next_round(
+    reader: impl std::io::BufRead,
+    mut writer: impl std::io::Write,
+) -> Result<(), Box<dyn std::error::Error>> {
+    let mut input: Vec<String> = Vec::new();
+    for line in reader.lines().flatten() {
+        input.push(line);
+    }
+    let mut input_line1 = input[0].trim_end().split_whitespace();
+    let _n = input_line1.next().unwrap().parse::<u8>()?;
+    let k = input_line1.next().unwrap().parse::<u8>()?;
+    let nums: Vec<u8> = input[1]
+        .trim_end()
+        .split_whitespace()
+        .map(|s| s.parse::<u8>().unwrap())
+        .collect();
+
+    let nums_max = nums[0] as usize;
+    let mut counter = [0u8; 101];
+    for num in nums {
+        counter[num as usize] += 1;
+    }
+    let mut ret = 0u8;
+    // test_case: 4,2,[0,0,0,0], ignore counter[i] == 0
+    for i in (1..=nums_max).rev() {
+        if ret >= k {
+            break;
+        }
+        ret += counter[i];
+    }
+
+    write!(&mut writer, "{}", ret)?;
+    Ok(())
+}
+
+#[test]
+fn test_cf_158a_next_round() {
+    const TEST_CASES: [(&[u8], &[u8]); 4] = [
+        (b"17 14\n16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0\n", b"14"),
+        (b"8 5\n10 9 8 7 7 7 5 5\n", b"6"),
+        (b"4 2\n0 0 0 0\n", b"0"),
+        (b"5 1\n1 1 1 1 1\n", b"5"),
+    ];
+    for &(input, expected_output) in &TEST_CASES {
+        let mut output = Vec::new();
+        cf_158a_next_round(input, &mut output).unwrap();
+        assert_eq!(output, expected_output);
+    }
+}
+
 fn main() {
-    cf_1a_theatre_square(std::io::stdin().lock(), std::io::stdout().lock()).unwrap();
+    cf_158a_next_round(std::io::stdin().lock(), std::io::stdout().lock()).unwrap();
 }

@@ -6,7 +6,6 @@
 // Macros can only be used after they have been defined(macro_use)
 #[macro_use]
 mod macros;
-
 mod bfs_dfs_backtracking;
 mod binary_search;
 mod binary_tree;
