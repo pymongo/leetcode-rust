@@ -82,8 +82,8 @@ leetcode_solutions
 |73|[Set Matrix Zeroes](https://leetcode.com/problems/set-matrix-zeroes/)|[Rust](src/easy/grid_or_matrix/mod.rs)|
 |74|[Search a 2D Matrix](https://leetcode.com/problems/search-a-2d-matrix/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/search_a_2d_matrix.py)||
 |75|[Sort Colors](https://leetcode.com/problems/sort-colors/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/partition_array/sort_colors.py)|three_pointers, partition_array|
-|77|[Combinations](https://leetcode.com/problems/combinartions/)|[Rust](src/bfs_dfs_backtracking/combinations.rs), [C++](https://github.com/pymongo/learn_cpp/blob/master/leetcode/backtracking/combinartions.cpp)|
-|78|[Subsets](https://leetcode.com/problems/subsets/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/subsets_combinations.py)|
+|77|[Combinations](https://leetcode.com/problems/combinations/)|[Rust](src/bfs_dfs_backtracking/subsets.rs), [C++](https://github.com/pymongo/learn_cpp/blob/master/leetcode/backtracking/combinartions.cpp)|
+|78|[Subsets](https://leetcode.com/problems/subsets/)|[Rust](src/bfs_dfs_backtracking/subsets.rs)|
 |79|[Word Search](https://leetcode.com/problems/word-search/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/word_search.py)|
 |81|[Search in Rotated Sorted Array II](https://leetcode.com/problems/search-in-rotated-sorted-array-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/rotated_sorted_array_search_2_with_duplicate.py)|binary_search|
 |82|[Remove Duplicates from Sorted List II](https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/)|[C++](https://github.com/pymongo/learn_cpp/blob/master/leetcode/linked_list/remove_duplicates_from_sorted_list.cpp)||
