@@ -2,6 +2,7 @@
 mod all_paths_from_source_to_target;
 mod combination_sum_1_2;
 mod combination_sum_3;
+mod flatten_nested_list_iterator;
 mod letter_combinations_of_a_phone_number;
 mod lexicographical_numbers;
 mod max_area_of_island;

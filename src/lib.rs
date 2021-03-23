@@ -21,3 +21,8 @@ mod random;
 mod special_data_structure;
 mod two_sum_two_pointers;
 mod uncategorized;
+
+/*
+(首项+(首项+n-1))*n/2 = target
+fake preiest
+*/

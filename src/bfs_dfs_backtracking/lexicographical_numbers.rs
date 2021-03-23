@@ -27,7 +27,7 @@ fn test_lexical_order() {
         (3, &[1, 2, 3]),
         (13, &[1, 10, 11, 12, 13, 2, 3, 4, 5, 6, 7, 8, 9]),
     ];
-    for &(input, output) in TEST_CASES.iter() {
+    for (input, output) in std::array::IntoIter::new(TEST_CASES) {
         assert_eq!(lexical_order(input), output);
     }
 }

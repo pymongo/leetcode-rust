@@ -61,7 +61,7 @@ leetcode_solutions
 |47|[Permutations II](https://leetcode.com/problems/permutations-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/permutation.py)|backtracking|
 |48|[Rotate Image](https://leetcode.com/problems/rotate-image/)|[Rust](src/easy/grid_or_matrix/rotate_matrix.rs)|
 |49|[Group Anagrams](https://leetcode.com/problems/group-anagrams/)|[Rust](src/counter/anagrams.rs)|
-|50|[Pow(x, n)](https://leetcode.com/problems/powx-n/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/math/pow.py)|binary_search|
+|50|[Pow(x, n)](https://leetcode.com/problems/powx-n/)|[Rust](src/math/pow.rs)|
 |51|[N Queens](https://leetcode.com/problems/n-queens)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/n_queens.py), [Rust](src/bfs_dfs_backtracking/n_queens.rs)||
 |52|[N Queens II](https://leetcode.com/problems/n-queens-ii)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/n_queens.py), [Rust](src/bfs_dfs_backtracking/n_queens.rs)||
 |53|[Maximum Subarray](https://leetcode.com/problems/maximum-subarray/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/greedy/maximum_subarray.py)|greedy, dp|
@@ -219,6 +219,7 @@ leetcode_solutions
 |328|[Odd Even Linked List](https://leetcode.com/problems/odd-even-linked-list/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/odd_even_linked_list.py)|
 |337|[House Robber III](https://leetcode.com/problems/house-robber-iii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/house_robber.py)|
 |338|[Counting Bits](https://leetcode.com/problems/counting-bits/)|[Rust](src/dp/counting_bits.rs)|
+|341|[Flatten Nested List Iterator](https://leetcode.com/problems/flatten-nested-list-iterator/)|[Rust](src/bfs_dfs_backtracking/flatten_nested_list_iterator.rs)|
 |342|[Power of Four](https://leetcode.com/problems/power-of-four/)|[Rust](src/bitwise/is_power_of_x.rs)|
 |343|[Integer Break](https://leetcode.com/problems/integer-break/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/integer_break.py)|划分类DP|
 |344|[Reverse String](https://leetcode.com/problems/reverse-string/)|[Rust](src/uncategorized/string_in_place.rs)|
@@ -464,7 +465,6 @@ leetcode_solutions
 
 TODO:
 
-- [ ] Rust的leetcode/codeforces都不支持OnceCell API，但是罗马数字转阿拉伯需要用lazy_static的HashMap，所以能不能「复制粘贴」一份OnceCell的代码试试手，顺便理解源码
 - [ ] 43/415 字符串整数相乘/相加
 - [ ] 415是经典面试题利用字符串模拟竖式加法进行大数相加
 - [ ] 有兴趣但是困难级别的题: 1. 推箱子 2. 华容道
@@ -582,7 +582,7 @@ lintcode_problems
 |135|[Combination Sum](https://lintcode.com/problem/combination-sum/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/combination_target_sum.py), [Rust](src/bfs_dfs_backtracking/combination_sum_1_2.rs)||
 |137|[Clone Graph](https://lintcode.com/problem/clone-graphs/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/graph/clone_graph.py)|DFS, BFS|
 |138|[Subarray Sum](https://lintcode.com/problem/subarray-sum/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/unclassified/subarray_sum_zero.py)||
-|140|[Fast Power](https://lintcode.com/problem/fast-power/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/math/pow.py)|binary_search, 快速幂运算|
+|140|[Fast Power](https://lintcode.com/problem/fast-power/)|leetcode_50|
 |141|[Sqrt(x)](https://lintcode.com/problem/sqrtx/)|leetcode_69|
 |142|[O(1) Check Power of 2](https://lintcode.com/problem/o1-check-power-of-2/)|leetcode_231|
 |143|[Sort Colors II](https://lintcode.com/problem/sort-colors-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/sorting_and_query/sort_colors_2.py)|quick_sort, counting_sort|
@@ -664,7 +664,7 @@ lintcode_problems
 |425|[Letter Combinations of a Phone Number](https://lintcode.com/problem/letter-combinations-of-a-phone-number/)|leetcode_17|
 |426|[Restore IP Addresses](https://lintcode.com/problem/restore-ip-addresses/)|leetcode_93|
 |427|[Generate Parentheses](https://lintcode.com/problem/generate-parentheses/)|leetcode_22|
-|428|[Pow(x, n)](https://lintcode.com/problem/powx-n/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/math/pow.py)|binary_search, 快速幂运算|
+|428|[Pow(x, n)](https://lintcode.com/problem/powx-n/)|leetcode_50|
 |433|[Number of Islands](https://lintcode.com/problem/number-of-islands/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/graph/number_of_islands.py)|special_data_structure.union_find, DFS, BFS|
 |437|[Copy Books](https://lintcode.com/problem/copy-bookes/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/copy_books.py)|dp, binary_search|
 |440🔒|[Backpack III](https://lintcode.com/problem/backpack-iii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/backpack_3_item_can_select_multi.py)||

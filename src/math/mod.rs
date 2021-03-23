@@ -1,5 +1,6 @@
 //! 数学相关问题或位运算
 mod count_primes;
+mod pow;
 mod sqrt;
 
 /// https://leetcode.com/problems/ugly-number/
