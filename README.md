@@ -82,7 +82,7 @@ leetcode_solutions
 |73|[Set Matrix Zeroes](https://leetcode.com/problems/set-matrix-zeroes/)|[Rust](src/easy/grid_or_matrix/mod.rs)|
 |74|[Search a 2D Matrix](https://leetcode.com/problems/search-a-2d-matrix/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/search_a_2d_matrix.py)||
 |75|[Sort Colors](https://leetcode.com/problems/sort-colors/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/partition_array/sort_colors.py)|three_pointers, partition_array|
-|77|[Combinations](https://leetcode.com/problems/combinations/)|[Rust](src/bfs_dfs_backtracking/subsets.rs), [C++](https://github.com/pymongo/learn_cpp/blob/master/leetcode/backtracking/combinartions.cpp)|
+|77|[Combinations](https://leetcode.com/problems/combinations/)|[Rust](src/bfs_dfs_backtracking/subsets.rs)|
 |78|[Subsets](https://leetcode.com/problems/subsets/)|[Rust](src/bfs_dfs_backtracking/subsets.rs)|
 |79|[Word Search](https://leetcode.com/problems/word-search/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/word_search.py)|
 |81|[Search in Rotated Sorted Array II](https://leetcode.com/problems/search-in-rotated-sorted-array-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/rotated_sorted_array_search_2_with_duplicate.py)|binary_search|
@@ -481,16 +481,16 @@ lintcode_problems
 
 | # | Title | Solutions | Category |
 |---| ----- | --------- | -------- |
-|1|[A + B Problem](https://lintcode.com/problem/a-b-problem/)|leetcode_372|
-|2|[Trailing Zeros](https://lintcode.com/problem/trailing-zeros/)|leetcode_172|
-|3|[Digit Counts](https://lintcode.com/problem/digit-counts/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/very_easy.py)|
-|4|[Ugly Number II](https://lintcode.com/problem/ugly-number-ii/)|leetcode_264|
-|5|[Kth Largest Element](https://lintcode.com/problem/kth-largest-element/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/sorting_and_query/quick_select_kth_largest.py)|quick_select, heap|
-|6|[Merge Two Sorted Arrays](https://lintcode.com/problem/merge-two-sorted-arrays/)|leetcode_88|
-|7|[Serialize and Deserialize Binary Tree](https://lintcode.com/problem/serialize-and-deserialize-binary-tree/)|leetcode_297|
-|8|[Rotate String](https://lintcode.com/problem/rotate-string/)|leetcode_796|
-|9|[Fizz Buzz](https://lintcode.com/problem/fizz-buzz/)|leetcode_412|
-|10|[String Permutation II](https://lintcode.com/problem/string-permutation-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/permutation.py)|backtracking|
+|1|[A + B Problem](https://lintcode.com/problem/1)|leetcode_372|
+|2|[Trailing Zeros](https://lintcode.com/problem/2)|leetcode_172|
+|3|[Digit Counts](https://lintcode.com/problem/3)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/very_easy.py)|
+|4|[Ugly Number II](https://lintcode.com/problem/4)|leetcode_264|
+|5|[Kth Largest Element](https://lintcode.com/problem/5)|[Python](https://github.com/pymongo/python_leetcode/blob/master/sorting_and_query/quick_select_kth_largest.py)|quick_select, heap|
+|6|[Merge Two Sorted Arrays](https://lintcode.com/problem/6)|leetcode_88|
+|7|[Serialize and Deserialize Binary Tree](https://lintcode.com/problem/7)|leetcode_297|
+|8|[Rotate String](https://lintcode.com/problem/8)|leetcode_796|
+|9|[Fizz Buzz](https://lintcode.com/problem/9)|leetcode_412|
+|10|[String Permutation II](https://lintcode.com/problem/10)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/permutation.py)|backtracking|
 |11|[Search Range in Binary Search Tree](https://lintcode.com/problem/search-range-in-binary-search-tree/)|leetcode_938|
 |12|[Min Stack](https://lintcode.com/problem/min-stack/)|leetcode_155|
 |13|[Implement strStr()](https://lintcode.com/problem/implement-strstr/)|leetcode_28|
@@ -500,7 +500,7 @@ lintcode_problems
 |17|[Subsets](https://lintcode.com/problem/subsets/)|leetcode_78|
 |18|[Subsets II](https://lintcode.com/problem/subsets-ii/)|leetcode_90|
 |20|[Dices Sum](https://lintcode.com/problem/dices-sum/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/dices_sum.py)|
-|22|[Flatten List](https://lintcode.com/problem/flatten-list/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/flatten_list.py)|
+|22|[Flatten List](https://lintcode.com/problem/22)|leetcode_314|
 |28|[Search a 2D Matrix](https://lintcode.com/problem/search-a-2d-matrix/)|leetcode_74|
 |31|[Partition Array](https://lintcode.com/problem/partition-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/partition_array/partition_array.py)|two_pointers|
 |33|[N Queens](https://lintcode.com/problem/n-queens)|leetcode_51|
@@ -827,7 +827,7 @@ lintcode_problems
 |1319|[Contains Duplicate II](https://lintcode.com/problem/contains-duplicate-ii/)|leetcode_219|
 |1320|[Contains Duplicate](https://lintcode.com/problem/contains-duplicate-ii/)|leetcode_217|
 |1324|[Count Primes](https://lintcode.com/problem/count-primes/)|leetcode_204|
-|1321🔒|[Combination Sum III](https://lintcode.com/problem/combination-sum-iii/)|[Rust](src/bfs_dfs_backtracking/combination_sum_3.rs)||
+|1321🔒|[Combination Sum III](https://lintcode.com/problem/1321)|leetcode_216|
 |1332|[Number of 1 Bits](https://lintcode.com/problem/number-of-1-bits/)|leetcode_191|
 |1333|[Reverse Bits](https://lintcode.com/problem/reverse-bits/)|leetcode_190|
 |1334|[Rotate Array](https://lintcode.com/problem/rotate-array/)|leetcode_189|

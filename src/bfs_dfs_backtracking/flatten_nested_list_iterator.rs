@@ -3,39 +3,63 @@ pub enum NestedInteger {
     Int(i32),
     List(Vec<NestedInteger>),
 }
-struct NestedIterator(std::iter::Peekable<std::vec::IntoIter<i32>>);
 
-fn traverse_nested_list(nested_integer: NestedInteger) -> Vec<i32> {
-    match nested_integer {
+struct NestedIterator {
+    cursor: usize,
+    len: usize,
+    nums: Vec<i32>
+}
+
+/**
+借助队列或栈模拟递归的解法
+```python
+def flatten(lists):
+    ret = []
+    q = collections.deque(lists)
+    while q:
+        item = q.popleft()
+        if isinstance(item, list):
+            # 保证重新扔回队列头部时是按照数组原有顺序
+            for each in reversed(item):
+                q.appendleft(each)
+            continue
+        ret.append(item)
+    return ret
+```
+*/
+fn flatten_dfs(list: Vec<NestedInteger>) -> Vec<i32> {
+    list.into_iter().map(|item| match item {
         NestedInteger::Int(int) => vec![int],
-        NestedInteger::List(list) => {
-            let mut nums = vec![];
-            for item in list {
-                nums.append(&mut traverse_nested_list(item));
-            }
-            nums
-        }
-    }
+        NestedInteger::List(list) => flatten_dfs(list)
+    }).flatten().collect()
+}
+
+#[test]
+fn feature() {
+    let a = vec![Some(1i32), None, Some(2)];
+    let mut b = a.into_iter().flatten();
+    dbg!(b.next().unwrap());
+    dbg!(b.next().unwrap());
 }
 
 impl NestedIterator {
-    fn new(nested_list: Vec<NestedInteger>) -> Self {
+    fn new(list: Vec<NestedInteger>) -> Self {
         // use flattern to merge multi arrays?
-        let nums: Vec<i32> =
-            nested_list
-                .into_iter()
-                .fold(Vec::new(), |mut accumulate, list_item| {
-                    accumulate.append(&mut traverse_nested_list(list_item));
-                    accumulate
-                });
-        Self(nums.into_iter().peekable())
+        let nums = flatten_dfs(list);
+        Self {
+            cursor: 0,
+            len: nums.len(),
+            nums
+        }
     }
 
     fn next(&mut self) -> i32 {
-        self.0.next().unwrap()
+        let ret = self.nums[self.cursor];
+        self.cursor += 1;
+        ret
     }
 
     fn has_next(&mut self) -> bool {
-        self.0.peek().is_some()
+        self.cursor < self.len
     }
 }
