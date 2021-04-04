@@ -2009,12 +2009,24 @@ fn test_length_of_last_word() {
     }
 }
 
-/*
-今日工作:
-1. 优化graphql接口
-2. 解决开发环境mongodb的问题
+/// https://leetcode.com/problems/truncate-sentence/
+fn truncate_sentence(s: String, k: i32) -> String {
+    // #![feature(iter_intersperse)]
+    // std::slice::join
+    let mut a = s.split_ascii_whitespace().into_iter().take(k as usize).fold(String::new(), |a, b| {
+        a + " " + b
+    });
+    // remove first space
+    a.remove(0);
+    a
+}
 
-明日计划:
-1. 迭代graphql接口
-2. 给zhangtao提供一个粉丝数较多的帐号
-*/
+#[test]
+fn test_truncate_sentence() {
+    const TEST_CASES: [(&str, i32, &str); 1] = [
+        ("Hello how are you Contestant", 4, "Hello how are you")
+    ];
+    for &(input, k, output) in TEST_CASES.iter() {
+        assert_eq!(truncate_sentence(input.to_string(), k), output);
+    }
+}

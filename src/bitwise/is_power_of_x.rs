@@ -70,16 +70,9 @@ fn test_is_power_of_two() {
     fn is_f32_an_integer(float: f32) -> bool {
         (float - float.round()).abs() < f32::EPSILON
     }
-    extern "C" {
-        fn time(time: *mut isize) -> isize;
-        fn rand() -> i32;
-        fn srand(seed: u32);
-    }
-    unsafe {
-        srand(time(&mut std::mem::zeroed()) as u32);
-    }
+    use crate::code_snippets::random_i32::random_i32;
     for _ in 0..10_000 {
-        let input = unsafe { rand() };
+        let input = random_i32();
         let input_is_power_of_2 = is_f32_an_integer((input as f32).log2());
         assert_eq!(
             is_power_of_two_bitwise_solution_1(input),

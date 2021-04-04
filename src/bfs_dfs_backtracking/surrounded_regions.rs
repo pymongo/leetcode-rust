@@ -1,3 +1,4 @@
+//! https://leetcode.com/problems/surrounded-regions/
 struct BfsHelper {
     max_x: usize,
     max_y: usize,
@@ -24,7 +25,6 @@ impl BfsHelper {
     }
 }
 
-/// https://leetcode.com/problems/surrounded-regions/
 /// 从边界出发吧，先把边界上和O连通点找到，把这些变成F
 /// 最后遍历整个 board 把 O 变成 X, 把 F 变成 O
 fn surrounded_regions(board: &mut Vec<Vec<char>>) {

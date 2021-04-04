@@ -1,5 +1,4 @@
-/*!
-https://leetcode.com/problems/max-area-of-island
+/*! https://leetcode.com/problems/max-area-of-island
 VecDeque双端队列内部通过ring buffer环形数组实现
 在rust的1.21版本之前以下函数是错的
 fn is_full(&self) -> bool {

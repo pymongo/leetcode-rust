@@ -1,4 +1,4 @@
-#[cfg(not)]
+//! TODO
 /// impl python itertools.combinations
 fn comb<T>(items: Vec<T>, comb_len: usize) -> Vec<Vec<T>> {
     // let mut ret;
@@ -9,7 +9,6 @@ fn comb<T>(items: Vec<T>, comb_len: usize) -> Vec<Vec<T>> {
     todo!()
 }
 
-#[cfg(FALSE)]
 #[test]
 fn test_comb() {
     const TEST_CASES: [(&[i32], usize, &[&[i32]]); 1] =

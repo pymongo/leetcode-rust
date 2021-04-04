@@ -1,20 +1,19 @@
-const KEYMAP: [&[u8]; 10] = [
-    &[],                 // 0
-    &[],                 // 1
-    &[b'a', b'b', b'c'], // 2
-    &[b'd', b'e', b'f'],
-    &[b'g', b'h', b'i'],
-    &[b'j', b'k', b'l'],
-    &[b'm', b'n', b'o'],
-    &[b'p', b'q', b'r', b's'],
-    &[b't', b'u', b'v'],
-    &[b'w', b'x', b'y', b'z'], // 9
-];
-
 /// https://leetcode.com/problems/letter-combinations-of-a-phone-number/
 /// 通过last_combs/curr_combs(有点像dp里的滚动数组)，也有点像双队列level_order遍历，生成product笛卡尔积
 /// 当然也可以用sentry_node的deque去遍历，只是我觉得频繁popleft性能不太好
 fn letter_combinations_bfs(digits: String) -> Vec<String> {
+    const KEYMAP: [&[u8]; 10] = [
+        &[],                 // 0
+        &[],                 // 1
+        &[b'a', b'b', b'c'], // 2
+        &[b'd', b'e', b'f'],
+        &[b'g', b'h', b'i'],
+        &[b'j', b'k', b'l'],
+        &[b'm', b'n', b'o'],
+        &[b'p', b'q', b'r', b's'],
+        &[b't', b'u', b'v'],
+        &[b'w', b'x', b'y', b'z'], // 9
+    ];
     if digits.is_empty() {
         return Vec::with_capacity(0);
     }

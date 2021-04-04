@@ -1,23 +1,3 @@
-/**
-# 编译型语言和脚本语言在一些计算上的差异
-## -1 / 10
-Python/Ruby: -1
-Java/Rust: 0
-
-## -1 % 10
-Python/Ruby: 9
-Java/Rust: -1
-*/
-#[test]
-fn test_partial_reverse() {
-    assert_eq!(1u8.rotate_left(1), 0b0000_0010);
-    let mut nums = [1, 2, 3, 4];
-    nums[1..=2].rotate_left(1);
-    assert_eq!(nums, [1, 3, 2, 4]);
-    let mut nums = [1, 2, 3, 4];
-    nums[1..=2].reverse();
-    assert_eq!(nums, [1, 3, 2, 4]);
-}
 
 #[test]
 fn iter_once_both_max_and_min() {
@@ -43,10 +23,11 @@ fn function_overload() {
     impl From<[u8; 4]> for Ip {
         fn from(val: [u8; 4]) -> Self {
             // bigger-endian
-            Self(val[0] as u32
-                +(val[1] as u32) << 8
-                +(val[2] as u32) << 16
-                +(val[3] as u32) << 24
+            Self(
+                val[0] as u32 + (val[1] as u32)
+                    << 8 + (val[2] as u32)
+                    << 16 + (val[3] as u32)
+                    << 24,
             )
         }
     }
@@ -54,11 +35,11 @@ fn function_overload() {
 
 #[test]
 fn size_of_option_box_t() {
-    use std::mem::{size_of, align_of, size_of_val};
+    use std::mem::{align_of, size_of, size_of_val};
     #[derive(Clone)]
     struct HeavySize([u32; 25]);
     // Rust enum is tagged_union in C, need one or more usize to knowns which kind of value it holds
-    assert_eq!(size_of::<Option<HeavySize>>(), 100+4);
+    assert_eq!(size_of::<Option<HeavySize>>(), 100 + 4);
     assert_eq!(align_of::<Option<HeavySize>>(), 4); // 8
     let heavy_size = HeavySize([0; 25]);
     assert_eq!(size_of_val(&heavy_size), 100);

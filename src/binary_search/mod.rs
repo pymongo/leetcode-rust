@@ -1,4 +1,5 @@
 mod median_of_two_sorted_arrays;
+mod search_a_2d_matrix;
 
 /// https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/
 /// Vec::binary_search() return last position of target

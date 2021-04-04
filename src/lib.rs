@@ -1,5 +1,5 @@
 #![feature(is_sorted, asm)]
-#![allow(dead_code, unused_macros)]
+#![allow(dead_code)]
 // #![deny(warnings)]
 #![doc(html_playground_url = "https://play.rust-lang.org/")]
 // 如果mod backtracking写在mod macros上面，则mod backtracking无法使用macros内的所有宏
@@ -21,8 +21,3 @@ mod random;
 mod special_data_structure;
 mod two_sum_two_pointers;
 mod uncategorized;
-
-/*
-(首项+(首项+n-1))*n/2 = target
-fake preiest
-*/

@@ -1,3 +1,4 @@
 [package]
-name = "rust_leetcode_codeforce"
+name = "leetcode_codeforce"
 version = "0.0.3"
+edition = "2018"

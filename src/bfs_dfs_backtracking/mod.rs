@@ -7,7 +7,6 @@ mod letter_combinations_of_a_phone_number;
 mod lexicographical_numbers;
 mod max_area_of_island;
 mod n_queens;
-mod perm_comb;
 mod restore_ip_address;
 mod subsets;
 mod surrounded_regions;

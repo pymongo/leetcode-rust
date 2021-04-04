@@ -1,6 +1,6 @@
 /// https://leetcode.com/problems/lexicographical-numbers/
-/// 字典序排列从1..=n的数字，类似windows file explorer中文件名会按 1.mp4, 10.mp4, 2.mp4这样的顺序排序
-/// 看测试用例就知道可能要递归，题解说这题就是 10叉树的DFS-回溯
+/// 字典序排列从1..=n的数字，类似windows file_explorer中文件名会按 1.mp4, 10.mp4, 2.mp4这样的顺序排序
+/// 看测试用例就知道可能要递归，0叉树的DFS-回溯
 fn lexical_order(n: i32) -> Vec<i32> {
     fn dfs(num: i32, end: i32, ret: &mut Vec<i32>) {
         if num > end {

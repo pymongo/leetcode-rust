@@ -1,4 +1,5 @@
 /// https://docs.rs/rustgym-util/0.2.4/src/rustgym_util/data.rs.html#2-6
+#[allow(unused_macros)]
 macro_rules! vec_vec {
     [$($token_tree:tt),* $(,)?] => {
         vec![$(vec!$token_tree),*]

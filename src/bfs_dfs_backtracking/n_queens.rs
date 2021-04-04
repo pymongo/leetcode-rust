@@ -1,14 +1,7 @@
 use std::collections::HashSet;
 
-struct Solution;
-
-impl Solution {
-    fn solve_n_queens(n: i32) -> Vec<Vec<String>> {
-        entrance(n)
-    }
-}
-
-fn entrance(n: i32) -> Vec<Vec<String>> {
+/// https://leetcode.com/problems/n-queens-ii
+fn n_queens_ii(n: i32) -> Vec<Vec<String>> {
     let n = n as usize;
     // 索引表示皇后的横坐标，值表示皇后的列坐标
     let mut queens: Vec<i32> = Vec::with_capacity(n);
@@ -74,9 +67,4 @@ fn render_solution(queens: &[i32], res: &mut Vec<Vec<String>>, n: usize) {
         board.push(row.join(""))
     }
     res.push(board);
-}
-
-#[test]
-fn test() {
-    dbg!(entrance(4));
 }

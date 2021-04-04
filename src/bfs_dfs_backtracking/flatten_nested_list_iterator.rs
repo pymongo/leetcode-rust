@@ -7,7 +7,7 @@ pub enum NestedInteger {
 struct NestedIterator {
     cursor: usize,
     len: usize,
-    nums: Vec<i32>
+    nums: Vec<i32>,
 }
 
 /**
@@ -28,10 +28,13 @@ def flatten(lists):
 ```
 */
 fn flatten_dfs(list: Vec<NestedInteger>) -> Vec<i32> {
-    list.into_iter().map(|item| match item {
-        NestedInteger::Int(int) => vec![int],
-        NestedInteger::List(list) => flatten_dfs(list)
-    }).flatten().collect()
+    list.into_iter()
+        .map(|item| match item {
+            NestedInteger::Int(int) => vec![int],
+            NestedInteger::List(list) => flatten_dfs(list),
+        })
+        .flatten()
+        .collect()
 }
 
 #[test]
@@ -49,7 +52,7 @@ impl NestedIterator {
         Self {
             cursor: 0,
             len: nums.len(),
-            nums
+            nums,
         }
     }
 
