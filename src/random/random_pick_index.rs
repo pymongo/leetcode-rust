@@ -38,11 +38,11 @@ impl RandomPickIndex {
     }
 }
 
-struct RandomPickIndexCounterSolution1 {
+struct RandomPickIndexCounterSolution {
     nums_index: std::collections::HashMap<i32, Vec<i32>>,
 }
 
-impl RandomPickIndexCounterSolution1 {
+impl RandomPickIndexCounterSolution {
     fn new(nums: Vec<i32>) -> Self {
         extern "C" {
             fn time(time: *mut time_t) -> time_t;
@@ -70,38 +70,5 @@ impl RandomPickIndexCounterSolution1 {
         let candidates = self.nums_index.get(&target).unwrap();
         let random_number = unsafe { rand() };
         candidates[random_number as usize % (candidates.len() + 1)]
-    }
-}
-
-#[cfg(FALSE)]
-struct RandomPickIndexCounterSolution2 {
-    rand_thread_rng: rand::rngs::ThreadRng,
-    nums_index: std::collections::HashMap<i32, Vec<i32>>,
-}
-
-#[cfg(not)]
-impl RandomPickIndexCounterSolution2 {
-    fn new(nums: Vec<i32>) -> Self {
-        let mut nums_index = std::collections::HashMap::new();
-        for (i, num) in nums.into_iter().enumerate() {
-            nums_index
-                .entry(num)
-                .or_insert_with(Vec::new)
-                .push(i as i32);
-        }
-        Self {
-            rand_thread_rng: rand::thread_rng(),
-            nums_index,
-        }
-    }
-
-    fn pick(&mut self, target: i32) -> i32 {
-        use rand::seq::SliceRandom;
-        *self
-            .nums_index
-            .get(&target)
-            .unwrap()
-            .choose(&mut self.rand_thread_rng)
-            .unwrap()
     }
 }

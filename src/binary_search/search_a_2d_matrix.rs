@@ -4,7 +4,8 @@
 fn search_a_2d_matrix(matrix: Vec<Vec<i32>>, target: i32) -> bool {
     let (m, n) = (matrix.len(), matrix[0].len());
     let (mut start, mut end) = (0, m * n - 1);
-    while start <= end { // 注意这种二分搜索模板是start<=end，start==end时也要进行一次判断
+    while start <= end {
+        // 注意这种二分搜索模板是start<=end，start==end时也要进行一次判断
         let mid = start + (end - start) / 2;
         // 注意i=mid/n而不是mid/m
         let (i, j) = (mid / n, mid % n);
@@ -17,10 +18,10 @@ fn search_a_2d_matrix(matrix: Vec<Vec<i32>>, target: i32) -> bool {
                     return false;
                 }
                 end = mid - 1;
-            },
+            }
         }
     }
-    return false;
+    false
 }
 
 #[test]

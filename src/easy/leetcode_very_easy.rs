@@ -1941,31 +1941,6 @@ impl Logger {
     }
 }
 
-#[cfg(not)]
-fn length_of_last_word(s: String) -> i32 {
-    dbg!(&s);
-    let s = s.into_bytes();
-    let len = s.len();
-    match s.iter().rev().position(|&x| x == b' ') {
-        Some(last_space_index) => {
-            dbg!(last_space_index);
-            // undo rev get real idx
-            let last_space_index = len - 1 - last_space_index;
-            dbg!(last_space_index);
-            // case "a "
-            if last_space_index != 0
-                && s[last_space_index - 1].is_ascii_lowercase()
-                && s[last_space_index + 1..].iter().all(|&x| x == b' ')
-            {
-                // FIXME handle case " a "
-                return last_space_index as i32;
-            }
-            (len - last_space_index - 1) as i32
-        }
-        None => s.len() as i32,
-    }
-}
-
 /// https://leetcode.com/problems/length-of-last-word/
 fn length_of_last_word(s: String) -> i32 {
     // trim_start
@@ -2011,11 +1986,12 @@ fn test_length_of_last_word() {
 
 /// https://leetcode.com/problems/truncate-sentence/
 fn truncate_sentence(s: String, k: i32) -> String {
-    // #![feature(iter_intersperse)]
-    // std::slice::join
-    let mut a = s.split_ascii_whitespace().into_iter().take(k as usize).fold(String::new(), |a, b| {
-        a + " " + b
-    });
+    // 由于 Rust1.53 的#![feature(iter_intersperse)] 和 std::slice::join 都是nightly feature，leetcode的Rust环境暂时没法join
+    let mut a = s
+        .split_ascii_whitespace()
+        .into_iter()
+        .take(k as usize)
+        .fold(String::new(), |a, b| a + " " + b);
     // remove first space
     a.remove(0);
     a
@@ -2023,9 +1999,8 @@ fn truncate_sentence(s: String, k: i32) -> String {
 
 #[test]
 fn test_truncate_sentence() {
-    const TEST_CASES: [(&str, i32, &str); 1] = [
-        ("Hello how are you Contestant", 4, "Hello how are you")
-    ];
+    const TEST_CASES: [(&str, i32, &str); 1] =
+        [("Hello how are you Contestant", 4, "Hello how are you")];
     for &(input, k, output) in TEST_CASES.iter() {
         assert_eq!(truncate_sentence(input.to_string(), k), output);
     }

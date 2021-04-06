@@ -13,11 +13,10 @@ TODO 为什么 openssl库 既有libcrypto.so也有libssl.so
 pub fn random_i32() -> i32 {
     #[allow(non_camel_case_types)]
     type time_t = i64; // 根据libc源码中time_t的类型定义
-    #[link(name="c", kind="dylib")]
+    #[link(name = "c", kind = "dylib")]
     extern "C" {
         /// https://en.cppreference.com/w/cpp/chrono/c/time
         fn time(arg: *mut time_t) -> time_t;
-        /// https://www.cplusplus.com/reference/cstdlib/rand/
         fn rand() -> i32;
         fn srand(seed: u32);
     }
@@ -31,4 +30,16 @@ pub fn random_i32() -> i32 {
     });
 
     unsafe { rand() }
+}
+
+pub fn rand_range(min: i32, max: i32) -> i32 {
+    extern "C" {
+        fn rand() -> i32;
+    }
+    const RAND_MAX: i32 = 0x7fffffff;
+    let random_num = unsafe { rand() };
+    // 更精准点的随机数范围生成过程: min + random_num / (RAND_MAX / (max - min + 1) + 1)
+    // rand() % 7的范围在[0,6]，加上offset 1正好是[1,7]
+    // 一般只记忆这个简单的 用MOD生成一定范围内的随机数
+    random_num % max + min
 }

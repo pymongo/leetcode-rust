@@ -178,7 +178,7 @@ leetcode_solutions
 |222|[Count Complete Tree Nodes](https://leetcode.com/problems/count-complete-tree-nodes/)|[Rust](src/binary_tree/level_order_traversal.rs)|
 |225|[Implement Stack using Queues](https://leetcode.com/problems/implement-stack-using-queues/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/impl_stack_by_queue.py)|
 |226|[Invert Binary Tree](https://leetcode.com/problems/invert-binary-tree/)|[Rust](src/binary_tree/invert_binary_tree.rs)|
-|227|[Basic Calculator II](https://leetcode.com/problems/basic-calculator/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/brain_twists/calculator_2.py)||
+|227|[Basic Calculator II](https://leetcode.com/problems/basic-calculator/)|[Rust](src/eval_math_expression/mod.rs)|
 |228|[Summary Ranges](https://leetcode.com/problems/summary-ranges/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |230|[Kth Smallest Element in a BST](https://leetcode.com/problems/kth-smallest-element-in-a-bst/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/traversal_pre_order.py)|DFS, stack|
 |231|[Power of Two](https://leetcode.com/problems/power-of-two/)|[Rust](src/bitwise/is_power_of_x.rs)|
@@ -351,6 +351,7 @@ leetcode_solutions
 |977|[Squares of a Sorted Array](https://leetcode.com/problems/squares-of-a-sorted-array/)|[Rust](src/easy/array/squares_of_a_sorted_array.rs)|
 |989|[Add to Array-Form of Integer](https://leetcode.com/problems/add-to-array-form-of-integer/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1002|[Find Common Characters](https://leetcode.com/problems/find-common-characters/)|[Rust](src/easy/string/find_common_characters.rs)|
+|1006|[Clumsy Factorial](https://leetcode.com/problems/clumsy-factorial/)|[Rust](src/eval_math_expression/mod.rs)|
 |1018|[Binary Prefix Divisible By 5](https://leetcode.com/problems/binary-prefix-divisible-by-5/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1030|[Matrix Cells in Distance Order](https://leetcode.com/problems/matrix-cells-in-distance-order/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1038|[Binary Search Tree to Greater Sum Tree](https://leetcode.com/problems/binary-search-tree-to-greater-sum-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/bst_to_gst.py)||
@@ -783,7 +784,7 @@ lintcode_problems
 |973|[1-bit and 2-bit Characters](https://lintcode.com/problem/1-bit-and-2-bit-characters/)|leetcode_713|
 |975|[2 Keys Keyboard](https://lintcode.com/problem/2-keys-keyboard/)|leetcode_650|
 |976|[4Sum II](https://lintcode.com/problem/4sum-ii/)|leetcode_454|
-|980|[Basic Calculator II](https://lintcode.com/problem/basic-calculator-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/brain_twists/calculator_2.py)||
+|980|[Basic Calculator II](https://lintcode.com/problem/980)|leetcode_227|
 |982|[Arithmetic Slices](https://lintcode.com/problem/arithmetic-slices/)|leetcode_413|
 |995|[Best Time ... Stock with Cooldown](https://lintcode.com/problem/best-time-to-buy-and-sell-stock-with-cooldown/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/stock.py)|
 |1000|[Best Time ... Stock with ... Fee](https://lintcode.com/problem/best-time-to-buy-and-sell-stock-with-transaction-fee/)|leetcode_714|

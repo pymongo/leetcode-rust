@@ -14,6 +14,7 @@ mod code_snippets;
 mod counter;
 mod dp;
 mod easy;
+mod eval_math_expression;
 mod greedy;
 mod linked_list;
 mod math;

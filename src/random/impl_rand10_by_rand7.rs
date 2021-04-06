@@ -1,18 +1,6 @@
-fn rand_range(min: i32, max: i32) -> i32 {
-    extern "C" {
-        fn rand() -> i32;
-    }
-    const RAND_MAX: i32 = 0x7fffffff;
-    let random_num = unsafe { rand() };
-    // 更精准点的随机数范围生成过程: min + random_num / (RAND_MAX / (max - min + 1) + 1)
-    // rand()%7的范围在[0,6]，加上offset 1正好是[1,7]
-    // 一般只记忆这个简单的 用MOD生成一定范围内的随机数
-    random_num % max + min
-}
-
 /// gen range 1..=7
 fn rand7() -> i32 {
-    rand_range(1, 7)
+    crate::code_snippets::random_i32::rand_range(1, 7)
 }
 
 /** https://leetcode.com/problems/implement-rand10-using-rand7/

@@ -29,16 +29,8 @@ fn my_sqrt(num: i32) -> i32 {
 
 #[test]
 fn test_my_sqrt() {
-    extern "C" {
-        fn time(time: *mut isize) -> isize;
-        fn rand() -> i32;
-        fn srand(seed: u32);
-    }
-    unsafe {
-        srand(time(&mut std::mem::zeroed()) as u32);
-    }
     for _ in 0..10u32.pow(6) {
-        let random_i32 = unsafe { rand() };
+        let random_i32 = crate::code_snippets::random_i32::random_i32();
         assert_eq!((random_i32 as f64).sqrt() as i32, my_sqrt(random_i32));
     }
 }

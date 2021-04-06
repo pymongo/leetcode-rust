@@ -25,10 +25,11 @@ fn helper(start: i32, target: i32, cur: &mut Vec<i32>, res: &mut Vec<Vec<i32>>, 
     }
 }
 
+#[cfg(not)]
 #[test]
 fn test() {
     let test_cases = vec![
-        (3, 7, vec_vec![[1,2,4]]),
+        (3, 7, vec_vec![[1, 2, 4]]),
         //(3, 9, )
     ];
 }
