@@ -138,6 +138,7 @@ leetcode_solutions
 |146|[LRU Cache](https://leetcode.com/problems/lru-cache/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/lru_cache.py)|double_linked_list, OrderedDict|
 |147|[Insertion Sort List](https://leetcode.com/problems/insertion-sort-list/)|[Rust](src/linked_list/insertion_sort_linked_list.rs)|
 |148|[Sort List](https://leetcode.com/problems/sort-list/)|[Rust](src/linked_list/merge_two_sorted_linked_list.rs)|
+|150|[Evaluate Reverse Polish Notation](https://leetcode.com/problems/evaluate-reverse-polish-notation/)|[Rust](src/eval_math_expression/evaluate_reverse_polish_notation.rs)|
 |151|[Reverse Words in a String](https://leetcode.com/problems/reverse-words-in-a-string/)|[Rust](src/uncategorized/string_in_place.rs)|
 |153|[Find Minimum in Rotated Sorted Array](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/rotated_sorted_array_search.py)|binary_search|
 |154|[Find Minimum in Rotated Sorted Array II](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/rotated_sorted_array_min_2_with_duplicate.py)|binary_search|

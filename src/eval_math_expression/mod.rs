@@ -2,6 +2,7 @@
 //! 栈顶元素: 表示下一个乘除运算的lhs
 //! 高优先级(乘除运算): 栈顶元素是lhs，直接更新栈顶元素
 //! 低优先级(加减运算): 减法的rhs乘以-1转为加法，将加法的rhs入栈，这样栈顶元素就变成刚刚入栈的rhs,最后求和栈，所以加法是最后算的，满足低优先级的需求
+mod evaluate_reverse_polish_notation;
 
 /// https://leetcode.com/problems/clumsy-factorial/
 /// 由于乘除优先计算，所以: 遇到乘除立即算(更新栈顶元素)，遇到加减先入栈
