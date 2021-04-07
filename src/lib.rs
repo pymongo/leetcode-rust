@@ -10,7 +10,7 @@ mod bfs_dfs_backtracking;
 mod binary_search;
 mod binary_tree;
 mod bitwise;
-mod code_snippets;
+pub mod code_snippets;
 mod counter;
 mod dp;
 mod easy;

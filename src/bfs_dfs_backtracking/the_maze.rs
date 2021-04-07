@@ -12,7 +12,7 @@ fn has_path(mut maze: Vec<Vec<i32>>, start: Vec<i32>, destination: Vec<i32>) -> 
         for (dx, dy) in &[(1, 0), (-1, 0), (0, 1), (0, -1)] {
             let (mut x2, mut y2) = (x + dx, y + dy);
             // 必须沿着同一个方向走直到碰到障碍物或边界才能停下换方向，注意不能用`maze[x2][y2] == 0`
-            while x2 >= 0 && x2 <= m && y2 > 0 && y2 < n && maze[x2 as usize][y2 as usize] != 1 {
+            while x2 >= 0 && x2 < m && y2 > 0 && y2 < n && maze[x2 as usize][y2 as usize] != 1 {
                 // destructuring assignments are unstable
                 // (x2, y2) = (x2 + dx, y2 + dy);
                 x2 += dx;

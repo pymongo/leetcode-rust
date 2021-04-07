@@ -409,7 +409,7 @@ struct NumMatrix {
 impl NumMatrix {
     /**
     更简单的但效率慢点的方法是，只保存每行的前缀和，所以辅助矩阵的长宽为m,(n+1)
-    ```
+    ```text
             j-1 j
         A   B   C
     i-1 D   E   F

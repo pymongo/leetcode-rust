@@ -58,17 +58,17 @@ fn test_clumsy_factorial() {
 fn eval_int_math_expression(s: String) -> i32 {
     fn read_a_i32(bytes: &[u8], cursor: &mut usize) -> i32 {
         // assert bytes[cursor] is start index of i32
-        let mut int_val = (bytes[*cursor] - b'0') as i32;
+        let mut number = (bytes[*cursor] - b'0') as i32;
         while let Some(next) = bytes.get(*cursor + 1) {
             if next.is_ascii_digit() {
-                int_val = int_val * 10 + (bytes[*cursor + 1] - b'0') as i32;
+                number = number * 10 + (bytes[*cursor + 1] - b'0') as i32;
                 *cursor += 1;
             } else {
                 break;
             }
         }
         *cursor += 1;
-        int_val
+        number
     }
 
     let s = s.into_bytes();
@@ -123,109 +123,85 @@ fn test_eval_int_math_expression() {
     }
 }
 
-enum StackVal {
-    Int(i32),
-    LeftParenthesis,
-    RightParenthesis,
+/// https://leetcode.com/problems/basic-calculator/
+struct Helper {
+    s: Vec<u8>,
+    len: usize,
+    cursor: usize,
 }
 
-impl StackVal {
-    fn unwrap(self) -> i32 {
-        if let Self::Int(int) = self {
-            int
-        } else {
-            panic!("StackVal is not a Int")
+impl Helper {
+    /// 递归结束条件: 遇到右括号 或 cursor遍历完字符串s
+    /// 允许`-()`的表达式但是不允许`*()`的表达式，乘除必须要有lhs
+    /// 参考题解: https://leetcode-cn.com/problems/basic-calculator/solution/jia-jian-cheng-chu-gua-hao-yun-suan-by-w-ldll/
+    /// 优先级高: 遇到左括号就递归eval括号内的值，优先级中: 遇到乘除立即算，优先级低: 加减先入栈最后算
+    /// 我这里只用了current_operator和last_operator，数字和运算符分别存入两个栈也是可行的
+    fn helper(&mut self) -> i32 {
+        let mut stack = vec![];
+        // last_operator in ['(', '*', '/', '+', '-']
+        let mut last_operator = b'+';
+        let mut rhs = 0;
+        while self.cursor < self.len {
+            let ch = self.s[self.cursor];
+            // 一定要让游标先动，这样才能让下个match的'('分支进入递归时能让游标指向'('的后一个字符))
+            self.cursor += 1;
+            match ch {
+                b' ' => continue,
+                b'0'..=b'9' => {
+                    // 小心处理这两种测试用例时，字符串最后一个数字没有参与运算 (" 2-1 + 2 ", 3), ("1 + 1", 2)
+                    rhs = rhs * 10 + (ch - b'0') as i32;
+                    continue;
+                }
+                b'(' => rhs = self.helper(),
+                _ => {}
+            }
+            // ch in ['(', ')', '*', '/', '+', '-']
+            match last_operator {
+                b'+' => stack.push(rhs),
+                b'-' => stack.push(-rhs),
+                b'*' => *stack.last_mut().unwrap() *= rhs,
+                b'/' => *stack.last_mut().unwrap() /= rhs,
+                b'(' => {}
+                _ => unreachable!(),
+            }
+            if ch == b')' {
+                return stack.into_iter().sum();
+            }
+            rhs = 0;
+            last_operator = ch;
         }
+        // test_cases: "1 + 1" and " 2-1 + 2 "
+        if rhs != 0 {
+            match last_operator {
+                b'+' => stack.push(rhs),
+                b'-' => stack.push(-rhs),
+                b'*' => *stack.last_mut().unwrap() *= rhs,
+                b'/' => *stack.last_mut().unwrap() /= rhs,
+                _ => unreachable!(),
+            }
+        }
+        stack.into_iter().sum()
     }
 }
 
-impl std::ops::MulAssign<i32> for StackVal {
-    fn mul_assign(&mut self, rhs: i32) {
-        if let Self::Int(int) = self {
-            *int *= rhs;
-        } else {
-            panic!("StackVal is not a Int");
-        }
-    }
-}
-
-impl std::ops::DivAssign<i32> for StackVal {
-    fn div_assign(&mut self, rhs: i32) {
-        if let Self::Int(int) = self {
-            *int /= rhs;
-        } else {
-            panic!("StackVal is not a Int");
-        }
-    }
-}
-
+/// https://leetcode.com/problems/basic-calculator/
 fn eval_int_with_parentheses(s: String) -> i32 {
-    fn read_a_i32(bytes: &[u8], cursor: &mut usize) -> i32 {
-        let mut int_val = (bytes[*cursor] - b'0') as i32;
-        while let Some(next) = bytes.get(*cursor + 1) {
-            if next.is_ascii_digit() {
-                int_val = int_val * 10 + (bytes[*cursor + 1] - b'0') as i32;
-                *cursor += 1;
-            } else {
-                break;
-            }
-        }
-        *cursor += 1;
-        int_val
-    }
-
     let s = s.into_bytes();
-    let mut cursor = 0;
     let len = s.len();
-
-    let mut stack: Vec<StackVal> = vec![];
-    let mut operator = b'+'; // 默认运算符是加，这样遇到第一个数字时会存入stack作为lhs
-
-    while cursor < len {
-        match s[cursor] {
-            b'0'..=b'9' => {
-                let rhs = read_a_i32(&s, &mut cursor);
-                match operator {
-                    b'+' => stack.push(StackVal::Int(rhs)),
-                    b'-' => stack.push(StackVal::Int(-rhs)),
-                    b'*' => *stack.last_mut().unwrap() *= rhs,
-                    b'/' => *stack.last_mut().unwrap() /= rhs,
-                    _ => unreachable!(),
-                }
-                continue;
-            }
-            b'+' => operator = b'+',
-            b'-' => operator = b'-',
-            b'*' => operator = b'*',
-            b'/' => operator = b'/',
-            b'(' => stack.push(StackVal::LeftParenthesis),
-            b')' => {
-                // 遇到一对括号，则提前对括号内的stack进行求值
-                let mut new_peek = 0;
-                while let Some(pop) = stack.pop() {
-                    match pop {
-                        StackVal::Int(int) => new_peek += int,
-                        StackVal::LeftParenthesis => break,
-                        StackVal::RightParenthesis => unreachable!(),
-                    }
-                }
-                stack.push(StackVal::Int(new_peek));
-            }
-            _ => {}
-        }
-        cursor += 1;
-    }
-    stack.into_iter().map(|x| x.unwrap()).sum()
+    let mut helper = Helper { s, len, cursor: 0 };
+    helper.helper()
 }
 
 #[test]
 fn test_eval_int_with_parentheses() {
-    const TEST_CASES: [(&str, i32); 5] = [
-        ("1 + 1", 2),
+    const TEST_CASES: [(&str, i32); 7] = [
+        ("-1", -1),
+        ("1", 1),
         (" 2-1 + 2 ", 3),
+        ("1 + 1", 2),
         ("(1+(4+5+2)-3)+(6+8)", 23),
         ("- (3 + (4 + 5))", -12),
-        ("-((1+2*3)*(3-2/1))", -7),
+        ("-((1*2+3)*(3-2/1))", -5),
     ];
     for &(input, output) in TEST_CASES.iter() {
         assert_eq!(eval_int_with_parentheses(input.to_string()), output);

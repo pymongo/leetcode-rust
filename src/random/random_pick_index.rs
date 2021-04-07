@@ -44,10 +44,6 @@ struct RandomPickIndexCounterSolution {
 
 impl RandomPickIndexCounterSolution {
     fn new(nums: Vec<i32>) -> Self {
-        extern "C" {
-            fn time(time: *mut time_t) -> time_t;
-            fn srand(seed: u32);
-        }
         let mut nums_index = std::collections::HashMap::new();
         for (i, num) in nums.into_iter().enumerate() {
             nums_index
@@ -55,10 +51,7 @@ impl RandomPickIndexCounterSolution {
                 .or_insert_with(Vec::new)
                 .push(i as i32);
         }
-        // leetcode对随机数的检查不严格，即便不用当前时间戳做随机数种子去提高随机性，依然能AC
-        unsafe {
-            srand(time(&mut std::mem::zeroed()) as u32);
-        }
+        // leetcode对随机数的检查不严格，即便不用当前时间戳做随机数种子(srand,time)去提高随机性，依然能AC
         Self { nums_index }
     }
 
