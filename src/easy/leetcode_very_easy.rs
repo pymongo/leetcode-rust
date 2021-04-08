@@ -2005,3 +2005,45 @@ fn test_truncate_sentence() {
         assert_eq!(truncate_sentence(input.to_string(), k), output);
     }
 }
+
+/// https://leetcode.com/problems/baseball-game/
+fn baseball_game(ops: Vec<String>) -> i32 {
+    let mut stack: Vec<i32> = vec![];
+    for op in ops {
+        let ch = op.as_bytes()[0];
+        if ch.is_ascii_digit() || op.len() > 1 {
+            stack.push(op.parse().unwrap());
+        } else {
+            let len = stack.len();
+            match ch {
+                b'+' => stack.push(stack[len - 1] + stack[len - 2]),
+                b'C' => {
+                    stack.pop().unwrap();
+                }
+                b'D' => stack.push(stack.last().unwrap() * 2),
+                _ => unreachable!(),
+            }
+        }
+    }
+    stack.into_iter().sum()
+}
+
+/// https://leetcode.com/problems/count-good-triplets/
+#[allow(clippy::many_single_char_names)]
+fn count_good_triplets(a: Vec<i32>, q: i32, w: i32, e: i32) -> i32 {
+    let mut ret = 0;
+    let n = a.len();
+    for i in 0..n {
+        for j in i + 1..n {
+            for k in j + 1..n {
+                if (a[i] - a[j]).abs() <= q
+                    && (a[j] - a[k]).abs() <= w
+                    && (a[i] - a[k]).abs() <= e
+                {
+                    ret += 1;
+                }
+            }
+        }
+    }
+    ret
+}

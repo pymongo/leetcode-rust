@@ -1,4 +1,4 @@
-//! 用「栈」能解决需要eval数学表达式的运算优先级问题
+//! 用「栈」能解 arg: (), left_node_output: (), right_node_output: (), ret: () arg: (), left_node_output: (), right_node_output: (), ret: ()决需要eval数学表达式的运算优先级问题
 //! 栈顶元素: 表示下一个乘除运算的lhs
 //! 高优先级(乘除运算): 栈顶元素是lhs，直接更新栈顶元素
 //! 低优先级(加减运算): 减法的rhs乘以-1转为加法，将加法的rhs入栈，这样栈顶元素就变成刚刚入栈的rhs,最后求和栈，所以加法是最后算的，满足低优先级的需求
@@ -208,3 +208,117 @@ fn test_eval_int_with_parentheses() {
         assert_eq!(eval_int_with_parentheses(input.to_string()), output);
     }
 }
+
+
+/* 
+fn fib(n: u32) -> u32 {
+    if n == 0 {
+        return 1;
+    }
+    if n == 1 {
+        return 1;
+    }
+    int tmp = fib(n-1);
+    tmp += fin(n-2);
+
+    return tmp;
+    return fib(n-1) + fib(n-2);
+}
+
+fn fib3(a: i32, b: i32, n: i32) -> i32 {
+    return fib3(b, a+b, n-1);
+}
+
+#[test]
+fn a_s() {
+    fib(3);
+}
+
+struct FibStackFrame {
+    arg_n: i32,
+    step: i32,
+    return_val: i32
+}
+
+struct A<'a> {
+    arg: i32,
+    // f(n-1)
+    left_node_output: i32,
+    // f(n-2)
+    right_node_output: i32,
+    ret: &'a mut i32,
+}
+
+fn a(n: i32) -> i32 {
+    let mut ret = 0;
+    let mut stack = vec![A {
+        arg: n,
+        left_node_output: 0,
+        right_node_output: 0,
+        ret: &mut ret
+    }];
+    while let Some(cur_stack_frame) = stack.pop() {
+        if cur_stack_frame.arg == 0 || cur_stack_frame.arg == 1 {
+            *cur_stack_frame.ret = 1;
+        } else {
+
+        }
+        cur_stack_frame.left_node_output = todo!();
+        cur_stack_frame.right_node_output = todo!();
+    }
+    ret
+}
+
+fn f(n: i32) -> i32 {
+    let mut stack = vec![];
+    stack.push(FibStackFrame {
+        arg_n: n,
+        step: 1,
+        return_val: 0
+    });
+    while let Some(mut item) = stack.pop() {
+        if item.arg_n == 0 || item.arg_n == 1 {
+            item.return_val = 1;
+            stack.last_mut().unwrap().return_val += item.return_val;
+            continue;
+        }
+        match item.step {
+            1 => {
+                stack.push(FibStackFrame {
+                    arg_n: n,
+                    step: 2,
+                    return_val: 0,
+                });
+                // f(n-1)
+                stack.push(FibStackFrame {
+                    arg_n: n-1,
+                    step: 1,
+                    return_val: 0,
+                });
+            },
+            2 => {
+                stack.push(FibStackFrame {
+                    arg_n: n,
+                    step: 3,
+                    return_val: 0,
+                });
+                stack.push(FibStackFrame {
+                    arg_n: n-1-1,
+                    step: 1,
+                    return_val: 0,
+                });
+            },
+            3 => {
+                if stack.is_empty() {
+                    return item.return_val;
+                } else {
+                    stack.last_mut().unwrap().return_val += item.return_val;
+                }
+            }
+            _ => unreachable!()
+        }
+    }
+    unreachable!()
+}
+
+*/

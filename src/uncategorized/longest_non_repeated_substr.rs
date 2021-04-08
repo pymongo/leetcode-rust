@@ -32,85 +32,72 @@ def length_of_longest_substring(s: str) -> int:
 ```
 */
 
-struct Solution;
-
-impl Solution {
-    fn sliding_window_ascii(s: String) -> i32 {
-        let s = s.into_bytes();
-        let len: i32 = s.len() as i32;
-        if len <= 1 {
-            return len;
-        }
-        // index: 索引表示 某小写字母 的ASCII值, value: 从窗函数的右边界往左看第一个 某小写字母的出现索引
-        let mut ascii_char_occur_index = [-1i32; 128];
-        let (mut left, mut right, mut max_len) = (0i32, 0i32, 0i32);
-        while right < len {
-            let current_char = s[right as usize];
-            if ascii_char_occur_index[current_char as usize] != -1 {
-                /*
-                例如abba的用例，end=2时(第二个b)，start会跳到2
-                slider.1指到3时(最后一个a)，第二次出现重复时，重复的是a，ascii_table中字母a的索引是0
-                如果不进行判断start会后退到0+1
-                max() prevent sliders.0's index go back (test case: abba)
-                避免重复的字符「不在当前的移动窗口中」
-                */
-                left = left.max(ascii_char_occur_index[current_char as usize] + 1);
-            }
-            ascii_char_occur_index[current_char as usize] = right;
-            max_len = max_len.max(right - left);
-            right += 1;
-        }
-        max_len + 1
+fn sliding_window_ascii(s: String) -> i32 {
+    let s = s.into_bytes();
+    let len: i32 = s.len() as i32;
+    if len <= 1 {
+        return len;
     }
-
-    /// 即便用了性能不如ASCII数组的HashMap，依然是0ms的解法
-    fn sliding_window_hashmap(s: String) -> i32 {
-        let s = s.into_bytes();
-        let mut max_len = 0;
-        let mut start = 0usize;
-        let mut map = std::collections::HashMap::new();
-        for (i, letter) in s.into_iter().enumerate() {
-            if let Some(&left_index) = map.get(&letter) {
-                start = start.max(left_index + 1);
-            }
-            // 必须要更新完左边界再去算window长度才是正确的
-            max_len = max_len.max(i - start + 1);
-            // insert or update
-            map.insert(letter, i);
+    // index: 索引表示 某小写字母 的ASCII值, value: 从窗函数的右边界往左看第一个 某小写字母的出现索引
+    let mut ascii_char_occur_index = [-1i32; 128];
+    let (mut left, mut right, mut max_len) = (0i32, 0i32, 0i32);
+    while right < len {
+        let current_char = s[right as usize];
+        if ascii_char_occur_index[current_char as usize] != -1 {
+            /*
+            例如abba的用例，end=2时(第二个b)，start会跳到2
+            slider.1指到3时(最后一个a)，第二次出现重复时，重复的是a，ascii_table中字母a的索引是0
+            如果不进行判断start会后退到0+1
+            max() prevent sliders.0's index go back (test case: abba)
+            避免重复的字符「不在当前的移动窗口中」
+            */
+            left = left.max(ascii_char_occur_index[current_char as usize] + 1);
         }
-        max_len as i32
+        ascii_char_occur_index[current_char as usize] = right;
+        max_len = max_len.max(right - left);
+        right += 1;
+    }
+    max_len + 1
+}
+
+/// 即便用了性能不如ASCII数组的HashMap，依然是0ms的解法
+fn sliding_window_hashmap(s: String) -> i32 {
+    let s = s.into_bytes();
+    let mut max_len = 0;
+    let mut start = 0usize;
+    let mut map = std::collections::HashMap::new();
+    for (i, letter) in s.into_iter().enumerate() {
+        if let Some(&left_index) = map.get(&letter) {
+            start = start.max(left_index + 1);
+        }
+        // 必须要更新完左边界再去算window长度才是正确的
+        max_len = max_len.max(i - start + 1);
+        // insert or update
+        map.insert(letter, i);
+    }
+    max_len as i32
+}
+
+const TEST_CASES: [(&str, i32); 7] = [
+    ("dvdf", 3),
+    ("abcabcbb", 3),
+    ("bbbbb", 1),
+    ("pwwkew", 3),
+    ("abcabcbb", 3),
+    ("abba", 2),
+    (" ", 1),
+];
+
+#[test]
+fn test_i32_ascii_table() {
+    for &(input, expected) in TEST_CASES.iter() {
+        assert_eq!(sliding_window_ascii(input.to_string()), expected);
     }
 }
 
-mod test_solution {
-    const TEST_CASES: [(&str, i32); 7] = [
-        ("dvdf", 3),
-        ("abcabcbb", 3),
-        ("bbbbb", 1),
-        ("pwwkew", 3),
-        ("abcabcbb", 3),
-        ("abba", 2),
-        (" ", 1),
-    ];
-
-    #[test]
-    fn test_i32_ascii_table() {
-        for &(input, expected) in TEST_CASES.iter() {
-            assert_eq!(
-                super::Solution::sliding_window_ascii(input.to_string()),
-                expected
-            );
-        }
-    }
-
-    #[test]
-    fn test_sliding_window_hashmap() {
-        for &(input, expected) in TEST_CASES.iter() {
-            dbg!(input);
-            assert_eq!(
-                super::Solution::sliding_window_hashmap(input.to_string()),
-                expected
-            );
-        }
+#[test]
+fn test_sliding_window_hashmap() {
+    for &(input, expected) in TEST_CASES.iter() {
+        assert_eq!(sliding_window_hashmap(input.to_string()), expected);
     }
 }

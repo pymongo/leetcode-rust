@@ -25,11 +25,13 @@ fn helper(start: i32, target: i32, cur: &mut Vec<i32>, res: &mut Vec<Vec<i32>>, 
     }
 }
 
-#[cfg(not)]
 #[test]
-fn test() {
+fn test_combination_sum_iii() {
     let test_cases = vec![
         (3, 7, vec_vec![[1, 2, 4]]),
-        //(3, 9, )
+        (3, 9, vec_vec![[1, 2, 6], [1, 3, 5], [2, 3, 4]]),
     ];
+    for (k, target, output) in test_cases {
+        assert_eq!(combination_sum_iii(k, target), output);
+    }
 }
