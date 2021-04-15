@@ -6,10 +6,23 @@ macro_rules! vec_vec {
     };
 }
 
+#[allow(unused_macros)]
+macro_rules! vec_string {
+    [$($str:expr),* $(,)?] => {
+        vec![$(String::from($str)),*]
+    };
+}
+
 #[test]
 fn test_vec_i32() {
     let expected = vec![vec![17, 2], vec![-31], vec![3], vec![]];
     assert_eq!(vec_vec![[17, 2], [-31], [3], []], expected);
     assert_eq!(vec_vec!([17, 2], [-31], [3], [],), expected);
     assert_eq!(vec_vec! {[17,2],[-31],[3],[],}, expected);
+}
+
+#[test]
+fn test_vec_string() {
+    let strs = vec_string!["a", "b", "c"];
+    assert_eq!(strs[0], String::from("a"));
 }

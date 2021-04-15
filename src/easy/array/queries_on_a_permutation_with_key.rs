@@ -16,9 +16,6 @@ fn process_queries(queries: Vec<i32>, m: i32) -> Vec<i32> {
 fn test_process_queries() {
     const TEST_CASES: [(&[i32], i32, &[i32]); 1] = [(&[3, 1, 2, 1], 5, &[2, 1, 2, 1])];
     for &(queries, m, expected) in &TEST_CASES {
-        assert_eq!(
-            process_queries(queries.to_vec(), m),
-            expected
-        );
+        assert_eq!(process_queries(queries.to_vec(), m), expected);
     }
 }

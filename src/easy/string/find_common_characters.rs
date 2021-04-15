@@ -38,14 +38,15 @@ fn find_common_chars(a: Vec<String>) -> Vec<String> {
 
 #[test]
 fn test_find_common_chars() {
-    const TEST_CASES: [(&[&str], &[&str]); 2] = [
-        (&["bella", "label", "roller"], &["e", "l", "l"]),
-        (&["cool", "lock", "cook"], &["c", "o"]),
+    let test_cases = vec![
+        (
+            vec_string!["bella", "label", "roller"],
+            vec_string!["e", "l", "l"],
+        ),
+        (vec_string!["cool", "lock", "cook"], vec_string!["c", "o"]),
     ];
 
-    for &(input, output) in &TEST_CASES {
-        let input: Vec<String> = input.iter().map(ToString::to_string).collect();
-        let output: Vec<String> = output.iter().map(ToString::to_string).collect();
+    for (input, output) in test_cases {
         assert_eq!(find_common_chars(input), output);
     }
 }

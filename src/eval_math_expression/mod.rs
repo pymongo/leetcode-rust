@@ -209,8 +209,7 @@ fn test_eval_int_with_parentheses() {
     }
 }
 
-
-/* 
+/*
 fn fib(n: u32) -> u32 {
     if n == 0 {
         return 1;

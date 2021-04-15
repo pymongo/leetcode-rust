@@ -22,6 +22,7 @@ mod calculate_minimun_hp;
 mod counting_bits;
 mod dp_easy;
 mod drop_eggs;
+mod edit_distance;
 mod fibonacci;
 mod freedom_trail;
 mod jump_game_ii;

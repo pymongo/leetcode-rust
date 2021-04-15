@@ -1208,17 +1208,15 @@ fn summary_ranges(nums: Vec<i32>) -> Vec<String> {
 
     let mut ret = Vec::new();
     for i in 1..nums.len() {
-        if nums[i] - nums[range_end] == 1 {
-            range_end = i;
-        } else {
+        if nums[i] - nums[range_end] > 1 {
             if range_start == range_end {
                 ret.push(nums[range_end].to_string());
             } else {
                 ret.push(format!("{}->{}", nums[range_start], nums[range_end]));
             }
             range_start = i;
-            range_end = i;
         }
+        range_end = i;
     }
     if range_start == range_end {
         ret.push(nums[range_end].to_string());
@@ -2036,9 +2034,7 @@ fn count_good_triplets(a: Vec<i32>, q: i32, w: i32, e: i32) -> i32 {
     for i in 0..n {
         for j in i + 1..n {
             for k in j + 1..n {
-                if (a[i] - a[j]).abs() <= q
-                    && (a[j] - a[k]).abs() <= w
-                    && (a[i] - a[k]).abs() <= e
+                if (a[i] - a[j]).abs() <= q && (a[j] - a[k]).abs() <= w && (a[i] - a[k]).abs() <= e
                 {
                     ret += 1;
                 }
