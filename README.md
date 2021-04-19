@@ -159,7 +159,7 @@ leetcode_solutions
 |188|[Best Time to Buy and Sell Stock IV](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/stock.py)||
 |189|[Rotate Array](http://leetcode.com/problems/rotate-array/)|[Rust](src/uncategorized/string_in_place.rs)|
 |190|[Reverse Bits](https://leetcode.com/problems/reverse-bits/)|[Rust](src/bitwise/reverse_bits.rs)|
-|191|[Number of 1 Bits](https://leetcode.com/problems/number-of-1-bits/)|[Rust](src/bitwise/count_ones.rs)|
+|191|[Number of 1 Bits](https://leetcode.com/problems/number-of-1-bits/)|[Rust](src/bitwise/hamming_distance_count_ones.rs)|
 |198|[House Robber](https://leetcode.com/problems/house-robber/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/house_robber.py)||
 |200|[Number of Islands](https://leetcode.com/problems/number-of-islands/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/graph/number_of_islands.py)|special_data_structure.union_find, DFS, BFS|
 |202|[Happy Number](https://leetcode.com/problems/happy-number/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/happy_number.py)|
@@ -255,10 +255,11 @@ leetcode_solutions
 |449|[Serialize and Deserialize BST](https://leetcode.com/problems/serialize-and-deserialize-bst/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/bst_serialize.py)|DFS, stack|
 |454|[4Sum II](https://leetcode.com/problems/4sum-ii/)|[Rust](src/two_sum_two_pointers/four_sum_2.rs)|
 |455|[Assign Cookies](https://leetcode.com/problems/assign-cookies/)|[Rust](src/easy/leetcode_very_easy.rs)|
-|461|[Hamming Distance](https://leetcode.com/problems/hamming-distance/)|[Rust](src/bitwise/count_ones.rs)|
+|461|[Hamming Distance](https://leetcode.com/problems/hamming-distance/)|[Rust](src/bitwise/hamming_distance_count_ones.rs)|
 |463|[Island Perimeter](https://leetcode.com/problems/island-perimeter/)|[Rust](src/easy/grid_or_matrix/island_perimeter.rs)|
 |470|[impl rand10 using rand7](https://leetcode.com/problems/implement-rand10-using-rand7/)|[Rust](src/random/impl_rand10_by_rand7.rs)|
 |474|[Ones and Zeroes](https://leetcode.com/problems/ones-and-zeroes/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/backpack_ones_and_zeros.py)|完全背包问题|
+|477|[Total Hamming Distance](https://leetcode.com/problems/total-hamming-distance/)|[Rust](src/bitwise/hamming_distance_count_ones.rs)|
 |485|[Max Consecutive Ones](https://leetcode.com/problems/max-consecutive-ones/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |486|[Validate IP Address](https://leetcode.com/problems/validate-ip-address/)|[Rust](src/easy/string/parse_ip_address.rs)|
 |490🔒|[The Maze](https://leetcode.com/problems/the-maze/)|[Rust](src/bfs_dfs_backtracking/the_maze.rs)|
@@ -393,7 +394,7 @@ leetcode_solutions
 |1342|[Number of Steps to Reduce a Number to Zero](https://leetcode.com/problems/number-of-steps-to-reduce-a-number-to-zero/)|[Rust](src/easy/leetcode_easy.rs)|
 |1346|[Check If N and Its Double Exist](https://leetcode.com/problems/check-if-n-and-its-double-exist/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1351|[Count Negative Numbers in a Sorted Matrix](https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix/)|[Rust](src/easy/grid_or_matrix/count_negative_numbers_in_a_sorted_matrix.rs)|
-|1356|[Sort Integers by The Number of 1 Bits](https://leetcode.com/problems/sort-integers-by-the-number-of-1-bits/)|[Rust](src/bitwise/count_ones.rs)|
+|1356|[Sort Integers by The Number of 1 Bits](https://leetcode.com/problems/sort-integers-by-the-number-of-1-bits/)|[Rust](src/bitwise/hamming_distance_count_ones.rs)|
 |1365|[How Many Numbers Are Smaller Than the Current Number](https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/)|[Rust](src/counter/mod.rs)|
 |1370|[Increasing Decreasing String](https://leetcode.com/problems/increasing-decreasing-string/)|[Rust](src/counter/increasing_decreasing_string.rs)|
 |1374|[Generate a String With Characters That Have Odd Counts](https://leetcode.com/problems/generate-a-string-with-characters-that-have-odd-counts/)|[Rust](src/counter/mod.rs)|
@@ -827,7 +828,6 @@ lintcode_problems
 |1320|[Contains Duplicate](https://lintcode.com/problem/contains-duplicate-ii/)|leetcode_217|
 |1324|[Count Primes](https://lintcode.com/problem/count-primes/)|leetcode_204|
 |1321🔒|[Combination Sum III](https://lintcode.com/problem/1321)|leetcode_216|
-|1332|[Number of 1 Bits](https://lintcode.com/problem/number-of-1-bits/)|leetcode_191|
 |1333|[Reverse Bits](https://lintcode.com/problem/reverse-bits/)|leetcode_190|
 |1334|[Rotate Array](https://lintcode.com/problem/rotate-array/)|leetcode_189|
 |1343|[Sum of Two Strings](https://lintcode.com/problem/sum-of-two-strings/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/sum_of_to_strings.py)||

@@ -1,5 +1,5 @@
 /*! https://leetcode.com/problems/validate-ip-address/
-```rust
+```rust,no_run
 fn valid_posix_ip_str(ip: String) -> String {
     match ip.parse::<std::net::IpAddr>() {
         Ok(std::net::IpAddr::V4(_)) => "IPv4",

@@ -14,12 +14,58 @@ TODO 这题没要求实现「删除操作」，所以可以不写析构函数，
 4. Boggle单词游戏, 给你一个乱序的字母矩阵，从矩阵中任意一点往上下左右四个方向去搜索，能找到几个单词
 5. IP 路由 (最长前缀匹配)
 */
-struct TrieNode {
-    children: [Option<Box<TrieNode>>; 26],
+
+/// 别人写的更棒的Trie的实现，代码很优雅(不像我写的那个有unwrap)，通过derive(Default)避免了我那连写26个None不优雅的代码
+/// 但是生产环境下的Trie会更复杂，需要类似并查集那种路径压缩，否则一个`aaaaa`这样的单词会创建高度为5的树，所以会有一些trie算法让这颗树更扁
+#[derive(Default)]
+struct TrieLeetcode {
+    /// 为了简便，我们的Trie仅支持「小写字母」
+    children: [Option<Box<TrieLeetcode>>; 26],
+    /// 如果用 HashMap 去存children，则会插入一个('$', Trie::new())表示该节点是个单词的结尾
     is_word: bool,
 }
 
-impl TrieNode {
+impl TrieLeetcode {
+    fn new() -> Self {
+        Self::default()
+    }
+
+    fn insert(&mut self, word: String) {
+        // 将所有大写字母转为小写字母，leetcode提交不需要转，读操作系统`/usr/share/dicts/words`需要全转小写
+        // 但是操作系统
+        // let word = word.to_ascii_lowercase().into_bytes();
+        let mut node = self;
+        for letter in word.into_bytes().into_iter().map(|ch| (ch - b'a') as usize) {
+            node = node.children[letter].get_or_insert_with(|| Box::new(TrieLeetcode::default()))
+        }
+        node.is_word = true;
+    }
+
+    fn find_node(&self, word: &str) -> Option<&Self> {
+        // 将所有大写字母转为小写字母
+        let word = word.to_ascii_lowercase().into_bytes();
+        let mut node = self;
+        for letter in word.into_iter().map(|ch| (ch - b'a') as usize) {
+            node = node.children[letter].as_ref()?;
+        }
+        Some(node)
+    }
+
+    fn search(&self, word: String) -> bool {
+        self.find_node(&word).map_or(false, |node| node.is_word)
+    }
+
+    fn starts_with(&self, prefix: String) -> bool {
+        self.find_node(&prefix).is_some()
+    }
+}
+
+struct MyTrieNode {
+    children: [Option<Box<MyTrieNode>>; 26],
+    is_word: bool,
+}
+
+impl MyTrieNode {
     fn new() -> Self {
         Self {
             children: [
@@ -33,21 +79,21 @@ impl TrieNode {
 
 /// https://leetcode.com/problems/implement-trie-prefix-tree/
 struct MyTrie {
-    root: TrieNode,
+    root: MyTrieNode,
 }
 
 impl MyTrie {
     fn new() -> Self {
         Self {
-            root: TrieNode::new(),
+            root: MyTrieNode::new(),
         }
     }
 
     fn insert(&mut self, word: String) {
         let word = word.into_bytes();
         let mut curr = &mut self.root;
-        for char_ in word {
-            let index = (char_ - b'a') as usize;
+        for letter in word {
+            let index = (letter - b'a') as usize;
             // like HashMap entry().or_insert()
             match curr.children[index] {
                 Some(ref mut next) => {
@@ -55,7 +101,7 @@ impl MyTrie {
                 }
                 None => {
                     // 用类似 HashMap or_insert() Entry 模式可能可以避免 unwrap
-                    curr.children[index] = Some(Box::new(TrieNode::new()));
+                    curr.children[index] = Some(Box::new(MyTrieNode::new()));
                     curr = curr.children[index].as_mut().unwrap();
                 }
             }
@@ -67,8 +113,8 @@ impl MyTrie {
     fn search(&self, word: String) -> bool {
         let word = word.into_bytes();
         let mut curr = &self.root;
-        for char_ in word {
-            let index = (char_ - b'a') as usize;
+        for letter in word {
+            let index = (letter - b'a') as usize;
             match curr.children[index] {
                 Some(ref next) => {
                     curr = next;
