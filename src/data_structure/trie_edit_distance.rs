@@ -20,7 +20,7 @@ TODO 这题没要求实现「删除操作」，所以可以不写析构函数，
 #[derive(Default)]
 struct TrieLeetcode {
     /// 为了简便，我们的Trie仅支持「小写字母」
-    children: [Option<Box<TrieLeetcode>>; 26],
+    children: [Option<Box<Self>>; 26],
     /// 如果用 HashMap 去存children，则会插入一个('$', Trie::new())表示该节点是个单词的结尾
     is_word: bool,
 }
@@ -36,16 +36,14 @@ impl TrieLeetcode {
         // let word = word.to_ascii_lowercase().into_bytes();
         let mut node = self;
         for letter in word.into_bytes().into_iter().map(|ch| (ch - b'a') as usize) {
-            node = node.children[letter].get_or_insert_with(|| Box::new(TrieLeetcode::default()))
+            node = node.children[letter].get_or_insert_with(|| Box::new(Self::default()))
         }
         node.is_word = true;
     }
 
     fn find_node(&self, word: &str) -> Option<&Self> {
-        // 将所有大写字母转为小写字母
-        let word = word.to_ascii_lowercase().into_bytes();
         let mut node = self;
-        for letter in word.into_iter().map(|ch| (ch - b'a') as usize) {
+        for letter in word.as_bytes().iter().map(|ch| (ch - b'a') as usize) {
             node = node.children[letter].as_ref()?;
         }
         Some(node)

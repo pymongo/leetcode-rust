@@ -14,7 +14,23 @@ array is a 'random access data structure'
 所以数组是随机访问数据结构，而链表是非随机访问数据结构
 
 ## Rust链表可以用dummyHead去遍历也可以不用
+
+## 泛型的支持
+
+```test
+struct Node<T> {
+    data: T,
+    next: Option<Box<T>>
+}
+
+/// impl $struct 或 impl $trait for $struct : impl 的尖括号内要写什么
+/// $struct 的泛型参数, $trait 的生命周期参数, $struct 的生命周期参数
+impl<T> Node<T> {
+
+}
+```
 */
+
 mod add_two_linked_list;
 mod insertion_sort_linked_list;
 mod linked_list_is_palindrome;

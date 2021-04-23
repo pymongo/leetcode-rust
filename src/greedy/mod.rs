@@ -14,7 +14,6 @@ mod count_number_of_nice_subarrays;
 mod di_string_match;
 mod gas_station;
 mod int_to_roman;
-mod kth_largest_element_in_a_stream;
 mod majority_element;
 mod partition_labels;
 mod product_of_array_except_self;
