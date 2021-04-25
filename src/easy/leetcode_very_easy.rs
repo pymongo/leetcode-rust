@@ -2043,3 +2043,129 @@ fn count_good_triplets(a: Vec<i32>, q: i32, w: i32, e: i32) -> i32 {
     }
     ret
 }
+
+/// https://leetcode.com/problems/sum-of-digits-in-base-k/
+/// K 进制表示下的各位数字总和: 34 (10 进制) 在 6 进制下表示为 54, 5 + 4 = 9
+fn sum_base(mut n: i32, k: i32) -> i32 {
+    let mut ret = 0;
+    while n != 0 {
+        ret += n % k;
+        n /= k;
+    }
+    ret
+}
+
+#[test]
+fn tew() {
+    const TEST_CASES: [(i32, i32, i32); 2] = [(34, 6, 5 + 4), (10, 10, 1)];
+    for (n, k, output) in std::array::IntoIter::new(TEST_CASES) {
+        assert_eq!(sum_base(n, k), output);
+    }
+}
+
+/// https://leetcode.com/problems/longest-substring-of-all-vowels-in-order/
+fn longest_beautiful_substring(word: String) -> i32 {
+    // 只包含英文元音字母的字符串 word
+    let word = word.into_bytes();
+
+    // not contains aeiou all letters
+    if word.len() < 5 {
+        return 0;
+    }
+
+    let mut last_char = b'a';
+    let mut cur_len = 0;
+    let mut max_len = 0;
+    for cur_char in word {
+        match last_char {
+            b'a' => {
+                if matches!(cur_char, b'a' | b'e') {
+                    cur_len += 1;
+                    last_char = cur_char;
+                } else {
+                    cur_len = 0;
+                    last_char = b'a';
+                }
+            }
+            b'e' => {
+                if matches!(cur_char, b'e' | b'i') {
+                    cur_len += 1;
+                    last_char = cur_char;
+                } else {
+                    if cur_char == b'a' {
+                        cur_len = 1;
+                    } else {
+                        cur_len = 0;
+                    }
+                    last_char = b'a';
+                }
+            }
+            b'i' => {
+                if matches!(cur_char, b'i' | b'o') {
+                    cur_len += 1;
+                    last_char = cur_char;
+                } else {
+                    if cur_char == b'a' {
+                        cur_len = 1;
+                    } else {
+                        cur_len = 0;
+                    }
+                    last_char = b'a';
+                }
+            }
+            b'o' => {
+                if matches!(cur_char, b'o' | b'u') {
+                    cur_len += 1;
+                    last_char = cur_char;
+                } else {
+                    if cur_char == b'a' {
+                        cur_len = 1;
+                    } else {
+                        cur_len = 0;
+                    }
+                    last_char = b'a';
+                }
+            }
+            // 一定要遇到一个 u 才能更新最大长度
+            b'u' => {
+                if matches!(cur_char, b'u') {
+                    cur_len += 1;
+                    last_char = cur_char;
+                } else {
+                    max_len = max_len.max(cur_len);
+                    if cur_char == b'a' {
+                        cur_len = 1;
+                    } else {
+                        cur_len = 0;
+                    }
+                    last_char = b'a';
+                }
+            }
+            _ => unreachable!(),
+        }
+    }
+    if last_char == b'u' && cur_len > 0 {
+        // 应对字符串末尾是aeiou
+        max_len = max_len.max(cur_len);
+    }
+    if max_len < 5 {
+        0
+    } else {
+        max_len
+    }
+}
+
+#[test]
+fn test_longest_beautiful_substring() {
+    const TEST_CASES: [(&str, i32); 6] = [
+        ("ooueeieaauauuiuiuoauoeuioeaaaiueiiiieeaooaioouueaiaooouuuioiuaieeuiaeeuoeuoaaaaauuaioaiaoiaoiueaauuaaieauaoeaoeieeooauoueauaeeiaiaeaoeouaeuaeoaeeieoaeiiaeeuiiaoueaauioaueeiuieiuaoieueiiauuoooaueaeaaaioaoauuoaeuaiooauoiuiuieeoaiiieoaauaueueioeaauiuaoouiioaooeiaaeeiiiiouioueoiaiauiauaaiuuuuoaueoaoiiaiuouaaeouuauauiiaauuioeaioaiaauiiaaoeaaioeuoiueeaieiaeaouoaaoeeiieaoeaieoiiiiaueieaueieoeaaueaaueoueoeoaoeuauiiuuaeouiuuiauoeouueiueoaiouiiaeoiioiuaauaaeeauueaieiuuoaieuoauuiiuiieeaoaaaoiaeauiiuiuiiiaaaieaueauaieuouauoouueieeeeaaeoiaiuaeooiuooieuoaaooauueeueoeaioeauuuauueeiuaiuouaiauaeuioieuoaoaeoeiauueaaieaauaaeaeaieaaoiioiuuaauauuaieueoeeuaiiaaueoeuaiaoeaioiaaeuiiiauueeoouuueaooouuaeuioaaeiaieaeiiueoeioiaaueuuaieiaooiioauoeiiaaoaaoaaoeuoiuiaeeiaouaioaeuoaoaeiaieaeieioieeoieaeuouiiuauaeouoiiieeeoeaoieuaaiuoaaoaiauoauuouoaeiaouiiuaaiuuiueaoieuuaoouoiooaeiaeoaaieeooaeaauuouaoioueeeoiuioeuiiaiaoiaoaoeaeiuuuoaeiueiueeuoiiuaaoiueiueuuaaeuuuuiauuouoiieuiiaooiaauoiaaueuioioaeaeeiaeaoeaouaeaaoiiauaaaoioauuuuoeeaaeoouooiuaeeoeoeeieeeoeeaieueuieoiiuiaiuiaeaeaoiooieiieaieouaoieuaiiaueeoaouaaiiieuieiiaioaooeeoaauiueouoioouuiiiaeoieiueuueeiioiooauiaeaoiuueaaiuaiaeaeoeeieiuoiuouaieaeueaeooaauoiououiouoaeeeioeouoeiaaieuoiiiuoeiiaaoooaiiaiuiuouoooiieiooaieauieeoueaoauuoaeoaioiiuaauoeauaoieeeiaiiiieeauueoieaiuoieaeiuaeeauiiuiioieioaaeooeeoaoiaeueeieeeaaiieuoieeeeooueeioiiuiieiiiuiuoaauoeiouieouaeiaaeieaeaaiiuiioauaeoeeooeieuuauaouiuiieeeueuuiaooaeiuuaouuuoeeiououuieaiuaeoieiieaoouaouaoaooiiiuuuiuueouaoueouioaoauuioeouuoeaouuuuioeaoiaouoauaooiuooieueeuuaeeeeaiiuoiuiieaaiouiouooiieeaeeaauaiuiioeoiuaaieoeeaeeeiiuauuoaoeiieiuauoiuuieiueaiaaoeueaauiueeioieaaouiueeiaoaeoeauiaeuiiueaiooouaeouiaeeiiauuaieoueeeaeoeiuuouaoeuuoaaaoeauaiiuuuoaaieuaeeeiuuiiaoaeaeuuieeeuuoieuiuiaiiuiaiieauouueoeouiieaooiuueeeuuuoeiaiauoioeiuaoaaioauaaaaieueuooiiiiueiioaaeuoeuiuiuaeuoeaiuauueiiioaiaaeeiooeiuaeauiuuouaeueueieouauaouuieeuoaiuaeiaaoauoaeeaaoauoaiiooiiouuuuaieeoeeauaauieuaeeuoaaoeuueieeuiaiiouuiiooeueaeoaiieuiaaeuooaaaiiueoeeiaaeeeaaeiaiaaeeooaoeeaoiieaoaaieuiaouoeioeeuauueiiaueiaeioaoaeeaueoiooooieaooeeiiaieaaeeieiiiauoiioiuauauaiaeeooioeoaieuiaaoouiuuieuaaeoeoaaooiiouaeuaueoaeiiuiiaiouuuoeouioiiaauaieaeioouuoeaoeoeeeoaeuoaooiuaaiiauaaoueiiuouueaeiieoououueeeiuuooeeaoueioiiueiieeoeeoeauauioooiuuiiiuuoaeeuoaoaeeuiuuiiuuaeeuiooeieiuueuioioauaiaouiououeoueeoouuueeoiaaeooooaaeeuaaieiaaoaaeaaueieaeeiaoauaaoaeuoeeeuuoauauiiieeuaeooauuuiuaeaeoueoieieouaoeouuuiaaaueouuaiieauoaioaaeeuuaioouuioeueaouiaauooauaiooeaeuouiueaaueuaaiaiaioiuieuooiiaeouoauuaouuooueuiuauuueoooeoiuieoeeuououaiaoiauieaooaoeeeieoeeeiuaeeeiiuiiueoieaiiieoiuuuaaieeaoaeeuaiaooaouooueaouaeuaaeaiuaaeeoeaeooeiuaiouuooioeeaaauuuaiaouuaauoiuaeeuuoeoieeeooeoaeiouuaoaeaeeaueeuaiueoiiieauiuauioeeooauueoeeeiiaaaaoueaaeuioeoiiooeeiauiooaoeuiuoieiueouaauuuoaaieauuioeoeauauuaioueoaeeieiaaoouoeauuooueeoeooeaiuuiuuiiaaauieeeuioeeoeeooioaiiiaiooaaoeiuauuueaueeeieauieaaeeioeaeeooieoieoueoeuaiiauuoiiuieoeeuuuoiuaoaoaaiiiuuiuueaaoeaeaeeiuaueeeioeeiaaiuaaooooaaeaiaaeiaeuuuouiaieoioouaaeiaiuoooaieauaeuouueiuoauuaoaaeueeiioeeueeeiieaioaouueooioeaooeoiauieaooieeeeeieiiaiuiaeiooaiieaeaaeioiuaaaeueaooeaeuoaeeuioeueaeiiaiiaiaaiieeoeaouiuouoeaoeeiaioeueiuuoaeeuuiiaouaiauuoiiuoiaueoioeaeuieaaouueeuieiaueuioueuuaeieiaiaaaaeeeeeiaauiieuaaeeoeoooiueouaeaeiuuiiaueoiaioaoeeiiiiioeoeuoaeiueaoieuoauoeieaiauuiauiaeieooeouoeeeeuieeaaoooueeioaueeiuooieoaioieuiieeaooiauoiaiauuooeouieueouaaiueuuooaaeaaoaeaaaooioueioouaeoaouaoeeeieioeaaeueaiuioaiaouoaiuiiueiueuaiooooiieuooeuaoueoouaaiioeuueiiiaeaaiioaiiooaeoiiaeeoououauioeeieauuoeueoeeoiaaaiaiaiiuaoaouaeoeeuuouoaoeauaooiieaouooaoaoauueiuaueuooeuaoaiueeuoiuoieiuiuuuuauoeeaoiaaeeioeouaooaiaeuiouaieiuaeioieooaauouauoeiaiuaieioueeoaiuuuieeueueeiuoooaeiiuuuaaeiaooeeoaiouooaueeaieueaueuioueaueoaaaoiuaaeueeeueooiuuioiueoaaoeuioeoaeoaoueiiuuaoueeaooooauuuouoauioieiuuiaeueiaoueoeeoauueeeeuoeoaaiioieaiiuoiioioiiuoaoeauooiuoiuoiaeaauiouioaaooioeooeiuueiaioaaoeiaioaeooeeeoeaauuaaiauieiuoeaoaoaiauauaaieioaaooeaoueioiaueiuauaouoooaiiaoeuaiaoieouaoeeaaeeeaouuioaeoouiieuaiauoiaeeaaioiiaaeeoeeaoiiaiiaeaiiuueooaieaieooaoeoeouiaieaioiaoeiaaooauaooieiouaioiuaieoeoouuoaaoeaaauaaaoeeeiuuuoiieaeuuaeeaauooiuiieeaaoeieaaoaioiaeoaoaeaeeooaiaeoooiauoeeooieiuiouuueuoieaaauoeoeoaeeuiaouuuaiaooeoiaeoiuauiuoeioeieoaoauioieaeeeouiaaaouoaeaoaieieaieioiuueueueoaueaioeeiiuoeiaaoeuuaieeaeiauoiuuuuouoiaioioaeieuoeeeeaiaeaaiaauiuooiaiioieeaoeieaeuuiiiooieiaaoiaiueuaeoaoeouoaeaauioeoeaeiuuuuioeeaaiieieaoaiaeuieoaueioeueeoeoueooaeeeouueoaeuiaeuoaoaaiaeeouoioaaoaoaoaeuieuuueeoeiueououuoiauiaiiuaeeeaeoauueuuauueueiuiueeiuuieaeiuiuiiaiueoieuueieoiouououaeiuiouuoaieuiueioeaoiouieoieueuoeoiooeauaeieuuoiiieeoioauoeeoaueoioieuioauooaaoooueaiuuaiuiaeoiaeiiooooeaueiuiioeaeeiaeoeiuaaoioioeueeeueouaeiaaeiiaoiaoaouuouuauiaoieuauaeieoueaeouiuiiouoiaeoaauiuaiieeaaiueeeaoiouiuuiuiiaeeoieueeoooouaeiaooaouuieaouuiuaoaiiieaoueoiiuaaeioauioeeaiaoiaeaeeauueiaioieoeioieaaiaiiuuiauaeuoieauiaiiauuoieoououoeaoaooieeeuioouiaaouaueooioiauuieaiaeeieoeuoiaueioeauiuiieieuauouuueeiuaeeaioeiiieaeeeaiaaiuoeeaeeoiieueaaiiuoaeiiueoauaeeioaeueaiuaaaaioooaeauoiuaeeuoueeiioaoooeouoaooeeuaeeooooeieuoiaeaaueeoeiiuoieeoiaeoeuaeeieiauauaaaoaieiiauoeoaaeuioueaiouoeauieoeaaioaeiaeuuioioaiieooeaeaiaeeeiiioeaieoeeueuiiaiiueuieieaooeuaooeoioeoeeuuaoiuuieoioiaouoeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuaouuuuaooeooueiuiuaaieouuiieeeieeiauaiaauaiaaoiueiooueuaaaeieeoeaoouiueuiaaoeuuiiuauiuaoiaouuiuuaeoaueoueeeooaeueaaieoiueuuoauuoaeeauiieeuaeioiiiuuaueeeououeueieueoeouaiuoooeeeuaouuauaueaieuauiuioeuioeiiiuuiueooaueuuaeeiaeuoauoaauioauuaoeoeioeiuaiiauoueeoiuuiooiuaeooiuuooeeiooaeiuaoiieeaoeaouoaaeiueieaoiuaeiaeoeiuuaoauoaieaiauuiiaieeeoueuiaauoaeeeiieoaeuieeoiioauuooaaaoaoooeaaaooooaaieaiauoiuioieeueeuueieaaeiaioieeaoaeoeuiouauieoaueuoaeuaiiu", 1753),
+        ("auoeioueiaaioeuieuoaieuaoeuoaiaoueioiaeuiuaeouaoie", 0),
+        ("aeiou", 5),
+        ("aeeeiiiioooauuuaeiou", 5),
+        ("aeiaaioaaaaeiiiiouuuooaauuaeiu", 13),
+        ("a", 0)
+    ];
+    for (word, output) in std::array::IntoIter::new(TEST_CASES) {
+        assert_eq!(longest_beautiful_substring(word.to_string()), output);
+    }
+}

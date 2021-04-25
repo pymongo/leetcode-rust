@@ -55,6 +55,17 @@ fn test_clumsy_factorial() {
 这题比 clumsy_factorial 更难，解析字符串过程中不能同时知道运算符和操作数
 需要先存储上一个操作符，遇到下一个操作数后才能进行加减乘除处理
 而 clumsy_factorial 这题简单在于同时能知道 运算符和操作数 (因为乘除加减循环来，操作数则是从n-1列举到1)
+
+## tweet
+
+```text
+写了个 eval 数学表达式的函数
+大体思路就是将运算符分成三个优先级
+优先级高: 遇到括号立即递归调用 eval 出括号内的值
+优先级中: 遇到乘除立即算(更新栈顶的lhs)
+优先级低: 遇到加减先入栈，最后算
+不过我还是打了很多断点单步调试几十次，才正确实现 eval 算法(太烧脑了)
+```
 */
 fn eval_int_math_expression(s: String) -> i32 {
     fn read_a_i32(bytes: &[u8], cursor: &mut usize) -> i32 {
