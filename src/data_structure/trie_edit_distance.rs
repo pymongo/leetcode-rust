@@ -2,7 +2,6 @@
 Trie的同义词: 前缀树、字典树
 前缀树每个节点只有一个字符，root相当于一个dummyHead不存储字符
 每个节点除了要存储字符，还要存储从根到当前节点是否构成一个单词
-TODO 这题没要求实现「删除操作」，所以可以不写析构函数，较简单
 
 ## 前缀树的优点
 插入和查找的时间复杂度都是O(L), L为单词长度
@@ -30,18 +29,40 @@ impl TrieLeetcode {
         Self::default()
     }
 
+    /**
+    ## not ergonomics code example
+    ```text
+    fn insert(&mut self, word: String) {
+        let word = word.into_bytes();
+        let mut curr = &mut self.root;
+        for letter in word {
+            let index = (letter - b'a') as usize;
+            match curr.children[index] {
+                Some(ref mut next) => {
+                    curr = next;
+                }
+                None => {
+                    curr.children[index] = Some(Box::new(MyTrieNode::new()));
+                    curr = curr.children[index].as_mut().unwrap();
+                }
+            }
+        }
+        curr.is_word = true;
+    }
+    ```
+    */
     fn insert(&mut self, word: String) {
         // 将所有大写字母转为小写字母，leetcode提交不需要转，读操作系统`/usr/share/dicts/words`需要全转小写
-        // 但是操作系统
         // let word = word.to_ascii_lowercase().into_bytes();
         let mut node = self;
         for letter in word.into_bytes().into_iter().map(|ch| (ch - b'a') as usize) {
             node = node.children[letter].get_or_insert_with(|| Box::new(Self::default()))
         }
+        // 单词结尾标志，避免插入apple时会把app也认为是一个单词
         node.is_word = true;
     }
 
-    fn find_node(&self, word: &str) -> Option<&Self> {
+    fn _find_node(&self, word: &str) -> Option<&Self> {
         let mut node = self;
         for letter in word.as_bytes().iter().map(|ch| (ch - b'a') as usize) {
             node = node.children[letter].as_ref()?;
@@ -49,65 +70,17 @@ impl TrieLeetcode {
         Some(node)
     }
 
-    fn search(&self, word: String) -> bool {
-        self.find_node(&word).map_or(false, |node| node.is_word)
-    }
-
-    fn starts_with(&self, prefix: String) -> bool {
-        self.find_node(&prefix).is_some()
-    }
-}
-
-struct MyTrieNode {
-    children: [Option<Box<MyTrieNode>>; 26],
-    is_word: bool,
-}
-
-impl MyTrieNode {
-    fn new() -> Self {
-        Self {
-            children: [
-                None, None, None, None, None, None, None, None, None, None, None, None, None, None,
-                None, None, None, None, None, None, None, None, None, None, None, None,
-            ],
-            is_word: false,
+    fn _find_node_mut(&mut self, word: &str) -> Option<&mut Self> {
+        let mut node = self;
+        for letter in word.as_bytes().iter().map(|ch| (ch - b'a') as usize) {
+            node = node.children[letter].as_mut()?;
         }
-    }
-}
-
-/// https://leetcode.com/problems/implement-trie-prefix-tree/
-struct MyTrie {
-    root: MyTrieNode,
-}
-
-impl MyTrie {
-    fn new() -> Self {
-        Self {
-            root: MyTrieNode::new(),
-        }
+        Some(node)
     }
 
-    fn insert(&mut self, word: String) {
-        let word = word.into_bytes();
-        let mut curr = &mut self.root;
-        for letter in word {
-            let index = (letter - b'a') as usize;
-            // like HashMap entry().or_insert()
-            match curr.children[index] {
-                Some(ref mut next) => {
-                    curr = next;
-                }
-                None => {
-                    // 用类似 HashMap or_insert() Entry 模式可能可以避免 unwrap
-                    curr.children[index] = Some(Box::new(MyTrieNode::new()));
-                    curr = curr.children[index].as_mut().unwrap();
-                }
-            }
-        }
-        // 单词结尾标志，避免插入apple时会把app也认为是一个单词
-        curr.is_word = true;
-    }
-
+    /**
+    ## not ergonomics code example
+    ```text
     fn search(&self, word: String) -> bool {
         let word = word.into_bytes();
         let mut curr = &self.root;
@@ -124,23 +97,25 @@ impl MyTrie {
         }
         curr.is_word
     }
+    ```
+    */
+    fn search(&self, word: String) -> bool {
+        self._find_node(&word).map_or(false, |node| node.is_word)
+    }
 
-    /** Returns if there is any word in the trie that starts with the given prefix. */
     fn starts_with(&self, prefix: String) -> bool {
-        let word = prefix.into_bytes();
-        let mut curr = &self.root;
-        for char_ in word {
-            let index = (char_ - b'a') as usize;
-            match curr.children[index] {
-                Some(ref next) => {
-                    curr = next;
-                }
-                None => {
-                    return false;
-                }
-            }
+        self._find_node(&prefix).is_some()
+    }
+
+    fn delete_word(&mut self, word: String) -> bool {
+        let node_opt = self._find_node_mut(&word);
+        match node_opt {
+            Some(node) => {
+                node.is_word = false;
+                true
+            },
+            None => false
         }
-        true
     }
 }
 
@@ -155,11 +130,10 @@ eval leetcode testcase input
 [null, null, true, false, true, null, true]
 ```
 */
-struct TrieTestHelper(MyTrie);
+struct TrieTestHelper(TrieLeetcode);
 
 impl TrieTestHelper {
     fn test(&mut self, call_func: &str, arg: &str, expected_return_val: bool) {
-        dbg!(call_func, arg, expected_return_val);
         match call_func {
             "insert" => self.0.insert(arg.to_string()),
             "search" => assert_eq!(self.0.search(arg.to_string()), expected_return_val),
@@ -191,7 +165,7 @@ fn test_trie() {
         expected_return_vals: vec![null, true, false, true, null, true],
     }];
     for test_case in test_cases {
-        let mut trie_test_helper = TrieTestHelper(MyTrie::new());
+        let mut trie_test_helper = TrieTestHelper(TrieLeetcode::new());
         for i in 0..test_case.call_funcs.len() {
             trie_test_helper.test(
                 &test_case.call_funcs[i],

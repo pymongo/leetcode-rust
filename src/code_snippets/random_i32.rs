@@ -19,7 +19,7 @@ pub fn random_i32() -> i32 {
     #[link(name = "c", kind = "dylib")]
     extern "C" {
         /// https://en.cppreference.com/w/cpp/chrono/c/time
-        fn time(arg: *mut time_t) -> time_t;
+        fn time(output: *mut time_t) -> time_t;
         fn rand() -> i32;
         fn srand(seed: u32);
     }
@@ -27,11 +27,8 @@ pub fn random_i32() -> i32 {
     use std::sync::Once;
     static INIT_RAND_SEED: Once = Once::new();
     INIT_RAND_SEED.call_once(|| unsafe {
-        let mut current_timestamp: time_t = std::mem::zeroed();
-        time(&mut current_timestamp as *mut time_t);
-        srand(current_timestamp as u32);
+        srand(time(std::ptr::null_mut()) as u32);
     });
-
     unsafe { rand() }
 }
 
@@ -42,4 +39,22 @@ pub fn rand_range(min: i32, max: i32) -> i32 {
     // rand() % 7的范围在[0,6]，加上offset 1正好是[1,7]
     // 一般只记忆这个简单的 用MOD生成一定范围内的随机数
     random_num % max + min
+}
+
+
+#[derive(Clone)]
+pub struct CookieRaw {
+    pub token: Option<String>,
+    pub current_igbid: Option<String>
+}
+
+impl ToString for CookieRaw {
+    fn to_string(&self) -> String {
+        format!("token={};current_igbid={}", self.token.clone().unwrap_or_default(), self.current_igbid.clone().unwrap_or_default())
+    }
+}
+
+#[test]
+fn feature() {
+    
 }

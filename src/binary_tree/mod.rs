@@ -7,6 +7,7 @@ use std::cell::RefCell;
 use std::rc::Rc;
 mod is_bst;
 mod same_tree;
+mod increasing_order_search_tree;
 
 /// TODO add tree_node to str function
 /// due to orphan rule, can't impl From<str> to TreeNode directly
