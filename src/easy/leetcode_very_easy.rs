@@ -2177,3 +2177,95 @@ fn are_almost_equal(s1: String, s2: String) -> bool {
     }
     extra_chars.iter().all(|&count| count == 0)
 }
+
+/// https://leetcode-cn.com/contest/biweekly-contest-51/problems/replace-all-digits-with-characters/
+fn replace_digits(s: String) -> String {
+    let mut s = s.into_bytes();
+    let len = s.len();
+    let mut i = 1;
+    while i < len {
+        s[i] = s[i] + (s[i-1]-b'0');
+        i += 2;
+    }
+    unsafe { String::from_utf8_unchecked(s) }
+}
+
+#[test]
+fn test_replace_digits() {
+    const TEST_CASES: [(&str, &str); 2] = [
+        ("a1c1e1", "abcdef"),
+        ("a1b2c3d4e", "abbdcfdhe")
+    ];
+    for &(input, output) in TEST_CASES.iter() {
+        assert_eq!(replace_digits(input.to_string()), output);
+    }
+}
+
+/// https://leetcode-cn.com/contest/biweekly-contest-51/problems/seat-reservation-manager/
+struct SeatManager {
+    // seat[i]=true，表示座位i可以被预约
+    seat: Vec<bool>,
+    len: usize,
+    min: usize,
+}
+
+impl SeatManager {
+
+    fn new(n: i32) -> Self {
+        let len = n as usize + 1;
+        Self {
+            seat: vec![true; len],
+            len,
+            min: 1
+        }
+    }
+    
+    #[cfg(not)]
+    fn reserve(&mut self) -> i32 {
+        for i in 1..self.len {
+            if self.seat[i] {
+                self.seat[i] = false;
+                return i as i32;
+            }
+        }
+        unreachable!()
+    }
+
+    /*
+    5 4 3 2 1
+        ^
+    */
+    fn reserve(&mut self) -> i32 {
+        let ret = self.min as i32;
+        // update self.min
+        for i in self.min+1..self.len {
+            if self.seat[i] {
+                self.min = i;
+                return ret;
+            }
+        }
+        // 更合理的写法是 self.min=None
+        self.min = self.len;
+        return ret;
+    }
+    
+    fn unreserve(&mut self, seat_number: i32) {
+        // update self.min
+        let i = seat_number as usize;
+        self.seat[i] = true;
+        self.min = self.min.min(i);
+    }
+}
+
+#[test]
+fn feature() {
+    let mut seatManager = SeatManager::new(5);
+    assert_eq!(seatManager.reserve(), 1);    // 所有座位都可以预约，所以返回最小编号的座位，也就是 1 。
+    assert_eq!(seatManager.reserve(), 2);    // 可以预约的座位为 [2,3,4,5] ，返回最小编号的座位，也就是 2 。
+    seatManager.unreserve(2); // 将座位 2 变为可以预约，现在可预约的座位为 [2,3,4,5] 。
+    assert_eq!(seatManager.reserve(), 2);    // 可以预约的座位为 [2,3,4,5] ，返回最小编号的座位，也就是 2 。
+    assert_eq!(seatManager.reserve(), 3);    // 可以预约的座位为 [3,4,5] ，返回最小编号的座位，也就是 3 。
+    assert_eq!(seatManager.reserve(), 4);    // 可以预约的座位为 [4,5] ，返回最小编号的座位，也就是 4 。
+    assert_eq!(seatManager.reserve(), 5);    // 唯一可以预约的是座位 5 ，所以返回 5 。
+    seatManager.unreserve(5); // 将座位 5 变为可以预约，现在可预约的座位为 [5] 。
+}
