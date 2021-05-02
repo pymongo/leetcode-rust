@@ -2178,7 +2178,7 @@ fn are_almost_equal(s1: String, s2: String) -> bool {
     extra_chars.iter().all(|&count| count == 0)
 }
 
-/// https://leetcode-cn.com/contest/biweekly-contest-51/problems/replace-all-digits-with-characters/
+/// https://leetcode-cn.com/problems/replace-all-digits-with-characters/
 fn replace_digits(s: String) -> String {
     let mut s = s.into_bytes();
     let len = s.len();
@@ -2201,7 +2201,7 @@ fn test_replace_digits() {
     }
 }
 
-/// https://leetcode-cn.com/contest/biweekly-contest-51/problems/seat-reservation-manager/
+/// https://leetcode-cn.com/problems/seat-reservation-manager/
 struct SeatManager {
     // seat[i]=true，表示座位i可以被预约
     seat: Vec<bool>,
@@ -2259,13 +2259,13 @@ impl SeatManager {
 
 #[test]
 fn feature() {
-    let mut seatManager = SeatManager::new(5);
-    assert_eq!(seatManager.reserve(), 1);    // 所有座位都可以预约，所以返回最小编号的座位，也就是 1 。
-    assert_eq!(seatManager.reserve(), 2);    // 可以预约的座位为 [2,3,4,5] ，返回最小编号的座位，也就是 2 。
-    seatManager.unreserve(2); // 将座位 2 变为可以预约，现在可预约的座位为 [2,3,4,5] 。
-    assert_eq!(seatManager.reserve(), 2);    // 可以预约的座位为 [2,3,4,5] ，返回最小编号的座位，也就是 2 。
-    assert_eq!(seatManager.reserve(), 3);    // 可以预约的座位为 [3,4,5] ，返回最小编号的座位，也就是 3 。
-    assert_eq!(seatManager.reserve(), 4);    // 可以预约的座位为 [4,5] ，返回最小编号的座位，也就是 4 。
-    assert_eq!(seatManager.reserve(), 5);    // 唯一可以预约的是座位 5 ，所以返回 5 。
-    seatManager.unreserve(5); // 将座位 5 变为可以预约，现在可预约的座位为 [5] 。
+    let mut seat = SeatManager::new(5);
+    assert_eq!(seat.reserve(), 1);    // 所有座位都可以预约，所以返回最小编号的座位，也就是 1 。
+    assert_eq!(seat.reserve(), 2);    // 可以预约的座位为 [2,3,4,5] ，返回最小编号的座位，也就是 2 。
+    seat.unreserve(2); // 将座位 2 变为可以预约，现在可预约的座位为 [2,3,4,5] 。
+    assert_eq!(seat.reserve(), 2);    // 可以预约的座位为 [2,3,4,5] ，返回最小编号的座位，也就是 2 。
+    assert_eq!(seat.reserve(), 3);    // 可以预约的座位为 [3,4,5] ，返回最小编号的座位，也就是 3 。
+    assert_eq!(seat.reserve(), 4);    // 可以预约的座位为 [4,5] ，返回最小编号的座位，也就是 4 。
+    assert_eq!(seat.reserve(), 5);    // 唯一可以预约的是座位 5 ，所以返回 5 。
+    seat.unreserve(5); // 将座位 5 变为可以预约，现在可预约的座位为 [5] 。
 }
