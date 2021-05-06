@@ -1760,7 +1760,7 @@ impl SparseVector {
         Self { nums }
     }
 
-    fn dot_product(self, vec: SparseVector) -> i32 {
+    fn dot_product(self, vec: Self) -> i32 {
         self.nums
             .into_iter()
             .zip(vec.nums.into_iter())
@@ -2184,7 +2184,7 @@ fn replace_digits(s: String) -> String {
     let len = s.len();
     let mut i = 1;
     while i < len {
-        s[i] = s[i] + (s[i-1]-b'0');
+        s[i] += s[i - 1] - b'0';
         i += 2;
     }
     unsafe { String::from_utf8_unchecked(s) }
@@ -2192,10 +2192,7 @@ fn replace_digits(s: String) -> String {
 
 #[test]
 fn test_replace_digits() {
-    const TEST_CASES: [(&str, &str); 2] = [
-        ("a1c1e1", "abcdef"),
-        ("a1b2c3d4e", "abbdcfdhe")
-    ];
+    const TEST_CASES: [(&str, &str); 2] = [("a1c1e1", "abcdef"), ("a1b2c3d4e", "abbdcfdhe")];
     for &(input, output) in TEST_CASES.iter() {
         assert_eq!(replace_digits(input.to_string()), output);
     }
@@ -2210,16 +2207,15 @@ struct SeatManager {
 }
 
 impl SeatManager {
-
     fn new(n: i32) -> Self {
         let len = n as usize + 1;
         Self {
             seat: vec![true; len],
             len,
-            min: 1
+            min: 1,
         }
     }
-    
+
     #[cfg(not)]
     fn reserve(&mut self) -> i32 {
         for i in 1..self.len {
@@ -2238,7 +2234,7 @@ impl SeatManager {
     fn reserve(&mut self) -> i32 {
         let ret = self.min as i32;
         // update self.min
-        for i in self.min+1..self.len {
+        for i in self.min + 1..self.len {
             if self.seat[i] {
                 self.min = i;
                 return ret;
@@ -2246,9 +2242,9 @@ impl SeatManager {
         }
         // 更合理的写法是 self.min=None
         self.min = self.len;
-        return ret;
+        ret
     }
-    
+
     fn unreserve(&mut self, seat_number: i32) {
         // update self.min
         let i = seat_number as usize;
@@ -2260,12 +2256,12 @@ impl SeatManager {
 #[test]
 fn feature() {
     let mut seat = SeatManager::new(5);
-    assert_eq!(seat.reserve(), 1);    // 所有座位都可以预约，所以返回最小编号的座位，也就是 1 。
-    assert_eq!(seat.reserve(), 2);    // 可以预约的座位为 [2,3,4,5] ，返回最小编号的座位，也就是 2 。
+    assert_eq!(seat.reserve(), 1); // 所有座位都可以预约，所以返回最小编号的座位，也就是 1 。
+    assert_eq!(seat.reserve(), 2); // 可以预约的座位为 [2,3,4,5] ，返回最小编号的座位，也就是 2 。
     seat.unreserve(2); // 将座位 2 变为可以预约，现在可预约的座位为 [2,3,4,5] 。
-    assert_eq!(seat.reserve(), 2);    // 可以预约的座位为 [2,3,4,5] ，返回最小编号的座位，也就是 2 。
-    assert_eq!(seat.reserve(), 3);    // 可以预约的座位为 [3,4,5] ，返回最小编号的座位，也就是 3 。
-    assert_eq!(seat.reserve(), 4);    // 可以预约的座位为 [4,5] ，返回最小编号的座位，也就是 4 。
-    assert_eq!(seat.reserve(), 5);    // 唯一可以预约的是座位 5 ，所以返回 5 。
+    assert_eq!(seat.reserve(), 2); // 可以预约的座位为 [2,3,4,5] ，返回最小编号的座位，也就是 2 。
+    assert_eq!(seat.reserve(), 3); // 可以预约的座位为 [3,4,5] ，返回最小编号的座位，也就是 3 。
+    assert_eq!(seat.reserve(), 4); // 可以预约的座位为 [4,5] ，返回最小编号的座位，也就是 4 。
+    assert_eq!(seat.reserve(), 5); // 唯一可以预约的是座位 5 ，所以返回 5 。
     seat.unreserve(5); // 将座位 5 变为可以预约，现在可预约的座位为 [5] 。
 }

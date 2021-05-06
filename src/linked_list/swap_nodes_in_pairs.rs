@@ -35,7 +35,7 @@ impl Solution {
             let mut right = node.as_mut()?.next.take();
             // 下一对的第一个
             let next_pair = right.as_mut()?.next.take();
-            node.as_mut()?.next = Solution::recursive(next_pair);
+            node.as_mut()?.next = Self::recursive(next_pair);
 
             right.as_mut()?.next = node;
             right

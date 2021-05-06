@@ -113,8 +113,8 @@ impl TrieLeetcode {
             Some(node) => {
                 node.is_word = false;
                 true
-            },
-            None => false
+            }
+            None => false,
         }
     }
 }

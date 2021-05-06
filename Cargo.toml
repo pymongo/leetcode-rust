@@ -1,4 +1,9 @@
 [package]
-name = "algorithm"
-version = "0.0.3"
+name = "leetcode-rust"
+version = "0.1.1"
 edition = "2018"
+license = "MIT"
+repository = "https://github.com/pymongo/leetcode-rust/"
+keywords = ["leetcode", "codeforce"]
+categories = ["algorithm"]
+description = "leetcode/codeforce Rust solutions"

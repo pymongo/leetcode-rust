@@ -41,20 +41,21 @@ pub fn rand_range(min: i32, max: i32) -> i32 {
     random_num % max + min
 }
 
-
 #[derive(Clone)]
 pub struct CookieRaw {
     pub token: Option<String>,
-    pub current_igbid: Option<String>
+    pub current_igbid: Option<String>,
 }
 
 impl ToString for CookieRaw {
     fn to_string(&self) -> String {
-        format!("token={};current_igbid={}", self.token.clone().unwrap_or_default(), self.current_igbid.clone().unwrap_or_default())
+        format!(
+            "token={};current_igbid={}",
+            self.token.clone().unwrap_or_default(),
+            self.current_igbid.clone().unwrap_or_default()
+        )
     }
 }
 
 #[test]
-fn feature() {
-    
-}
+fn feature() {}

@@ -1,6 +1,7 @@
 #![feature(is_sorted, asm)]
 #![allow(dead_code)]
-// #![deny(warnings)]
+//#![warn(clippy::pedantic,clippy::nursery,clippy::cargo,clippy::restriction)]
+// cargo clippy --all -- -W all
 #![doc(html_playground_url = "https://play.rust-lang.org/")]
 // 如果mod backtracking写在mod macros上面，则mod backtracking无法使用macros内的所有宏
 // Macros can only be used after they have been defined(macro_use)

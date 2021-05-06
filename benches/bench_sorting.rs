@@ -1,8 +1,7 @@
 //! cargo bench --bench bench_sorting
 #![feature(test)]
-extern crate algorithm;
 extern crate test;
-use algorithm::code_snippets::sorting::{
+use leetcode_rust::code_snippets::sorting::{
     bubble_sort, my_quick_sort, random_numbers_test_case, selection_sort,
 };
 
