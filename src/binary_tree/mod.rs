@@ -62,14 +62,14 @@ fn test_str_to_optional_tree_node() {
 #[derive(Debug, PartialEq, Eq)]
 struct TreeNode {
     val: i32,
-    left: Option<Rc<RefCell<TreeNode>>>,
-    right: Option<Rc<RefCell<TreeNode>>>,
+    left: Option<Rc<RefCell<Self>>>,
+    right: Option<Rc<RefCell<Self>>>,
 }
 
 impl TreeNode {
     #[inline]
-    fn new(val: i32) -> Self {
-        TreeNode {
+    const fn new(val: i32) -> Self {
+        Self {
             val,
             left: None,
             right: None,

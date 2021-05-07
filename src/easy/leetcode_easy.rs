@@ -291,7 +291,7 @@ impl OrderedStream {
 所以如果n是质数，那就只能就最初的1个字母复制1次，粘贴n-1次
 如果n是非质数: 答案就是n分解质因数的因子之和，例如6=2*3，次数是5
 */
-fn copy_and_paste_min_steps(mut n: i32) -> i32 {
+const fn copy_and_paste_min_steps(mut n: i32) -> i32 {
     let mut factor = 2;
     let mut factor_sum = 0;
     while n > 1 {

@@ -35,7 +35,7 @@ impl Solution {
             // combination_sum_1: 允许nums中元素重复使用，所以start_index会是i
             // Self::helper(i, target-nums[i], cur, res, &nums, n);
             // combination_sum_2: 不允许nums中元素重复使用，所以start_index会是i+1
-            Self::helper(i + 1, target - nums[i], cur, res, &nums, n);
+            Self::helper(i + 1, target - nums[i], cur, res, nums, n);
             cur.pop();
         }
     }

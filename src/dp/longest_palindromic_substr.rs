@@ -243,7 +243,7 @@ impl Solution {
     */
     #[allow(clippy::needless_range_loop)]
     fn expand_around_center(s: String) -> String {
-        fn helper(chars: &[u8], len: usize, left: usize, right: usize) -> usize {
+        const fn helper(chars: &[u8], len: usize, left: usize, right: usize) -> usize {
             let (mut left, mut right) = (left, right);
             let mut left_is_palindromic_and_overflow = false;
             // dbg!((left, right));

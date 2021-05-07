@@ -4,7 +4,7 @@ mod pow;
 mod sqrt;
 
 /// https://leetcode.com/problems/ugly-number/
-fn is_ugly(mut num: i32) -> bool {
+const fn is_ugly(mut num: i32) -> bool {
     if num == 0 {
         return false;
     }

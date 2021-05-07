@@ -1,6 +1,6 @@
 /// https://leetcode.com/problems/count-good-meals/
 fn count_pairs_permutation_solution(nums: Vec<i32>) -> i32 {
-    fn is_power_of_2(n: i32) -> bool {
+    const fn is_power_of_2(n: i32) -> bool {
         if n == 0 {
             return false;
         }

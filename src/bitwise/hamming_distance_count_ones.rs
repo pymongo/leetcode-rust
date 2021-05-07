@@ -1,7 +1,7 @@
 /// https://leetcode.com/problems/number-of-1-bits/
 mod hamming_weight {
     /// number_of_1_bits: n.count_ones(); // Java: Integer.bitCount(n)
-    fn hamming_weight_count_ones_solution(n: u32) -> i32 {
+    const fn hamming_weight_count_ones_solution(n: u32) -> i32 {
         n.count_ones() as i32
     }
 
@@ -34,7 +34,7 @@ mod hamming_weight {
     }
 
     /// 利用`is_power_of_2`一题的相同的位运算技巧取出从右往左的第一个1
-    fn hamming_weight_bitwise_solution_2(mut n: u32) -> i32 {
+    const fn hamming_weight_bitwise_solution_2(mut n: u32) -> i32 {
         let mut count = 0;
         while n != 0 {
             n &= n - 1;
@@ -47,7 +47,7 @@ mod hamming_weight {
 /// https://leetcode.com/problems/hamming-distance/
 /// 汉明距离: 两个整数的二进制表示不同位置的个数
 /// 思路: 异或后(不同位得1) count_ones
-fn hamming_distance(x: i32, y: i32) -> i32 {
+const fn hamming_distance(x: i32, y: i32) -> i32 {
     (x ^ y).count_ones() as i32
 }
 

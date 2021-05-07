@@ -8,7 +8,7 @@ struct UnionFind {
 impl UnionFind {
     #[inline]
     fn new(n: usize) -> Self {
-        UnionFind {
+        Self {
             parents: (0..n).collect(),
         }
     }
@@ -39,7 +39,7 @@ struct UnionFindConstGenerics<const N: usize> {
 }
 
 impl<const N: usize> UnionFindConstGenerics<N> {
-    fn new() -> Self {
+    const fn new() -> Self {
         let mut parents = [0; N];
         let mut i = 0;
         while i < N {
@@ -49,7 +49,7 @@ impl<const N: usize> UnionFindConstGenerics<N> {
         Self { parents }
     }
 
-    fn find_root(&self, node: usize) -> usize {
+    const fn find_root(&self, node: usize) -> usize {
         let mut cur = node;
         let mut cur_parent = self.parents[cur];
         while cur_parent != cur {

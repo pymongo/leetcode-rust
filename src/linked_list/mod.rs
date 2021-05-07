@@ -52,7 +52,7 @@ struct ListNode {
 
 impl ListNode {
     #[inline]
-    fn new(val: i32) -> Self {
+    const fn new(val: i32) -> Self {
         Self { next: None, val }
     }
 }

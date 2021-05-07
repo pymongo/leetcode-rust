@@ -39,7 +39,7 @@ fn shuffle_the_array(nums: Vec<i32>, n: i32) -> Vec<i32> {
 }
 
 /// https://leetcode.com/problems/count-of-matches-in-tournament/
-fn number_of_matches(mut n: i32) -> i32 {
+const fn number_of_matches(mut n: i32) -> i32 {
     let mut ret = 0;
     while n != 1 {
         let matches = n / 2;
@@ -188,7 +188,7 @@ struct ParkingSystem {
 }
 
 impl ParkingSystem {
-    fn new(big: i32, medium: i32, small: i32) -> Self {
+    const fn new(big: i32, medium: i32, small: i32) -> Self {
         Self {
             big_slot_cap: big as u16,
             small_slot_cap: small as u16,
@@ -467,7 +467,7 @@ fn decompress_run_length_encoded_list(nums: Vec<i32>) -> Vec<i32> {
 
 /// https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/
 /// 尽管题目要求逆序(左往右)累加累乘每位，但是由于加法和乘法的各项可以互换，所以我右往左遍历每位也是可以的
-fn subtract_product_and_sum(mut n: i32) -> i32 {
+const fn subtract_product_and_sum(mut n: i32) -> i32 {
     let (mut sum, mut product) = (0, 1);
     while n != 0 {
         let digit = n % 10;
@@ -650,16 +650,15 @@ fn test_merge_two_sorted_array() {
 struct FirstBadVersion(i32);
 
 impl FirstBadVersion {
-    #[allow(non_snake_case)]
-    fn isBadVersion(&self, versions: i32) -> bool {
+    const fn is_bad_version(&self, versions: i32) -> bool {
         versions >= self.0
     }
 
-    fn first_bad_version(&self, n: i32) -> i32 {
+    const fn first_bad_version(&self, n: i32) -> i32 {
         let (mut start, mut end) = (0, n);
         while start < end {
             let mid = start + (end - start) / 2;
-            if self.isBadVersion(mid) {
+            if self.is_bad_version(mid) {
                 // 如果出错了，不能排除掉mid，错误可能在[mid,end]
                 end = mid;
             } else {
@@ -1268,7 +1267,7 @@ fn count_good_rectangles(rectangles: Vec<Vec<i32>>) -> i32 {
 }
 
 /// https://leetcode.com/problems/calculate-money-in-leetcode-bank/
-fn total_money(mut n: i32) -> i32 {
+const fn total_money(mut n: i32) -> i32 {
     let mut nth_week = 1;
     let mut ret = 0;
     while n >= 7 {
@@ -1782,7 +1781,7 @@ fn remove_vowels(s: String) -> String {
 
 /// https://leetcode.com/problems/number-of-steps-to-reduce-a-number-to-zero/
 /// 给你一个非负整数 num ，请你返回将它变成 0 所需要的步数。 如果当前数字是偶数，你需要把它除以 2 ；否则，减去 1
-fn number_of_steps(mut num: i32) -> i32 {
+const fn number_of_steps(mut num: i32) -> i32 {
     let mut ret = 0;
     while num != 0 {
         if num % 2 == 1 {
@@ -2060,7 +2059,7 @@ fn count_good_triplets(a: Vec<i32>, q: i32, w: i32, e: i32) -> i32 {
 
 /// https://leetcode.com/problems/sum-of-digits-in-base-k/
 /// K 进制表示下的各位数字总和: 34 (10 进制) 在 6 进制下表示为 54, 5 + 4 = 9
-fn sum_base(mut n: i32, k: i32) -> i32 {
+const fn sum_base(mut n: i32, k: i32) -> i32 {
     let mut ret = 0;
     while n != 0 {
         ret += n % k;

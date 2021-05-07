@@ -63,7 +63,7 @@ fn is_palindrome(x: i32) -> bool {
     x == reverse_integer(x)
 }
 
-fn is_palindrome_half_traverse(x: i32) -> bool {
+const fn is_palindrome_half_traverse(x: i32) -> bool {
     if x < 0 || (x % 10 == 0 && x != 0) {
         return false;
     }

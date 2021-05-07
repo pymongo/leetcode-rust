@@ -3,7 +3,7 @@ https://leetcode.com/problems/power-of-three/
 */
 
 /// is_power_of_x一类题型的万能解法模板
-fn is_power_of_two_normal_solution(mut n: i32) -> bool {
+const fn is_power_of_two_normal_solution(mut n: i32) -> bool {
     if n == 0 {
         return false;
     }
@@ -25,7 +25,7 @@ Example2:
 -4 = 1100
 4 & -4 = 0100
 */
-fn is_power_of_two_bitwise_solution_1(n: i32) -> bool {
+const fn is_power_of_two_bitwise_solution_1(n: i32) -> bool {
     if n == 0 {
         return false;
     }
@@ -44,7 +44,7 @@ Example2:
 3 = 0011
 4 & 3 = 0
 */
-fn is_power_of_two_bitwise_solution_2(n: i32) -> bool {
+const fn is_power_of_two_bitwise_solution_2(n: i32) -> bool {
     if n == 0 {
         return false;
     }
@@ -124,7 +124,8 @@ fn is_power_of_3() {
 如果n是2的幂同时只有奇数位上是1(n & 0xaaaaaaaa == 0)，那么n是4的幂
 */
 #[allow(overflowing_literals)]
-fn is_power_of_4_solution1(n: i32) -> bool {
+const fn is_power_of_4_solution1(n: i32) -> bool {
+    // the literal `0xaaaaaaaa` (decimal `2863311530`) does not fit into the type `i32` and will become `-1431655766i32`
     n > 0 && (n & -n) == n && n & 0xaaaaaaaa == 0
 }
 
@@ -132,6 +133,6 @@ fn is_power_of_4_solution1(n: i32) -> bool {
 若 xx 为 2 的幂且 x%3 == 1，则 xx 为 4 的幂
 证明方法: 4^k % 3 = (3+1)^k % 3 = ...(二项式展开) = 1
 */
-fn is_power_of_4_solution2(n: i32) -> bool {
+const fn is_power_of_4_solution2(n: i32) -> bool {
     n > 0 && (n & -n) == n && n % 3 == 1
 }
