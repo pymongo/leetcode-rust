@@ -113,3 +113,8 @@ fn test_serde_binary_tree_to_leetcode_vec() {
     let node_vec2 = serialize_binary_tree_to_vec(node);
     assert_eq!(node_vec1, node_vec2);
 }
+
+#[test]
+fn test_print_binary_tree() {
+    
+}

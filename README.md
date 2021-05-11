@@ -301,6 +301,7 @@ leetcode_solutions
 |674|[Longest Continuous Increasing Subsequence](https://leetcode.com/problems/longest-continuous-increasing-subsequence/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/longest_continuous_increase_subsequence.py)||
 |680|[Valid Palindrome II](https://leetcode.com/problems/valid-palindrome-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/palindrome/valid_palindrome_2.py)|two_pointers, greedy|
 |682|[Baseball Game](https://leetcode.com/problems/baseball-game/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|690|[Employee Importance](https://leetcode.com/problems/employee-importance/)|TODO|
 |695|[Max Area of Island](https://leetcode.com/problems/max-area-of-island/)|[Rust](src/bfs_dfs_backtracking/max_area_of_island.rs)|
 |696|[Count Binary Substrings](https://leetcode.com/problems/count-binary-substrings/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |700|[Search in a Binary Search Tree](https://leetcode.com/problems/search-in-a-binary-search-tree/)|[Rust](src/binary_tree/search_val_or_range_in_bst.rs)|
@@ -461,6 +462,7 @@ leetcode_solutions
 |1844|[Replace All Digits with Characters](https://leetcode.com/problems/replace-all-digits-with-characters/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1845|[Seat Reservation Manager](https://leetcode.com/problems/seat-reservation-manager/)|[Rust](src/data_structure/heap/seat_reservation_manager.rs)|
 |1848|[Minimum Distance to the Target Element](https://leetcode.com/problems/minimum-distance-to-the-target-element/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|1854|[Maximum Population Year](https://leetcode-cn.com/problems/maximum-population-year/)|[Rust](src/easy/leetcode_very_easy.rs)|
 
 ---
 
@@ -484,8 +486,7 @@ TODO:
 
 有意思的但是没有找到题号的问题:
 
-1. 海盗分金币问题(比较脑筋急转弯的递推)
-2. 最大直方图矩阵(Longest Histogram Rectangle), 单调栈O(n^3)->O(n)
+1. 最大直方图矩阵(Longest Histogram Rectangle), 单调栈O(n^3)->O(n)
 
 ---
 

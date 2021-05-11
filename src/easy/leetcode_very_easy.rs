@@ -2218,3 +2218,37 @@ fn test_get_min_distance() {
         assert_eq!(get_min_distance(nums.to_vec(), target, start), output);
     }
 }
+
+/// https://leetcode.com/problems/maximum-population-year/
+/// 1 <= logs.length <= 100
+/// 1950 <= birthi < deathi <= 2050
+fn maximum_population(logs: Vec<Vec<i32>>) -> i32 {
+    let mut counter = [0u8; 101];
+    for log in logs {
+        let (brith, death) = (log[0], log[1]);
+        for i in brith..death {
+            let i = (i-1950) as usize;
+            counter[i] += 1;
+        }
+    }
+    let mut max_count = 0u8;
+    let mut max_population_year = -1;
+    for (i,  &count) in counter.iter().enumerate() {
+        if count > max_count {
+            max_population_year = i as i32;
+            max_count = count;
+        }
+    }
+    max_population_year + 1950
+}
+
+#[test]
+fn test_maximum_population() {
+    let test_cases = vec![
+        (vec_vec![[1993,1999],[2000,2010]],1993),
+        (vec_vec![[1950,1961],[1960,1971],[1970,1981]],1960),
+    ];
+    for (logs, max_population_year) in test_cases {
+        assert_eq!(maximum_population(logs), max_population_year);
+    }
+}
