@@ -1,74 +1,37 @@
 mod invert_binary_tree;
+mod is_bst;
 mod level_order_traversal;
+mod max_depth_of_binary_tree;
 mod preorder_traversal;
+mod same_tree;
 mod search_val_or_range_in_bst;
+mod serde_binary_tree_to_leetcode_vec;
+mod serde_binary_tree_to_parentheses_str;
 mod sum_root_to_leaf_numbers;
+//mod increasing_order_search_tree;
+pub use serde_binary_tree_to_leetcode_vec::{
+    deserialize_vec_to_binary_tree, print_binary_tree, serialize_binary_tree_to_vec,
+};
+pub use serde_binary_tree_to_parentheses_str::parentheses_str_to_binary_tree;
 use std::cell::RefCell;
 use std::rc::Rc;
-mod is_bst;
-mod same_tree;
-//mod increasing_order_search_tree;
 
-/// TODO add tree_node to str function
-/// due to orphan rule, can't impl From<str> to TreeNode directly
-fn str_to_tree_node(s: &str) -> Option<Rc<RefCell<TreeNode>>> {
-    let mut stack: Vec<Rc<RefCell<TreeNode>>> = Vec::new();
-    let mut val_len = 0;
-    let mut is_left_subtree_empty = false;
-    let s = s.as_bytes();
-    for i in 0..s.len() {
-        if s[i] != b'(' && s[i] != b')' {
-            val_len += 1;
-            continue;
-        }
-        if val_len > 0 {
-            let node_val = String::from_utf8(s[i - val_len..i].to_owned())
-                .unwrap()
-                .parse::<i32>()
-                .unwrap();
-            let node = Rc::new(RefCell::new(TreeNode::new(node_val)));
-            if let Some(peek) = stack.last_mut() {
-                let mut peek = peek.borrow_mut();
-                if is_left_subtree_empty {
-                    peek.right = Some(node.clone());
-                    is_left_subtree_empty = false;
-                } else if peek.left.is_none() {
-                    peek.left = Some(node.clone());
-                } else {
-                    peek.right = Some(node.clone());
-                }
-            }
-            stack.push(node.clone());
-            val_len = 0;
-        }
-        if s[i] == b')' {
-            if s[i - 1] == b'(' {
-                is_left_subtree_empty = true;
-            } else {
-                stack.pop().unwrap();
-            }
-        }
-    }
-    stack.last().cloned()
-}
-
-#[test]
-fn test_str_to_optional_tree_node() {
-    // Rust的Debug可以完整地递归打印出二叉树，比我用Python写的打印二叉树更准更好，约等于leetcode的Python/Java print二叉树的效果
-    dbg!(str_to_tree_node("1()(2(3))"));
-    dbg!(str_to_tree_node("3(9)(20(15)(7))"));
-}
-
+/// 正常的二叉树的节点也不可能有两个父亲，所以leetcode用Rc<RefCell>真是多余
+/// 我做过那么多题也没见过二叉树节点的左右儿子是同一个节点
+/// Rust的Debug可以递归打印出二叉树，比我用Python写的打印二叉树更准更好，约等于leetcode的Python二叉树的__repr__()的效果
 #[derive(Debug, PartialEq, Eq)]
-struct TreeNode {
+pub struct TreeNode {
     val: i32,
-    left: Option<Rc<RefCell<Self>>>,
-    right: Option<Rc<RefCell<Self>>>,
+    left: TreeLink,
+    right: TreeLink,
 }
+
+pub type TreeLink = Option<Rc<RefCell<TreeNode>>>;
 
 impl TreeNode {
+    pub const NULL: i32 = i32::MIN;
     #[inline]
-    const fn new(val: i32) -> Self {
+    pub const fn new(val: i32) -> Self {
         Self {
             val,
             left: None,

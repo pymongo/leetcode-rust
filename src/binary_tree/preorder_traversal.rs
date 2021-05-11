@@ -56,6 +56,6 @@ fn preorder_traversal_2(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
 
 #[test]
 fn test_preorder_traversal() {
-    let root = super::str_to_tree_node("1()(2(3))");
+    let root = super::parentheses_str_to_binary_tree("1()(2(3))");
     assert_eq!(preorder_traversal(root), vec![1, 2, 3]);
 }
