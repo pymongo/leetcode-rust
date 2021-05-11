@@ -18,7 +18,7 @@ fn my_sqrt(num: i32) -> i32 {
         return 0;
     }
     // 牛顿法迭代序列的第一项是x，第二项(也就初始值)是x/2，要用f64确保不会因为精度引起误差
-    let num = num as f64;
+    let num = f64::from(num);
     let (mut last_n, mut n) = (num, num / 2.0);
     while last_n - n > 1e-3 {
         last_n = n;

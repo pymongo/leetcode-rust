@@ -38,7 +38,7 @@ fn insertion_sort_list_dirty_solution(head: Option<Box<ListNode>>) -> Option<Box
     nums.sort_unstable();
     let mut head = None;
     let mut curr = &mut head;
-    for num in nums.into_iter() {
+    for num in nums {
         *curr = Some(Box::new(ListNode::new(num)));
         curr = &mut curr.as_mut()?.next;
     }

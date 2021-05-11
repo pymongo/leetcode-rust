@@ -1,6 +1,14 @@
 /*! https://leetcode.com/problems/implement-strstr/
+如果直接调用标准库API,那这题可以简单的写成
+```text
+match haystack.find(needle) {
+    Some(index) => index as i32,
+    None => -1,
+}
+```
 实现C语言自带的strstr()以及Java的indexOf() API
 功能：查找字符串中的一个子串的出现位置，类似于find()、contains() API
+
 ## KMP算法
 相关知识：3. Longest Substring Without Repeating Characters
 例如：ABABD中搜索ABD，KMP算法的优势在于发现第一个AB不合条件后，指针立即跳到第二个AB的A上，
@@ -8,13 +16,6 @@
 
 KMP用到的数据结构很像动态规划的dp数组，实际上是dfa(确定有限状态机)
 */
-
-fn impl_strstr_dirty_solution(haystack: String, needle: String) -> i32 {
-    match haystack.find(&needle) {
-        Some(index) => index as i32,
-        None => -1,
-    }
-}
 
 /// 抄别人的kmp算法
 #[cfg(FALSE)]

@@ -482,7 +482,7 @@ const fn subtract_product_and_sum(mut n: i32) -> i32 {
 fn kids_with_candies(candies: Vec<i32>, extra_candies: i32) -> Vec<bool> {
     let max = *candies.iter().max().unwrap();
     let mut ret = Vec::with_capacity(candies.len());
-    for candy in candies.into_iter() {
+    for candy in candies {
         ret.push(candy + extra_candies >= max);
     }
     ret
@@ -832,7 +832,7 @@ fn test_find_content_children() {
 fn maximum_units(mut box_types: Vec<Vec<i32>>, mut truck_size: i32) -> i32 {
     box_types.sort_unstable_by_key(|box_type| -box_type[1]);
     let mut ret = 0;
-    for box_type in box_types.into_iter() {
+    for box_type in box_types {
         // 这里类似于Go语言解构数组的写法: const [size, unit] = boxTypes[i];
         // refutable pattern: let [quantity, unit_price, ..] = box_type[..]; 意思是这种写法是可辩驳的(refutable)，要写成if let或match
         let (quantity, unit_price) = (box_type[0], box_type[1]);
@@ -912,7 +912,7 @@ fn reformat_phone_number(number: String) -> String {
     let mut s: Vec<u8> = number
         .into_bytes()
         .into_iter()
-        .filter(|x| x.is_ascii_digit())
+        .filter(u8::is_ascii_digit)
         .collect();
     let len = s.len();
     let mut n_3_pairs = len / 3;
@@ -1609,7 +1609,7 @@ fn find_max_average(nums: Vec<i32>, k: i32) -> f64 {
         window_sum = window_sum - nums[i - k] + nums[i];
         max_sum = max_sum.max(window_sum);
     }
-    max_sum as f64 / k as f64
+    f64::from(max_sum) / k as f64
 }
 
 #[test]
@@ -2177,7 +2177,7 @@ fn are_almost_equal(s1: String, s2: String) -> bool {
     extra_chars.iter().all(|&count| count == 0)
 }
 
-/// https://leetcode-cn.com/problems/replace-all-digits-with-characters/
+/// https://leetcode.com/problems/replace-all-digits-with-characters/
 fn replace_digits(s: String) -> String {
     let mut s = s.into_bytes();
     let len = s.len();
@@ -2197,70 +2197,24 @@ fn test_replace_digits() {
     }
 }
 
-/// https://leetcode-cn.com/problems/seat-reservation-manager/
-struct SeatManager {
-    // seat[i]=true，表示座位i可以被预约
-    seat: Vec<bool>,
-    len: usize,
-    min: usize,
-}
-
-impl SeatManager {
-    fn new(n: i32) -> Self {
-        let len = n as usize + 1;
-        Self {
-            seat: vec![true; len],
-            len,
-            min: 1,
+fn get_min_distance(nums: Vec<i32>, target: i32, start: i32) -> i32 {
+    let mut ret = std::i32::MAX;
+    for (i, num) in nums.into_iter().enumerate() {
+        if num == target {
+            ret = ret.min((i as i32 - start).abs());
         }
     }
-
-    #[cfg(not)]
-    fn reserve(&mut self) -> i32 {
-        for i in 1..self.len {
-            if self.seat[i] {
-                self.seat[i] = false;
-                return i as i32;
-            }
-        }
-        unreachable!()
-    }
-
-    /*
-    5 4 3 2 1
-        ^
-    */
-    fn reserve(&mut self) -> i32 {
-        let ret = self.min as i32;
-        // update self.min
-        for i in self.min + 1..self.len {
-            if self.seat[i] {
-                self.min = i;
-                return ret;
-            }
-        }
-        // 更合理的写法是 self.min=None
-        self.min = self.len;
-        ret
-    }
-
-    fn unreserve(&mut self, seat_number: i32) {
-        // update self.min
-        let i = seat_number as usize;
-        self.seat[i] = true;
-        self.min = self.min.min(i);
-    }
+    ret
 }
 
 #[test]
-fn feature() {
-    let mut seat = SeatManager::new(5);
-    assert_eq!(seat.reserve(), 1); // 所有座位都可以预约，所以返回最小编号的座位，也就是 1 。
-    assert_eq!(seat.reserve(), 2); // 可以预约的座位为 [2,3,4,5] ，返回最小编号的座位，也就是 2 。
-    seat.unreserve(2); // 将座位 2 变为可以预约，现在可预约的座位为 [2,3,4,5] 。
-    assert_eq!(seat.reserve(), 2); // 可以预约的座位为 [2,3,4,5] ，返回最小编号的座位，也就是 2 。
-    assert_eq!(seat.reserve(), 3); // 可以预约的座位为 [3,4,5] ，返回最小编号的座位，也就是 3 。
-    assert_eq!(seat.reserve(), 4); // 可以预约的座位为 [4,5] ，返回最小编号的座位，也就是 4 。
-    assert_eq!(seat.reserve(), 5); // 唯一可以预约的是座位 5 ，所以返回 5 。
-    seat.unreserve(5); // 将座位 5 变为可以预约，现在可预约的座位为 [5] 。
+fn test_get_min_distance() {
+    const TEST_CASES: [(&[i32], i32, i32, i32); 3] = [
+        (&[5, 3, 6], 5, 2, 2),
+        (&[1, 2, 3, 4, 5], 5, 3, 1),
+        (&[1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 1, 0, 0),
+    ];
+    for (nums, target, start, output) in TEST_CASES {
+        assert_eq!(get_min_distance(nums.to_vec(), target, start), output);
+    }
 }

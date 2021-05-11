@@ -27,6 +27,7 @@ fn count_primes_brute_force(n: i32) -> i32 {
             primes[num] = false;
             continue;
         }
+        #[allow(clippy::cast_precision_loss)]
         let max_lower_factor = (num as f32).sqrt() as usize;
         for lower_factor in (3..=max_lower_factor).step_by(2) {
             if primes[lower_factor] && num % lower_factor == 0 {
@@ -93,14 +94,13 @@ fn eratosthenes(n: i32) -> i32 {
 /// 埃氏筛其实还是存在冗余的标记操作，比如对于 4545 这个数，它会同时被 3,53,5 两个数标记为合数，因此我们优化的目标是让每个合数只被标记一次
 #[allow(clippy::needless_range_loop)]
 fn linear(n: i32) -> i32 {
-    let n = n as usize;
-
     // 根据数学公式得出1..n范围内大概有几个质数，误差在15%以内，这样所需的内存空间就远小于粗糙的x/2(全奇数)预分配空间
     // 但是ln(x)运算会引入额外的时间复杂度
-    let n_f32 = n as f32;
-    let primes_count_prediction = 1.15f32 * n_f32 / n_f32.ln();
+    let n_f64 = f64::from(n);
+    let primes_count_prediction = 1.15_f64 * n_f64 / n_f64.ln();
     let mut primes = Vec::with_capacity(primes_count_prediction as usize);
 
+    let n = n as usize;
     let mut is_prime = vec![true; n];
     for i in 2..n {
         if is_prime[i] {

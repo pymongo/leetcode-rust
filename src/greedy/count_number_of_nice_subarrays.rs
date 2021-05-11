@@ -33,12 +33,12 @@ fn number_of_subarrays(nums: Vec<i32>, k: i32) -> i32 {
     let k = k as usize;
 
     let mut ret = 0;
-    for num in nums.into_iter() {
+    for num in nums {
         if num % 2 == 1 {
             odd += 1;
         }
         if odd >= k {
-            ret += cnt[odd - k] as i32;
+            ret += i32::from(cnt[odd - k]);
         }
         cnt[odd] += 1;
     }

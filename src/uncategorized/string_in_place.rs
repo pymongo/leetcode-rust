@@ -134,12 +134,12 @@ fn test_reverse_words_in_a_sentence() {
     }
 }
 
-/// https://leetcode.com/problems/reverse-string/
+/// <https://leetcode.com/problems/reverse-string/>
 fn reverse_string(s: &mut Vec<char>) {
     s.reverse();
 }
 
-/** https://leetcode.com/problems/rotate-array/
+/** <https://leetcode.com/problems/rotate-array/>
 Input:  nums = [1,2,3,4,5,6,7], k = 3
 Output: [5,6,7,1,2,3,4]
 Explanation: nums数组向右循环移位 3位
@@ -148,7 +148,7 @@ Explanation: nums数组向右循环移位 3位
 1. 环状替换
    参考学生时代换座位时，A同学要换到D同学的位置上，先把D同学移出教室(temp)，再将A同学移到D同学的位置上
    以此类推，重复上述过程N次。向右移位k次后的`new_index=(old_index+k)%len`
-   参考: https://leetcode.com/problems/rotate-array/solution/xuan-zhuan-shu-zu-yuan-di-huan-wei-xiang-xi-tu-jie/
+   参考: <https://leetcode.com/problems/rotate-array/solution/xuan-zhuan-shu-zu-yuan-di-huan-wei-xiang-xi-tu-jie/>
    教室换座位的解法在shuffle-string一题中有演示，这里就不重复了
 2. 先整体反转，再举办反转
    借助反转的数学原理，向右移k位等于整个数组reverse后，nums[0:k]和nums[k+1:len]再reverse一次

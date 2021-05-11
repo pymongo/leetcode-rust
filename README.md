@@ -101,7 +101,7 @@ leetcode_solutions
 |100|[Same Tree](https://leetcode.com/problems/same-tree/)|[Rust](src/binary_tree/same_tree.rs)|
 |102|[Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/)|[Rust](src/binary_tree/level_order_traversal.rs), [Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/traversal_level_order.py)|
 |103|[Binary Tree Zigzag Level Order Traversal](https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/)|[Rust](src/binary_tree/level_order_traversal.rs)|
-|104|[Maximum Depth of Binary Tree](https://leetcode.com/problems/maximum-depth-of-binary-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/depth_max_min.py)||
+|104|[Maximum Depth of Binary Tree](https://leetcode.com/problems/maximum-depth-of-binary-tree/)|[Rust](src/binary_tree/max_depth_of_binary_tree.rs)|
 |105|[Construct Binary Tree from Preorder and Inorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/construct_from_pre_order_and_in_order.py)|DFS, stack|
 |106|[Construct Binary Tree from Inorder and Postorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/construct_from_in_order_and_post_order.py)|DFS|
 |107|[Binary Tree Level Order Traversal II](https://leetcode.com/problems/binary-tree-level-order-traversal-ii/)|[Rust](src/binary_tree/level_order_traversal.rs)|
@@ -458,6 +458,9 @@ leetcode_solutions
 |1834|[Single Threaded Cpu](https://leetcode.com/problems/single-threaded-cpu/)|[Rust](src/data_structure/heap/single_threaded_cpu.rs)|
 |1837|[Sum of Digits in Base K](https://leetcode.com/problems/sum-of-digits-in-base-k/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1839|[Longest Substring Of All Vowels in Order](https://leetcode.com/problems/longest-substring-of-all-vowels-in-order/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|1844|[Replace All Digits with Characters](https://leetcode.com/problems/replace-all-digits-with-characters/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|1845|[Seat Reservation Manager](https://leetcode.com/problems/seat-reservation-manager/)|[Rust](src/data_structure/heap/seat_reservation_manager.rs)|
+|1848|[Minimum Distance to the Target Element](https://leetcode.com/problems/minimum-distance-to-the-target-element/)|[Rust](src/easy/leetcode_very_easy.rs)|
 
 ---
 
@@ -561,7 +564,7 @@ lintcode_problems
 |94|[Binary Tree Maximum Path Sum](https://lintcode.com/problem/binary-tree-maximum-path-sum/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/binary_tree_maximum_path_sum.py)|
 |95|[Validate Binary Search Tree](https://lintcode.com/problem/validate-binary-search-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/bst_valid.py)|
 |96|[Partition List](https://lintcode.com/problem/partition-list/)|leetcode_86|
-|97|[Maximum Depth of Binary Tree](https://lintcode.com/problem/maximum-depth-of-binary-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/depth_max_min.py)|
+|97|[Maximum Depth of Binary Tree](https://lintcode.com/problem/maximum-depth-of-binary-tree/)|leetcode_104|
 |98|[Sort List](https://lintcode.com/problem/sort-list/)|leetcode_148|
 |100|[Remove Duplicates from Sorted Array](https://lintcode.com/problem/remove-duplicates-from-sorted-array/)|leetcode_26|
 |102|[Linked List Cycle](https://lintcode.com/problem/linked-list-cycle/)|leetcode_141|

@@ -46,7 +46,7 @@ fn can_form_array(arr: Vec<i32>, pieces: Vec<Vec<i32>>) -> bool {
 
 /// https://leetcode.com/problems/maximum-nesting-depth-of-the-parentheses/
 /// 求字符串内有效括号的最大深度
-fn max_depth(s: String) -> i32 {
+fn maximum_nesting_depth_of_the_parentheses(s: String) -> i32 {
     let mut ret = 0;
     let mut depth = 0;
     for byte in s.into_bytes() {
@@ -66,10 +66,13 @@ fn max_depth(s: String) -> i32 {
 }
 
 #[test]
-fn test_max_depth() {
+fn test_maximum_nesting_depth_of_the_parentheses() {
     const TEST_CASES: [(&str, i32); 3] = [("", 0), ("()()", 1), ("()(()())", 2)];
     for &(s, expected) in TEST_CASES.iter() {
-        assert_eq!(max_depth(s.to_owned()), expected);
+        assert_eq!(
+            maximum_nesting_depth_of_the_parentheses(s.to_owned()),
+            expected
+        );
     }
 }
 
@@ -424,8 +427,8 @@ impl NumMatrix {
         let m = matrix.len();
         let n = if m == 0 { 0 } else { matrix[0].len() };
         let mut prefix_sum = vec![vec![0; n + 1]; m + 1];
-        for i in 1..m + 1 {
-            for j in 1..n + 1 {
+        for i in 1..=m {
+            for j in 1..=n {
                 prefix_sum[i][j] = prefix_sum[i - 1][j] + prefix_sum[i][j - 1]
                     - prefix_sum[i - 1][j - 1]
                     + matrix[i - 1][j - 1];

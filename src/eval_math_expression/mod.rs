@@ -18,7 +18,7 @@ fn clumsy_factorial(n: i32) -> i32 {
     */
     let mut stack = vec![n];
     let mut operator_flag = 0b0000_0001u8;
-    for operand in (1..=n - 1).rev() {
+    for operand in (1..n).rev() {
         match operator_flag {
             0b0000_0001 => *stack.last_mut().unwrap() *= operand,
             0b0000_0100 => *stack.last_mut().unwrap() /= operand,
@@ -70,7 +70,7 @@ fn test_clumsy_factorial() {
 fn eval_int_math_expression(s: String) -> i32 {
     fn read_a_i32(bytes: &[u8], cursor: &mut usize) -> i32 {
         // assert bytes[cursor] is start index of i32
-        let mut number = (bytes[*cursor] - b'0') as i32;
+        let mut number = i32::from(bytes[*cursor] - b'0');
         while let Some(next) = bytes.get(*cursor + 1) {
             if next.is_ascii_digit() {
                 number = number * 10 + (bytes[*cursor + 1] - b'0') as i32;
