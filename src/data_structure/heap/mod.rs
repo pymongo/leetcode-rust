@@ -1,4 +1,4 @@
 mod kth_largest_element_in_a_stream;
+mod seat_reservation_manager;
 mod single_threaded_cpu;
 mod top_k_frequent_elements;
-mod seat_reservation_manager;

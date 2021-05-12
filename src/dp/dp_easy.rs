@@ -18,11 +18,11 @@ fn test_min_cost_climbing_stairs() {
 
 /// https://leetcode.com/problems/coin-lcci/
 fn ways_to_change(n: i32) -> i32 {
-    if n == 900750 {
-        return 504188296;
+    if n == 900_750 {
+        return 504_188_296;
     }
-    if n == 929782 {
-        return 286635025;
+    if n == 929_782 {
+        return 286_635_025;
     }
     let n = n as usize;
     let mut dp = vec![0; n + 1];

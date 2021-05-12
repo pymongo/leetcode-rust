@@ -34,7 +34,7 @@ fn my_pow(base: f64, mut exponent: i32) -> f64 {
 fn test_my_pow() {
     const TEST_CASES: [(f64, i32, f64); 3] =
         [(2.10, 3, 9.261), (2.0, -2, 0.25), (2.0, -2147483648, 0.0)];
-    for (x, n, pow_output) in std::array::IntoIter::new(TEST_CASES) {
+    for (x, n, pow_output) in TEST_CASES {
         assert!((my_pow(x, n) - pow_output).abs() < 10e-6);
     }
 }

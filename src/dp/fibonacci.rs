@@ -15,7 +15,7 @@ const fn fib_recursive(n: i32, a: i32, b: i32) -> i32 {
 }
 
 const fn fib_iterative(mut n: i32) -> i32 {
-    let (mut a, mut b) = (0i32, 1i32);
+    let (mut a, mut b) = (0_i32, 1_i32);
     while n >= 1 {
         let temp = b;
         b += a;

@@ -21,12 +21,12 @@ fn can_form_array(arr: Vec<i32>, pieces: Vec<Vec<i32>>) -> bool {
         // since integers in pieces are distinct, so each piece[0] is distinct
         pieces_index[piece[0] as usize] = i;
     }
-    let (mut i, n) = (0usize, arr.len());
+    let (mut i, n) = (0_usize, arr.len());
     while i < n {
         let idx = pieces_index[arr[i] as usize];
         if idx != UNINIT {
             let piece = &pieces[idx];
-            let (mut j, m) = (0usize, piece.len());
+            let (mut j, m) = (0_usize, piece.len());
             #[allow(clippy::suspicious_operation_groupings)]
             while j < m && piece[j] == arr[i] {
                 i += 1;
@@ -102,7 +102,7 @@ fn largest_perimeter(mut a: Vec<i32>) -> i32 {
             return a[i - 2] + a[i - 1] + a[i];
         }
     }
-    0i32
+    0_i32
 }
 
 /// https://leetcode.com/problems/can-place-flowers/
@@ -110,7 +110,7 @@ fn can_place_flowers(mut flowerbed: Vec<i32>, n: i32) -> bool {
     // 头尾加上0，这样就不用边界检查(这个我没想到，还有戳气球dp那题也是头尾加个分值为1的气球避免边界情况要单独讨论)
     flowerbed.insert(0, 0);
     flowerbed.push(0);
-    let mut ret = 0i32;
+    let mut ret = 0_i32;
     let len = flowerbed.len();
     for i in 1..len - 1 {
         if flowerbed[i - 1] == 0 && flowerbed[i] == 0 && flowerbed[i + 1] == 0 {
@@ -312,7 +312,7 @@ const fn copy_and_paste_min_steps(mut n: i32) -> i32 {
 fn is_one_bit_character(bits: Vec<i32>) -> bool {
     let n = bits.len();
     let last_idx = n - 1;
-    let mut i = 0usize;
+    let mut i = 0_usize;
     while i < last_idx {
         if bits[i] == 0 {
             i += 1;
@@ -347,7 +347,7 @@ fn number_of_arithmetic_slices(a: Vec<i32>) -> i32 {
 fn rotated_digits(n: i32) -> i32 {
     fn is_good(mut num: i32) -> bool {
         // 因为n<=10000而且10000不是好数，所以可以认为至多是4位数
-        let mut digits = [0u8; 4];
+        let mut digits = [0_u8; 4];
         for i in (0..4).rev() {
             let digit = (num % 10) as u8;
             if digit == 3 || digit == 4 || digit == 7 {

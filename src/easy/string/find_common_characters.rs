@@ -6,7 +6,7 @@
 #[allow(clippy::needless_range_loop)]
 fn find_common_chars(a: Vec<String>) -> Vec<String> {
     let n = a.len();
-    let mut arr = vec![vec![0u8; n]; 26];
+    let mut arr = vec![vec![0_u8; n]; 26];
     for word in 0..n {
         for c in a[word].as_bytes() {
             arr[(c - b'a') as usize][word] += 1;
@@ -14,7 +14,7 @@ fn find_common_chars(a: Vec<String>) -> Vec<String> {
     }
 
     let mut ret = Vec::new();
-    'outer: for letter in 0..26usize {
+    'outer: for letter in 0..26_usize {
         let mut common_occur_times = 0;
         for word in 0..n {
             let letter_occur_times = arr[letter][word];

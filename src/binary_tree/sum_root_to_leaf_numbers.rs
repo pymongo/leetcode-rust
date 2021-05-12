@@ -66,7 +66,7 @@ impl Solution {
         if root.is_none() {
             return 0;
         }
-        dfs_backtracking_best(root, &mut 0i32)
+        dfs_backtracking_best(root, &mut 0_i32)
     }
 }
 

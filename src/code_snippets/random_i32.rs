@@ -32,8 +32,9 @@ pub fn random_i32() -> i32 {
     unsafe { rand() }
 }
 
+#[must_use]
 pub fn rand_range(min: i32, max: i32) -> i32 {
-    const RAND_MAX: i32 = 0x7fffffff;
+    const RAND_MAX: i32 = 0x7fff_ffff;
     let random_num = random_i32();
     // 更精准点的随机数范围生成过程: min + random_num / (RAND_MAX / (max - min + 1) + 1)
     // rand() % 7的范围在[0,6]，加上offset 1正好是[1,7]

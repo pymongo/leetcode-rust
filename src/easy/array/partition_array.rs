@@ -41,7 +41,7 @@ fn remove_duplicates_from_sorted_array(nums: &mut Vec<i32>) -> i32 {
     if n == 0 {
         return 0;
     }
-    let mut last_unique = 0usize;
+    let mut last_unique = 0_usize;
     for i in 1..n {
         if nums[i] != nums[last_unique] {
             // 先前移到下个空位(slow)，再把unique的数字换过来

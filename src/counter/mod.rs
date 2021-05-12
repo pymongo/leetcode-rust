@@ -11,8 +11,8 @@ mod number_of_good_pairs;
 /// https://leetcode.com/problems/first-unique-character-in-a-string/
 fn first_unique_char(s: String) -> i32 {
     let s = s.into_bytes();
-    let mut counter = [0u16; 26];
-    for &byte in s.iter() {
+    let mut counter = [0_u16; 26];
+    for &byte in &s {
         counter[(byte - b'a') as usize] += 1;
     }
     for (i, byte) in s.into_iter().enumerate() {
@@ -65,7 +65,7 @@ fn test_unique_occurrences() {
 /// https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/
 /// 前缀和还有一个应用是币币交易撮合引擎的orderbook深度展示
 fn smaller_numbers_than_current_prefix_sum_solution(nums: Vec<i32>) -> Vec<i32> {
-    let mut prefix_sum_counter = [0i32; 101];
+    let mut prefix_sum_counter = [0_i32; 101];
     for &num in &nums {
         prefix_sum_counter[num as usize] += 1;
     }
@@ -97,11 +97,11 @@ fn test_smaller_numbers_than_current() {
 
 /// https://leetcode.com/problems/find-words-that-can-be-formed-by-characters/
 fn count_characters(words: Vec<String>, chars: String) -> i32 {
-    let mut counter = [0u8; 26];
+    let mut counter = [0_u8; 26];
     for each in chars.into_bytes() {
         counter[(each - b'a') as usize] += 1;
     }
-    let mut ret = 0usize;
+    let mut ret = 0_usize;
     'next_word: for word in words {
         let mut cnt = counter;
         let word_len = word.len();
@@ -119,7 +119,7 @@ fn count_characters(words: Vec<String>, chars: String) -> i32 {
 
 /// https://leetcode.com/problems/intersection-of-three-sorted-arrays/
 fn arrays_intersection(arr1: Vec<i32>, arr2: Vec<i32>, arr3: Vec<i32>) -> Vec<i32> {
-    let mut counter = [0u8; 2001];
+    let mut counter = [0_u8; 2001];
     for num in arr1 {
         counter[num as usize] += 1;
     }
@@ -140,7 +140,7 @@ fn arrays_intersection(arr1: Vec<i32>, arr2: Vec<i32>, arr3: Vec<i32>) -> Vec<i3
 
 /// https://leetcode.com/problems/sum-of-unique-elements/
 fn sum_of_unique(nums: Vec<i32>) -> i32 {
-    let mut counter = [0u8; 101];
+    let mut counter = [0_u8; 101];
     for num in nums {
         counter[num as usize] += 1;
     }

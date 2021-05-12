@@ -20,7 +20,7 @@ const NUMS: [i32; 97] = [
 #[bench]
 fn bench_fixed_len_array_counter(bencher: &mut test::Bencher) {
     bencher.iter(|| {
-        let mut counter = [0u8; 101];
+        let mut counter = [0_u8; 101];
         for num in NUMS {
             counter[num as usize] += 1;
         }
@@ -36,7 +36,7 @@ fn bench_hashmap_counter(bencher: &mut test::Bencher) {
     bencher.iter(|| {
         let mut counter = std::collections::HashMap::with_capacity(NUMS.len());
         for num in NUMS {
-            *counter.entry(num).or_insert(0u8) += 1;
+            *counter.entry(num).or_insert(0_u8) += 1;
         }
         counter
             .into_iter()

@@ -21,8 +21,8 @@ impl RandomPickIndex {
         extern "C" {
             fn rand() -> i32;
         }
-        let mut count = 0i32;
-        let mut ret = 0usize;
+        let mut count = 0_i32;
+        let mut ret = 0_usize;
         for (i, num) in self.nums.iter().enumerate() {
             if target.ne(num) {
                 continue;

@@ -77,7 +77,7 @@ fn restore_ip_addresses(s: String) -> Vec<String> {
             match checked_addr_seg_add(ip_addr_seg, args.s[i]) {
                 Some(new_val) => {
                     ip_addr_seg = new_val;
-                    if ip_addr_seg == 0u8 {
+                    if ip_addr_seg == 0_u8 {
                         // 上一个if语句已经处理了IPv4为0的情况，这里就直接跳过
                         // 直接break，避免0的情况被重复记入
                         break;

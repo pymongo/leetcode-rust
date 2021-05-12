@@ -2,7 +2,7 @@
 fn di_string_match(s: String) -> Vec<i32> {
     let n = s.len();
     let mut ret = Vec::with_capacity(n + 1);
-    let (mut lo, mut hi) = (0i32, n as i32);
+    let (mut lo, mut hi) = (0_i32, n as i32);
     for ch in s.into_bytes() {
         if ch == b'I' {
             ret.push(lo);

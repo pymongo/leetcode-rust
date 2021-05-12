@@ -1,4 +1,3 @@
-
 //! https://leetcode.com/problems/seat-reservation-manager/
 
 struct SeatManagerBruteForce {
@@ -28,7 +27,6 @@ impl SeatManagerBruteForce {
         unreachable!()
     }
 
-
     fn unreserve(&mut self, seat_number: i32) {
         self.seat[seat_number as usize] = true;
     }
@@ -49,12 +47,10 @@ impl SeatManager {
         -self.0.pop().unwrap()
     }
 
-
     fn unreserve(&mut self, seat_number: i32) {
         self.0.push(-seat_number);
     }
 }
-
 
 #[test]
 fn test_seat_reservation_manager() {

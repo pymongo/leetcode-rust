@@ -24,6 +24,7 @@ const fn is_ugly(mut num: i32) -> bool {
 /// 在枚举时，我们只需要从 1 到 sqrt(n) 进行枚举即可。
 /// 这是因为如果 n 有一个大于 sqrt(n) 的因数 x，那么它一定有一个小于 sqrt(n) 的因数 n/x
 /// 所以求一个较小因数的同时也记入较大因数即可，一对一对地数更快
+#[allow(clippy::cast_precision_loss)]
 fn check_perfect_number(num: i32) -> bool {
     // num == 6 || num == 28 || num == 496 || num == 8128 || num == 33550336
     if num == 1 {

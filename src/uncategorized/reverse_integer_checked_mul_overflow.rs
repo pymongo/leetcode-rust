@@ -36,7 +36,7 @@ def reverse_number(n: int) -> int:
 fn reverse_integer(x: i32) -> i32 {
     /*
     || -> Option<i32> {
-        let mut ret = 0i32;
+        let mut ret = 0_i32;
         while x.abs() != 0 {
             ret = ret.checked_mul(10)?.checked_add(x%10)?;
             x /= 10;
@@ -45,7 +45,7 @@ fn reverse_integer(x: i32) -> i32 {
     }().unwrap_or(0)
     */
     fn helper(mut n: i32) -> Option<i32> {
-        let mut ret = 0i32;
+        let mut ret = 0_i32;
         while n.abs() != 0 {
             ret = ret.checked_mul(10)?.checked_add(n % 10)?;
             n /= 10;

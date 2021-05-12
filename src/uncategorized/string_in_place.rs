@@ -26,7 +26,7 @@ fn replace_question_mark_to_avoid_consecutive_repeating_char(s: String) -> Strin
 /// https://leetcode.com/problems/shuffle-string/
 /// 能不能用In-Place的swap操作完成重排？我联想到rotate_string那题教室换座位的情况，A的新座位在B，A挤到B的slot，把B挤出教室，然后B再去挤自己的新座位...
 fn shuffle_string_normal_solution(s: String, indices: Vec<i32>) -> String {
-    let mut ret = vec![0u8; s.len()];
+    let mut ret = vec![0_u8; s.len()];
     for (i, byte) in indices.into_iter().zip(s.into_bytes().into_iter()) {
         ret[i as usize] = byte;
     }

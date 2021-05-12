@@ -47,19 +47,19 @@ fn count_primes_brute_force(n: i32) -> i32 {
 /// leetcode上Rust0ms解答的示例，去掉三个超长测试用例会超时，我的暴力法则不会，说明我的暴力法更优
 fn count_primes_brute_force_2(n: i32) -> i32 {
     // 我的暴力法加上这三个超长测试用例的特判也是0ms
-    if n == 499979 {
+    if n == 499_979 {
         return 41537;
     }
-    if n == 999983 {
-        return 78497;
+    if n == 999_983 {
+        return 78_497;
     }
     if n == 1500000 {
-        return 114155;
+        return 114_155;
     }
 
     let mut primes = Vec::with_capacity(n as usize / 2);
     'outer: for i in 2..n {
-        for &prime in primes.iter() {
+        for &prime in &primes {
             if i % prime == 0 {
                 continue 'outer;
             }

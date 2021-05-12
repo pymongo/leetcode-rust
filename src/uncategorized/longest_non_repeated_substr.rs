@@ -39,8 +39,8 @@ fn sliding_window_ascii(s: String) -> i32 {
         return len;
     }
     // index: 索引表示 某小写字母 的ASCII值, value: 从窗函数的右边界往左看第一个 某小写字母的出现索引
-    let mut ascii_char_occur_index = [-1i32; 128];
-    let (mut left, mut right, mut max_len) = (0i32, 0i32, 0i32);
+    let mut ascii_char_occur_index = [-1_i32; 128];
+    let (mut left, mut right, mut max_len) = (0_i32, 0_i32, 0_i32);
     while right < len {
         let current_char = s[right as usize];
         if ascii_char_occur_index[current_char as usize] != -1 {
@@ -64,7 +64,7 @@ fn sliding_window_ascii(s: String) -> i32 {
 fn sliding_window_hashmap(s: String) -> i32 {
     let s = s.into_bytes();
     let mut max_len = 0;
-    let mut start = 0usize;
+    let mut start = 0_usize;
     let mut map = std::collections::HashMap::new();
     for (i, letter) in s.into_iter().enumerate() {
         if let Some(&left_index) = map.get(&letter) {

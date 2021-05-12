@@ -8,7 +8,7 @@ impl Solution {
     fn dp(s: String) -> String {
         let s = s.into_bytes();
         let n = s.len();
-        let (mut max_len, mut max_start) = (0usize, 0usize);
+        let (mut max_len, mut max_start) = (0_usize, 0_usize);
         let mut dp = vec![vec![false; n]; n];
         // 枚举子串的长度(枚举区间型动态规划的区间长度)，由于填表时依赖左下角的值，所以区间型动态规划最佳的填表方向是「左上-右下」对角线那样斜着填
         for len in 1..=n {
@@ -59,17 +59,17 @@ impl Solution {
         let new_len = 2 * len + 3;
 
         // Define a secondary array p[], where p[i] represents the radius of the longest palindrome centered on i.
-        let mut radius_of_i = vec![0usize; new_len];
+        let mut radius_of_i = vec![0_usize; new_len];
 
         // `max_len`: The length of the longest palindrome uncategorized in the original uncategorized
-        let mut max_radius = 0usize;
-        let mut max_radius_center_index = 0usize;
+        let mut max_radius = 0_usize;
+        let mut max_radius_center_index = 0_usize;
 
         // `right` represents the right boundary of
         // the longest palindrome centered on`center`
         // right = center + radius_of_i[center]
-        let mut center = 0usize;
-        let mut right = 0usize;
+        let mut center = 0_usize;
+        let mut right = 0_usize;
         for i in 1..(new_len - 1) {
             if i < right {
                 // [2 * center - i] is mirror of center for i
@@ -140,19 +140,19 @@ impl Solution {
         // 除了比原字符串多了n个#，还多了一个#、^、$，所以新字符串的长度是2n+3
         let len = 2 * input_str_len + 3;
         // 新字符串的回文半径=老字符串的最大长度
-        let mut max_radius = 0usize;
-        let mut max_radius_center_index = 0usize;
+        let mut max_radius = 0_usize;
+        let mut max_radius_center_index = 0_usize;
 
         // radius[i] represents the radius of the longest palindrome centered on i.
-        let mut radius_of_i = vec![0usize; len];
+        let mut radius_of_i = vec![0_usize; len];
 
         /* 以下两个变量，充分利用了回文数中心对称的特点，用到了动态规划，利用之前左边部分已经判别过回文的特点减少遍历 */
         // 当前已记录的最长回文子串 最远能向右扩散的索引
         // FIXME 注意当i即将超过right时，center和right会变，变了之后很可能不再是最长回文的索引
-        let mut right = 0usize;
+        let mut right = 0_usize;
         // 当前已记录的最长回文子串 最远能向右扩散的中心索引
         // max_len_center_index = max_len_right_index + radius_of_i[max_len_right_index]
-        let mut center = 0usize;
+        let mut center = 0_usize;
         // 因为center会不断往右移，center对应的半径【可能不是】最大半径的中心点
         let mut i_mirror_of_center;
 
@@ -383,7 +383,7 @@ fn dp_new(s: String) -> String {
         return unsafe { String::from_utf8_unchecked(s) };
     }
 
-    let mut max_start_index = 0usize;
+    let mut max_start_index = 0_usize;
     let mut max_len = 1_usize;
     let mut temp_len;
     let mut dp = vec![vec![true; len]; len];

@@ -3,7 +3,7 @@ fn partition_labels(s: String) -> Vec<i32> {
     const NOT_FOUND: usize = 501;
     let s = s.into_bytes();
     // s.len in range [1,500]
-    let mut last_occur = vec![0usize; b'z' as usize + 1];
+    let mut last_occur = vec![0_usize; b'z' as usize + 1];
     for (i, byte) in s.iter().enumerate() {
         last_occur[*byte as usize] = i;
     }

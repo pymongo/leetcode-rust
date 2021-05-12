@@ -17,7 +17,8 @@
     clippy::cast_sign_loss,
     clippy::cast_possible_wrap
 )]
-// cargo clippy --all -- -Wclippy::restriction -Wclippy::cargo -Wclippy::nursery -Wclippy::pedantic
+#![allow(clippy::needless_pass_by_value)]
+// cargo clippy --all -- -Wclippy::cargo -Wclippy::nursery -Wclippy::pedantic
 #![doc(html_playground_url = "https://play.rust-lang.org/")]
 
 // 如果mod backtracking写在mod macros上面，则mod backtracking无法使用macros内的所有宏

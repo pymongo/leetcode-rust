@@ -7,19 +7,19 @@ fn count_pairs_permutation_solution(nums: Vec<i32>) -> i32 {
         n & (n - 1) == 0
     }
     let mut counter_map = std::collections::BTreeMap::new();
-    for num in nums.into_iter() {
+    for num in nums {
         *counter_map.entry(num).or_insert(0) += 1;
     }
     let n = counter_map.keys().len();
     let mut unique = Vec::with_capacity(n);
     let mut counter = Vec::with_capacity(n);
-    for (key, value) in counter_map.into_iter() {
+    for (key, value) in counter_map {
         unique.push(key);
-        counter.push(value as i64);
+        counter.push(i64::from(value));
     }
     // unique.sort_unstable(); // 由于nums是有序的，插入counter时也是有序的，所以不用排序
     let n = unique.len();
-    let mut ret = 0i64;
+    let mut ret = 0_i64;
     for i in 0..n {
         for j in i..n {
             if is_power_of_2(unique[i] + unique[j]) {
@@ -32,13 +32,13 @@ fn count_pairs_permutation_solution(nums: Vec<i32>) -> i32 {
             }
         }
     }
-    (ret % (10i64.pow(9) + 7)) as i32
+    (ret % (10_i64.pow(9) + 7)) as i32
 }
 
 /// 由于 0<=nums[i]<=2^20，所以nums[i]+nums[i]只可能是2^0..=2^21，最小是0+1，最大是2^20+2^20
 /// leetcode.com版本太低不支持const fn内while loop
 const fn gen_power_of_2() -> [i32; 22] {
-    let mut ret = [0i32; 22];
+    let mut ret = [0_i32; 22];
     let mut i = 0;
     while i < 22 {
         ret[i] = 1 << i;
@@ -49,10 +49,10 @@ const fn gen_power_of_2() -> [i32; 22] {
 
 /// 生成从2^0到2^N次方的等比数列
 const fn gen_twos_geometric_series<const N: usize>() -> [i32; N] {
-    let mut ret = [0i32; N];
-    let mut i = 0usize;
+    let mut ret = [0_i32; N];
+    let mut i = 0_usize;
     while i < N {
-        ret[i] = 2i32.pow(i as u32);
+        ret[i] = 2_i32.pow(i as u32);
         i += 1;
     }
     ret
@@ -69,20 +69,20 @@ fn count_pairs_two_sum_solution(nums: Vec<i32>) -> i32 {
     // const TWO_SUMS: [i32; 22] = [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144, 524288, 1048576, 2097152];
     const TWO_SUMS: [i32; 22] = gen_twos_geometric_series::<22>();
     let mut counter = std::collections::BTreeMap::new();
-    let mut ret = 0i64;
-    for num in nums.into_iter() {
+    let mut ret = 0_i64;
+    for num in nums {
         for &two_sum in &TWO_SUMS {
             let target = two_sum - num;
             if target < 0 {
                 continue;
             }
             if let Some(&count) = counter.get(&target) {
-                ret += count as i64;
+                ret += i64::from(count);
             }
         }
-        *counter.entry(num).or_insert(0i32) += 1;
+        *counter.entry(num).or_insert(0_i32) += 1;
     }
-    (ret % (10i64.pow(9) + 7)) as i32
+    (ret % (10_i64.pow(9) + 7)) as i32
 }
 
 #[test]

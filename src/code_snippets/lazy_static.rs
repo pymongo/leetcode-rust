@@ -9,7 +9,7 @@ int_to_roman, roman_to_int(但是这两题用python更合适，需要HashMap有�
 ## 另一种泛型约束写法`struct LazyStaticCell<T, F: FnOnce() -> T> {`的缺点
 
 - 缺点1: 每个impl都要写老长<T, F: FnOnce() -> T>
-- 缺点2: 使用closure的语句都要多写闭包的函数签名，`static A: LazyStaticCell<i32, fn() -> i32> = LazyStaticCell::new(|| 0i32);`，可读性不好
+- 缺点2: 使用closure的语句都要多写闭包的函数签名，`static A: LazyStaticCell<i32, fn() -> i32> = LazyStaticCell::new(|| 0_i32);`，可读性不好
 */
 struct LazyStatic<T, F = fn() -> T> {
     init_once: std::sync::Once,

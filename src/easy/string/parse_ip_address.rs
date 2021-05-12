@@ -26,7 +26,7 @@ impl std::error::Error for IpAddrParseError {}
 
 fn valid_ipv4_address(bytes: &[u8]) -> Result<String, IpAddrParseError> {
     fn checked_restore_u8(chunk: &[u8]) -> Option<u8> {
-        let mut val = 0u8;
+        let mut val = 0_u8;
         for &byte in chunk.iter() {
             if !matches!(byte, b'0'..=b'9') {
                 return None;
@@ -80,7 +80,7 @@ fn valid_ipv6_address(bytes: &[u8]) -> Result<String, IpAddrParseError> {
 
 fn parse_ip_address_helper(ip: String) -> Result<String, IpAddrParseError> {
     let ip = ip.into_bytes();
-    for &byte in ip.iter() {
+    for &byte in &ip {
         match byte {
             b'.' => return valid_ipv4_address(&ip),
             b':' => return valid_ipv6_address(&ip),

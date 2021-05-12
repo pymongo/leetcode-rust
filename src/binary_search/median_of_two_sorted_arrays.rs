@@ -13,7 +13,7 @@ impl Solution {
         nums1.sort_unstable();
         let len = nums1.len();
         if len % 2 == 0 {
-            (nums1[len / 2 - 1] + nums1[len / 2]) as f64 / 2f64
+            (nums1[len / 2 - 1] + nums1[len / 2]) as f64 / 2_f64
         } else {
             nums1[len / 2] as f64
         }
@@ -21,7 +21,7 @@ impl Solution {
 
     /// [0ms, O(n)]既然两个数组已经有序，那么可以用归并排序的归并操作去合并数组提升性能，使用二分法能达到更快的logn时间复杂度
     fn merge_sort_solution(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
-        let (m, n, mut i, mut j) = (nums1.len(), nums2.len(), 0usize, 0usize);
+        let (m, n, mut i, mut j) = (nums1.len(), nums2.len(), 0_usize, 0_usize);
         let len = m + n;
         let half_len = len / 2;
         let mut merged = Vec::with_capacity(len);
@@ -38,7 +38,7 @@ impl Solution {
         // 如果元素个数已经够了，就提前返回，提升性能
         if merged.len() > half_len {
             return if len % 2 == 0 {
-                (merged[half_len - 1] + merged[half_len]) as f64 / 2f64
+                (merged[half_len - 1] + merged[half_len]) as f64 / 2_f64
             } else {
                 merged[half_len] as f64
             };
@@ -53,7 +53,7 @@ impl Solution {
             j += 1;
         }
         if len % 2 == 0 {
-            (merged[half_len - 1] + merged[half_len]) as f64 / 2f64
+            (merged[half_len - 1] + merged[half_len]) as f64 / 2_f64
         } else {
             merged[half_len] as f64
         }
@@ -76,12 +76,12 @@ mod test_find_median_sorted_arrays {
         (&[1, 2, 3], &[4, 5], 3f64),
         (&[3, 4], &[1, 2, 5], 3f64),
         (&[-2, -1], &[3], -1f64),
-        (&[1, 3], &[2], 2f64),
+        (&[1, 3], &[2], 2_f64),
         (&[3], &[-2, -1], -1f64),
         (&[1, 2], &[3, 4], 2.5),
         (&[4, 5], &[1, 2, 3], 3f64),
-        (&[1, 2], &[1, 2, 3], 2f64),
-        (&[1, 2, 3], &[1, 2, 3], 2f64),
+        (&[1, 2], &[1, 2, 3], 2_f64),
+        (&[1, 2, 3], &[1, 2, 3], 2_f64),
     ];
 
     #[test]

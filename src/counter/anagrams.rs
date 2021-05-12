@@ -3,11 +3,11 @@ fn is_anagram(s: String, t: String) -> bool {
     if s.len() != t.len() {
         return false;
     }
-    let mut counter = [0u16; 26];
-    for each in s.into_bytes().into_iter() {
+    let mut counter = [0_u16; 26];
+    for each in s.into_bytes() {
         counter[(each - b'a') as usize] += 1;
     }
-    for each in t.into_bytes().into_iter() {
+    for each in t.into_bytes() {
         let idx = (each - b'a') as usize;
         if counter[idx] == 0 {
             return false;
@@ -22,8 +22,8 @@ fn is_anagram(s: String, t: String) -> bool {
 /// 由于Python没有原始数组，list是可变的不能Hash，所以list要转为tuple多了很多额外的操作
 fn group_anagrams(strs: Vec<String>) -> Vec<Vec<String>> {
     let mut group = std::collections::HashMap::new();
-    for s in strs.into_iter() {
-        let mut counter = [0u8; 26];
+    for s in strs {
+        let mut counter = [0_u8; 26];
         for &byte in s.as_bytes() {
             counter[(byte - b'a') as usize] += 1;
         }

@@ -163,7 +163,7 @@ impl EditDistanceRecursive {
         if index2 == 0 {
             return index1;
         }
-        // NOTE 注意为了避免0usize-1越界，所以index1会从 word_len1..1
+        // NOTE 注意为了避免0_usize-1越界，所以index1会从 word_len1..1
         // 所以当前遍历的下标应该分别是 index1-1 和 index2-1
         if self.word1[index1 - 1] == self.word2[index2 - 1] {
             return self.edit_distance(index1 - 1, index2 - 1);

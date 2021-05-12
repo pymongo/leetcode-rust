@@ -35,10 +35,10 @@ fn greedy(nums: Vec<i32>) -> i32 {
         .into_iter()
         .map(|num| num as usize)
         .collect::<Vec<usize>>();
-    let mut step = 0i32;
-    let mut right_most = 0usize;
+    let mut step = 0_i32;
+    let mut right_most = 0_usize;
     // 当前这一步最远能跳到哪
-    let mut curr_step_right_most = 0usize;
+    let mut curr_step_right_most = 0_usize;
     // 注意遍历到终点的前一格
     for i in 0..n - 1 {
         right_most = right_most.max(nums[i] + i);

@@ -34,7 +34,7 @@ fn max_sliding_window(nums: Vec<i32>, k: i32) -> Vec<i32> {
     let n = nums.len();
     let k = k as usize;
     let mut monotonic_queue = MonotonicQueue::new(n);
-    let mut i = 0usize;
+    let mut i = 0_usize;
     let mut res = Vec::with_capacity(n - k + 1);
     while i < k - 1 {
         monotonic_queue.push(nums[i]);

@@ -1,6 +1,6 @@
 /*! leetcode超简单题，不看答案20分钟内搞定，例如每次周赛第一题(送分题)
 ## 简短一行Rust代码能解决的题:
-- [剑指Offer 17. 打印从1到最大n位的十进制数]: (1..10i32.pow(n as u32)).collect()
+- [剑指Offer 17. 打印从1到最大n位的十进制数]: (1..10_i32.pow(n as u32)).collect()
 */
 
 /// https://leetcode.com/problems/to-lower-case/
@@ -62,8 +62,8 @@ fn generate_the_string(n: i32) -> String {
 
 /// https://leetcode.com/problems/robot-return-to-origin/
 fn judge_circle(moves: String) -> bool {
-    let mut up_and_down = 0i32;
-    let mut left_and_right = 0i32;
+    let mut up_and_down = 0_i32;
+    let mut left_and_right = 0_i32;
     moves.into_bytes().into_iter().for_each(|byte| match byte {
         b'U' => up_and_down += 1,
         b'D' => up_and_down -= 1,
@@ -160,7 +160,7 @@ fn max_increase_keeping_skyline(grid: Vec<Vec<i32>>) -> i32 {
     let (m, n) = (grid.len(), grid[0].len());
     let mut max_row: Vec<i32> = Vec::with_capacity(m);
     let mut max_col: Vec<i32> = vec![i32::MIN; n];
-    for row in grid.iter() {
+    for row in &grid {
         max_row.push(*row.iter().max().unwrap());
     }
     for j in 0..n {
@@ -197,7 +197,6 @@ impl ParkingSystem {
     }
 
     fn add_car(&mut self, car_type: i32) -> bool {
-        #[inline(always)]
         fn helper(slot: &mut u16) -> bool {
             if *slot == 0 {
                 false
@@ -289,7 +288,7 @@ fn count_binary_substrings(s: String) -> i32 {
 /// 这题跟count_binary_substring有点像，也是全为0或1的数组
 fn find_max_consecutive_ones(nums: Vec<i32>) -> i32 {
     let (mut cur_ones_len, mut max_ones_len) = (0, 0);
-    for num in nums.into_iter() {
+    for num in nums {
         if num == 1 {
             cur_ones_len += 1;
         } else {
@@ -404,7 +403,7 @@ fn reconstruct_queue(mut a: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
     // 因为每个人前面有几个比他大的人数是确定的，而且身高逆序排列后能优先将大个子安排在index较前的slot
     // 用insert的原因是，后面遇到小个子，例如(7,0)之后是(5,0)，7已经占据了下标0，所以小个子就(insert(0))往后挪一格占据下标1
     let mut ret = Vec::with_capacity(a.len());
-    for people in a.into_iter() {
+    for people in a {
         let slot_index = people[1] as usize;
         ret.insert(slot_index, people);
     }
@@ -533,7 +532,7 @@ fn maximum_gap(mut nums: Vec<i32>) -> i32 {
 /// https://leetcode.com/problems/contains-duplicate/
 fn contains_duplicate(nums: Vec<i32>) -> bool {
     let mut set = std::collections::HashSet::new();
-    for num in nums.into_iter() {
+    for num in nums {
         if set.contains(&num) {
             return true;
         }
@@ -684,7 +683,7 @@ fn odd_cells(n: i32, m: i32, indices: Vec<Vec<i32>>) -> i32 {
     let (m, n) = (n as usize, m as usize);
     // 一开始的矩阵，都是0，所以都不是偶数(false)
     let mut mat = vec![vec![false; n]; m];
-    for indice in indices.into_iter() {
+    for indice in indices {
         let (row, col) = (indice[0] as usize, indice[1] as usize);
         for row in mat.iter_mut().take(m) {
             row[col] = !row[col];
@@ -711,7 +710,7 @@ fn flip_and_invert_image(mut a: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
 fn num_jewels_in_stones(j: String, s: String) -> i32 {
     let jewels: std::collections::HashSet<u8> = j.into_bytes().into_iter().collect(); // HashSet::from_iter
     let mut ret = 0;
-    for stone in s.into_bytes().into_iter() {
+    for stone in s.into_bytes() {
         if jewels.contains(&stone) {
             ret += 1;
         }
@@ -777,12 +776,12 @@ fn can_make_arithmetic_progression(mut arr: Vec<i32>) -> bool {
 /// 还有种解法是把所有起点做成HashSet再遍历找到not contains的终点，则为第一个出度为0的点
 fn dest_city(paths: Vec<Vec<String>>) -> String {
     let mut outdegree = std::collections::HashMap::<String, u8>::with_capacity(paths.len());
-    for path in paths.into_iter() {
+    for path in paths {
         let mut it = path.into_iter().take(2);
         *outdegree.entry(it.next().unwrap()).or_default() += 1;
         outdegree.entry(it.next().unwrap()).or_default();
     }
-    for (city, outdegree) in outdegree.into_iter() {
+    for (city, outdegree) in outdegree {
         if outdegree == 0 {
             return city;
         }
@@ -805,7 +804,7 @@ fn assign_cookies(mut children: Vec<i32>, mut cookies: Vec<i32>) -> i32 {
     // }
     let mut cookies = cookies.into_iter();
     let mut ret = 0;
-    for child in children.into_iter() {
+    for child in children {
         while let Some(cookie) = cookies.next() {
             if cookie >= child {
                 ret += 1;
@@ -875,7 +874,7 @@ fn large_group_positions(s: String) -> Vec<Vec<i32>> {
 /// https://leetcode.com/problems/lemonade-change/
 fn lemonade_change(bills: Vec<i32>) -> bool {
     // 面值为20的纸币是最大的，基本没用，不能用于找零
-    let (mut currency_5, mut currency_10) = (0u16, 0u16);
+    let (mut currency_5, mut currency_10) = (0_u16, 0_u16);
     for bill in bills {
         match bill {
             // 多一张面值为5的纸币
@@ -1101,7 +1100,7 @@ fn test_lucky_numbers() {
 /// https://leetcode.com/problems/check-if-n-and-its-double-exist/
 fn check_if_n_and_its_double_exist(nums: Vec<i32>) -> bool {
     let mut set = std::collections::HashSet::new();
-    for num in nums.into_iter() {
+    for num in nums {
         if set.contains(&num) {
             return true;
         } else {
@@ -1134,11 +1133,11 @@ fn test_check_if_n_and_its_double_exist() {
 fn repeated_n_times(a: Vec<i32>) -> i32 {
     // let n = a.len() as u16 / 2;
     // let mut counter = std::collections::HashMap::new();
-    // for num in a.into_iter() {
-    //     *counter.entry(num).or_insert(0u16) += 1;
+    // for num in a {
+    //     *counter.entry(num).or_insert(0_u16) += 1;
     // }
     //
-    // for (num, count) in counter.into_iter() {
+    // for (num, count) in counter {
     //     if count == n {
     //         return num
     //     }
@@ -1147,7 +1146,7 @@ fn repeated_n_times(a: Vec<i32>) -> i32 {
 
     // 由于其他元素只出现了一次，所以不需要counter也行
     let mut set = std::collections::HashSet::new();
-    for num in a.into_iter() {
+    for num in a {
         if !set.insert(num) {
             return num;
         }
@@ -1238,7 +1237,7 @@ fn test_summary_ranges() {
 fn prefixes_div_by5(a: Vec<i32>) -> Vec<bool> {
     let mut num = 0;
     let mut ret = Vec::with_capacity(a.len());
-    for bit in a.into_iter() {
+    for bit in a {
         // 由于是否能被5整除只跟十位和个位有关，所以num每次迭代时都%10避免溢出
         num = (num * 2 + bit) % 10;
         ret.push(num % 5 == 0);
@@ -1250,7 +1249,7 @@ fn prefixes_div_by5(a: Vec<i32>) -> Vec<bool> {
 fn count_good_rectangles(rectangles: Vec<Vec<i32>>) -> i32 {
     let mut max_width = 0;
     let mut max_width_count = 0;
-    for rec in rectangles.into_iter() {
+    for rec in rectangles {
         let width = rec[0].min(rec[1]);
         match width.cmp(&max_width) {
             std::cmp::Ordering::Less => {}
@@ -1489,7 +1488,7 @@ fn final_prices(prices: Vec<i32>) -> Vec<i32> {
 /// https://leetcode.com/problems/sort-array-by-increasing-frequency/
 /// 按出现次数少到次数多排序，如果出现次数相同，则按数值大小倒序
 fn frequency_sort(nums: Vec<i32>) -> Vec<i32> {
-    let mut counter = [0u8; 201];
+    let mut counter = [0_u8; 201];
     let mut max_freq = 1u8;
     for num in nums {
         let idx = (num + 100) as usize;
@@ -1601,6 +1600,7 @@ fn test_count_consistent_strings() {
 }
 
 /// https://leetcode.com/problems/maximum-average-subarray-i/
+#[allow(clippy::cast_precision_loss)]
 fn find_max_average(nums: Vec<i32>, k: i32) -> f64 {
     let k = k as usize;
     let mut window_sum: i32 = nums.iter().take(k).sum();
@@ -2071,7 +2071,7 @@ const fn sum_base(mut n: i32, k: i32) -> i32 {
 #[test]
 fn tew() {
     const TEST_CASES: [(i32, i32, i32); 2] = [(34, 6, 5 + 4), (10, 10, 1)];
-    for (n, k, output) in std::array::IntoIter::new(TEST_CASES) {
+    for (n, k, output) in TEST_CASES {
         assert_eq!(sum_base(n, k), output);
     }
 }
@@ -2149,15 +2149,15 @@ fn test_longest_beautiful_substring() {
         ("aeiaaioaaaaeiiiiouuuooaauuaeiu", 13),
         ("a", 0)
     ];
-    for (word, output) in std::array::IntoIter::new(TEST_CASES) {
+    for (word, output) in TEST_CASES {
         assert_eq!(longest_beautiful_substring(word.to_string()), output);
     }
 }
 
 /// https://leetcode.com/problems/check-if-one-string-swap-can-make-strings-equal/
 fn are_almost_equal(s1: String, s2: String) -> bool {
-    let mut extra_chars = [0i8; 26];
-    let mut diff_count = 0i8;
+    let mut extra_chars = [0_i8; 26];
+    let mut diff_count = 0_i8;
     for (ch1, ch2) in s1.into_bytes().into_iter().zip(s2.into_bytes().into_iter()) {
         if ch1 != ch2 {
             diff_count += 1;
@@ -2223,17 +2223,17 @@ fn test_get_min_distance() {
 /// 1 <= logs.length <= 100
 /// 1950 <= birthi < deathi <= 2050
 fn maximum_population(logs: Vec<Vec<i32>>) -> i32 {
-    let mut counter = [0u8; 101];
+    let mut counter = [0_u8; 101];
     for log in logs {
         let (brith, death) = (log[0], log[1]);
         for i in brith..death {
-            let i = (i-1950) as usize;
+            let i = (i - 1950) as usize;
             counter[i] += 1;
         }
     }
-    let mut max_count = 0u8;
+    let mut max_count = 0_u8;
     let mut max_population_year = -1;
-    for (i,  &count) in counter.iter().enumerate() {
+    for (i, &count) in counter.iter().enumerate() {
         if count > max_count {
             max_population_year = i as i32;
             max_count = count;
@@ -2245,8 +2245,8 @@ fn maximum_population(logs: Vec<Vec<i32>>) -> i32 {
 #[test]
 fn test_maximum_population() {
     let test_cases = vec![
-        (vec_vec![[1993,1999],[2000,2010]],1993),
-        (vec_vec![[1950,1961],[1960,1971],[1970,1981]],1960),
+        (vec_vec![[1993, 1999], [2000, 2010]], 1993),
+        (vec_vec![[1950, 1961], [1960, 1971], [1970, 1981]], 1960),
     ];
     for (logs, max_population_year) in test_cases {
         assert_eq!(maximum_population(logs), max_population_year);

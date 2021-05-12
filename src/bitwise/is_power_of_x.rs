@@ -126,7 +126,7 @@ fn is_power_of_3() {
 #[allow(overflowing_literals)]
 const fn is_power_of_4_solution1(n: i32) -> bool {
     // the literal `0xaaaaaaaa` (decimal `2863311530`) does not fit into the type `i32` and will become `-1431655766i32`
-    n > 0 && (n & -n) == n && n & 0xaaaaaaaa == 0
+    n > 0 && (n & -n) == n && n & 0xaaaa_aaaa == 0
 }
 
 /**

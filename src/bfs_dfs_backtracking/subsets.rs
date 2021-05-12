@@ -83,7 +83,7 @@ return output
 根据每个num的选或不选组成二叉树
 */
 fn subsets_bfs(nums: Vec<i32>) -> Vec<Vec<i32>> {
-    let mut last: Vec<Vec<i32>> = Vec::with_capacity(2usize.pow(nums.len() as u32));
+    let mut last: Vec<Vec<i32>> = Vec::with_capacity(2_usize.pow(nums.len() as u32));
     last.push(Vec::with_capacity(0));
     for num in nums {
         let mut curr = last.clone();

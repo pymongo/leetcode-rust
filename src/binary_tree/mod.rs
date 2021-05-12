@@ -1,5 +1,6 @@
 mod invert_binary_tree;
 mod is_bst;
+mod leaf_similar_trees;
 mod level_order_traversal;
 mod max_depth_of_binary_tree;
 mod preorder_traversal;
@@ -8,7 +9,6 @@ mod search_val_or_range_in_bst;
 mod serde_binary_tree_to_leetcode_vec;
 mod serde_binary_tree_to_parentheses_str;
 mod sum_root_to_leaf_numbers;
-//mod increasing_order_search_tree;
 pub use serde_binary_tree_to_leetcode_vec::{
     deserialize_vec_to_binary_tree, print_binary_tree, serialize_binary_tree_to_vec,
 };

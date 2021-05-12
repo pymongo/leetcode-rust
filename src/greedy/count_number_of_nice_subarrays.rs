@@ -25,11 +25,11 @@ fn number_of_subarrays_prefix_sum_brute_force(mut nums: Vec<i32>, k: i32) -> i32
 fn number_of_subarrays(nums: Vec<i32>, k: i32) -> i32 {
     let n = nums.len();
     // cnt有点像上面解法里的前缀和数组
-    let mut cnt = vec![0u16; n + 1];
+    let mut cnt = vec![0_u16; n + 1];
     // 拥有0个奇数的子数组有1个(就是空数组)
     cnt[0] = 1;
     // odd类似上面解法里的nums[i-1]
-    let mut odd = 0usize;
+    let mut odd = 0_usize;
     let k = k as usize;
 
     let mut ret = 0;

@@ -22,7 +22,7 @@ def gray_code(n: int) -> List[int]:
 ```
 */
 fn gray_code(n: i32) -> Vec<i32> {
-    let mut res: Vec<i32> = Vec::with_capacity(2usize.pow(n as u32));
+    let mut res: Vec<i32> = Vec::with_capacity(2_usize.pow(n as u32));
     res.push(0);
     // head表示镜像反射法生成格雷码中左侧补1需要加上的数，刚好等于镜像后的下半部分(需要左边加一个1)的个数
     let mut head: i32 = 1;

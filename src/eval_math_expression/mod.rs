@@ -17,7 +17,7 @@ fn clumsy_factorial(n: i32) -> i32 {
     ];
     */
     let mut stack = vec![n];
-    let mut operator_flag = 0b0000_0001u8;
+    let mut operator_flag = 0b0000_0001_u8;
     for operand in (1..n).rev() {
         match operator_flag {
             0b0000_0001 => *stack.last_mut().unwrap() *= operand,
@@ -161,7 +161,7 @@ impl Helper {
                 b' ' => continue,
                 b'0'..=b'9' => {
                     // 小心处理这两种测试用例时，字符串最后一个数字没有参与运算 (" 2-1 + 2 ", 3), ("1 + 1", 2)
-                    rhs = rhs * 10 + (ch - b'0') as i32;
+                    rhs = rhs * 10 + i32::from(ch - b'0');
                     continue;
                 }
                 b'(' => rhs = self.helper(),

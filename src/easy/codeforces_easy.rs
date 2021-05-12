@@ -25,7 +25,7 @@ fn cf_1a_theatre_square(
         .map(|each| each.parse::<u32>().unwrap())
         .collect();
     let (n, m, a) = (input_split[0], input_split[1], input_split[2]);
-    let num_width = (n / a) as u64 + (n % a != 0) as u64; // divmod, ceil
+    let num_width = u64::from(n / a) + (n % a != 0) as u64; // divmod, ceil
     let num_length = (m / a) as u64 + (m % a != 0) as u64;
     write!(&mut writer, "{}", num_width * num_length)?;
     Ok(())
@@ -49,10 +49,10 @@ where
     W: std::io::Write,
 {
     // max input len testcase is "100\r\n"([49,48,48,13(CR),10(LF)])
-    let mut read_buffer = [0u8; 5];
+    let mut read_buffer = [0_u8; 5];
     let _read_size = reader.read(&mut read_buffer)?;
-    let mut num = 0u8;
-    for &byte in read_buffer.iter() {
+    let mut num = 0_u8;
+    for &byte in &read_buffer {
         if byte == b'\r' || byte == b'\n' {
             break;
         }
@@ -133,7 +133,7 @@ fn cf_231a_team(
     for line in reader.lines().flatten() {
         input.push(line);
     }
-    let mut ret = 0u16;
+    let mut ret = 0_u16;
     for each in input.into_iter().skip(1) {
         let each = each.into_bytes();
         let num_sure_about_the_solution = each[0] - b'0' + each[2] - b'0' + each[4] - b'0';
@@ -174,11 +174,11 @@ fn cf_158a_next_round(
         .collect();
 
     let nums_max = nums[0] as usize;
-    let mut counter = [0u8; 101];
+    let mut counter = [0_u8; 101];
     for num in nums {
         counter[num as usize] += 1;
     }
-    let mut ret = 0u8;
+    let mut ret = 0_u8;
     // test_case: 4,2,[0,0,0,0], ignore counter[i] == 0
     for i in (1..=nums_max).rev() {
         if ret >= k {

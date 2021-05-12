@@ -1,7 +1,7 @@
 /// https://leetcode.com/problems/number-of-equivalent-domino-pairs/
 /// 既然nums[i][0]和nums[i][1]的取值范围都在0-9，那么可以聚合成一对2位十进制数，为了方便比较我们规定让较小的数放在十位
 fn num_equiv_domino_pairs(dominoes: Vec<Vec<i32>>) -> i32 {
-    let mut counter = [0u16; 100];
+    let mut counter = [0_u16; 100];
     let mut ret = 0;
     for each in dominoes {
         let index = if each[1] < each[0] {

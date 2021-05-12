@@ -20,7 +20,7 @@ fn letter_combinations_bfs(digits: String) -> Vec<String> {
     let mut last_combs = vec![vec![]];
     for digit in digits.into_bytes() {
         let mut curr_combs = Vec::with_capacity(last_combs.len() * 4);
-        for last_comb in last_combs.into_iter() {
+        for last_comb in last_combs {
             // 这里必须要克隆，因为例如会将一份last_comb="a"给拼成"ad","ae","af"
             for &letter in KEYMAP[(digit - b'0') as usize] {
                 let mut curr_comb = last_comb.clone();

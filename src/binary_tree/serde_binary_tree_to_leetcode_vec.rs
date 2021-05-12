@@ -37,10 +37,10 @@ Reference: https://github.com/msbanik/drawtree/blob/c145ba9ca7687576323ea01a9a38
 ## 完满(full)二叉树
 只要有子节点的节点必有两个子节点
 */
-pub fn deserialize_vec_to_binary_tree(vec: Vec<i32>) -> TreeLink {
-    let nodes = vec
-        .into_iter()
-        .map(|num| {
+pub fn deserialize_vec_to_binary_tree(level_order: &[i32]) -> TreeLink {
+    let nodes = level_order
+        .iter()
+        .map(|&num| {
             if num == TreeNode::NULL {
                 None
             } else {
@@ -107,14 +107,9 @@ pub fn print_binary_tree(root: TreeLink) -> Result<(), Box<dyn std::error::Error
 #[test]
 fn test_serde_binary_tree_to_leetcode_vec() {
     let null = TreeNode::NULL;
-    let node_vec1 = vec![1, 2, 3, null, null, 4, 5];
-    let node = deserialize_vec_to_binary_tree(node_vec1.clone());
+    let level_order_1 = vec![1, 2, 3, null, null, 4, 5];
+    let node = deserialize_vec_to_binary_tree(&level_order_1);
     print_binary_tree(node.clone()).unwrap();
-    let node_vec2 = serialize_binary_tree_to_vec(node);
-    assert_eq!(node_vec1, node_vec2);
-}
-
-#[test]
-fn test_print_binary_tree() {
-    
+    let level_order_2 = serialize_binary_tree_to_vec(node);
+    assert_eq!(level_order_1, level_order_2);
 }

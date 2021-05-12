@@ -2,8 +2,8 @@
 #[allow(clippy::needless_range_loop)]
 fn sort_string(s: String) -> String {
     let n = s.len();
-    let mut counter = [0u8; 26];
-    for byte in s.into_bytes().into_iter() {
+    let mut counter = [0_u8; 26];
+    for byte in s.into_bytes() {
         counter[(byte - b'a') as usize] += 1;
     }
 
