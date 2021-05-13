@@ -387,9 +387,10 @@ leetcode_solutions
 |1252|[Cells with Odd Values in a Matrix](https://leetcode.com/problems/cells-with-odd-values-in-a-matrix/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1265🔒|[Print Immutable Linked List in Reverse](https://leetcode.com/problems/print-immutable-linked-list-in-reverse/)|[C](https://github.com/pymongo/learn_cpp/blob/master/leetcode/easy/print_immutable_linked_list_in_reverse.c)|
 |1266|[Minimum Time Visiting All Points](https://leetcode.com/problems/minimum-time-visiting-all-points/)|[Rust](src/easy/leetcode_very_easy.rs)|
-|1281|[Subtract the Product and Sum of Digits of an Integer](https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/)|[Python](src/easy/leetcode_very_easy.rs)
+|1269|[Number of Ways to Stay in the Same...](https://leetcode.com/problems/number-of-ways-to-stay-in-the-same-place-after-some-steps/)|[Rust](src/dp/number_of_ways_to_stay_in_the_same_place_after_some_steps.rs)|
+|1281|[Subtract the Product and Sum of Digits...](https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/)|[Rust](src/easy/leetcode_very_easy.rs)
 |1295|[Find Numbers with Even Number of Digits](https://leetcode.com/problems/find-numbers-with-even-number-of-digits/)|[Rust](src/easy/array/find_numbers_with_even_number_of_digits.rs)|
-|1299|[Replace Elements with Greatest Element on Right Side](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|1299|[Replace Elements with Greatest Element on Right...](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1303🔒|[Find the Team Size](httpsn://leetcode.com/problems/find-the-team-size/)|[SQL](sql_problems/very_easy.sql)|
 |1313|[Decompress Run-Length Encoded List](https://leetcode.com/problems/decompress-run-length-encoded-list/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/decompress_run_length_encoded_list.py)|
 |1329|[Sort The Matrix Diagonally](https://leetcode.com/problems/sort-the-matrix-diagonally/)|[Rust](src/easy/grid_or_matrix/matrix_diagonal_traverse.rs)|
