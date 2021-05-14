@@ -13,7 +13,7 @@ impl Solution {
         // 枚举子串的长度(枚举区间型动态规划的区间长度)，由于填表时依赖左下角的值，所以区间型动态规划最佳的填表方向是「左上-右下」对角线那样斜着填
         for len in 1..=n {
             // 枚举子串的起始位置i
-            for i in 0..(n - len + 1) {
+            for i in 0..=n - len {
                 let j = i + len - 1;
                 if len == 1 {
                     // 最长的对角线
@@ -320,21 +320,21 @@ mod test {
 
     #[test]
     fn test_dp() {
-        for &(input, expected) in TEST_CASES.iter() {
+        for (input, expected) in TEST_CASES {
             assert_eq!(Solution::dp(input.to_string()), expected.to_string());
         }
     }
 
     #[test]
     fn test_manacher() {
-        for &(input, expected) in TEST_CASES.iter() {
+        for (input, expected) in TEST_CASES {
             assert_eq!(Solution::manacher(input.to_string()), expected.to_string());
         }
     }
 
     #[test]
     fn test_manacher_old() {
-        for &(input, expected) in &TEST_CASES {
+        for (input, expected) in TEST_CASES {
             assert_eq!(
                 Solution::manacher_old(input.to_string()),
                 expected.to_string()
@@ -344,7 +344,7 @@ mod test {
 
     #[test]
     fn test_expand_around_center() {
-        for &(input, expected) in TEST_CASES.iter() {
+        for (input, expected) in TEST_CASES {
             assert_eq!(
                 Solution::expand_around_center(input.to_string()),
                 expected.to_string()

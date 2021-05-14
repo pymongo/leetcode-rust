@@ -30,7 +30,7 @@ fn dfs(
     graph: &[Vec<usize>],
     dest: usize,
 ) {
-    for &next in graph[*curr.last().unwrap()].iter() {
+    for &next in &graph[*curr.last().unwrap()] {
         if visited[next] {
             continue;
         }

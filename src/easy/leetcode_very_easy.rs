@@ -434,7 +434,7 @@ fn all_cells_dist_order(r: i32, c: i32, r0: i32, c0: i32) -> Vec<Vec<i32>> {
 
     // 由于距离相等时，顺序点的坐标无关，所以可以将排序好的桶组合接起来
     let mut ret = Vec::new();
-    for each in bucket.into_iter() {
+    for each in bucket {
         ret.extend(each);
     }
     ret
@@ -678,6 +678,7 @@ fn test_first_bad_version() {
 }
 
 /// https://leetcode.com/problems/cells-with-odd-values-in-a-matrix/
+#[allow(clippy::shadow_unrelated)]
 fn odd_cells(n: i32, m: i32, indices: Vec<Vec<i32>>) -> i32 {
     // 注意题目的入参是n行m列，而非正常的m行n列
     let (m, n) = (n as usize, m as usize);
@@ -699,7 +700,7 @@ fn odd_cells(n: i32, m: i32, indices: Vec<Vec<i32>>) -> i32 {
 
 /// https://leetcode.com/problems/flipping-an-image/
 fn flip_and_invert_image(mut a: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
-    for row in a.iter_mut() {
+    for row in &mut a {
         row.reverse();
         row.iter_mut().for_each(|val| *val = 1 - *val);
     }
@@ -1016,7 +1017,7 @@ fn test_backspace_compare() {
         ("a##c", "#a#c", true),
         ("a#c", "b", false),
     ];
-    for &(s, t, expected) in &TEST_CASES {
+    for (s, t, expected) in TEST_CASES {
         assert_eq!(backspace_compare(s.to_string(), t.to_string()), expected);
     }
 }
@@ -1489,7 +1490,7 @@ fn final_prices(prices: Vec<i32>) -> Vec<i32> {
 /// 按出现次数少到次数多排序，如果出现次数相同，则按数值大小倒序
 fn frequency_sort(nums: Vec<i32>) -> Vec<i32> {
     let mut counter = [0_u8; 201];
-    let mut max_freq = 1u8;
+    let mut max_freq = 1_u8;
     for num in nums {
         let idx = (num + 100) as usize;
         counter[idx] += 1;
@@ -1593,7 +1594,7 @@ fn count_consistent_strings(allowed: String, words: Vec<String>) -> i32 {
 fn test_count_consistent_strings() {
     const TEST_CASES: [(&str, &[&str], i32); 1] =
         [("ab", &["ad", "bd", "aaab", "baa", "badab"], 2)];
-    for &(allowed, words, output) in &TEST_CASES {
+    for (allowed, words, output) in TEST_CASES {
         let words = words.iter().copied().map(ToString::to_string).collect();
         assert_eq!(count_consistent_strings(allowed.to_string(), words), output);
     }
@@ -1740,7 +1741,7 @@ fn test_largest_merge_of_two_strings() {
         ("cabaa", "bcaaa", "cbcabaaaaa"),
         ("abcabc", "abdcaba", "abdcabcabcaba"),
     ];
-    for &(word1, word2, output) in &TEST_CASES {
+    for (word1, word2, output) in TEST_CASES {
         assert_eq!(
             largest_merge_of_two_strings(word1.to_owned(), word2.to_owned()),
             output.to_owned()
@@ -1811,6 +1812,7 @@ fn connect_sticks(sticks: Vec<i32>) -> i32 {
 }
 
 /// https://leetcode.com/problems/armstrong-number/
+#[allow(clippy::cast_precision_loss)]
 fn is_armstrong(n: i32) -> bool {
     let digits = (n as f32).log10() as u32 + 1;
     let mut num = n;
@@ -1843,7 +1845,7 @@ fn count_letters(s: String) -> i32 {
 #[test]
 fn test_count_letters() {
     const TEST_CASES: [(&str, i32); 2] = [("aaaba", 8), ("aaaaaaaaaa", 55)];
-    for &(input, output) in &TEST_CASES {
+    for (input, output) in TEST_CASES {
         assert_eq!(count_letters(input.to_string()), output);
     }
 }
@@ -1976,7 +1978,7 @@ fn test_length_of_last_word() {
         ("hello world", 5),
         ("        ", 0),
     ];
-    for &(input, output) in &TEST_CASES {
+    for (input, output) in TEST_CASES {
         assert_eq!(length_of_last_word(input.to_string()), output);
     }
 }

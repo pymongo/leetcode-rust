@@ -10,7 +10,7 @@ fn num_equiv_domino_pairs(dominoes: Vec<Vec<i32>>) -> i32 {
             each[0] * 10 + each[1]
         } as usize;
         // 这里是C(n,2)的计数方式
-        ret += counter[index] as i32;
+        ret += i32::from(counter[index]);
         counter[index] += 1;
     }
     ret

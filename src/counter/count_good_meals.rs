@@ -18,10 +18,10 @@ fn count_pairs_permutation_solution(nums: Vec<i32>) -> i32 {
         counter.push(i64::from(value));
     }
     // unique.sort_unstable(); // 由于nums是有序的，插入counter时也是有序的，所以不用排序
-    let n = unique.len();
+    let unique_len = unique.len();
     let mut ret = 0_i64;
-    for i in 0..n {
-        for j in i..n {
+    for i in 0..unique_len {
+        for j in i..unique_len {
             if is_power_of_2(unique[i] + unique[j]) {
                 if i == j {
                     // math.comb(count, 2)

@@ -44,7 +44,7 @@ fn test_letter_combinations() {
         "23",
         &["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"],
     )];
-    for &(input, output) in &TEST_CASES {
+    for (input, output) in TEST_CASES {
         assert_eq!(letter_combinations_bfs(input.into()), output);
     }
 }

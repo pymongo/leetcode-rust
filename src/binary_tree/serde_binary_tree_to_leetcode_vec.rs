@@ -1,5 +1,6 @@
 /*! serialize or deserialize binary tree to leetcode vec format
 leetcode binary tree vec format example: [3,9,20,null,null,15,7] or [3,9,20,#,#,15,7]
+https://support.leetcode.com/hc/en-us/articles/360011883654-What-does-1-null-2-3-mean-in-binary-tree-representation-
 */
 use super::{Rc, RefCell, TreeLink, TreeNode};
 

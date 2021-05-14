@@ -8,6 +8,7 @@
     clippy::blanket_clippy_restriction_lints,
     clippy::doc_markdown,
     clippy::indexing_slicing,
+    clippy::match_on_vec_items,
     clippy::default_numeric_fallback,
     clippy::implicit_return,
     clippy::missing_docs_in_private_items,
@@ -31,7 +32,7 @@ mod binary_tree;
 mod bitwise;
 pub mod code_snippets;
 mod counter;
-mod data_structure;
+pub mod data_structure;
 mod dp;
 mod easy;
 mod eval_math_expression;

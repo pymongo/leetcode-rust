@@ -15,7 +15,7 @@ impl Solution {
         if len % 2 == 0 {
             (nums1[len / 2 - 1] + nums1[len / 2]) as f64 / 2_f64
         } else {
-            nums1[len / 2] as f64
+            f64::from(nums1[len / 2])
         }
     }
 
@@ -123,8 +123,7 @@ fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     if len_a == 1 {
         let mut nums_b = nums2;
         let insert_index = match nums_b.binary_search(&nums1[0]) {
-            Ok(index) => index,
-            Err(index) => index,
+            Ok(index) | Err(index) => index,
         };
         nums_b.insert(insert_index, nums1[0]);
         return (nums_b[len_b / 2] as f64 + nums_b[(len_b + 1) / 2] as f64) / 2_f64;
@@ -196,16 +195,16 @@ fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
                 return if total_len % 2 == 0 {
                     if b_divider_right_index == 1 {
                         // [1,2]、[3,4]
-                        (nums1[len_a - 1] + nums2[0]) as f64 / 2_f64
+                        f64::from(nums1[len_a - 1] + nums2[0]) / 2_f64
                     } else {
                         // [1,3]、[2,4,5,6]
-                        (nums2[b_divider_right_index - 2].max(nums1[len_a - 1])
-                            + nums2[b_divider_right_index - 1]) as f64
+                        f64::from(nums2[b_divider_right_index - 2].max(nums1[len_a - 1])
+                            + nums2[b_divider_right_index - 1])
                             / 2_f64
                     }
                 } else {
                     // [1,2]、[3,4,5,6,7]
-                    nums2[b_divider_right_index - 2].max(nums1[len_a - 1]) as f64
+                    f64::from(nums2[b_divider_right_index - 2].max(nums1[len_a - 1]))
                 };
             }
             a_left = a_divider_right_index + 1;
@@ -214,9 +213,9 @@ fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
         }
     }
     if total_len % 2 == 0 {
-        (a_divider_left.max(b_divider_left) + a_divider_right.min(b_divider_right)) as f64 / 2_f64
+        f64::from(a_divider_left.max(b_divider_left) + a_divider_right.min(b_divider_right)) / 2_f64
     } else {
-        a_divider_left.max(b_divider_left) as f64
+        f64::from(a_divider_left.max(b_divider_left))
     }
 }
 
@@ -248,17 +247,17 @@ fn move_divider_of_two_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
 
     // 如果较短数组的长度是0，统一了较长数组长度是奇数偶数的情况
     if len_a == 0 {
-        return (nums2[(len_b - 1) / 2] as f64 + nums2[len_b / 2] as f64) / 2_f64;
+        return (f64::from(nums2[(len_b - 1) / 2]) + nums2[len_b / 2] as f64) / 2_f64;
     }
     // 如果较短数组的长度是1，则较短数组的分割线左边或右边会没有值，这是一种特殊的边界条件
+    // FIXME leetcode的binary_search依然返回第一次出现的位置，但最新的rust已经改成如有重复则返回随机一个num[index]=target
     if len_a == 1 {
         let mut nums_b = nums2;
         let insert_index = match nums_b.binary_search(&nums1[0]) {
-            Ok(index) => index,
-            Err(index) => index,
+            Ok(index) | Err(index) => index,
         };
         nums_b.insert(insert_index, nums1[0]);
-        return (nums_b[len_b / 2] as f64 + nums_b[(len_b + 1) / 2] as f64) / 2_f64;
+        return (f64::from(nums_b[len_b / 2]) + f64::from(nums_b[(len_b + 1) / 2])) / 2_f64;
     }
 
     // 往后的情况，nums1和nums2的长度至少为2
@@ -326,9 +325,9 @@ fn move_divider_of_two_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     // 如果分隔线已经在最左边，则让b_divider_left或a_divider_left等于i32的最小值，好让它在比较左边两个元素的最大值时不会被选中
     // 如果分隔线已经在最右边，则让b_divider_right或a_divider_right等于i32的最大值，好让它在比较右边两个元素的最小值时不会被选中
     if total_len % 2 == 0 {
-        (a_divider_left.max(b_divider_left) + a_divider_right.min(b_divider_right)) as f64 / 2_f64
+        f64::from(a_divider_left.max(b_divider_left) + a_divider_right.min(b_divider_right)) / 2_f64
     } else {
-        a_divider_left.max(b_divider_left) as f64
+        f64::from(a_divider_left.max(b_divider_left))
     }
 }
 
@@ -394,8 +393,8 @@ fn my_binary_search_kth(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
         // median_left_items_count += half_k;
     }
     if (len1 + len2) % 2 == 0 {
-        (nums1[i] + nums2[j]) as f64 / 2_f64
+        f64::from(nums1[i] + nums2[j]) / 2_f64
     } else {
-        nums1[i].min(nums2[j]) as f64
+        f64::from(nums1[i].min(nums2[j]))
     }
 }

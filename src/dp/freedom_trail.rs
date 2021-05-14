@@ -76,7 +76,7 @@ fn find_rotate_steps_optimized(ring: String, key: String) -> i32 {
             // i: 转盘下一步要拨到key[i]的字母
             // j: 枚举转盘当前步的所有位置
             // k: 枚举转盘可以达到下一步key[i]字母的目标位置
-            for &k in ring_counter[(key[i] - b'a') as usize].iter() {
+            for &k in &ring_counter[(key[i] - b'a') as usize] {
                 let diff = if j < k { k - j } else { j - k };
                 // 选正转或反转的步数最小值
                 let step = diff.min(n - diff);

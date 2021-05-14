@@ -14,7 +14,7 @@ fn majority_element(nums: Vec<i32>) -> i32 {
             }
             *count += 1;
         } else {
-            cnt.insert(num, 1u16);
+            cnt.insert(num, 1_u16);
         }
     }
     unreachable!();

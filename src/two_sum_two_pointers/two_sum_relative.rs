@@ -28,7 +28,7 @@ fn test_fair_candy_swap() {
         (&[2], &[1, 3], &[2, 3]),
         (&[1, 2, 5], &[2, 4], &[5, 4]),
     ];
-    for &(a, b, output) in &TEST_CASES {
-        assert_eq!(fair_candy_swap(a.into(), b.into()), output.to_vec());
+    for (a, b, output) in TEST_CASES {
+        assert_eq!(fair_candy_swap(a.to_vec(), b.to_vec()), output.to_vec());
     }
 }

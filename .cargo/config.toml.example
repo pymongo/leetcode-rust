@@ -1,16 +1,11 @@
 # https://bevyengine.org/learn/book/getting-started/setup/#enable-fast-compiles-optional
 # sudo pacman -S lld
 [target.x86_64-unknown-linux-gnu]
-rustflags = ["-Clink-arg=-fuse-ld=lld", "-Zshare-generics=y"]
+rustflags = ["-Ctarget-cpu=znver2", "-Clink-arg=-fuse-ld=lld", "-Zshare-generics=y"]
 
-# brew install michaeleisel/zld/zld
-[target.x86_64-apple-darwin]
-rustflags = ["-C", "link-arg=-fuse-ld=/usr/local/bin/zld", "-Zshare-generics=y"]
-
-# rustup component add llvm-tools-preview && cargo install binutils
-[target.x86_64-pc-windows-msvc]
-linker = "rust-lld.exe"
-rustflags = ["-Zshare-generics=y"]
+#zld在苹果上是「负优化」，还不如默认的ld
+#[target.x86_64-apple-darwin]
+#rustflags = ["-C", "link-arg=-fuse-ld=/usr/local/bin/zld", "-Zshare-generics=y"]
 
 [profile.dev]
 split-debuginfo = "unpacked"

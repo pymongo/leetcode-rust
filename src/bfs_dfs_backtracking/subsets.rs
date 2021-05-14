@@ -87,7 +87,7 @@ fn subsets_bfs(nums: Vec<i32>) -> Vec<Vec<i32>> {
     last.push(Vec::with_capacity(0));
     for num in nums {
         let mut curr = last.clone();
-        for each_curr in curr.iter_mut() {
+        for each_curr in &mut curr {
             each_curr.push(num);
         }
         last.append(&mut curr);

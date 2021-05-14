@@ -53,7 +53,7 @@ fn count_primes_brute_force_2(n: i32) -> i32 {
     if n == 999_983 {
         return 78_497;
     }
-    if n == 1500000 {
+    if n == 1_500_000 {
         return 114_155;
     }
 

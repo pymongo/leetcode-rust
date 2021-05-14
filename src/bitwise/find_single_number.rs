@@ -22,7 +22,7 @@ fn single_number_xor_solution(nums: Vec<i32>) -> i32 {
 /// single_number_2的bitwise解法要用状态机去理解，不方便背诵
 fn single_number_2_sum_solution(nums: Vec<i32>) -> i32 {
     let nums_set: std::collections::HashSet<i64> =
-        nums.clone().into_iter().map(|num| num as i64).collect();
+        nums.clone().into_iter().map(i64::from).collect();
     let nums_set_sum = nums_set.into_iter().sum::<i64>();
     let nums_sum = nums.into_iter().map(i64::from).sum::<i64>();
     ((nums_set_sum * 3 - nums_sum) / 2) as i32

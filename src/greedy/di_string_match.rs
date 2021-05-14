@@ -24,7 +24,7 @@ fn test_di_string_match() {
         ("IDID", &[0, 4, 1, 3, 2]),
         ("DDI", &[3, 2, 0, 1]),
     ];
-    for &(input, output) in &TEST_CASES {
+    for (input, output) in TEST_CASES {
         assert_eq!(di_string_match(input.to_string()), output);
     }
 }

@@ -70,14 +70,13 @@ fn is_long_pressed_name(name: String, typed: String) -> bool {
                     //   ^     ^
                     // dbg!("a != b");
                     return false;
-                } else {
-                    // alex aaleex
-                    //   ^    ^
-                    // dbg!("a == b");
-                    // dbg!(a, b);
-                    last_a = name.next().unwrap();
-                    last_b = typed.next().unwrap();
                 }
+                // alex aaleex
+                //   ^    ^
+                // dbg!("a == b");
+                // dbg!(a, b);
+                last_a = name.next().unwrap();
+                last_b = typed.next().unwrap();
             }
             (false, true) => {
                 // dbg!("(false, true)");
@@ -134,7 +133,7 @@ const TEST_CASES: [(&str, &str, bool); 6] = [
 
 #[test]
 fn test_is_long_pressed_name() {
-    for &(name, typed, expected) in &TEST_CASES {
+    for (name, typed, expected) in TEST_CASES {
         dbg!(name, typed);
         // dbg!(Solution::is_long_pressed_name(name.to_string(), typed.to_string()));
         assert_eq!(

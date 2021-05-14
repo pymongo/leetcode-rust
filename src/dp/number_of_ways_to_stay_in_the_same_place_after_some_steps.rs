@@ -175,66 +175,6 @@ if let Some(plans) = self.cache.get(&(cur_pos, remain_steps+1)) {
 
 因为递归调用的开销挺大的，以上上一步是原地不动的决策分支中，一旦发现之前运算过 (cur_pos, remain_steps+1) 的入参情况就直接取缓存中的上次计算结果(因为函数是无状态的，相同的入参一定能得到相同的结果)
 
-### 记忆化搜索版本的题解
-
-```rust
-struct NumWaysHelper {
-    max_position: i32,
-    steps: i32,
-    /// memo
-    cache: std::collections::HashMap<(i32, i32), u64>
-}
-
-impl NumWaysHelper {
-    fn dfs(&mut self, cur_pos: i32, remain_steps: i32) -> u64 {
-        // TODO 递归结束条件
-        if remain_steps == self.steps {
-            if cur_pos == 0 {
-                return 1;
-            } else {
-                // 只有从起点出发的方案才是有效的方案，其余方案都不可取(0)
-                return 0;
-            }
-        }
-
-        let mut plans_count = 0;
-        // 做决策/状态转移
-        // 共同的决策分支-上一步是: 原地不动
-        plans_count += self.calc_plans_from_cache(cur_pos, remain_steps+1);
-        if cur_pos == 0 {
-            // 上一步是: 向左
-            plans_count += self.calc_plans_from_cache(cur_pos+1, remain_steps+1);
-        } else if cur_pos == self.max_position {
-            // 上一步是: 向右
-            plans_count += self.calc_plans_from_cache(cur_pos-1, remain_steps+1);
-        } else {
-            // 上一步是: 向左或向右
-            plans_count += self.calc_plans_from_cache(cur_pos+1, remain_steps+1);
-            plans_count += self.calc_plans_from_cache(cur_pos-1, remain_steps+1);
-        }
-        self.cache.insert((cur_pos, remain_steps), plans_count);
-        plans_count
-    }
-
-    fn calc_plans_from_cache(&mut self, last_pos: i32, last_remain_steps: i32) -> u64 {
-        if let Some(plans) = self.cache.get(&(last_pos, last_remain_steps)) {
-            *plans
-        } else {
-            self.dfs(last_pos, last_remain_steps)
-        }
-    }
-}
-
-fn num_ways_dfs_entrance(steps: i32, arr_len: i32) -> i32 {
-    let mut helper = NumWaysHelper {
-        max_position: arr_len-1,
-        steps,
-        cache: std::collections::HashMap::new()
-    };
-    (helper.dfs(0, 0) % (10_u64.pow(9)+7)) as i32
-}
-```
-
 ## 本题缓存与数据库缓存的异同
 
 MySQL 为了提高短时间相同 Query 的查询速度，会将查询的 SQL 语句计算哈希和对应的查询结果存入 Query Cache
@@ -252,7 +192,7 @@ MySQL 将 SQL 语句进行哈希是不是跟我们这题将递归调用的入参
 
 我们记忆化搜索的解法通过了80%的测试用例，但是在输入参数特别大时就出错了
 
-```
+```text
 输入：
 93
 85
@@ -268,60 +208,62 @@ MySQL 将 SQL 语句进行哈希是不是跟我们这题将递归调用的入参
 
 所谓 `wrapping` 值得就例如 `0_u8.wrapping_sub(1)==255`，0_u8 减 1 会下溢成 255
 
-由于 leetcode 的题目描述中也提示了 方案总数可能会很大，所以需要取模
+由于 leetcode 的题目描述中也提示了 方案总数可能会很大，所以每次加法都需要取模避免 i32 溢出
 
+我也尝试修改 `type PlansCount = i32`，就算方案数用 u128 存储也会溢出，所以还是老老实实加法后取模
+
+果然记忆化搜索的代码可读性比 `dp[i][j]` 的动态规划好多了，过几个月再看一堆 `dp[i][j]` 的代码我连 i 和 j 表达什么意思都不知道
 */
 
-type Plans = i32;
+type PlansCount = i32;
 
 struct NumWaysHelper {
     max_position: i32,
     steps: i32,
     /// memo
-    cache: std::collections::HashMap<(i32, i32), Plans>,
+    cache: std::collections::HashMap<(i32, i32), PlansCount>,
 }
 
 impl NumWaysHelper {
-    const MOD: Plans = (10 as Plans).pow(9) + 7;
-    fn dfs(&mut self, cur_pos: i32, remain_steps: i32) -> Plans {
-        // TODO 递归结束条件
+    /// leetcode rust version not support const_fn pow
+    const MOD: PlansCount = 1_000_000_007;
+    fn dfs(&mut self, cur_pos: i32, remain_steps: i32) -> PlansCount {
+        // 递归结束条件
         if remain_steps == self.steps {
             if cur_pos == 0 {
                 return 1;
-            } else {
-                // 只有从起点出发的方案才是有效的方案，其余方案都不可取(0)
-                return 0;
             }
+            // 只有从起点出发的方案才是有效的方案，其余方案都不可取(0)
+            return 0;
         }
 
         // 做决策/状态转移
-        // 共同的决策分支-上一步是: 原地不动
-        let mut plans_count = self.calc_plans_from_cache(cur_pos, remain_steps + 1) % Self::MOD;
+        // 共同的决策分支: 上一步-原地不动
+        let mut plans_count = self.calc_plans_from_cache(cur_pos, remain_steps + 1);
         if cur_pos == 0 {
             // 上一步是: 向左
-            plans_count = plans_count % Self::MOD
-                + self.calc_plans_from_cache(cur_pos + 1, remain_steps + 1) % Self::MOD;
+            plans_count += self.calc_plans_from_cache(cur_pos + 1, remain_steps + 1);
         } else if cur_pos == self.max_position {
             // 上一步是: 向右
-            plans_count = plans_count % Self::MOD
-                + self.calc_plans_from_cache(cur_pos - 1, remain_steps + 1) % Self::MOD % Self::MOD;
+            plans_count += self.calc_plans_from_cache(cur_pos - 1, remain_steps + 1);
         } else {
             // 上一步是: 向左或向右
-            plans_count = plans_count % Self::MOD
-                + self.calc_plans_from_cache(cur_pos + 1, remain_steps + 1) % Self::MOD;
-            plans_count = plans_count % Self::MOD
-                + self.calc_plans_from_cache(cur_pos - 1, remain_steps + 1) % Self::MOD;
+            plans_count += self.calc_plans_from_cache(cur_pos + 1, remain_steps + 1);
+            plans_count =
+                plans_count % Self::MOD + self.calc_plans_from_cache(cur_pos - 1, remain_steps + 1);
         }
         self.cache.insert((cur_pos, remain_steps), plans_count);
         plans_count
     }
 
-    fn calc_plans_from_cache(&mut self, last_pos: i32, last_remain_steps: i32) -> Plans {
-        if let Some(plans) = self.cache.get(&(last_pos, last_remain_steps)) {
+    /// can't use map_or_else, reason: Error: closure requires unique access to `self` but `self` is already borrowed
+    #[allow(clippy::option_if_let_else)]
+    fn calc_plans_from_cache(&mut self, last_pos: i32, last_remain_steps: i32) -> PlansCount {
+        (if let Some(plans) = self.cache.get(&(last_pos, last_remain_steps)) {
             *plans
         } else {
             self.dfs(last_pos, last_remain_steps)
-        }
+        }) % Self::MOD
     }
 }
 

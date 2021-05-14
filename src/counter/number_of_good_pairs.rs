@@ -13,7 +13,7 @@ fn num_identical_pairs(nums: Vec<i32>) -> i32 {
     // array暂不支持into_iter, issue#66145
     counter
         .iter()
-        .map(|&v| (v as i32 - 1) * v as i32 / 2)
+        .map(|&v| (i32::from(v) - 1) * i32::from(v) / 2)
         .sum::<i32>()
 }
 
@@ -43,11 +43,11 @@ fn number_of_good_pairs_v2(nums: Vec<i32>) -> i32 {
 */
 fn number_of_good_pairs_v3(nums: Vec<i32>) -> i32 {
     let mut counter = std::collections::HashMap::<i32, u8>::with_capacity(nums.len());
-    for num in nums.into_iter() {
+    for num in nums {
         *counter.entry(num).or_default() += 1;
     }
     counter
         .into_iter()
-        .map(|(_k, v)| (v as i32 - 1) * v as i32 / 2)
+        .map(|(_k, v)| (i32::from(v) - 1) * i32::from(v) / 2)
         .sum::<i32>()
 }

@@ -61,7 +61,7 @@ const TEST_CASES: [(&[&[i32]], i32); 1] = [(
 
 #[test]
 fn test_max_area_of_island() {
-    for &(grid, max_area) in &TEST_CASES {
+    for (grid, max_area) in TEST_CASES {
         let grid: Vec<Vec<i32>> = grid.iter().map(|each| each.to_vec()).collect();
         assert_eq!(max_area_of_island(grid), max_area);
     }

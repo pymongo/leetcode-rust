@@ -73,7 +73,7 @@ fn eval_int_math_expression(s: String) -> i32 {
         let mut number = i32::from(bytes[*cursor] - b'0');
         while let Some(next) = bytes.get(*cursor + 1) {
             if next.is_ascii_digit() {
-                number = number * 10 + (bytes[*cursor + 1] - b'0') as i32;
+                number = number * 10 + i32::from(bytes[*cursor + 1] - b'0');
                 *cursor += 1;
             } else {
                 break;

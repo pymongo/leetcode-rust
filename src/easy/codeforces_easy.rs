@@ -26,7 +26,7 @@ fn cf_1a_theatre_square(
         .collect();
     let (n, m, a) = (input_split[0], input_split[1], input_split[2]);
     let num_width = u64::from(n / a) + (n % a != 0) as u64; // divmod, ceil
-    let num_length = (m / a) as u64 + (m % a != 0) as u64;
+    let num_length = u64::from(m / a) + (m % a != 0) as u64;
     write!(&mut writer, "{}", num_width * num_length)?;
     Ok(())
 }
@@ -34,7 +34,7 @@ fn cf_1a_theatre_square(
 #[test]
 fn test_cf_1a_theatre_square() {
     const TEST_CASES: [(&[u8], &[u8]); 1] = [(b"6 6 4\n", b"4")];
-    for &(input, expected_output) in &TEST_CASES {
+    for (input, expected_output) in TEST_CASES {
         let mut output = Vec::new();
         cf_1a_theatre_square(input, &mut output).unwrap();
         assert_eq!(output, expected_output);
@@ -73,7 +73,7 @@ fn test_cf_4a_watermelon() {
         (b"99\n", b"NO"),   // mac_os input(without CR byte)
     ];
 
-    for &(input, expected_output) in &TEST_CASES {
+    for (input, expected_output) in TEST_CASES {
         let mut output = Vec::new();
         cf_4a_watermelon(input, &mut output).unwrap();
         assert_eq!(output, expected_output);
@@ -117,7 +117,7 @@ fn test_cf_71a_way_too_long_words() {
         b"4\nword\nlocalization\ninternationalization\npneumonoultramicroscopicsilicovolcanoconiosis",
         b"word\nl10n\ni18n\np43s\n",
     )];
-    for &(input, expected_output) in &TEST_CASES {
+    for (input, expected_output) in TEST_CASES {
         let mut output = Vec::new();
         cf_71a_way_too_long_words(input, &mut output).unwrap();
         assert_eq!(output, expected_output);
@@ -148,7 +148,7 @@ fn cf_231a_team(
 #[test]
 fn test_cf_231a_team() {
     const TEST_CASES: [(&[u8], &[u8]); 1] = [(b"2\n1 0 0\n0 1 1\n", b"1")];
-    for &(input, expected_output) in &TEST_CASES {
+    for (input, expected_output) in TEST_CASES {
         let mut output = Vec::new();
         cf_231a_team(input, &mut output).unwrap();
         assert_eq!(output, expected_output);
@@ -199,7 +199,7 @@ fn test_cf_158a_next_round() {
         (b"4 2\n0 0 0 0\n", b"0"),
         (b"5 1\n1 1 1 1 1\n", b"5"),
     ];
-    for &(input, expected_output) in &TEST_CASES {
+    for (input, expected_output) in TEST_CASES {
         let mut output = Vec::new();
         cf_158a_next_round(input, &mut output).unwrap();
         assert_eq!(output, expected_output);

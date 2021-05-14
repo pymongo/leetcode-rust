@@ -5,6 +5,10 @@
 如果富豪人数等于k则
     如果新富豪比末位富豪更有钱，则踢掉最穷的富豪，新富豪入堆，重新heapify
     否则小根堆维持不变
+
+为什么用小根堆?
+「末尾淘汰制度」的思想，堆里面至多有k个元素，新来的元素至少要击败其中一个，才能进入堆
+说是小根堆，实际上存的是最大的几个，类似福布斯富豪榜，新来的必须足够大才能上榜
 */
 use std::cmp::Reverse;
 use std::collections::BinaryHeap;
@@ -25,6 +29,7 @@ impl KthLargest {
                 continue;
             }
             if num > min_heap.peek().unwrap().0 {
+                // heapq.heapreplace
                 min_heap.pop().unwrap();
                 min_heap.push(Reverse(num));
             }
