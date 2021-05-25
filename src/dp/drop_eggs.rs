@@ -105,7 +105,7 @@ const TEST_CASES: [(i32, i32, i32); 2] = [
 
 #[test]
 fn test() {
-    for &(eggs_k, n, times) in TEST_CASES.iter() {
+    for (eggs_k, n, times) in TEST_CASES {
         assert_eq!(dp_binary_search(eggs_k, n), times);
     }
 }

@@ -21,7 +21,7 @@ fn test_middle_of_linked_list() {
         (&[1, 2, 3, 4, 5], &[3, 4, 5]),
         (&[1, 2, 3, 4, 5, 6], &[4, 5, 6]),
     ];
-    for &(input, output) in TEST_CASES.iter() {
+    for (input, output) in TEST_CASES {
         let input = arr_to_linked_list(input);
         assert_eq!(linked_list_to_vec(&middle_of_linked_list(input)), output);
     }

@@ -68,7 +68,7 @@ fn maximum_nesting_depth_of_the_parentheses(s: String) -> i32 {
 #[test]
 fn test_maximum_nesting_depth_of_the_parentheses() {
     const TEST_CASES: [(&str, i32); 3] = [("", 0), ("()()", 1), ("()(()())", 2)];
-    for &(s, expected) in TEST_CASES.iter() {
+    for (s, expected) in TEST_CASES {
         assert_eq!(
             maximum_nesting_depth_of_the_parentheses(s.to_owned()),
             expected
@@ -149,7 +149,7 @@ fn test_corp_flight_bookings() {
         5,
         vec![10, 55, 45, 25, 25],
     )];
-    for (records, n, output) in test_cases.into_iter() {
+    for (records, n, output) in test_cases {
         assert_eq!(corp_flight_bookings(records, n), output);
     }
 }
@@ -218,7 +218,7 @@ fn goal_parser_interpret(command: String) -> String {
 #[test]
 fn test_goal_parser_interpret() {
     const TEST_CASE: [(&str, &str); 2] = [("()()", "oo"), ("G()(al)", "Goal")];
-    for &(input, output) in TEST_CASE.iter() {
+    for (input, output) in TEST_CASE {
         assert_eq!(goal_parser_interpret(input.to_string()), output.to_string())
     }
 }

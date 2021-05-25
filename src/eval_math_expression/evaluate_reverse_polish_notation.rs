@@ -43,8 +43,8 @@ fn test_eval_rpn() {
             22,
         ),
     ];
-    for &(input, output) in TEST_CASES.iter() {
-        let tokens = input.iter().map(|x| x.to_string()).collect();
+    for (input, output) in TEST_CASES {
+        let tokens = input.iter().map(|&x| x.to_string()).collect();
         assert_eq!(eval_rpn(tokens), output);
     }
 }

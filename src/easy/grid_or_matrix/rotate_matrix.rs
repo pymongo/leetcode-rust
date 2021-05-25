@@ -42,7 +42,7 @@ fn test_rotate() {
         vec_vec![[1, 2, 3], [4, 5, 6], [7, 8, 9]],
         vec_vec![[7, 4, 1], [8, 5, 2], [9, 6, 3]],
     )];
-    for (mut input, output) in test_cases.into_iter() {
+    for (mut input, output) in test_cases {
         rotate(&mut input);
         assert_eq!(input, output);
     }

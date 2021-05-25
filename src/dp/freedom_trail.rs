@@ -94,7 +94,7 @@ const TEST_CASES: [(&str, &str, i32); 1] = [("godding", "gd", 4)];
 
 #[test]
 fn test_find_rotate_steps() {
-    for &(ring, key, steps) in TEST_CASES.iter() {
+    for (ring, key, steps) in TEST_CASES {
         assert_eq!(find_rotate_steps(ring.to_owned(), key.to_owned()), steps);
         assert_eq!(
             find_rotate_steps_optimized(ring.to_owned(), key.to_owned()),

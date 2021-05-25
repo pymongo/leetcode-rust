@@ -25,7 +25,7 @@ fn partition_labels(s: String) -> Vec<i32> {
 #[test]
 fn test_partition_labels() {
     const TEST_CASES: [(&str, &[i32]); 1] = [("ababcbacadefegdehijhklij", &[9, 7, 8])];
-    for &(s, expected) in TEST_CASES.iter() {
+    for (s, expected) in TEST_CASES {
         assert_eq!(partition_labels(s.to_string()), expected.to_vec());
     }
 }

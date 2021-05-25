@@ -58,8 +58,8 @@ fn unique_occurrences(arr: Vec<i32>) -> bool {
 
 #[test]
 fn test_unique_occurrences() {
-    assert_eq!(unique_occurrences(vec![1, 2, 2, 1, 1, 3]), true);
-    assert_eq!(unique_occurrences(vec![1, 2]), false);
+    assert!(unique_occurrences(vec![1, 2, 2, 1, 1, 3]));
+    assert!(!unique_occurrences(vec![1, 2]));
 }
 
 /// https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/

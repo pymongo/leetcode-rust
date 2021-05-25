@@ -35,7 +35,7 @@ impl Solution {
 fn test() {
     const TEST_CASES: [&[i32]; 2] = [&[-4, -1, 0, 3, 10], &[-7, -3, 2, 3, 11]];
 
-    for &nums in TEST_CASES.iter() {
+    for nums in TEST_CASES {
         assert!(Solution::sorted_squares(nums.to_vec()).is_sorted());
         assert!(Solution::two_pointers_sorted_squares(nums.to_vec()).is_sorted());
     }

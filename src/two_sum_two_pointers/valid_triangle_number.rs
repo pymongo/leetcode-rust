@@ -46,7 +46,7 @@ fn test_triangle_number() {
     2,2,3
     */
     const TEST_CASES: [(&[i32], i32); 1] = [(&[2, 2, 3, 4], 3)];
-    for &(input, output) in &TEST_CASES {
+    for (input, output) in TEST_CASES {
         assert_eq!(triangle_number(input.to_vec()), output);
     }
 }

@@ -38,7 +38,7 @@ fn test_clumsy_factorial() {
         (4, 7),   // 7 = 4 * 3 / 2 + 1
         (10, 12), // 12 = 10 * 9 / 8 + 7 - （6 * 5 / 4 + 3） - 2 * 1
     ];
-    for &(input, output) in TEST_CASES.iter() {
+    for (input, output) in TEST_CASES {
         assert_eq!(clumsy_factorial(input), output);
     }
 }
@@ -130,7 +130,7 @@ fn test_eval_int_math_expression() {
         (" 3+5 / 2 ", 5),
         ("99 - 101", -2),
     ];
-    for &(input, output) in TEST_CASES.iter() {
+    for (input, output) in TEST_CASES {
         assert_eq!(eval_int_math_expression(input.to_string()), output);
     }
 }
@@ -215,7 +215,7 @@ fn test_eval_int_with_parentheses() {
         ("- (3 + (4 + 5))", -12),
         ("-((1*2+3)*(3-2/1))", -5),
     ];
-    for &(input, output) in TEST_CASES.iter() {
+    for (input, output) in TEST_CASES {
         assert_eq!(eval_int_with_parentheses(input.to_string()), output);
     }
 }

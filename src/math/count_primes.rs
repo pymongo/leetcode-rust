@@ -3,7 +3,7 @@ const TEST_CASES: [(i32, i32); 3] = [(0, 0), (10, 4), (10000, 1229)];
 
 #[test]
 fn test_count_primes_brute_force() {
-    for &(n, primes_count) in TEST_CASES.iter() {
+    for (n, primes_count) in TEST_CASES {
         assert_eq!(count_primes_brute_force(n), primes_count);
     }
 }

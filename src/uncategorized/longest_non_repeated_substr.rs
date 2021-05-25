@@ -90,14 +90,14 @@ const TEST_CASES: [(&str, i32); 7] = [
 
 #[test]
 fn test_i32_ascii_table() {
-    for &(input, expected) in TEST_CASES.iter() {
+    for (input, expected) in TEST_CASES {
         assert_eq!(sliding_window_ascii(input.to_string()), expected);
     }
 }
 
 #[test]
 fn test_sliding_window_hashmap() {
-    for &(input, expected) in TEST_CASES.iter() {
+    for (input, expected) in TEST_CASES {
         assert_eq!(sliding_window_hashmap(input.to_string()), expected);
     }
 }

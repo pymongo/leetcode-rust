@@ -30,7 +30,7 @@ fn test_can_complete_circuit() {
         (&[2, 3, 4], &[3, 4, 3], -1),
     ];
 
-    for &(gas, cost, start_index) in TEST_CASES.iter() {
+    for (gas, cost, start_index) in TEST_CASES {
         assert_eq!(
             can_complete_circuit(gas.to_vec(), cost.to_vec()),
             start_index

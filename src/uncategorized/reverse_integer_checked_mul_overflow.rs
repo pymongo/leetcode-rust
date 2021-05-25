@@ -90,9 +90,9 @@ fn test_is_palindrome() {
         (-121, false),
         (10, false),
         (0, true),
-        (1000000001, true),
+        (1_000_000_001, true),
     ];
-    for &(input, expected) in TEST_CASES.iter() {
+    for (input, expected) in TEST_CASES {
         assert_eq!(is_palindrome(input), expected);
         assert_eq!(is_palindrome_half_traverse(input), expected);
     }

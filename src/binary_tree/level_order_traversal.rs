@@ -94,3 +94,68 @@ fn zigzag_level_order(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<Vec<i32>> {
     }
     ret
 }
+
+/// https://leetcode.com/problems/cousins-in-binary-tree/
+/// 如果二叉树的两个节点深度相同(处于同一层)，但**父节点不同**，则它们是一对堂兄弟节点
+/// 需要知道每个节点的三个信息: 层数、值、父节点的值
+fn is_cousins(root: Option<Rc<RefCell<TreeNode>>>, x: i32, y: i32) -> bool {
+    // (depth, parent)
+    let mut node_x: Option<(u8, i32)> = None;
+    let mut node_y: Option<(u8, i32)> = None;
+    let mut queue = std::collections::VecDeque::new();
+    queue.push_back((root, 0)); // (cur_node, cur_parent)
+                                // add sentinel node to queue end
+    queue.push_back((None, 0));
+    let mut cur_depth = 0_u8;
+    while let Some((cur_node, cur_parent)) = queue.pop_front() {
+        if let Some(cur_node) = cur_node {
+            let cur_node = cur_node.borrow();
+
+            if cur_node.val == x {
+                if let Some((node_y_depth, node_y_parent)) = node_y {
+                    return cur_depth == node_y_depth && cur_parent != node_y_parent;
+                } else {
+                    node_x = Some((cur_depth, cur_parent));
+                }
+            } else if cur_node.val == y {
+                if let Some((node_x_depth, node_x_parent)) = node_x {
+                    return cur_depth == node_x_depth && cur_parent != node_x_parent;
+                } else {
+                    node_y = Some((cur_depth, cur_parent));
+                }
+            }
+
+            if cur_node.left.is_some() {
+                queue.push_back((cur_node.left.clone(), cur_node.val));
+            }
+            if cur_node.right.is_some() {
+                queue.push_back((cur_node.right.clone(), cur_node.val));
+            }
+        } else {
+            cur_depth += 1;
+            // add level separator to queue end
+            if !queue.is_empty() {
+                queue.push_back((None, 0));
+            }
+        }
+    }
+    false
+}
+
+#[test]
+fn test_is_cousins() {
+    #[allow(non_upper_case_globals)]
+    const null: i32 = TreeNode::NULL;
+    const TEST_CASES: [(&[i32], i32, i32, bool); 3] = [
+        (&[1, 2, 3, 4], 4, 3, false),
+        (&[1, 2, 3, null, 4, null, 5], 5, 4, true),
+        (&[1, 2, 3, null, 4], 2, 3, false),
+    ];
+    for (root, x, y, expected) in TEST_CASES {
+        let root = super::deserialize_vec_to_binary_tree(root);
+        println!("{}", "=".repeat(20));
+        super::print_binary_tree(root.clone()).unwrap();
+        println!("x={}, y={}, expected={}", x, y, expected);
+        assert_eq!(is_cousins(root, x, y), expected);
+    }
+}

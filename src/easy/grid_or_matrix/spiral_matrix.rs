@@ -63,7 +63,7 @@ fn test_spiral_matrix_1() {
             vec![1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7],
         ),
     ];
-    for (input, output) in test_cases.into_iter() {
+    for (input, output) in test_cases {
         assert_eq!(spiral_matrix_1(input), output);
     }
 }

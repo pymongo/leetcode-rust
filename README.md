@@ -356,6 +356,7 @@ leetcode_solutions
 |976|[Largest Perimeter Triangle](https://leetcode.com/problems/largest-perimeter-triangle/)|[Rust](src/easy/leetcode_easy.rs)|
 |977|[Squares of a Sorted Array](https://leetcode.com/problems/squares-of-a-sorted-array/)|[Rust](src/easy/array/squares_of_a_sorted_array.rs)|
 |989|[Add to Array-Form of Integer](https://leetcode.com/problems/add-to-array-form-of-integer/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|993|[Cousins In Binary Tree](https://leetcode.com/problems/cousins-in-binary-tree/)|[Rust](src/binary_tree/level_order_traversal.rs)|
 |1002|[Find Common Characters](https://leetcode.com/problems/find-common-characters/)|[Rust](src/easy/string/find_common_characters.rs)|
 |1006|[Clumsy Factorial](https://leetcode.com/problems/clumsy-factorial/)|[Rust](src/eval_math_expression/mod.rs)|
 |1018|[Binary Prefix Divisible By 5](https://leetcode.com/problems/binary-prefix-divisible-by-5/)|[Rust](src/easy/leetcode_very_easy.rs)|

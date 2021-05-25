@@ -39,7 +39,7 @@ fn test_island_perimeter() {
         vec_vec![[0, 1, 0, 0], [1, 1, 1, 0], [0, 1, 0, 0], [1, 1, 0, 0]],
         16,
     )];
-    for (grid, perimeter) in test_cases.into_iter() {
+    for (grid, perimeter) in test_cases {
         assert_eq!(island_perimeter(grid), perimeter);
     }
 }

@@ -9,7 +9,7 @@ fn test_reverse_range_inplace() {
         (&[1, 2, 3, 4, 5], 2, 4, &[1, 4, 3, 2, 5]),
     ];
 
-    for &(input, m, n, output) in &TEST_CASES {
+    for (input, m, n, output) in TEST_CASES {
         let head = super::arr_to_linked_list(input);
         let output_head = unsafe { reverse_range_inplace(head, m, n) };
         assert_eq!(super::linked_list_to_vec(&output_head), output.to_vec());

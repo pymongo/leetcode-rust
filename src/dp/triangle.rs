@@ -39,7 +39,7 @@ fn from_bottom_to_top(mut triangle: Vec<Vec<i32>>) -> i32 {
 #[test]
 fn test() {
     let test_cases = vec![(vec_vec![[2], [3, 4], [6, 5, 7], [4, 1, 8, 3]], 11)];
-    for (input, output) in test_cases.into_iter() {
+    for (input, output) in test_cases {
         assert_eq!(from_top_to_bottom(input.clone()), output);
         assert_eq!(from_bottom_to_top(input), output);
     }

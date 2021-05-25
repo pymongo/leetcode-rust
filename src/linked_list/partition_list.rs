@@ -26,7 +26,7 @@ fn partition_list(mut head: Option<Box<ListNode>>, x: i32) -> Option<Box<ListNod
 fn test_partition_list() {
     use super::arr_to_linked_list;
     const TEST_CASES: [(&[i32], i32, &[i32]); 1] = [(&[1, 4, 3, 2, 5, 2], 3, &[1, 2, 2, 4, 3, 5])];
-    for &(head, x, output) in TEST_CASES.iter() {
+    for (head, x, output) in TEST_CASES {
         let (head, output) = (arr_to_linked_list(head), arr_to_linked_list(output));
         assert_eq!(partition_list(head, x), output);
     }

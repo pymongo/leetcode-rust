@@ -23,7 +23,7 @@ fn kth_to_last(head: Option<Box<ListNode>>, k: i32) -> i32 {
 #[test]
 fn test_kth_to_last() {
     const TEST_CASES: [(&[i32], i32, i32); 2] = [(&[1, 2, 3, 4, 5], 2, 4), (&[1], 1, 1)];
-    for &(nums, k, output) in TEST_CASES.iter() {
+    for (nums, k, output) in TEST_CASES {
         assert_eq!(kth_to_last(super::arr_to_linked_list(nums), k), output);
     }
 }
@@ -60,7 +60,7 @@ fn test_remove_nth_from_end() {
     use super::arr_to_linked_list;
     const TEST_CASES: [(&[i32], i32, &[i32]); 2] =
         [(&[1, 2, 3, 4, 5], 2, &[1, 2, 3, 5]), (&[1], 1, &[])];
-    for &(nums, k, output) in TEST_CASES.iter() {
+    for (nums, k, output) in TEST_CASES {
         let (nums, output) = (arr_to_linked_list(nums), arr_to_linked_list(output));
         assert_eq!(remove_nth_from_end(nums, k), output);
     }

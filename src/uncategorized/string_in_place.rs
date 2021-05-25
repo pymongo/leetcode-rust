@@ -67,7 +67,7 @@ fn shuffle_string_classroom_swap_seats(s: String, indices: Vec<i32>) -> String {
 fn test_shuffle_string() {
     const TEST_CASES: [(&str, &[i32], &str); 1] =
         [("codeleet", &[4, 5, 6, 7, 0, 2, 1, 3], "leetcode")];
-    for &(s, indices, expected) in TEST_CASES.iter() {
+    for (s, indices, expected) in TEST_CASES {
         assert_eq!(
             shuffle_string_classroom_swap_seats(s.to_string(), indices.to_vec()),
             expected
@@ -126,7 +126,7 @@ fn reverse_words_in_a_sentence_in_place(s: String) -> String {
 #[test]
 fn test_reverse_words_in_a_sentence() {
     const TEST_CASES: [(&str, &str); 1] = [("  Bob    Loves  Alice   ", "Alice Loves Bob")];
-    for &(input, output) in TEST_CASES.iter() {
+    for (input, output) in TEST_CASES {
         assert_eq!(
             reverse_words_in_a_sentence_in_place(input.to_string()),
             output

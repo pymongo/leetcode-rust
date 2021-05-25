@@ -69,7 +69,7 @@ fn unique_paths(m: i32, n: i32) -> i32 {
 #[test]
 fn test_unique_paths() {
     const TEST_CASES: [(i32, i32, i32); 2] = [(23, 12, 193536720), (51, 9, 1916797311)];
-    for &(m, n, expected) in TEST_CASES.iter() {
+    for (m, n, expected) in TEST_CASES {
         assert_eq!(unique_paths(m, n), expected);
     }
 }

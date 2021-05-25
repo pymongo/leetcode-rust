@@ -86,7 +86,7 @@ mod test_two_sum_solutions {
 
     #[test]
     fn test_two_sum_bitwise() {
-        for &(nums, target, expected) in TEST_CASES.iter() {
+        for (nums, target, expected) in TEST_CASES {
             assert_eq!(
                 Solution::two_sum_bitwise(nums.to_vec(), target),
                 expected.to_vec()
@@ -96,7 +96,7 @@ mod test_two_sum_solutions {
 
     #[test]
     fn test_sum_hashmap() {
-        for &(nums, target, expected) in TEST_CASES.iter() {
+        for (nums, target, expected) in TEST_CASES {
             assert_eq!(
                 Solution::two_sum_hashmap(nums.to_vec(), target),
                 expected.to_vec()

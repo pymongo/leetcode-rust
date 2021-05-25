@@ -302,7 +302,7 @@ fn find_max_consecutive_ones(nums: Vec<i32>) -> i32 {
 #[test]
 fn test_find_max_consecutive_ones() {
     const TEST_CASES: [(&[i32], i32); 3] = [(&[1], 1), (&[1, 0, 1, 1, 0, 1], 2), (&[0], 0)];
-    for &(nums, expected) in TEST_CASES.iter() {
+    for (nums, expected) in TEST_CASES {
         assert_eq!(find_max_consecutive_ones(nums.to_vec()), expected);
     }
 }
@@ -390,7 +390,7 @@ fn count_and_say(n: i32) -> String {
 #[test]
 fn test_count_and_say() {
     const TEST_CASES: [(i32, &str); 4] = [(1, "1"), (2, "11"), (3, "21"), (4, "1211")];
-    for &(n, expected) in TEST_CASES.iter() {
+    for (n, expected) in TEST_CASES {
         assert_eq!(count_and_say(n), expected.to_string());
     }
 }
@@ -416,7 +416,7 @@ fn test_reconstruct_queue() {
         vec_vec![[7, 0], [4, 4], [7, 1], [5, 0], [6, 1], [5, 2]],
         vec_vec![[5, 0], [7, 0], [5, 2], [6, 1], [4, 4], [7, 1]],
     )];
-    for (input, output) in test_cases.into_iter() {
+    for (input, output) in test_cases {
         assert_eq!(reconstruct_queue(input), output);
     }
 }
@@ -634,11 +634,12 @@ fn merge_two_sorted_array(nums1: &mut Vec<i32>, m: i32, nums2: &mut Vec<i32>, n:
 
 #[test]
 fn test_merge_two_sorted_array() {
+    #[allow(clippy::type_complexity)]
     const TEST_CASES: [(&[i32], i32, &[i32], i32, &[i32]); 2] = [
         (&[1, 2, 3, 0, 0, 0], 3, &[2, 5, 6], 3, &[1, 2, 2, 3, 5, 6]),
         (&[2, 0], 1, &[1], 1, &[1, 2]),
     ];
-    for &(nums1, m, nums2, n, expected) in TEST_CASES.iter() {
+    for (nums1, m, nums2, n, expected) in TEST_CASES {
         let mut nums1 = nums1.to_vec();
         merge_two_sorted_array(&mut nums1, m, &mut nums2.to_vec(), n);
         assert_eq!(nums1, expected.to_vec());
@@ -671,7 +672,7 @@ impl FirstBadVersion {
 #[test]
 fn test_first_bad_version() {
     const TEST_CASES: [(i32, i32); 1] = [(4, 5)];
-    for &(bad, len) in TEST_CASES.iter() {
+    for (bad, len) in TEST_CASES {
         let temp = FirstBadVersion(bad);
         assert_eq!(temp.first_bad_version(len), bad);
     }
@@ -816,16 +817,6 @@ fn assign_cookies(mut children: Vec<i32>, mut cookies: Vec<i32>) -> i32 {
     ret
 }
 
-#[test]
-fn test_find_content_children() {
-    const TEST_CASES: [(&[i32], &[i32], i32); 2] = [
-        // 两个面值为1的糖果🍬只能满足第一个孩子(胃口为1)，因为每个孩子最多吃一个糖果
-        (&[1, 2, 3], &[1, 1], 1),
-        (&[1, 2], &[1, 2, 3], 2),
-    ];
-    // for &(input, output) in
-}
-
 /// https://leetcode.com/contest/weekly-contest-222/problems/maximum-units-on-a-truck/
 /// https://leetcode.com/problems/maximum-units-on-a-truck/
 /// 有点像背包问题，因为所有物体的容积都是1，所以这题应该也能用贪心去解题，尽量先放价值更高的物件
@@ -850,7 +841,7 @@ fn maximum_units(mut box_types: Vec<Vec<i32>>, mut truck_size: i32) -> i32 {
 #[test]
 fn test_maximum_units() {
     let test_cases = vec![(vec_vec![[1, 3], [2, 2], [3, 1]], 4, 8)];
-    for (box_types, truck_size, max_value) in test_cases.into_iter() {
+    for (box_types, truck_size, max_value) in test_cases {
         assert_eq!(maximum_units(box_types, truck_size), max_value);
     }
 }
@@ -948,7 +939,7 @@ fn test_reformat_phone_number() {
         ("--17-5 229 35-39475 ", "175-229-353-94-75"),
         ("1-23-45 6", "123-456"),
     ];
-    for &(input, output) in TEST_CASES.iter() {
+    for &(input, output) in &TEST_CASES {
         assert_eq!(reformat_phone_number(input.to_string()), output.to_string());
     }
 }
@@ -1192,7 +1183,7 @@ fn test_defuse_the_bomb() {
         (&[2, 4, 9, 3], -2, &[12, 5, 6, 13]),
         // 3 9 4 2
     ];
-    for &(code, k, output) in TEST_CASES.iter() {
+    for (code, k, output) in TEST_CASES {
         assert_eq!(defuse_the_bomb(code.to_vec(), k), output);
     }
 }
@@ -1229,7 +1220,7 @@ fn summary_ranges(nums: Vec<i32>) -> Vec<String> {
 fn test_summary_ranges() {
     const TEST_CASES: [(&[i32], &[&str]); 2] =
         [(&[0, 1, 2, 4, 5, 7], &["0->2", "4->5", "7"]), (&[], &[])];
-    for &(input, output) in TEST_CASES.iter() {
+    for (input, output) in TEST_CASES {
         assert_eq!(summary_ranges(input.into()), output);
     }
 }
@@ -1464,7 +1455,7 @@ fn test_add_to_array_form() {
         (&[0], 999, &[9, 9, 9]),
         (&[9], 1, &[1, 0]),
     ];
-    for &(a, k, output) in TEST_CASES.iter() {
+    for (a, k, output) in TEST_CASES {
         assert_eq!(add_to_array_form(a.to_vec(), k), output);
     }
 }
@@ -1617,7 +1608,7 @@ fn find_max_average(nums: Vec<i32>, k: i32) -> f64 {
 fn test_find_max_average() {
     const TEST_CASES: [(&[i32], i32, f64); 1] = [(&[1, 12, -5, -6, 50, 3], 4, 12.75)];
     for &(nums, k, output) in &TEST_CASES {
-        assert_eq!(find_max_average(nums.to_vec(), k), output);
+        assert!((find_max_average(nums.to_vec(), k) - output).abs() < f64::EPSILON);
     }
 }
 
@@ -2014,7 +2005,7 @@ fn truncate_sentence(s: String, mut k: i32) -> String {
 fn test_truncate_sentence() {
     const TEST_CASES: [(&str, i32, &str); 1] =
         [("Hello how are you Contestant", 4, "Hello how are you")];
-    for &(input, k, output) in TEST_CASES.iter() {
+    for (input, k, output) in TEST_CASES {
         assert_eq!(truncate_sentence(input.to_string(), k), output);
     }
 }
@@ -2194,7 +2185,7 @@ fn replace_digits(s: String) -> String {
 #[test]
 fn test_replace_digits() {
     const TEST_CASES: [(&str, &str); 2] = [("a1c1e1", "abcdef"), ("a1b2c3d4e", "abbdcfdhe")];
-    for &(input, output) in TEST_CASES.iter() {
+    for (input, output) in TEST_CASES {
         assert_eq!(replace_digits(input.to_string()), output);
     }
 }

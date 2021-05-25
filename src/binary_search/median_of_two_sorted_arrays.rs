@@ -1,107 +1,93 @@
 //! https://leetcode.com/problems/median-of-two-sorted-arrays/
 //! TODO 这题可读性最好最容易记的应该是find_kth递归的解法，我写的Rust解法太长了可读性并不好，建议看我写的Python解法版本
 
-struct Solution;
-
-impl Solution {
-    /// [4ms, O(n*logn)]即便用了两个数组合并后排序的完全没利用上两个数组已经有序的笨方法，Rust的性能还是能跑进4ms
-    fn my_brute_force(mut nums1: Vec<i32>, mut nums2: Vec<i32>) -> f64 {
-        if nums1.len() < nums2.len() {
-            return Self::my_brute_force(nums2, nums1);
-        }
-        nums1.append(&mut nums2);
-        nums1.sort_unstable();
-        let len = nums1.len();
-        if len % 2 == 0 {
-            (nums1[len / 2 - 1] + nums1[len / 2]) as f64 / 2_f64
-        } else {
-            f64::from(nums1[len / 2])
-        }
+/// [4ms, O(n*logn)]即便用了两个数组合并后排序的完全没利用上两个数组已经有序的笨方法，Rust的性能还是能跑进4ms
+fn my_brute_force(mut nums1: Vec<i32>, mut nums2: Vec<i32>) -> f64 {
+    if nums1.len() < nums2.len() {
+        return my_brute_force(nums2, nums1);
     }
-
-    /// [0ms, O(n)]既然两个数组已经有序，那么可以用归并排序的归并操作去合并数组提升性能，使用二分法能达到更快的logn时间复杂度
-    fn merge_sort_solution(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
-        let (m, n, mut i, mut j) = (nums1.len(), nums2.len(), 0_usize, 0_usize);
-        let len = m + n;
-        let half_len = len / 2;
-        let mut merged = Vec::with_capacity(len);
-        while i < m && j < n {
-            if nums1[i] <= nums2[j] {
-                merged.push(nums1[i]);
-                i += 1;
-            } else {
-                merged.push(nums2[j]);
-                j += 1;
-            }
-        }
-
-        // 如果元素个数已经够了，就提前返回，提升性能
-        if merged.len() > half_len {
-            return if len % 2 == 0 {
-                (merged[half_len - 1] + merged[half_len]) as f64 / 2_f64
-            } else {
-                merged[half_len] as f64
-            };
-        }
-
-        while i < m {
-            merged.push(nums1[i]);
-            i += 1;
-        }
-        while j < n {
-            merged.push(nums2[j]);
-            j += 1;
-        }
-        if len % 2 == 0 {
-            (merged[half_len - 1] + merged[half_len]) as f64 / 2_f64
-        } else {
-            merged[half_len] as f64
-        }
+    nums1.append(&mut nums2);
+    nums1.sort_unstable();
+    let len = nums1.len();
+    if len % 2 == 0 {
+        (nums1[len / 2 - 1] + nums1[len / 2]) as f64 / 2_f64
+    } else {
+        f64::from(nums1[len / 2])
     }
 }
 
-#[cfg(test)]
-mod test_find_median_sorted_arrays {
-    use super::Solution;
-
-    const TEST_CASES: [(&[i32], &[i32], f64); 17] = [
-        (&[1, 2, 3, 4], &[3, 6, 8, 9], 3.5),
-        (&[1, 5, 6, 7], &[2, 3, 4, 8], 4.5),
-        (&[1, 2], &[3, 4, 5, 6, 7], 4f64),
-        (&[4, 5, 6], &[1, 2, 3], 3.5),
-        (&[4, 5], &[1, 2, 3, 6], 3.5),
-        (&[1, 3], &[2, 4, 5, 6], 3.5),
-        (&[1, 2], &[3, 4, 5, 6], 3.5),
-        (&[1, 3], &[2, 4, 5], 3f64),
-        (&[1, 2, 3], &[4, 5], 3f64),
-        (&[3, 4], &[1, 2, 5], 3f64),
-        (&[-2, -1], &[3], -1f64),
-        (&[1, 3], &[2], 2_f64),
-        (&[3], &[-2, -1], -1f64),
-        (&[1, 2], &[3, 4], 2.5),
-        (&[4, 5], &[1, 2, 3], 3f64),
-        (&[1, 2], &[1, 2, 3], 2_f64),
-        (&[1, 2, 3], &[1, 2, 3], 2_f64),
-    ];
-
-    #[test]
-    fn test_my_brute_force() {
-        for &(nums1, nums2, expected) in TEST_CASES.iter() {
-            assert_eq!(
-                Solution::my_brute_force(nums1.to_vec(), nums2.to_vec()),
-                expected
-            );
+/// [0ms, O(n)]既然两个数组已经有序，那么可以用归并排序的归并操作去合并数组提升性能，使用二分法能达到更快的logn时间复杂度
+fn merge_sort_solution(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
+    let (m, n, mut i, mut j) = (nums1.len(), nums2.len(), 0_usize, 0_usize);
+    let len = m + n;
+    let half_len = len / 2;
+    let mut merged = Vec::with_capacity(len);
+    while i < m && j < n {
+        if nums1[i] <= nums2[j] {
+            merged.push(nums1[i]);
+            i += 1;
+        } else {
+            merged.push(nums2[j]);
+            j += 1;
         }
     }
 
-    #[test]
-    fn test_merge_sort_solution() {
-        for &(nums1, nums2, expected) in TEST_CASES.iter() {
-            assert_eq!(
-                Solution::merge_sort_solution(nums1.to_vec(), nums2.to_vec()),
-                expected
-            );
-        }
+    // 如果元素个数已经够了，就提前返回，提升性能
+    if merged.len() > half_len {
+        return if len % 2 == 0 {
+            (merged[half_len - 1] + merged[half_len]) as f64 / 2_f64
+        } else {
+            merged[half_len] as f64
+        };
+    }
+
+    while i < m {
+        merged.push(nums1[i]);
+        i += 1;
+    }
+    while j < n {
+        merged.push(nums2[j]);
+        j += 1;
+    }
+    if len % 2 == 0 {
+        (merged[half_len - 1] + merged[half_len]) as f64 / 2_f64
+    } else {
+        merged[half_len] as f64
+    }
+}
+const TEST_CASES: [(&[i32], &[i32], f64); 17] = [
+    (&[1, 2, 3, 4], &[3, 6, 8, 9], 3.5),
+    (&[1, 5, 6, 7], &[2, 3, 4, 8], 4.5),
+    (&[1, 2], &[3, 4, 5, 6, 7], 4_f64),
+    (&[4, 5, 6], &[1, 2, 3], 3.5),
+    (&[4, 5], &[1, 2, 3, 6], 3.5),
+    (&[1, 3], &[2, 4, 5, 6], 3.5),
+    (&[1, 2], &[3, 4, 5, 6], 3.5),
+    (&[1, 3], &[2, 4, 5], 3_f64),
+    (&[1, 2, 3], &[4, 5], 3_f64),
+    (&[3, 4], &[1, 2, 5], 3_f64),
+    (&[-2, -1], &[3], -1_f64),
+    (&[1, 3], &[2], 2_f64),
+    (&[3], &[-2, -1], -1_f64),
+    (&[1, 2], &[3, 4], 2.5),
+    (&[4, 5], &[1, 2, 3], 3_f64),
+    (&[1, 2], &[1, 2, 3], 2_f64),
+    (&[1, 2, 3], &[1, 2, 3], 2_f64),
+];
+
+#[test]
+fn test_my_brute_force() {
+    for (nums1, nums2, expected) in TEST_CASES {
+        assert!((my_brute_force(nums1.to_vec(), nums2.to_vec()) - expected).abs() < f64::EPSILON);
+    }
+}
+
+#[test]
+fn test_merge_sort_solution() {
+    for (nums1, nums2, expected) in TEST_CASES {
+        assert!(
+            (merge_sort_solution(nums1.to_vec(), nums2.to_vec()) - expected).abs() < f64::EPSILON
+        );
     }
 }
 
@@ -198,9 +184,10 @@ fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
                         f64::from(nums1[len_a - 1] + nums2[0]) / 2_f64
                     } else {
                         // [1,3]、[2,4,5,6]
-                        f64::from(nums2[b_divider_right_index - 2].max(nums1[len_a - 1])
-                            + nums2[b_divider_right_index - 1])
-                            / 2_f64
+                        f64::from(
+                            nums2[b_divider_right_index - 2].max(nums1[len_a - 1])
+                                + nums2[b_divider_right_index - 1],
+                        ) / 2_f64
                     }
                 } else {
                     // [1,2]、[3,4,5,6,7]

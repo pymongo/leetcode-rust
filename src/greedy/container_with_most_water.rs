@@ -20,7 +20,7 @@ fn container_with_most_water(height: Vec<i32>) -> i32 {
 #[test]
 fn test_container_with_most_water() {
     const TEST_CASES: [(&[i32], i32); 1] = [(&[1, 8, 6, 2, 5, 4, 8, 3, 7], 49)];
-    for &(input, output) in TEST_CASES.iter() {
+    for (input, output) in TEST_CASES {
         assert_eq!(container_with_most_water(input.to_vec()), output);
     }
 }

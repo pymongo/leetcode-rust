@@ -30,8 +30,8 @@ fn diagonal_traverse_from_bottom_left_in_bottom_right_direction() {
         }
     }
     // bottom_right_direction traverse
-    for i in 0..m {
-        println!("{:?}", mat[i]);
+    for row in mat.into_iter().take(m) {
+        println!("{:?}", row);
     }
 }
 
@@ -111,8 +111,8 @@ fn diagonal_traverse_from_top_left_in_bottom_left_direction() {
             order += 1;
         }
     }
-    for i in 0..m {
-        println!("{:?}", mat[i]);
+    for row in mat {
+        println!("{:?}", row);
     }
 }
 
@@ -166,7 +166,7 @@ fn test_find_diagonal_order() {
         ),
         (vec_vec![[2, 3], [2, 3]], vec![2, 3]),
     ];
-    for (input, output) in test_cases.into_iter() {
+    for (input, output) in test_cases {
         assert_eq!(find_diagonal_order(input), output);
     }
 }
