@@ -45,7 +45,7 @@ fn test_min_cost_connect_points() {
         (vec_vec![[0, 0], [1, 1], [1, 0], [-1, 1]], 4),
         (vec_vec![[2, -3], [-17, -8], [13, 8], [-17, -15]], 53),
     ];
-    for (points, min_cost) in test_cases.into_iter() {
+    for (points, min_cost) in test_cases {
         assert_eq!(min_cost_connect_points(points), min_cost);
     }
 }

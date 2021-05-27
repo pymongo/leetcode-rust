@@ -27,7 +27,7 @@ fn spiral_matrix_1(a: Vec<Vec<i32>>) -> Vec<i32> {
             res.push(a[top][col]);
         }
         // Step.2: 从右上角扫到右下角
-        for row in top + 1..=bottom - 1 {
+        for row in top + 1..bottom {
             res.push(a[row][right]);
         }
         // Step.3: 从右下角扫到左下角
@@ -35,7 +35,7 @@ fn spiral_matrix_1(a: Vec<Vec<i32>>) -> Vec<i32> {
             res.push(a[bottom][col]);
         }
         // Step.4: 从右下角扫到右上角
-        for row in (top + 1..=bottom - 1).rev() {
+        for row in (top + 1..bottom).rev() {
             res.push(a[row][left]);
         }
         left += 1;

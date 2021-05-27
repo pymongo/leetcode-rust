@@ -30,7 +30,7 @@ fn sort_string(s: String) -> String {
 fn test_sort_string() {
     const TEST_CASES: [(&str, &str); 2] =
         [("aaaabbbbcccc", "abccbaabccba"), ("leetcode", "cdelotee")];
-    for &(input, output) in TEST_CASES.iter() {
+    for (input, output) in TEST_CASES {
         assert_eq!(sort_string(input.to_string()), output.to_string());
     }
 }

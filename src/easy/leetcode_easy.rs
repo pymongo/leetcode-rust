@@ -13,6 +13,7 @@ fn can_form_array(arr: Vec<i32>, pieces: Vec<Vec<i32>>) -> bool {
 }
 ```
 */
+#[allow(clippy::if_not_else)]
 fn can_form_array(arr: Vec<i32>, pieces: Vec<Vec<i32>>) -> bool {
     // arr[i]/pieces[i][j] range 1..=100
     const UNINIT: usize = 101;
@@ -384,6 +385,7 @@ fn distribute_candies(nums: Vec<i32>) -> i32 {
 }
 
 /// https://leetcode.com/problems/check-if-it-is-a-straight-line/
+#[allow(clippy::similar_names)]
 fn check_straight_line(p: Vec<Vec<i32>>) -> bool {
     let dx0 = p[1][0] - p[0][0];
     let dy0 = p[1][1] - p[0][1];

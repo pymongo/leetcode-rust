@@ -1,13 +1,8 @@
+//! https://leetcode.com/problems/flatten-nested-list-iterator/
 #[derive(Debug, PartialEq, Eq)]
 pub enum NestedInteger {
     Int(i32),
     List(Vec<Self>),
-}
-
-struct NestedIterator {
-    cursor: usize,
-    len: usize,
-    nums: Vec<i32>,
 }
 
 /**
@@ -29,20 +24,17 @@ def flatten(lists):
 */
 fn flatten_dfs(list: Vec<NestedInteger>) -> Vec<i32> {
     list.into_iter()
-        .map(|item| match item {
+        .flat_map(|item| match item {
             NestedInteger::Int(int) => vec![int],
             NestedInteger::List(list) => flatten_dfs(list),
         })
-        .flatten()
         .collect()
 }
 
-#[test]
-fn feature() {
-    let a = vec![Some(1i32), None, Some(2)];
-    let mut b = a.into_iter().flatten();
-    dbg!(b.next().unwrap());
-    dbg!(b.next().unwrap());
+struct NestedIterator {
+    cursor: usize,
+    len: usize,
+    nums: Vec<i32>,
 }
 
 impl NestedIterator {

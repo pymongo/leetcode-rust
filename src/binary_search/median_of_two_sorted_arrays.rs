@@ -10,7 +10,7 @@ fn my_brute_force(mut nums1: Vec<i32>, mut nums2: Vec<i32>) -> f64 {
     nums1.sort_unstable();
     let len = nums1.len();
     if len % 2 == 0 {
-        (nums1[len / 2 - 1] + nums1[len / 2]) as f64 / 2_f64
+        f64::from(nums1[len / 2 - 1] + nums1[len / 2]) / 2_f64
     } else {
         f64::from(nums1[len / 2])
     }
@@ -35,9 +35,9 @@ fn merge_sort_solution(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     // 如果元素个数已经够了，就提前返回，提升性能
     if merged.len() > half_len {
         return if len % 2 == 0 {
-            (merged[half_len - 1] + merged[half_len]) as f64 / 2_f64
+            f64::from(merged[half_len - 1] + merged[half_len]) / 2_f64
         } else {
-            merged[half_len] as f64
+            f64::from(merged[half_len])
         };
     }
 
@@ -50,9 +50,9 @@ fn merge_sort_solution(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
         j += 1;
     }
     if len % 2 == 0 {
-        (merged[half_len - 1] + merged[half_len]) as f64 / 2_f64
+        f64::from(merged[half_len - 1] + merged[half_len]) / 2_f64
     } else {
-        merged[half_len] as f64
+        f64::from(merged[half_len])
     }
 }
 const TEST_CASES: [(&[i32], &[i32], f64); 17] = [
@@ -93,6 +93,7 @@ fn test_merge_sort_solution() {
 
 /// [0ms, O(logn)] solution, but too long and hard to read
 /// TODO Refactor, use checked_sub to detect usize overflow?
+#[allow(clippy::cast_lossless)]
 fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     let (len_a, len_b) = (nums1.len(), nums2.len());
     // 保证数组a的长度更短，我们遍历较短的数组a节约时间，加上二分查找后使得时间复杂度降低到O(log(min(m,n)))
@@ -170,7 +171,7 @@ fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
                             / 2_f64
                     }
                 } else {
-                    nums2[b_divider_right_index] as f64
+                    f64::from(nums2[b_divider_right_index])
                 };
             }
             a_right = a_divider_right_index - 1;
@@ -234,7 +235,7 @@ fn move_divider_of_two_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
 
     // 如果较短数组的长度是0，统一了较长数组长度是奇数偶数的情况
     if len_a == 0 {
-        return (f64::from(nums2[(len_b - 1) / 2]) + nums2[len_b / 2] as f64) / 2_f64;
+        return (f64::from(nums2[(len_b - 1) / 2]) + f64::from(nums2[len_b / 2])) / 2_f64;
     }
     // 如果较短数组的长度是1，则较短数组的分割线左边或右边会没有值，这是一种特殊的边界条件
     // FIXME leetcode的binary_search依然返回第一次出现的位置，但最新的rust已经改成如有重复则返回随机一个num[index]=target

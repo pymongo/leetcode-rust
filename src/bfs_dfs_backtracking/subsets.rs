@@ -104,7 +104,7 @@ fn test_subsets() {
     for (input, output) in test_cases {
         assert_eq!(subsets_dfs(input.clone()), output);
         let mut bfs_output = subsets_bfs(input);
-        bfs_output.sort_by_cached_key(|arr| arr.len());
+        bfs_output.sort_by_cached_key(Vec::len);
         assert_eq!(bfs_output, output);
     }
 }

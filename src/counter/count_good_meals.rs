@@ -98,7 +98,7 @@ fn test_count_pairs() {
         (&[1, 3, 5, 7, 9], 4),
         (&[1, 1, 1, 3, 3, 3, 7], 15),
     ];
-    for &(input, output) in TEST_CASES.iter() {
+    for (input, output) in TEST_CASES {
         assert_eq!(count_pairs_permutation_solution(input.into()), output);
         assert_eq!(count_pairs_two_sum_solution(input.into()), output);
     }

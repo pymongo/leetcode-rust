@@ -13,9 +13,8 @@ fn count_negatives(grid: Vec<Vec<i32>>) -> i32 {
             cnt += n - j;
             if i == 0 {
                 break;
-            } else {
-                i -= 1;
             }
+            i -= 1;
         }
     }
     cnt as i32

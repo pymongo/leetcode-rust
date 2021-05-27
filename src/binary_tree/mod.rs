@@ -18,6 +18,8 @@ use std::rc::Rc;
 
 /// 正常的二叉树的节点也不可能有两个父亲，所以leetcode用Rc<RefCell>真是多余
 /// 我做过那么多题也没见过二叉树节点的左右儿子是同一个节点
+/// https://github.com/pretzelhammer/rust-blog/blob/master/posts/learning-rust-in-2020.md#leetcode
+/// Option<Rc<RefCell<Node>>> is overkill for tree links
 /// Rust的Debug可以递归打印出二叉树，比我用Python写的打印二叉树更准更好，约等于leetcode的Python二叉树的__repr__()的效果
 #[derive(Debug, PartialEq, Eq)]
 pub struct TreeNode {

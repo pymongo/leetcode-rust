@@ -54,7 +54,7 @@ fn test_all_paths_source_target() {
         vec_vec![[1, 2], [3], [3], []],
         vec_vec![[0, 1, 3], [0, 2, 3]],
     )];
-    for (input, output) in test_cases.into_iter() {
+    for (input, output) in test_cases {
         assert_eq!(all_paths_source_target(input), output);
     }
 }

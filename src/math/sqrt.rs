@@ -29,7 +29,7 @@ fn my_sqrt(num: i32) -> i32 {
 
 #[test]
 fn test_my_sqrt() {
-    for _ in 0..10u32.pow(6) {
+    for _ in 0..10_u32.pow(6) {
         let random_i32 = crate::code_snippets::random_i32::random_i32();
         assert_eq!(f64::from(random_i32).sqrt() as i32, my_sqrt(random_i32));
     }

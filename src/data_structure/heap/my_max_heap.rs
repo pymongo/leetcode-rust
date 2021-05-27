@@ -150,12 +150,3 @@ impl<T: Ord> std::iter::FromIterator<T> for MyMaxHeap<T> {
         heap
     }
 }
-
-#[test]
-fn test_my_heap() {
-    use crate::code_snippets::sorting::random_numbers_test_case;
-    let test_cases = random_numbers_test_case();
-    //let test_cases = vec![3,7,4,8];
-    let heap = test_cases.into_iter().collect::<MyMaxHeap<_>>();
-    assert!(heap.into_sorted_vec().is_sorted());
-}

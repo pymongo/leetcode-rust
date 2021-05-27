@@ -793,6 +793,7 @@ fn dest_city(paths: Vec<Vec<String>>) -> String {
 
 /// https://leetcode.com/problems/assign-cookies/
 /// children表示每个child的所需摄入的热量，cookie表示每个饼干的热量，贪心思路是排序后尽量让小的饼干满足小胃口的孩子
+#[allow(clippy::while_let_on_iterator)]
 fn assign_cookies(mut children: Vec<i32>, mut cookies: Vec<i32>) -> i32 {
     children.sort_unstable();
     cookies.sort_unstable();
@@ -1095,16 +1096,11 @@ fn check_if_n_and_its_double_exist(nums: Vec<i32>) -> bool {
     for num in nums {
         if set.contains(&num) {
             return true;
-        } else {
-            // if set.contains(&(2 * n)) || (n % 2 == 0 && set.contains(&(n / 2))) {
-            //     return true;
-            // }
-            // set.insert(n);
-            if num % 2 == 0 {
-                set.insert(num / 2);
-            }
-            set.insert(2 * num);
+        } 
+        if num % 2 == 0 {
+            set.insert(num / 2);
         }
+        set.insert(2 * num);
     }
     false
 }
@@ -1717,11 +1713,11 @@ fn largest_merge_of_two_strings(word1: String, word2: String) -> String {
     }
     while p1 < nums1_len {
         ret.push(nums1[p1]);
-        p1 += 1
+        p1 += 1;
     }
     while p2 < nums2_len {
         ret.push(nums2[p2]);
-        p2 += 1
+        p2 += 1;
     }
     unsafe { String::from_utf8_unchecked(ret) }
 }
@@ -1913,20 +1909,18 @@ impl Logger {
     /** Returns true if the message should be printed in the given timestamp, otherwise returns false.
     If this method returns false, the message will not be printed.
     The timestamp is in seconds granularity. */
+    #[allow(clippy::option_if_let_else)]
     fn should_print_message(&mut self, timestamp: i32, message: String) -> bool {
-        match self.map.get_mut(&message) {
-            Some(last_timestamp) => {
-                if timestamp < *last_timestamp {
-                    false
-                } else {
-                    *last_timestamp = timestamp + 10;
-                    true
-                }
-            }
-            None => {
-                self.map.insert(message, timestamp + 10);
+        if let Some(last_timestamp) = self.map.get_mut(&message) {
+            if timestamp < *last_timestamp {
+                false
+            } else {
+                *last_timestamp = timestamp + 10;
                 true
             }
+        } else {
+            self.map.insert(message, timestamp + 10);
+            true
         }
     }
 }

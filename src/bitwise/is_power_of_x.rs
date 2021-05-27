@@ -65,6 +65,7 @@ fn clippy_float() {
 }
 
 #[test]
+#[allow(clippy::cast_precision_loss)]
 fn test_is_power_of_two() {
     /// https://stackoverflow.com/questions/5796983/checking-if-float-is-an-integer
     fn is_f32_an_integer(float: f32) -> bool {

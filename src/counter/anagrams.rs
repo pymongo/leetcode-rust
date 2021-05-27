@@ -11,9 +11,8 @@ fn is_anagram(s: String, t: String) -> bool {
         let idx = (each - b'a') as usize;
         if counter[idx] == 0 {
             return false;
-        } else {
-            counter[idx] -= 1;
         }
+        counter[idx] -= 1;
     }
     true
 }

@@ -25,7 +25,7 @@ fn calculate_minimum_hp(dungeon: Vec<Vec<i32>>) -> i32 {
 #[test]
 fn test_calculate_minimum_hp() {
     let test_cases = vec![(vec_vec![[-2, -3, 3], [-5, -10, 1], [10, 30, -5],], 7)];
-    for (input, output) in test_cases.into_iter() {
+    for (input, output) in test_cases {
         assert_eq!(calculate_minimum_hp(input), output);
     }
 }

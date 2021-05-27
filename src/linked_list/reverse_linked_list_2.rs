@@ -16,6 +16,7 @@ fn test_reverse_range_inplace() {
     }
 }
 
+#[allow(clippy::redundant_else)]
 unsafe fn reverse_range_inplace(
     head: Option<Box<ListNode>>,
     m: i32,

@@ -56,7 +56,7 @@ fn test_friends_circle() {
         (vec_vec![[1, 1, 0], [1, 1, 0], [0, 0, 1]], 2),
         (vec_vec![[1, 1, 0], [1, 1, 1], [0, 1, 1]], 1),
     ];
-    for (input, output) in test_cases.into_iter() {
+    for (input, output) in test_cases {
         assert_eq!(union_find(input.clone()), output);
         assert_eq!(bfs(input.clone()), output);
     }

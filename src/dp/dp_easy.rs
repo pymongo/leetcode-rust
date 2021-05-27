@@ -11,7 +11,7 @@ fn min_cost_climbing_stairs(mut cost: Vec<i32>) -> i32 {
 #[test]
 fn test_min_cost_climbing_stairs() {
     const TEST_CASES: [(&[i32], i32); 1] = [(&[1, 100, 1, 1, 1, 100, 1, 1, 100, 1], 6)];
-    for &(input, output) in TEST_CASES.iter() {
+    for (input, output) in TEST_CASES {
         assert_eq!(min_cost_climbing_stairs(input.to_vec()), output);
     }
 }

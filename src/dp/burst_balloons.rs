@@ -33,7 +33,7 @@ fn test_burst_balloons() {
         // 可以想象数组左右两边各有一个隐藏的1，吹爆1得分3*1*5=15，吹爆3得分(1*)3*5，所以总分是15+15+5
         (&[3, 1, 5], 35),
     ];
-    for &(input, output) in TEST_CASES.iter() {
+    for (input, output) in TEST_CASES {
         assert_eq!(burst_balloons(input.into()), output);
     }
 }

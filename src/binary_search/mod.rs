@@ -79,7 +79,7 @@ fn test_binary_search_first_and_last() {
         (&[5, 7, 7, 8, 8, 10], 6, &[-1, -1]),
         (&[], 0, &[-1, -1]),
     ];
-    for &(nums, target, excepted) in TEST_CASES.iter() {
+    for (nums, target, excepted) in TEST_CASES {
         assert_eq!(
             binary_search_first_and_last(nums.to_vec(), target),
             excepted.to_vec()

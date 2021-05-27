@@ -103,9 +103,8 @@ fn is_long_pressed_name(name: String, typed: String) -> bool {
         //      ^        ^
         if b != last_b {
             break;
-        } else {
-            typed.next().unwrap();
         }
+        typed.next().unwrap();
     }
     if name.next().is_some() && typed.next().is_none() {
         // pyplrz ppyypllr

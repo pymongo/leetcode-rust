@@ -33,7 +33,7 @@ fn longest_common_substr_dp(s1: String, s2: String) -> String {
 #[test]
 fn test_longest_common_substr_dp() {
     const TEST_CASES: [(&str, &str, &str); 1] = [("caba", "abac", "aba")];
-    for &(input1, input2, expected) in TEST_CASES.iter() {
+    for (input1, input2, expected) in TEST_CASES {
         assert_eq!(
             longest_common_substr_dp(input1.to_string(), input2.to_string()),
             expected

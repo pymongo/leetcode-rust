@@ -302,6 +302,7 @@ leetcode_solutions
 |680|[Valid Palindrome II](https://leetcode.com/problems/valid-palindrome-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/palindrome/valid_palindrome_2.py)|two_pointers, greedy|
 |682|[Baseball Game](https://leetcode.com/problems/baseball-game/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |690|[Employee Importance](https://leetcode.com/problems/employee-importance/)|[C++](TODO_EDIT)|
+|692|[Top K Frequent Words](https://leetcode.com/problems/top-k-frequent-words/)|[Rust](src/data_structure/heap/top_k_frequent_elements.rs)|
 |695|[Max Area of Island](https://leetcode.com/problems/max-area-of-island/)|[Rust](src/bfs_dfs_backtracking/max_area_of_island.rs)|
 |696|[Count Binary Substrings](https://leetcode.com/problems/count-binary-substrings/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |700|[Search in a Binary Search Tree](https://leetcode.com/problems/search-in-a-binary-search-tree/)|[Rust](src/binary_tree/search_val_or_range_in_bst.rs)|

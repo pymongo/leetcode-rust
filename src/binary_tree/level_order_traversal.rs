@@ -23,6 +23,7 @@ fn count_nodes(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
 
 /// https://leetcode.com/problems/binary-tree-level-order-traversal/
 /// https://leetcode.com/problems/binary-tree-level-order-traversal-ii/
+#[allow(clippy::option_if_let_else)]
 fn level_order(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<Vec<i32>> {
     if root.is_none() {
         return Vec::new();
@@ -59,6 +60,7 @@ fn level_order(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<Vec<i32>> {
 }
 
 /// https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/
+#[allow(clippy::option_if_let_else)]
 fn zigzag_level_order(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<Vec<i32>> {
     if root.is_none() {
         return Vec::new();
@@ -98,6 +100,7 @@ fn zigzag_level_order(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<Vec<i32>> {
 /// https://leetcode.com/problems/cousins-in-binary-tree/
 /// 如果二叉树的两个节点深度相同(处于同一层)，但**父节点不同**，则它们是一对堂兄弟节点
 /// 需要知道每个节点的三个信息: 层数、值、父节点的值
+#[allow(clippy::redundant_else)]
 fn is_cousins(root: Option<Rc<RefCell<TreeNode>>>, x: i32, y: i32) -> bool {
     // (depth, parent)
     let mut node_x: Option<(u8, i32)> = None;
