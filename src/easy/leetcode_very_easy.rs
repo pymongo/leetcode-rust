@@ -343,8 +343,22 @@ fn test_busy_student() {
     assert_eq!(busy_student(vec![1, 2, 3], vec![3, 2, 7], 4), 1);
 }
 
-/// https://leetcode.com/problems/transpose-matrix/
-/// return [list(i) for i in zip(*a)]
+/** https://leetcode.com/problems/transpose-matrix/
+return [list(i) for i in zip(*a)]
+```cpp
+static vector<vector<int>> transpose_matrix(vector<vector<int>> &A) {
+    int m = A.size();
+    int n = A[0].size();
+    vector<vector<int>> ret(n,vector<int>(m, 0));
+    for (int i = 0;i<m;i++){
+        for (int j = 0;j<n;j++){
+            ret[j][i] = A[i][j];
+        }
+    }
+    return ret;
+}
+```
+*/
 #[allow(clippy::needless_range_loop)]
 fn transpose_matrix(a: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
     let (m, n) = (a.len(), a[0].len());
@@ -1096,7 +1110,7 @@ fn check_if_n_and_its_double_exist(nums: Vec<i32>) -> bool {
     for num in nums {
         if set.contains(&num) {
             return true;
-        } 
+        }
         if num % 2 == 0 {
             set.insert(num / 2);
         }
@@ -2237,5 +2251,91 @@ fn test_maximum_population() {
     ];
     for (logs, max_population_year) in test_cases {
         assert_eq!(maximum_population(logs), max_population_year);
+    }
+}
+
+/// https://leetcode.com/problems/check-if-word-equals-summation-of-two-words/
+fn is_sum_equal(first_word: String, second_word: String, target_word: String) -> bool {
+    #[inline]
+    fn parse(word: String) -> i32 {
+        word.into_bytes()
+            .into_iter()
+            .fold(0_i32, |a, b| a * 10 + i32::from(b - b'a'))
+    }
+    parse(first_word) + parse(second_word) == parse(target_word)
+}
+
+#[test]
+fn test_is_sum_equal() {
+    assert!(is_sum_equal(
+        String::from("acb"),
+        String::from("cba"),
+        String::from("cdb")
+    ));
+}
+
+/// https://leetcode.com/problems/can-you-eat-your-favorite-candy-on-your-favorite-day/
+/// something like orderbook's depth
+fn can_eat_favorite_candy(candies_count: Vec<i32>, queries: Vec<Vec<i32>>) -> Vec<bool> {
+    let len = candies_count.len();
+    // to eat candy_type i, need eat at least prefix_sum[i] candies
+    let mut prefix_sum = vec![0_u64; candies_count.len() + 1];
+    for i in 1..=len {
+        prefix_sum[i] = prefix_sum[i - 1] + candies_count[i - 1] as u64;
+    }
+
+    let mut ret = Vec::with_capacity(len);
+    for each in queries {
+        let favorite_type = each[0] as usize;
+        let favorite_day = each[1];
+        // each day eat min 1, max daily_cap
+        let daily_cap = each[2] as u64;
+
+        let after_favorite_day_min_eat = favorite_day as u64 + 1;
+        let after_favorite_day_max_eat = (favorite_day + 1) as u64 * daily_cap;
+
+        let at_least_eat = prefix_sum[favorite_type] as u64 + 1;
+        let at_most_eat = prefix_sum[favorite_type + 1] as u64;
+        // 两个区间如果有交集，说明我们可以吃到
+        ret.push(
+            !(after_favorite_day_max_eat < at_least_eat
+                || at_most_eat < after_favorite_day_min_eat),
+        );
+
+        //let days = favorite_day+1;
+        // if days == 0 {
+        //     ret.push(favorite_type == 0 || daily_cap >= prefix_sum[favorite_type]);
+        //     continue;
+        // }
+        //let average_per_day_at_least_eat = f64::from(prefix_sum[favorite_type]) / f64::from(days);
+        //let at_least_eat = prefix_sum[favorite_type] as u128;
+        //let at_most_eat = prefix_sum[favorite_type + 1];
+        //println!();
+        //dbg!(favorite_type, daily_cap, days, average_per_day_at_least_eat, at_most_eat);
+
+        // 1. days < at_most_eat: each day eat one, candy[i] still remain
+        // 2. days * daily_cap >= at_least_eat
+        //ret.push(days < at_most_eat && average_per_day_at_least_eat <= f64::from(daily_cap));
+        //ret.push(days < at_most_eat && (days as u128) * (daily_cap as u128) >= at_least_eat as u128);
+    }
+    ret
+}
+
+#[test]
+fn test_can_eat_favorite_candy() {
+    let test_cases = vec![
+        (
+            vec![7, 4, 5, 3, 8],
+            vec_vec![[0, 2, 2], [4, 2, 4], [2, 13, 1000000000]],
+            vec![true, false, true],
+        ),
+        (
+            vec![5, 2, 6, 4, 1],
+            vec_vec![[3, 1, 2], [4, 10, 3], [3, 10, 100], [4, 100, 30], [1, 3, 1]],
+            vec![false, true, true, false, false],
+        ),
+    ];
+    for (candies_count, queries, answer) in test_cases {
+        assert_eq!(can_eat_favorite_candy(candies_count, queries), answer);
     }
 }

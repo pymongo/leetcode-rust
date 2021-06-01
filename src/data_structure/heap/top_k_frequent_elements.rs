@@ -31,10 +31,13 @@ fn top_k_frequent_words_sorting_solution(words: Vec<String>, k: i32) -> Vec<Stri
         *counter.entry(word).or_default() += 1;
     }
     let mut a = counter.into_iter().collect::<Vec<_>>();
-    a.sort_unstable_by(|(word_a, freq_a), (word_b, freq_b)| 
+    a.sort_unstable_by(|(word_a, freq_a), (word_b, freq_b)| {
         freq_b.cmp(freq_a).then(word_a.cmp(word_b))
-    );
-    a.into_iter().take(k as usize).map(|(word, _freq)| word).collect()
+    });
+    a.into_iter()
+        .take(k as usize)
+        .map(|(word, _freq)| word)
+        .collect()
 }
 
 /// [wrong answer!]fast than sort, sort has extra overhead on array elements swap O(n), but heap swap overhead is O(k)
@@ -44,7 +47,7 @@ fn top_k_frequent_words_heap_solution(words: Vec<String>, k: i32) -> Vec<String>
         *counter.entry(word).or_default() += 1;
     }
     let k = k as usize;
-    let mut min_heap = std::collections::BinaryHeap::with_capacity(k+1);
+    let mut min_heap = std::collections::BinaryHeap::with_capacity(k + 1);
     for (word, freq) in counter {
         // python3 heap pushpop
         // word is sort by letter desc
@@ -54,18 +57,33 @@ fn top_k_frequent_words_heap_solution(words: Vec<String>, k: i32) -> Vec<String>
         }
     }
     // min_heap is sort by freq asc and letter desc, need to reverse it
-    min_heap.into_iter().rev().map(|(_freq, word)| word).collect()
+    min_heap
+        .into_iter()
+        .rev()
+        .map(|(_freq, word)| word)
+        .collect()
 }
 
 #[test]
 fn test_top_k_frequent_words() {
     let test_cases = vec![
-        (vec_string!["i", "love", "leetcode", "i", "love", "coding"], 2, vec_string!["i", "love"]),
-        (vec_string!["the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"], 4, vec_string!["the", "is", "sunny", "day"]),
+        (
+            vec_string!["i", "love", "leetcode", "i", "love", "coding"],
+            2,
+            vec_string!["i", "love"],
+        ),
+        (
+            vec_string!["the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"],
+            4,
+            vec_string!["the", "is", "sunny", "day"],
+        ),
     ];
     for (words, k, top_k_frequent) in test_cases {
         // since HashMap into_iter is unordered, my heap solution sometimes pass test_cases sometimes not pass, if I change to BTreeMap it would 100% not pass
         //assert_eq!(top_k_frequent_words_heap_solution(words.clone(), k), top_k_frequent);
-        assert_eq!(top_k_frequent_words_sorting_solution(words, k), top_k_frequent);
+        assert_eq!(
+            top_k_frequent_words_sorting_solution(words, k),
+            top_k_frequent
+        );
     }
 }

@@ -278,7 +278,8 @@ fn num_ways_dfs_entrance(steps: i32, arr_len: i32) -> i32 {
 
 #[test]
 fn test_num_ways() {
-    const TEST_CASES: [(i32, i32, i32); 4] = [(93, 85, 623_333_920), (3, 2, 4), (2, 4, 2), (4, 2, 8)];
+    const TEST_CASES: [(i32, i32, i32); 4] =
+        [(93, 85, 623_333_920), (3, 2, 4), (2, 4, 2), (4, 2, 8)];
     for (steps, arr_len, plans_count) in TEST_CASES {
         assert_eq!(num_ways_dfs_entrance(steps, arr_len), plans_count);
     }

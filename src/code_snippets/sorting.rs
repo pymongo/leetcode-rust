@@ -123,8 +123,8 @@ mod tests {
 
     #[test]
     fn test_my_heap() {
-        use crate::data_structure::heap::my_max_heap::MyMaxHeap;
         use crate::code_snippets::sorting::random_numbers_test_case;
+        use crate::data_structure::heap::my_max_heap::MyMaxHeap;
         let test_cases = random_numbers_test_case();
         let heap = test_cases.into_iter().collect::<MyMaxHeap<_>>();
         assert!(heap.into_sorted_vec().is_sorted());
@@ -144,7 +144,7 @@ mod benches {
             //assert!(nums.is_sorted());
         });
     }
-    
+
     #[bench]
     fn bench_selection_sort(bencher: &mut test::Bencher) {
         bencher.iter(|| {
@@ -152,7 +152,7 @@ mod benches {
             selection_sort(&mut nums);
         });
     }
-    
+
     #[bench]
     fn bench_my_heap_sort(bencher: &mut test::Bencher) {
         use crate::data_structure::heap::my_max_heap::MyMaxHeap;
@@ -162,7 +162,7 @@ mod benches {
             let _ = nums.into_iter().collect::<MyMaxHeap<_>>().into_sorted_vec();
         });
     }
-    
+
     #[bench]
     fn bench_my_quick_sort(bencher: &mut test::Bencher) {
         bencher.iter(|| {
@@ -170,18 +170,17 @@ mod benches {
             my_quick_sort(0, nums.len() - 1, &mut nums);
         });
     }
-    
+
     #[bench]
     fn bench_std_heap_sort(bencher: &mut test::Bencher) {
         bencher.iter(|| {
             let nums = random_numbers_test_case();
-            nums
-                .into_iter()
+            nums.into_iter()
                 .collect::<std::collections::BinaryHeap<_>>()
                 .into_sorted_vec();
         });
     }
-    
+
     #[bench]
     fn bench_std_merge_sort(bencher: &mut test::Bencher) {
         bencher.iter(|| {
@@ -190,7 +189,7 @@ mod benches {
             nums.sort();
         });
     }
-    
+
     #[bench]
     fn bench_std_quick_sort(bencher: &mut test::Bencher) {
         bencher.iter(|| {

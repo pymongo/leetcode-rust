@@ -18,8 +18,8 @@ leetcode_solutions
 
 | # | Problem | Solutions | Category/Comment |
 |---| ------- | --------- | ---------------- |
-|1|[Two Sum](https://leetcode.com/problems/two-sum/)|[Rust](src/two_sum_two_pointers/two_sum.rs), [Java](https://github.com/pymongo/java_leetcode/blob/master/src/test/java/com/leetcode/collections/HashMapTwoSum.java)|bitwise|
-|2|[Add Two Numbers](https://leetcode.com/problems/add-two-numbers/)|[Rust](src/linked_list/add_two_linked_list.rs), [Java](https://github.com/pymongo/java_leetcode/blob/master/src/test/java/com/leetcode/collections/TraverseTwoListNode.java), [Go](https://github.com/pymongo/go_leetcode/blob/master/traverse_two_list_node_test.go)|linked_list|
+|1|[Two Sum](https://leetcode.com/problems/two-sum/)|[Rust](src/two_sum_two_pointers/two_sum.rs), [Java](https://github.com/pymongo/java_leetcode/blob/master/src/main/java/com/leetcode/Bitwise.java)|bitwise|
+|2|[Add Two Numbers](https://leetcode.com/problems/add-two-numbers/)|[Rust](src/linked_list/add_two_linked_list.rs), [Java](https://github.com/pymongo/java_leetcode/blob/master/src/main/java/com/leetcode/ListNode.java), [Go](https://github.com/pymongo/go_leetcode/blob/master/traverse_two_list_node_test.go)|linked_list|
 |3|[Longest Substring Without Repeating Char...](https://leetcode.com/problems/longest-substring-without-repeating-characters/)|[Rust](src/uncategorized/longest_non_repeated_substr.rs)|sliding_window|
 |4|[Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/)|[Rust](src/binary_search/median_of_two_sorted_arrays.rs), [Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/median_of_two_sorted_arrays.py)|binary_search|
 |5|[Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/)|[Rust](src/dp/longest_palindromic_substr.rs), [Python](https://github.com/pymongo/python_leetcode/blob/master/palindrome/longest_palindromic_substr.py)|manacher, suffix_array|
@@ -301,7 +301,7 @@ leetcode_solutions
 |674|[Longest Continuous Increasing Subsequence](https://leetcode.com/problems/longest-continuous-increasing-subsequence/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/longest_continuous_increase_subsequence.py)||
 |680|[Valid Palindrome II](https://leetcode.com/problems/valid-palindrome-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/palindrome/valid_palindrome_2.py)|two_pointers, greedy|
 |682|[Baseball Game](https://leetcode.com/problems/baseball-game/)|[Rust](src/easy/leetcode_very_easy.rs)|
-|690|[Employee Importance](https://leetcode.com/problems/employee-importance/)|[C++](TODO_EDIT)|
+|690|[Employee Importance](https://leetcode.com/problems/employee-importance/)|[java](https://github.com/pymongo/java_leetcode/blob/master/src/main/java/com/leetcode/Easy.java)|
 |692|[Top K Frequent Words](https://leetcode.com/problems/top-k-frequent-words/)|[Rust](src/data_structure/heap/top_k_frequent_elements.rs)|
 |695|[Max Area of Island](https://leetcode.com/problems/max-area-of-island/)|[Rust](src/bfs_dfs_backtracking/max_area_of_island.rs)|
 |696|[Count Binary Substrings](https://leetcode.com/problems/count-binary-substrings/)|[Rust](src/easy/leetcode_very_easy.rs)|
@@ -335,7 +335,7 @@ leetcode_solutions
 |852|[Peak Index in a Mountain Array](https://leetcode.com/problems/peak-index-in-a-mountain-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/mountain_array_max.py)|mountain_array, binary_search|
 |860|[Lemonade Change](https://leetcode.com/problems/lemonade-change/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |861|[Score After Flipping Matrix](https://leetcode.com/problems/score-after-flipping-matrix/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/greedy/score_after_flipping_matrix.py)|greedy|
-|867|[Transpose Matrix](https://leetcode.com/problems/transpose-matrix/)|[Rust](src/easy/leetcode_very_easy.rs), [Go](https://github.com/pymongo/go_leetcode/blob/master/easy/transpose_matrix_test.go), [C++](https://github.com/pymongo/learn_cpp/blob/master/leetcode/easy/transpose_matrix.cpp)|
+|867|[Transpose Matrix](https://leetcode.com/problems/transpose-matrix/)|[Rust](src/easy/leetcode_very_easy.rs), [Go](https://github.com/pymongo/go_leetcode/blob/master/easy/transpose_matrix_test.go)|
 |869|[Reordered Power of 2](https://leetcode.com/problems/reordered-power-of-2/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/brain_twists/reordered_power_of_2.py)|permutation|
 |872|[Leaf Similar Trees](https://leetcode.com/problems/leaf-similar-trees/)|[Rust](src/binary_tree/leaf_similar_trees.rs)|
 |875|[Koko Eating Bananas](https://leetcode.com/problems/koko-eating-bananas/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/koko_eating_bananas.py)|
@@ -454,6 +454,7 @@ leetcode_solutions
 |1725|[Number Of Rectangles That Can ...](https://leetcode.com/problems/number-of-rectangles-that-can-form-the-largest-square/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1732|[Find the Highest Altitude](https://leetcode.com/problems/find-the-highest-altitude/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1741🔒|[Find Total Time Spent by Each Employee](https://leetcode.com/problems/find-total-time-spent-by-each-employee/)|[SQL](sql_problems/very_easy.sql)|
+|1744|[Can You Eat Your Favorite Candy...](https://leetcode.com/problems/can-you-eat-your-favorite-candy-on-your-favorite-day/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1748|[Sum of Unique Elements](https://leetcode.com/problems/sum-of-unique-elements/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1752|[Check if Array Is Sorted and Rotated](https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1753|[Maximum Score From Removing Stones](https://leetcode.com/problems/maximum-score-from-removing-stones/)|[Rust](src/easy/leetcode_very_easy.rs)|
@@ -466,7 +467,8 @@ leetcode_solutions
 |1844|[Replace All Digits with Characters](https://leetcode.com/problems/replace-all-digits-with-characters/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1845|[Seat Reservation Manager](https://leetcode.com/problems/seat-reservation-manager/)|[Rust](src/data_structure/heap/seat_reservation_manager.rs)|
 |1848|[Minimum Distance to the Target Element](https://leetcode.com/problems/minimum-distance-to-the-target-element/)|[Rust](src/easy/leetcode_very_easy.rs)|
-|1854|[Maximum Population Year](https://leetcode-cn.com/problems/maximum-population-year/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|1854|[Maximum Population Year](https://leetcode.com/problems/maximum-population-year/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|1880|[Check if Word Equals Summation of Two Words](https://leetcode.com/problems/check-if-word-equals-summation-of-two-words/)|[Rust](src/easy/leetcode_very_easy.rs)|
 
 ---
 
