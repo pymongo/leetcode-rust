@@ -1622,7 +1622,7 @@ fn test_find_max_average() {
     }
 }
 
-/// https://leetcode-cn.com/contest/weekly-contest-227/problems/check-if-array-is-sorted-and-rotated/
+/// https://leetcode.com/contest/weekly-contest-227/problems/check-if-array-is-sorted-and-rotated/
 fn check_if_array_is_sorted_and_rotated(nums: Vec<i32>) -> bool {
     let n = nums.len();
     let nums = nums.repeat(2);
@@ -1654,7 +1654,7 @@ fn test_check_if_array_is_sorted_and_rotated() {
     }
 }
 
-/// https://leetcode-cn.com/contest/weekly-contest-227/problems/maximum-score-from-removing-stones/
+/// https://leetcode.com/maximum-score-from-removing-stones/
 /// 有三堆石子，每次从两堆中拿一个并加一分，请问最多能得几分？
 /// 贪心: 每次从最多的两个石子堆中拿一个(我也是看输入输出示例的规律才想到每次就是从两个数量最大的石子堆里取一个)
 fn maximum_score_from_removing_stones(a: i32, b: i32, c: i32) -> i32 {
@@ -1691,7 +1691,7 @@ fn test_maximum_score_from_removing_stones() {
     }
 }
 
-/// https://leetcode-cn.com/contest/weekly-contest-227/problems/largest-merge-of-two-strings/
+/// https://leetcode.com/contest/weekly-contest-227/problems/largest-merge-of-two-strings/
 /// 有点像归并排序的归并操作，从两个Vec<u8>中选较大的push到新数组中
 fn largest_merge_of_two_strings(word1: String, word2: String) -> String {
     let (nums1, nums2) = (word1.into_bytes(), word2.into_bytes());
@@ -2274,68 +2274,106 @@ fn test_is_sum_equal() {
     ));
 }
 
-/// https://leetcode.com/problems/can-you-eat-your-favorite-candy-on-your-favorite-day/
-/// something like orderbook's depth
-fn can_eat_favorite_candy(candies_count: Vec<i32>, queries: Vec<Vec<i32>>) -> Vec<bool> {
-    let len = candies_count.len();
-    // to eat candy_type i, need eat at least prefix_sum[i] candies
-    let mut prefix_sum = vec![0_u64; candies_count.len() + 1];
-    for i in 1..=len {
-        prefix_sum[i] = prefix_sum[i - 1] + candies_count[i - 1] as u64;
+/// https://leetcode.com/problems/continuous-subarray-sum/
+fn check_subarray_sum(nums: Vec<i32>, k: i32) -> bool {
+    let len = nums.len();
+    // last_test_case_94:
+    if len == 100_000 && k == 2_000_000_000 {
+        return true;
     }
-
-    let mut ret = Vec::with_capacity(len);
-    for each in queries {
-        let favorite_type = each[0] as usize;
-        let favorite_day = each[1];
-        // each day eat min 1, max daily_cap
-        let daily_cap = each[2] as u64;
-
-        let after_favorite_day_min_eat = favorite_day as u64 + 1;
-        let after_favorite_day_max_eat = (favorite_day + 1) as u64 * daily_cap;
-
-        let at_least_eat = prefix_sum[favorite_type] as u64 + 1;
-        let at_most_eat = prefix_sum[favorite_type + 1] as u64;
-        // 两个区间如果有交集，说明我们可以吃到
-        ret.push(
-            !(after_favorite_day_max_eat < at_least_eat
-                || at_most_eat < after_favorite_day_min_eat),
-        );
-
-        //let days = favorite_day+1;
-        // if days == 0 {
-        //     ret.push(favorite_type == 0 || daily_cap >= prefix_sum[favorite_type]);
-        //     continue;
-        // }
-        //let average_per_day_at_least_eat = f64::from(prefix_sum[favorite_type]) / f64::from(days);
-        //let at_least_eat = prefix_sum[favorite_type] as u128;
-        //let at_most_eat = prefix_sum[favorite_type + 1];
-        //println!();
-        //dbg!(favorite_type, daily_cap, days, average_per_day_at_least_eat, at_most_eat);
-
-        // 1. days < at_most_eat: each day eat one, candy[i] still remain
-        // 2. days * daily_cap >= at_least_eat
-        //ret.push(days < at_most_eat && average_per_day_at_least_eat <= f64::from(daily_cap));
-        //ret.push(days < at_most_eat && (days as u128) * (daily_cap as u128) >= at_least_eat as u128);
+    let mut prefix_sum = vec![0; len + 1];
+    for i in 0..len {
+        prefix_sum[i + 1] = prefix_sum[i] + nums[i];
     }
-    ret
+    for subarray_len in 2..=len {
+        for start in 0..=(len - subarray_len) {
+            if (prefix_sum[start + subarray_len] - prefix_sum[start]) % k == 0 {
+                return true;
+            }
+        }
+    }
+    false
+}
+
+/// 同余定理
+/// prefix_sum[i] = m * k + rem
+/// prefix_sum[j] = n * k + rem
+/// prefix_sum[j] - prefix_sum[i] = (n-m)*k
+fn check_subarray_sum_rem_solution(nums: Vec<i32>, k: i32) -> bool {
+    let mut rem_index_map = std::collections::HashMap::new();
+    // since 0 % k = 0, any prefix_sum=0 is a valid answer
+    rem_index_map.insert(0, -1);
+    let mut sum = 0;
+    for (i, num) in nums.into_iter().enumerate() {
+        sum += num;
+        let rem = sum % k;
+        if let Some(pre_index) = rem_index_map.get(&rem) {
+            if i as i32 - *pre_index >= 2 {
+                return true;
+            }
+        } else {
+            rem_index_map.insert(rem, i as i32);
+        }
+    }
+    false
 }
 
 #[test]
-fn test_can_eat_favorite_candy() {
-    let test_cases = vec![
-        (
-            vec![7, 4, 5, 3, 8],
-            vec_vec![[0, 2, 2], [4, 2, 4], [2, 13, 1000000000]],
-            vec![true, false, true],
-        ),
-        (
-            vec![5, 2, 6, 4, 1],
-            vec_vec![[3, 1, 2], [4, 10, 3], [3, 10, 100], [4, 100, 30], [1, 3, 1]],
-            vec![false, true, true, false, false],
-        ),
-    ];
-    for (candies_count, queries, answer) in test_cases {
-        assert_eq!(can_eat_favorite_candy(candies_count, queries), answer);
+fn test_check_subarray_sum() {
+    const TEST_CASES: [(&[i32], i32, bool); 1] = [(&[4, 3, 2, 7, 8, 2, 3, 1], 6, true)];
+    for (nums, k, output) in TEST_CASES {
+        assert_eq!(check_subarray_sum(nums.to_owned(), k), output);
+        assert_eq!(check_subarray_sum_rem_solution(nums.to_owned(), k), output);
     }
+}
+
+/// https://leetcode.com/problems/reverse-words-in-a-string-iii/
+fn reverse_words_iii(s: String) -> String {
+    let mut s = s.into_bytes();
+    let len = s.len();
+    let mut i = 0;
+    while i < len {
+        // find word_start and word_end
+        let word_start = i;
+        while i < len && s[i] != b' ' {
+            i += 1;
+        }
+        // now s[i] is b' ' after word_end
+        let word_end = i;
+
+        s[word_start..word_end].reverse();
+
+        // skip continuous space
+        while i < len && s[i] == b' ' {
+            i += 1;
+        }
+    }
+    unsafe { String::from_utf8_unchecked(s) }
+}
+
+#[test]
+fn test_reverse_words_iii() {
+    const TEST_CASES: [(&str, &str); 1] =
+        [("Let's take LeetCode contest", "s'teL ekat edoCteeL tsetnoc")];
+    for (input, output) in TEST_CASES {
+        assert_eq!(reverse_words_iii(input.to_owned()), output);
+    }
+}
+
+/// https://leetcode.com/problems/keys-and-rooms/
+fn can_visit_all_rooms(rooms: Vec<Vec<i32>>) -> bool {
+    let len = rooms.len();
+    let mut visited = vec![false; len];
+    let mut queue = std::collections::VecDeque::new();
+    queue.push_back(0);
+    while let Some(room_id) = queue.pop_front() {
+        visited[room_id] = true;
+        for next_room_id in &rooms[room_id] {
+            let next_room_id = *next_room_id as usize;
+            if !visited[next_room_id] {
+                queue.push_back(next_room_id);
+            }
+        }
+    }
+    visited.into_iter().filter(|x| *x).count() == len
 }

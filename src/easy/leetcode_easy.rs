@@ -462,3 +462,68 @@ fn test_range_sum_query_2d_matrix_immutable() {
     assert_eq!(m.sum_region(2, 1, 4, 3), 8);
     assert_eq!(m.sum_region(1, 1, 2, 2), 11);
 }
+
+/// https://leetcode.com/problems/can-you-eat-your-favorite-candy-on-your-favorite-day/
+/// something like orderbook's depth
+fn can_eat_favorite_candy(candies_count: Vec<i32>, queries: Vec<Vec<i32>>) -> Vec<bool> {
+    let len = candies_count.len();
+    // to eat candy_type i, need eat at least prefix_sum[i] candies
+    let mut prefix_sum = vec![0_u64; candies_count.len() + 1];
+    for i in 1..=len {
+        prefix_sum[i] = prefix_sum[i - 1] + candies_count[i - 1] as u64;
+    }
+
+    let mut ret = Vec::with_capacity(len);
+    for each in queries {
+        let favorite_type = each[0] as usize;
+        let favorite_day = each[1];
+        // each day eat min 1, max daily_cap
+        let daily_cap = each[2] as u64;
+
+        let after_favorite_day_min_eat = favorite_day as u64 + 1;
+        let after_favorite_day_max_eat = (favorite_day + 1) as u64 * daily_cap;
+
+        let at_least_eat = prefix_sum[favorite_type] as u64 + 1;
+        let at_most_eat = prefix_sum[favorite_type + 1] as u64;
+        // 两个区间如果有交集，说明我们可以吃到
+        ret.push(
+            !(after_favorite_day_max_eat < at_least_eat
+                || at_most_eat < after_favorite_day_min_eat),
+        );
+
+        //let days = favorite_day+1;
+        // if days == 0 {
+        //     ret.push(favorite_type == 0 || daily_cap >= prefix_sum[favorite_type]);
+        //     continue;
+        // }
+        //let average_per_day_at_least_eat = f64::from(prefix_sum[favorite_type]) / f64::from(days);
+        //let at_least_eat = prefix_sum[favorite_type] as u128;
+        //let at_most_eat = prefix_sum[favorite_type + 1];
+        //println!();
+
+        // 1. days < at_most_eat: each day eat one, candy[i] still remain
+        // 2. days * daily_cap >= at_least_eat
+        //ret.push(days < at_most_eat && average_per_day_at_least_eat <= f64::from(daily_cap));
+        //ret.push(days < at_most_eat && (days as u128) * (daily_cap as u128) >= at_least_eat as u128);
+    }
+    ret
+}
+
+#[test]
+fn test_can_eat_favorite_candy() {
+    let test_cases = vec![
+        (
+            vec![7, 4, 5, 3, 8],
+            vec_vec![[0, 2, 2], [4, 2, 4], [2, 13, 1_000_000_000]],
+            vec![true, false, true],
+        ),
+        (
+            vec![5, 2, 6, 4, 1],
+            vec_vec![[3, 1, 2], [4, 10, 3], [3, 10, 100], [4, 100, 30], [1, 3, 1]],
+            vec![false, true, true, false, false],
+        ),
+    ];
+    for (candies_count, queries, answer) in test_cases {
+        assert_eq!(can_eat_favorite_candy(candies_count, queries), answer);
+    }
+}

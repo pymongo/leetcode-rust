@@ -221,27 +221,8 @@ fn test_eval_int_with_parentheses() {
 }
 
 /*
-fn fib(n: u32) -> u32 {
-    if n == 0 {
-        return 1;
-    }
-    if n == 1 {
-        return 1;
-    }
-    int tmp = fib(n-1);
-    tmp += fin(n-2);
-
-    return tmp;
-    return fib(n-1) + fib(n-2);
-}
-
 fn fib3(a: i32, b: i32, n: i32) -> i32 {
     return fib3(b, a+b, n-1);
-}
-
-#[test]
-fn a_s() {
-    fib(3);
 }
 
 struct FibStackFrame {

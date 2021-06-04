@@ -2,10 +2,10 @@
 
 # 题解: 借鉴数据库缓存解决动态规划困难题
 
-分享下 leetcode 困难题[停在原地的方案数](https://leetcode-cn.com/problems/number-of-ways-to-stay-in-the-same-place-after-some-steps/)
+分享下 leetcode 困难题[停在原地的方案数](https://leetcode.com/problems/number-of-ways-to-stay-in-the-same-place-after-some-steps/)
 不断推敲和优化逐步通过题目的过程
 
-看到这种不同路径求方案总数，很容易想到 [unique_path](https://leetcode-cn.com/problems/unique-paths/) 这道动态规划入门题，
+看到这种不同路径求方案总数，很容易想到 [unique_path](https://leetcode.com/problems/unique-paths/) 这道动态规划入门题，
 
 这题跟 unique_path 一样也是「求从起点到终点不同行走路径的方案总数」，自然想到用动态规划去实现
 
@@ -137,16 +137,15 @@ impl NumWaysHelper {
         let mut plans_count = 0;
         // 做决策/状态转移
         // 上一步是: 原地不动
-        // TODO
         if cur_pos == 0 {
             // 上一步是: 向左
-            // TODO
+            // ...
         } else if cur_pos == self.max_position {
             // 上一步是: 向左
-            // TODO
+            // ...
         } else {
             // 上一步是: 向左或向右
-            // TODO
+            // ...
         }
         self.cache.insert((cur_pos, remain_steps), plans_count);
         plans_count

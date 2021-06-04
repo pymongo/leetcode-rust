@@ -16,7 +16,7 @@ struct LazyStatic<T, F = fn() -> T> {
     /// 用Option为了让初次调用init_function初始化时能把F闭包给move掉
     init_function: std::cell::Cell<Option<F>>,
     /// 为了支持leetcode stable的rustc编译器，UnsafeCell内层不能用更好的MaybeUninit，因为MaybeUninit的write方法是unstable feature
-    /// 所以这也是lazy_static源码中有个字段内是Option加上TODO注释将来会换成MaybeUninit
+    /// 所以这也是lazy_static源码中有个字段内是Option将来会换成MaybeUninit
     data: std::cell::UnsafeCell<Option<T>>,
     /// make our struct impl auto drop?
     _marker: std::marker::PhantomData<T>,

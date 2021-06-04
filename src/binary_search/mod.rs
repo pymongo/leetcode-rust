@@ -1,5 +1,39 @@
+/*!
+TODO 二分法解决的几类问题
+- [x] 有序数组的二分搜索: 34(二分搜索第一个和最后一个), 704(经典二分搜索)
+- [x] 山脉数组(mountain array)类问题: 852、(941)、1095
+- [x] 旋转排序数组: 33, 81, 153, 154
+- [ ] 分割数组的最大值: 410
+- [ ] 转变数组后最接近目标值的数组和: 1300
+- [x] 平方根: 69(牛顿连续均值求平方根?)
+- [ ] 寻找重复数: 287
+- [x] 爱吃香蕉的珂珂: 875
+*/
 mod median_of_two_sorted_arrays;
 mod search_a_2d_matrix;
+
+/// https://leetcode.com/problems/binary-search/
+fn binary_search_any(nums: Vec<i32>, target: i32) -> i32 {
+    let mut start = 0;
+    let mut end = nums.len() as i32 - 1;
+    while start <= end {
+        let mid = start + (end - start) / 2;
+        match nums[mid as usize].cmp(&target) {
+            std::cmp::Ordering::Less => start = mid + 1,
+            std::cmp::Ordering::Equal => return mid,
+            std::cmp::Ordering::Greater => end = mid - 1,
+        }
+    }
+    -1
+}
+
+#[test]
+fn test_binary_search_any() {
+    const TEST_CASES: [(&[i32], i32, i32); 3] = [(&[5], 5, 0), (&[5], -5, -1), (&[2, 5], 0, -1)];
+    for (nums, target, output) in TEST_CASES {
+        assert_eq!(binary_search_any(nums.to_owned(), target), output);
+    }
+}
 
 /// https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/
 /// Vec::binary_search() return last position of target

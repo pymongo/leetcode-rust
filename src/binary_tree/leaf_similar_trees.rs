@@ -1,4 +1,4 @@
-//! https://leetcode-cn.com/problems/leaf-similar-trees/
+//! https://leetcode.com/problems/leaf-similar-trees/
 //! 事实上这题 无论用前中后序遍历二叉树得到叶子节点
 use super::TreeLink;
 
