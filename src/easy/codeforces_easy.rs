@@ -45,19 +45,12 @@ fn test_cf_1a_theatre_square() {
 /// 本题问的是一个数能否被分成两个偶数之和，显然只要不等于2的所有偶数都符合条件
 fn cf_4a_watermelon<R, W>(mut reader: R, mut writer: W) -> Result<(), Box<dyn std::error::Error>>
 where
-    R: std::io::Read,
+    R: std::io::BufRead,
     W: std::io::Write,
 {
-    // max input len testcase is "100\r\n"([49,48,48,13(CR),10(LF)])
-    let mut read_buffer = [0_u8; 5];
-    let _read_size = reader.read(&mut read_buffer)?;
-    let mut num = 0_u8;
-    for &byte in &read_buffer {
-        if byte == b'\r' || byte == b'\n' {
-            break;
-        }
-        num = num * 10 + byte - b'0';
-    }
+    let mut input = String::with_capacity(5);
+    reader.read_line(&mut input)?;
+    let num = input.trim_end().parse::<u8>()?;
     if num % 2 == 0 && num != 2 {
         write!(&mut writer, "YES")?;
     } else {
@@ -72,7 +65,6 @@ fn test_cf_4a_watermelon() {
         (b"8\r\n", b"YES"), // codeforces testcase_1
         (b"99\n", b"NO"),   // mac_os input(without CR byte)
     ];
-
     for (input, expected_output) in TEST_CASES {
         let mut output = Vec::new();
         cf_4a_watermelon(input, &mut output).unwrap();

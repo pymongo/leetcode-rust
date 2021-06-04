@@ -1,4 +1,4 @@
-- problem number with `🔒` suffix need leetcode/lintcode subscription to unlock
+- problem number with `🔒` suffix need leetcode VIP to unlock
 - problem number with `❌` suffix is a bad solution(like leetcode#371 Python can't do bitwise add)
 
 codeforces_solutions
@@ -274,9 +274,9 @@ leetcode_solutions
 |536🔒|[Construct Binary Tree from String](https://leetcode.com/problems/construct-binary-tree-from-string/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/construct_from_string_with_parentheses.py)||
 |538|[Convert BST to Greater Tree](https://leetcode.com/problems/convert-bst-to-greater-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/bst_to_gst.py)||
 |547|[Friend Circles](https://leetcode.com/problems/number-of-provinces/)|[Rust](src/data_structure/union_find/friend_circles.rs)|
+|557|[Reverse Words in a String III](https://leetcode.com/problems/reverse-words-in-a-string-iii/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |559|[Maximum Depth of N-ary Tree](https://leetcode.com/problems/maximum-depth-of-n-ary-tree/)|[C++](https://github.com/pymongo/learn_cpp/blob/master/leetcode/n_ary_tree_level_order.cpp)||
 |566|[Reshape the Matrix](https://leetcode.com/problems/reshape-the-matrix/)|[Rust](src/easy/leetcode_easy.rs)|
-|567|[Reverse Words in a String III](https://leetcode.com/problems/reverse-words-in-a-string-iii/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |575|[Distribute Candies](https://leetcode.com/problems/distribute-candies/)|[Rust](src/easy/leetcode_easy.rs)|
 |589|[N-ary Tree Preorder Traversal](https://leetcode.com/problems/n-ary-tree-preorder-traversal/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/n_ary_tree_preorder_postorder.py)||
 |590|[N-ary Tree Postorder Traversal](https://leetcode.com/problems/n-ary-tree-postorder-traversal/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/n_ary_tree_preorder_postorder.py)||
@@ -489,10 +489,7 @@ TODO:
 - [ ] 43/415 字符串整数相乘/相加
 - [ ] 415是经典面试题利用字符串模拟竖式加法进行大数相加
 - [ ] 有兴趣但是困难级别的题: 1. 推箱子 2. 华容道
-
-有意思的但是没有找到题号的问题:
-
-1. 最大直方图矩阵(Longest Histogram Rectangle), 单调栈O(n^3)->O(n)
+- [ ]最大直方图矩阵(Longest Histogram Rectangle), 单调栈O(n^3)->O(n)
 
 ---
 
@@ -515,9 +512,7 @@ lintcode_problems
 |12|[Min Stack](https://lintcode.com/problem/min-stack/)|leetcode_155|
 |13|[Implement strStr()](https://lintcode.com/problem/implement-strstr/)|leetcode_28|
 |14|[First Position of Target](https://lintcode.com/problem/first-position-of-target/)|leetcode_34|
-|15|[Permutations](https://lintcode.com/problem/permutations/)|leetcode_46|
 |16|[Permutations II](https://lintcode.com/problem/permutations-ii/)|leetcode_47|
-|17|[Subsets](https://lintcode.com/problem/subsets/)|leetcode_78|
 |18|[Subsets II](https://lintcode.com/problem/subsets-ii/)|leetcode_90|
 |20|[Dices Sum](https://lintcode.com/problem/dices-sum/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/dices_sum.py)|
 |22|[Flatten List](https://lintcode.com/problem/22)|leetcode_314|
@@ -553,7 +548,6 @@ lintcode_problems
 |71|[Binary Tree Zigzag Level Order Traversal](https://lintcode.com/problem/binary-tree-zigzag-level-order-traversal/)|leetcode_103|
 |72|[Construct Binary Tree from Inorder and Postorder Traversal](https://lintcode.com/problem/construct-binary-tree-from-inorder-and-postorder-traversal/)|leetcode_106|
 |73|[Construct Binary Tree from Preorder and Inorder Traversal](https://lintcode.com/problem/construct-binary-tree-from-preorder-and-inorder-traversal/)|leetcode_105|
-|74|[First Bad Version](https://lintcode.com/problem/first-bad-version/)|leetcode_278|
 |75|[Find Peak Element](https://lintcode.com/problem/find-peak-element/)|leetcode_825|
 |76|[Longest Increasing Subsequence](https://lintcode.com/problem/longest-increasing-subsequence/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/longest_increase_subsequence.py)|接龙型动态规划|
 |77|[Longest Common Subsequence](https://lintcode.com/problem/longest-common-subsequence/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/longest_common_subsequence.py)||
@@ -804,8 +798,7 @@ lintcode_problems
 |1115|[Average of Levels in Binary Tree](https://lintcode.com/problem/average-of-levels-in-binary-tree/)|leetcode_633|
 |1137|[Construct String from Binary Tree](https://lintcode.com/problem/construct-string-from-binary-tree/)|leetcode_606|
 |1147|[Work Plan](https://lintcode.com/problem/work-plan/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/house_robber.py)|
-|1162|[Merge Two Binary Trees](https://lintcode.com/problem/merge-two-binary-trees/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/merge_two_binary_tree.py)||
-|1173|[Reverse Words in a String III](https://lintcode.com/problem/reverse-words-in-a-string-iii/)|leetcode_567|
+|1162|[Merge Two Binary Trees](https://lintcode.com/problem/merge-two-binary-trees/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/merge_two_binary_tree.py)|
 |1179🔒|[Friend Circles](https://lintcode.com/problem/friend-circles/)|leetcode_547|
 |1186|[Encode and Decode TinyURL](https://lintcode.com/problem/encode-and-decode-tinyurl/)|leetcode_535|
 |1199|[Perfect Number](https://lintcode.com/problem/perfect-number/)|leetcode_507|
@@ -826,7 +819,6 @@ lintcode_problems
 |1266|[Find The Difference](https://lintcode.com/problem/find-the-difference/)|leetcode_389|
 |386|[Lexicographical Numbers](https://lintcode.com/problem/lexicographical-numbers/)|leetcode_386|
 |1276|[Sum of Two Integers](https://lintcode.com/problem/sum-of-two-integers/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/bitwise/binary_addition.py)|binary_addition|
-|1283|[Reverse String](https://lintcode.com/problem/reverse-string/)|leetcode_344|
 |1284|[Integer Break](https://lintcode.com/problem/integer-break/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/integer_break.py)|划分类DP|
 |1292|[Odd Even Linked List](https://lintcode.com/problem/odd-even-linked-list/)|leetcode_328|
 |1300|[Bash Game(Nim Game)](https://lintcode.com/problem/bash-game/)|leetcode_292|
@@ -848,7 +840,6 @@ lintcode_problems
 |1428|[Keys and Rooms](https://lintcode.com/problem/keys-and-rooms/)|leetcode_841|
 |1438|[Positions of Large Groups](https://lintcode.com/problem/positions-of-large-groups/)|leetcode_830|
 |1479|[Can Reach The Endpoint](https://lintcode.com/problem/can-reach-the-endpoint/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/bfs/can_reach_the_end_point.py)|bfs|
-|1492|[Koko Eating Bananas](https://lintcode.com/problem/koko-eating-bananas/)|leetcode_875|
 |1499|[Reordered Power of 2](https://lintcode.com/problem/reordered-power-of-2/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/brain_twists/reordered_power_of_2.py)|permutation|
 |1508|[Score After Flipping Matrix](https://lintcode.com/problem/score-after-flipping-matrix/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/greedy/score_after_flipping_matrix.py)|greedy|
 |1509|[Lemonade Change](https://lintcode.com/problem/lemonade-change/)|[Rust](src/easy/leetcode_very_easy.rs)|
@@ -856,10 +847,7 @@ lintcode_problems
 |1525|[N-ary Tree Postorder Traversal](https://lintcode.com/problem/n-ary-tree-postorder-traversal/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/n_ary_tree_preorder_postorder.py)||
 |1529|[N-ary Tree Preorder Traversal](https://lintcode.com/problem/n-ary-tree-preorder-traversal/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/n_ary_tree_preorder_postorder.py)||
 |1533|[N-ary Tree Level Order Traversal](https://lintcode.com/problem/n-ary-tree-level-order-traversal/)|leetcode_429|
-|1536|[Find First and Last Position of Element ...](https://lintcode.com/problem/find-first-and-last-position-of-element-in-sorted-array/)|leetcode_34|
 |1593|[Construct Binary Tree from Preorder and Postorder ...](https://lintcode.com/problem/construct-binary-tree-from-preorder-and-postorder-traversal/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/construct_from_pre_order_and_post_order.py)|DFS|
-|1609|[Middle of the Linked List](https://lintcode.com/problem/middle-of-the-linked-list/)|leetcode_228|
-|1704|[Range Sum of BST](https://lintcode.com/problem/range-sum-of-bst/)|leetcode_938|
 |1790🔒|[Rotate String II](https://lintcode.com/problem/rotate-string-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/rotate_reverse_circle_shift/rotate_string_2.py)|reverse, circle_shift|
 |1848_FAILED|[Word Search III](https://lintcode.com/problem/word-search-iii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/word_search_3.py)|
 |1870|[number of substrings with all zeroes](https://lintcode.com/problem/number-of-substrings-with-all-zeroes/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/number_of_substrings_with_all_zeroes.py)|
@@ -867,12 +855,16 @@ lintcode_problems
 |1876|[Alien Dictionary(easy)](https://lintcode.com/problem/alien-dictionaryeasy/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/unclassified/verifying_an_alien_dictionary.py)||
 |1901|[Squares of a Sorted Array](https://lintcode.com/problem/squares-of-a-sorted-array/)|leetcode_977|
 
----
-### 划分型动态规划
-戳气球、石子归并(dp/stone_game_merge.py)
+dp TODO:
+- 划分型动态规划:戳气球、石子归并(dp/stone_game_merge.py)
+- 选或不选类DP: 打家劫舍系列/股票买卖系列
+- 计数型动态规划: k sum
 
-### 选或不选类DP
-- 打家劫舍系列
-- 股票买卖系列
+## some awesome leetcode rust solutions repos
+- https://github.com/warycat/rustgym
+- https://gitee.com/ZIP97/leetcode/ by 苦瓜小仔
+- https://stevenbai.top/rust-leetcode/
 
-TODO 计数型动态规划 k sum
+## other awesome leetcode repos I recommend
+- https://github.com/halfrost/LeetCode-Go
+- https://github.com/haoel/leetcode
