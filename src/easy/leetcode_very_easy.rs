@@ -2274,59 +2274,6 @@ fn test_is_sum_equal() {
     ));
 }
 
-/// https://leetcode.com/problems/continuous-subarray-sum/
-fn check_subarray_sum(nums: Vec<i32>, k: i32) -> bool {
-    let len = nums.len();
-    // last_test_case_94:
-    if len == 100_000 && k == 2_000_000_000 {
-        return true;
-    }
-    let mut prefix_sum = vec![0; len + 1];
-    for i in 0..len {
-        prefix_sum[i + 1] = prefix_sum[i] + nums[i];
-    }
-    for subarray_len in 2..=len {
-        for start in 0..=(len - subarray_len) {
-            if (prefix_sum[start + subarray_len] - prefix_sum[start]) % k == 0 {
-                return true;
-            }
-        }
-    }
-    false
-}
-
-/// 同余定理
-/// prefix_sum[i] = m * k + rem
-/// prefix_sum[j] = n * k + rem
-/// prefix_sum[j] - prefix_sum[i] = (n-m)*k
-fn check_subarray_sum_rem_solution(nums: Vec<i32>, k: i32) -> bool {
-    let mut rem_index_map = std::collections::HashMap::new();
-    // since 0 % k = 0, any prefix_sum=0 is a valid answer
-    rem_index_map.insert(0, -1);
-    let mut sum = 0;
-    for (i, num) in nums.into_iter().enumerate() {
-        sum += num;
-        let rem = sum % k;
-        if let Some(pre_index) = rem_index_map.get(&rem) {
-            if i as i32 - *pre_index >= 2 {
-                return true;
-            }
-        } else {
-            rem_index_map.insert(rem, i as i32);
-        }
-    }
-    false
-}
-
-#[test]
-fn test_check_subarray_sum() {
-    const TEST_CASES: [(&[i32], i32, bool); 1] = [(&[4, 3, 2, 7, 8, 2, 3, 1], 6, true)];
-    for (nums, k, output) in TEST_CASES {
-        assert_eq!(check_subarray_sum(nums.to_owned(), k), output);
-        assert_eq!(check_subarray_sum_rem_solution(nums.to_owned(), k), output);
-    }
-}
-
 /// https://leetcode.com/problems/reverse-words-in-a-string-iii/
 fn reverse_words_iii(s: String) -> String {
     let mut s = s.into_bytes();
@@ -2377,3 +2324,6 @@ fn can_visit_all_rooms(rooms: Vec<Vec<i32>>) -> bool {
     }
     visited.into_iter().filter(|x| *x).count() == len
 }
+
+// https://leetcode-cn.com/problems/sum-of-all-subset-xor-totals/
+// https://leetcode-cn.com/problems/circular-array-loop/

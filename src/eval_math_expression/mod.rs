@@ -220,15 +220,14 @@ fn test_eval_int_with_parentheses() {
     }
 }
 
-/*
 fn fib3(a: i32, b: i32, n: i32) -> i32 {
-    return fib3(b, a+b, n-1);
+    return fib3(b, a + b, n - 1);
 }
 
 struct FibStackFrame {
     arg_n: i32,
     step: i32,
-    return_val: i32
+    return_val: i32,
 }
 
 struct A<'a> {
@@ -246,13 +245,12 @@ fn a(n: i32) -> i32 {
         arg: n,
         left_node_output: 0,
         right_node_output: 0,
-        ret: &mut ret
+        ret: &mut ret,
     }];
     while let Some(cur_stack_frame) = stack.pop() {
         if cur_stack_frame.arg == 0 || cur_stack_frame.arg == 1 {
             *cur_stack_frame.ret = 1;
         } else {
-
         }
         cur_stack_frame.left_node_output = todo!();
         cur_stack_frame.right_node_output = todo!();
@@ -265,7 +263,7 @@ fn f(n: i32) -> i32 {
     stack.push(FibStackFrame {
         arg_n: n,
         step: 1,
-        return_val: 0
+        return_val: 0,
     });
     while let Some(mut item) = stack.pop() {
         if item.arg_n == 0 || item.arg_n == 1 {
@@ -282,11 +280,11 @@ fn f(n: i32) -> i32 {
                 });
                 // f(n-1)
                 stack.push(FibStackFrame {
-                    arg_n: n-1,
+                    arg_n: n - 1,
                     step: 1,
                     return_val: 0,
                 });
-            },
+            }
             2 => {
                 stack.push(FibStackFrame {
                     arg_n: n,
@@ -294,11 +292,11 @@ fn f(n: i32) -> i32 {
                     return_val: 0,
                 });
                 stack.push(FibStackFrame {
-                    arg_n: n-1-1,
+                    arg_n: n - 1 - 1,
                     step: 1,
                     return_val: 0,
                 });
-            },
+            }
             3 => {
                 if stack.is_empty() {
                     return item.return_val;
@@ -306,10 +304,8 @@ fn f(n: i32) -> i32 {
                     stack.last_mut().unwrap().return_val += item.return_val;
                 }
             }
-            _ => unreachable!()
+            _ => unreachable!(),
         }
     }
     unreachable!()
 }
-
-*/
