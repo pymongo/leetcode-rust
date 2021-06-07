@@ -30,3 +30,50 @@ fn fib_reduce(n: i32) -> i32 {
         .fold((0, 1), |accum, _each| (accum.1, accum.0 + accum.1))
         .0
 }
+
+/// eval expression need to know how stack machine work
+fn fib_stack_machine(n: i32) -> i32 {
+    #[derive(Debug)]
+    struct FibStackFrame {
+        n: i32,
+        step: u8,
+    }
+    impl FibStackFrame {
+        const fn new(n: i32, step: u8) -> Self {
+            Self { n, step }
+        }
+    }
+
+    let mut stack: Vec<FibStackFrame> = vec![FibStackFrame::new(n, 0)];
+    // for easy, we assert all stack frame return addr in same
+    let mut ans = 0;
+    while let Some(frame) = stack.pop() {
+        if frame.n == 0 || frame.n == 1 {
+            ans += 1;
+            continue;
+        }
+        match frame.step {
+            0 => {
+                stack.push(FibStackFrame::new(frame.n, 1));
+                // f(n-1)
+                stack.push(FibStackFrame::new(frame.n - 1, 0));
+            }
+            1 => {
+                stack.push(FibStackFrame::new(frame.n, 2));
+                // f(n-2)
+                stack.push(FibStackFrame::new(frame.n - 2, 0));
+            }
+            2 => {
+                // f(n-1)+f(n-2) calc ok, do nothing
+            }
+            _ => unreachable!(),
+        }
+    }
+
+    ans
+}
+
+#[test]
+fn test_fib() {
+    assert_eq!(fib_stack_machine(4), 5);
+}

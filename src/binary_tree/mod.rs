@@ -3,6 +3,7 @@ mod is_bst;
 mod leaf_similar_trees;
 mod level_order_traversal;
 mod max_depth_of_binary_tree;
+mod merge_two_binary_trees;
 mod preorder_traversal;
 mod same_tree;
 mod search_val_or_range_in_bst;

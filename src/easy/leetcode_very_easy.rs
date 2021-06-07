@@ -2325,5 +2325,4 @@ fn can_visit_all_rooms(rooms: Vec<Vec<i32>>) -> bool {
     visited.into_iter().filter(|x| *x).count() == len
 }
 
-// https://leetcode-cn.com/problems/sum-of-all-subset-xor-totals/
-// https://leetcode-cn.com/problems/circular-array-loop/
+// https://leetcode.com/problems/circular-array-loop/

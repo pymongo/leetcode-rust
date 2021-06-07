@@ -9,8 +9,6 @@
 [1,2] [1,3] <2,1> [2,3] <3,1> <3,2>
 [1,2,3]
 ```
-## 减枝去重
-TODO
 
 ## 如何缩小问题的规模？数学公式?
 将返回值的二维数组按长度分组，不难发现以下规律
@@ -20,7 +18,7 @@ C(n,2): [1,2] [1,3] [2,3]
 C(n,3): [1,2,3]
 所以可以将问题简化为编写一个 穷举从长度为n的数组中取k个的函数的不同组合
 */
-fn subsets_dfs(nums: Vec<i32>) -> Vec<Vec<i32>> {
+fn subsets_combine(nums: Vec<i32>) -> Vec<Vec<i32>> {
     let mut ret = vec![];
     for k in 0..=nums.len() {
         combine_n_k(&nums, k, &mut ret);
@@ -69,13 +67,15 @@ for num in nums:
 return output
 ```
 
-## subsets BFS搜索树
+## ⭐subsets BFS搜索树
 ```text
 []
 [] [1]
 [] [1] [2] [1,2]
 [] [1] [2] [1,2] [3] [1,3] [2,3] [1,2,3]
 ```
+
+check DFS search tree on problem sum-of-all-subset-xor-totals
 
 数据结构上用不断遍历上一次队列长度进行出队处理后再入队，或者用sentinel_node的队列也可以
 但是在内存利用率上远不如两个新旧数组间互相迭代(例如二叉树的层级遍历)
@@ -102,9 +102,73 @@ fn test_subsets() {
         vec_vec![[], [1], [2], [3], [1, 2], [1, 3], [2, 3], [1, 2, 3]],
     )];
     for (input, output) in test_cases {
-        assert_eq!(subsets_dfs(input.clone()), output);
+        assert_eq!(subsets_combine(input.clone()), output);
         let mut bfs_output = subsets_bfs(input);
         bfs_output.sort_by_cached_key(Vec::len);
         assert_eq!(bfs_output, output);
+    }
+}
+
+/// https://leetcode.com/problems/sum-of-all-subset-xor-totals/
+fn subsets_xor_sum(nums: Vec<i32>) -> i32 {
+    let mut last_subsets = vec![vec![]];
+    for num in nums {
+        let mut curr_subsets = last_subsets.clone();
+        for each_subset in &mut curr_subsets {
+            each_subset.push(num);
+        }
+        last_subsets.append(&mut curr_subsets);
+    }
+
+    last_subsets
+        .into_iter()
+        .map(|subset| subset.into_iter().fold(0, |a, b| a ^ b))
+        .sum()
+}
+
+/**
+## ⭐subsets DFS搜索树
+left_child : not select current num
+right_child:     select current num
+```text
+        []
+1:   []     [1]
+2: [] [2] [1] [2]
+```
+*/
+fn subsets_xor_sum_dfs(nums: Vec<i32>) -> i32 {
+    struct Dfs {
+        nums: Vec<i32>,
+        len: usize,
+        total_xor_sum: i32,
+    }
+    impl Dfs {
+        fn dfs(&mut self, index: usize, curr_xor_sum: i32) {
+            if index == self.len {
+                self.total_xor_sum += curr_xor_sum;
+                return;
+            }
+            // select current num
+            self.dfs(index + 1, curr_xor_sum ^ self.nums[index]);
+            // doesn't select current num
+            self.dfs(index + 1, curr_xor_sum);
+        }
+    }
+    let len = nums.len();
+    let mut helper = Dfs {
+        nums,
+        len,
+        total_xor_sum: 0,
+    };
+    helper.dfs(0, 0);
+    helper.total_xor_sum
+}
+
+#[test]
+fn test_subsets_xor_sum() {
+    const TEST_CASES: [(&[i32], i32); 1] = [(&[5, 1, 6], 28)];
+    for (nums, output) in TEST_CASES {
+        assert_eq!(subsets_xor_sum(nums.to_owned()), output);
+        assert_eq!(subsets_xor_sum_dfs(nums.to_owned()), output);
     }
 }

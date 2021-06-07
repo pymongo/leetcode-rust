@@ -76,6 +76,7 @@ fn max_len_sub_array_same_0_1(nums: Vec<i32>) -> i32 {
 }
 
 /// My greedy solution inspire by check_subarray_sum_rem_solution
+#[allow(clippy::similar_names)]
 fn max_len_sub_array_same_0_1_greedy(nums: Vec<i32>) -> i32 {
     let mut map = std::collections::HashMap::new();
     // insert prefix_sum[0]
