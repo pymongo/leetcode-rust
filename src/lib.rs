@@ -20,7 +20,8 @@
     clippy::unreachable,
     clippy::unwrap_used,
     clippy::cast_sign_loss,
-    clippy::shadow_reuse
+    clippy::shadow_reuse,
+    clippy::module_name_repetitions
 )]
 #![allow(clippy::needless_pass_by_value)]
 #![doc(html_playground_url = "https://play.rust-lang.org/")]

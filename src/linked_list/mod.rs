@@ -33,6 +33,7 @@ impl<T> Node<T> {
 
 mod add_two_linked_list;
 mod insertion_sort_linked_list;
+mod is_circular_loop;
 mod linked_list_is_palindrome;
 mod merge_two_sorted_linked_list;
 mod middle_of_linked_list;
@@ -126,5 +127,5 @@ fn linked_list_to_vec(head: &Option<Box<ListNode>>) -> Vec<i32> {
 fn test_arr_to_linked_list() {
     let head = arr_to_linked_list(&[1, 2, 3, 4, 5]);
     let nums_vec = linked_list_to_vec(&head);
-    assert_eq!(nums_vec, vec![1, 2, 3, 4, 5])
+    assert_eq!(nums_vec, vec![1, 2, 3, 4, 5]);
 }

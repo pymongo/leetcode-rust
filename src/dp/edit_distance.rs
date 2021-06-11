@@ -145,7 +145,7 @@ impl EditDistanceRecursive {
                 return n
             if word1[n - 1] == word2[m - 1]:
                 return dp(n - 1, m - 1)
-            # TODO 尾递归，为何看上去没有memo也能这么快？同理用栈模拟尾递归也是最快的解法
+            # 为何看上去没有memo也能这么快？同理用栈模拟尾递归也是最快的解法
             return min(
                 dp(n, m - 1),  # insert
                 dp(n - 1, m),  # remove

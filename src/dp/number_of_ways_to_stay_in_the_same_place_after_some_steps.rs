@@ -132,7 +132,7 @@ struct NumWaysHelper {
 
 impl NumWaysHelper {
     fn dfs(&mut self, cur_pos: i32, remain_steps: i32) -> u64 {
-        // TODO 递归结束条件
+        // 递归结束条件
 
         let mut plans_count = 0;
         // 做决策/状态转移

@@ -59,6 +59,6 @@ fn test_construct_product_array() {
     ];
 
     for &(input, output) in &TEST_CASES {
-        assert_eq!(construct_product_array(input), output.to_vec())
+        assert_eq!(construct_product_array(input), output.to_vec());
     }
 }

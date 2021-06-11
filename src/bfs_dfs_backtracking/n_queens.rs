@@ -64,7 +64,7 @@ fn render_solution(queens: &[i32], res: &mut Vec<Vec<String>>, n: usize) {
     for i in 0..n {
         let mut row = vec!['.'.to_string(); n];
         row[queens[i] as usize] = 'Q'.to_string();
-        board.push(row.join(""))
+        board.push(row.join(""));
     }
     res.push(board);
 }

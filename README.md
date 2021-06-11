@@ -22,7 +22,7 @@ leetcode_solutions
 |3|[Longest Substring Without Repeating Char...](https://leetcode.com/problems/longest-substring-without-repeating-characters/)|[Rust](src/uncategorized/longest_non_repeated_substr.rs)|sliding_window|
 |4|[Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/)|[Rust](src/binary_search/median_of_two_sorted_arrays.rs), [Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/median_of_two_sorted_arrays.py)|binary_search|
 |5|[Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/)|[Rust](src/dp/longest_palindromic_substr.rs), [Python](https://github.com/pymongo/python_leetcode/blob/master/palindrome/longest_palindromic_substr.py)|manacher, suffix_array|
-|6|[ZigZag Conversion](https://leetcode.com/problems/zigzag-conversion/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/string/zigzag_conversion.py)|
+|6|[ZigZag Conversion](https://leetcode.com/problems/zigzag-conversion/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |7|[Reverse Integer](https://leetcode.com/problems/reverse-integer/)|[Rust](src/uncategorized/reverse_integer_checked_mul_overflow.rs)|
 |8|[String to Integer (atoi)](https://leetcode.com/problems/string-to-integer-atoi/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/string_to_integer_atoi.py)|
 |9|[Palindromic Number](https://leetcode.com/problems/palindrome-number/)|[Rust](src/uncategorized/reverse_integer_checked_mul_overflow.rs)|
@@ -254,6 +254,7 @@ leetcode_solutions
 |449|[Serialize and Deserialize BST](https://leetcode.com/problems/serialize-and-deserialize-bst/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/bst_serialize.py)|DFS, stack|
 |454|[4Sum II](https://leetcode.com/problems/4sum-ii/)|[Rust](src/two_sum_two_pointers/four_sum_2.rs)|
 |455|[Assign Cookies](https://leetcode.com/problems/assign-cookies/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|457|[Circular Array Loop](https://leetcode.com/problems/circular-array-loop/)|[Rust](src/linked_list/is_circular_loop.rs)|
 |461|[Hamming Distance](https://leetcode.com/problems/hamming-distance/)|[Rust](src/bitwise/hamming_distance_count_ones.rs)|
 |463|[Island Perimeter](https://leetcode.com/problems/island-perimeter/)|[Rust](src/easy/grid_or_matrix/island_perimeter.rs)|
 |470|[impl rand10 using rand7](https://leetcode.com/problems/implement-rand10-using-rand7/)|[Rust](src/random/impl_rand10_by_rand7.rs)|
@@ -486,15 +487,6 @@ leetcode_solutions
 
 ---
 
-TODO:
-
-- [ ] 43/415 字符串整数相乘/相加
-- [ ] 415是经典面试题利用字符串模拟竖式加法进行大数相加
-- [ ] 有兴趣但是困难级别的题: 1. 推箱子 2. 华容道
-- [ ]最大直方图矩阵(Longest Histogram Rectangle), 单调栈O(n^3)->O(n)
-
----
-
 lintcode_problems
 ===
 
@@ -535,7 +527,6 @@ lintcode_problems
 |68|[Binary Tree Postorder Traversal](https://lintcode.com/problem/binary-tree-postorder-traversal/)|leetcode_145|
 |69|[Binary Tree Level Order Traversal](https://lintcode.com/problem/binary-tree-level-order-traversal/)|leetcode_102|
 |70|[Binary Tree Level Order Traversal II](https://lintcode.com/problem/binary-tree-level-order-traversal-ii/)|leetcode_102|
-|71|[Binary Tree Zigzag Level Order Traversal](https://lintcode.com/problem/binary-tree-zigzag-level-order-traversal/)|leetcode_103|
 |72|[Construct Binary Tree from Inorder and Postorder Traversal](https://lintcode.com/problem/construct-binary-tree-from-inorder-and-postorder-traversal/)|leetcode_106|
 |73|[Construct Binary Tree from Preorder and Inorder Traversal](https://lintcode.com/problem/construct-binary-tree-from-preorder-and-inorder-traversal/)|leetcode_105|
 |75|[Find Peak Element](https://lintcode.com/problem/find-peak-element/)|leetcode_825|
@@ -782,7 +773,6 @@ lintcode_problems
 |1354|[Pascals Triangle II](https://lintcode.com/problem/pascals-triangle-ii/)|leetcode_119|
 |1355|[Pascals Triangle](https://lintcode.com/problem/pascals-triangle/)|leetcode_118|
 |1359|[Convert Sorted Array to Binary Search Tree](https://lintcode.com/problem/convert-sorted-array-to-binary-search-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/divide_conquer/sorted_list_or_array_to_bst.py)|divide_and_conquer|
-|1363|[ZigZag Conversion](https://lintcode.com/problem/zigzag-conversion/)|leetcode_6|
 |1375|[Substring With At Least K Distinct Characters](https://lintcode.com/problem/substring-with-at-least-k-distinct-characters/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/substring_with_at_least_k_distinct_characters.py)||
 |1424|[Longest Mountain in Array](https://lintcode.com/problem/longest-mountain-in-array/)|leetcode_845|
 |1428|[Keys and Rooms](https://lintcode.com/problem/keys-and-rooms/)|leetcode_841|
@@ -802,10 +792,14 @@ lintcode_problems
 |1876|[Alien Dictionary(easy)](https://lintcode.com/problem/alien-dictionaryeasy/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/unclassified/verifying_an_alien_dictionary.py)|
 |1901|[Squares of a Sorted Array](https://lintcode.com/problem/squares-of-a-sorted-array/)|leetcode_977|
 
-dp TODO:
+todo_dp:
 - 划分型动态规划:戳气球、石子归并(dp/stone_game_merge.py)
 - 选或不选类DP: 打家劫舍系列/股票买卖系列
 - 计数型动态规划: k sum
+- [ ] 43/415 字符串整数相乘/相加
+- [ ] 415是经典面试题利用字符串模拟竖式加法进行大数相加
+- [ ] 有兴趣但是困难级别的题: 1. 推箱子 2. 华容道
+- [ ]最大直方图矩阵(Longest Histogram Rectangle), 单调栈O(n^3)->O(n)
 
 ## some awesome leetcode rust solutions repos
 - https://github.com/warycat/rustgym

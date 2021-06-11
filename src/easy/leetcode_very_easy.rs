@@ -2325,4 +2325,59 @@ fn can_visit_all_rooms(rooms: Vec<Vec<i32>>) -> bool {
     visited.into_iter().filter(|x| *x).count() == len
 }
 
-// https://leetcode.com/problems/circular-array-loop/
+/// https://leetcode.com/problems/zigzag-conversion/
+fn zigzag_conversion(s: String, num_rows: i32) -> String {
+    if num_rows == 1 {
+        return s;
+    }
+    let rows = num_rows as usize;
+    let max_row = (rows - 1) as i32;
+    let max_col = s.len() / rows;
+    let mut arr = vec![Vec::with_capacity(max_col); rows];
+
+    let mut row = 0;
+    let mut step = -1;
+    for each in s.into_bytes() {
+        if row == 0 || row == max_row {
+            step = -step;
+        }
+        arr[row as usize].push(each);
+        row += step;
+    }
+
+    unsafe { String::from_utf8_unchecked(arr.into_iter().flatten().collect::<Vec<_>>()) }
+}
+
+/// index map formula between input and output
+fn zigzag_conversion_best(s: String, num_rows: i32) -> String {
+    if num_rows == 1 {
+        return s;
+    }
+
+    let s = s.into_bytes();
+    let rows = num_rows as usize;
+    let len = s.len();
+    let cycle_len = 2 * rows - 2;
+    let mut ret = Vec::with_capacity(len);
+
+    for i in 0..rows {
+        for j in (0..len.saturating_sub(i)).step_by(cycle_len) {
+            ret.push(s[i + j]);
+            if i != 0 && i != rows - 1 && j + cycle_len - i < len {
+                ret.push(s[j + cycle_len - i]);
+            }
+        }
+    }
+
+    unsafe { String::from_utf8_unchecked(ret) }
+}
+
+#[test]
+fn test_zigzag_conversion() {
+    const TEST_CASES: [(&str, i32, &str); 2] =
+        [("PAYPALISHIRING", 3, "PAHNAPLSIIGYIR"), ("A", 3, "A")];
+    for (s, num_rows, output) in TEST_CASES {
+        assert_eq!(zigzag_conversion(s.to_string(), num_rows), output);
+        assert_eq!(zigzag_conversion_best(s.to_string(), num_rows), output);
+    }
+}

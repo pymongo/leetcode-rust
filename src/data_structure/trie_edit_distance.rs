@@ -56,7 +56,7 @@ impl TrieLeetcode {
         // let word = word.to_ascii_lowercase().into_bytes();
         let mut node = self;
         for letter in word.into_bytes().into_iter().map(|ch| (ch - b'a') as usize) {
-            node = node.children[letter].get_or_insert_with(|| Box::new(Self::default()))
+            node = node.children[letter].get_or_insert_with(|| Box::new(Self::default()));
         }
         // 单词结尾标志，避免插入apple时会把app也认为是一个单词
         node.is_word = true;

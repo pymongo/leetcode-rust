@@ -14,7 +14,7 @@ fn num_triplets(nums1: Vec<i32>, nums2: Vec<i32>) -> i32 {
         let mut counter = std::collections::HashMap::with_capacity(nums2.len());
         for &num in nums2 {
             if let Some(cnt) = counter.get_mut(&num) {
-                *cnt += 1
+                *cnt += 1;
             } else {
                 counter.insert(num, 1);
             }

@@ -60,7 +60,7 @@ fn max_len_sub_array_same_0_1(nums: Vec<i32>) -> i32 {
         if nums[i] == 0 {
             prefix_sum[i + 1] = prefix_sum[i] - 1;
         } else {
-            prefix_sum[i + 1] = prefix_sum[i] + 1
+            prefix_sum[i + 1] = prefix_sum[i] + 1;
         }
     }
     let mut max_len = 0;
