@@ -234,6 +234,7 @@ leetcode_solutions
 |368|[Largest Divisible Subset](https://leetcode.com/problems/largest-divisible-subset/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/largest_divisible_subset.py)||
 |369🔒|[Plus One Linked List](https://leetcode.com/problems/plus-one-linked-list/)|[Rust](src/linked_list/plus_one.rs)|
 |371❌|[Sum of Two Integers](https://leetcode.com/problems/sum-of-two-integers/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/bitwise/binary_addition.py)|binary_addition|
+|374|[Guess Number Higher Or Lower](https://leetcode.com/problems/guess-number-higher-or-lower/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |377|[Combination Sum IV](https://leetcode.com/problems/combination-sum-iv/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/backpack_4_coin_change_combination_sum_4.py)|完全背包问题|
 |380|[Insert Delete GetRandom O(1)](https://leetcode.com/problems/insert-delete-getrandom-o1/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/insert_delete_get_random_o1.py)||
 |381|[Insert Delete GetRandom O(1) - Duplicates allowed](https://leetcode.com/problems/insert-delete-getrandom-o1-duplicates-allowed/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/insert_delete_get_random_o1.py)||

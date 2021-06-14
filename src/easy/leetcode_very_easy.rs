@@ -683,6 +683,38 @@ impl FirstBadVersion {
     }
 }
 
+/// https://leetcode.com/problems/guess-number-higher-or-lower/
+/// guess(k): k from 1..=n, if k < answers, fn guess return -1
+fn guess_number_higher_or_lower<F: Fn(i32) -> i32>(n: i32, guess: F) -> i32 {
+    let mut left = 0;
+    let mut right = n;
+    loop {
+        let mid = left + (right - left) / 2;
+        match guess(mid) {
+            -1 => right = mid - 1,
+            1 => left = mid + 1,
+            0 => return mid,
+            _ => unreachable!(),
+        }
+    }
+}
+
+#[test]
+fn test_guess_number_higher_or_lower() {
+    const TEST_CASES: [(i32, i32); 1] = [(10, 6)];
+    for (n, answer) in TEST_CASES {
+        let guess = |k| {
+            match answer.cmp(&k) {
+                // the answer is less than guess
+                std::cmp::Ordering::Less => -1,
+                std::cmp::Ordering::Equal => 0,
+                std::cmp::Ordering::Greater => 1,
+            }
+        };
+        assert_eq!(guess_number_higher_or_lower(n, guess), answer);
+    }
+}
+
 #[test]
 fn test_first_bad_version() {
     const TEST_CASES: [(i32, i32); 1] = [(4, 5)];
