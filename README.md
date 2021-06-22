@@ -277,6 +277,7 @@ leetcode_solutions
 |536🔒|[Construct Binary Tree from String](https://leetcode.com/problems/construct-binary-tree-from-string/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/construct_from_string_with_parentheses.py)||
 |538|[Convert BST to Greater Tree](https://leetcode.com/problems/convert-bst-to-greater-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/bst_to_gst.py)||
 |547|[Friend Circles](https://leetcode.com/problems/number-of-provinces/)|[Rust](src/data_structure/union_find/friend_circles.rs)|
+|554|[Brick Wall](https://leetcode.com/problems/brick_wall/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |557|[Reverse Words in a String III](https://leetcode.com/problems/reverse-words-in-a-string-iii/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |559|[Maximum Depth of N-ary Tree](https://leetcode.com/problems/maximum-depth-of-n-ary-tree/)|[C++](https://github.com/pymongo/learn_cpp/blob/master/leetcode/n_ary_tree_level_order.cpp)||
 |566|[Reshape the Matrix](https://leetcode.com/problems/reshape-the-matrix/)|[Rust](src/easy/leetcode_easy.rs)|

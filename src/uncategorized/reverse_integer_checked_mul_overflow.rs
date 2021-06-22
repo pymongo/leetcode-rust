@@ -10,29 +10,8 @@ https://twitter.com/ospopen/status/1322127786618748928
 ```
 */
 
-/**
-注意Python/Ruby不能这么写(abs())，因为这三种语言-1整除10都等于-1，会陷入死循环，而C/Java/Rust则不会
-
-```python
-I32_MIN = -2 ** 31
-I32_MAX = 2 ** 31 - 1
-
-def reverse_number(n: int) -> int:
-    is_negative: bool = False
-    if n < 0:
-        is_negative = True
-        n = -n
-    reverse: int = 0
-    while n != 0:
-        reverse = reverse * 10 + n % 10
-        n //= 10
-    if is_negative:
-        return 0 if -reverse < I32_MIN else -reverse
-    if not is_negative and reverse > I32_MAX:
-        return 0
-    return reverse
-```
-*/
+/// 注意Python/Ruby不能这么写(abs())，因为 Python -1整除10都等于-1(div_euclid)，会陷入死循环
+/// reverse_integer(-2147483648) may panic on debug build(because overflow-checks=true profile), but work good on release build
 fn reverse_integer(x: i32) -> i32 {
     /*
     || -> Option<i32> {

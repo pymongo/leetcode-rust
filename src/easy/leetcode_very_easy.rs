@@ -2412,3 +2412,108 @@ fn test_zigzag_conversion() {
         assert_eq!(zigzag_conversion_best(s.to_string(), num_rows), output);
     }
 }
+
+/// https://leetcode.com/problems/brick-wall/
+/// TimeLimitExceeded: 72/87
+fn brick_wall_tle_1(wall: Vec<Vec<i32>>) -> i32 {
+    // 端点数等于宽度+1
+    let width = wall[0].iter().sum::<i32>() as usize;
+    let height = wall.len() as i32;
+    let mut counter = vec![0; width + 1];
+    for row in wall {
+        let mut brick_start = 0;
+        for brick_len in row {
+            let brick_end = brick_start + brick_len as usize;
+            for count in counter.iter_mut().take(brick_end).skip(brick_start + 1) {
+                *count += 1;
+            }
+            brick_start = brick_end;
+        }
+    }
+    if cfg!(debug_assertions) && width < 1000 {
+        eprintln!("brick_wall_tle:counter = {:?}", counter);
+    }
+    counter
+        .into_iter()
+        .skip(1)
+        .take(width - 1)
+        .min()
+        .unwrap_or(height)
+}
+
+fn brick_wall_tle_2(wall: Vec<Vec<i32>>) -> i32 {
+    let width = wall[0].iter().sum::<i32>() as usize;
+    let height = wall.len() as i32;
+    let mut counter = vec![height; width + 1];
+    for row in wall {
+        if cfg!(debug_assertions) {
+            eprintln!("\n new row:");
+        }
+        let mut brick_start = 0;
+        for brick_len in row {
+            let brick_end = brick_start + brick_len as usize;
+            //counter[brick_start] -= 1;
+            counter[brick_end] -= 1;
+            if cfg!(debug_assertions) {
+                dbg!(brick_start, brick_end);
+                if width < 1000 {
+                    eprintln!("counter = {:?}", counter);
+                }
+            }
+            brick_start = brick_end;
+        }
+    }
+    if cfg!(debug_assertions) && width < 1000 {
+        eprintln!("count = {:?}", counter);
+    }
+    counter
+        .into_iter()
+        .skip(1)
+        .take(width - 1)
+        .min()
+        .unwrap_or(height)
+}
+
+fn brick_wall(wall: Vec<Vec<i32>>) -> i32 {
+    let mut map = std::collections::HashMap::new();
+    let height = wall.len() as i32;
+    for row in wall {
+        let row_len = row.len();
+        let mut brick_end = 0;
+        for brick in row.into_iter().take(row_len - 1) {
+            brick_end += brick;
+            *map.entry(brick_end).or_insert(height) -= 1;
+        }
+    }
+    if cfg!(debug_assertions) {
+        dbg!(&map);
+    }
+    *map.values().into_iter().min().unwrap_or(&height)
+}
+
+#[test]
+fn test_brick_wall() {
+    let test_cases = vec![
+        (
+            vec_vec![
+                [1, 2, 2, 1],
+                [3, 1, 2],
+                [1, 3, 2],
+                [2, 4],
+                [3, 1, 2],
+                [1, 3, 1, 1]
+            ],
+            2,
+        ),
+        (vec_vec![[1], [1], [1]], 3),
+        (
+            vec_vec![[100_000_000, 100_000_000], [100_000_000, 100_000_000]],
+            0,
+        ),
+    ];
+    for (wall, least_bricks) in test_cases {
+        //assert_eq!(brick_wall_tle_1(wall.clone()), least_bricks);
+        //assert_eq!(brick_wall_tle_2(wall.clone()), least_bricks);
+        assert_eq!(brick_wall(wall), least_bricks);
+    }
+}
