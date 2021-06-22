@@ -684,7 +684,6 @@ impl FirstBadVersion {
 }
 
 /// https://leetcode.com/problems/guess-number-higher-or-lower/
-/// guess(k): k from 1..=n, if k < answers, fn guess return -1
 fn guess_number_higher_or_lower<F: Fn(i32) -> i32>(n: i32, guess: F) -> i32 {
     let mut left = 0;
     let mut right = n;

@@ -29,6 +29,7 @@ mod jump_game_ii;
 mod longest_common_substr;
 mod longest_palindromic_substr;
 mod number_of_ways_to_stay_in_the_same_place_after_some_steps;
+mod stone_game;
 mod trapping_rain_water;
 mod triangle;
 mod unique_paths;

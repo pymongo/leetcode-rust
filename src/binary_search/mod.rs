@@ -10,6 +10,7 @@ TODO 二分法解决的几类问题
 - [x] 爱吃香蕉的珂珂: 875
 */
 mod median_of_two_sorted_arrays;
+mod mountain_array;
 mod search_a_2d_matrix;
 
 /// https://leetcode.com/problems/binary-search/
@@ -32,6 +33,36 @@ fn test_binary_search_any() {
     const TEST_CASES: [(&[i32], i32, i32); 3] = [(&[5], 5, 0), (&[5], -5, -1), (&[2, 5], 0, -1)];
     for (nums, target, output) in TEST_CASES {
         assert_eq!(binary_search_any(nums.to_owned(), target), output);
+    }
+}
+
+/// https://leetcode.com/problems/search-insert-position/
+fn binary_search_first_to_insert(nums: Vec<i32>, target: i32) -> i32 {
+    let mut left = 0;
+    let mut right = nums.len() as i32 - 1;
+    while left < right {
+        let mid = left + (right - left) / 2;
+        match nums[mid as usize].cmp(&target) {
+            std::cmp::Ordering::Less => left = mid + 1,
+            std::cmp::Ordering::Equal => return mid,
+            std::cmp::Ordering::Greater => right = mid - 1,
+        }
+    }
+    if nums[left as usize] >= target {
+        left
+    } else {
+        left + 1
+    }
+}
+
+#[test]
+fn test_binary_search_first_to_insert() {
+    const TEST_CASES: [(&[i32], i32, i32); 1] = [(&[1, 3, 5, 6], 2, 1)];
+    for (nums, target, insert_index) in TEST_CASES {
+        assert_eq!(
+            binary_search_first_to_insert(nums.to_owned(), target),
+            insert_index
+        );
     }
 }
 
@@ -65,10 +96,10 @@ fn binary_search_first_and_last(nums: Vec<i32>, target: i32) -> Vec<i32> {
                 std::cmp::Ordering::Greater => right = mid - 1,
             }
         }
-        if target.eq(unsafe { nums.get_unchecked(left) }) {
+        if nums[left] == target {
             return left as i32;
         }
-        if target.eq(unsafe { nums.get_unchecked(right) }) {
+        if nums[right] == target {
             return right as i32;
         }
         -1
@@ -90,10 +121,10 @@ fn binary_search_first_and_last(nums: Vec<i32>, target: i32) -> Vec<i32> {
                 std::cmp::Ordering::Greater => right = mid - 1,
             }
         }
-        if target.eq(unsafe { nums.get_unchecked(right) }) {
+        if nums[right] == target {
             return right as i32;
         }
-        if target.eq(unsafe { nums.get_unchecked(left) }) {
+        if nums[left] == target {
             return left as i32;
         }
         -1
