@@ -101,7 +101,7 @@ fn test_valid_ip_address() {
         ("2001:0db8:85a3:0:0:8A2E:0370:7334", "IPv6"),
         ("172.16.254.1", "IPv4"),
         ("256.256.256.256", "Neither"),
-        ("01.01.01.01", "Neither"), // 这是POSIX标准的IPv4字符串，但是leetcode不认
+        ("01.01.01.01", "Neither"), // POSIX's IPv4, but not leetcode
         ("2001:db8:85a3:0::8a2E:0370:7334", "Neither"), // POSIX的IPv6是可以省略0的，但是leetcoe的测试用例不行
     ];
     for (ip, expected) in TEST_CASES {

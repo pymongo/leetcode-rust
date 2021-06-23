@@ -1,29 +1,38 @@
 #![feature(test, asm, is_sorted)]
 // cargo clippy --tests -- -Wclippy::cargo -Wclippy::nursery -Wclippy::pedantic
-#![warn(clippy::nursery, clippy::cargo, clippy::pedantic)]
-//#![warn(clippy::restriction)]
+#![warn(clippy::nursery, clippy::cargo, clippy::pedantic, clippy::restriction)]
 #![allow(
     dead_code,
-    clippy::blanket_clippy_restriction_lints,
-    clippy::doc_markdown,
-    clippy::non_ascii_literal,
-    clippy::indexing_slicing,
-    clippy::match_on_vec_items,
-    clippy::default_numeric_fallback,
-    clippy::implicit_return,
-    clippy::missing_docs_in_private_items,
-    clippy::integer_arithmetic,
-    clippy::integer_division,
+    /* clippy::pedantic */
+    clippy::cast_sign_loss,
     clippy::cast_possible_truncation,
-    clippy::cast_sign_loss,
     clippy::cast_possible_wrap,
-    clippy::unreachable,
-    clippy::unwrap_used,
+    clippy::needless_pass_by_value,
+    clippy::match_on_vec_items,
+    clippy::non_ascii_literal,
+    clippy::module_name_repetitions,
+    clippy::doc_markdown,
+    /* clippy::restriction */
+    clippy::blanket_clippy_restriction_lints,
+    clippy::integer_division,
+    clippy::integer_arithmetic,
+    clippy::float_arithmetic,
+    clippy::modulo_arithmetic,
     clippy::cast_sign_loss,
+    clippy::as_conversions,
+    clippy::default_numeric_fallback,
+    clippy::pattern_type_mismatch,
+    clippy::clone_on_ref_ptr,
+    clippy::indexing_slicing,
+    clippy::str_to_string,
+    clippy::unwrap_used,
+    clippy::unreachable,
+    clippy::implicit_return,
     clippy::shadow_reuse,
-    clippy::module_name_repetitions
+    clippy::shadow_same,
+    clippy::missing_docs_in_private_items,
+    clippy::else_if_without_else
 )]
-#![allow(clippy::needless_pass_by_value)]
 #![doc(html_playground_url = "https://play.rust-lang.org/")]
 extern crate test;
 

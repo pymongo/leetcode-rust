@@ -46,7 +46,7 @@ fn kmp(haystack: String, needle: String) -> i32 {
     -1
 }
 
-/**
+/*
 这个数组应该叫dp或dfa，叫pattern或部分匹配表也行
 "部分匹配值"就是"前缀"和"后缀"的最长的共有元素的长度。以"ABCDABD"为例，
  - "A"的前缀和后缀都为空集，共有元素的长度为0；
@@ -64,6 +64,4 @@ A B C D A B D
 例如 haystack=ABCDABE, needle=ABCDABC
 匹配到E不满足时，会前移6-2(B)个位置，有点像双指针最长无重复子串的尾指针前移的情况
 */
-fn kmp_prefix_arr(_needle: &[u8]) -> Vec<usize> {
-    todo!()
-}
+//fn kmp_prefix_arr(_needle: &[u8]) -> Vec<usize> {}

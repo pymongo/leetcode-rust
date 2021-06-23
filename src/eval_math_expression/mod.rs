@@ -19,6 +19,7 @@ fn clumsy_factorial(n: i32) -> i32 {
     let mut stack = vec![n];
     let mut operator_flag = 0b0000_0001_u8;
     for operand in (1..n).rev() {
+        // 由于要先乘除后加减的运算优先级，所以建议4个一组的进行计算
         match operator_flag {
             0b0000_0001 => *stack.last_mut().unwrap() *= operand,
             0b0000_0100 => *stack.last_mut().unwrap() /= operand,
@@ -33,7 +34,6 @@ fn clumsy_factorial(n: i32) -> i32 {
 
 #[test]
 fn test_clumsy_factorial() {
-    // 由于要先乘除后加减的运算优先级，所以建议4个一组的进行计算
     const TEST_CASES: [(i32, i32); 2] = [
         (4, 7),   // 7 = 4 * 3 / 2 + 1
         (10, 12), // 12 = 10 * 9 / 8 + 7 - （6 * 5 / 4 + 3） - 2 * 1

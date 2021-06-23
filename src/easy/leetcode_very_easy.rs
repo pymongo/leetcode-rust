@@ -2517,3 +2517,72 @@ fn test_brick_wall() {
         assert_eq!(brick_wall(wall), least_bricks);
     }
 }
+
+/// https://leetcode.com/problems/word-pattern/
+fn word_pattern(pattern: String, s: String) -> bool {
+    let pattern = pattern.into_bytes();
+    let words = s.split_whitespace().collect::<Vec<_>>();
+    if pattern.len() != words.len() {
+        return false;
+    }
+    let mut pat_word_map = std::collections::HashMap::new();
+    let mut used_words = std::collections::HashSet::new();
+    for (pat, word) in pattern.into_iter().zip(words.into_iter()) {
+        if let Some(pat_word) = pat_word_map.get(&pat) {
+            if word != *pat_word {
+                return false;
+            }
+        } else {
+            // ("abba", "dog dog dog dog", false)
+            if used_words.contains(word) {
+                return false;
+            }
+
+            pat_word_map.insert(pat, word);
+            used_words.insert(word);
+        }
+    }
+    true
+}
+
+#[test]
+fn test_word_pattern() {
+    const TEST_CASES: [(&str, &str, bool); 2] = [
+        ("abba", "dog cat cat dog", true),
+        ("abba", "dog cat cat fish", false),
+    ];
+    for (pattern, s, output) in TEST_CASES {
+        assert_eq!(word_pattern(pattern.to_owned(), s.to_owned()), output);
+    }
+}
+
+/// https://leetcode.com/problems/subrectangle-queries/
+struct SubrectangleQueries {
+    rectangle_init_val: Vec<Vec<i32>>,
+    /// log update_subrectangle's args
+    update_args_log: Vec<(i32, i32, i32, i32, i32)>,
+}
+
+impl SubrectangleQueries {
+    fn new(rectangle: Vec<Vec<i32>>) -> Self {
+        Self {
+            rectangle_init_val: rectangle,
+            update_args_log: Vec::with_capacity(500),
+        }
+    }
+
+    /// 其实耗费时间跟正常更新二维子矩阵所有值差不多
+    fn update_subrectangle(&mut self, row1: i32, col1: i32, row2: i32, col2: i32, new_value: i32) {
+        self.update_args_log
+            .push((row1, col1, row2, col2, new_value));
+    }
+
+    fn get_value(&self, row: i32, col: i32) -> i32 {
+        for &(row1, col1, row2, col2, new_value) in self.update_args_log.iter().rev() {
+            if row1 <= row && row <= row2 && col1 <= col && col <= col2 {
+                return new_value;
+            }
+        }
+        self.rectangle_init_val[row as usize][col as usize]
+    }
+}

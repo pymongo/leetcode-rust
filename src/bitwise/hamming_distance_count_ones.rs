@@ -7,6 +7,7 @@ mod hamming_weight {
 
     /// 用汇编的popcnt指令去统计正整数里有几个1
     /// __builtin_popcount in c++
+    #[allow(clippy::inline_asm_x86_intel_syntax)]
     fn hamming_weight_asm_popcnt_solution(n: u32) -> i32 {
         let popcnt_input: usize = n as usize;
         let popcnt_output: usize;

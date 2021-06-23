@@ -31,6 +31,7 @@ fn my_pow(base: f64, mut exponent: i32) -> f64 {
 
 #[test]
 fn test_my_pow() {
+    #[allow(clippy::decimal_literal_representation)]
     const TEST_CASES: [(f64, i32, f64); 3] = [
         (2.10, 3, 9.261),
         (2.0, -2, 0.25),

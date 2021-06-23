@@ -82,7 +82,7 @@ fn test_is_power_of_two() {
     }
 }
 
-/**
+/*
 ```text
     1 0b1
     3 0b11
@@ -116,9 +116,7 @@ return math.log(n, 3).is_integer()
 因此我们只需要将 3^19 除以 n 若余数为 0 意味着 n 是 3^19 的除数，因此是 3 的幂
 return n > 0 && 1162261467 % n == 0;
 */
-fn is_power_of_3() {
-    todo!()
-}
+//fn is_power_of_3() {}
 
 /**
 4=0100的幂只可能在奇数位上有1

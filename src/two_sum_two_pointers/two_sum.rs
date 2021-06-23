@@ -66,7 +66,7 @@ impl Solution {
         let mut sum_tracker = std::collections::HashMap::new();
         for (i, num) in nums.into_iter().enumerate() {
             if sum_tracker.contains_key(&num) {
-                return vec![*sum_tracker.get(&num).unwrap() as i32, i as i32];
+                return vec![sum_tracker[&num] as i32, i as i32];
             }
             sum_tracker.insert(target - num, i);
         }

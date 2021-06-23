@@ -42,7 +42,7 @@ fn anagram_mappings(mut a: Vec<i32>, b: Vec<i32>) -> Vec<i32> {
         map.insert(b, i as i32);
     }
     for a in &mut a {
-        *a = *map.get(a).unwrap();
+        *a = map[a];
     }
     a
 }

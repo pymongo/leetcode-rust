@@ -1,22 +1,28 @@
 /** https://leetcode.com/problems/subsets
-# subsets-输入数组无重复项(简单版)
+# subsets-i: 输入数组无重复项(简单版)
+Input:  vec![1, 2, 3]
+Output: vec_vec![[], [1], [2], [3], [1, 2], [1, 3], [2, 3], [1, 2, 3]]
 
-## subsets DFS搜索树
-注: 尖括号表示剪枝(不要的重复项)
-```text
-                [ ]
-    [1]         [2]         [3]
-[1,2] [1,3] <2,1> [2,3] <3,1> <3,2>
-[1,2,3]
-```
+## 三种解决思路
+1. 组合数: 将问题的规模缩小为从C(n,0)+C(n,1)，也就是从3个选0个,1个,2个,3个集合的和
+2. BFS迭代: curr=curr.append(curr.each+nums[i])
+3. DFS决策: 遍历1,2,3时每个都有选或不选的决策
 
-## 如何缩小问题的规模？数学公式?
+## C(n,k)解法: 如何缩小问题的规模？数学公式?
 将返回值的二维数组按长度分组，不难发现以下规律
 C(n,0): [ ]
 C(n,1): [1] [2] [3]
 C(n,2): [1,2] [1,3] [2,3]
 C(n,3): [1,2,3]
 所以可以将问题简化为编写一个 穷举从长度为n的数组中取k个的函数的不同组合
+
+## subsets可能的搜索树?
+注: 尖括号表示剪枝(不要的重复项)
+```text
+                [ ]
+    [1]         [2]         [3]
+[1,2] [1,3] <2,1> [2,3] <3,1> <3,2>
+```
 */
 fn subsets_combine(nums: Vec<i32>) -> Vec<Vec<i32>> {
     let mut ret = vec![];
@@ -52,6 +58,7 @@ fn combine_n_k(nums: &[i32], k: usize, ret: &mut Vec<Vec<i32>>) {
     helper(0, &mut cur, ret, nums, k);
 }
 
+/// https://leetcode.com/problems/combinations/
 fn combine(n: i32, k: i32) -> Vec<Vec<i32>> {
     let mut ret = vec![];
     let nums: Vec<i32> = (1..).take(n as usize).collect();
@@ -92,7 +99,55 @@ fn subsets_bfs(nums: Vec<i32>) -> Vec<Vec<i32>> {
         }
         last.append(&mut curr);
     }
+    last.sort_by_cached_key(Vec::len);
     last
+}
+
+struct SubsetsDfs {
+    nums: Vec<i32>,
+    len: usize,
+    cur: Vec<i32>,
+    ret: Vec<Vec<i32>>,
+}
+
+/**
+## ⭐subsets DFS搜索树
+left_child : not select
+right_child:     select
+```text
+        []
+1:   []     [1]
+2: [] [2] [1] [2]
+```
+*/
+impl SubsetsDfs {
+    fn dfs(&mut self, index: usize) {
+        if index == self.len {
+            self.ret.push(self.cur.clone());
+            return;
+        }
+
+        // select current num
+        self.cur.push(self.nums[index]);
+        self.dfs(index + 1);
+        self.cur.pop();
+
+        // doesn't select current num
+        self.dfs(index + 1);
+    }
+}
+
+fn subsets_dfs(nums: Vec<i32>) -> Vec<Vec<i32>> {
+    let len = nums.len();
+    let mut helper = SubsetsDfs {
+        nums,
+        len,
+        cur: Vec::new(),
+        ret: Vec::new(),
+    };
+    helper.dfs(0);
+    helper.ret.sort_by_cached_key(Vec::len);
+    helper.ret
 }
 
 #[test]
@@ -103,9 +158,8 @@ fn test_subsets() {
     )];
     for (input, output) in test_cases {
         assert_eq!(subsets_combine(input.clone()), output);
-        let mut bfs_output = subsets_bfs(input);
-        bfs_output.sort_by_cached_key(Vec::len);
-        assert_eq!(bfs_output, output);
+        assert_eq!(subsets_bfs(input.clone()), output);
+        assert_eq!(subsets_dfs(input), output);
     }
 }
 
@@ -127,13 +181,12 @@ fn subsets_xor_sum(nums: Vec<i32>) -> i32 {
 }
 
 /**
-## ⭐subsets DFS搜索树
+## DFS搜索树
 left_child : not select current num
 right_child:     select current num
 ```text
         []
-1:   []     [1]
-2: [] [2] [1] [2]
+1:   []    [1]
 ```
 */
 fn subsets_xor_sum_dfs(nums: Vec<i32>) -> i32 {

@@ -60,7 +60,7 @@ impl RandomPickIndexCounterSolution {
         extern "C" {
             fn rand() -> i32;
         }
-        let candidates = self.nums_index.get(&target).unwrap();
+        let candidates = &self.nums_index[&target];
         let random_number = unsafe { rand() };
         candidates[random_number as usize % (candidates.len() + 1)]
     }
