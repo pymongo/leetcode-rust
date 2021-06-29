@@ -9,6 +9,7 @@ mod same_tree;
 mod search_val_or_range_in_bst;
 mod serde_binary_tree_to_leetcode_vec;
 mod serde_binary_tree_to_parentheses_str;
+mod sum_of_left_leaves;
 mod sum_root_to_leaf_numbers;
 pub use serde_binary_tree_to_leetcode_vec::{
     deserialize_vec_to_binary_tree, print_binary_tree, serialize_binary_tree_to_vec,
@@ -16,6 +17,9 @@ pub use serde_binary_tree_to_leetcode_vec::{
 pub use serde_binary_tree_to_parentheses_str::parentheses_str_to_binary_tree;
 use std::cell::RefCell;
 use std::rc::Rc;
+
+#[allow(non_upper_case_globals)]
+const null: i32 = i32::MIN;
 
 /// 正常的二叉树的节点也不可能有两个父亲，所以leetcode用Rc<RefCell>真是多余
 /// 我做过那么多题也没见过二叉树节点的左右儿子是同一个节点
@@ -32,7 +36,6 @@ pub struct TreeNode {
 pub type TreeLink = Option<Rc<RefCell<TreeNode>>>;
 
 impl TreeNode {
-    pub const NULL: i32 = i32::MIN;
     #[inline]
     pub const fn new(val: i32) -> Self {
         Self {

@@ -27,8 +27,7 @@ fn leaf_similar_trees(root1: TreeLink, root2: TreeLink) -> bool {
 
 #[test]
 fn test_leaf_similar_trees() {
-    #[allow(non_upper_case_globals)]
-    const null: i32 = super::TreeNode::NULL;
+    use super::{deserialize_vec_to_binary_tree, null};
     const TEST_CASES: [(&[i32], &[i32], bool); 3] = [
         (
             &[3, 5, 1, 6, 2, 9, 8, null, null, 7, 4],
@@ -39,8 +38,8 @@ fn test_leaf_similar_trees() {
         (&[1], &[2], false),
     ];
     for (root1, root2, is_leaf_similar) in TEST_CASES {
-        let root1 = super::deserialize_vec_to_binary_tree(root1);
-        let root2 = super::deserialize_vec_to_binary_tree(root2);
+        let root1 = deserialize_vec_to_binary_tree(root1);
+        let root2 = deserialize_vec_to_binary_tree(root2);
         assert_eq!(leaf_similar_trees(root1, root2), is_leaf_similar);
     }
 }

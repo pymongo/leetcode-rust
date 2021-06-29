@@ -1,7 +1,4 @@
-/*! leetcode超简单题，不看答案20分钟内搞定，例如每次周赛第一题(送分题)
-## 简短一行Rust代码能解决的题:
-- [剑指Offer 17. 打印从1到最大n位的十进制数]: (1..10_i32.pow(n as u32)).collect()
-*/
+//！ leetcode超简单题，例如每次周赛第一题(送分题)
 
 /// https://leetcode.com/problems/to-lower-case/
 fn to_lower_case(s: String) -> String {
@@ -2585,4 +2582,11 @@ impl SubrectangleQueries {
         }
         self.rectangle_init_val[row as usize][col as usize]
     }
+}
+
+/// https://leetcode.com/problems/maximum-product-difference-between-two-pairs/
+fn max_product_difference(mut nums: Vec<i32>) -> i32 {
+    nums.sort_unstable();
+    let len = nums.len();
+    nums[len - 1] * nums[len - 2] - nums[0] * nums[1]
 }

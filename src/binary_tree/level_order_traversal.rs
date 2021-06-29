@@ -147,8 +147,7 @@ fn is_cousins(root: Option<Rc<RefCell<TreeNode>>>, x: i32, y: i32) -> bool {
 
 #[test]
 fn test_is_cousins() {
-    #[allow(non_upper_case_globals)]
-    const null: i32 = TreeNode::NULL;
+    use super::null;
     const TEST_CASES: [(&[i32], i32, i32, bool); 3] = [
         (&[1, 2, 3, 4], 4, 3, false),
         (&[1, 2, 3, null, 4, null, 5], 5, 4, true),

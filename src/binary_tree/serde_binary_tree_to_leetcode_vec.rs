@@ -2,7 +2,7 @@
 leetcode binary tree vec format example: [3,9,20,null,null,15,7] or [3,9,20,#,#,15,7]
 https://support.leetcode.com/hc/en-us/articles/360011883654-What-does-1-null-2-3-mean-in-binary-tree-representation-
 */
-use super::{Rc, RefCell, TreeLink, TreeNode};
+use super::{null, Rc, RefCell, TreeLink, TreeNode};
 
 pub fn serialize_binary_tree_to_vec(root: TreeLink) -> Vec<i32> {
     let mut ret = vec![];
@@ -15,12 +15,12 @@ pub fn serialize_binary_tree_to_vec(root: TreeLink) -> Vec<i32> {
             queue.push_back(node.left.clone());
             queue.push_back(node.right.clone());
         } else {
-            ret.push(TreeNode::NULL);
+            ret.push(null);
         }
     }
     // 去掉末尾的None,使序列化结果是个严格的「完全二叉树」
     while let Some(last) = ret.last() {
-        if *last == TreeNode::NULL {
+        if *last == null {
             ret.pop().unwrap();
         } else {
             break;
@@ -42,7 +42,7 @@ pub fn deserialize_vec_to_binary_tree(level_order: &[i32]) -> TreeLink {
     let nodes = level_order
         .iter()
         .map(|&num| {
-            if num == TreeNode::NULL {
+            if num == null {
                 None
             } else {
                 Some(Rc::new(RefCell::new(TreeNode::new(num))))
@@ -83,7 +83,7 @@ pub fn print_binary_tree(root: TreeLink) -> Result<(), Box<dyn std::error::Error
     let node_vec = serialize_binary_tree_to_vec(root);
     let mut node_vec_str = String::new();
     for num in node_vec {
-        if num == TreeNode::NULL {
+        if num == null {
             node_vec_str.push('#');
         } else {
             node_vec_str.push_str(num.to_string().as_str());
@@ -107,7 +107,6 @@ pub fn print_binary_tree(root: TreeLink) -> Result<(), Box<dyn std::error::Error
 
 #[test]
 fn test_serde_binary_tree_to_leetcode_vec() {
-    let null = TreeNode::NULL;
     let level_order_1 = vec![1, 2, 3, null, null, 4, 5];
     let node = deserialize_vec_to_binary_tree(&level_order_1);
     print_binary_tree(node.clone()).unwrap();
