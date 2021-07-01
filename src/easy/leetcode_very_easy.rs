@@ -2590,3 +2590,12 @@ fn max_product_difference(mut nums: Vec<i32>) -> i32 {
     let len = nums.len();
     nums[len - 1] * nums[len - 2] - nums[0] * nums[1]
 }
+
+/// https://leetcode.com/problems/check-if-the-sentence-is-pangram/
+fn check_if_pangram(sentence: String) -> bool {
+    let mut counter = [false; 26];
+    for chr in sentence.into_bytes() {
+        counter[(chr - b'a') as usize] = true;
+    }
+    counter.iter().all(|x| *x)
+}
