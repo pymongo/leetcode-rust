@@ -8,7 +8,7 @@ TODO 动态规划的题型:
 [ ] 01背包问题: 每个物品只能选或不选，不能选多份
 [ ] 区间型子数组/子序列/子串(i-j表示区间i-j的子数组/子串): Stone Game, Burst Balloons, 最长回文子串/子序列、两个字符串最长公共部分
 [ ] 状态压缩型: TSP、Unique Path III的非DFS解法
-[ ] 打劫类的题: 打家劫舍(今天打劫哪一家本周的所有打劫才能最赚钱 )
+[x] 打劫类的题: 打家劫舍(今天打劫哪一家本周的所有打劫才能最赚钱 )
 TODO 动态规划的实现方法:
 [ ] 记忆化搜索(DFS回溯): Unique Path III的简单的DFS解法
 [x] 递推迭代: Triangle
@@ -19,6 +19,7 @@ TODO 动态规划的实现方法:
 */
 mod burst_balloons;
 mod calculate_minimun_hp;
+mod coin_change;
 mod counting_bits;
 mod dp_easy;
 mod drop_eggs;

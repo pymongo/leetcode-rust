@@ -73,7 +73,9 @@ impl Solution {
 #[test]
 fn test_preorder_traversal() {
     // 4->9->5, 4->9->1, 4->0: 495+491+40=1026
-    let root = super::parentheses_str_to_binary_tree("4(9(5)(1))(0)");
+    let root = super::serde_binary_tree_to_parentheses_str::parentheses_str_to_binary_tree(
+        "4(9(5)(1))(0)",
+    );
     assert_eq!(Solution::sum_numbers(root.clone()), 1026);
     assert_eq!(Solution::sum_numbers_best(root), 1026);
 }

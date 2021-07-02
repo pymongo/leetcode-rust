@@ -14,7 +14,6 @@ mod sum_root_to_leaf_numbers;
 pub use serde_binary_tree_to_leetcode_vec::{
     deserialize_vec_to_binary_tree, print_binary_tree, serialize_binary_tree_to_vec,
 };
-pub use serde_binary_tree_to_parentheses_str::parentheses_str_to_binary_tree;
 use std::cell::RefCell;
 use std::rc::Rc;
 

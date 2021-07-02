@@ -1,5 +1,5 @@
 /// https://leetcode.com/problems/product-of-array-except-self
-pub fn product_except_self(nums: Vec<i32>) -> Vec<i32> {
+fn product_except_self(nums: Vec<i32>) -> Vec<i32> {
     // 右上三角，从下到上，从右到左累乘的结果
     let mut top_right = 1;
     // 左下三角，从上到下，从左到右累乘的结果

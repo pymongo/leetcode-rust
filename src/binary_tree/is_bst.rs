@@ -68,14 +68,10 @@ fn is_bst_dirty_solution(root: Option<Rc<RefCell<TreeNode>>>) -> bool {
     }
 }
 
-struct Solution;
-
-impl Solution {
-    pub fn is_valid_bst(root: Option<Rc<RefCell<TreeNode>>>) -> bool {
-        // 由于该solution用到了static是有状态的，所以每次运行前需要重置static全局变量，否则static变量就是上次运行的残留结果
-        unsafe {
-            PRE_ORDER_PREV_VAL = None;
-        }
-        is_bst_dirty_solution(root)
+fn is_valid_bst(root: Option<Rc<RefCell<TreeNode>>>) -> bool {
+    // 由于该solution用到了static是有状态的，所以每次运行前需要重置static全局变量，否则static变量就是上次运行的残留结果
+    unsafe {
+        PRE_ORDER_PREV_VAL = None;
     }
+    is_bst_dirty_solution(root)
 }
