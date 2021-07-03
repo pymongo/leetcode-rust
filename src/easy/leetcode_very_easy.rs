@@ -1968,6 +1968,7 @@ impl Logger {
 }
 
 /// https://leetcode.com/problems/length-of-last-word/
+#[allow(clippy::needless_collect)]
 fn length_of_last_word(s: String) -> i32 {
     // trim_start
     let s: Vec<u8> = s

@@ -255,6 +255,7 @@ leetcode_solutions
 |429|[N-ary Tree Level Order Traversal](https://leetcode.com/problems/n-ary-tree-level-order-traversal/)|[C++](https://github.com/pymongo/learn_cpp/blob/master/leetcode/bfs/n_ary_tree_level_order.cpp)||
 |448|[Find All Numbers Disappeared in an Array](https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/)|[Rust](src/counter/find_all_numbers_disappeared_in_an_array.rs)|
 |449|[Serialize and Deserialize BST](https://leetcode.com/problems/serialize-and-deserialize-bst/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/bst_serialize.py)|DFS, stack|
+|451|[Sort Characters By Frequency](https://leetcode.com/problems/sort-characters-by-frequency/)|[Rust](src/counter/mod.rs)|
 |454|[4Sum II](https://leetcode.com/problems/4sum-ii/)|[Rust](src/two_sum_two_pointers/four_sum_2.rs)|
 |455|[Assign Cookies](https://leetcode.com/problems/assign-cookies/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |457|[Circular Array Loop](https://leetcode.com/problems/circular-array-loop/)|[Rust](src/linked_list/is_circular_loop.rs)|

@@ -165,10 +165,7 @@ fn combination_sum_iv(nums: Vec<i32>, target: i32) -> i32 {
 
 #[test]
 fn test_combination_sum_iv() {
-    const TEST_CASES: [(&[i32], i32, i32); 2] = [
-        (&[1, 2, 3], 4, 7),
-        (&[9], 3, 0),
-    ];
+    const TEST_CASES: [(&[i32], i32, i32); 2] = [(&[1, 2, 3], 4, 7), (&[9], 3, 0)];
     for (nums, target, min_coins) in TEST_CASES {
         assert_eq!(combination_sum_iv(nums.to_owned(), target), min_coins);
     }

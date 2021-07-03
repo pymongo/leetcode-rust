@@ -201,3 +201,24 @@ mod bench_hashmap_counter_vs_fixed_len_array_counter {
         });
     }
 }
+
+/// https://leetcode.com/problems/sort-characters-by-frequency/
+fn frequency_sort(s: String) -> String {
+    let mut counter = [0_u16; 122];
+    for chr in s.into_bytes() {
+        counter[chr as usize] += 1;
+    }
+    let mut counter = counter
+        .iter()
+        .enumerate()
+        .filter(|(_, &count)| count > 0)
+        .map(|(chr, &count)| (chr as u8, count))
+        .collect::<Vec<_>>();
+    counter.sort_unstable_by_key(|x| x.1);
+    counter.reverse();
+    let mut ret = vec![];
+    for (chr, count) in counter {
+        ret.append(&mut [chr].repeat(count as usize));
+    }
+    unsafe { String::from_utf8_unchecked(ret) }
+}
