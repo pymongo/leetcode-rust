@@ -2615,3 +2615,71 @@ fn max_ice_cream(mut costs: Vec<i32>, mut coins: i32) -> i32 {
     }
     count
 }
+
+/// https://leetcode.com/problems/set-mismatch/
+fn find_error_nums(nums: Vec<i32>) -> Vec<i32> {
+    let n = nums.len();
+    let mut counter = vec![false; n + 1];
+    counter[0] = true;
+    let mut ret = vec![-1, -1];
+    for num in nums {
+        let num_usize = num as usize;
+        if counter[num_usize] {
+            ret[0] = num;
+        } else {
+            counter[num_usize] = true;
+        }
+    }
+    for (i, count) in counter.into_iter().enumerate() {
+        if !count {
+            ret[1] = i as i32;
+            return ret;
+        }
+    }
+    unreachable!()
+}
+
+/// https://leetcode.com/problems/build-array-from-permutation
+fn build_array(nums: Vec<i32>) -> Vec<i32> {
+    let mut ret = Vec::with_capacity(nums.len());
+    for &num in &nums {
+        ret.push(nums[num as usize]);
+    }
+    ret
+}
+
+/// https://leetcode.com/problems/display-table-of-food-orders-in-a-restaurant/
+fn display_table(orders: Vec<Vec<String>>) -> Vec<Vec<String>> {
+    let mut map = std::collections::HashMap::<_, u16>::new();
+    let mut table_numbers = std::collections::HashSet::new();
+    let mut foods = std::collections::HashSet::new();
+    for order in orders {
+        // row_number
+        let table_number = order[1].parse::<u16>().unwrap();
+        // column
+        let food = order[2].clone();
+        table_numbers.insert(table_number);
+        foods.insert(food.clone());
+        *map.entry((table_number, food)).or_default() += 1;
+    }
+    let mut foods = foods.into_iter().collect::<Vec<_>>();
+    foods.sort_unstable();
+    let mut header_row = foods.clone();
+    header_row.insert(0, "Table".to_string());
+    let mut ret = vec![header_row];
+    let mut table_numbers = table_numbers.into_iter().collect::<Vec<_>>();
+    table_numbers.sort_unstable();
+    for table_number in table_numbers {
+        let mut row = vec![table_number.to_string()];
+        for food in &foods {
+            row.push(
+                map.get(&(table_number, food.to_string()))
+                    .copied()
+                    .unwrap_or_default()
+                    .to_string(),
+            );
+        }
+        ret.push(row);
+    }
+    ret
+}
