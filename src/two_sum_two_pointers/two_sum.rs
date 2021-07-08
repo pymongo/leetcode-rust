@@ -12,95 +12,67 @@ bitwise_补码的解法收录在java_leetcode中
 3. 函数的最后，如果测试用例没有匹配项的话，可以写unreachable!()或返回vec![]
 */
 
-struct Solution;
-
 /**
-test bench_test_two_sum_btree_map ... bench:       1,426 ns/iter (+/- 245)
-test bench_two_sum_bitwise        ... bench:       1,375 ns/iter (+/- 149)
-test bench_two_sum_hashmap        ... bench:       1,555 ns/iter (+/- 341)
-TODO 为什么Java的TreeMap比HashMap的two_sum解法耗时长，但是在Rust中BTreeMap反而比HashMap解法更快
+# Two's complement(补码)存储负数的解法
+
+以4-bit(16进制)为例
+
+## 时钟模型
+!由于1111+0001会溢出所有位清0，所以不断地+1相当于有16个刻度的时钟在顺时针转圈
+!!所以-7时钟倒着拨动7格相当于 正着拨动16-7格
+
+## 0的状态重复了
+用时钟模型的话，0有两种表示方法，正转360°或者负转360°
+但是在数字电路中，一个值两种状态都能表示不仅是一个UB，而且还浪费了宝贵的状态
+所以出现了 负数补码=反码+1 也就是让负数的从-0开始全部往后挪一位
+-0变成了-1，-7变成了-8，所以4bit寄存器有符号数的范围是[-8, 7]
 */
-impl Solution {
-    /**
-    # Two's complement(补码)存储负数的解法
-
-    以4-bit(16进制)为例
-
-    ## 时钟模型
-    !由于1111+0001会溢出所有位清0，所以不断地+1相当于有16个刻度的时钟在顺时针转圈
-    !!所以-7时钟倒着拨动7格相当于 正着拨动16-7格
-
-    ## 0的状态重复了
-    用时钟模型的话，0有两种表示方法，正转360°或者负转360°
-    但是在数字电路中，一个值两种状态都能表示不仅是一个UB，而且还浪费了宝贵的状态
-    所以出现了 负数补码=反码+1 也就是让负数的从-0开始全部往后挪一位
-    -0变成了-1，-7变成了-8，所以4bit寄存器有符号数的范围是[-8, 7]
-    */
-    fn two_sum_bitwise(nums: Vec<i32>, target: i32) -> Vec<i32> {
-        // 2047是input case的最大值，确保：
-        // 1. a & bit_mode = a;
-        // 2. -a & bit_mode = bit_mode-a+1
-        const VOLUME: usize = 2048;
-        const BIT_MODE: i32 = 2047;
-        // on a 32 bit x86 computer,  usize = u32,
-        // while on x86_64 computers, usize = u64
-        let mut sum_tracker: [usize; VOLUME] = [0; 2048];
-        let mut c: usize;
-        for i in 0..nums.len() {
-            // & BIT_MODE防止相减后出现负数索引
-            // 例如：-4 & 2047 = 4
-            c = ((target - nums[i]) & BIT_MODE) as usize;
-            debug_assert!(c.ge(&0));
-            if sum_tracker[c as usize] != 0 {
-                return vec![(sum_tracker[c] - 1) as i32, i as i32];
-            }
-            // 加1防止index=0时保存的记录被`result[c] != 0`拦截
-            // & bitMode防止相减后出现负数索引(case twoSumBitWise2)
-            sum_tracker[(nums[i] & BIT_MODE) as usize] = i + 1;
+fn two_sum_bitwise(nums: Vec<i32>, target: i32) -> Vec<i32> {
+    // 2047是input case的最大值，确保：
+    // 1. a & bit_mode = a;
+    // 2. -a & bit_mode = bit_mode-a+1
+    const VOLUME: usize = 2048;
+    const BIT_MODE: i32 = 2047;
+    // on a 32 bit x86 computer,  usize = u32,
+    // while on x86_64 computers, usize = u64
+    let mut sum_tracker: [usize; VOLUME] = [0; 2048];
+    let mut c: usize;
+    for i in 0..nums.len() {
+        // & BIT_MODE防止相减后出现负数索引
+        // 例如：-4 & 2047 = 4
+        c = ((target - nums[i]) & BIT_MODE) as usize;
+        debug_assert!(c.ge(&0));
+        if sum_tracker[c as usize] != 0 {
+            return vec![(sum_tracker[c] - 1) as i32, i as i32];
         }
-        unreachable!()
+        // 加1防止index=0时保存的记录被`result[c] != 0`拦截
+        // & bitMode防止相减后出现负数索引(case twoSumBitWise2)
+        sum_tracker[(nums[i] & BIT_MODE) as usize] = i + 1;
     }
-
-    fn two_sum_hashmap(nums: Vec<i32>, target: i32) -> Vec<i32> {
-        // 其实用BTreeMap也行，不过此题又用不到TreeMap的排序特性
-        let mut sum_tracker = std::collections::HashMap::new();
-        for (i, num) in nums.into_iter().enumerate() {
-            if sum_tracker.contains_key(&num) {
-                return vec![sum_tracker[&num] as i32, i as i32];
-            }
-            sum_tracker.insert(target - num, i);
-        }
-        unreachable!()
-    }
+    unreachable!()
 }
 
-#[cfg(test)]
-mod test_two_sum_solutions {
-    use super::Solution;
+fn two_sum_hashmap(nums: Vec<i32>, target: i32) -> Vec<i32> {
+    // 其实用BTreeMap也行，不过此题又用不到TreeMap的排序特性
+    let mut sum_tracker = std::collections::HashMap::new();
+    for (i, num) in nums.into_iter().enumerate() {
+        if sum_tracker.contains_key(&num) {
+            return vec![sum_tracker[&num] as i32, i as i32];
+        }
+        sum_tracker.insert(target - num, i);
+    }
+    unreachable!()
+}
 
+#[test]
+fn test_two_sum() {
     const TEST_CASES: [(&[i32], i32, &[i32]); 3] = [
         (&[2, 7, 9, 11], 9, &[0, 1]),
         (&[-3, 4, 3, 90], 0, &[0, 2]),
         (&[0, 4, 3, 0], 0, &[0, 3]),
     ];
-
-    #[test]
-    fn test_two_sum_bitwise() {
-        for (nums, target, expected) in TEST_CASES {
-            assert_eq!(
-                Solution::two_sum_bitwise(nums.to_vec(), target),
-                expected.to_vec()
-            );
-        }
-    }
-
-    #[test]
-    fn test_sum_hashmap() {
-        for (nums, target, expected) in TEST_CASES {
-            assert_eq!(
-                Solution::two_sum_hashmap(nums.to_vec(), target),
-                expected.to_vec()
-            );
-        }
+    for (nums, target, expected) in TEST_CASES {
+        assert_eq!(two_sum_bitwise(nums.to_vec(), target), expected.to_vec());
+        assert_eq!(two_sum_hashmap(nums.to_vec(), target), expected.to_vec());
     }
 }

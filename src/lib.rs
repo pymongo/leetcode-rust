@@ -3,6 +3,8 @@
 #![warn(clippy::nursery, clippy::cargo, clippy::pedantic, clippy::restriction)]
 #![allow(
     dead_code,
+    // vec_vec: use of irregular braces for `vec!` macro
+    clippy::nonstandard_macro_braces,
     /* clippy::pedantic */
     clippy::cast_sign_loss,
     clippy::cast_possible_truncation,

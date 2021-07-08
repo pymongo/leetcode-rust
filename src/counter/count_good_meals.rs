@@ -1,4 +1,5 @@
 /// https://leetcode.com/problems/count-good-meals/
+/// 双指针
 fn count_pairs_permutation_solution(nums: Vec<i32>) -> i32 {
     const fn is_power_of_2(n: i32) -> bool {
         if n == 0 {
@@ -85,6 +86,35 @@ fn count_pairs_two_sum_solution(nums: Vec<i32>) -> i32 {
     (ret % (10_i64.pow(9) + 7)) as i32
 }
 
+fn count_pairs_two_sum_solution_2(nums: Vec<i32>) -> i32 {
+    let max_two_sum = *nums.iter().max().unwrap() * 2;
+    // 0<=nums[i]<=2^20，所以nums[i]+nums[i]只可能是2^0..=2^21
+    let mut target_sums = Vec::with_capacity(22);
+    for i in 0..22 {
+        let target = 2_i32.pow(i);
+        target_sums.push(target);
+        if target >= max_two_sum {
+            break;
+        }
+    }
+
+    let mut counter = std::collections::HashMap::<i32, u32>::new();
+    let mut ret = 0_u64;
+    for num in nums {
+        for &two_sum in &target_sums {
+            let target = two_sum - num;
+            if target < 0 {
+                continue;
+            }
+            if let Some(&count) = counter.get(&target) {
+                ret += u64::from(count);
+            }
+        }
+        *counter.entry(num).or_default() += 1;
+    }
+    (ret % (10_u64.pow(9) + 7)) as i32
+}
+
 #[test]
 fn test_count_pairs() {
     const TEST_CASES: [(&[i32], i32); 4] = [
@@ -101,5 +131,6 @@ fn test_count_pairs() {
     for (input, output) in TEST_CASES {
         assert_eq!(count_pairs_permutation_solution(input.into()), output);
         assert_eq!(count_pairs_two_sum_solution(input.into()), output);
+        assert_eq!(count_pairs_two_sum_solution_2(input.into()), output);
     }
 }
