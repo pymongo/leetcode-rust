@@ -2683,3 +2683,25 @@ fn display_table(orders: Vec<Vec<String>>) -> Vec<Vec<String>> {
     }
     ret
 }
+
+/// https://leetcode.com/problems/count-square-sum-triples/
+fn count_triples(n: i32) -> i32 {
+    let n = f64::from(n * n).sqrt() as i32;
+    let mut ret = 0;
+    for a in 1..=n {
+        for b in a..=n {
+            for c in b..=n {
+                if a * a + b * b == c * c {
+                    ret += 2;
+                }
+            }
+        }
+    }
+    ret
+}
+
+/// https://leetcode.com/problems/concatenation-of-array/
+fn get_concatenation(mut nums: Vec<i32>) -> Vec<i32> {
+    nums.extend(nums.clone());
+    nums
+}

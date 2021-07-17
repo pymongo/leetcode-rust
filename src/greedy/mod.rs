@@ -17,6 +17,7 @@ mod factorial_trailing_zeroes;
 mod gas_station;
 mod int_to_roman;
 mod majority_element;
+mod maximum_subarray;
 mod partition_labels;
 mod prefix_sum_subarray;
 mod product_of_array_except_self;

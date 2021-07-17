@@ -63,7 +63,7 @@ leetcode_solutions
 |50|[Pow(x, n)](https://leetcode.com/problems/powx-n/)|[Rust](src/math/pow.rs)|
 |51|[N Queens](https://leetcode.com/problems/n-queens)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/n_queens.py), [Rust](src/bfs_dfs_backtracking/n_queens.rs)||
 |52|[N Queens II](https://leetcode.com/problems/n-queens-ii)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/n_queens.py), [Rust](src/bfs_dfs_backtracking/n_queens.rs)|
-|53|[Maximum Subarray](https://leetcode.com/problems/maximum-subarray/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/greedy/maximum_subarray.py)|greedy, dp|
+|53|[Maximum Subarray](https://leetcode.com/problems/maximum-subarray/)|[Rust](src/greedy/maximum_subarray.rs)|
 |54|[Spiral Matrix](https://leetcode.com/problems/spiral-matrix/)|[Rust](src/easy/grid_or_matrix/spiral_matrix.rs)|
 |55|[Jump Game](https://leetcode.com/problems/jump-game/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/jump_game.py)|greedy, dp|
 |58|[Length of Last Word](https://leetcode.com/problems/length-of-last-word/)|[Rust](src/easy/leetcode_very_easy)|
@@ -485,6 +485,8 @@ leetcode_solutions
 |1880|[Check if Word Equals...](https://leetcode.com/problems/check-if-word-equals-summation-of-two-words/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1913|[Maximum Product Diff...](https://leetcode.com/problems/maximum-product-difference-between-two-pairs/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1920|[Build Array from Permutation](https://leetcode.com/problems/build-array-from-permutation)|[Rust](src/easy/leetcode_very_easy.rs)|
+|1925|[Count Square Sum Triples](https://leetcode.com/problems/count-square-sum-triples/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|1929|[Concatenation of Array](https://leetcode.com/problems/concatenation-of-array/)|[Rust](src/easy/leetcode_very_easy.rs)|
 
 ---
 
@@ -522,7 +524,6 @@ lintcode_problems
 |31|[Partition Array](https://lintcode.com/problem/partition-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/partition_array/partition_array.py)|two_pointers|
 |38|[Search a 2D Matrix II](https://lintcode.com/problem/search-a-2d-matrix-ii/)|leetcode_240|
 |40|[Implement Queue by Two Stacks](https://lintcode.com/problem/implement-queue-by-two-stacks/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/impl_queue_by_stack.py)||
-|41|[Maximum Subarray](https://lintcode.com/problem/maximum-subarray/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/greedy/maximum_subarray.py)|greedy, dp|
 |49|[Sort Letters by Case](https://lintcode.com/problem/sort-letters-by-case/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/partition_array/sort_colors.py)|
 |50|[Product of Array Exclude Itself](https://lintcode.com/problem/product-of-array-exclude-itself/)|leetcode_lcof_66|
 |52|[Next Permutation](https://lintcode.com/problem/next-permutation/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/next_permutation.py)||
