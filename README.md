@@ -482,6 +482,7 @@ leetcode_solutions
 |1848|[Minimum Distance to the...t](https://leetcode.com/problems/minimum-distance-to-the-target-element/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1854|[Maximum Population Year](https://leetcode.com/problems/maximum-population-year/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1863|[Sum of All Subset XOR Totals](https://leetcode.com/problems/sum-of-all-subset-xor-totals/)|[Rust](src/bfs_dfs_backtracking/combinations_subsets.rs)|
+|1877|[Minimize Maximum Pair...](https://leetcode.com/problems/minimize-maximum-pair-sum-in-array/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1880|[Check if Word Equals...](https://leetcode.com/problems/check-if-word-equals-summation-of-two-words/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1913|[Maximum Product Diff...](https://leetcode.com/problems/maximum-product-difference-between-two-pairs/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1920|[Build Array from Permutation](https://leetcode.com/problems/build-array-from-permutation)|[Rust](src/easy/leetcode_very_easy.rs)|

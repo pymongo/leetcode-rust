@@ -2705,3 +2705,14 @@ fn get_concatenation(mut nums: Vec<i32>) -> Vec<i32> {
     nums.extend(nums.clone());
     nums
 }
+
+/// https://leetcode.com/problems/minimize-maximum-pair-sum-in-array/
+fn min_pair_sum(mut nums: Vec<i32>) -> i32 {
+    nums.sort_unstable();
+    let len = nums.len();
+    let mut max = 0;
+    for left in 0..len / 2 {
+        max = max.max(nums[left] + nums[len - 1 - left]);
+    }
+    max
+}
