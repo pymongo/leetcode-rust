@@ -1,8 +1,8 @@
-#cargo-features = ["edition2021"]
+cargo-features = ["edition2021"]
 [package]
 name = "leetcode-rust"
 version = "0.1.1"
-edition = "2018"
+edition = "2021"
 license = "MIT"
 repository = "https://github.com/pymongo/leetcode-rust/"
 keywords = ["leetcode", "codeforce"]
