@@ -2716,3 +2716,19 @@ fn min_pair_sum(mut nums: Vec<i32>) -> i32 {
     }
     max
 }
+
+/// https://leetcode.com/problems/check-if-all-the-integers-in-a-range-are-covered/
+fn is_covered(ranges: Vec<Vec<i32>>, left: i32, right: i32) -> bool {
+    let mut is_exist = [false; 51];
+    for range in ranges {
+        for num in range[0]..=range[1] {
+            is_exist[num as usize] = true;
+        }
+    }
+    for i in left..=right {
+        if !is_exist[i as usize] {
+            return false;
+        }
+    }
+    true
+}

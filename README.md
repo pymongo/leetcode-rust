@@ -484,6 +484,7 @@ leetcode_solutions
 |1863|[Sum of All Subset XOR Totals](https://leetcode.com/problems/sum-of-all-subset-xor-totals/)|[Rust](src/bfs_dfs_backtracking/combinations_subsets.rs)|
 |1877|[Minimize Maximum Pair...](https://leetcode.com/problems/minimize-maximum-pair-sum-in-array/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1880|[Check if Word Equals...](https://leetcode.com/problems/check-if-word-equals-summation-of-two-words/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|1893|[Check if All The Integer...](https://leetcode.com/problems/check-if-all-the-integers-in-a-range-are-covered/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1913|[Maximum Product Diff...](https://leetcode.com/problems/maximum-product-difference-between-two-pairs/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1920|[Build Array from Permutation](https://leetcode.com/problems/build-array-from-permutation)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1925|[Count Square Sum Triples](https://leetcode.com/problems/count-square-sum-triples/)|[Rust](src/easy/leetcode_very_easy.rs)|
@@ -565,7 +566,6 @@ lintcode_problems
 |105|[Copy List with Random Pointer](https://lintcode.com/problem/copy-list-with-random-pointer/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/graph/clone_linked_list_with_random_ptr.py)||
 |106|[Convert Sorted List to Binary Search Tree](https://lintcode.com/problem/convert-sorted-list-to-binary-search-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/divide_conquer/sorted_list_or_array_to_bst.py)|divide_and_conquer|
 |107|[Word Break](https://lintcode.com/problem/word-break/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/backpack_4_word_break_coin_change.py)|完全背包问题|
-|109|[Triangle](https://lintcode.com/problem/triangle/)|leetcode_120|
 |110|[Minimum Path Sum](https://lintcode.com/problem/minimum-path-sum/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/grid_min_path_sum.py)||
 |113|[Remove Duplicates from Sorted List II](https://lintcode.com/problem/remove-duplicates-from-sorted-list-ii/)|leetcode_82|
 |123|[Word Search](https://lintcode.com/problem/word-search/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/word_search.py)||
