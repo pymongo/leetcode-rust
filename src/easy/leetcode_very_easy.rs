@@ -2732,3 +2732,49 @@ fn is_covered(ranges: Vec<Vec<i32>>, left: i32, right: i32) -> bool {
     }
     true
 }
+
+/// https://leetcode.com/problems/latest-time-by-replacing-hidden-digits/
+fn maximum_time(time: String) -> String {
+    let mut time = time.into_bytes();
+    for i in 0..time.len() {
+        if time[i] == b'?' {
+            match i {
+                0 => {
+                    if time[i + 1] == b'?' {
+                        time[i] = b'2';
+                        time[i + 1] = b'3';
+                    } else if time[i + 1] >= b'4' {
+                        time[i] = b'1';
+                    } else {
+                        time[i] = b'2';
+                    }
+                }
+                1 => {
+                    if time[i - 1] == b'2' {
+                        // 23:00
+                        time[i] = b'3';
+                    } else {
+                        time[i] = b'9';
+                    }
+                }
+                3 => time[i] = b'5',
+                4 => time[i] = b'9',
+                _ => unreachable!(),
+            }
+        }
+    }
+    unsafe { String::from_utf8_unchecked(time) }
+}
+
+#[test]
+fn test_maximum_time() {
+    const TEST_CASES: [(&str, &str); 4] = [
+        ("?0:15", "20:15"),
+        ("2?:?0", "23:50"),
+        ("?4:00", "14:00"),
+        ("??:3?", "23:39"),
+    ];
+    for (input, output) in TEST_CASES {
+        assert_eq!(maximum_time(input.to_string()), output);
+    }
+}

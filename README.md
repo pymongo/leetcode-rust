@@ -464,6 +464,7 @@ leetcode_solutions
 |1720|[Decode XORed Array](https://leetcode.com/problems/decode-xored-array/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1725|[Number Of Rectangles That Can ...](https://leetcode.com/problems/number-of-rectangles-that-can-form-the-largest-square/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1732|[Find the Highest Altitude](https://leetcode.com/problems/find-the-highest-altitude/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|1736|[Latest Time by Replacing ...](https://leetcode.com/problems/latest-time-by-replacing-hidden-digits/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1741🔒|[Find Total Time Spent by Each Employee](https://leetcode.com/problems/find-total-time-spent-by-each-employee/)|[SQL](sql_problems/very_easy.sql)|
 |1744|[Can You Eat Your Favorite Candy...](https://leetcode.com/problems/can-you-eat-your-favorite-candy-on-your-favorite-day/)|[Rust](src/easy/leetcode_easy.rs)|
 |1748|[Sum of Unique Elements](https://leetcode.com/problems/sum-of-unique-elements/)|[Rust](src/easy/leetcode_very_easy.rs)|
