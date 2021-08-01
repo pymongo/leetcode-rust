@@ -2778,3 +2778,64 @@ fn test_maximum_time() {
         assert_eq!(maximum_time(input.to_string()), output);
     }
 }
+
+/// https://leetcode.com/problems/the-k-weakest-rows-in-a-matrix/
+fn k_weakest_rows(mat: Vec<Vec<i32>>, k: i32) -> Vec<i32> {
+    let mut vals = mat
+        .into_iter()
+        .enumerate()
+        .map(|(i, row)| (row.into_iter().filter(|x| *x == 1).count(), i))
+        .collect::<Vec<_>>();
+    vals.sort_unstable();
+    vals.into_iter()
+        .take(k as usize)
+        .map(|x| x.1 as i32)
+        .collect()
+}
+
+#[test]
+fn test_k_weakest_rows() {
+    let test_cases = vec![(
+        vec_vec![
+            [1, 1, 0, 0, 0],
+            [1, 1, 1, 1, 0],
+            [1, 0, 0, 0, 0],
+            [1, 1, 0, 0, 0],
+            [1, 1, 1, 1, 1]
+        ],
+        3,
+        vec![2, 0, 3],
+    )];
+    for (mat, k, rank_asc) in test_cases {
+        assert_eq!(k_weakest_rows(mat, k), rank_asc);
+    }
+}
+
+/// https://leetcode.com/problems/queries-on-number-of-points-inside-a-circle/
+fn count_points(points: Vec<Vec<i32>>, queries: Vec<Vec<i32>>) -> Vec<i32> {
+    queries
+        .into_iter()
+        .map(|circle| {
+            let (x, y, radius) = (circle[0], circle[1], circle[2]);
+            points
+                .iter()
+                .filter(|point| (point[0] - x).pow(2) + (point[1] - y).pow(2) <= radius.pow(2))
+                .count() as i32
+        })
+        .collect()
+}
+
+/// https://leetcode-cn.com/contest/weekly-contest-252/problems/three-divisors/
+fn is_three(n: i32) -> bool {
+    let mut is_three_factor = false;
+    for i in 2..n.min(10_000) {
+        if n % i == 0 {
+            if is_three_factor {
+                return false;
+            } else {
+                is_three_factor = true;
+            }
+        }
+    }
+    is_three_factor
+}
