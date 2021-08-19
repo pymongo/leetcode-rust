@@ -4,6 +4,7 @@ https://support.leetcode.com/hc/en-us/articles/360011883654-What-does-1-null-2-3
 */
 use super::{null, Rc, RefCell, TreeLink, TreeNode};
 
+#[allow(clippy::collapsible_match)]
 pub fn serialize_binary_tree_to_vec(root: TreeLink) -> Vec<i32> {
     let mut ret = vec![];
     let mut queue = std::collections::VecDeque::new();

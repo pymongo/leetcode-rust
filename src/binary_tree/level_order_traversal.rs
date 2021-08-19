@@ -6,16 +6,14 @@ fn count_nodes(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
     let mut nodes_count = 0;
     let mut queue = std::collections::VecDeque::new();
     queue.push_back(root);
-    while let Some(option_node) = queue.pop_front() {
-        if let Some(rc_node) = option_node {
-            nodes_count += 1;
-            let node = rc_node.borrow();
-            if let Some(left) = node.left.clone() {
-                queue.push_back(Some(left));
-            }
-            if let Some(right) = node.right.clone() {
-                queue.push_back(Some(right));
-            }
+    while let Some(Some(rc_node)) = queue.pop_front() {
+        nodes_count += 1;
+        let node = rc_node.borrow();
+        if let Some(left) = node.left.clone() {
+            queue.push_back(Some(left));
+        }
+        if let Some(right) = node.right.clone() {
+            queue.push_back(Some(right));
         }
     }
     nodes_count
@@ -24,6 +22,7 @@ fn count_nodes(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
 /// https://leetcode.com/problems/binary-tree-level-order-traversal/
 /// https://leetcode.com/problems/binary-tree-level-order-traversal-ii/
 #[allow(clippy::option_if_let_else)]
+#[allow(clippy::collapsible_match)]
 fn level_order(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<Vec<i32>> {
     if root.is_none() {
         return Vec::new();
@@ -61,6 +60,7 @@ fn level_order(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<Vec<i32>> {
 
 /// https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/
 #[allow(clippy::option_if_let_else)]
+#[allow(clippy::collapsible_match)]
 fn zigzag_level_order(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<Vec<i32>> {
     if root.is_none() {
         return Vec::new();
@@ -101,6 +101,7 @@ fn zigzag_level_order(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<Vec<i32>> {
 /// 如果二叉树的两个节点深度相同(处于同一层)，但**父节点不同**，则它们是一对堂兄弟节点
 /// 需要知道每个节点的三个信息: 层数、值、父节点的值
 #[allow(clippy::redundant_else)]
+#[allow(clippy::collapsible_match)]
 fn is_cousins(root: Option<Rc<RefCell<TreeNode>>>, x: i32, y: i32) -> bool {
     // (depth, parent)
     let mut node_x: Option<(u8, i32)> = None;

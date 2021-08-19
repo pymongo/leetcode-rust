@@ -5,16 +5,14 @@ use super::TreeLink;
 fn reverse_post_order(node: TreeLink) -> Vec<i32> {
     let mut ret = vec![];
     let mut stack = vec![node];
-    while let Some(node) = stack.pop() {
-        if let Some(node) = node {
-            let node = node.borrow();
-            // `根右左`「逆」后序遍历 (后序遍历=`左右根`)
-            if node.left.is_none() && node.right.is_none() {
-                ret.push(node.val);
-            }
-            stack.push(node.left.clone());
-            stack.push(node.right.clone());
+    while let Some(Some(node)) = stack.pop() {
+        let node = node.borrow();
+        // `根右左`「逆」后序遍历 (后序遍历=`左右根`)
+        if node.left.is_none() && node.right.is_none() {
+            ret.push(node.val);
         }
+        stack.push(node.left.clone());
+        stack.push(node.right.clone());
     }
     ret
 }

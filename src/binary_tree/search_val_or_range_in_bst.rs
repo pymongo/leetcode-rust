@@ -23,16 +23,14 @@ fn search_val_in_bst(
 fn range_sum_bst(root: Option<Rc<RefCell<TreeNode>>>, low: i32, high: i32) -> i32 {
     let mut res = 0;
     let mut stack = vec![root];
-    while let Some(peek) = stack.pop() {
-        if let Some(peek) = peek {
-            let peek = peek.borrow();
+    while let Some(Some(peek)) = stack.pop() {
+        let peek = peek.borrow();
 
-            if low <= peek.val && peek.val <= high {
-                res += peek.val;
-            }
-            stack.push(peek.right.clone());
-            stack.push(peek.left.clone());
+        if low <= peek.val && peek.val <= high {
+            res += peek.val;
         }
+        stack.push(peek.right.clone());
+        stack.push(peek.left.clone());
     }
     res
 }

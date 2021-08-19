@@ -226,6 +226,7 @@ leetcode_solutions
 |342|[Power of Four](https://leetcode.com/problems/power-of-four/)|[Rust](src/bitwise/is_power_of_x.rs)|
 |343|[Integer Break](https://leetcode.com/problems/integer-break/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/integer_break.py)|划分类DP|
 |344|[Reverse String](https://leetcode.com/problems/reverse-string/)|[Rust](src/uncategorized/string_in_place.rs)|
+|345|[Reverse Vowels of a String](https://leetcode.com/problems/reverse-vowels-of-a-string/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |347|[Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/)|[Rust](src/data_structure/heap/top_k_frequent_elements.rs)|
 |349|[Intersection of Two Arrays](https://leetcode.com/problems/intersection-of-two-arrays/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/intersection_of_two_arrays.py)||
 |350|[Intersection of Two Arrays II](https://leetcode.com/problems/intersection-of-two-arrays-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/intersection_of_two_arrays.py)||

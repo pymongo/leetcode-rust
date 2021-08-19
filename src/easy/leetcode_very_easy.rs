@@ -2832,10 +2832,41 @@ fn is_three(n: i32) -> bool {
         if n % i == 0 {
             if is_three_factor {
                 return false;
-            } else {
-                is_three_factor = true;
             }
+            is_three_factor = true;
         }
     }
     is_three_factor
+}
+
+/// https://leetcode.com/problems/reverse-vowels-of-a-string/
+fn reverse_vowels(s: String) -> String {
+    const VOWELS: [u8; 10] = [b'a', b'e', b'i', b'o', b'u', b'A', b'E', b'I', b'O', b'U'];
+    let mut s = s.into_bytes();
+    let len = s.len();
+    let mut left = 0;
+    let mut right = len - 1;
+    while left < right && left < len {
+        while left < len && !VOWELS.contains(&s[left]) {
+            left += 1;
+        }
+        while right > 0 && !VOWELS.contains(&s[right]) {
+            right -= 1;
+        }
+        if left > right {
+            break;
+        }
+        s.swap(left, right);
+        left += 1;
+        if right == 0 {
+            break;
+        }
+        right -= 1;
+    }
+    unsafe { String::from_utf8_unchecked(s) }
+}
+
+#[test]
+fn test_reverse_vowels() {
+    assert_eq!(reverse_vowels(".,".to_string()), "a.".to_string());
 }
