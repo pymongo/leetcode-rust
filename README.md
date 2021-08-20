@@ -279,7 +279,8 @@ leetcode_solutions
 |525|[Contiguous Array](https://leetcode.com/problems/contiguous-array/)|[Rust](src/greedy/prefix_sum_subarray.rs)|
 |535|[Encode and Decode TinyURL](https://leetcode.com/problems/encode-and-decode-tinyurl/)|very_easy|
 |536🔒|[Construct Binary Tree from String](https://leetcode.com/problems/construct-binary-tree-from-string/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/construct_from_string_with_parentheses.py)||
-|538|[Convert BST to Greater Tree](https://leetcode.com/problems/convert-bst-to-greater-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/bst_to_gst.py)||
+|538|[Convert BST to Greater Tree](https://leetcode.com/problems/convert-bst-to-greater-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/bst_to_gst.py)|
+|541|[Reverse String II](https://leetcode.com/problems/reverse-string-ii/)|[Rust](src/uncategorized/string_in_place.rs)|
 |547|[Friend Circles](https://leetcode.com/problems/number-of-provinces/)|[Rust](src/data_structure/union_find/friend_circles.rs)|
 |554|[Brick Wall](https://leetcode.com/problems/brick_wall/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |557|[Reverse Words in a String III](https://leetcode.com/problems/reverse-words-in-a-string-iii/)|[Rust](src/easy/leetcode_very_easy.rs)|

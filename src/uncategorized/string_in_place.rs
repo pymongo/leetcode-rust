@@ -139,6 +139,30 @@ fn reverse_string(s: &mut Vec<char>) {
     s.reverse();
 }
 
+/// <https://leetcode-cn.com/problems/reverse-string-ii/>
+fn reverse_string_ii(s: String, k: i32) -> String {
+    let mut s = s.into_bytes();
+    let k = k as usize;
+    let len = s.len();
+    let mut i = 0;
+    while i + k < len {
+        s[i..i + k].reverse();
+        i += 2 * k;
+    }
+    if i < len {
+        s[i..len].reverse();
+    }
+    unsafe { String::from_utf8_unchecked(s) }
+}
+
+#[test]
+fn test_reverse_string_ii() {
+    const TEST_CASES: [(&str, i32, &str); 2] = [("abcdefg", 2, "bacdfeg"), ("abcd", 4, "dcba")];
+    for (s, k, out) in TEST_CASES {
+        assert_eq!(reverse_string_ii(s.to_string(), k), out);
+    }
+}
+
 /** <https://leetcode.com/problems/rotate-array/>
 Input:  nums = [1,2,3,4,5,6,7], k = 3
 Output: [5,6,7,1,2,3,4]
