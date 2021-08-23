@@ -451,6 +451,7 @@ leetcode_solutions
 |1636|[Sort Array by Increasing Frequency](https://leetcode.com/problems/sort-array-by-increasing-frequency/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1637|[Widest Vertical Area Between Two Points ...](https://leetcode.com/problems/widest-vertical-area-between-two-points-containing-no-points/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1640|[Check Array Formation Through Concatenation](https://leetcode.com/problems/check-array-formation-through-concatenation/)|[Rust](src/easy/leetcode_easy.rs)|
+|1646|[Get Maximun In Gen...](https://leetcode.com/problems/get-maximum-in-generated-array/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1656|[Design an Ordered Stream](https://leetcode.com/problems/design-an-ordered-stream/)|[Rust](src/easy/leetcode_easy.rs)|
 |1658|[Defuse The Bomb](https://leetcode.com/problems/defuse-the-bomb/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1662|[Check If Two String Arrays are Equivalent](https://leetcode.com/problems/check-if-two-string-arrays-are-equivalent/)|[Rust](src/easy/leetcode_very_easy.rs)|

@@ -2870,3 +2870,31 @@ fn reverse_vowels(s: String) -> String {
 fn test_reverse_vowels() {
     assert_eq!(reverse_vowels(".,".to_string()), "a.".to_string());
 }
+
+/// https://leetcode.com/problems/get-maximum-in-generated-array/
+fn get_maximum_generated(n: i32) -> i32 {
+    if n == 0 {
+        return 0;
+    }
+    if n == 1 {
+        return 1;
+    }
+    let n = n as usize;
+    let mut nums = vec![0, 1];
+    for i in 2..=n {
+        if i % 2 == 0 {
+            nums.push(nums[i / 2]);
+        } else {
+            nums.push(nums[(i - 1) / 2] + nums[(i - 1) / 2 + 1]);
+        }
+    }
+    nums.into_iter().max().unwrap()
+}
+
+#[test]
+fn test_get_maximun_generated() {
+    const TEST_CASES: [(i32, i32); 1] = [(7, 3)];
+    for (n, max) in TEST_CASES {
+        assert_eq!(get_maximum_generated(n), max);
+    }
+}
