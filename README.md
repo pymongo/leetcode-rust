@@ -329,11 +329,12 @@ leetcode_solutions
 |728|[Self Dividing Numbers](https://leetcode.com/problems/self-dividing-numbers/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |760🔒|[Find Anagram Mappings](https://leetcode.com/problems/find-anagram-mappings/)|[Rust](src/counter/anagrams.rs)|
 |796|[Rotate String](https://leetcode.com/problems/rotate-string/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/rotate_reverse_circle_shift/rotate_string.py)|Rabin-Karp(rolling_hash), kmp|
-|743|[Network Delay Time](https://leetcode.com/problems/network-delay-time/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/bfs/network_delay_time_dijkstra.py)|
+|743|[Network Delay Time](https://leetcode.com/problems/network-delay-time/)|[Rust](src/bfs_dfs_backtracking/dijkstra.rs)|
 |746|[Min Cost Climbing Stairs](https://leetcode.com/problems/min-cost-climbing-stairs/)|[Rust](src/dp/dp_easy.rs)|
 |763|[Partition Labels](https://leetcode.com/problems/partition-labels/)|[Rust](src/greedy/partition_labels.rs)|
 |766|[Toeplitz Matrix](https://leetcode.com/problems/toeplitz-matrix/)|[Rust](src/easy/grid_or_matrix/matrix_diagonal_traverse.rs)|
 |771|[Jewels and Stones](https://leetcode.com/problems/jewels-and-stones/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|787|[Cheapest Flights Within K Stops](https://leetcode.com/problems/cheapest-flights-within-k-stops/)|[Rust](src/bfs_dfs_backtracking/dijkstra.rs)|
 |788|[Rotated Digits](https://leetcode.com/problems/rotated-digits/)|[Rust](src/easy/leetcode_easy.rs)|
 |797|[All Paths From Source to Target](https://leetcode.com/problems/all-paths-from-source-to-target/)|[Rust](src/bfs_dfs_backtracking/all_paths_from_source_to_target.rs)|
 |807|[Max Increase to Keep City Skyline](https://leetcode.com/problems/max-increase-to-keep-city-skyline/)|[Rust](src/easy/leetcode_very_easy.rs)|
@@ -731,7 +732,6 @@ lintcode_problems
 |1000|[Best Time ... Stock with ... Fee](https://lintcode.com/problem/best-time-to-buy-and-sell-stock-with-transaction-fee/)|leetcode_714|
 |1028|[Rotated Digits](https://lintcode.com/problem/rotated-digits/)|leetcode_788|
 |1054|[Min Cost Climbing Stairs](https://lintcode.com/problem/min-cost-climbing-stairs/)|leetcode_746|
-|1057|[Network Delay Time](https://lintcode.com/problem/network-delay-time/)|leetcode_743|
 |1079|[Count Binary Substrings](https://lintcode.com/problem/count-binary-substrings/)|leetcode_696|
 |1115|[Average of Levels in Binary Tree](https://lintcode.com/problem/average-of-levels-in-binary-tree/)|leetcode_633|
 |1137|[Construct String from Binary Tree](https://lintcode.com/problem/construct-string-from-binary-tree/)|leetcode_606|
