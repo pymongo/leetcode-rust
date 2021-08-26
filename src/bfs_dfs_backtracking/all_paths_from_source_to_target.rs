@@ -1,4 +1,40 @@
 /// https://leetcode.com/problems/all-paths-from-source-to-target/
+
+struct AllPathsSourceTargetHelper {
+    graph: Vec<Vec<i32>>,
+    dest: i32,
+    cur: Vec<i32>,
+    paths: Vec<Vec<i32>>,
+}
+
+impl AllPathsSourceTargetHelper {
+    fn dfs(&mut self, cur: i32) {
+        if cur == self.dest {
+            self.paths.push(self.cur.clone());
+            return;
+        }
+        let this = self as *const Self;
+        for &next in &unsafe { &*this }.graph[cur as usize] {
+            self.cur.push(next);
+            self.dfs(next);
+            self.cur.pop().unwrap();
+        }
+    }
+}
+
+/// https://leetcode.com/problems/all-paths-from-source-to-target/
+fn all_paths_source_target_my_best(graph: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
+    let dest = graph.len() as i32 - 1;
+    let mut helper = AllPathsSourceTargetHelper {
+        graph,
+        dest,
+        cur: vec![0],
+        paths: vec![],
+    };
+    helper.dfs(0);
+    helper.paths
+}
+
 /// 由于Rust闭包不能或者很难递归调用，不用闭包又不能捕获外部作用域的变量，不能像python那样方便的内层定义的方法能随意读写外层的变量
 /// 导致Rust写回溯算法的题非常困难，dfs函数入参太多，一定要头脑清醒从一开始就想清楚宏观的需要几个入参，哪些入参要回溯
 /// 如果用结构体去重构超多入参的dfs函数，会导致不能以更细粒度的状态进行回溯，结构体不能更细粒度和高性能的记住上一个状态
