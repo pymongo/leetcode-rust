@@ -3,4 +3,5 @@ mod kth_largest_element_in_a_stream;
 pub mod my_max_heap;
 mod seat_reservation_manager;
 mod single_threaded_cpu;
+mod sliding_window_median;
 mod top_k_frequent_elements;

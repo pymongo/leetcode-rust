@@ -27,11 +27,15 @@ fn preorder_traversal_mut_borrow_err(root: Option<Rc<RefCell<TreeNode>>>) -> Vec
 fn preorder_traversal(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
     let mut ret = Vec::new();
     let mut stack = vec![root];
-    while let Some(Some(peek)) = stack.pop() {
-        let peek = peek.borrow();
-        ret.push(peek.val);
-        stack.push(peek.right.clone());
-        stack.push(peek.left.clone());
+    // 不能用 Some(Some(peek)) 会把 None 情况忽略掉
+    #[allow(clippy::collapsible_match)]
+    while let Some(peek) = stack.pop() {
+        if let Some(peek) = peek {
+            let peek = peek.borrow();
+            ret.push(peek.val);
+            stack.push(peek.right.clone());
+            stack.push(peek.left.clone());
+        }
     }
     ret
 }

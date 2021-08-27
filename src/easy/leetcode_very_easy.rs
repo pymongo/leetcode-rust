@@ -2868,7 +2868,7 @@ fn reverse_vowels(s: String) -> String {
 
 #[test]
 fn test_reverse_vowels() {
-    assert_eq!(reverse_vowels(".,".to_string()), "a.".to_string());
+    assert_eq!(reverse_vowels(".,".to_string()), ".,".to_string());
 }
 
 /// https://leetcode.com/problems/get-maximum-in-generated-array/

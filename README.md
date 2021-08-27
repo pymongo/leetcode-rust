@@ -208,6 +208,7 @@ leetcode_solutions
 |290|[Word Pattern](https://leetcode.com/problems/word-pattern/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |291🔒|[Word Pattern II](https://leetcode.com/problems/word-pattern-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/word_pattern_2.py)|DFS|
 |292|[Nim Game](https://leetcode.com/problems/nim-game/)|[Rust](src/bitwise/nim_game.rs)|
+|295|[Find Median from Data Stream](https://leetcode.com/problems/find-median-from-data-stream/)|[Rust](src/data_structure/heap/sliding_window_median.rs)|
 |297|[Serialize and Deserialize Binary Tree](https://leetcode.com/problems/serialize-and-deserialize-binary-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/binary_tree.py)|serialize|
 |300|[Longest Increasing Subsequence](https://leetcode.com/problems/longest-increasing-subsequence/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/longest_increase_subsequence.py)|接龙型动态规划|
 |302🔒|[Smallest Rectangle Enclosing Black Pixels](https://leetcode.com/problems/smallest-rectangle-enclosing-black-pixels)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/smallest_rectangle_enclosing_black_pixels.py)||
@@ -265,6 +266,7 @@ leetcode_solutions
 |470|[impl rand10 using rand7](https://leetcode.com/problems/implement-rand10-using-rand7/)|[Rust](src/random/impl_rand10_by_rand7.rs)|
 |474|[Ones and Zeroes](https://leetcode.com/problems/ones-and-zeroes/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/backpack_ones_and_zeros.py)|完全背包问题|
 |477|[Total Hamming Distance](https://leetcode.com/problems/total-hamming-distance/)|[Rust](src/bitwise/hamming_distance_count_ones.rs)|
+|480|[Sliding Window Median](https://leetcode.com/problems/sliding-window-median/)|[Rust](src/data_structure/heap/sliding_window_median.rs)|
 |485|[Max Consecutive Ones](https://leetcode.com/problems/max-consecutive-ones/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |486|[Validate IP Address](https://leetcode.com/problems/validate-ip-address/)|[Rust](src/easy/string/parse_ip_address.rs)|
 |490🔒|[The Maze](https://leetcode.com/problems/the-maze/)|[Rust](src/bfs_dfs_backtracking/the_maze.rs)|
