@@ -2925,3 +2925,66 @@ fn test_num_rescue_boats() {
     assert_eq!(num_rescue_boats(vec![3, 5, 3, 4], 5), 4);
     assert_eq!(num_rescue_boats(vec![3, 2, 2, 1], 3), 3);
 }
+
+/// https://leetcode.com/problems/count-items-matching-a-rule/
+fn count_matches(items: Vec<Vec<String>>, rule_key: String, rule_value: String) -> i32 {
+    let rule_val_idx = match rule_key.as_str() {
+        "type" => 0,
+        "color" => 1,
+        "name" => 2,
+        _ => unreachable!(),
+    };
+    items
+        .into_iter()
+        .filter(|item| item[rule_val_idx] == rule_value)
+        .count() as i32
+}
+
+/// https://leetcode.com/problems/minimum-difference-between-highest-and-lowest-of-k-scores/
+pub fn minimum_difference(mut nums: Vec<i32>, k: i32) -> i32 {
+    let len = nums.len();
+    nums.sort_unstable();
+    let k = k as usize;
+    let mut min = i32::MAX;
+    for left in 0..=len - k {
+        min = min.min(nums[left + k - 1] - nums[left]);
+    }
+    min
+}
+
+#[derive(PartialEq, Eq)]
+struct NumStr(String);
+
+impl PartialOrd for NumStr {
+    fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
+        Some(match self.0.len().cmp(&other.0.len()) {
+            std::cmp::Ordering::Less => std::cmp::Ordering::Less,
+            std::cmp::Ordering::Equal => self.0.cmp(&other.0),
+            std::cmp::Ordering::Greater => std::cmp::Ordering::Greater,
+        })
+    }
+}
+
+impl Ord for NumStr {
+    fn cmp(&self, other: &Self) -> std::cmp::Ordering {
+        self.partial_cmp(other).unwrap()
+    }
+}
+
+#[test]
+fn test_num_str() {
+    assert!(NumStr(String::from("123")) > NumStr(String::from("45")));
+}
+
+/// https://leetcode.com/problems/find-the-kth-largest-integer-in-the-array/
+pub fn kth_largest_number(nums: Vec<String>, k: i32) -> String {
+    let mut max_heap = std::collections::BinaryHeap::new();
+    for num in nums {
+        // 测试用例比 u128 大，不能用 ParseInt
+        max_heap.push(NumStr(num));
+    }
+    for _ in 0..k - 1 {
+        max_heap.pop().unwrap();
+    }
+    max_heap.pop().unwrap().0
+}

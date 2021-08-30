@@ -6,6 +6,7 @@ fn count_nodes(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
     let mut nodes_count = 0;
     let mut queue = std::collections::VecDeque::new();
     queue.push_back(root);
+    // let Some(Some) is ok
     while let Some(Some(rc_node)) = queue.pop_front() {
         nodes_count += 1;
         let node = rc_node.borrow();

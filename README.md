@@ -479,6 +479,7 @@ leetcode_solutions
 |1752|[Check if Array Is Sorted and Rotated](https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1753|[Maximum Score From Removing Stones](https://leetcode.com/problems/maximum-score-from-removing-stones/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1754|[Largest Merge Of Two Strings](https://leetcode.com/problems/largest-merge-of-two-strings/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|1773|[Count Items Matching a Rule](https://leetcode.com/problems/count-items-matching-a-rule/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1790|[Check if One String Swap Can Make String...](https://leetcode.com/problems/check-if-one-string-swap-can-make-strings-equal/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1816|[Truncate Sentence](https://leetcode.com/problems/truncate-sentence/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1828|[Queries on Number of Points Inside a Circle](https://leetcode.com/problems/queries-on-number-of-points-inside-a-circle/)|[Rust](src/easy/leetcode_very_easy.rs)|
@@ -499,6 +500,8 @@ leetcode_solutions
 |1920|[Build Array from Permutation](https://leetcode.com/problems/build-array-from-permutation)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1925|[Count Square Sum Triples](https://leetcode.com/problems/count-square-sum-triples/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1929|[Concatenation of Array](https://leetcode.com/problems/concatenation-of-array/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|1984|[Minimum Difference Between...](https://leetcode.com/problems/minimum-difference-between-highest-and-lowest-of-k-scores/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|1985|[Find The Kth Large...](https://leetcode.com/problems/find-the-kth-largest-integer-in-the-array/)|[Rust](src/easy/leetcode_very_easy.rs)|
 
 ---
 
@@ -507,7 +510,7 @@ leetcode_solutions
 
 | # | Title | Solutions | Category |
 |---| ----- | -------- | ---------- |
-|LCP.7|[传递信息](https://leetcode-cn.com/problems/chuan-di-xin-xi/)[Rust](https://leetcode-cn.com/problems/chuan-di-xin-xi/)|
+|LCP.7|[传递信息](https://leetcode-cn.com/problems/chuan-di-xin-xi/)[Rust](src/bfs_dfs_backtracking/num_ways.rs)|
 |59|[队列的最大值](https://leetcode-cn.com/problems/dui-lie-de-zui-da-zhi-lcof/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/max_queue.py)|
 |60|[n个骰子的点数](https://leetcode-cn.com/problems/nge-tou-zi-de-dian-shu-lcof/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/dices_sum.py)|
 |61|[扑克牌中的顺子](https://leetcode-cn.com/problems/bu-ke-pai-zhong-de-shun-zi-lcof/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/straight_in_playing_cards.py)|
@@ -536,10 +539,8 @@ lintcode_problems
 |31|[Partition Array](https://lintcode.com/problem/partition-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/partition_array/partition_array.py)|two_pointers|
 |38|[Search a 2D Matrix II](https://lintcode.com/problem/search-a-2d-matrix-ii/)|leetcode_240|
 |40|[Implement Queue by Two Stacks](https://lintcode.com/problem/implement-queue-by-two-stacks/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/impl_queue_by_stack.py)||
-|49|[Sort Letters by Case](https://lintcode.com/problem/sort-letters-by-case/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/partition_array/sort_colors.py)|
 |50|[Product of Array Exclude Itself](https://lintcode.com/problem/product-of-array-exclude-itself/)|leetcode_lcof_66|
 |52|[Next Permutation](https://lintcode.com/problem/next-permutation/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/next_permutation.py)||
-|53|[Reverse Words in a String](https://lintcode.com/problem/reverse-words-in-a-string/)|leetcode_151|
 |57|[3Sum](https://lintcode.com/problem/3sum/)|leetcode_15|
 |58|[4Sum](https://lintcode.com/problem/4sum/)|leetcode_18|
 |59|[3Sum Closest](https://lintcode.com/problem/3sum-closest/)|leetcode_16|
