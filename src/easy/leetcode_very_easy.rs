@@ -2988,3 +2988,57 @@ pub fn kth_largest_number(nums: Vec<String>, k: i32) -> String {
     }
     max_heap.pop().unwrap().0
 }
+
+fn version_to_vec_u32(version: String) -> Vec<u32> {
+    version
+        .split('.')
+        .map(|x| x.parse::<u32>().unwrap())
+        .collect()
+}
+
+/// https://leetcode.com/problems/compare-version-numbers/
+fn compare_version(version1: String, version2: String) -> i32 {
+    let mut version1 = version_to_vec_u32(version1);
+    let mut version2 = version_to_vec_u32(version2);
+
+    // or fill shorter with 0
+    let min_len = version1.len().min(version2.len());
+    while version1.len() > min_len && *version1.last().unwrap() == 0 {
+        version1.pop().unwrap();
+    }
+    while version2.len() > min_len && *version2.last().unwrap() == 0 {
+        version2.pop().unwrap();
+    }
+
+    match version1.cmp(&version2) {
+        std::cmp::Ordering::Less => -1,
+        std::cmp::Ordering::Equal => 0,
+        std::cmp::Ordering::Greater => 1,
+    }
+}
+
+fn compare_version_best(version1: String, version2: String) -> i32 {
+    // should use itertools::zip_longest or python zip_longest and fill shorter with "0"
+    for (a, b) in version1.split('.').zip(version2.split('.')) {
+        if a != b {
+            if a > b {
+                return 1;
+            }
+            return -1;
+        }
+    }
+    0
+}
+
+#[test]
+fn test_compare_version() {
+    const TEST_CASES: [(&str, &str, i32); 3] =
+        [("1.0.1", "1", 1), ("1.0", "1.0.0", 0), ("1.01", "1.001", 0)];
+    for (version1, version2, cmp_res) in TEST_CASES {
+        dbg!(&version1);
+        assert_eq!(
+            compare_version(version1.to_string(), version2.to_string()),
+            cmp_res
+        );
+    }
+}

@@ -144,6 +144,7 @@ leetcode_solutions
 |155|[Min Stack](https://leetcode.com/problems/min-stack/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/min_stack.py)|
 |160|[Intersection of Two Linked Lists](https://leetcode.com/problems/intersection-of-two-linked-lists/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/linked_list_cycle.py)|
 |164|[Maximum Gap](https://leetcode.com/problems/maximum-gap/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|165|[Compare Version Numbers](https://leetcode.com/problems/compare-version-numbers/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |167|[Two Sum II - Input array is sorted](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/two_sum_2_input_is_sorted.py)|two_pointers|
 |168|[Excel Sheet Column Title](https://leetcode.com/problems/excel-sheet-column-title/)|[Rust](src/math/excel_sheet_column_title.rs)|
 |169|[Majority Element](https://leetcode.com/problems/majority-element/)|[Rust](src/greedy/majority_element.rs)|
@@ -151,7 +152,7 @@ leetcode_solutions
 |171|[Excel Sheet Column Number](https://leetcode.com/problems/excel-sheet-column-number/)|[Rust](src/math/excel_sheet_column_title.rs)|
 |172|[Factorial Trailing Zeroes](https://leetcode.com/problems/factorial-trailing-zeroes/)|[Rust](src/greedy/factorial_trailing_zeroes.rs)|
 |173|[Binary Search Tree Iterator](https://leetcode.com/problems/binary-search-tree-iterator/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/bst_in_order_iterator.py)|
-|174|[Dungeon Game](https://leetcode.com/problems/dungeon-game/)|[Rust](src/dp/calculate_minimun_hp.rs)|
+|174|[Dungeon Game](https://leetcode.com/problems/dungeon-game/)|[Rust](src/dp/calculate_minimum_hp.rs)|
 |175|[Combine Two Tables](https://leetcode.com/problems/combine-two-tables/)|
 |176|[Second Highest Salary](https://leetcode.com/problems/second-highest-salary/)|[SQL](sql_problems/second_highest_salary.sql)|
 |181|[Employees Earning More Than Their Managers](https://leetcode.com/problems/employees-earning-more-than-their-managers/)|[SQL](sql_problems/very_easy.sql)|
@@ -455,7 +456,7 @@ leetcode_solutions
 |1636|[Sort Array by Increasing Frequency](https://leetcode.com/problems/sort-array-by-increasing-frequency/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1637|[Widest Vertical Area Between Two Points ...](https://leetcode.com/problems/widest-vertical-area-between-two-points-containing-no-points/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1640|[Check Array Formation Through Concatenation](https://leetcode.com/problems/check-array-formation-through-concatenation/)|[Rust](src/easy/leetcode_easy.rs)|
-|1646|[Get Maximun In Gen...](https://leetcode.com/problems/get-maximum-in-generated-array/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|1646|[Get Maximum In Gen...](https://leetcode.com/problems/get-maximum-in-generated-array/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1656|[Design an Ordered Stream](https://leetcode.com/problems/design-an-ordered-stream/)|[Rust](src/easy/leetcode_easy.rs)|
 |1658|[Defuse The Bomb](https://leetcode.com/problems/defuse-the-bomb/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1662|[Check If Two String Arrays are Equivalent](https://leetcode.com/problems/check-if-two-string-arrays-are-equivalent/)|[Rust](src/easy/leetcode_very_easy.rs)|

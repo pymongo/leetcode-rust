@@ -18,7 +18,7 @@ TODO 动态规划的实现方法:
 记忆化搜索只是动态规划的一种实现方式
 */
 mod burst_balloons;
-mod calculate_minimun_hp;
+mod calculate_minimum_hp;
 mod coin_change;
 mod counting_bits;
 mod dp_easy;
