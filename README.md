@@ -398,6 +398,7 @@ leetcode_solutions
 |1180🔒|[Count Substrings with Only One Distinct Letter](https://leetcode.com/problems/count-substrings-with-only-one-distinct-letter/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1207|[Unique Number of Occurrences](https://leetcode.com/problems/unique-number-of-occurrences/)|[Rust](src/counter/mod.rs)|
 |1213🔒|[Intersection of Three Sorted Arrays](https://leetcode.com/problems/intersection-of-three-sorted-arrays/)|[Rust](src/counter/mod.rs)|
+|1221|[Split a String In..](https://leetcode.com/problems/split-a-string-in-balanced-strings/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1226|[The Dining Philosophers](https://leetcode.com/problems/the-dining-philosophers/)|[C++](https://github.com/pymongo/learn_cpp/blob/master/leetcode/dining_philosophers_problem.cpp)|
 |1227|[Airplane Seat Assignment Probability](https://leetcode.com/problems/airplane-seat-assignment-probability/)|[Rust](src/greedy/airplane_seat_assignment_probability.rs)|
 |1232|[Check If It Is a Straight Line](https://leetcode.com/problems/check-if-it-is-a-straight-line/)|[Rust](src/easy/leetcode_easy.rs)|
@@ -501,8 +502,11 @@ leetcode_solutions
 |1920|[Build Array from Permutation](https://leetcode.com/problems/build-array-from-permutation)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1925|[Count Square Sum Triples](https://leetcode.com/problems/count-square-sum-triples/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1929|[Concatenation of Array](https://leetcode.com/problems/concatenation-of-array/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|1952|[Three Divisors](https://leetcode.com/problems/three-divisors/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1984|[Minimum Difference Between...](https://leetcode.com/problems/minimum-difference-between-highest-and-lowest-of-k-scores/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1985|[Find The Kth Large...](https://leetcode.com/problems/find-the-kth-largest-integer-in-the-array/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|1995|[Count Special Quadruplets](https://leetcode.com/problems/count-special-quadruplets/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|2000|[Count Special Quadruplets](https://leetcode.com/problems/reverse-prefix-of-word/)|[Rust](src/easy/leetcode_very_easy.rs)|
 
 ---
 

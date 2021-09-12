@@ -186,7 +186,7 @@ fn find_cheapest_price(n: i32, flights: Vec<Vec<i32>>, src: i32, dst: i32, k: i3
     }
 
     let mut helper = FindCheapestPriceDfsState {
-        graph,
+        graph: &graph as *const _,
         dest: dst,
         max_times: k + 1,
         visited: vec![false; n],
@@ -202,7 +202,7 @@ fn find_cheapest_price(n: i32, flights: Vec<Vec<i32>>, src: i32, dst: i32, k: i3
 }
 
 struct FindCheapestPriceDfsState {
-    graph: Vec<Vec<i32>>,
+    graph: *const Vec<Vec<i32>>,
     dest: usize,
     max_times: i32,
     visited: Vec<bool>,
@@ -223,8 +223,7 @@ impl FindCheapestPriceDfsState {
         }
 
         self.visited[curr] = true;
-        let this = self as *const Self;
-        for (next, &next_distance) in unsafe { &*this }.graph[curr].iter().enumerate() {
+        for (next, &next_distance) in unsafe { &*self.graph }[curr].iter().enumerate() {
             if next_distance == i32::MAX {
                 continue;
             }

@@ -1,7 +1,7 @@
 /// https://leetcode.com/problems/all-paths-from-source-to-target/
 
 struct AllPathsSourceTargetHelper {
-    graph: Vec<Vec<i32>>,
+    graph: *const Vec<Vec<i32>>,
     dest: i32,
     cur: Vec<i32>,
     paths: Vec<Vec<i32>>,
@@ -13,8 +13,7 @@ impl AllPathsSourceTargetHelper {
             self.paths.push(self.cur.clone());
             return;
         }
-        let this = self as *const Self;
-        for &next in &unsafe { &*this }.graph[cur as usize] {
+        for &next in &unsafe { &*self.graph }[cur as usize] {
             self.cur.push(next);
             self.dfs(next);
             self.cur.pop().unwrap();
@@ -26,10 +25,10 @@ impl AllPathsSourceTargetHelper {
 fn all_paths_source_target_my_best(graph: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
     let dest = graph.len() as i32 - 1;
     let mut helper = AllPathsSourceTargetHelper {
-        graph,
+        graph: &graph as *const _,
         dest,
         cur: vec![0],
-        paths: vec![],
+        paths: Vec::new(),
     };
     helper.dfs(0);
     helper.paths

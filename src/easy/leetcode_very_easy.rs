@@ -860,7 +860,7 @@ fn assign_cookies(mut children: Vec<i32>, mut cookies: Vec<i32>) -> i32 {
     ret
 }
 
-/// https://leetcode.com/contest/weekly-contest-222/problems/maximum-units-on-a-truck/
+/// https://leetcode.com/problems/maximum-units-on-a-truck/
 /// https://leetcode.com/problems/maximum-units-on-a-truck/
 /// 有点像背包问题，因为所有物体的容积都是1，所以这题应该也能用贪心去解题，尽量先放价值更高的物件
 fn maximum_units(mut box_types: Vec<Vec<i32>>, mut truck_size: i32) -> i32 {
@@ -941,7 +941,6 @@ fn lemonade_change(bills: Vec<i32>) -> bool {
 }
 
 /// https://leetcode.com/problems/reformat-phone-number/
-/// https://leetcode.com/contest/weekly-contest-220/problems/reformat-phone-number/
 fn reformat_phone_number(number: String) -> String {
     let mut s: Vec<u8> = number
         .into_bytes()
@@ -1650,7 +1649,7 @@ fn test_find_max_average() {
     }
 }
 
-/// https://leetcode.com/contest/weekly-contest-227/problems/check-if-array-is-sorted-and-rotated/
+/// https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/
 fn check_if_array_is_sorted_and_rotated(nums: Vec<i32>) -> bool {
     let n = nums.len();
     let nums = nums.repeat(2);
@@ -1719,7 +1718,7 @@ fn test_maximum_score_from_removing_stones() {
     }
 }
 
-/// https://leetcode.com/contest/weekly-contest-227/problems/largest-merge-of-two-strings/
+/// https://leetcode.com/problems/largest-merge-of-two-strings/
 /// 有点像归并排序的归并操作，从两个Vec<u8>中选较大的push到新数组中
 fn largest_merge_of_two_strings(word1: String, word2: String) -> String {
     let (nums1, nums2) = (word1.into_bytes(), word2.into_bytes());
@@ -2825,7 +2824,7 @@ fn count_points(points: Vec<Vec<i32>>, queries: Vec<Vec<i32>>) -> Vec<i32> {
         .collect()
 }
 
-/// https://leetcode-cn.com/contest/weekly-contest-252/problems/three-divisors/
+/// https://leetcode.com/problems/three-divisors/
 fn is_three(n: i32) -> bool {
     let mut is_three_factor = false;
     for i in 2..n.min(10_000) {
@@ -2941,7 +2940,7 @@ fn count_matches(items: Vec<Vec<String>>, rule_key: String, rule_value: String) 
 }
 
 /// https://leetcode.com/problems/minimum-difference-between-highest-and-lowest-of-k-scores/
-pub fn minimum_difference(mut nums: Vec<i32>, k: i32) -> i32 {
+fn minimum_difference(mut nums: Vec<i32>, k: i32) -> i32 {
     let len = nums.len();
     nums.sort_unstable();
     let k = k as usize;
@@ -2977,7 +2976,7 @@ fn test_num_str() {
 }
 
 /// https://leetcode.com/problems/find-the-kth-largest-integer-in-the-array/
-pub fn kth_largest_number(nums: Vec<String>, k: i32) -> String {
+fn kth_largest_number(nums: Vec<String>, k: i32) -> String {
     let mut max_heap = std::collections::BinaryHeap::new();
     for num in nums {
         // 测试用例比 u128 大，不能用 ParseInt
@@ -3035,10 +3034,59 @@ fn test_compare_version() {
     const TEST_CASES: [(&str, &str, i32); 3] =
         [("1.0.1", "1", 1), ("1.0", "1.0.0", 0), ("1.01", "1.001", 0)];
     for (version1, version2, cmp_res) in TEST_CASES {
-        dbg!(&version1);
         assert_eq!(
             compare_version(version1.to_string(), version2.to_string()),
             cmp_res
         );
     }
+}
+
+/// https://leetcode.com/problems/count-special-quadruplets/
+fn count_quadruplets(nums: Vec<i32>) -> i32 {
+    let mut ret = 0;
+    let len = nums.len();
+    for a in 0..=len - 4 {
+        for b in a + 1..=len - 3 {
+            for c in b + 1..=len - 2 {
+                for d in c + 1..len {
+                    if nums[a] + nums[b] + nums[c] == nums[d] {
+                        ret += 1;
+                    }
+                }
+            }
+        }
+    }
+    ret
+}
+
+/// https://leetcode.com/problems/reverse-prefix-of-word/
+fn reverse_prefix(word: String, ch: char) -> String {
+    let mut word = word.into_bytes();
+    let ch = ch as u8;
+    for i in 0..word.len() {
+        if word[i] == ch {
+            word[..=i].reverse();
+            break;
+        }
+    }
+
+    unsafe { String::from_utf8_unchecked(word) }
+}
+
+/// https://leetcode.com/problems/split-a-string-in-balanced-strings/
+/// 左右括号个数匹配问题
+fn balanced_string_split(s: String) -> i32 {
+    let mut ret = 0;
+    let mut l_count = 0;
+    for byte in s.into_bytes() {
+        if byte == b'L' {
+            l_count += 1;
+        } else if byte == b'R' {
+            l_count -= 1;
+        }
+        if l_count == 0 {
+            ret += 1;
+        }
+    }
+    ret
 }
