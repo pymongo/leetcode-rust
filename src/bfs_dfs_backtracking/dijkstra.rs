@@ -64,7 +64,10 @@ fn test_network_delay_time() {
 我自己抄懂 dijkstra 题解之后，试着自己不看答案独立写一下 45/49，这题用 DFS 回溯更简单
 ```xdot graphviz.dot
 digraph leetcode_find_cheapest_price {
-    rankdir=LR;
+    comment = "requests a left-to-right drawing"
+    rankdir = LR;
+    comment = "状态机中双圆圈表示最终态(accept state)"
+    node [shape = doublecircle]; 2;
     node [shape = circle];
     0 -> 1 [label = "5"];
     1 -> 2 [label = "5"];
