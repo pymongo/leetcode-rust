@@ -1,4 +1,61 @@
-/*! https://leetcode.com/problems/implement-trie-prefix-tree/
+/// https://leetcode.com/problems/design-add-and-search-words-data-structure/
+#[derive(Default)]
+struct WordDictionary {
+    children: [Option<Box<Self>>; 26],
+    is_word: bool,
+}
+
+impl WordDictionary {
+    fn new() -> Self {
+        Self::default()
+    }
+
+    fn add_word(&mut self, word: String) {
+        let mut node = self;
+        for letter in word.into_bytes().into_iter().map(|ch| (ch - b'a') as usize) {
+            node = node.children[letter].get_or_insert_with(|| Box::new(Self::default()));
+        }
+        node.is_word = true;
+    }
+
+    fn search(&self, word: String) -> bool {
+        let mut queue = std::collections::VecDeque::new();
+        queue.push_back(self);
+        for letter in word.into_bytes() {
+            if letter == b'.' {
+                for _ in 0..queue.len() {
+                    let cur = queue.pop_front().unwrap();
+                    for next in cur.children.iter().flatten() {
+                        queue.push_back(next);
+                    }
+                }
+            } else {
+                let index = usize::from(letter - b'a');
+                for _ in 0..queue.len() {
+                    if let Some(ref next) = queue.pop_front().unwrap().children[index] {
+                        queue.push_back(next);
+                    }
+                }
+            }
+            if queue.is_empty() {
+                return false;
+            }
+        }
+
+        queue.into_iter().any(|x| x.is_word)
+    }
+}
+
+#[cfg(FALSE)]
+impl std::ops::Index<usize> for WordDictionary {
+    type Output = Option<Box<Self>>;
+
+    fn index(&self, index: usize) -> &Self::Output {
+        &self.children[index]
+    }
+}
+
+/** https://leetcode.com/problems/implement-trie-prefix-tree/
 Trie的同义词: 前缀树、字典树
 前缀树每个节点只有一个字符，root相当于一个dummyHead不存储字符
 每个节点除了要存储字符，还要存储从根到当前节点是否构成一个单词
@@ -13,9 +70,7 @@ Trie的同义词: 前缀树、字典树
 4. Boggle单词游戏, 给你一个乱序的字母矩阵，从矩阵中任意一点往上下左右四个方向去搜索，能找到几个单词
 5. IP 路由 (最长前缀匹配)
 */
-
-/// 别人写的更棒的Trie的实现，代码很优雅(不像我写的那个有unwrap)，通过derive(Default)避免了我那连写26个None不优雅的代码
-/// 但是生产环境下的Trie会更复杂，需要类似并查集那种路径压缩，否则一个`aaaaa`这样的单词会创建高度为5的树，所以会有一些trie算法让这颗树更扁
+/// 生产环境下的Trie会更复杂，需要类似并查集那种路径压缩，否则一个`aaaaa`这样的单词会创建高度为5的树，所以会有一些trie算法让这颗树更扁
 #[derive(Default)]
 struct TrieLeetcode {
     /// 为了简便，我们的Trie仅支持「小写字母」

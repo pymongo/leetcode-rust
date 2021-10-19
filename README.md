@@ -182,6 +182,7 @@ leetcode_solutions
 |207|[Course Schedule](https://leetcode.com/problems/course-schedule/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/graph/course_schedule_2.py)|BFS, topological_sorting|
 |209|[Minimum Size Subarray Sum](https://leetcode.com/problems/minimum-size-subarray-sum/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/minimun_size_subarray_sum.py)|sliding_window|
 |210|[Course Schedule II](https://leetcode.com/problems/course-schedule-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/graph/course_schedule_2.py)|BFS, topological_sorting|
+|211|[Design Add and Search Words..](https://leetcode.com/problems/design-add-and-search-words-data-structure/)|[Rust](src/data_structure/trie_edit_distance.rs)|
 |212|[Word Search II](https://leetcode.com/problems/word-search-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/word_search_2.py)|前缀树|
 |213|[House Robber II](https://leetcode.com/problems/house-robber-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/house_robber.py)||
 |215|[Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/sorting_and_query/quick_select_kth_largest.py)|quick_select, quick_sort, heap|
@@ -726,7 +727,7 @@ lintcode_problems
 |829|[Word Pattern II](https://lintcode.com/problem/word-pattern-ii/)|leetcode_291|
 |839|[Merge Two Sorted Interval Lists](https://lintcode.com/problem/merge-two-sorted-interval-lists/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/divide_conquer/merge_two_sorted_interval_lists.py)||
 |840|[Range Sum Query - Mutable](https://lintcode.com/problem/range-sum-query-mutable/)|leetcode_307|
-|841|[String Replace](https://lintcode.com/problem/string-replace/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/tire/string_replace.py)||
+|841|[String Replace](https://lintcode.com/problem/string-replace/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/trie/string_replace.py)||
 |845|[Greatest Common Divisor](https://lintcode.com/problem/greatest-common-divisor/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/math/greatest_common_divisor.py)|
 |859|[Max Stack](https://lintcode.com/problem/max_stack/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/max_stack.py)||
 |871|[Minimum Factorization](https://lintcode.com/problem/minimum-factorization/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/factorization/minimum_factorization.py)|greedy|
