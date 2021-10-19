@@ -53,7 +53,7 @@ fn two_sum_bitwise(nums: Vec<i32>, target: i32) -> Vec<i32> {
 }
 
 fn two_sum_hashmap(nums: Vec<i32>, target: i32) -> Vec<i32> {
-    // 其实用BTreeMap也行，不过此题又用不到TreeMap的排序特性
+    // use BTreeMap? HashMap is not friendly for cache
     let mut sum_tracker = std::collections::HashMap::new();
     for (i, num) in nums.into_iter().enumerate() {
         if sum_tracker.contains_key(&num) {
@@ -61,7 +61,9 @@ fn two_sum_hashmap(nums: Vec<i32>, target: i32) -> Vec<i32> {
         }
         sum_tracker.insert(target - num, i);
     }
-    unreachable!()
+    unsafe {
+        std::hint::unreachable_unchecked();
+    }
 }
 
 #[test]

@@ -7,3 +7,6 @@ repository = "https://github.com/pymongo/leetcode-rust/"
 keywords = ["leetcode", "codeforce"]
 categories = ["algorithm"]
 description = "leetcode/codeforce Rust solutions"
+
+[package.metadata.rust-analyzer]
+rustc_private = true

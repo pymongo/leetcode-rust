@@ -1,5 +1,13 @@
-- problem number with `🔒` suffix need leetcode VIP to unlock
-- problem number with `❌` suffix is a bad solution(like leetcode#371 Python can't do bitwise add)
+## some interesting topic about Rust on leetcode
+
+### use rustc source code to solve leetcode
+
+e.g. use `rustc_span::lev_distance::lev_distance(&a, &b)` one line to solve leetcode edit-distance (Unfortunately we can't use nightly and rustc-dev in leetcode)
+
+- [rustc_span::lev_distance::lev_distance](src/dp/edit_distance.rs) solve [leetcode edit distance](https://leetcode.com/problems/edit-distance/)
+- [rustc_lexer::tokenize](src/compiler/basic_calculator_ii_no_parentheses.rs) solve [leetcode Basic Calculator II](https://leetcode.com/problems/basic-calculator-ii/)
+
+---
 
 codeforces_solutions
 ===
@@ -14,6 +22,8 @@ codeforces_solutions
 
 leetcode_solutions
 ===
+
+(problem number with `🔒` suffix need leetcode VIP to unlock)
 
 | # | Problem | Solutions | Category/Comment |
 |---| ------- | --------- | ---------------- |
@@ -137,7 +147,7 @@ leetcode_solutions
 |146|[LRU Cache](https://leetcode.com/problems/lru-cache/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/lru_cache.py)|double_linked_list, OrderedDict|
 |147|[Insertion Sort List](https://leetcode.com/problems/insertion-sort-list/)|[Rust](src/linked_list/insertion_sort_linked_list.rs)|
 |148|[Sort List](https://leetcode.com/problems/sort-list/)|[Rust](src/linked_list/merge_two_sorted_linked_list.rs)|
-|150|[Evaluate Reverse Polish Notation](https://leetcode.com/problems/evaluate-reverse-polish-notation/)|[Rust](src/eval_math_expression/evaluate_reverse_polish_notation.rs)|
+|150|[Evaluate Reverse Polish Notation](https://leetcode.com/problems/evaluate-reverse-polish-notation/)|[Rust](src/compiler/evaluate_reverse_polish_notation.rs)|
 |151|[Reverse Words in a String](https://leetcode.com/problems/reverse-words-in-a-string/)|[Rust](src/uncategorized/string_in_place.rs)|
 |153|[Find Minimum in Rotated Sorted Array](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/rotated_sorted_array_search.py)|binary_search|
 |154|[Find Minimum in Rotated Sorted Array II](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/rotated_sorted_array_min_2_with_duplicate.py)|binary_search|
@@ -179,10 +189,10 @@ leetcode_solutions
 |217|[Contains Duplicate](https://leetcode.com/problems/contains-duplicate/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |219|[Contains Duplicate II](https://leetcode.com/problems/contains-duplicate-ii/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |222|[Count Complete Tree Nodes](https://leetcode.com/problems/count-complete-tree-nodes/)|[Rust](src/binary_tree/level_order_traversal.rs)|
-|224|[Basic Calculator](https://leetcode.com/problems/basic-calculator/)|[Rust](src/eval_math_expression/mod.rs)|
+|224|[Basic Calculator](https://leetcode.com/problems/basic-calculator/)|[Rust](src/compiler/mod.rs)|
 |225|[Implement Stack using Queues](https://leetcode.com/problems/implement-stack-using-queues/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/impl_stack_by_queue.py)|
 |226|[Invert Binary Tree](https://leetcode.com/problems/invert-binary-tree/)|[Rust](src/binary_tree/invert_binary_tree.rs)|
-|227|[Basic Calculator II](https://leetcode.com/problems/basic-calculator-ii/)|[Rust](src/eval_math_expression/mod.rs)|
+|227|[Basic Calculator II](https://leetcode.com/problems/basic-calculator-ii/)|[Rust](src/compiler/basic_calculator_ii_no_parentheses.rs)|
 |228|[Summary Ranges](https://leetcode.com/problems/summary-ranges/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |230|[Kth Smallest Element in a BST](https://leetcode.com/problems/kth-smallest-element-in-a-bst/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/traversal_pre_order.py)|DFS, stack|
 |231|[Power of Two](https://leetcode.com/problems/power-of-two/)|[Rust](src/bitwise/is_power_of_x.rs)|
@@ -376,7 +386,7 @@ leetcode_solutions
 |989|[Add to Array-Form of Integer](https://leetcode.com/problems/add-to-array-form-of-integer/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |993|[Cousins In Binary Tree](https://leetcode.com/problems/cousins-in-binary-tree/)|[Rust](src/binary_tree/level_order_traversal.rs)|
 |1002|[Find Common Characters](https://leetcode.com/problems/find-common-characters/)|[Rust](src/easy/string/find_common_characters.rs)|
-|1006|[Clumsy Factorial](https://leetcode.com/problems/clumsy-factorial/)|[Rust](src/eval_math_expression/mod.rs)|
+|1006|[Clumsy Factorial](https://leetcode.com/problems/clumsy-factorial/)|[Rust](src/compiler/mod.rs)|
 |1018|[Binary Prefix Divisible By 5](https://leetcode.com/problems/binary-prefix-divisible-by-5/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1030|[Matrix Cells in Distance Order](https://leetcode.com/problems/matrix-cells-in-distance-order/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1038|[Binary Search Tree to Greater Sum Tree](https://leetcode.com/problems/binary-search-tree-to-greater-sum-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/bst_to_gst.py)||
@@ -575,7 +585,6 @@ lintcode_problems
 |96|[Partition List](https://lintcode.com/problem/partition-list/)|leetcode_86|
 |97|[Maximum Depth of Binary Tree](https://lintcode.com/problem/maximum-depth-of-binary-tree/)|leetcode_104|
 |98|[Sort List](https://lintcode.com/problem/sort-list/)|leetcode_148|
-|100|[Remove Duplicates from Sorted Array](https://lintcode.com/problem/remove-duplicates-from-sorted-array/)|leetcode_26|
 |103|[Linked List Cycle II](https://lintcode.com/problem/linked-list-cycle-ii/)|leetcode_142|
 |104|[Merge k Sorted Lists](https://lintcode.com/problem/merge-k-sorted-lists/)|leetcode_23|
 |105|[Copy List with Random Pointer](https://lintcode.com/problem/copy-list-with-random-pointer/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/graph/clone_linked_list_with_random_ptr.py)||

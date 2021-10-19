@@ -1,4 +1,4 @@
-#![feature(test, asm, is_sorted)]
+#![feature(test, rustc_private, asm, is_sorted)]
 // cargo clippy --tests -- -Wclippy::cargo -Wclippy::nursery -Wclippy::pedantic
 #![warn(clippy::nursery, clippy::cargo, clippy::pedantic, clippy::restriction)]
 #![allow(
@@ -32,13 +32,16 @@
     clippy::implicit_return,
     clippy::shadow_reuse,
     clippy::shadow_same,
+    clippy::shadow_unrelated,
     clippy::missing_docs_in_private_items,
     clippy::else_if_without_else
 )]
+#![doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/README.md"))]
 #![doc(html_playground_url = "https://play.rust-lang.org/")]
+extern crate rustc_lexer;
+extern crate rustc_span;
 extern crate test;
 
-// 如果mod backtracking写在mod macros上面，则mod backtracking无法使用macros内的所有宏
 // Macros can only be used after they have been defined(macro_use)
 #[macro_use]
 mod macros;
@@ -47,11 +50,11 @@ mod binary_search;
 mod binary_tree;
 mod bitwise;
 mod code_snippets;
+mod compiler;
 mod counter;
 mod data_structure;
 mod dp;
 mod easy;
-mod eval_math_expression;
 mod greedy;
 mod linked_list;
 mod math;

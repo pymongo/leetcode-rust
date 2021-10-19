@@ -22,6 +22,7 @@ struct LazyStatic<T, F = fn() -> T> {
     _marker: std::marker::PhantomData<T>,
 }
 
+#[allow(clippy::non_send_fields_in_send_ty)]
 unsafe impl<T> Send for LazyStatic<T> {}
 unsafe impl<T> Sync for LazyStatic<T> {}
 

@@ -1,38 +1,27 @@
-/*! https://leetcode.com/problems/edit-distance
+/// https://leetcode.com/problems/edit-distance
+fn edit_distance_using_rustc_span(a: String, b: String) -> usize {
+    rustc_span::lev_distance::lev_distance(&a, &b)
+}
+
+/** https://leetcode.com/problems/edit-distance
+- rustc_span::lev_distance::lev_distance used in rustc
+- strsim::levenshtein used in rustup/darling
+
 edit_distance 的同义词: Levenshtein distance, Damerau-Levenshtein distance
 
 ## wikipedia
 - [Edit distance](https://en.wikipedia.org/wiki/Edit_distance)
 - [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance)
 - [Damerau-Levenshtein distance](https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance)
-*/
-
-/* source: https://github.com/rust-lang/rust/blob/master/compiler/rustc_span/src/lev_distance.rs
-## 如何正确的 clone Rust 源码
-当然 Rust 的源码不能直接git clone，这样不会获取 submodule 所以`cargo tree`会报错
-```text
-[w@w-manjaro rust]$ cargo tree
-error: failed to read `/home/w/workspace/clone_repos/rust/src/tools/rust-installer/Cargo.toml`
-
-Caused by:
-  No such file or directory (os error 2)
-```
-
-所以拉取像 Rust 这样依赖多个其它 repo 的大型项目`git clone`时一定要加上`--recurse-submodules`参数
-
-> git clone --recurse-submodules https://github.com/rust-lang/rust
 
 ---
 
 ## rustc 的实现 和 strsim库的实现
 首先 rustc 为了自举也为了代码质量所以编译时尽量不要依赖第三方库，目前来看也就依赖了 libc, cc 这种 C 语言相关的库
-
 所以 rustc 需要自己实现一个高性能的 edit_distance 算法
-
 strsim 作为库，为了通用性把 edit_distance 的入参做成泛型
 
 rustc 的动态规划实现的空间复杂度是 O(n)，而 strsim 的动态规划实现的空间复杂度是 O(n^2)
-
 在 leetcode 上的运行 strsim 的实现耗时 4ms，而 rustc 的实现耗时 0ms
 
 ---
@@ -41,12 +30,8 @@ rustc 的动态规划实现的空间复杂度是 O(n)，而 strsim 的动态规�
 https://twitter.com/ospopen/status/1380091878440271872
 
 ```text
-直接拿Rust源码compiler/rustc_span/src/lev_distance.rs
-就能通过leetcode的edit_distance
-
 这个算法用于typo检查和拼写错误时的候选词的建议
 
-rustup或过程宏库darling都是依赖strsim库提供的相关API
 rust源码动态规划空间复杂度是O(n)优于strsim的O(n^2)
 所以leetcode上strsim跑这题耗时4ms会慢一些
 
@@ -56,8 +41,6 @@ rust源码动态规划空间复杂度是O(n)优于strsim的O(n^2)
 所以我把 Trie数据结构 和 edit_distance算法放到一起
 ```
 */
-
-/// https://github.com/rust-lang/rust/blob/master/compiler/rustc_span/src/lev_distance.rs
 fn lev_distance(a: &str, b: &str) -> usize {
     // cases which don't require further computation
     if a.is_empty() {
@@ -88,7 +71,7 @@ fn lev_distance(a: &str, b: &str) -> usize {
     dcol[t_last + 1]
 }
 
-/// 针对 leetcode 测试用例的特点，我对 Rust 源码的 lev_distance 算法进行优化
+/// edit from rustc_ast::lev_distance
 fn lev_distance_optimize(word1: String, word2: String) -> i32 {
     let (word1, word2) = (word1.into_bytes(), word2.into_bytes());
     let (word1_len, word2_len) = (word1.len(), word2.len());

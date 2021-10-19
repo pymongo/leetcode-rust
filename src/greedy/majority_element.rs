@@ -17,7 +17,9 @@ fn majority_element(nums: Vec<i32>) -> i32 {
             cnt.insert(num, 1_u16);
         }
     }
-    unreachable!();
+    unsafe {
+        std::hint::unreachable_unchecked();
+    }
 }
 
 fn majority_element_best(nums: Vec<i32>) -> i32 {
