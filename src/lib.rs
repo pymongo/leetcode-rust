@@ -38,6 +38,7 @@
 )]
 #![doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/README.md"))]
 #![doc(html_playground_url = "https://play.rust-lang.org/")]
+extern crate rustc_graphviz;
 extern crate rustc_lexer;
 extern crate rustc_span;
 extern crate test;

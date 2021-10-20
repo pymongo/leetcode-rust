@@ -7,6 +7,10 @@ e.g. use `rustc_span::lev_distance::lev_distance(&a, &b)` one line to solve leet
 - [rustc_span::lev_distance::lev_distance](src/dp/edit_distance.rs) solve [leetcode edit distance](https://leetcode.com/problems/edit-distance/)
 - [rustc_lexer::tokenize](src/compiler/basic_calculator_ii_no_parentheses.rs) solve [leetcode Basic Calculator II](https://leetcode.com/problems/basic-calculator-ii/)
 
+### use rustc_graphviz visualize leetcode binary tree
+
+![graphviz_leetcode_binary_tree.png](https://i.loli.net/2021/10/20/SfqnTh5BQvPl74E.png)
+
 ---
 
 codeforces_solutions

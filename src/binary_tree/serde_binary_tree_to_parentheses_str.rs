@@ -1,7 +1,7 @@
 use super::{Rc, RefCell, TreeLink, TreeNode};
 
 /// TODO add tree_node to str function
-pub fn parentheses_str_to_binary_tree(s: &str) -> TreeLink {
+pub(super) fn parentheses_str_to_binary_tree(s: &str) -> TreeLink {
     let mut stack: Vec<Rc<RefCell<TreeNode>>> = Vec::new();
     let mut val_len = 0;
     let mut is_left_subtree_empty = false;

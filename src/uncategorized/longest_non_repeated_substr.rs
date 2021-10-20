@@ -101,3 +101,9 @@ fn test_sliding_window_hashmap() {
         assert_eq!(sliding_window_hashmap(input.to_string()), expected);
     }
 }
+
+#[test]
+fn aa() {
+    let a = 1;
+    dbg!(a);
+}
