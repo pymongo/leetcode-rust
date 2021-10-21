@@ -1,4 +1,4 @@
-#![feature(test, rustc_private, asm, is_sorted)]
+#![feature(test, rustc_private, asm, is_sorted, control_flow_enum)]
 // cargo clippy --tests -- -Wclippy::cargo -Wclippy::nursery -Wclippy::pedantic
 #![warn(clippy::nursery, clippy::cargo, clippy::pedantic, clippy::restriction)]
 #![allow(

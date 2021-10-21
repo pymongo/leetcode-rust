@@ -123,7 +123,7 @@ fn test_leetcode_tree_grpahviz() {
     use super::{deserialize_vec_to_binary_tree, print_binary_tree};
     let level_order_1 = vec![3, 9, 20, null, null, 15, 7];
     let node = deserialize_vec_to_binary_tree(&level_order_1);
-    let _ = print_binary_tree(node.clone());
+    print_binary_tree(node.clone()).unwrap();
     let graph = GraphvizLeetcodeTree::new(node, false);
     let mut f = std::fs::File::create(DOT_OUTPUT_PATH).unwrap();
     rustc_graphviz::render(&graph, &mut f).unwrap();
