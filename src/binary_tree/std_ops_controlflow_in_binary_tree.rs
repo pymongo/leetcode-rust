@@ -47,14 +47,16 @@ fn traverse_inorder<T>(root: Option<Box<TreeNode<T>>>) -> ControlFlow<Vec<T>, Ve
             return_val.extend(traverse_inorder(node.left)?);
             return_val.extend(traverse_inorder(node.right)?);
             ControlFlow::Break(return_val)
-        },
-        None => ControlFlow::Continue(Vec::new())
+        }
+        None => ControlFlow::Continue(Vec::new()),
     }
 }
 
 #[test]
 fn test_traverse_inorder() {
     let tree = tree_example();
-    let a = traverse_inorder(Some(Box::new(tree))).break_value().unwrap();
+    let a = traverse_inorder(Some(Box::new(tree)))
+        .break_value()
+        .unwrap();
     dbg!(a);
 }

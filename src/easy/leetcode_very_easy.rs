@@ -3090,3 +3090,46 @@ fn balanced_string_split(s: String) -> i32 {
     }
     ret
 }
+
+/// https://leetcode-cn.com/contest/weekly-contest-265/problems/smallest-index-with-equal-value/
+fn smallest_equal(nums: Vec<i32>) -> i32 {
+    for (i, num) in nums.into_iter().enumerate() {
+        if (i % 10) as i32 == num {
+            return i as i32;
+        }
+    }
+    -1
+}
+
+#[test]
+fn test_smallest_equal() {
+    assert_eq!(smallest_equal(vec![2, 1, 3, 5, 2]), 1);
+}
+
+/// https://leetcode.com/problems/keyboard-row/
+fn find_words(words: Vec<String>) -> Vec<String> {
+    // string rowIdx = "12210111011122000010020202";
+    words
+        .into_iter()
+        .filter(|word| {
+            let word = word.to_ascii_lowercase();
+            word.bytes().all(|letter| b"qwertyuiop".contains(&letter))
+                || word.bytes().all(|letter| b"asdfghjkl".contains(&letter))
+                || word.bytes().all(|letter| b"zxcvbnm".contains(&letter))
+        })
+        .collect()
+}
+
+#[test]
+fn test_find_words() {
+    let test_cases = vec![
+        (
+            vec_string!["Hello", "Alaska", "Dad", "Peace"],
+            vec_string!["Alaska", "Dad"],
+        ),
+        (vec_string!["omk"], vec![]),
+    ];
+    for (input, output) in test_cases {
+        assert_eq!(find_words(input), output);
+    }
+}
