@@ -1,4 +1,5 @@
 /// https://leetcode.com/problems/basic-calculator-ii/
+#[cfg(feature = "rustc_private")]
 fn basic_calculator_ii_using_rustc_lexer(expr: String) -> i32 {
     use rustc_lexer::{Base, LiteralKind, TokenKind};
     let mut last_operand = TokenKind::Plus;

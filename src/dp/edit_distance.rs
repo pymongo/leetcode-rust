@@ -1,4 +1,5 @@
 /// https://leetcode.com/problems/edit-distance
+#[cfg(feature = "rustc_private")]
 fn edit_distance_using_rustc_span(a: String, b: String) -> usize {
     rustc_span::lev_distance::lev_distance(&a, &b)
 }

@@ -8,5 +8,9 @@ keywords = ["leetcode", "codeforce"]
 categories = ["algorithm"]
 description = "leetcode/codeforce Rust solutions"
 
-[package.metadata.rust-analyzer]
-rustc_private = true
+[features]
+rustc_private = []
+default = []
+# default = ["rustc_private"]
+# [package.metadata.rust-analyzer]
+# rustc_private = true

@@ -39,8 +39,11 @@
 )]
 #![doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/README.md"))]
 #![doc(html_playground_url = "https://play.rust-lang.org/")]
+#[cfg(feature = "rustc_private")]
 extern crate rustc_graphviz;
+#[cfg(feature = "rustc_private")]
 extern crate rustc_lexer;
+#[cfg(feature = "rustc_private")]
 extern crate rustc_span;
 extern crate test;
 

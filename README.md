@@ -2,6 +2,8 @@
 
 ### use rustc source code to solve leetcode
 
+leetcode-rust package require **rustc_private** feature to enable rustc relative API
+
 e.g. use `rustc_span::lev_distance::lev_distance(&a, &b)` one line to solve leetcode edit-distance (Unfortunately we can't use nightly and rustc-dev in leetcode)
 
 - [rustc_span::lev_distance::lev_distance](src/dp/edit_distance.rs) solve [leetcode edit distance](https://leetcode.com/problems/edit-distance/)

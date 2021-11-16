@@ -1,3 +1,4 @@
+#[cfg(feature = "rustc_private")]
 mod graphviz_view_leetcode_binary_tree;
 mod invert_binary_tree;
 mod is_bst;
