@@ -15,6 +15,7 @@
     clippy::module_name_repetitions,
     clippy::doc_markdown,
     /* clippy::restriction */
+    clippy::separated_literal_suffix, // add in 1.58, TODO use regex match and replace to fix it?
     clippy::blanket_clippy_restriction_lints,
     clippy::integer_division,
     clippy::integer_arithmetic,
