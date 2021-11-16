@@ -3091,7 +3091,7 @@ fn balanced_string_split(s: String) -> i32 {
     ret
 }
 
-/// https://leetcode-cn.com/contest/weekly-contest-265/problems/smallest-index-with-equal-value/
+/// https://leetcode.com/problems/smallest-index-with-equal-value/
 fn smallest_equal(nums: Vec<i32>) -> i32 {
     for (i, num) in nums.into_iter().enumerate() {
         if (i % 10) as i32 == num {

@@ -29,14 +29,12 @@ fn island_perimeter(grid: Vec<Vec<i32>>) -> i32 {
 
 #[test]
 fn test_island_perimeter() {
-    /*
-    "[[0, 1, 0, 0],
-      [1, 1, 1, 0],
-      [0, 1, 0, 0],
-      [1, 1, 0, 0]]",
-    */
+    #[rustfmt::skip]
     let test_cases = vec![(
-        vec_vec![[0, 1, 0, 0], [1, 1, 1, 0], [0, 1, 0, 0], [1, 1, 0, 0]],
+        vec_vec![[0, 1, 0, 0],
+                 [1, 1, 1, 0],
+                 [0, 1, 0, 0],
+                 [1, 1, 0, 0]],
         16,
     )];
     for (grid, perimeter) in test_cases {

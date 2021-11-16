@@ -523,6 +523,7 @@ leetcode_solutions
 |1985|[Find The Kth Large...](https://leetcode.com/problems/find-the-kth-largest-integer-in-the-array/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1995|[Count Special Quadruplets](https://leetcode.com/problems/count-special-quadruplets/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |2000|[Count Special Quadruplets](https://leetcode.com/problems/reverse-prefix-of-word/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|2057|[Smallest Index With Equal Value](https://leetcode.com/problems/smallest-index-with-equal-value/)|[Rust](src/easy/leetcode_very_easy.rs)|
 
 ---
 

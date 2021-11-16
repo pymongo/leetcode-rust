@@ -158,13 +158,25 @@ fn find_diagonal_order(mat: Vec<Vec<i32>>) -> Vec<i32> {
 #[test]
 #[should_panic]
 fn test_find_diagonal_order() {
+    #[rustfmt::skip]
     let test_cases = vec![
-        (vec_vec![[2, 5], [8, 4], [0, -1]], vec![2, 5, 8, 0, 4, -1]),
+        (vec_vec![
+            [2, 5],
+            [8, 4],
+            [0, -1]
+        ], vec![2, 5, 8, 0, 4, -1]),
         (
-            vec_vec![[1, 2, 3], [4, 5, 6], [7, 8, 9]],
+            vec_vec![
+                [1, 2, 3],
+                [4, 5, 6],
+                [7, 8, 9]
+            ],
             vec![1, 2, 4, 7, 5, 3, 6, 8, 9],
         ),
-        (vec_vec![[2, 3], [2, 3]], vec![2, 3]),
+        (vec_vec![
+            [2, 3],
+            [2, 3]
+        ], vec![2, 3]),
     ];
     for (input, output) in test_cases {
         assert_eq!(find_diagonal_order(input), output);

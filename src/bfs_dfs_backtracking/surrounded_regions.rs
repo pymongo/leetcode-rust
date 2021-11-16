@@ -72,6 +72,7 @@ fn surrounded_regions(board: &mut Vec<Vec<char>>) {
 
 #[test]
 fn test_surrounded_regions() {
+    #[rustfmt::skip]
     let test_cases = vec![
         (
             vec_vec![
@@ -88,8 +89,16 @@ fn test_surrounded_regions() {
             ],
         ),
         (
-            vec_vec![['X', 'O', 'X'], ['X', 'O', 'X'], ['X', 'O', 'X'],],
-            vec_vec![['X', 'O', 'X'], ['X', 'O', 'X'], ['X', 'O', 'X'],],
+            vec_vec![
+                ['X', 'O', 'X'],
+                ['X', 'O', 'X'],
+                ['X', 'O', 'X']
+            ],
+            vec_vec![
+                ['X', 'O', 'X'],
+                ['X', 'O', 'X'],
+                ['X', 'O', 'X']
+            ],
         ),
         (
             vec_vec![

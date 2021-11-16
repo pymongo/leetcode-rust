@@ -38,9 +38,18 @@ fn rotate(m: &mut Vec<Vec<i32>>) {
 
 #[test]
 fn test_rotate() {
+    #[rustfmt::skip]
     let test_cases = vec![(
-        vec_vec![[1, 2, 3], [4, 5, 6], [7, 8, 9]],
-        vec_vec![[7, 4, 1], [8, 5, 2], [9, 6, 3]],
+        vec_vec![
+            [1, 2, 3],
+            [4, 5, 6],
+            [7, 8, 9]
+        ],
+        vec_vec![
+            [7, 4, 1],
+            [8, 5, 2],
+            [9, 6, 3]
+        ],
     )];
     for (mut input, output) in test_cases {
         rotate(&mut input);

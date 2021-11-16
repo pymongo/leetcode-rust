@@ -26,18 +26,23 @@ fn search_a_2d_matrix(matrix: Vec<Vec<i32>>, target: i32) -> bool {
 
 #[test]
 fn test_search_a_2d_matrix() {
+    #[rustfmt::skip]
     let test_cases = vec![
         (vec_vec![[1]], 2, false),
         (vec_vec![[1]], 0, false),
         (vec_vec![[1, 1]], 0, false),
         (vec_vec![[1, 3]], 1, true),
         (
-            vec_vec![[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 60]],
+            vec_vec![[1, 3, 5, 7],
+                     [10, 11, 16, 20],
+                     [23, 30, 34, 60]],
             3,
             true,
         ),
         (
-            vec_vec![[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 60]],
+            vec_vec![[1, 3, 5, 7],
+                     [10, 11, 16, 20],
+                     [23, 30, 34, 60]],
             13,
             false,
         ),
