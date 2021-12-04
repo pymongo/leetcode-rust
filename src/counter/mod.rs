@@ -222,3 +222,20 @@ fn frequency_sort(s: String) -> String {
     }
     unsafe { String::from_utf8_unchecked(ret) }
 }
+
+/// https://leetcode.com/problems/ransom-note/
+fn can_construct(ransom_note: String, magazine: String) -> bool {
+    let mut counter = [0u16; 26];
+    for byte in magazine.into_bytes() {
+        counter[usize::from(byte - b'a')] += 1;
+    }
+    for byte in ransom_note.into_bytes() {
+        let i = usize::from(byte - b'a');
+        // counter[i].checked_sub
+        if counter[i] == 0 {
+            return false;
+        }
+        counter[i] -= 1;
+    }
+    true
+}

@@ -260,6 +260,7 @@ leetcode_solutions
 |377|[Combination Sum IV](https://leetcode.com/problems/combination-sum-iv/)|[Rust](src/dp/coin_change.rs)|
 |380|[Insert Delete GetRandom O(1)](https://leetcode.com/problems/insert-delete-getrandom-o1/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/insert_delete_get_random_o1.py)||
 |381|[Insert Delete GetRandom O(1) - Duplicates allowed](https://leetcode.com/problems/insert-delete-getrandom-o1-duplicates-allowed/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/insert_delete_get_random_o1.py)||
+|383|[Ransom Note](https://leetcode.com/problems/ransom-note/)|[Rust](src/counter/mod.rs)|
 |386|[Lexicographical Numbers](https://leetcode.com/problems/lexicographical-numbers/)|[Rust](src/bfs_dfs_backtracking/lexicographical_numbers.rs)|
 |387|[First Unique Character in a String](https://leetcode.com/problems/first-unique-character-in-a-string/)|[Rust](src/counter/mod.rs)|
 |389|[Find The Difference](https://leetcode.com/problems/find-the-difference/)|[Rust](src/bitwise/find_single_number.rs)|
