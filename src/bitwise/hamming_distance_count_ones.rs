@@ -12,7 +12,7 @@ mod hamming_weight {
         let popcnt_input: usize = n as usize;
         let popcnt_output: usize;
         unsafe {
-            asm!(
+            std::arch::asm!(
             "popcnt {popcnt_output}, {popcnt_input}",
             popcnt_input = in(reg) popcnt_input,
             popcnt_output = out(reg) popcnt_output,
