@@ -23,7 +23,7 @@ fn first_unique_char(s: String) -> i32 {
     -1
 }
 
-/**
+/** https://leetcode.com/problems/unique-number-of-occurrences/
 需要用到第三方库itertools进行unique操作的解法
 ```compile_fail
 fn unique_occurrences(arr: Vec<i32>) -> bool {

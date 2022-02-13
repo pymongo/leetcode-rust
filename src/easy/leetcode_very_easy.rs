@@ -3133,3 +3133,27 @@ fn test_find_words() {
         assert_eq!(find_words(input), output);
     }
 }
+
+/// https://leetcode-cn.com/contest/weekly-contest-280/problems/count-operations-to-obtain-zero/
+const fn count_operations(mut num1: i32, mut num2: i32) -> i32 {
+    let mut times = 0;
+    while num1 != 0 && num2 != 0 {
+        if num1 > num2 {
+            num1 -= num2;
+        } else {
+            num2 -= num1;
+        }
+        times += 1;
+    }
+    times
+}
+
+#[test]
+fn test_count_operations() {
+    for (num1, num2, times) in [
+        (2,3,3),
+        (10,10,1)
+    ] {
+        assert_eq!(count_operations(num1, num2), times);
+    } 
+}
