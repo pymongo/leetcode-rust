@@ -22,8 +22,23 @@ struct LazyStatic<T, F = fn() -> T> {
     _marker: std::marker::PhantomData<T>,
 }
 
+/*
+warning: cross-crate traits with a default impl, like `Send`, should not be specialized
+  --> src/code_snippets/lazy_static.rs:26:1
+   |
+26 | unsafe impl<T> Send for LazyStatic<T> {}
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(suspicious_auto_trait_impls)]` on by default
+   = warning: this will change its meaning in a future release!
+   = note: for more information, see issue #93367 <https://github.com/rust-lang/rust/issues/93367>
+note: try using the same sequence of generic parameters as the struct definition
+  --> src/code_snippets/lazy_static.rs:14:1
+   |
+14 | / struct LazyStatic<T, F = fn() -> T> {
+*/
 #[allow(clippy::non_send_fields_in_send_ty)]
-unsafe impl<T> Send for LazyStatic<T> {}
+unsafe impl<T, F> Send for LazyStatic<T, F> {}
 unsafe impl<T> Sync for LazyStatic<T> {}
 
 impl<T, F> LazyStatic<T, F> {

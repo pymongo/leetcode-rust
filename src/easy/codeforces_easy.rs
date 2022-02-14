@@ -25,9 +25,9 @@ fn cf_1a_theatre_square(
         .map(|each| each.parse::<u32>().unwrap())
         .collect();
     let (n, m, a) = (input_split[0], input_split[1], input_split[2]);
-    let num_width = u64::from(n / a) + (n % a != 0) as u64; // divmod, ceil
-    let num_length = u64::from(m / a) + (m % a != 0) as u64;
-    write!(&mut writer, "{}", num_width * num_length)?;
+    let num_width = u64::from(n / a) + u64::from(n % a != 0); // divmod, ceil
+    let num_length = u64::from(m / a) + u64::from(m % a != 0);
+    write!(writer, "{}", num_width * num_length)?;
     Ok(())
 }
 
@@ -52,9 +52,9 @@ where
     reader.read_line(&mut input)?;
     let num = input.trim_end().parse::<u8>()?;
     if num % 2 == 0 && num != 2 {
-        write!(&mut writer, "YES")?;
+        write!(writer, "YES")?;
     } else {
-        write!(&mut writer, "NO")?;
+        write!(writer, "NO")?;
     };
     Ok(())
 }
@@ -88,11 +88,11 @@ fn cf_71a_way_too_long_words(
     for string in input.into_iter().skip(1) {
         let len = string.len();
         if len <= 10 {
-            writeln!(&mut writer, "{}", string)?;
+            writeln!(writer, "{}", string)?;
         } else {
             let bytes = string.into_bytes();
             writeln!(
-                &mut writer,
+                writer,
                 "{}{}{}",
                 bytes[0] as char,
                 len - 2, // len - 2(first and last)
@@ -133,7 +133,7 @@ fn cf_231a_team(
             ret += 1;
         }
     }
-    write!(&mut writer, "{}", ret)?;
+    write!(writer, "{}", ret)?;
     Ok(())
 }
 
@@ -179,7 +179,7 @@ fn cf_158a_next_round(
         ret += counter[i];
     }
 
-    write!(&mut writer, "{}", ret)?;
+    write!(writer, "{}", ret)?;
     Ok(())
 }
 

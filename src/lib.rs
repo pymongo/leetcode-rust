@@ -5,7 +5,9 @@
     dead_code,
     // vec_vec: use of irregular braces for `vec!` macro
     clippy::nonstandard_macro_braces,
+    clippy::ptr_arg,
     /* clippy::pedantic */
+    clippy::borrow_as_ptr,
     clippy::cast_sign_loss,
     clippy::cast_possible_truncation,
     clippy::cast_possible_wrap,
@@ -15,6 +17,7 @@
     clippy::module_name_repetitions,
     clippy::doc_markdown,
     /* clippy::restriction */
+    clippy::undocumented_unsafe_blocks,
     clippy::separated_literal_suffix, // add in 1.58, TODO use regex match and replace to fix it?
     clippy::unseparated_literal_suffix,
     clippy::blanket_clippy_restriction_lints,

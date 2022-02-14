@@ -198,6 +198,7 @@ impl TrieTestHelper {
     }
 }
 
+#[allow(clippy::single_char_lifetime_names)]
 struct TrieTestCase<'a> {
     call_funcs: Vec<String>,
     funcs_arg: Vec<Vec<&'a str>>,

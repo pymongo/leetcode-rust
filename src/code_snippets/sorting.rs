@@ -175,7 +175,8 @@ mod benches {
     fn bench_std_heap_sort(bencher: &mut test::Bencher) {
         bencher.iter(|| {
             let nums = random_numbers_test_case();
-            nums.into_iter()
+            let _nums = nums
+                .into_iter()
                 .collect::<std::collections::BinaryHeap<_>>()
                 .into_sorted_vec();
         });

@@ -9,6 +9,7 @@
 解题思路2: 因数分解num*num，看看另一个数组是否存在这些因子
 */
 fn num_triplets(nums1: Vec<i32>, nums2: Vec<i32>) -> i32 {
+    #[allow(clippy::option_if_let_else)]
     fn helper(nums1: &[i32], nums2: &[i32]) -> i32 {
         // 用HashMap加快在num2中找因子的过程, key: num2, value: count of num2 in nums2
         let mut counter = std::collections::HashMap::with_capacity(nums2.len());

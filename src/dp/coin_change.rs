@@ -13,6 +13,7 @@
 
 /// https://leetcode.com/problems/coin-change/
 /// 外层是`for value`，内层是`for coin`
+#[allow(clippy::option_if_let_else)]
 fn coin_change_i_dp_1(coins: Vec<i32>, amount: i32) -> i32 {
     let coins = coins
         .into_iter()

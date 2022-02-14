@@ -7,7 +7,7 @@ fn to_lower_case(s: String) -> String {
 
 /// https://leetcode.com/problems/defanging-an-ip-address/
 fn defanging_an_ip_address(address: String) -> String {
-    address.replace(".", "[.]")
+    address.replace('.', "[.]")
 }
 
 /// https://leetcode.com/problems/valid-number/
@@ -3150,10 +3150,7 @@ const fn count_operations(mut num1: i32, mut num2: i32) -> i32 {
 
 #[test]
 fn test_count_operations() {
-    for (num1, num2, times) in [
-        (2,3,3),
-        (10,10,1)
-    ] {
+    for (num1, num2, times) in [(2, 3, 3), (10, 10, 1)] {
         assert_eq!(count_operations(num1, num2), times);
-    } 
+    }
 }
