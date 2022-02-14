@@ -302,6 +302,7 @@ leetcode_solutions
 |535|[Encode and Decode TinyURL](https://leetcode.com/problems/encode-and-decode-tinyurl/)|very_easy|
 |536🔒|[Construct Binary Tree from String](https://leetcode.com/problems/construct-binary-tree-from-string/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/construct_from_string_with_parentheses.py)||
 |538|[Convert BST to Greater Tree](https://leetcode.com/problems/convert-bst-to-greater-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/bst_to_gst.py)|
+|540|[Single Element in a Sorted Array](https://leetcode.com/problems/single-element-in-a-sorted-array)|[Rust](src/binary_search/single_element_in_a_sorted_array.rs)|
 |541|[Reverse String II](https://leetcode.com/problems/reverse-string-ii/)|[Rust](src/uncategorized/string_in_place.rs)|
 |547|[Friend Circles](https://leetcode.com/problems/number-of-provinces/)|[Rust](src/data_structure/union_find/friend_circles.rs)|
 |554|[Brick Wall](https://leetcode.com/problems/brick_wall/)|[Rust](src/easy/leetcode_very_easy.rs)|
@@ -528,6 +529,7 @@ leetcode_solutions
 |1995|[Count Special Quadruplets](https://leetcode.com/problems/count-special-quadruplets/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |2000|[Count Special Quadruplets](https://leetcode.com/problems/reverse-prefix-of-word/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |2057|[Smallest Index With Equal Value](https://leetcode.com/problems/smallest-index-with-equal-value/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|2169|[Count Operations to Obtain Zero](https://leetcode.com/problems/count-operations-to-obtain-zero)|[Rust](src/easy/leetcode_very_easy.rs)|
 
 ---
 

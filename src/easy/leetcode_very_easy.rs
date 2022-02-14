@@ -3134,7 +3134,7 @@ fn test_find_words() {
     }
 }
 
-/// https://leetcode-cn.com/contest/weekly-contest-280/problems/count-operations-to-obtain-zero/
+/// https://leetcode.com/problems/count-operations-to-obtain-zero
 const fn count_operations(mut num1: i32, mut num2: i32) -> i32 {
     let mut times = 0;
     while num1 != 0 && num2 != 0 {

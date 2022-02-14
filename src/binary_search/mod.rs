@@ -12,6 +12,7 @@ TODO 二分法解决的几类问题
 mod median_of_two_sorted_arrays;
 mod mountain_array;
 mod search_a_2d_matrix;
+mod single_element_in_a_sorted_array;
 
 /// https://leetcode.com/problems/binary-search/
 fn binary_search_any(nums: Vec<i32>, target: i32) -> i32 {
