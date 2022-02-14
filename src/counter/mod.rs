@@ -239,3 +239,23 @@ fn can_construct(ransom_note: String, magazine: String) -> bool {
     }
     true
 }
+
+/// https://leetcode.com/problems/maximum-number-of-balloons/
+fn max_number_of_balloons(text: String) -> i32 {
+    let mut counter = [0; 26];
+    for letter in text.into_bytes() {
+        counter[(letter - b'a') as usize] += 1;
+    }
+    let mut times = 0;
+    'out: loop {
+        for letter in "balloon".bytes() {
+            if counter[(letter - b'a') as usize] >= 1 {
+                counter[(letter - b'a') as usize] -= 1;
+            } else {
+                break 'out;
+            }
+        }
+        times += 1;
+    }
+    times
+}

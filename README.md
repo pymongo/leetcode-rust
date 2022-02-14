@@ -415,6 +415,7 @@ leetcode_solutions
 |1160|[Find Words That Can Be Formed by Ch...](https://leetcode.com/problems/find-words-that-can-be-formed-by-characters/)|[Rust](src/counter/mod.rs)|
 |1167🔒|[Minimum Cost To Connect Sticks](https://leetcode.com/problems/minimum-cost-to-connect-sticks/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1180🔒|[Count Substrings with Only One Distinct Letter](https://leetcode.com/problems/count-substrings-with-only-one-distinct-letter/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|1189|[Maximum Number of Balloons](https://leetcode.com/problems/maximum-number-of-balloons)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1207|[Unique Number of Occurrences](https://leetcode.com/problems/unique-number-of-occurrences/)|[Rust](src/counter/mod.rs)|
 |1213🔒|[Intersection of Three Sorted Arrays](https://leetcode.com/problems/intersection-of-three-sorted-arrays/)|[Rust](src/counter/mod.rs)|
 |1221|[Split a String In..](https://leetcode.com/problems/split-a-string-in-balanced-strings/)|[Rust](src/easy/leetcode_very_easy.rs)|
