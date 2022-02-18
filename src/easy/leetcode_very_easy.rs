@@ -3154,3 +3154,21 @@ fn test_count_operations() {
         assert_eq!(count_operations(num1, num2), times);
     }
 }
+
+/// https://leetcode.com/problems/find-center-of-star-graph/
+/// O(1) solution: 前俩找一样就行
+fn find_center(edges: Vec<Vec<i32>>) -> i32 {
+    let mut counter = std::collections::HashMap::with_capacity(edges.len());
+    for edge in edges {
+        *counter.entry(edge[0]).or_insert(0) += 1;
+        *counter.entry(edge[1]).or_insert(0) += 1;
+    }
+    let mut counter = counter.into_iter().collect::<Vec<_>>();
+    counter.sort_unstable_by_key(|kv| kv.1);
+    counter.last().unwrap().0
+}
+
+#[test]
+fn test_find_center() {
+    assert_eq!(find_center(vec_vec![[1, 2], [2, 3], [4, 2]]), 2);
+}

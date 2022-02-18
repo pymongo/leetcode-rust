@@ -6,13 +6,13 @@ fn single_non_duplicate(nums: Vec<i32>) -> i32 {
     while left < right {
         let mid = left + (right - left) / 2;
         if mid % 2 == 0 {
-            if nums[mid] == nums[mid+1] {
+            if nums[mid] == nums[mid + 1] {
                 left = mid + 1;
             } else {
                 right = mid;
             }
         } else {
-            if nums[mid] == nums[mid-1] {
+            if nums[mid] == nums[mid - 1] {
                 left = mid + 1;
             } else {
                 right = mid;
@@ -24,5 +24,5 @@ fn single_non_duplicate(nums: Vec<i32>) -> i32 {
 
 #[test]
 fn test_single_non_duplicate() {
-    assert_eq!(single_non_duplicate(vec![3,3,7,7,10,11,11]), 10);
+    assert_eq!(single_non_duplicate(vec![3, 3, 7, 7, 10, 11, 11]), 10);
 }
