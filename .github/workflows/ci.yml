@@ -1,13 +1,18 @@
-name: learn-github-actions
+name: check_lint_test
 on: [push]
 jobs:
-  check-bats-version:
+  typo_check_lint_test:
     runs-on: ubuntu-latest
     steps:
+      - name: typo
+        uses: crate-ci/typos@v1.4.0
+      - name: install nightly toolchain
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: nightly-2022-03-01-x86_64-unknown-linux-gnu
           profile: minimal
-      - run: pwd
-      - run: ls
-      - run: cargo check --tests
+      - name: check
+        uses: actions-rs/cargo@v1
+        with:
+          command: check
+          args: --tests
