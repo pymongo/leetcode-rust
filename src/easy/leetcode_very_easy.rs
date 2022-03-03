@@ -2891,7 +2891,7 @@ fn get_maximum_generated(n: i32) -> i32 {
 }
 
 #[test]
-fn test_get_maximun_generated() {
+fn test_get_maximum_generated() {
     const TEST_CASES: [(i32, i32); 1] = [(7, 3)];
     for (n, max) in TEST_CASES {
         assert_eq!(get_maximum_generated(n), max);

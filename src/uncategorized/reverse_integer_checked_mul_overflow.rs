@@ -35,7 +35,7 @@ fn reverse_integer(x: i32) -> i32 {
 }
 
 // use std::ops::ControlFlow;
-// fn reverse_interger_control_flow(mut n: i32) -> ControlFlow<i32, i32> {
+// fn reverse_integer_control_flow(mut n: i32) -> ControlFlow<i32, i32> {
 //     let mut ret = 0_i32;
 //     while n.abs() != 0 {
 //         ret = ret.checked_mul(10)?.checked_add(n % 10)?;

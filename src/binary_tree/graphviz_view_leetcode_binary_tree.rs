@@ -15,12 +15,12 @@ pub(super) struct GraphvizLeetcodeTree {
 impl GraphvizLeetcodeTree {
     fn build_edges(tree: &[i32]) -> Vec<Edge> {
         #[allow(clippy::cast_precision_loss)]
-        let tree_heigh = ((tree.len() + 1) as f64).log2() as u32;
+        let tree_high = ((tree.len() + 1) as f64).log2() as u32;
         // e.g tree_height is 3, edges len is 2.pow(1)+2.pow(2)
         let mut edges = vec![];
         let mut src_idx = 0;
         // construct edge
-        for height in 0..tree_heigh - 1 {
+        for height in 0..tree_high - 1 {
             for _ in 0..2_usize.pow(height) {
                 edges.push(Edge {
                     src_idx,
