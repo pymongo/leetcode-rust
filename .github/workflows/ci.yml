@@ -16,11 +16,11 @@ jobs:
       - name: install nightly toolchain
         uses: actions-rs/toolchain@v1
         with:
-          toolchain: $TOOLCHAIN
+          toolchain: "$TOOLCHAIN"
           profile: minimal
       - name: check
         uses: actions-rs/cargo@v1
         with:
-          toolchain: $TOOLCHAIN
+          toolchain: "$TOOLCHAIN"
           command: check
           args: --tests
