@@ -1,0 +1,13 @@
+name: learn-github-actions
+on: [push]
+jobs:
+  check-bats-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly-2022-03-01-x86_64-unknown-linux-gnu
+          profile: minimal
+      - run: pwd
+      - run: ls
+      - run: cargo check --tests
