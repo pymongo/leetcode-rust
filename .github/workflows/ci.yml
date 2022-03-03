@@ -7,7 +7,7 @@ jobs:
       - name: typo
         uses: crate-ci/typos@v1.4.0
       - name: install nightly toolchain
-      - uses: actions-rs/toolchain@v1
+        uses: actions-rs/toolchain@v1
         with:
           toolchain: nightly-2022-03-01-x86_64-unknown-linux-gnu
           profile: minimal
