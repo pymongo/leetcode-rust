@@ -3172,3 +3172,19 @@ fn find_center(edges: Vec<Vec<i32>>) -> i32 {
 fn test_find_center() {
     assert_eq!(find_center(vec_vec![[1, 2], [2, 3], [4, 2]]), 2);
 }
+
+/// https://leetcode.com/problems/add-digits/
+const fn add_digits(mut num: i32) -> i32 {
+    const fn digits_sum(mut n: i32) -> i32 {
+        let mut sum = 0;
+        while n > 0 {
+            sum += n % 10;
+            n /= 10;
+        }
+        sum
+    }
+    while num > 9 {
+        num = digits_sum(num);
+    } 
+    num
+}
