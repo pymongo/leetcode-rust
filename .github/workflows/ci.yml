@@ -4,6 +4,8 @@ jobs:
   typo_check_lint_test:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Actions Repository
+        uses: actions/checkout@v2
       - name: typo
         uses: crate-ci/typos@v1.4.0
       - name: install nightly toolchain
