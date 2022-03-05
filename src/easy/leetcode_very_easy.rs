@@ -3185,6 +3185,16 @@ const fn add_digits(mut num: i32) -> i32 {
     }
     while num > 9 {
         num = digits_sum(num);
-    } 
+    }
     num
+}
+
+/// https://leetcode.com/problems/maximum-number-of-words-found-in-sentences/
+fn most_words_found(sentences: Vec<String>) -> i32 {
+    sentences
+        .into_iter()
+        .map(|sentence| sentence.split_whitespace().count() as i32)
+        .into_iter()
+        .max()
+        .unwrap()
 }
