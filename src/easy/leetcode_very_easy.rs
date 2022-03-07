@@ -3198,3 +3198,36 @@ fn most_words_found(sentences: Vec<String>) -> i32 {
         .max()
         .unwrap()
 }
+
+fn convert_to_base7(mut num: i32) -> String {
+    if num == 0 {
+        return "0".to_string();
+    }
+    let mut ret = Vec::new();
+    let is_negative = num < 0;
+    if is_negative {
+        num = -num;
+    }
+    while num != 0 {
+        ret.push(b'0' + (num % 7) as u8);
+        num /= 7;
+    }
+    ret.reverse();
+    if is_negative {
+        ret.insert(0, b'-');
+    }
+    unsafe { String::from_utf8_unchecked(ret) }
+}
+
+/// https://leetcode.com/problems/base-7/
+#[test]
+fn test_convert_to_base7() {
+    for (num, base7) in [
+        (100, "202"),
+        (0, "0"),
+        (-7, "-10"),
+        (7, "10")
+    ] {
+        assert_eq!(convert_to_base7(num), base7);
+    }
+}

@@ -294,6 +294,7 @@ leetcode_solutions
 |498|[Diagonal Traverse](https://leetcode.com/problems/diagonal-traverse/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/unclassified/diagonal_traverse.py)|
 |500|[Keyboard Row](https://leetcode.com/problems/keyboard-row/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |503|[Next Greater Element II](https://leetcode.com/problems/next-greater-element-ii/)|[Rust](src/data_structure/monotonic_stack_next_greater_element_2.rs)|
+|504|[Base 7](https://leetcode.com/problems/base-7/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |507|[Perfect Number](https://leetcode.com/problems/perfect-number/)|[Rust](src/math/perfect_number.rs)|
 |509|[Fibonacci Number](https://leetcode.com/problems/fibonacci-number/)|[Rust](src/dp/fibonacci.rs)|
 |514|[Freedom Trail](https://leetcode.com/problems/freedom-trail/)|[Rust](src/dp/freedom_trail.rs)|
