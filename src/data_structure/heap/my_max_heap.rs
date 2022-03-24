@@ -46,7 +46,7 @@ Dijkstra=BFS+heap+greedy
 pub struct MyMaxHeap<T: Ord>(Vec<T>);
 
 impl<T: Ord> MyMaxHeap<T> {
-    fn new() -> Self {
+    const fn new() -> Self {
         Self(Vec::new())
     }
 

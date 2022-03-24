@@ -3222,12 +3222,57 @@ fn convert_to_base7(mut num: i32) -> String {
 /// https://leetcode.com/problems/base-7/
 #[test]
 fn test_convert_to_base7() {
-    for (num, base7) in [
-        (100, "202"),
-        (0, "0"),
-        (-7, "-10"),
-        (7, "10")
-    ] {
+    for (num, base7) in [(100, "202"), (0, "0"), (-7, "-10"), (7, "10")] {
         assert_eq!(convert_to_base7(num), base7);
     }
+}
+
+/// https://leetcode.com/problems/image-smoother/
+fn image_smoother(img: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
+    let (m, n) = (img.len(), img[0].len());
+    let mut ret = vec![vec![-1; n]; m];
+    for i in 0..m {
+        for j in 0..n {
+            let mut neighbours = vec![img[i][j]];
+            // row 1
+            if i >= 1 {
+                if j >= 1 {
+                    neighbours.push(img[i - 1][j - 1]);
+                }
+                neighbours.push(img[i - 1][j]);
+                if j < n - 1 {
+                    neighbours.push(img[i - 1][j + 1]);
+                }
+            }
+            // row 2
+            if j >= 1 {
+                neighbours.push(img[i][j - 1]);
+            }
+            if j < n - 1 {
+                neighbours.push(img[i][j + 1]);
+            }
+            // row 3
+            if i < m - 1 {
+                if j >= 1 {
+                    neighbours.push(img[i + 1][j - 1]);
+                }
+                neighbours.push(img[i + 1][j]);
+                if j < n - 1 {
+                    neighbours.push(img[i + 1][j + 1]);
+                }
+            }
+            let n = neighbours.len();
+            ret[i][j] = neighbours.into_iter().sum::<i32>() / n as i32;
+            // neighbours[0]
+        }
+    }
+    ret
+}
+
+#[test]
+fn test_image_smoother() {
+    assert_eq!(
+        image_smoother(vec_vec![[1, 1, 1], [1, 0, 1], [1, 1, 1]]),
+        vec_vec![[0, 0, 0], [0, 0, 0], [0, 0, 0],]
+    );
 }
