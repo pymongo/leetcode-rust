@@ -3276,3 +3276,21 @@ fn test_image_smoother() {
         vec_vec![[0, 0, 0], [0, 0, 0], [0, 0, 0],]
     );
 }
+
+/// https://leetcode.com/problems/binary-number-with-alternating-bits/
+const fn has_alternating_bits(mut n: i32) -> bool {
+    let mut last_bit_is_1 = n % 2 == 1;
+
+    loop {
+        n /= 2;
+        let bit_is_1 = n % 2 == 1;
+        if bit_is_1 == last_bit_is_1 {
+            return false;
+        }
+        last_bit_is_1 = bit_is_1;
+        if n == 0 {
+            break;
+        }
+    }
+    true
+}
