@@ -1,4 +1,4 @@
-//! 很多BFS的题都能用DFS(回溯)来做，所以归为一类题型
+// 很多BFS的题都能用DFS(回溯)来做，所以归为一类题型
 mod all_paths_from_source_to_target;
 mod combination_sum_1_2;
 mod combination_sum_iii;

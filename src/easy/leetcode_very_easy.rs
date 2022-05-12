@@ -3294,3 +3294,36 @@ const fn has_alternating_bits(mut n: i32) -> bool {
     }
     true
 }
+
+/// https://leetcode.com/problems/delete-columns-to-make-sorted/
+fn min_deletion_size(strs: Vec<String>) -> i32 {
+    // input is m x n
+    let (row, col) = (strs.len(), strs[0].len());
+    let mut mat = vec![vec![0u8; col]; row];
+    for (i, s) in strs.into_iter().enumerate() {
+        for (j, chr) in s.into_bytes().into_iter().enumerate() {
+            mat[i][j] = chr;
+        }
+    }
+    let mut ret = 0;
+    'outer: for j in 0..col {
+        for i in 1..row {
+            if mat[i][j] < mat[i - 1][j] {
+                ret += 1;
+                continue 'outer;
+            }
+        }
+    }
+    ret
+}
+
+#[test]
+fn test_min_deletion_size() {
+    for (strs, ret) in [
+        (vec_string!["a", "b"], 0),
+        (vec_string!["cba", "daf", "ghi"], 1),
+        (vec_string!["rrjk", "furt", "guzm"], 2),
+    ] {
+        assert_eq!(min_deletion_size(strs), ret);
+    }
+}

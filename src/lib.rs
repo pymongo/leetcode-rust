@@ -17,6 +17,7 @@
     clippy::module_name_repetitions,
     clippy::doc_markdown,
     /* clippy::restriction */
+    clippy::mod_module_files,
     clippy::dbg_macro,
     clippy::undocumented_unsafe_blocks,
     clippy::separated_literal_suffix, // add in 1.58, TODO use regex match and replace to fix it?
