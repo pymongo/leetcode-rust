@@ -1,6 +1,6 @@
 //! https://leetcode.com/problems/validate-binary-search-tree/
 
-use super::{Rc, RefCell, TreeNode};
+use super::prelude::*;
 
 fn is_bst(node: Option<Rc<RefCell<TreeNode>>>, lower: Option<i32>, upper: Option<i32>) -> bool {
     match node {

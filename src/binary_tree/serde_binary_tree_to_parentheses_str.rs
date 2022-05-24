@@ -1,4 +1,4 @@
-use super::{Rc, RefCell, TreeLink, TreeNode};
+use super::prelude::*;
 
 /// TODO add tree_node to str function
 pub(super) fn parentheses_str_to_binary_tree(s: &str) -> TreeLink {
@@ -45,5 +45,5 @@ pub(super) fn parentheses_str_to_binary_tree(s: &str) -> TreeLink {
 #[test]
 fn test_str_to_optional_tree_node() {
     let node = parentheses_str_to_binary_tree("1()(2(3))");
-    super::print_binary_tree(node).unwrap();
+    print_binary_tree(node).unwrap();
 }

@@ -1,4 +1,4 @@
-use super::{Rc, RefCell, TreeNode};
+use super::prelude::*;
 
 fn sum_of_left_leaves(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
     helper(root, false)
@@ -22,7 +22,6 @@ fn helper(node: Option<Rc<RefCell<TreeNode>>>, is_left: bool) -> i32 {
 
 #[test]
 fn test_sum_of_left_leaves() {
-    use super::{deserialize_vec_to_binary_tree, null};
     const TEST_CASES: [(&[i32], i32); 1] = [(&[3, 9, 20, null, null, 15, 7], 24)];
     for (input, output) in TEST_CASES {
         let input = deserialize_vec_to_binary_tree(input);

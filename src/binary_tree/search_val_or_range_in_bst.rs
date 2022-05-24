@@ -1,4 +1,4 @@
-use super::{Rc, RefCell, TreeNode};
+use super::prelude::*;
 
 fn search_val_in_bst(
     root: Option<Rc<RefCell<TreeNode>>>,

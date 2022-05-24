@@ -20,7 +20,6 @@ fn cf_1a_theatre_square(
     let mut input = String::new();
     reader.read_line(&mut input)?;
     let input_split: Vec<u32> = input
-        .trim_end()
         .split_whitespace()
         .map(|each| each.parse::<u32>().unwrap())
         .collect();
@@ -156,11 +155,20 @@ fn cf_158a_next_round(
     for line in reader.lines().flatten() {
         input.push(line);
     }
-    let mut input_line1 = input[0].trim_end().split_whitespace();
+    let mut input_line1 = input[0].split_whitespace();
     let _n = input_line1.next().unwrap().parse::<u8>()?;
     let k = input_line1.next().unwrap().parse::<u8>()?;
+    /*
+    warning: found call to `str::trim_end` before `str::split_whitespace`
+       --> src/easy/codeforces_easy.rs:163:10
+        |
+    163 |           .trim_end()
+        |  __________^
+    164 | |         .split_whitespace()
+        | |_________^ help: remove `trim_end()`
+        */
     let nums: Vec<u8> = input[1]
-        .trim_end()
+        // .trim_end()
         .split_whitespace()
         .map(|s| s.parse::<u8>().unwrap())
         .collect();

@@ -1,4 +1,4 @@
-use super::{Rc, RefCell, TreeNode};
+use super::prelude::*;
 
 /// https://leetcode.com/problems/same-tree/
 fn is_same_tree(p: Option<Rc<RefCell<TreeNode>>>, q: Option<Rc<RefCell<TreeNode>>>) -> bool {

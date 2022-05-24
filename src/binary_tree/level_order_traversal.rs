@@ -1,4 +1,4 @@
-use super::{Rc, RefCell, TreeNode};
+use super::prelude::*;
 
 /// https://leetcode.com/problems/count-complete-tree-nodes/
 /// return 0 if not root else 1+self.countNodes(root.left)+self.countNodes(root.right)
@@ -156,9 +156,9 @@ fn test_is_cousins() {
         (&[1, 2, 3, null, 4], 2, 3, false),
     ];
     for (root, x, y, expected) in TEST_CASES {
-        let root = super::deserialize_vec_to_binary_tree(root);
+        let root = deserialize_vec_to_binary_tree(root);
         println!("{}", "=".repeat(20));
-        super::print_binary_tree(root.clone()).unwrap();
+        print_binary_tree(root.clone()).unwrap();
         println!("x={}, y={}, expected={}", x, y, expected);
         assert_eq!(is_cousins(root, x, y), expected);
     }

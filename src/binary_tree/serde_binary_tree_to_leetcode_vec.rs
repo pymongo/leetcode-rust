@@ -2,7 +2,7 @@
 leetcode binary tree vec format example: [3,9,20,null,null,15,7] or [3,9,20,#,#,15,7]
 https://support.leetcode.com/hc/en-us/articles/360011883654-What-does-1-null-2-3-mean-in-binary-tree-representation-
 */
-use super::{null, Rc, RefCell, TreeLink, TreeNode};
+use super::prelude::*;
 
 #[allow(clippy::collapsible_match)]
 pub fn serialize_binary_tree_to_vec(root: TreeLink) -> Vec<i32> {

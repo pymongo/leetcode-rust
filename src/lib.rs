@@ -19,6 +19,7 @@
     /* clippy::restriction */
     clippy::mod_module_files,
     clippy::dbg_macro,
+    clippy::pub_use,
     clippy::undocumented_unsafe_blocks,
     clippy::separated_literal_suffix, // add in 1.58, TODO use regex match and replace to fix it?
     clippy::unseparated_literal_suffix,

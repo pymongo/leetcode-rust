@@ -1,6 +1,6 @@
 //! https://leetcode.com/problems/leaf-similar-trees/
 //! 事实上这题 无论用前中后序遍历二叉树得到叶子节点
-use super::TreeLink;
+use super::prelude::*;
 
 fn reverse_post_order(node: TreeLink) -> Vec<i32> {
     let mut ret = vec![];
@@ -25,7 +25,6 @@ fn leaf_similar_trees(root1: TreeLink, root2: TreeLink) -> bool {
 
 #[test]
 fn test_leaf_similar_trees() {
-    use super::{deserialize_vec_to_binary_tree, null};
     const TEST_CASES: [(&[i32], &[i32], bool); 3] = [
         (
             &[3, 5, 1, 6, 2, 9, 8, null, null, 7, 4],
