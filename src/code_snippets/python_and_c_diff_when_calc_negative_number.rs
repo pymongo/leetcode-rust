@@ -18,7 +18,7 @@ root -e "-1 % 10"
 /// https://stackoverflow.com/questions/31210357/is-there-a-modulus-not-remainder-function-operation
 /// rem_euclid can use in leetcode problem circular-array-loop
 #[test]
-#[allow(clippy::eq_op)]
+#[allow(clippy::eq_op, clippy::identity_op)]
 fn test_rem_euclid() {
     assert_eq!(-1 / 10, 0);
     // `div_euclid` is same as python's `//`

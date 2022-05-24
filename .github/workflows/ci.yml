@@ -24,3 +24,9 @@ jobs:
           toolchain: nightly
           command: check
           args: --tests
+      - name: clippy
+        uses: actions-rs/cargo@v1
+        with:
+          toolchain: nightly
+          command: check
+          args: --tests

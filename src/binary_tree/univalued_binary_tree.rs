@@ -25,17 +25,20 @@ fn is_unival_tree(root: Option<Rc<RefCell<TreeNode>>>) -> bool {
             }
 
             true
-        },
-        None => true
+        }
+        None => true,
     }
 }
 
 #[test]
 fn test_is_unival_tree() {
     for (tree, is_unival) in [
-        (vec![1,1,1,1,1,null,1], true),
-        (vec![2,2,2,5,2], false),
+        (vec![1, 1, 1, 1, 1, null, 1], true),
+        (vec![2, 2, 2, 5, 2], false),
     ] {
-        assert_eq!(is_unival_tree(deserialize_vec_to_binary_tree(&tree)), is_unival);
+        assert_eq!(
+            is_unival_tree(deserialize_vec_to_binary_tree(&tree)),
+            is_unival
+        );
     }
 }
