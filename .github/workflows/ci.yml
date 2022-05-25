@@ -28,5 +28,5 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           toolchain: nightly
-          command: check
+          command: clippy
           args: --tests
