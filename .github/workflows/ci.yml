@@ -18,6 +18,8 @@ jobs:
         with:
           toolchain: nightly
           profile: minimal
+          components: rustfmt, clippy
+          override: true
       - name: check
         uses: actions-rs/cargo@v1
         with:
