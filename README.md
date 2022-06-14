@@ -291,7 +291,7 @@ leetcode_solutions
 |486|[Validate IP Address](https://leetcode.com/problems/validate-ip-address/)|[Rust](src/easy/string/parse_ip_address.rs)|
 |490🔒|[The Maze](https://leetcode.com/problems/the-maze/)|[Rust](src/bfs_dfs_backtracking/the_maze.rs)|
 |494|[Target Sum](https://leetcode.com/problems/target-sum/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/backpack_1_target_sum.py)|0-1背包问题|
-|498|[Diagonal Traverse](https://leetcode.com/problems/diagonal-traverse/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/unclassified/diagonal_traverse.py)|
+|498|[Diagonal Traverse](https://leetcode.com/problems/diagonal-traverse/)|[Rust](src/easy/grid_or_matrix/matrix_diagonal_traverse.rs)|
 |500|[Keyboard Row](https://leetcode.com/problems/keyboard-row/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |503|[Next Greater Element II](https://leetcode.com/problems/next-greater-element-ii/)|[Rust](src/data_structure/monotonic_stack_next_greater_element_2.rs)|
 |504|[Base 7](https://leetcode.com/problems/base-7/)|[Rust](src/easy/leetcode_very_easy.rs)|
@@ -775,7 +775,6 @@ lintcode_problems
 |1186|[Encode and Decode TinyURL](https://lintcode.com/problem/encode-and-decode-tinyurl/)|leetcode_535|
 |1196|[Freedom Trail](https://lintcode.com/problem/freedom-trail/)|leetcode_514|
 |1201|[Next Greater Element II](https://lintcode.com/problem/next-greater-element-ii/)|leetcode_503|
-|1205|[Diagonal Traverse](https://lintcode.com/problem/diagonal-traverse/)|leetcode_498|
 |1208|[Target Sum](https://lintcode.com/problem/target-sum/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/backpack_1_target_sum.py)|0-1背包问题|
 |1212|[Max Consecutive Ones](https://lintcode.com/problem/max-consecutive-ones/)|leetcode_485|
 |1235|[Serialize and Deserialize BST](https://lintcode.com/problem/serialize-and-deserialize-bst/)|leetcode_449|

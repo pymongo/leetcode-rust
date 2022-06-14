@@ -117,54 +117,54 @@ fn diagonal_traverse_from_top_left_in_bottom_left_direction() {
 }
 
 /// https://leetcode.com/problems/diagonal-traverse/
-/// FIXME wrong answer
 fn find_diagonal_order(mat: Vec<Vec<i32>>) -> Vec<i32> {
     let m = mat.len();
-    if m == 0 {
-        return Vec::new();
-    }
-    if m == 1 {
-        // return mat.into_iter().nth(0).unwrap();
-    }
     let n = mat[0].len();
-    if n == 1 {
-        // return mat.into_iter().map(|row| row[0]).collect();
-    }
-    let m_minus_1 = m.min(n) - 1;
     let mut ret = Vec::with_capacity(m * n);
-    let mut is_top_right = true;
-    for diagonal in 0..m + n {
-        let row = diagonal.saturating_sub(m_minus_1);
-        let col = if diagonal <= m_minus_1 {
-            diagonal
+    for i in 0..m + n - 1 {
+        if i % 2 == 1 {
+            // direction: ↙️
+            let (x, y) = if i < n { (0, i) } else { (i - n + 1, n - 1) };
+            let (mut x, mut y) = (x, y as i32);
+            while x < m && y >= 0 {
+                ret.push(mat[x][y as usize]);
+                x += 1;
+                y -= 1;
+            }
         } else {
-            m_minus_1
-        };
-        let cur_diagonal_len = (col + 1).saturating_sub(row);
-        println!("{}:, {},{},{}", diagonal, row, col, cur_diagonal_len);
-        let mut cur_diagonal = Vec::with_capacity(cur_diagonal_len);
-        for offset in 0..cur_diagonal_len {
-            cur_diagonal.push(mat[row + offset][col - offset]);
+            // direction: ↗️
+            let (x, y) = if i < m { (i, 0) } else { (m - 1, i - m + 1) };
+            let (mut x, mut y) = (x as i32, y);
+            while x >= 0 && y < n {
+                ret.push(mat[x as usize][y]);
+                x -= 1;
+                y += 1;
+            }
         }
-        if is_top_right {
-            cur_diagonal.reverse();
-        }
-        ret.extend(cur_diagonal);
-        is_top_right = !is_top_right;
     }
     ret
 }
 
 #[test]
-#[should_panic]
 fn test_find_diagonal_order() {
     #[rustfmt::skip]
     let test_cases = vec![
+        /* m=3, n=2
+        i=0, (0,0)
+        i=1, (0,1) (1,0)
+        i=2, (1,1) (2,0)
+        i=3, (2,1)
+        */
         (vec_vec![
             [2, 5],
             [8, 4],
             [0, -1]
         ], vec![2, 5, 8, 0, 4, -1]),
+        /* m=3, n=3
+        i=0, (0,0)
+        i=2, (2,0)
+        i=4, (2,2)
+        */
         (
             vec_vec![
                 [1, 2, 3],
@@ -176,7 +176,7 @@ fn test_find_diagonal_order() {
         (vec_vec![
             [2, 3],
             [2, 3]
-        ], vec![2, 3]),
+        ], vec![2, 3, 2, 3]),
     ];
     for (input, output) in test_cases {
         assert_eq!(find_diagonal_order(input), output);
