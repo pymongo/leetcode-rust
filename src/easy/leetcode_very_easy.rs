@@ -3327,3 +3327,28 @@ fn test_min_deletion_size() {
         assert_eq!(min_deletion_size(strs), ret);
     }
 }
+
+/// https://leetcode.com/problems/duplicate-zeros/
+fn duplicate_zeros(arr: &mut Vec<i32>) {
+    let mut found_zero = false;
+    for i in 0..arr.len() {
+        // skip zero which is our insert
+        if found_zero {
+            found_zero = false;
+            continue;
+        }
+        if arr[i] == 0 {
+            arr.pop().unwrap();
+            arr.insert(i, 0);
+            found_zero = true;
+        }
+        // println!("{:?}", arr);
+    }
+}
+
+#[test]
+fn test_duplicate_zeors() {
+    let mut arr = vec![1, 0, 2, 3, 0, 4, 5, 0];
+    duplicate_zeros(&mut arr);
+    assert_eq!(arr, [1, 0, 0, 2, 3, 0, 0, 4]);
+}
