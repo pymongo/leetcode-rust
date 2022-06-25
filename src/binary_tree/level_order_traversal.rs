@@ -59,6 +59,11 @@ fn level_order(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<Vec<i32>> {
     ret
 }
 
+/// https://leetcode.com/problems/find-largest-value-in-each-tree-row/
+fn largest_values(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+    level_order(root).into_iter().map(|arr| arr.into_iter().max().unwrap()).collect()
+}
+
 /// https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/
 #[allow(clippy::option_if_let_else)]
 #[allow(clippy::collapsible_match)]

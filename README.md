@@ -298,6 +298,7 @@ leetcode_solutions
 |507|[Perfect Number](https://leetcode.com/problems/perfect-number/)|[Rust](src/math/perfect_number.rs)|
 |509|[Fibonacci Number](https://leetcode.com/problems/fibonacci-number/)|[Rust](src/dp/fibonacci.rs)|
 |514|[Freedom Trail](https://leetcode.com/problems/freedom-trail/)|[Rust](src/dp/freedom_trail.rs)|
+|515|[Find Largest Value...](https://leetcode.com/problems/find-largest-value-in-each-tree-row/)|[Rust](src/binary_tree/level_order_traversal.rs)|
 |518|[Coin Change 2](https://leetcode.com/problems/coin-change-2/)|[Rust](src/dp/coin_change.rs)|
 |523|[Continuous Subarray Sum](https://leetcode.com/problems/continuous-subarray-sum/)|[Rust](src/greedy/prefix_sum_subarray.rs)|
 |525|[Contiguous Array](https://leetcode.com/problems/contiguous-array/)|[Rust](src/greedy/prefix_sum_subarray.rs)|
