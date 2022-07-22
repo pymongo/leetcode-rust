@@ -3352,3 +3352,29 @@ fn test_duplicate_zeors() {
     duplicate_zeros(&mut arr);
     assert_eq!(arr, [1, 0, 0, 2, 3, 0, 0, 4]);
 }
+
+/// https://leetcode.com/problems/shift-2d-grid/
+fn shift_grid(grid: Vec<Vec<i32>>, k: i32) -> Vec<Vec<i32>> {
+    // n_rows
+    let n_rows = grid.len();
+    // n_cols
+    let n_cols = grid[0].len();
+    let mut nums = grid.into_iter().flatten().collect::<Vec<_>>();
+    let len = nums.len();
+    nums.rotate_right((k as usize) % len);
+    let mut ret = vec![vec![0; n_cols]; n_rows];
+    for (idx, num) in nums.into_iter().enumerate() {
+        let i = idx / n_cols;
+        let j = idx % n_cols;
+        ret[i][j] = num;
+    }
+    ret
+}
+
+#[test]
+fn test_shift_grid() {
+    assert_eq!(
+        shift_grid(vec_vec![[1], [2], [3], [4], [7], [6], [5]], 23),
+        vec_vec![[6], [5], [1], [2], [3], [4], [7]]
+    );
+}

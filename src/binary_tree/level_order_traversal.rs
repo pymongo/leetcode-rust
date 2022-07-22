@@ -61,7 +61,10 @@ fn level_order(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<Vec<i32>> {
 
 /// https://leetcode.com/problems/find-largest-value-in-each-tree-row/
 fn largest_values(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
-    level_order(root).into_iter().map(|arr| arr.into_iter().max().unwrap()).collect()
+    level_order(root)
+        .into_iter()
+        .map(|arr| arr.into_iter().max().unwrap())
+        .collect()
 }
 
 /// https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/

@@ -434,6 +434,7 @@ leetcode_solutions
 |1248|[Count Number of Nice Subarrays](https://leetcode.com/problems/count-number-of-nice-subarrays/)|[Rust](src/greedy/count_number_of_nice_subarrays.rs)|
 |1251🔒|[Average Selling Price](https://leetcode.com/problems/average-selling-price/)|[SQL](sql_problems/very_easy.sql)|
 |1252|[Cells with Odd Values in a Matrix](https://leetcode.com/problems/cells-with-odd-values-in-a-matrix/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|1260|[Shift 2D Grid](https://leetcode.com/problems/shift-2d-grid/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1265🔒|[Print Immutable Linked List in Reverse](https://leetcode.com/problems/print-immutable-linked-list-in-reverse/)|[C](https://github.com/pymongo/learn_cpp/blob/master/leetcode/easy/print_immutable_linked_list_in_reverse.c)|
 |1266|[Minimum Time Visiting All Points](https://leetcode.com/problems/minimum-time-visiting-all-points/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1269|[Number of Ways to Stay in the Same...](https://leetcode.com/problems/number-of-ways-to-stay-in-the-same-place-after-some-steps/)|[Rust](src/dp/number_of_ways_to_stay_in_the_same_place_after_some_steps.rs)|
