@@ -3378,3 +3378,23 @@ fn test_shift_grid() {
         vec_vec![[6], [5], [1], [2], [3], [4], [7]]
     );
 }
+
+/// https://leetcode.cn/problems/rank-transform-of-an-array/
+fn array_rank_transform(mut arr: Vec<i32>) -> Vec<i32> {
+    let map = arr
+        .clone()
+        .into_iter()
+        .collect::<std::collections::BTreeSet<_>>()
+        .into_iter()
+        .zip(1..)
+        .collect::<std::collections::HashMap<_, _>>();
+    for each in &mut arr {
+        *each = map[each];
+    }
+    arr
+}
+
+#[test]
+fn test_array_rank_transform() {
+    assert_eq!(array_rank_transform(vec![40, 10, 20, 30]), [4, 1, 2, 3]);
+}
