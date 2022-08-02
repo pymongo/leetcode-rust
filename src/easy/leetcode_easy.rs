@@ -527,3 +527,53 @@ fn test_can_eat_favorite_candy() {
         assert_eq!(can_eat_favorite_candy(candies_count, queries), answer);
     }
 }
+
+// 排列组合 4 边长相等->菱形，菱形且对角线相等
+// https://leetcode.com/problems/valid-square
+fn valid_square(p1: Vec<i32>, p2: Vec<i32>, p3: Vec<i32>, p4: Vec<i32>) -> bool {
+    #[derive(Clone, Copy)]
+    struct Point {
+        x: i32,
+        y: i32,
+    }
+    impl Point {
+        fn new(vec: Vec<i32>) -> Self {
+            Self {
+                x: vec[0],
+                y: vec[1],
+            }
+        }
+    }
+    // calc distance
+    impl std::ops::Sub for Point {
+        type Output = i32;
+
+        fn sub(self, rhs: Self) -> Self::Output {
+            (self.x - rhs.x).pow(2) + (self.y - rhs.y).pow(2)
+        }
+    }
+
+    let (p1, p2, p3, p4) = (
+        Point::new(p1),
+        Point::new(p2),
+        Point::new(p3),
+        Point::new(p4),
+    );
+    let mut lengths = [0; 6];
+    lengths[0] = p1 - p2;
+    lengths[1] = p1 - p3;
+    lengths[2] = p1 - p4;
+
+    lengths[3] = p2 - p3;
+    lengths[4] = p2 - p4;
+
+    lengths[5] = p3 - p4;
+
+    lengths.sort_unstable();
+    lengths[0] != 0
+        && lengths[0] == lengths[1]
+        && lengths[1] == lengths[2]
+        && lengths[2] == lengths[3]
+        // 如果菱形的对角线等长就是正方形
+        && lengths[4] == lengths[5]
+}

@@ -315,6 +315,7 @@ leetcode_solutions
 |575|[Distribute Candies](https://leetcode.com/problems/distribute-candies/)|[Rust](src/easy/leetcode_easy.rs)|
 |589|[N-ary Tree Preorder Traversal](https://leetcode.com/problems/n-ary-tree-preorder-traversal/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/n_ary_tree_preorder_postorder.py)||
 |590|[N-ary Tree Postorder Traversal](https://leetcode.com/problems/n-ary-tree-postorder-traversal/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/n_ary_tree_preorder_postorder.py)||
+|593|[Valid Square](https://leetcode.com/problems/valid-square/)|[Rust](src/easy/leetcode_easy.rs)|
 |595|[Big Countries](https://leetcode.com/problems/big-countries/)|sql|
 |606|[Construct String from Binary Tree](https://leetcode.com/problems/construct-string-from-binary-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_tree/construct_from_string_with_parentheses.py)||
 |617|[Merge Two Binary Trees](https://leetcode.com/problems/merge-two-binary-trees/)|[Rust](src/binary_tree/merge_two_binary_trees.rs)|
