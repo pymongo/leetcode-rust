@@ -3398,3 +3398,17 @@ fn array_rank_transform(mut arr: Vec<i32>) -> Vec<i32> {
 fn test_array_rank_transform() {
     assert_eq!(array_rank_transform(vec![40, 10, 20, 30]), [4, 1, 2, 3]);
 }
+
+/// https://leetcode.com/problems/minimum-subsequence-in-non-increasing-order/
+fn min_subsequence(mut nums: Vec<i32>) -> Vec<i32> {
+    nums.sort_unstable();
+    let half_sum = nums.iter().sum::<i32>() / 2;
+    let mut ret = vec![];
+    let mut ret_total = 0;
+    while ret_total <= half_sum {
+        let num = nums.pop().unwrap();
+        ret_total += num;
+        ret.push(num);
+    }
+    ret
+}

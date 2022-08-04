@@ -458,6 +458,7 @@ leetcode_solutions
 |1380|[Lucky Numbers in a Matrix](https://leetcode.com/problems/lucky-numbers-in-a-matrix/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1389|[Create Target Array in the Given Order](https://leetcode.com/problems/create-target-array-in-the-given-order/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1395|[Count Number of Teams](https://leetcode.com/problems/count-number-of-teams/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|1403|[Minimun Subsequence...](https://leetcode.com/problems/minimum-subsequence-in-non-increasing-order/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1409|[Queries on a Permutation With Key](https://leetcode.com/problems/queries-on-a-permutation-with-key/)|[Rust](src/easy/array/queries_on_a_permutation_with_key.rs)|
 |1418|[Display Table Of Food Order..](https://leetcode.com/problems/build-array-from-permutation)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1429🔒|[First Unique Number](https://leetcode.com/problems/first-unique-number/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/linked_list/first_unique_number_in_stream.py)|
