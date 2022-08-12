@@ -440,6 +440,7 @@ leetcode_solutions
 |1266|[Minimum Time Visiting All Points](https://leetcode.com/problems/minimum-time-visiting-all-points/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1269|[Number of Ways to Stay in the Same...](https://leetcode.com/problems/number-of-ways-to-stay-in-the-same-place-after-some-steps/)|[Rust](src/dp/number_of_ways_to_stay_in_the_same_place_after_some_steps.rs)|
 |1281|[Subtract the Product and Sum of Digits...](https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/)|[Rust](src/easy/leetcode_very_easy.rs)
+|1282|[Group the people...](https://leetcode.cn/problems/group-the-people-given-the-group-size-they-belong-to)|[Rust](src/counter/mod.rs)
 |1295|[Find Numbers with Even Number of Digits](https://leetcode.com/problems/find-numbers-with-even-number-of-digits/)|[Rust](src/easy/array/find_numbers_with_even_number_of_digits.rs)|
 |1299|[Replace Elements with Greatest Element on Right...](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1303🔒|[Find the Team Size](httpsn://leetcode.com/problems/find-the-team-size/)|[SQL](sql_problems/very_easy.sql)|

@@ -259,3 +259,18 @@ fn max_number_of_balloons(text: String) -> i32 {
     }
     times
 }
+
+/// https://leetcode.com/problems/group-the-people-given-the-group-size-they-belong-to/
+fn group_the_people(group_sizes: Vec<i32>) -> Vec<Vec<i32>> {
+    let mut map = std::collections::HashMap::<i32, Vec<i32>>::new();
+    for (id, group_size) in group_sizes.into_iter().enumerate() {
+        map.entry(group_size).or_default().push(id as i32);
+    }
+    let mut ret = Vec::new();
+    for (group_size, ids) in map {
+        for chunk in ids.chunks(group_size as usize) {
+            ret.push(chunk.to_vec());
+        }
+    }
+    ret
+}
