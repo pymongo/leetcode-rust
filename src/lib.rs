@@ -1,6 +1,7 @@
 #![feature(test, rustc_private, is_sorted, control_flow_enum)]
 // cargo clippy --tests -- -Wclippy::cargo -Wclippy::nursery -Wclippy::pedantic
-#![warn(clippy::nursery, clippy::cargo, clippy::pedantic, clippy::restriction)]
+// clippy::restriction
+#![warn(clippy::nursery, clippy::cargo, clippy::pedantic)]
 #![allow(
     dead_code,
     // vec_vec: use of irregular braces for `vec!` macro
@@ -17,32 +18,32 @@
     clippy::module_name_repetitions,
     clippy::doc_markdown,
     /* clippy::restriction */
-    clippy::mod_module_files,
-    clippy::dbg_macro,
-    clippy::pub_use,
-    clippy::undocumented_unsafe_blocks,
-    clippy::separated_literal_suffix, // add in 1.58, TODO use regex match and replace to fix it?
-    clippy::unseparated_literal_suffix,
-    clippy::blanket_clippy_restriction_lints,
-    clippy::integer_division,
-    clippy::integer_arithmetic,
-    clippy::float_arithmetic,
-    clippy::modulo_arithmetic,
-    clippy::cast_sign_loss,
-    clippy::as_conversions,
-    clippy::default_numeric_fallback,
-    clippy::pattern_type_mismatch,
-    clippy::clone_on_ref_ptr,
-    clippy::indexing_slicing,
-    clippy::str_to_string,
-    clippy::unwrap_used,
-    clippy::unreachable,
-    clippy::implicit_return,
-    clippy::shadow_reuse,
-    clippy::shadow_same,
-    clippy::shadow_unrelated,
-    clippy::missing_docs_in_private_items,
-    clippy::else_if_without_else
+    // clippy::mod_module_files,
+    // clippy::dbg_macro,
+    // clippy::pub_use,
+    // clippy::undocumented_unsafe_blocks,
+    // clippy::separated_literal_suffix, // add in 1.58, TODO use regex match and replace to fix it?
+    // clippy::unseparated_literal_suffix,
+    // clippy::blanket_clippy_restriction_lints,
+    // clippy::integer_division,
+    // clippy::integer_arithmetic,
+    // clippy::float_arithmetic,
+    // clippy::modulo_arithmetic,
+    // clippy::cast_sign_loss,
+    // clippy::as_conversions,
+    // clippy::default_numeric_fallback,
+    // clippy::pattern_type_mismatch,
+    // clippy::clone_on_ref_ptr,
+    // clippy::indexing_slicing,
+    // clippy::str_to_string,
+    // clippy::unwrap_used,
+    // clippy::unreachable,
+    // clippy::implicit_return,
+    // clippy::shadow_reuse,
+    // clippy::shadow_same,
+    // clippy::shadow_unrelated,
+    // clippy::missing_docs_in_private_items,
+    // clippy::else_if_without_else
 )]
 #![doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/README.md"))]
 #![doc(html_playground_url = "https://play.rust-lang.org/")]
