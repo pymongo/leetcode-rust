@@ -22,8 +22,6 @@ fn count_nodes(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
 
 /// https://leetcode.com/problems/binary-tree-level-order-traversal/
 /// https://leetcode.com/problems/binary-tree-level-order-traversal-ii/
-#[allow(clippy::option_if_let_else)]
-#[allow(clippy::collapsible_match)]
 fn level_order(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<Vec<i32>> {
     if root.is_none() {
         return Vec::new();
@@ -65,6 +63,11 @@ fn largest_values(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
         .into_iter()
         .map(|arr| arr.into_iter().max().unwrap())
         .collect()
+}
+
+/// https://leetcode.com/problems/deepest-leaves-sum/
+fn deepest_leaves_sum(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
+    level_order(root).last().unwrap().iter().sum()
 }
 
 /// https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/
