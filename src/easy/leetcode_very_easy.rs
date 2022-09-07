@@ -3412,3 +3412,20 @@ fn min_subsequence(mut nums: Vec<i32>) -> Vec<i32> {
     }
     ret
 }
+
+/// https://leetcode.com/problems/rearrange-spaces-between-words/
+#[allow(clippy::naive_bytecount)]
+fn reorder_spaces(text: String) -> String {
+    let spaces = text.as_bytes().iter().filter(|&&x| x == b' ').count();
+    let words = text.split_whitespace().collect::<Vec<_>>();
+    // dbg!(&words, spaces);
+    let n_distance = words.len() - 1;
+    let distance = spaces.checked_div(n_distance).unwrap_or_default();
+    let remain = spaces - n_distance * distance;
+    // dbg!(distance, remain);
+    format!(
+        "{}{}",
+        words.join(&" ".repeat(distance)),
+        " ".repeat(remain)
+    )
+}
