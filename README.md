@@ -488,6 +488,7 @@ leetcode_solutions
 |1584|[Min Cost to Connect All Points](https://leetcode.com/problems/min-cost-to-connect-all-points/)|[Rust](src/data_structure/union_find/min_cost_to_connect_all_points.rs)|
 |1588|[Sum of All Odd Length Subarrays](https://leetcode.com/problems/sum-of-all-odd-length-subarrays/)|[Rust](src/easy/array/sum_of_all_odd_length_subarrays.rs)|
 |1592|[Rearrange Spaces Between Words](https://leetcode.com/problems/rearrange-spaces-between-words/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|1598|[Crawler Log Folder](https://leetcode.com/problems/crawler-log-folder/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1601|[Design Parking System](https://leetcode.com/problems/design-parking-system/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1614|[Maximum Nesting Depth of the Parentheses](https://leetcode.com/problems/maximum-nesting-depth-of-the-parentheses/)|[Rust](src/easy/leetcode_easy.rs)|
 |1636|[Sort Array by Increasing Frequency](https://leetcode.com/problems/sort-array-by-increasing-frequency/)|[Rust](src/easy/leetcode_very_easy.rs)|

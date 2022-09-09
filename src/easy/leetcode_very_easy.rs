@@ -3429,3 +3429,27 @@ fn reorder_spaces(text: String) -> String {
         " ".repeat(remain)
     )
 }
+
+/// https://leetcode.com/problems/crawler-log-folder/
+fn crawler_log_folder(logs: Vec<String>) -> i32 {
+    let mut stack = Vec::new();
+    for log in logs {
+        if log == "./" {
+            continue;
+        }
+        if log == "../" {
+            let _cur_dir = stack.pop();
+            continue;
+        }
+        stack.push(log);
+    }
+    stack.len() as i32
+}
+
+#[test]
+fn test_crawler_log_folder() {
+    assert_eq!(
+        crawler_log_folder(vec_string!["d1/", "d2/", "../", "d21/", "./"]),
+        2
+    );
+}
