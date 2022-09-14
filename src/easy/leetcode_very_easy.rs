@@ -3453,3 +3453,24 @@ fn test_crawler_log_folder() {
         2
     );
 }
+
+/// https://leetcode.cn/problems/mean-of-array-after-removing-some-elements/
+#[allow(clippy::cast_lossless, clippy::cast_precision_loss)]
+fn trim_mean(mut arr: Vec<i32>) -> f64 {
+    let len = arr.len();
+    let num_remove = len / 20;
+    arr.sort_unstable();
+    for _ in 0..num_remove {
+        arr.remove(0);
+    }
+    for _ in 0..num_remove {
+        arr.pop().unwrap();
+    }
+    arr.into_iter().sum::<i32>() as f64 / (len - num_remove * 2) as f64
+}
+
+#[test]
+fn test_trim_mean() {
+    let arr = vec![1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3];
+    assert!((trim_mean(arr) - 2.0_f64).abs() < f64::EPSILON);
+}

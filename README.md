@@ -491,6 +491,7 @@ leetcode_solutions
 |1598|[Crawler Log Folder](https://leetcode.com/problems/crawler-log-folder/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1601|[Design Parking System](https://leetcode.com/problems/design-parking-system/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1614|[Maximum Nesting Depth of the Parentheses](https://leetcode.com/problems/maximum-nesting-depth-of-the-parentheses/)|[Rust](src/easy/leetcode_easy.rs)|
+|1619|[Mean Of Array...](https://leetcode.com/problems/mean-of-array-after-removing-some-elements/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1636|[Sort Array by Increasing Frequency](https://leetcode.com/problems/sort-array-by-increasing-frequency/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1637|[Widest Vertical Area Between Two Points ...](https://leetcode.com/problems/widest-vertical-area-between-two-points-containing-no-points/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1640|[Check Array Formation Through Concatenation](https://leetcode.com/problems/check-array-formation-through-concatenation/)|[Rust](src/easy/leetcode_easy.rs)|
