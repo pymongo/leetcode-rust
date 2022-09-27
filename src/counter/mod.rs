@@ -274,3 +274,15 @@ fn group_the_people(group_sizes: Vec<i32>) -> Vec<Vec<i32>> {
     }
     ret
 }
+
+/// https://leetcode.cn/problems/check-permutation-lcci/
+fn check_permutation(s1: String, s2: String) -> bool {
+    fn counter(s: String) -> [u8; 26] {
+        let mut count = [0; 26];
+        for byte in s.into_bytes() {
+            count[(byte - b'a') as usize] += 1;
+        }
+        count
+    }
+    counter(s1) == counter(s2)
+}
