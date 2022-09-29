@@ -28,8 +28,7 @@ fn group_anagrams(strs: Vec<String>) -> Vec<Vec<String>> {
         }
         group.entry(counter).or_insert_with(Vec::new).push(s);
     }
-    // same as nightly `into_values` API: consume HashMap and get a vec of values
-    group.into_iter().map(|(_k, v)| v).collect()
+    group.into_values().collect()
 }
 
 /// https://leetcode.com/problems/find-anagram-mappings/

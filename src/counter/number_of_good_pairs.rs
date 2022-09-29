@@ -31,7 +31,7 @@ fn number_of_good_pairs_v2(nums: Vec<i32>) -> i32 {
     for num in nums {
         *counter.entry(num).or_default() += 1;
     }
-    counter.into_iter().map(|(_k, v)| (v - 1) * v / 2).sum()
+    counter.into_values().map(|v| (v - 1) * v / 2).sum()
 }
 
 /**
@@ -47,7 +47,7 @@ fn number_of_good_pairs_v3(nums: Vec<i32>) -> i32 {
         *counter.entry(num).or_default() += 1;
     }
     counter
-        .into_iter()
-        .map(|(_k, v)| (i32::from(v) - 1) * i32::from(v) / 2)
+        .into_values()
+        .map(|v| (i32::from(v) - 1) * i32::from(v) / 2)
         .sum::<i32>()
 }

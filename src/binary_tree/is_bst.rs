@@ -2,6 +2,7 @@
 
 use super::prelude::*;
 
+#[allow(clippy::option_if_let_else)]
 fn is_bst(node: Option<Rc<RefCell<TreeNode>>>, lower: Option<i32>, upper: Option<i32>) -> bool {
     match node {
         Some(node) => {

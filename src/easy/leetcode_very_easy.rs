@@ -1382,7 +1382,7 @@ impl Twitter {
         self.tweets.push(Tweet { tweet_id, user_id });
         self.user_following
             .entry(user_id)
-            .or_insert_with(|| [user_id].iter().copied().collect());
+            .or_insert_with(|| std::iter::once(&user_id).copied().collect());
     }
 
     /** Retrieve the 10 most recent tweet ids in the user's news feed.

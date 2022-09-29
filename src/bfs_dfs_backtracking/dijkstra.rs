@@ -38,11 +38,7 @@ fn network_delay_time(times: Vec<Vec<i32>>, n: i32, k: i32) -> i32 {
 
     if node_distance_to_k.len() == n as usize {
         // 从节点 k 出发能传播到所有的节点
-        node_distance_to_k
-            .into_iter()
-            .map(|(_, v)| v)
-            .max()
-            .unwrap() as i32
+        node_distance_to_k.into_values().max().unwrap() as i32
     } else {
         -1
     }

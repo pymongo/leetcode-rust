@@ -40,7 +40,7 @@ let mut fast = head.as_ref()?.next.as_ref();
 ```
 */
 fn sort_linked_list_top_down_recursive(mut head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
-    if head.as_ref()?.next == None {
+    if head.as_ref()?.next.is_none() {
         return head;
     }
     let mut slow = &mut head as *mut Option<Box<ListNode>>;

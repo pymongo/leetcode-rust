@@ -181,8 +181,8 @@ mod bench_hashmap_counter_vs_fixed_len_array_counter {
                 *counter.entry(num).or_insert(0_u8) += 1;
             }
             counter
-                .into_iter()
-                .map(|(_k, v)| (i32::from(v) - 1) * i32::from(v) / 2)
+                .into_values()
+                .map(|v| (i32::from(v) - 1) * i32::from(v) / 2)
                 .sum::<i32>();
         });
     }
