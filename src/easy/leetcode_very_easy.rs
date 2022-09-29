@@ -3474,3 +3474,11 @@ fn test_trim_mean() {
     let arr = vec![1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3];
     assert!((trim_mean(arr) - 2.0_f64).abs() < f64::EPSILON);
 }
+
+/// https://leetcode.cn/problems/string-rotation-lcci/
+fn is_fliped_string(s1: String, s2: String) -> bool {
+    if s2.is_empty() {
+        return s1 == s2;
+    }
+    format!("{s1}{s1}").contains(&s2)
+}
