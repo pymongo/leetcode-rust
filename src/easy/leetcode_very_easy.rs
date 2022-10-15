@@ -3482,3 +3482,35 @@ fn is_fliped_string(s1: String, s2: String) -> bool {
     }
     format!("{s1}{s1}").contains(&s2)
 }
+
+/// https://leetcode.cn/problems/build-an-array-with-stack-operations/submissions/
+fn build_an_array_with_stack_op(target: Vec<i32>, _n: i32) -> Vec<String> {
+    let mut ops = Vec::new();
+
+    let mut last = 0;
+    for (_i, num) in target.into_iter().enumerate() {
+        let diff = num - last;
+        // dbg!(num, diff, last);
+        if diff > 1 {
+            // let mut n_push_pop = diff;
+            for _ in 0..diff-1 {
+                ops.push("Push".to_string());
+                ops.push("Pop".to_string());
+            }
+        }
+        ops.push("Push".to_string());
+        last = num;
+    }
+
+    ops
+}
+
+#[test]
+fn test_build_an_array_with_stack_op() {
+    for (target, n, ops) in [
+        (vec![1,3], 3, vec_string!["Push","Push","Pop","Push"]),
+        (vec![1,2], 4, vec_string!["Push","Push"]),
+    ] {
+        assert_eq!(build_an_array_with_stack_op(target, n), ops);
+    }
+}
