@@ -1,6 +1,8 @@
 //! leetcode较简单题，可能需要点脑筋急转弯(贪心)或我偷看答案才写出了
 //! 或者是我没怎么看懂题目偷看答案后发现此题很无聊
 
+use std::vec;
+
 /** https://leetcode.com/problems/check-array-formation-through-concatenation/
 ```compile_failed
 fn can_form_array(arr: Vec<i32>, pieces: Vec<Vec<i32>>) -> bool {
@@ -576,4 +578,45 @@ fn valid_square(p1: Vec<i32>, p2: Vec<i32>, p3: Vec<i32>, p4: Vec<i32>) -> bool 
         && lengths[2] == lengths[3]
         // 如果菱形的对角线等长就是正方形
         && lengths[4] == lengths[5]
+}
+
+/// https://leetcode.com/problems/partition-array-into-disjoint-intervals/
+fn partition_disjoint(nums: Vec<i32>) -> i32 {
+    let n = nums.len();
+
+    let mut min_right = vec![i32::MAX; n];
+    min_right[n - 1] = nums[n - 1];
+    for i in (0..n - 1).rev() {
+        min_right[i] = min_right[i + 1].min(nums[i]);
+    }
+
+    let mut max_left = nums[0];
+    for i in 1..n - 1 {
+        // make sure max_left pointer to i-1
+        if max_left <= min_right[i] {
+            return i as i32;
+        }
+
+        max_left = max_left.max(nums[i]);
+    }
+
+    (n - 1) as i32
+}
+
+#[test]
+fn test_partition_disjoint() {
+    /*
+    nums     : 1 1 1 0 6 12
+    min_right: 0 0 0 0 6 12
+    max_left : 1 1 1 1 6 12
+    traverse from left to right, find first max_left[i] <= min_right[i] is the divider
+    */
+    assert_eq!(partition_disjoint(vec![1, 1, 1, 0, 6, 12]), 4);
+    /*
+    nums     : 5 0 3 8 6
+    min_right: 0 0 3 6 6
+    max_left : 5 5 5 8 8
+    traverse from left to right, find first max_left[i] <= min_right[i] is the divider
+    */
+    assert_eq!(partition_disjoint(vec![5, 0, 3, 8, 6]), 3);
 }

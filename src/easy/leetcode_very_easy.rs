@@ -3493,7 +3493,7 @@ fn build_an_array_with_stack_op(target: Vec<i32>, _n: i32) -> Vec<String> {
         // dbg!(num, diff, last);
         if diff > 1 {
             // let mut n_push_pop = diff;
-            for _ in 0..diff-1 {
+            for _ in 0..diff - 1 {
                 ops.push("Push".to_string());
                 ops.push("Pop".to_string());
             }
@@ -3508,8 +3508,8 @@ fn build_an_array_with_stack_op(target: Vec<i32>, _n: i32) -> Vec<String> {
 #[test]
 fn test_build_an_array_with_stack_op() {
     for (target, n, ops) in [
-        (vec![1,3], 3, vec_string!["Push","Push","Pop","Push"]),
-        (vec![1,2], 4, vec_string!["Push","Push"]),
+        (vec![1, 3], 3, vec_string!["Push", "Push", "Pop", "Push"]),
+        (vec![1, 2], 4, vec_string!["Push", "Push"]),
     ] {
         assert_eq!(build_an_array_with_stack_op(target, n), ops);
     }
