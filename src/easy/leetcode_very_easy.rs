@@ -3514,3 +3514,20 @@ fn test_build_an_array_with_stack_op() {
         assert_eq!(build_an_array_with_stack_op(target, n), ops);
     }
 }
+
+/// https://leetcode.com/problems/sign-of-the-product-of-an-array/
+#[allow(clippy::comparison_chain)]
+fn array_sign(nums: Vec<i32>) -> i32 {
+    let mut ret = 1;
+    for num in nums {
+        let converted = if num == 0 {
+            0
+        } else if num > 0 {
+            1
+        } else {
+            -1
+        };
+        ret *= converted;
+    }
+    ret
+}
