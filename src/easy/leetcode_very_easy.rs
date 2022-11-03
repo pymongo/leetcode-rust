@@ -3531,3 +3531,39 @@ fn array_sign(nums: Vec<i32>) -> i32 {
     }
     ret
 }
+
+/// https://leetcode.com/problems/maximum-repeating-substring/
+fn max_repeating(sequence: String, word: String) -> i32 {
+    // KMP
+    let pattern_len = word.len();
+    let pattern = word.into_bytes();
+    let text = sequence.into_bytes();
+    let text_len = text.len();
+    if text_len < pattern_len {
+        return 0;
+    }
+
+    let mut max_repeat = 0;
+    for i in 0..=text_len - pattern_len {
+        let mut repeat = 0;
+        loop {
+            // dbg!(i + pattern_len * repeat, i + pattern_len * (repeat+1));
+            if i + pattern_len * (repeat + 1) <= text_len
+                && text[i + pattern_len * repeat..i + pattern_len * (repeat + 1)] == pattern
+            {
+                repeat += 1;
+                continue;
+            }
+            break;
+        }
+        max_repeat = max_repeat.max(repeat);
+    }
+    max_repeat as i32
+}
+
+#[test]
+fn test_max_repeating() {
+    for (seq, word, max_repeat) in [("ababc", "ab", 2), ("ababc", "ba", 1), ("a", "a", 1)] {
+        assert_eq!(max_repeating(seq.to_string(), word.to_string()), max_repeat);
+    }
+}
