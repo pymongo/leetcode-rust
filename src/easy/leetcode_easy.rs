@@ -137,7 +137,7 @@ fn corp_flight_bookings(records: Vec<Vec<i32>>, n: i32) -> Vec<i32> {
     }
     let mut curr = 0;
     // 根据差分数组还原原数组
-    for i in 0..=n as usize {
+    for i in 0..=n {
         curr += stations[i];
         stations[i] = curr;
     }
@@ -485,8 +485,8 @@ fn can_eat_favorite_candy(candies_count: Vec<i32>, queries: Vec<Vec<i32>>) -> Ve
         let after_favorite_day_min_eat = favorite_day as u64 + 1;
         let after_favorite_day_max_eat = (favorite_day + 1) as u64 * daily_cap;
 
-        let at_least_eat = prefix_sum[favorite_type] as u64 + 1;
-        let at_most_eat = prefix_sum[favorite_type + 1] as u64;
+        let at_least_eat = prefix_sum[favorite_type] + 1;
+        let at_most_eat = prefix_sum[favorite_type + 1];
         // 两个区间如果有交集，说明我们可以吃到
         ret.push(
             !(after_favorite_day_max_eat < at_least_eat

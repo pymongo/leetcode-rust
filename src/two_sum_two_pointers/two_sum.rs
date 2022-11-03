@@ -42,7 +42,7 @@ fn two_sum_bitwise(nums: Vec<i32>, target: i32) -> Vec<i32> {
         // 例如：-4 & 2047 = 4
         c = ((target - nums[i]) & BIT_MODE) as usize;
         debug_assert!(c.ge(&0));
-        if sum_tracker[c as usize] != 0 {
+        if sum_tracker[c] != 0 {
             return vec![(sum_tracker[c] - 1) as i32, i as i32];
         }
         // 加1防止index=0时保存的记录被`result[c] != 0`拦截

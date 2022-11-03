@@ -102,7 +102,7 @@ fn max_len_sub_array_same_0_1_greedy(nums: Vec<i32>) -> i32 {
             map.insert(sum, i as i32);
         }
     }
-    max_len as i32
+    max_len
 }
 
 #[test]

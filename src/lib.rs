@@ -7,6 +7,7 @@
     // vec_vec: use of irregular braces for `vec!` macro
     clippy::nonstandard_macro_braces,
     clippy::ptr_arg,
+    clippy::uninlined_format_args,
     /* clippy::pedantic */
     clippy::borrow_as_ptr,
     clippy::cast_sign_loss,

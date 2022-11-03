@@ -11,7 +11,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: typo
-        uses: crate-ci/typos@v1.4.0
+        uses: crate-ci/typos@v1.12.12
 
       - name: install nightly toolchain
         uses: actions-rs/toolchain@v1
