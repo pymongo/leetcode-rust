@@ -3567,3 +3567,19 @@ fn test_max_repeating() {
         assert_eq!(max_repeating(seq.to_string(), word.to_string()), max_repeat);
     }
 }
+
+/// https://leetcode.com/problems/determine-if-string-halves-are-alike/
+fn halves_are_alike(s: String) -> bool {
+    fn count(bytes: &[u8]) -> u32 {
+        let mut ret = 0;
+        for byte in bytes {
+            if ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'].contains(&(*byte as char)) {
+                ret += 1;
+            }
+        }
+        ret
+    }
+    let s = s.into_bytes();
+    let (a, b) = s.split_at(s.len() / 2);
+    count(a) == count(b)
+}

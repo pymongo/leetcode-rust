@@ -509,6 +509,7 @@ leetcode_solutions
 |1688|[Count of Matches in Tournament](https://leetcode.com/problems/count-of-matches-in-tournament/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1694|[Reformat Phone Number](https://leetcode.com/problems/reformat-phone-number/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1700|[Number of Students Unable to Eat Lunch](https://leetcode.com/problems/number-of-students-unable-to-eat-lunch/)|[Rust](src/easy/leetcode_easy.rs)|
+|1704|[Determine If String...](https://leetcode.com/problems/determine-if-string-halves-are-alike/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1710|[Maximum Units on a Truck](https://leetcode.com/problems/maximum-units-on-a-truck/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1711|[Count Good Meals](https://leetcode.com/problems/count-good-meals/)|[Rust](src/counter/count_good_meals.rs)|
 |1716|[Calculate Money in Leetcode Bank](https://leetcode.com/problems/calculate-money-in-leetcode-bank/)|[Rust](src/easy/leetcode_very_easy.rs)|
@@ -569,9 +570,6 @@ leetcode_solutions
 
 ---
 
-lintcode_problems
-===
-
 | # | Title | Solutions | Category |
 |---| ----- | --------- | -------- |
 |1|[A + B Problem](https://lintcode.com/problem/1)|leetcode_372|
@@ -595,7 +593,6 @@ lintcode_problems
 |106|[Convert Sorted List to Binary Search Tree](https://lintcode.com/problem/convert-sorted-list-to-binary-search-tree/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/divide_conquer/sorted_list_or_array_to_bst.py)|divide_and_conquer|
 |107|[Word Break](https://lintcode.com/problem/word-break/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/backpack_4_word_break_coin_change.py)|完全背包问题|
 |110|[Minimum Path Sum](https://lintcode.com/problem/minimum-path-sum/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/easy/grid_min_path_sum.py)||
-|123|[Word Search](https://lintcode.com/problem/word-search/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dfs_perm_comb/word_search.py)||
 |124|[Longest Consecutive Sequence](https://lintcode.com/problem/longest-consecutive-sequence/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/collections/longest_consecutive_sequence.py)|并查集|
 |125|[Backpack II](https://lintcode.com/problem/backpack-ii/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/dp/backpack_1_2.py)||
 |127|[Topological Sorting](https://lintcode.com/problem/topological-sorting/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/graph/topological_sorting.py)|BFS, topological_sorting|
