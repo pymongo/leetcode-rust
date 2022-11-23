@@ -3583,3 +3583,24 @@ fn halves_are_alike(s: String) -> bool {
     let (a, b) = s.split_at(s.len() / 2);
     count(a) == count(b)
 }
+
+/// https://leetcode.cn/problems/maximum-number-of-balls-in-a-box/
+fn count_balls(low_limit: i32, high_limit: i32) -> i32 {
+    let mut counter = std::collections::HashMap::new();
+    for mut i in low_limit..=high_limit {
+        let mut digit_sum = 0;
+        while i != 0 {
+            digit_sum += i % 10;
+            i /= 10;
+        }
+        *counter.entry(digit_sum).or_insert(0) += 1;
+    }
+    counter.into_values().max().unwrap()
+}
+
+#[test]
+fn test_count_balls() {
+    for (low, high, max) in [(1, 10, 2), (5, 15, 2)] {
+        assert_eq!(count_balls(low, high), max);
+    }
+}
