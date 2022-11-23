@@ -16,7 +16,7 @@ TODO 为什么 openssl库 既有libcrypto.so也有libssl.so
 pub fn random_i32() -> i32 {
     #[allow(non_camel_case_types)]
     type time_t = i64; // 根据libc源码中time_t的类型定义
-    #[link(name = "c", kind = "dylib")]
+    // `#[link(name = "c", kind = "dylib")]` is unnecessary, windows would compile error
     extern "C" {
         /// https://en.cppreference.com/w/cpp/chrono/c/time
         fn time(output: *mut time_t) -> time_t;
