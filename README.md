@@ -525,6 +525,7 @@ leetcode_solutions
 |1753|[Maximum Score From Removing Stones](https://leetcode.com/problems/maximum-score-from-removing-stones/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1754|[Largest Merge Of Two Strings](https://leetcode.com/problems/largest-merge-of-two-strings/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1773|[Count Items Matching a Rule](https://leetcode.com/problems/count-items-matching-a-rule/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|1779|[Find Nearest...](https://leetcode.cn/problems/find-nearest-point-that-has-the-same-x-or-y-coordinate/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1790|[Check if One String Swap Can Make String...](https://leetcode.com/problems/check-if-one-string-swap-can-make-strings-equal/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1791|[Find Center of Star Graph](https://leetcode.com/problems/find-center-of-star-graph/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1816|[Truncate Sentence](https://leetcode.com/problems/truncate-sentence/)|[Rust](src/easy/leetcode_very_easy.rs)|

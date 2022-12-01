@@ -3604,3 +3604,23 @@ fn test_count_balls() {
         assert_eq!(count_balls(low, high), max);
     }
 }
+
+/// https://leetcode.cn/problems/find-nearest-point-that-has-the-same-x-or-y-coordinate/
+fn nearest_valid_point(x: i32, y: i32, points: Vec<Vec<i32>>) -> i32 {
+    let mut ret = -1;
+    let mut min_distance = i32::MAX;
+
+    for (i, point) in points.into_iter().enumerate() {
+        let (x_, y_) = (point[0], point[1]);
+        if x_ != x && y_ != y {
+            continue;
+        }
+        let distance = (x_ - x).abs() + (y_ - y).abs();
+        if distance < min_distance {
+            min_distance = distance;
+            ret = i as i32;
+        }
+    }
+
+    ret
+}
