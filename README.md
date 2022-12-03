@@ -528,6 +528,7 @@ leetcode_solutions
 |1779|[Find Nearest...](https://leetcode.cn/problems/find-nearest-point-that-has-the-same-x-or-y-coordinate/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1790|[Check if One String Swap Can Make String...](https://leetcode.com/problems/check-if-one-string-swap-can-make-strings-equal/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1791|[Find Center of Star Graph](https://leetcode.com/problems/find-center-of-star-graph/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|1796|[Second Largest](https://leetcode.cn/problems/second-largest-digit-in-a-string)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1816|[Truncate Sentence](https://leetcode.com/problems/truncate-sentence/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1822|[Sign Of The Product...](https://leetcode.com/problems/sign-of-the-product-of-an-array/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1828|[Queries on Number of Points Inside a Circle](https://leetcode.com/problems/queries-on-number-of-points-inside-a-circle/)|[Rust](src/easy/leetcode_very_easy.rs)|

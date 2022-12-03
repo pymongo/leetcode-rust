@@ -3624,3 +3624,18 @@ fn nearest_valid_point(x: i32, y: i32, points: Vec<Vec<i32>>) -> i32 {
 
     ret
 }
+
+/// https://leetcode.cn/problems/second-largest-digit-in-a-string
+fn second_highest(s: String) -> i32 {
+    let mut nums = std::collections::HashSet::new();
+    for each in s.into_bytes() {
+        if !matches!(each, b'0'..=b'9') {
+            continue;
+        }
+        nums.insert(each - b'0');
+    }
+    let mut nums = nums.into_iter().collect::<Vec<_>>();
+    nums.sort_unstable();
+    nums.reverse();
+    nums.get(1).map_or(-1, |x| i32::from(*x))
+}
