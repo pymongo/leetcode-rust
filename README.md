@@ -518,7 +518,7 @@ leetcode_solutions
 |1732|[Find the Highest Altitude](https://leetcode.com/problems/find-the-highest-altitude/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1736|[Latest Time by Replacing ...](https://leetcode.com/problems/latest-time-by-replacing-hidden-digits/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1741🔒|[Find Total Time Spent by Each Employee](https://leetcode.com/problems/find-total-time-spent-by-each-employee/)|[SQL](sql_problems/very_easy.sql)|
-|1742|[Maximun Number of Ball...](https://leetcode.cn/problems/maximum-number-of-balls-in-a-box/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|1742|[Maximum Number of Ball...](https://leetcode.cn/problems/maximum-number-of-balls-in-a-box/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1744|[Can You Eat Your Favorite Candy...](https://leetcode.com/problems/can-you-eat-your-favorite-candy-on-your-favorite-day/)|[Rust](src/easy/leetcode_easy.rs)|
 |1748|[Sum of Unique Elements](https://leetcode.com/problems/sum-of-unique-elements/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1752|[Check if Array Is Sorted and Rotated](https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/)|[Rust](src/easy/leetcode_very_easy.rs)|
