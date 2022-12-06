@@ -3639,3 +3639,41 @@ fn second_highest(s: String) -> i32 {
     nums.reverse();
     nums.get(1).map_or(-1, |x| i32::from(*x))
 }
+
+/// https://leetcode.cn/problems/number-of-different-integers-in-a-string
+fn num_different_integers(word: String) -> i32 {
+    let mut last_byte_is_number = false;
+    let mut num = 0;
+    let mut nums = std::collections::HashSet::new();
+
+    for byte in word.into_bytes() {
+        if matches!(byte, b'0'..=b'9') {
+            last_byte_is_number = true;
+            num = (num * 10 + u64::from(byte - b'0')) % u64::from(u32::MAX);
+        } else {
+            if last_byte_is_number {
+                nums.insert(num);
+            }
+            last_byte_is_number = false;
+            num = 0;
+        }
+    }
+
+    if last_byte_is_number {
+        nums.insert(num);
+    }
+
+    nums.len() as i32
+}
+
+#[test]
+fn test_num_different_integers() {
+    for (word, diff_count) in [
+        ("a123bc34d8ef34", 3),
+        ("a1b01c001", 1),
+        ("leet1234code234", 2),
+        ("035985750011523523129774573439111590559325a1554234973", 2),
+    ] {
+        assert_eq!(num_different_integers(word.to_string()), diff_count);
+    }
+}
