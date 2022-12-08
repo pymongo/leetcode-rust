@@ -3677,3 +3677,15 @@ fn test_num_different_integers() {
         assert_eq!(num_different_integers(word.to_string()), diff_count);
     }
 }
+
+/// https://leetcode.cn/problems/determine-color-of-a-chessboard-square/
+fn square_is_white(coordinates: String) -> bool {
+    let mut chars = coordinates.chars();
+    let col = chars.next().unwrap();
+    let row = chars.next().unwrap() as u8 - b'0';
+    if row % 2 == 0 {
+        ['a', 'c', 'e', 'g'].contains(&col)
+    } else {
+        !['a', 'c', 'e', 'g'].contains(&col)
+    }
+}

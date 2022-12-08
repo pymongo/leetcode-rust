@@ -530,6 +530,7 @@ leetcode_solutions
 |1791|[Find Center of Star Graph](https://leetcode.com/problems/find-center-of-star-graph/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1796|[Second Largest...](https://leetcode.cn/problems/second-largest-digit-in-a-string)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1805|[Number Of Diff...](https://leetcode.cn/problems/number-of-different-integers-in-a-string/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|1812|[Determine Color...](https://leetcode.cn/problems/determine-color-of-a-chessboard-square/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1816|[Truncate Sentence](https://leetcode.com/problems/truncate-sentence/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1822|[Sign Of The Product...](https://leetcode.com/problems/sign-of-the-product-of-an-array/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1828|[Queries on Number of Points Inside a Circle](https://leetcode.com/problems/queries-on-number-of-points-inside-a-circle/)|[Rust](src/easy/leetcode_very_easy.rs)|
