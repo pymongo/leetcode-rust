@@ -3689,3 +3689,17 @@ fn square_is_white(coordinates: String) -> bool {
         !['a', 'c', 'e', 'g'].contains(&col)
     }
 }
+
+/// https://leetcode.cn/problems/final-value-of-variable-after-performing-operations/
+fn final_value_after_operations(operations: Vec<String>) -> i32 {
+    let mut ret = 0;
+    for op in operations {
+        let op = op.into_bytes();
+        if op == b"--X" || op == b"X--" {
+            ret -= 1;
+        } else {
+            ret += 1;
+        }
+    }
+    ret
+}
