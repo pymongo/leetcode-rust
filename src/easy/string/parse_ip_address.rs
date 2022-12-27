@@ -28,7 +28,7 @@ fn valid_ipv4_address(bytes: &[u8]) -> Result<String, IpAddrParseError> {
     fn checked_restore_u8(chunk: &[u8]) -> Option<u8> {
         let mut val = 0_u8;
         for &byte in chunk.iter() {
-            if !matches!(byte, b'0'..=b'9') {
+            if !byte.is_ascii_digit() {
                 return None;
             }
             val = val.checked_mul(10)?.checked_add(byte - b'0')?;

@@ -3629,7 +3629,7 @@ fn nearest_valid_point(x: i32, y: i32, points: Vec<Vec<i32>>) -> i32 {
 fn second_highest(s: String) -> i32 {
     let mut nums = std::collections::HashSet::new();
     for each in s.into_bytes() {
-        if !matches!(each, b'0'..=b'9') {
+        if !each.is_ascii_digit() {
             continue;
         }
         nums.insert(each - b'0');
@@ -3647,7 +3647,7 @@ fn num_different_integers(word: String) -> i32 {
     let mut nums = std::collections::HashSet::new();
 
     for byte in word.into_bytes() {
-        if matches!(byte, b'0'..=b'9') {
+        if byte.is_ascii_digit() {
             last_byte_is_number = true;
             num = (num * 10 + u64::from(byte - b'0')) % u64::from(u32::MAX);
         } else {
@@ -3702,4 +3702,42 @@ fn final_value_after_operations(operations: Vec<String>) -> i32 {
         }
     }
     ret
+}
+
+/// https://leetcode.cn/problems/minimum-moves-to-convert-string/
+fn minimum_moves(s: String) -> i32 {
+    let mut num_op = 0;
+    let mut num_x = 0;
+    let mut num_scan = 0;
+    for c in s.into_bytes() {
+        // skip all O, e.g. "OXOX"
+        if c == b'O' && num_scan == 0 && num_x == 0 {
+            continue;
+        }
+
+        num_scan += 1;
+
+        if c == b'X' {
+            num_x += 1;
+        }
+        if num_x > 0 && num_scan == 3 {
+            num_op += 1;
+            num_x = 0;
+            num_scan = 0;
+        }
+        if num_x == 0 && num_scan == 3 {
+            num_scan = 0;
+        }
+    }
+    if num_x > 0 {
+        num_op += 1;
+    }
+    num_op
+}
+
+#[test]
+fn test_minimum_moves() {
+    for (s, moves) in [("XXX", 1), ("XXOX", 2), ("OXOX", 1)] {
+        assert_eq!(minimum_moves(s.to_string()), moves);
+    }
 }

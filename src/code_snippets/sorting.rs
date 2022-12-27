@@ -158,7 +158,6 @@ mod benches {
         use crate::data_structure::heap::my_max_heap::MyMaxHeap;
         bencher.iter(|| {
             let nums = random_numbers_test_case();
-            #[allow(clippy::let_underscore_drop)]
             let _ = nums.into_iter().collect::<MyMaxHeap<_>>().into_sorted_vec();
         });
     }
