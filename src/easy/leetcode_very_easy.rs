@@ -3741,3 +3741,29 @@ fn test_minimum_moves() {
         assert_eq!(minimum_moves(s.to_string()), moves);
     }
 }
+
+/// https://leetcode.cn/problems/two-out-of-three/
+fn two_out_of_three(nums1: Vec<i32>, nums2: Vec<i32>, nums3: Vec<i32>) -> Vec<i32> {
+    use std::collections::HashSet;
+    let mut ret = HashSet::new();
+    let nums1 = nums1.into_iter().collect::<HashSet<_>>();
+    let nums2 = nums2.into_iter().collect::<HashSet<_>>();
+    let nums3 = nums3.into_iter().collect::<HashSet<_>>();
+    for num in nums1
+        .union(&nums2)
+        .copied()
+        .collect::<HashSet<_>>()
+        .union(&nums3)
+    {
+        let mut count = 0;
+        for nums in [&nums1, &nums2, &nums3] {
+            if nums.contains(num) {
+                count += 1;
+            }
+        }
+        if count >= 2 {
+            ret.insert(*num);
+        }
+    }
+    ret.into_iter().collect()
+}

@@ -558,6 +558,7 @@ leetcode_solutions
 |2000|[Count Special Quadruplets](https://leetcode.com/problems/reverse-prefix-of-word/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |2011|[Find Value Of...](https://leetcode.cn/problems/final-value-of-variable-after-performing-operations/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |2027|[Minimum moves...](https://leetcode.cn/problems/minimum-moves-to-convert-string/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|2032|[Two Out Of Three](https://leetcode.cn/problems/two-out-of-three/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |2057|[Smallest Index With Equal Value](https://leetcode.com/problems/smallest-index-with-equal-value/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |2114|[Maximum Number of...](https://leetcode.com/problems/maximum-number-of-words-found-in-sentences/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |2169|[Count Operations to Obtain Zero](https://leetcode.com/problems/count-operations-to-obtain-zero)|[Rust](src/easy/leetcode_very_easy.rs)|
