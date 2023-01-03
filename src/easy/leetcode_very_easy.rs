@@ -3767,3 +3767,30 @@ fn two_out_of_three(nums1: Vec<i32>, nums2: Vec<i32>, nums3: Vec<i32>) -> Vec<i3
     }
     ret.into_iter().collect()
 }
+
+/// https://leetcode.cn/problems/check-if-numbers-are-ascending-in-a-sentence/
+fn are_numbers_ascending(s: String) -> bool {
+    let mut last_num = -1;
+    let mut cur_num = 0;
+    for c in s.into_bytes() {
+        if c.is_ascii_digit() {
+            let digit = i32::from(c - b'0');
+            cur_num = cur_num * 10 + digit;
+        } else if cur_num > 0 {
+            if cur_num <= last_num {
+                return false;
+            }
+            last_num = cur_num;
+            cur_num = 0;
+        }
+    }
+    if cur_num > 0 && cur_num <= last_num {
+        return false;
+    }
+    true
+}
+
+#[test]
+fn test_are_numbers_ascending() {
+    assert!(!are_numbers_ascending("hello world 5 x 5".to_string()));
+}
