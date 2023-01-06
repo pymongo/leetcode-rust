@@ -3794,3 +3794,19 @@ fn are_numbers_ascending(s: String) -> bool {
 fn test_are_numbers_ascending() {
     assert!(!are_numbers_ascending("hello world 5 x 5".to_string()));
 }
+
+/// https://leetcode.cn/problems/count-integers-with-even-digit-sum/
+fn count_even(num: i32) -> i32 {
+    let mut ret = 0;
+    for mut i in 2..=num {
+        let mut n = 0;
+        while i != 0 {
+            n += i % 10;
+            i /= 10;
+        }
+        if n % 2 == 0 {
+            ret += 1;
+        }
+    }
+    ret
+}
