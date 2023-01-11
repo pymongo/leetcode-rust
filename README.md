@@ -564,6 +564,7 @@ leetcode_solutions
 |2114|[Maximum Number of...](https://leetcode.com/problems/maximum-number-of-words-found-in-sentences/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |2169|[Count Operations to Obtain Zero](https://leetcode.com/problems/count-operations-to-obtain-zero)|[Rust](src/easy/leetcode_very_easy.rs)|
 |2180|[Count Integer...](https://leetcode.cn/problems/count-integers-with-even-digit-sum/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|2283|[Check If Number...](https://leetcode.cn/problems/check-if-number-has-equal-digit-count-and-digit-value/)|[Rust](src/easy/leetcode_very_easy.rs)|
 
 ---
 

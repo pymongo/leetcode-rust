@@ -3810,3 +3810,21 @@ fn count_even(num: i32) -> i32 {
     }
     ret
 }
+
+/// https://leetcode.cn/problems/check-if-number-has-equal-digit-count-and-digit-value/
+fn digit_count(num: String) -> bool {
+    let mut digits = Vec::new();
+    let mut counter = std::collections::HashMap::new();
+    for digit in num.into_bytes() {
+        let digit = digit - b'0';
+        digits.push(digit);
+        *counter.entry(digit).or_insert(0_u8) += 1;
+    }
+    for (index, digit) in digits.into_iter().enumerate() {
+        let index = index as u8;
+        if counter.get(&index).copied().unwrap_or_default() != digit {
+            return false;
+        }
+    }
+    true
+}
