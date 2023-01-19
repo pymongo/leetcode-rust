@@ -3828,3 +3828,34 @@ fn digit_count(num: String) -> bool {
     }
     true
 }
+
+/// https://leetcode.cn/problems/strong-password-checker-ii/
+fn strong_password_checker_ii(password: String) -> bool {
+    if password.len() < 8 {
+        return false;
+    }
+    let mut last_byte = b' ';
+    let mut contains_lower = false;
+    let mut contains_upper = false;
+    let mut contains_digit = false;
+    let mut contains_special = false;
+    for byte in password.into_bytes() {
+        if byte == last_byte {
+            return false;
+        }
+        if byte.is_ascii_lowercase() {
+            contains_lower = true;
+        }
+        if byte.is_ascii_uppercase() {
+            contains_upper = true;
+        }
+        if byte.is_ascii_digit() {
+            contains_digit = true;
+        }
+        if b"!@#$%^&*()-+".contains(&byte) {
+            contains_special = true;
+        }
+        last_byte = byte;
+    }
+    contains_lower && contains_upper && contains_digit && contains_special
+}
