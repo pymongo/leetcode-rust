@@ -3859,3 +3859,35 @@ fn strong_password_checker_ii(password: String) -> bool {
     }
     contains_lower && contains_upper && contains_digit && contains_special
 }
+
+/// https://leetcode.cn/problems/check-if-matrix-is-x-matrix/
+#[allow(clippy::needless_range_loop, clippy::collapsible_else_if)]
+fn check_x_matrix(grid: Vec<Vec<i32>>) -> bool {
+    let m = grid.len();
+    for i in 0..m {
+        for j in 0..m {
+            if i == j || i + j == m - 1 {
+                if grid[i][j] == 0 {
+                    dbg!(i, j, grid[i][j]);
+                    return false;
+                }
+            } else {
+                if grid[i][j] != 0 {
+                    dbg!(i, j, grid[i][j]);
+                    return false;
+                }
+            }
+        }
+    }
+    true
+}
+
+#[test]
+fn test_check_x_matrix() {
+    assert!(check_x_matrix(vec_vec![
+        [2, 0, 0, 1],
+        [0, 3, 1, 0],
+        [0, 5, 2, 0],
+        [4, 0, 0, 2]
+    ]));
+}
