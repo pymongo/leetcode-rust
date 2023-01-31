@@ -2485,7 +2485,7 @@ fn brick_wall(wall: Vec<Vec<i32>>) -> i32 {
     if cfg!(debug_assertions) {
         dbg!(&map);
     }
-    *map.values().into_iter().min().unwrap_or(&height)
+    map.into_values().min().unwrap_or(height)
 }
 
 #[test]
@@ -3194,7 +3194,6 @@ fn most_words_found(sentences: Vec<String>) -> i32 {
     sentences
         .into_iter()
         .map(|sentence| sentence.split_whitespace().count() as i32)
-        .into_iter()
         .max()
         .unwrap()
 }

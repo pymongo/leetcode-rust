@@ -78,10 +78,7 @@ impl<T: Ord> MyMaxHeap<T> {
 
     #[must_use]
     pub fn into_sorted_vec(mut self) -> Vec<T> {
-        let mut ret = (0..self.0.len())
-            .into_iter()
-            .map(|_| self.pop())
-            .collect::<Vec<_>>();
+        let mut ret = (0..self.0.len()).map(|_| self.pop()).collect::<Vec<_>>();
         ret.reverse();
         ret
     }

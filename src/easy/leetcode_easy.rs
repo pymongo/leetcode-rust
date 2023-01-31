@@ -368,7 +368,7 @@ fn rotated_digits(n: i32) -> i32 {
         }
         false
     }
-    (1..=n).into_iter().filter(|&num| is_good(num)).count() as i32
+    (1..=n).filter(|&num| is_good(num)).count() as i32
 }
 
 /// https://leetcode.com/problems/distribute-candies/

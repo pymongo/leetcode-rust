@@ -41,10 +41,8 @@ impl Solution {
     fn solution_use_slice_windows_api(nums: Vec<i32>) -> i32 {
         (1..=nums.len())
             .step_by(2)
-            .into_iter()
             .map(|window_len| {
                 nums.windows(window_len)
-                    .into_iter()
                     .map(|window| window.iter().sum::<i32>())
                     .sum::<i32>()
             })
