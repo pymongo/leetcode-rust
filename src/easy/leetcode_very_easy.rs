@@ -3890,3 +3890,28 @@ fn test_check_x_matrix() {
         [4, 0, 0, 2]
     ]));
 }
+
+/// https://leetcode.cn/problems/decode-the-message/
+#[allow(clippy::map_entry, clippy::option_if_let_else)]
+fn decode_message(key: String, message: String) -> String {
+    let mut idx = b'a';
+    let mut map = std::collections::HashMap::new();
+    for each in key.into_bytes() {
+        if each == b' ' {
+            continue;
+        }
+        if !map.contains_key(&each) {
+            map.insert(each, idx);
+            idx += 1;
+        }
+    }
+    let mut output = Vec::new();
+    for each in message.into_bytes() {
+        let char_ = match map.get(&each) {
+            Some(val) => *val,
+            None => each,
+        };
+        output.push(char_);
+    }
+    unsafe { String::from_utf8_unchecked(output) }
+}

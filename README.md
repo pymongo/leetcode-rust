@@ -567,6 +567,7 @@ leetcode_solutions
 |2283|[Check If Number...](https://leetcode.cn/problems/check-if-number-has-equal-digit-count-and-digit-value/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |2299|[Strong Password Checker II](https://leetcode.cn/problems/strong-password-checker-ii/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |2319|[Check If Matrix...](https://leetcode.cn/problems/check-if-matrix-is-x-matrix/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|2325|[Decode The Message](https://leetcode.cn/problems/decode-the-message/)|[Rust](src/easy/leetcode_very_easy.rs)|
 
 ---
 
