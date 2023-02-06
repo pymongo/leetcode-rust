@@ -568,6 +568,7 @@ leetcode_solutions
 |2299|[Strong Password Checker II](https://leetcode.cn/problems/strong-password-checker-ii/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |2319|[Check If Matrix...](https://leetcode.cn/problems/check-if-matrix-is-x-matrix/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |2325|[Decode The Message](https://leetcode.cn/problems/decode-the-message/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|2331|[Evaluate Boolean Binary Tree](https://leetcode.cn/problems/evaluate-boolean-binary-tree/)|[Rust](src/binary_tree/evaluate_boolean_binary_tree.rs)|
 
 ---
 
