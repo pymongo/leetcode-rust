@@ -3915,3 +3915,33 @@ fn decode_message(key: String, message: String) -> String {
     }
     unsafe { String::from_utf8_unchecked(output) }
 }
+
+/// https://leetcode.cn/problems/minimum-amount-of-time-to-fill-cups/
+/// 两种贪心思路: 一种是选最大的两个一直减，减到 0，最后剩余一个杯子慢慢加水
+/// 但是最后阶段有点浪费，饮水机有两个出水口最后只用了一个，所以第二种贪心思路是尽可能每次都用上两个出水口，所以每次选两个最大的杯去加水
+fn fill_cups(amount: Vec<i32>) -> i32 {
+    let mut max_heap = std::collections::BinaryHeap::new();
+    for (water_kind, amount) in amount.into_iter().enumerate() {
+        if amount > 0 {
+            max_heap.push((amount, water_kind));
+        }
+    }
+    let mut step = 0;
+    while max_heap.len() >= 2 {
+        let mut water1 = max_heap.pop().unwrap();
+        let mut water2 = max_heap.pop().unwrap();
+        water1.0 -= 1;
+        water2.0 -= 1;
+        if water1.0 > 0 {
+            max_heap.push(water1);
+        }
+        if water2.0 > 0 {
+            max_heap.push(water2);
+        }
+        step += 1;
+    }
+    if let Some((amount, _water_kind)) = max_heap.pop() {
+        step += amount;
+    }
+    step
+}

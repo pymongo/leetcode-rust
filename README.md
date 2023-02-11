@@ -569,6 +569,7 @@ leetcode_solutions
 |2319|[Check If Matrix...](https://leetcode.cn/problems/check-if-matrix-is-x-matrix/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |2325|[Decode The Message](https://leetcode.cn/problems/decode-the-message/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |2331|[Evaluate Boolean Binary Tree](https://leetcode.cn/problems/evaluate-boolean-binary-tree/)|[Rust](src/binary_tree/evaluate_boolean_binary_tree.rs)|
+|2335|[Minimum Amount of Time to Fill Cups](https://leetcode.cn/problems/minimum-amount-of-time-to-fill-cups/)|[Rust](src/easy/leetcode_very_easy.rs)|
 
 ---
 
