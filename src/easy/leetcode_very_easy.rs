@@ -3945,3 +3945,17 @@ fn fill_cups(amount: Vec<i32>) -> i32 {
     }
     step
 }
+
+/// https://leetcode.cn/problems/maximum-number-of-pairs-in-array/
+fn number_of_pairs(nums: Vec<i32>) -> Vec<i32> {
+    let mut counter = [0; 101];
+    for num in nums {
+        counter[num as usize] += 1;
+    }
+    let mut ret = (0, 0);
+    for each in counter {
+        ret.0 += each / 2;
+        ret.1 += each % 2;
+    }
+    vec![ret.0, ret.1]
+}
