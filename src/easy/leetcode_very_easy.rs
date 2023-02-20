@@ -3959,3 +3959,27 @@ fn number_of_pairs(nums: Vec<i32>) -> Vec<i32> {
     }
     vec![ret.0, ret.1]
 }
+
+/// https://leetcode.cn/problems/best-poker-hand/
+fn best_hand(ranks: Vec<i32>, suits: Vec<char>) -> String {
+    let suit = suits[0];
+    if suits.into_iter().all(|x| x == suit) {
+        return "Flush".to_string();
+    }
+
+    let mut counter = std::collections::HashMap::<_, u8>::new();
+    for rank in ranks {
+        *counter.entry(rank).or_default() += 1;
+    }
+    for count in counter.values() {
+        if *count >= 3 {
+            return "Three of a Kind".to_string();
+        }
+    }
+    for count in counter.into_values() {
+        if count == 2 {
+            return "Pair".to_string();
+        }
+    }
+    "High Card".to_string()
+}
