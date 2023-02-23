@@ -69,6 +69,7 @@ mod counter;
 mod data_structure;
 mod dp;
 mod easy;
+mod graph;
 mod greedy;
 mod linked_list;
 mod math;
