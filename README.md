@@ -572,6 +572,7 @@ leetcode_solutions
 |2335|[Minimum Amount of Time to Fill Cups](https://leetcode.cn/problems/minimum-amount-of-time-to-fill-cups/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |2341|[Maximum number of...](https://leetcode.cn/problems/maximum-number-of-pairs-in-array/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |2347|[Best Poker Hand](https://leetcode.cn/problems/best-poker-hand/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|2357|[Make Array...](https://leetcode.cn/problems/make-array-zero-by-subtracting-equal-amounts/)|[Rust](src/easy/leetcode_very_easy.rs)|
 
 ---
 

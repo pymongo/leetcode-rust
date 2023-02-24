@@ -3983,3 +3983,37 @@ fn best_hand(ranks: Vec<i32>, suits: Vec<char>) -> String {
     }
     "High Card".to_string()
 }
+
+/// https://leetcode.cn/problems/make-array-zero-by-subtracting-equal-amounts/
+fn minimum_operations(nums: Vec<i32>) -> i32 {
+    use std::cmp::Reverse;
+    use std::collections::BinaryHeap;
+    let mut ret = 0;
+    let mut heap = nums
+        .into_iter()
+        .filter(|num| *num > 0)
+        .map(Reverse)
+        .collect::<BinaryHeap<_>>();
+    while !heap.is_empty() {
+        let min = heap.pop().unwrap().0;
+        let mut nums = Vec::new();
+        while let Some(num) = heap.pop() {
+            let mut num = num.0;
+            num -= min;
+            if num > 0 {
+                nums.push(num);
+            }
+        }
+        for num in nums {
+            heap.push(Reverse(num));
+        }
+        ret += 1;
+    }
+
+    ret
+}
+
+#[test]
+fn test_minimum_operations() {
+    assert_eq!(minimum_operations(vec![1, 5, 0, 3, 5]), 3);
+}
