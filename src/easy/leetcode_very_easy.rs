@@ -4017,3 +4017,8 @@ fn minimum_operations(nums: Vec<i32>) -> i32 {
 fn test_minimum_operations() {
     assert_eq!(minimum_operations(vec![1, 5, 0, 3, 5]), 3);
 }
+
+/// https://leetcode.cn/problems/convert-the-temperature/
+fn convert_temperature(celsius: f64) -> Vec<f64> {
+    vec![celsius + 273.15, celsius.mul_add(1.8, 32.0)]
+}

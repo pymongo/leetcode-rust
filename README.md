@@ -573,6 +573,7 @@ leetcode_solutions
 |2341|[Maximum number of...](https://leetcode.cn/problems/maximum-number-of-pairs-in-array/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |2347|[Best Poker Hand](https://leetcode.cn/problems/best-poker-hand/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |2357|[Make Array...](https://leetcode.cn/problems/make-array-zero-by-subtracting-equal-amounts/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|2469|[Convert The...](https://leetcode.cn/problems/convert-the-temperature)|[Rust](src/easy/leetcode_very_easy.rs)|
 
 ---
 
