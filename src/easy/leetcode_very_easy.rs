@@ -4022,3 +4022,30 @@ fn test_minimum_operations() {
 fn convert_temperature(celsius: f64) -> Vec<f64> {
     vec![celsius + 273.15, celsius.mul_add(1.8, 32.0)]
 }
+
+/// https://leetcode.cn/problems/count-sorted-vowel-strings/
+fn count_vowel_strings(n: i32) -> i32 {
+    // a e i o u
+    // 0 1 2 3 4
+    vowel_comb(0, 0, n as _)
+}
+
+fn vowel_comb(last_vowel: u8, cur_len: u8, len: u8) -> i32 {
+    if cur_len == len {
+        return 1;
+    }
+    let mut count = 0;
+    for vowel in last_vowel..5 {
+        count += vowel_comb(vowel, cur_len+1, len);
+    }
+    count
+}
+
+#[test]
+fn test_count_vowel_strings() {
+    for (n, count) in [
+        (1, 5), (2, 15), (33, 66045)
+    ] {
+        assert_eq!(count_vowel_strings(n), count);
+    }
+}
