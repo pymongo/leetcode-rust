@@ -4049,3 +4049,21 @@ fn test_count_vowel_strings() {
         assert_eq!(count_vowel_strings(n), count);
     }
 }
+
+/// https://leetcode.cn/problems/number-of-arithmetic-triplets/
+fn arithmetic_triplets(nums: Vec<i32>, diff: i32) -> i32 {
+    let exists = nums.clone().into_iter().collect::<std::collections::HashSet<_>>();
+    let mut count = 0;
+    for num in nums {
+        if exists.contains(&(num+diff)) && exists.contains(&(num+diff*2)) {
+            dbg!(num);
+            count += 1;
+        }
+    }
+    count
+}
+
+#[test]
+fn test_arithmetic_triplets() {
+    assert_eq!(arithmetic_triplets(vec![0,1,4,6,7,10], 3), 2);
+}
