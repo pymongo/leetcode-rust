@@ -575,6 +575,7 @@ leetcode_solutions
 |2347|[Best Poker Hand](https://leetcode.cn/problems/best-poker-hand/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |2357|[Make Array...](https://leetcode.cn/problems/make-array-zero-by-subtracting-equal-amounts/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |2367|[Number Of...](https://leetcode.cn/problems/number-of-arithmetic-triplets/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|2404|[Most Fre...](https://leetcode.cn/problems/most-frequent-even-element/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |2469|[Convert The...](https://leetcode.cn/problems/convert-the-temperature)|[Rust](src/easy/leetcode_very_easy.rs)|
 
 ---

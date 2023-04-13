@@ -4036,26 +4036,27 @@ fn vowel_comb(last_vowel: u8, cur_len: u8, len: u8) -> i32 {
     }
     let mut count = 0;
     for vowel in last_vowel..5 {
-        count += vowel_comb(vowel, cur_len+1, len);
+        count += vowel_comb(vowel, cur_len + 1, len);
     }
     count
 }
 
 #[test]
 fn test_count_vowel_strings() {
-    for (n, count) in [
-        (1, 5), (2, 15), (33, 66045)
-    ] {
+    for (n, count) in [(1, 5), (2, 15), (33, 66045)] {
         assert_eq!(count_vowel_strings(n), count);
     }
 }
 
 /// https://leetcode.cn/problems/number-of-arithmetic-triplets/
 fn arithmetic_triplets(nums: Vec<i32>, diff: i32) -> i32 {
-    let exists = nums.clone().into_iter().collect::<std::collections::HashSet<_>>();
+    let exists = nums
+        .clone()
+        .into_iter()
+        .collect::<std::collections::HashSet<_>>();
     let mut count = 0;
     for num in nums {
-        if exists.contains(&(num+diff)) && exists.contains(&(num+diff*2)) {
+        if exists.contains(&(num + diff)) && exists.contains(&(num + diff * 2)) {
             dbg!(num);
             count += 1;
         }
@@ -4065,5 +4066,25 @@ fn arithmetic_triplets(nums: Vec<i32>, diff: i32) -> i32 {
 
 #[test]
 fn test_arithmetic_triplets() {
-    assert_eq!(arithmetic_triplets(vec![0,1,4,6,7,10], 3), 2);
+    assert_eq!(arithmetic_triplets(vec![0, 1, 4, 6, 7, 10], 3), 2);
+}
+
+/// https://leetcode.cn/problems/most-frequent-even-element/
+fn most_frequent_even(nums: Vec<i32>) -> i32 {
+    let mut counter = std::collections::HashMap::new();
+
+    for num in nums {
+        if num % 2 != 0 {
+            continue;
+        }
+        *counter.entry(num).or_insert(0u16) += 1;
+    }
+
+    let mut counter = counter
+        .into_iter()
+        .map(|(k, v)| (v, std::cmp::Reverse(k)))
+        .collect::<Vec<_>>();
+    counter.sort_unstable();
+
+    counter.last().map_or(-1, |x| x.1 .0)
 }
