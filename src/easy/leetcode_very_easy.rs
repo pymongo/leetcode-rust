@@ -4088,3 +4088,22 @@ fn most_frequent_even(nums: Vec<i32>) -> i32 {
 
     counter.last().map_or(-1, |x| x.1 .0)
 }
+
+/// https://leetcode.cn/problems/smallest-even-multiple/
+const fn smallest_even_multiple(n: i32) -> i32 {
+    #[cfg(not)]
+    const fn gcd(mut a: u32, mut b: u32) -> u32 {
+        while b != 0 {
+            let temp = b;
+            b = a % b;
+            a = temp;
+        }
+        a
+    }
+    // gcd(n as _, 2) as _
+    if n % 2 == 0 {
+        n
+    } else {
+        n * 2
+    }
+}
