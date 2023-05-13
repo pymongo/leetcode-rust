@@ -4107,3 +4107,15 @@ const fn smallest_even_multiple(n: i32) -> i32 {
         n * 2
     }
 }
+
+/// https://leetcode.cn/problems/largest-positive-integer-that-exists-with-its-negative/
+fn find_max_k(nums: Vec<i32>) -> i32 {
+    let nums_ = nums.into_iter().collect::<std::collections::HashSet<_>>();
+    let mut max_k = -1;
+    for &num in &nums_ {
+        if nums_.contains(&-num) {
+            max_k = max_k.max(num);
+        }
+    }
+    max_k
+}

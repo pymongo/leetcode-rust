@@ -182,6 +182,7 @@ mod benches {
     }
 
     #[bench]
+    #[allow(clippy::collection_is_never_read)]
     fn bench_std_merge_sort(bencher: &mut test::Bencher) {
         bencher.iter(|| {
             let mut nums = random_numbers_test_case();
@@ -191,6 +192,7 @@ mod benches {
     }
 
     #[bench]
+    #[allow(clippy::collection_is_never_read)]
     fn bench_std_quick_sort(bencher: &mut test::Bencher) {
         bencher.iter(|| {
             let mut nums = random_numbers_test_case();
