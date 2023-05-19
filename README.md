@@ -414,6 +414,7 @@ leetcode_solutions
 |1051|[Height Checker](https://leetcode.com/problems/height-checker/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1068🔒|[Product Sales Analysis I](https://leetcode.com/problems/product-sales-analysis-i/)|[SQL](sql_problems/very_easy.sql)|
 |1069🔒|[Product Sales Analysis II](https://leetcode.com/problems/product-sales-analysis-ii/)|[SQL](sql_problems/very_easy.sql)|
+|1079|[Letter Tile Possibilities/](https://leetcode.cn/problems/letter-tile-possibilities/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1089|[Duplicate Zeros](https://leetcode.com/problems/duplicate-zeros/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |1095|[Find in Mountain Array](https://leetcode.com/problems/find-in-mountain-array/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/binary_search/mountain_array_find.py)|binary_search, mountain_array|
 |1099🔒|[Two Sum Less Than K](https://leetcode.com/problems/two-sum-less-than-k/)|[Python](https://github.com/pymongo/python_leetcode/blob/master/two_sum_two_pointers/two_sum_le_count.py)|two_pointers|

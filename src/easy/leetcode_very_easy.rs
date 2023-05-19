@@ -4119,3 +4119,41 @@ fn find_max_k(nums: Vec<i32>) -> i32 {
     }
     max_k
 }
+
+/// https://leetcode.cn/problems/letter-tile-possibilities/
+fn num_tile_possibilities(tiles: String) -> i32 {
+    fn dfs(cur_len: usize, counter: &mut std::collections::HashMap<u8, u8>, max_len: usize) -> i32 {
+        if cur_len == max_len {
+            return 1;
+        }
+
+        let mut cnt = 1;
+        let chars = counter.keys().copied().collect::<Vec<_>>();
+        for ch in chars {
+            // each char can only use once
+            if counter[&ch] == 0 {
+                continue;
+            }
+            *counter.get_mut(&ch).unwrap() -= 1;
+            cnt += dfs(cur_len + 1, counter, max_len);
+            *counter.get_mut(&ch).unwrap() += 1;
+        }
+        cnt
+    }
+
+    let max_len = tiles.len();
+    // each char can only use once
+    let mut counter = std::collections::HashMap::<_, u8>::new();
+    for each in tiles.into_bytes() {
+        *counter.entry(each).or_default() += 1;
+    }
+    // -1 to exclude empty set
+    dfs(0, &mut counter, max_len) - 1
+}
+
+#[test]
+fn test_num_tile_possibilities() {
+    for (tiles, count) in [("AAB", 8), ("AAABBC", 188)] {
+        assert_eq!(num_tile_possibilities(tiles.to_string()), count);
+    }
+}
