@@ -579,6 +579,7 @@ leetcode_solutions
 |2404|[Most Fre...](https://leetcode.cn/problems/most-frequent-even-element/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |2413|[Smallest Even...](https://leetcode.cn/problems/smallest-even-multiple/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |2441|[Largest Positive...](https://leetcode.cn/problems/largest-positive-integer-that-exists-with-its-negative/)|[Rust](src/easy/leetcode_very_easy.rs)|
+|2455|[Average...](https://leetcode.cn/problems/average-value-of-even-numbers-that-are-divisible-by-three/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |2469|[Convert The...](https://leetcode.cn/problems/convert-the-temperature)|[Rust](src/easy/leetcode_very_easy.rs)|
 
 ---

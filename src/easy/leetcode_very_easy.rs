@@ -4157,3 +4157,13 @@ fn test_num_tile_possibilities() {
         assert_eq!(num_tile_possibilities(tiles.to_string()), count);
     }
 }
+
+/// https://leetcode.cn/problems/average-value-of-even-numbers-that-are-divisible-by-three/
+fn average_value(nums: Vec<i32>) -> i32 {
+    let nums = nums.into_iter().filter(|num| num % 6 == 0).collect::<Vec<_>>();
+    if nums.is_empty() {
+        return 0;
+    }
+    let len = nums.len() as i32;
+    nums.into_iter().sum::<i32>() / len
+}
