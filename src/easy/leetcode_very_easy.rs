@@ -4167,3 +4167,19 @@ fn average_value(nums: Vec<i32>) -> i32 {
     let len = nums.len() as i32;
     nums.into_iter().sum::<i32>() / len
 }
+
+/// https://leetcode.cn/problems/circular-sentence/
+fn is_circular_sentence(sentence: String) -> bool {
+    let sentence = sentence.into_bytes();
+    let words = sentence.split(|x| *x == b' ').collect::<Vec<_>>();
+    let word_len = words.len();
+    /*
+    word_len=3, paris=01,12,20
+    */
+    for i in 0..word_len {
+        if *words[i].last().unwrap() != words[(i+1)%word_len][0] {
+            return false;
+        }
+    }
+    true
+}

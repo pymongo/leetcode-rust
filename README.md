@@ -581,6 +581,7 @@ leetcode_solutions
 |2441|[Largest Positive...](https://leetcode.cn/problems/largest-positive-integer-that-exists-with-its-negative/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |2455|[Average...](https://leetcode.cn/problems/average-value-of-even-numbers-that-are-divisible-by-three/)|[Rust](src/easy/leetcode_very_easy.rs)|
 |2469|[Convert The...](https://leetcode.cn/problems/convert-the-temperature)|[Rust](src/easy/leetcode_very_easy.rs)|
+|2490|[Circular Sentence](https://leetcode.cn/problems/circular-sentence/)|[Rust](src/easy/leetcode_very_easy.rs)|
 
 ---
 
