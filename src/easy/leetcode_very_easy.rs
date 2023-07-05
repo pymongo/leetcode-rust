@@ -4160,7 +4160,10 @@ fn test_num_tile_possibilities() {
 
 /// https://leetcode.cn/problems/average-value-of-even-numbers-that-are-divisible-by-three/
 fn average_value(nums: Vec<i32>) -> i32 {
-    let nums = nums.into_iter().filter(|num| num % 6 == 0).collect::<Vec<_>>();
+    let nums = nums
+        .into_iter()
+        .filter(|num| num % 6 == 0)
+        .collect::<Vec<_>>();
     if nums.is_empty() {
         return 0;
     }
@@ -4177,9 +4180,20 @@ fn is_circular_sentence(sentence: String) -> bool {
     word_len=3, paris=01,12,20
     */
     for i in 0..word_len {
-        if *words[i].last().unwrap() != words[(i+1)%word_len][0] {
+        if *words[i].last().unwrap() != words[(i + 1) % word_len][0] {
             return false;
         }
     }
     true
+}
+
+/// https://leetcode.cn/problems/k-items-with-the-maximum-sum/
+fn k_items_with_maximum_sum(num_ones: i32, num_zeros: i32, num_neg_ones: i32, k: i32) -> i32 {
+    if k <= num_ones + num_zeros {
+        num_ones.min(k)
+    } else if k <= num_ones + num_zeros + num_neg_ones {
+        num_ones - (k - num_ones - num_zeros)
+    } else {
+        num_ones - num_neg_ones
+    }
 }
