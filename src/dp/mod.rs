@@ -34,3 +34,4 @@ mod stone_game;
 mod trapping_rain_water;
 mod triangle;
 mod unique_paths;
+mod minimum_falling_path_sum;
